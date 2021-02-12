@@ -1,0 +1,44 @@
+{
+  "name": "navigator-tool",
+  "version": "0.0.0",
+  "description": "NAVIGATOR Tool -  framework for the quantitative advice of crop nutrient requirements and greenhouse gas emissions and removal assessment at farm",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "babel src -d dist",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsig-idr/navigator-tool"
+  },
+  "keywords": [
+    "Nutrients",
+    "GHG",
+    "EPA"
+  ],
+  "author": "David Cifuentes, Raúl Moreno, Javier Sánchez",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/node": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@types/node": "^14.14.22",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "@turf/turf": "^6.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "path": "^0.12.7",
+    "transform-coordinates": "^1.0.0"
+  }
+}

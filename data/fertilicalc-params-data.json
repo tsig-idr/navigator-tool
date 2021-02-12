@@ -1,0 +1,103 @@
+{
+    "strategies": [{
+        "value": 1,
+        "title": "sufficiency",
+        "description": "Sufficiency"
+    },{
+        "value": 2,
+        "title": "minimum-fertilizer",
+        "description": "Buildup & maintenance (minimum fertilizer)"
+    },
+    {
+        "value": 3,
+        "title": "maximum-yield",
+        "description": "Buildup & maintenance (maximum yield)"
+    },
+    {
+        "value": 4,
+        "title": "maintenance",
+        "description": "Maintenance (for definitions see paper)"
+    }],
+    "types_of_soil": [
+        {
+            "type": "none",
+            "p_lower": 0,
+            "p_higher": 0,
+            "k_lower": 0,
+            "k_higher": 0,
+            "fk_low": 0,
+            "fk_hig": 0,
+            "bd": 0
+        },
+        {
+            "type": "sand",
+            "p_lower": 8,
+            "p_higher": 10,
+            "k_lower": 100,
+            "k_higher": 100,
+            "fk_low": 1.1,
+            "fk_hig": 1.2,
+            "bd": 1.68
+        },
+        {
+            "type": "sandyLoam",
+            "p_lower": 10,
+            "p_higher": 12,
+            "k_lower": 150,
+            "k_higher": 175,
+            "fk_low": 1.1,
+            "fk_hig": 1.2,
+            "bd": 1.56
+        },
+        {
+            "type": "loam",
+            "p_lower": 10,
+            "p_higher": 12,
+            "k_lower": 150,
+            "k_higher": 175,
+            "fk_low": 1.5,
+            "fk_hig": 1.7,
+            "bd": 1.43
+        },
+        {
+            "type": "siltyLoam",
+            "p_lower": 10,
+            "p_higher": 12,
+            "k_lower": 150,
+            "k_higher": 175,
+            "fk_low": 1.5,
+            "fk_hig": 1.7,
+            "bd": 1.41
+        },
+        {
+            "type": "clayLoam",
+            "p_lower": 10,
+            "p_higher": 12,
+            "k_lower": 150,
+            "k_higher": 175,
+            "fk_low": 2,
+            "fk_hig": 2,
+            "bd": 1.31
+        },
+        {
+            "type": "clay",
+            "p_lower": 12,
+            "p_higher": 20,
+            "k_lower": 200,
+            "k_higher": 300,
+            "fk_low": 2.5,
+            "fk_hig": 5,
+            "bd": 1.21
+        }
+    ],
+    "nutrients": {
+        "t_i": [0, -1.29, -0.84, -0.525, -0.25, 0, 0.25, 0.525, 0.84, 1.29],
+        "n_end": 10,
+        "n_other": 10.0,
+        "fnr": 0.2,
+        "fnloss": 0.0,
+        "efic": 0.8, 
+        "soil_depth": 0.3,
+        "beta_pl": 0.8
+    }
+}

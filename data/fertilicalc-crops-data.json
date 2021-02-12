@@ -1,0 +1,70 @@
+[
+    {
+        "uri": "navigatortool:crops:<_Crops:helianthusAnnuss_>",
+        "crop": "helianthusAnnuus",
+        "name": "Girasol (aceite)",
+        "latin_name": "Helianthus annuus",
+        "type": "industrial",
+        "harvested_part": "seed",
+        "harvest": {
+            "dm_harv": 91.5,
+            "N_harv": 2.95,
+            "P_harv": 0.63,
+            "K_harv": 0.72,
+            "Ca_harv": "",
+            "Mg_harv": "",
+            "S_harv": "",
+            "harv_index_estimation": 35,
+            "fres_estimation": 100
+        },
+        "residues": {
+            "name": "residues",
+            "dm_resi": 87,
+            "N_resi": 0.8,
+            "P_resi": 0.14,
+            "K_resi": 2.52,
+            "Ca_resi": "",
+            "Mg_resi": "",
+            "S_resi": "",
+            "N_fix_c": 0,
+            "N_min": 2.2,
+            "N_max": 3.2
+        }
+    },
+    {
+        "uri": "navigatortool:crops:<_Crops:triticumTurgidum_>",
+        "crop": "triticumTurgidum",
+        "name": "Trigo duro",
+        "latin_name": "Triticum turgidum",
+        "type": "cereals",
+        "harvested_part": "grain",
+        "harvest": {
+            "dm_harv": 87.5,
+            "N_harv": 2.4,
+            "P_harv": 0.42,
+            "K_harv": 0.5,
+            "Ca_harv": "",
+            "Mg_harv": "",
+            "S_harv": "",
+            "harv_index_estimation": 40,
+            "fres_estimation": 10
+        },
+        "residues": {
+            "name": "straw",
+            "dm_resi": 90.5,
+            "N_resi": 0.65,
+            "P_resi": 0.06,
+            "K_resi": 1.2,
+            "Ca_resi": "",
+            "Mg_resi": "",
+            "S_resi": "",
+            "N_fix_c": 0,
+            "N_min": 2.05,
+            "N_max": 2.7
+        }
+    }
+]
+
+
+
+        

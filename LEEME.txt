@@ -1,0 +1,2 @@
+npm install --save-dev  @babel/cli @babel/core @babel/node @babel/preset-env @types/node babel-eslint eslint eslint-plugin-flowtype nodemon prettier
+npm install --save  dotenv express express-async-handler cors path @turf/turf transform-coordinates
