@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="David Cifuentes">
-    <meta name="generator" content="Hugo 0.79.0">
-    <title>Product example · Bootstrap v5.0</title>
+    <meta name="generator" content="">
+    <title>NAVIGATOR-TOO model testing tool </title>
 
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  
+    <!-- 
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -30,6 +28,7 @@
         }
       }
     </style>
+    -->
 
     
     <!-- Custom styles for this template -->
@@ -42,13 +41,15 @@
     <a class="py-2" href="#" aria-label="Product">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
-    <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">NPK - (L3): Fertilicalc</a>
+    <!-- 
     <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
     <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+    -->
   </nav>
 </header>
 
@@ -61,8 +62,8 @@
 
     <form class="needs-validation" id="formFertilicalc" novalidate>
     <div class="col-md-12">
-      <div class="card">
-        <h5 class="card-header">Plot</h5>
+      <div class="card ">
+        <h5 class="card-header bg-success text-white">Plot</h5>
         <div class="card-body">
           <div class="row">
             <div class="col-md-4">
@@ -156,13 +157,7 @@
                 Please select a Water supply
               </div>
             </div>
-           
-            
-
-
           </div>
-          
-
         </div>
       </div>
 
@@ -225,90 +220,55 @@
               <input type="checkbox" class="form-check-input" name="crops[0][burning]">
             </td>
           </tr>
-          <!-- 
-          <tr class="trow" data-row="2">
-            <th scope="row">2 </th>
-            <td>
-              <button type="button" class="btn btn-primary btn-sm">Del</button>
-            </td>
-            <td> 
-              <select class="form-select" id="crop" name="crops[1][crop]" required>
-                <option value="">Choose...</option>
-                <option value="helianthusAnnuus">Girasol (aceite) - <small>Helianthus annuus</small></option>
-                <option value="triticumTurgidum">Trigo duro - <small>Triticum turgidum</small></option>
-              </select>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][yield]" placeholder="Crop yield (kg commercial product/ha)" min="0" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][cv]" placeholder="Coefficient of Variation of yield (%)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][harvest_index]" placeholder="Harvest Index (%)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][fres]" placeholder="Fraction of crop residues remaining in the field after harvest (%)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][N_harv]" placeholder="N concentration of harvested organ (% over dry mass)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][P_harv]" placeholder=" P concentration of harvested organ (% over dry mass)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="number" class="form-control" name="crops[1][K_harv]" placeholder=" K concentration of harvested organ (% over dry mass)" min="0" max="100" required>
-            </td>
-            <td>
-              <input type="checkbox" class="form-check-input" name="crops[1][burning]">
-            </td>
-          </tr>
-          -->
+          
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="12"><button type="button" class="btn btn-primary" id="addMoreCrops">+ Add more crops</button></td>
+            <td colspan="12"><button type="button" class="btn btn-success" id="addMoreCrops">+ Add more crops</button></td>
           </tr>
         </tfoot>
       </table>
 
   
     </div>
-    <div class="col-md-12"><button type="button" class="btn btn-primary" id="submitFertilicalc">Summit</button></div>
-
-  </form>
-
-  <div class="row">
-    <div class="col-md-12">
-
-      <h3>Results:</h3>
+    <div class="col-md-12 text-center">
+      <button type="button" class="btn btn-primary" id="submitFertilicalc"><i class="fa fa-play"></i> Calculate</button>
     </div>
 
-  </div>
-  <div class="col-md-12">
-    <h3>NPK Requirements</h3>  
-    <table class="table table-dark" id="tableNPKrequirements">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">crop_name_latin</th>
-          <th scope="col">crop_name</th>
-          <th scope="col">N_fert_min kg N/ha</th>
-          <th scope="col">N_fert_max kg N/ha</th>
-          <th scope="col">N_fert_avg kg N/ha</th>
-          <th scope="col">P_fert kg P/ha</th>
-          <th scope="col">K_fert kg K/ha</th>
-          <th scope="col">P_fert kg P2O5/ha</th>
-          <th scope="col">K_fert kg K2O/ha</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-      </tbody>
-    </table>
-  </div>
-
+  </form>
   </main>
+  <section id="NPKresults" class="d-none">
+    <div class="row">
+      <div class="col-md-12">
+  
+        <h3>Results:</h3>
+      </div>
+  
+    </div>
+    <div class="col-md-12">
+      <h3>NPK Requirements</h3>  
+      <table class="table table-dark" id="tableNPKrequirements">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">crop_name_latin</th>
+            <th scope="col">crop_name</th>
+            <th scope="col">N_fert_min kg N/ha</th>
+            <th scope="col">N_fert_max kg N/ha</th>
+            <th scope="col">N_fert_avg kg N/ha</th>
+            <th scope="col">P_fert kg P/ha</th>
+            <th scope="col">K_fert kg K/ha</th>
+            <th scope="col">P_fert kg P2O5/ha</th>
+            <th scope="col">K_fert kg K2O/ha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- tabla de resultados vacia-->
+        </tbody>
+      </table>
+    </div>
+
+  </section>
 </div>
 <footer class="container py-5">
   <div class="row">

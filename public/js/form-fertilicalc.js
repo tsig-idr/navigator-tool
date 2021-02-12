@@ -124,6 +124,8 @@
   });
 
   document.getElementById('submitFertilicalc').addEventListener('click', function () {
+     var element =  document.getElementById('NPKresults');
+     element.classList.remove("d-none");
     _sendForm();
   });
 
