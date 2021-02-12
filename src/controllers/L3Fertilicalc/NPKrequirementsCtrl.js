@@ -65,7 +65,7 @@ module.exports = function () {
                 items[i].p_res = cropObj.residues.P_resi/100;
                 items[i].k_res = cropObj.residues.K_resi/100;
                 items[i].dmh = cropObj.harvest.dm_harv/100;
-                items[i].dmr = cropObj.residues.K_resi/100;
+                items[i].dmr = cropObj.residues.dm_resi/100;
                 items[i].crop_type = cropObj.type;
                 items[i].n_fix_code = cropObj.residues.N_fix_c;
                 items[i].n_min = cropObj.residues.N_min / 100;
@@ -143,9 +143,9 @@ module.exports = function () {
             inputs.items[i].n_kg_crop = (y_dm_med * inputs.items[i].nc_y + r_dm_med * inputs.items[i].n_res) * (1 + inputs.nutrients.fnr);
 
             const oProbCrop = await _calcProbability(inputs, i);
-            inputs.items[i].n_fert_avg = oProbCrop.n_fert_i[4]; //Le quitamos uno porque FC1 el cero no es cultivo 
-            inputs.items[i].n_fert_min=  oProbCrop.n_fert_i[1];
-            inputs.items[i].n_fert_max=  oProbCrop.n_fert_i[7];
+            inputs.items[i].n_fert_avg = oProbCrop.n_fert_i[5];
+            inputs.items[i].n_fert_min=  oProbCrop.n_fert_i[2];
+            inputs.items[i].n_fert_max=  oProbCrop.n_fert_i[8];
             inputs.items[i].y_dm = oProbCrop.y_dm;
             inputs.items[i].r_dm = oProbCrop.r_dm;
 
@@ -241,7 +241,7 @@ module.exports = function () {
         let n_fert_i  = new Array(9).fill().map( u => (0));
         let y_dm, r_dm; 
 
-        for(var i_prob=0; i_prob< 9; i_prob++){
+        for(var i_prob=1; i_prob< 10; i_prob++){
             const t=parseFloat(inputs.nutrients.t_i[i_prob]);
             const y_mean= parseFloat(inputs.crops[index].yield);
             const cvar=parseFloat(inputs.crops[index].cv);

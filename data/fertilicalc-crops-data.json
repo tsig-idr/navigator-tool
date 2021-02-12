@@ -14,7 +14,7 @@
             "Ca_harv": "",
             "Mg_harv": "",
             "S_harv": "",
-            "harv_index_estimation": 35,
+            "h_i_estimation": 35,
             "fres_estimation": 100
         },
         "residues": {
@@ -46,7 +46,7 @@
             "Ca_harv": "",
             "Mg_harv": "",
             "S_harv": "",
-            "harv_index_estimation": 40,
+            "h_i_estimation": 40,
             "fres_estimation": 10
         },
         "residues": {

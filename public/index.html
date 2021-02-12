@@ -83,15 +83,15 @@
   
             <div class="col-md-2">
               <label for="som" class="form-label" title="Soil organic matter (%)">SOM (%)</label>
-              <input type="number" class="form-control" id="som" name="plot[som]" min=0 placeholder="Soil organic matter (%)">
+              <input type="number" class="form-control" id="som" name="plot[som]" min=0 step="any" placeholder="Soil organic matter (%)" value="0">
             </div>
             <div class="col-md-2">
               <label for="cec" class="form-label" title="Cation Exchange Capacity"> CEC (meq/kg)</label>
-              <input type="number" class="form-control" id="cec" name="plot[cec]" min=0 placeholder="Cation Exchange Capacity" disabled="disabled">
+              <input type="number" class="form-control" id="cec" name="plot[cec]" min=0 placeholder="Cation Exchange Capacity" value="80" disabled="disabled">
             </div>
             <div class="col-md-2">
               <label for="ph" class="form-label">pH </label>
-              <input type="number" class="form-control" id="ph" name="plot[ph]" min=0 placeholder="Soil pH" disabled="disabled">
+              <input type="number" class="form-control" id="ph" name="plot[ph]" min=0 placeholder="Soil pH" value="7.0" disabled="disabled">
             </div>
 
             <div class="col-md-2">
@@ -104,11 +104,11 @@
 
             <div class="col-md-2">
               <label for="soilPConc" class="form-label">Soil P mg/kg</label>
-              <input type="number" class="form-control" id="soilPConc" name="plot[soil_P_conc]" min=0 placeholder="Soil P concentration (ppm) ">
+              <input type="number" class="form-control" id="soilPConc" name="plot[soil_P_conc]" min=0 placeholder="Soil P concentration (ppm)" value="0">
             </div>
             <div class="col-md-2">
               <label for="soilKConc" class="form-label">Soil K mg/kg</label>
-              <input type="number" class="form-control" id="soilKConc" name="plot[soil_K_conc]" min=0 placeholder="Soil K concentration (ppm) ">
+              <input type="number" class="form-control" id="soilKConc" name="plot[soil_K_conc]" min=0 placeholder="Soil K concentration (ppm)" value="0">
             </div>
 
             <div class="col-md-3">
@@ -135,12 +135,11 @@
 
             <div class="col-md-3">
               <label for="pStrategy" class="form-label">PK strategy</label>
-              <select class="form-select" id="pStrategy" name="plot[fert_strategy]" disabled>
-                <option value="">Choose...</option>
+              <select class="form-select" id="pStrategy" name="plot[fert_strategy]">
                 <option value="1">Sufficiency</option>
                 <option value="2">Buildup & maintenance (minimum fertilizer)</option>
                 <option value="3">Buildup & maintenance (maximum yield)</option>
-                <option value="4">Maintenance (for definitions see paper) </option>
+                <option value="4" selected="selected">Maintenance (for definitions see paper) </option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid method of soil PK strategy

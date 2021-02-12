@@ -39,10 +39,12 @@ class NutrientsL3FertilicalcModel {
 
   async getParmsStrategy(strategy){
 
-    if (typeof strategy === 'string' || strategy instanceof String)
+    const straNumber = parseInt(strategy)
+
+    if (!Number.isInteger(straNumber) && (typeof strategy === 'string' || strategy instanceof String ))
       return this.parameters.strategies.find(x => x.title == strategy.toLowerCase());
     else
-      return this.parameters.strategies.find(x => x.value == strategy);
+      return this.parameters.strategies.find(x => x.value == straNumber);
   }
 
   async getParmsTypeOfSoil(type){
