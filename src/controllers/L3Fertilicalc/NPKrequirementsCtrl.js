@@ -170,14 +170,14 @@ module.exports = function () {
                     if (inputs.plot.soil_P_conc > inputs.items[i].p_thres){
                         inputs.items[i].p_rate = 0;
                     }else {
-                        const nyears = int(0.1* bulk_dens * inputs.nutrients.soil_depth* (inputs.items[i].p_thres - inputs.plot.soil_P_conc));
+                        const nyears = parseInt(0.1* bulk_dens * inputs.nutrients.soil_depth* (inputs.items[i].p_thres - inputs.plot.soil_P_conc));
                         inputs.items[i].p_rate = 10 * bulk_dens * inputs.nutrients.soil_depth / nyears * (inputs.items[i].p_thres - inputs.crops[i].soil_P_conc);
                     }
                 }else{
                     //strategy of buildup and maintenance
                     if (inputs.plot.soil_P_conc < inputs.items[i].p_thres) {
-                        const nyears = int(10 * bulk_dens * inputs.nutrients.soil_depth * (inputs.items[i].p_thres - inputs.crops[i].soil_P_conc)/(100 - p_exported));
-                        items[i].p_rate = p_exported + 10 * bulk_dens * inputs.nutrients.soil_depth / nyears * (inputs.items[i].p_thres - inputs.plot.soil_P_conc);
+                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * (inputs.items[i].p_thres - inputs.plot.soil_P_conc)/(100 - p_exported));
+                        inputs.items[i].p_rate = p_exported + 10 * bulk_dens * inputs.nutrients.soil_depth / nyears * (inputs.items[i].p_thres - inputs.plot.soil_P_conc);
                     }else{
                         if (inputs.plot.soil_P_conc < 2 * inputs.items[i].p_thres){
                             inputs.items[i].p_rate = p_exported;
@@ -200,15 +200,15 @@ module.exports = function () {
                     if (inputs.plot.soil_K_conc > inputs.items[i].k_thres){
                         inputs.items[i].k_rate = 0
                     }else{
-                        const nyears = int(10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk * (inputs.items[i].k_thres - inputs.plot.soil_K_conc) / 275) + 1;
-                        items[i].k_rate = 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
+                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk * (inputs.items[i].k_thres - inputs.plot.soil_K_conc) / 275) + 1;
+                        inputs.items[i].k_rate = 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
                     }
                 }else{
                     // strategy of buildup and maintenance
 
-                    if (inputs.plot.soil_K_conc < items[i].k_thres){
-                        const nyears = int(10 * bulk_dens * soil_depth * inputs.items[i].fk *(inputs.items[i].k_thres - inputs.plot.soil_K_conc) / (275 - k_exported)) + 1;
-                        items[i].k_rate = k_exported + 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
+                    if (inputs.plot.soil_K_conc < inputs.items[i].k_thres){
+                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk *(inputs.items[i].k_thres - inputs.plot.soil_K_conc) / (275 - k_exported)) + 1;
+                        inputs.items[i].k_rate = k_exported + 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
                     }else{
                         if (inputs.plot.soil_K_conc < 2 * inputs.items[i].k_thres){
                             inputs.items[i].k_rate = k_exported;
