@@ -1,0 +1,653 @@
+[
+    {
+      "name": "Sodium nitrate",
+      "N_nitr": 15,
+      "N_total": 15,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 396.7
+    },
+    {
+      "name": "Calcium nitrate",
+      "N_nitr": 15,
+      "N_total": 15,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 396.7
+    },
+    {
+      "name": "Magnesium nitrate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ammonium sulphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Urea",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Calcium cyanamide",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Anhydrous ammonia",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Pressured ammonia solutions",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ammonium sulfate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ammonium nitrate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Calcium ammonium nitrate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ammonium nitrosulphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrogen solutions",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Urea formaldehyde (UF)",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Isobutylidene diurea (IBDU)",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Crotonylidene diurea (CDU)",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Superphosphate simple",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Superphosphate concentrate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Triple superphosphate (TSP)",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Phosphoric acid",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Sperphosphoric acid",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Dycalcium phosphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Calcium metaphosphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Calcined phosphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Basic slags",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ground phosphate rock",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Potassium chloride",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Potassium sulphate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Mono-ammonium phosphate (MAP)",
+      "N_nitr": 12,
+      "N_total": 12,
+      "P_total": 27,
+      "P2O5_total": 61,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Di-ammonium phosphate (DAP)",
+      "N_ammon": 18,
+      "N_total": 18,
+      "P_total": 20,
+      "P2O5_total": 46,
+      "K_total": 0,
+      "K2O_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ammonium polyphosphates (APP)",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrophosphates",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Potassium phosphates",
+      "P_total": 23,
+      "P2O5_total": 52,
+      "K_total": 28,
+      "K2O_total": 34,
+      "price": 10000
+    },
+    {
+      "name": "Potassium nitrate",
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 8-15-15",
+      "N_nitr": 2,
+      "N_ammon": 6,
+      "N_total": 8,
+      "P_total": 7,
+      "P2O5_total": 15,
+      "K_total": 12,
+      "K2O_total": 15,
+      "price": 298.7
+    },
+    {
+      "name": "Complejo 12-12-24",
+      "N_total": 12,
+      "P_total": 5,
+      "P2O5_total": 12,
+      "K_total": 20,
+      "K2O_total": 24,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 15-15-15",
+      "N_urea": 2,
+      "N_ammon": 13,
+      "N_total": 15,
+      "P_total": 7,
+      "P2O5_total": 15,
+      "K_total": 12,
+      "K2O_total": 15,
+      "price": 379.8
+    },
+    {
+      "name": "Complejo 9-18-27",
+      "N_total": 9,
+      "P_total": 8,
+      "P2O5_total": 18,
+      "K_total": 22,
+      "K2O_total": 27,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 8-24-8",
+      "N_nitr": 1.5,
+      "N_ammon": 6.5,
+      "N_total": 8,
+      "P_total": 10,
+      "P2O5_total": 24,
+      "K_total": 7,
+      "K2O_total": 8,
+      "price": 345
+    },
+    {
+      "name": "Complejo 8-24-16",
+      "N_nitr": 1.5,
+      "N_ammon": 6.5,
+      "N_total": 8,
+      "P_total": 10,
+      "P2O5_total": 24,
+      "K_total": 13,
+      "K2O_total": 16,
+      "price": 345
+    },
+    {
+      "name": "Complejo 12-24-8",
+      "N_total": 12,
+      "P_total": 10,
+      "P2O5_total": 24,
+      "K_total": 7,
+      "K2O_total": 8,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 12-24-12",
+      "N_total": 12,
+      "P_total": 10,
+      "P2O5_total": 24,
+      "K_total": 10,
+      "K2O_total": 12,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 9-12-24",
+      "N_total": 9,
+      "P_total": 5,
+      "P2O5_total": 12,
+      "K_total": 20,
+      "K2O_total": 24,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 10-20-10",
+      "N_total": 10,
+      "P_total": 9,
+      "P2O5_total": 20,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 8-16-8",
+      "N_total": 8,
+      "P_total": 7,
+      "P2O5_total": 16,
+      "K_total": 7,
+      "K2O_total": 8,
+      "price": 10000
+    },
+    {
+      "name": "Complejo 12-36-12",
+      "N_total": 12,
+      "P_total": 16,
+      "P2O5_total": 36,
+      "K_total": 10,
+      "K2O_total": 12,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 4-16-10",
+      "N_total": 4,
+      "P_total": 7,
+      "P2O5_total": 16,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 5-10-10",
+      "N_total": 5,
+      "P_total": 4,
+      "P2O5_total": 10,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 5-20-5",
+      "N_total": 5,
+      "P_total": 9,
+      "P2O5_total": 20,
+      "K_total": 4,
+      "K2O_total": 5,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 6-12-16",
+      "N_total": 6,
+      "P_total": 5,
+      "P2O5_total": 12,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 6-16-10",
+      "N_total": 6,
+      "P_total": 7,
+      "P2O5_total": 16,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Suspensión 10-20-0",
+      "N_total": 10,
+      "P_total": 9,
+      "P2O5_total": 20,
+      "K_total": 0,
+      "K2O_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Fosfoplus 7-15-6 + 5S + 9 PHC",
+      "N_total": 7,
+      "P_total": 7,
+      "P2O5_total": 15,
+      "K_total": 5,
+      "K2O_total": 6,
+      "S": 5,
+      "price": 10000
+    },
+    {
+      "name": "Fosfoplus 8-8-10 + 5S + 9 PHC",
+      "N_total": 8,
+      "P_total": 3,
+      "P2O5_total": 8,
+      "K_total": 8,
+      "K2O_total": 10,
+      "S": 5,
+      "price": 10000
+    },
+    {
+      "name": "Superfosfato 18",
+      "N_total": 0,
+      "P_total": 8,
+      "P2O5_total": 18,
+      "K_total": 0,
+      "K2O_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Superfosfato 45",
+      "N_total": 0,
+      "P_total": 20,
+      "P2O5_total": 45,
+      "K_total": 0,
+      "K2O_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ácido fosfórico",
+      "P_total": 24,
+      "P2O5_total": 54,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "ClK (cloruro potásico) 60",
+      "P_total": 0,
+      "K_total": 0.498,
+      "K2O_total": 60,
+      "price": 10000
+    },
+    {
+      "name": "Sulfato potásico",
+      "P_total": 0,
+      "K_total": 0.415,
+      "K2O_total": 50,
+      "S": 18.5,
+      "SO4": 56,
+      "price": 600
+    },
+    {
+      "name": "Solución potásica",
+      "P_total": 0,
+      "K_total": 0.083,
+      "K2O_total": 10
+    },
+    {
+      "name": "Urea 46",
+      "N_urea": 46,
+      "N_total": 46,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 343.8
+    },
+    {
+      "name": "Urea 46+ Inhibidor",
+      "N_urea": 46,
+      "N_total": 46,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 530
+    },
+    {
+      "name": "Urea 40+ Azufre (YARA Sulfamid)",
+      "N_urea": 46,
+      "N_total": 40,
+      "P_total": 0,
+      "K_total": 0,
+      "SO4": 14,
+      "price": 430
+    },
+    {
+      "name": "Nitrosulfato amónico 26",
+      "N_nitr": 6.5,
+      "N_ammon": 19.5,
+      "N_total": 26,
+      "P_total": 0,
+      "K_total": 0,
+      "SO4": 37,
+      "price": 319.7
+    },
+    {
+      "name": "Nitrosulfato amónico 21",
+      "N_total": 21,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 198.3
+    },
+    {
+      "name": "Solución N-32",
+      "N_urea": 16,
+      "N_nitr": 8,
+      "N_ammon": 8,
+      "N_total": 32,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 272.3
+    },
+    {
+      "name": "Solución N-20",
+      "N_nitr": 10,
+      "N_ammon": 10,
+      "N_total": 20,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 0
+    },
+    {
+      "name": "Solución N-26",
+      "N_total": 0,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Solución nitrato de cálcio",
+      "N_total": 8,
+      "P_total": 0,
+      "K_total": 0,
+      "CaO": 16
+    },
+    {
+      "name": "Solución nitrato de magnesio",
+      "N_total": 7,
+      "P_total": 0,
+      "K_total": 0,
+      "MgO": 9.5
+    },
+    {
+      "name": "Nitro33",
+      "N_total": 25,
+      "P_total": 0,
+      "K_total": 0,
+      "MO": 5,
+      "S": 3,
+      "price": 10000
+    },
+    {
+      "name": "Nitroplus",
+      "N_total": 18,
+      "P_total": 0,
+      "K_total": 0,
+      "MO": 12,
+      "S": 8,
+      "price": 10000
+    },
+    {
+      "name": "Sulfato amónico",
+      "N_ammon": 100,
+      "N_total": 21,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Entec 20-10-10",
+      "N_total": 20,
+      "P_total": 4,
+      "P2O5_total": 10,
+      "K_total": 8,
+      "K2O_total": 10,
+      "price": 10000
+    },
+    {
+      "name": "Entec fluid 25",
+      "N_total": 25,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Ácido nitríco",
+      "N_nitr": 100,
+      "N_total": 13,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrato amónico 33",
+      "N_nitr": 50,
+      "N_ammon": 50,
+      "N_total": 33.3,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrato amónico cálcico 27 (NAC)",
+      "N_nitr": 50,
+      "N_ammon": 50,
+      "N_total": 27,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrato amónico 20",
+      "N_nitr": 50,
+      "N_ammon": 50,
+      "N_total": 20,
+      "P_total": 0,
+      "K_total": 0,
+      "price": 10000
+    },
+    {
+      "name": "Nitrato cálcico",
+      "N_nitr": 100,
+      "N_total": 15,
+      "P_total": 0,
+      "K_total": 0,
+      "CaO": 27
+    },
+    {
+      "name": "Nitrato de magnesio",
+      "N_nitr": 100,
+      "N_total": 11,
+      "P_total": 0,
+      "K_total": 0,
+      "MgO": 15
+    },
+    {
+      "name": "Nitrato potásico",
+      "N_nitr": 100,
+      "N_total": 13,
+      "P_total": 0,
+      "K_total": 0.3818,
+      "K2O_total": 46
+    },
+    {
+      "name": "Sulfato de magnesio",
+      "P_total": 0,
+      "K_total": 0,
+      "MgO": 16
+    },
+    {
+      "name": "Sulfato amónico 21",
+      "N_total": 21,
+      "P_total": 0,
+      "K_total": 0,
+      "S": 24,
+      "price": 10000
+    }
+  ]
