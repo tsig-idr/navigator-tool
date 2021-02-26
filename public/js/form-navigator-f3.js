@@ -1,5 +1,5 @@
 
-  var urlService = '/nutrients/fertilicalc-npk';
+  var urlService = '/nutrients/navigator-f3-npk';
 
   function _refreshListCrops(tblBody){
     var rowlength = tblBody.rows.length;
@@ -88,6 +88,49 @@
 
   }
 
+  function onChangeCrop(selectObject){
+
+
+    //TODO: Modifica los datos de la fila:
+    var rowElement = selectObject.parentElement.parentElement;
+    var idrow = rowElement.getAttribute('data-row');
+
+    var form = document.forms[0];
+
+    var item = {
+
+    "dm_harv": 87.5,
+    "N_harv": 2.4,
+    "P_harv": 0.42,
+    "K_harv": 0.5,
+    "Ca_harv": "",
+    "Mg_harv": "",
+    "S_harv": "",
+    "h_i_estimation": 40,
+    "fres_estimation": 10
+    }
+    
+
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][cv]"]');
+    selectElement.value = 400;
+
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][harvest_index]"]');
+    selectElement.value = item.h_i_estimation;
+   
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][fres]"]');
+    selectElement.value = item.fres_estimation;
+
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][N_harv]"]');
+    selectElement.value = item.N_harv;
+
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][P_harv]"]');
+    selectElement.value = item.P_harv;
+
+    var selectElement = form.querySelector('input[name="crops['+idrow+'][K_harv]"]');
+    selectElement.value = item.K_harv;
+    
+  }
+
 
   function _sendForm(){
     var form = document.querySelector('#formFertilicalc');
@@ -115,6 +158,29 @@
     });
   }
   
+  function _loadSelectCrops(){
+    fetch('/nutrients/crops').then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then(function (data) {
+      
+      var combo = document.getElementsByName("crops[0][crop]")[0];
+
+      for(var i=0; i<data.results.length; i++){
+        var elem = data.results[i];
+        var option = document.createElement("option");
+        option.appendChild( document.createTextNode(elem.name) );
+        // set value property of opt
+        option.value = elem.crop; 
+        combo.appendChild(option); 
+      }
+
+    }).catch(function (error) {
+      console.warn('Something went wrong.', error);
+    });
+  }
  
   // Eventos:
   document.getElementById('addMoreCrops').addEventListener('click', function () {
@@ -143,6 +209,8 @@
         form.classList.add('was-validated')
       }, false)
     })
+
+    _loadSelectCrops();
 
   
 

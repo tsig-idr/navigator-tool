@@ -393,9 +393,14 @@ module.exports = function () {
         });
     }
 
+    async function getCrops(){
+        return  nutrientsL3FertilicalcModel.crops;
+    }
+
     
 
     return {
-        nutrientNPKbalance: nutrientNPKbalance
+        nutrientNPKbalance: nutrientNPKbalance,
+        getCrops: getCrops
     }
 }

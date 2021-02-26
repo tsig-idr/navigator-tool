@@ -254,14 +254,8 @@
                   <th scope="row">1</th>
                   <td></td>
                   <td>
-                    <select class="form-select" name="crops[0][crop]" required>
+                    <select class="form-select" name="crops[0][crop]" required onchange="onChangeCrop(this)">
                       <option value="">Choose...</option>
-                      <option value="helianthusAnnuus">
-                        Girasol (aceite) - <small>Helianthus annuus</small>
-                      </option>
-                      <option value="triticumTurgidum">
-                        Trigo duro - <small>Triticum turgidum</small>
-                      </option>
                     </select>
                     <input
                       type="hidden"

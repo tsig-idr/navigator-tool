@@ -28,7 +28,9 @@ module.exports = function () {
 		res.json( { message: 'Hello Fertilicalc'});
 	}));
 
-	router.post('/fertilicalc-npk', asyncHandler(async (req, res) => {
+
+
+	router.post('/navigator-f3-npk', asyncHandler(async (req, res) => {
 		let response = {"results": []}
 
 		const crops = req.body.crops || req.params.crops; // || req.query.crops;
@@ -44,6 +46,15 @@ module.exports = function () {
 
 		res.json( response);
 	}));
+
+	router.get('/crops', asyncHandler(async (req, res) => {
+		let response = {"results": []}	
+		response.results = await npkFertilicalcL3Ctrl.getCrops();
+		res.json( response);
+	}));
+
+
+
 
 	// 👇 This is what you were missing in your code!
 	return router;
