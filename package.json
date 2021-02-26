@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "path": "^0.12.7",
-    "transform-coordinates": "^1.0.0"
+    "transform-coordinates": "^1.0.0",
+    "javascript-lp-solver": "^0.4.24"
   }
 }

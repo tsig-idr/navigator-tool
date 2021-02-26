@@ -1,4 +1,4 @@
-var urlService = '/fertilizers/bestone';
+var urlService = '/fertilizers/best';
 
 function _sendForm(){
     var form = document.querySelector('#formBestFertilizer');

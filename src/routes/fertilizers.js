@@ -6,23 +6,15 @@ const L3FertilicalcFertilizersCtrl = require('../controllers/L3Fertilicalc/ferti
 
 module.exports = function () {
 
-	router.post('/optimized', asyncHandler(async (req, res) => {
+	router.post('/best', asyncHandler(async (req, res) => {
 
-		const names = typeof req.query.names === 'string' && req.query.names.split(','),
-			fertilizers = await L3FertilicalcFertilizersCtrl.get(names),
+		const include = typeof req.query.include === 'string' && req.query.include.split(','),
+			exclude = typeof req.query.exclude === 'string' && req.query.include.split(','),
+			fertilizers = L3FertilicalcFertilizersCtrl.get(include, exclude),
 			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
 			P = typeof req.query.P === 'string' && parseFloat(req.query.P) || 0.0,
 			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0;
-		res.json(await L3FertilicalcFertilizersCtrl.optimize(fertilizers, N, P, K));
-	}));
-
-	router.post('/bestone', asyncHandler(async (req, res) => {
-
-		const fertilizers = await L3FertilicalcFertilizersCtrl.get(),
-			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
-			P = typeof req.query.P === 'string' && parseFloat(req.query.P) || 0.0,
-			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0;
-		res.json(await L3FertilicalcFertilizersCtrl.pickBest(fertilizers, N, P, K));
+		res.json(L3FertilicalcFertilizersCtrl.bestCombination(fertilizers, N, P, K));
 	}));
 
 	return router;
