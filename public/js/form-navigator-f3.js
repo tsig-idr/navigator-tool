@@ -90,44 +90,41 @@
 
   function onChangeCrop(selectObject){
 
+    fetch('/nutrients/crop/' + selectObject.value).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then(function (data) {
+       //TODO: Modifica los datos de la fila:
+      var rowElement = selectObject.parentElement.parentElement;
+      var idrow = rowElement.getAttribute('data-row');
 
-    //TODO: Modifica los datos de la fila:
-    var rowElement = selectObject.parentElement.parentElement;
-    var idrow = rowElement.getAttribute('data-row');
+      var form = document.forms[0];
+      var item = data.results;
+      //var selectElement = form.querySelector('input[name="crops['+idrow+'][cv]"]');
+      //selectElement.value = 400;
 
-    var form = document.forms[0];
-
-    var item = {
-
-    "dm_harv": 87.5,
-    "N_harv": 2.4,
-    "P_harv": 0.42,
-    "K_harv": 0.5,
-    "Ca_harv": "",
-    "Mg_harv": "",
-    "S_harv": "",
-    "h_i_estimation": 40,
-    "fres_estimation": 10
-    }
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][harvest_index]"]');
+      selectElement.value = item.harvest.h_i_estimation;
     
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][fres]"]');
+      selectElement.value = item.harvest.fres_estimation;
 
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][cv]"]');
-    selectElement.value = 400;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][N_harv]"]');
+      selectElement.value = item.harvest.N_harv;
 
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][harvest_index]"]');
-    selectElement.value = item.h_i_estimation;
-   
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][fres]"]');
-    selectElement.value = item.fres_estimation;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][P_harv]"]');
+      selectElement.value = item.harvest.P_harv;
 
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][N_harv]"]');
-    selectElement.value = item.N_harv;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][K_harv]"]');
+      selectElement.value = item.harvest.K_harv;
+      
+    }).catch(function (error) {
+      console.warn('Something went wrong.', error);
+    });
 
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][P_harv]"]');
-    selectElement.value = item.P_harv;
 
-    var selectElement = form.querySelector('input[name="crops['+idrow+'][K_harv]"]');
-    selectElement.value = item.K_harv;
     
   }
 

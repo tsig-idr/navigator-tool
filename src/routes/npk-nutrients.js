@@ -53,6 +53,14 @@ module.exports = function () {
 		res.json( response);
 	}));
 
+	router.get('/crop/:crop', asyncHandler(async (req, res) => {
+		let response = {"results": []}	
+
+		const crop = req.body.crop || req.params.crop || req.query.crop;
+		response.results = await npkFertilicalcL3Ctrl.getCrop(crop);
+		res.json( response);
+	}));
+
 
 
 

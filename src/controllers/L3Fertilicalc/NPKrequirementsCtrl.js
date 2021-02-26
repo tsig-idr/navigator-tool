@@ -397,10 +397,15 @@ module.exports = function () {
         return  nutrientsL3FertilicalcModel.crops;
     }
 
+    async function getCrop(crop){
+        return  nutrientsL3FertilicalcModel.crops.find(element => element.crop === crop);
+    }
+
     
 
     return {
         nutrientNPKbalance: nutrientNPKbalance,
-        getCrops: getCrops
+        getCrops: getCrops,
+        getCrop: getCrop
     }
 }
