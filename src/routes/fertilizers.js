@@ -11,9 +11,14 @@ module.exports = function () {
 		const include = typeof req.query.include === 'string' && req.query.include.split(','),
 			exclude = typeof req.query.exclude === 'string' && req.query.include.split(','),
 			fertilizers = L3FertilicalcFertilizersCtrl.get(include, exclude),
-			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
-			P = typeof req.query.P === 'string' && parseFloat(req.query.P) || 0.0,
-			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0;
+			Nitro = req.body.N || req.params.N || req.query.N,
+			Phosphorus = req.body.P || req.params.P || req.query.P,
+			Potassium = req.body.K || req.params.K || req.query.K,
+			Sulfur = req.body.S || req.params.S || req.query.S,
+			NitroUreic = req.body.Nu || req.params.Nu || req.query.Nu,
+			N = typeof Nitro === 'string' && parseFloat(Nitro) || 0.0,
+			P = typeof Phosphorus === 'string' && parseFloat(Phosphorus) || 0.0,
+			K = typeof Potassium === 'string' && parseFloat(Potassium) || 0.0;
 		res.json(L3FertilicalcFertilizersCtrl.bestCombination(fertilizers, N, P, K));
 	}));
 
