@@ -6,20 +6,46 @@ const L3FertilicalcFertilizersCtrl = require('../controllers/L3Fertilicalc/ferti
 
 module.exports = function () {
 
-	router.post('/best', asyncHandler(async (req, res) => {
+	router.get('/', asyncHandler(async (req, res) => {
+		
+		const names = typeof req.query.names === 'string' && req.query.names.split(',');
+		res.json({
+			results: L3FertilicalcFertilizersCtrl.get(names, false)
+		});
+	}));
+
+	router.get('/optimization', asyncHandler(async (req, res) => {
 
 		const include = typeof req.query.include === 'string' && req.query.include.split(','),
-			exclude = typeof req.query.exclude === 'string' && req.query.include.split(','),
-			fertilizers = L3FertilicalcFertilizersCtrl.get(include, exclude),
-			Nitro = req.body.N || req.params.N || req.query.N,
-			Phosphorus = req.body.P || req.params.P || req.query.P,
-			Potassium = req.body.K || req.params.K || req.query.K,
-			Sulfur = req.body.S || req.params.S || req.query.S,
-			NitroUreic = req.body.Nu || req.params.Nu || req.query.Nu,
-			N = typeof Nitro === 'string' && parseFloat(Nitro) || 0.0,
-			P = typeof Phosphorus === 'string' && parseFloat(Phosphorus) || 0.0,
-			K = typeof Potassium === 'string' && parseFloat(Potassium) || 0.0;
-		res.json(L3FertilicalcFertilizersCtrl.bestCombination(fertilizers, N, P, K));
+			exclude = typeof req.query.exclude === 'string' && req.query.exclude.split(','),
+			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
+			P = typeof req.query.P === 'string' && parseFloat(req.query.P) || 0.0,
+			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0,
+			S = typeof req.query.S === 'string' && parseFloat(req.query.S) || 0.0,
+			N_ur = typeof req.query.N_ur === 'string' && parseFloat(req.query.N_ur)*N || 0.0,
+			fertilizers = L3FertilicalcFertilizersCtrl.bestCombination(L3FertilicalcFertilizersCtrl.get(include, exclude), N, P, K, S, N_ur);
+		res.json({
+			results: fertilizers,
+			total: L3FertilicalcFertilizersCtrl.aggregate(fertilizers)
+		});
+	}));
+
+	router.post('/optimization', asyncHandler(async (req, res) => {
+
+		const include = typeof req.body.include === 'object' && req.body.include.length !== undefined && req.body.include 
+				|| typeof req.params.include === 'object' && req.params.include.length !== undefined && req.params.include,
+			exclude = typeof req.body.exclude === 'object' && req.body.exclude.length !== undefined && req.body.exclude
+				|| typeof req.params.exclude === 'object' && req.params.exclude.length !== undefined && req.params.exclude,
+			N = req.body.N && parseFloat(req.body.N) || req.params.N && parseFloat(req.params.N) || 0.0,
+			P = req.body.P && parseFloat(req.body.P) || req.params.P && parseFloat(req.params.P) || 0.0,
+			K = req.body.K && parseFloat(req.body.K) || req.params.K && parseFloat(req.params.K) || 0.0,
+			S = req.body.S && parseFloat(req.body.S) || req.params.S && parseFloat(req.params.S) || 0.0,
+			N_ur = (req.body.N_ur && parseFloat(req.body.N_ur) || req.params.N_ur && parseFloat(req.params.N_ur))*N || 0.0,
+			fertilizers = L3FertilicalcFertilizersCtrl.bestCombination(L3FertilicalcFertilizersCtrl.get(include, exclude), N, P, K, S, N_ur);
+		res.json({
+			results: fertilizers,
+			total: L3FertilicalcFertilizersCtrl.aggregate(fertilizers)
+		});
 	}));
 
 	return router;
