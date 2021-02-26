@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="David Cifuentes" />
+    <meta name="generator" content="" />
+    <title>NAVIGATOR - Best Fertilizer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <!-- Custom styles for this template -->
+    <link href="../css/product.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column h-100">
+    <navbar></navbar>
+
+    <main class="flex-shrink-0">
+      <div class="container-fluid pt-5">
+        <div class="pt-3 text-center">
+          <!--<img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+          <h2>BEST FERTILIZER</h2>
+
+          <p>Fertilizer optimization for NPK </p>
+        </div>
+
+        <form class="needs-validation" id="formBestFertilizer" novalidate>
+          <div class="col-md-12">
+            <div class="card">
+              <h5 class="card-header bg-success text-white">Get better fertilizers for these characteristics:</h5>
+              <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="bestFertilizerNu" class="form-label"
+                          >Ureic nitrogen </label
+                        >
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="bestFertilizerNu"
+                          name="Nu"
+                          min="0"
+                          step="any"
+                          placeholder="Ureic Nitrogen"
+                          value="0"
+                        />
+                        <div class="invalid-feedback">
+                            Nitrogen needs 
+                        </div>
+                      </div>
+    
+                  <div class="col-md-2">
+                    <label for="bestFertilizerN" class="form-label"
+                      >Nitrogen (N)</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="bestFertilizerN"
+                      name="N"
+                      min="0"
+                      step="any"
+                      placeholder="Nitrogen"
+                      value="0"
+                    />
+                    <div class="invalid-feedback">
+                        Nitrogen needs 
+                    </div>
+                  </div>
+
+                  <div class="col-md-2">
+                    <label
+                      for="bestFertilizerP"
+                      class="form-label"
+                      title="phosphorus"
+                      >Phosphorus (P) </label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="bestFertilizerP"
+                      name="P"
+                      min="0"
+                      step="any"
+                      placeholder="Soil organic matter (%)"
+                      value="0"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <label
+                      for="bestFertilizerK"
+                      class="form-label"
+                      title="Potassium "
+                    >
+                        Potassium (K) </label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="bestFertilizerK"
+                      name="K"
+                      min="0"
+                      placeholder="Potassium"
+                      value="0"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <label
+                      for="bestFertilizerS"
+                      class="form-label"
+                      title="Potassium "
+                    >
+                        Sulfur (S)  </label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="bestFertilizerS"
+                      name="S"
+                      min="0"
+                      placeholder="Sulfur"
+                      value="0"
+                    />
+                  </div>
+
+                  <div class="col-md-2">
+                    <label
+                    for="submitBestFertilizer"
+                    class="form-label"
+                    title="Potassium "
+                  >
+                      &nbsp;  </label
+                  >
+                    <button
+                    type="button"
+                    class="form-control btn btn-primary"
+                    id="submitBestFertilizer">
+                    <i class="fa fa-play"></i> Calculate
+                    </button>
+                  </div>
+                  
+              </div>
+            </div>
+        </div>
+    </form>
+
+        <section id="BestFertilizerResults" class="d-none">
+          <div class="row pt-4">
+            
+          
+          <div class="col-md-12">
+            <h3>List of Optimized Fertilizers  </h3>
+            <table class="table table-dark" id="tableBestFertilizerResults">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">N_nitr</th>
+                  <th scope="col">N_ammon</th>
+                  <th scope="col">N_total</th>
+                  <th scope="col">P_total</th>
+                  <th scope="col">P<sub>2</sub>O<sub>5</sub>_total</th>
+                  <th scope="col">K_total</th>
+                  <th scope="col">K<sub>2</sub>O_total</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- tabla de resultados vacia-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light"></footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+    <script src="/js/form-best-fertilizer.js"></script>
+    <script src="/js/global-scripts.js"></script>
+  </body>
+</html>

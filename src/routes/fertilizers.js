@@ -6,7 +6,7 @@ const L3FertilicalcFertilizersCtrl = require('../controllers/L3Fertilicalc/ferti
 
 module.exports = function () {
 
-	router.get('/optimized', asyncHandler(async (req, res) => {
+	router.post('/optimized', asyncHandler(async (req, res) => {
 
 		const names = typeof req.query.names === 'string' && req.query.names.split(','),
 			fertilizers = await L3FertilicalcFertilizersCtrl.get(names),
@@ -16,7 +16,7 @@ module.exports = function () {
 		res.json(await L3FertilicalcFertilizersCtrl.optimize(fertilizers, N, P, K));
 	}));
 
-	router.get('/bestone', asyncHandler(async (req, res) => {
+	router.post('/bestone', asyncHandler(async (req, res) => {
 
 		const fertilizers = await L3FertilicalcFertilizersCtrl.get(),
 			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
