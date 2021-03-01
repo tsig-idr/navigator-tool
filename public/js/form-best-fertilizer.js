@@ -1,4 +1,4 @@
-var urlService = '/fertilizers/best';
+var urlService = '/fertilizers/optimization';
 
 function _sendForm(){
     var form = document.querySelector('#formBestFertilizer');
@@ -16,10 +16,8 @@ function _sendForm(){
       }
       return Promise.reject(response);
     }).then(function (data) {
-
-       if(!Array.isArray(data))
-        data = new Array(data);
-        
+      //if(!Array.isArray(data))
+      // data = new Array(data);
       _createTableBestFertilizerResults(data);
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -30,27 +28,42 @@ function _createTableBestFertilizerResults(data){
 
     var tblBody = document.querySelector('#tableBestFertilizerResults tbody');
 
+    var results = data.results;
     //Limpiar tabla:
     tblBody.innerHTML = '';
 
     // cells creation
-    for (var j = 0; j < data.length; j++) {
-      var dataRow = data[j];
+    for (var j = 0; j < results.length; j++) {
+      var dataRow = results[j];
       // table row creation
       var row = tblBody.insertRow(j);
       var name=  '<span title="' +  dataRow.name + '">' +  dataRow.name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = name;
-      row.insertCell(2).innerHTML = dataRow.N_nitr;
-      row.insertCell(3).innerHTML = (dataRow.N_ammon) ? dataRow.N_ammon : '';
-      row.insertCell(4).innerHTML = dataRow.N_total;
-      row.insertCell(5).innerHTML = dataRow.P_total;
-      row.insertCell(6).innerHTML = (dataRow.P2O5_total) ? dataRow.P2O5_total : '';
-      row.insertCell(7).innerHTML = dataRow.K_total;
-      row.insertCell(8).innerHTML = (dataRow.K2O_total) ? dataRow.K2O_total : '';
-      row.insertCell(9).innerHTML = dataRow.price;
-      row.insertCell(10).innerHTML = dataRow.cost;
+      row.insertCell(2).innerHTML = dataRow.amount;
+      row.insertCell(3).innerHTML = (dataRow.N) ? dataRow.N : '';
+      row.insertCell(4).innerHTML = (dataRow.P) ? dataRow.P : '';
+      row.insertCell(5).innerHTML = (dataRow.K) ? dataRow.K : '';
+      row.insertCell(6).innerHTML = (dataRow.S) ? dataRow.S : '';
+      row.insertCell(7).innerHTML = (dataRow.N_ur) ? dataRow.N_ur : '';
+      row.insertCell(8).innerHTML = dataRow.cost;
     }
+
+    var dataTotal = data.total;
+    var rowTotal = tblBody.insertRow(results.length);
+    rowTotal.className = 'table-primary';
+    rowTotal.insertCell(0).innerHTML = '>';
+    rowTotal.insertCell(1).innerHTML = 'TOTAL:';
+    rowTotal.insertCell(2).innerHTML = dataTotal.amount;
+    rowTotal.insertCell(3).innerHTML = (dataTotal.N) ? dataTotal.N : '';
+    rowTotal.insertCell(4).innerHTML = (dataTotal.P) ? dataTotal.P : '';
+    rowTotal.insertCell(5).innerHTML = (dataTotal.K) ? dataTotal.K : '';
+    rowTotal.insertCell(6).innerHTML = (dataTotal.S) ? dataTotal.S : '';
+    rowTotal.insertCell(7).innerHTML = (dataTotal.N_ur) ? dataTotal.N_ur : '';
+    rowTotal.insertCell(8).innerHTML = dataTotal.cost;
+
+
+
   }
 
   // Eventos:
