@@ -11,7 +11,7 @@ const fertilizersRouter = require('./routes/fertilizers');
 
 dotenv.config();
 
-const SERVER_PORT = process.env.PORT || 1339;
+const SERVER_PORT = process.env.PORT || 1345;
 const SERVER_HOST = process.env.HOST || 'localhost';
 const APP_ID = process.env.APP_ID || 'myAppIdNAVIGATORTool';
 const MASTER_KEY = process.env.MASTER_KEY;
