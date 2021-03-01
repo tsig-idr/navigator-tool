@@ -61,11 +61,7 @@
   background-color: #e5e5e5;
 }
 
-#tableNPKCrops .form-control{
-  min-width: 75px;
-}
-
-#tableNPKCrops .form-select{
+#tableNPKCrops .form-control, #tableNPKCrops .form-select{
   min-width: 100px;
 }
 
