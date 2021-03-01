@@ -1,7 +1,7 @@
 
-const NutrientsL3FertilicalcModel = require('./model/NutrientsL3FertilicalcModel');
+const NutrientsL3FertilicalcModel = require('./model/NavigatorN3Model');
 const utils = require('../utils/utils');
-
+//Deprecate version. 
 module.exports = function () {
 
 

@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const solver = require('javascript-lp-solver');
 
+// Fertilizers
 module.exports = function () {
 
 	function get (names, but_names) {

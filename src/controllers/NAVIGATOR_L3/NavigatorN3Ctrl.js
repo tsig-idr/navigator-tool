@@ -1,10 +1,10 @@
 
-const NutrientsL3FertilicalcModel = require('../model/NutrientsL3FertilicalcModel');
+const NavigatorN3Model = require('../model/NavigatorN3Model');
 const utils = require('../../utils/utils');
-
+// Nutrients (NPK)
 module.exports = function () {
 
-    const nutrientsL3FertilicalcModel =  new NutrientsL3FertilicalcModel();
+    const navigatorN3Model =  new NavigatorN3Model();
 
     async function nutrientNPKbalance(req){
         // Se preparan los datos de entrada 
@@ -19,9 +19,9 @@ module.exports = function () {
             req.plot.tillage = 0;
         }
 
-        const def_params_soil = await nutrientsL3FertilicalcModel.getParmsTypeOfSoil(req.plot.soil_type);
-        const def_params_strategy = await nutrientsL3FertilicalcModel.getParmsStrategy(req.plot.fert_strategy);
-        const def_params_nutrients = await nutrientsL3FertilicalcModel.getParmsNutrients();
+        const def_params_soil = await navigatorN3Model.getParmsTypeOfSoil(req.plot.soil_type);
+        const def_params_strategy = await navigatorN3Model.getParmsStrategy(req.plot.fert_strategy);
+        const def_params_nutrients = await navigatorN3Model.getParmsNutrients();
 
         let inputs =  {
             items: [],
@@ -55,7 +55,7 @@ module.exports = function () {
                 keyName = utils.camelize(inputs.crops[i].crop_latin_name);
             }
             
-            const cropObj = await nutrientsL3FertilicalcModel.getCropsByCrop(keyName);
+            const cropObj = await navigatorN3Model.getCropsByCrop(keyName);
 
             if(keyName && cropObj){
                 items[i].crop = keyName;
@@ -293,49 +293,6 @@ module.exports = function () {
 
     }
 
-
-
-/*
-    async function _calcDryMatterCropResidue(inputs){
-
-
-        let item  = {n_max: 0,n_res: 0,p_res: 0,k_res: 0,crop_type: 'nothing',dmh: 0,dmr: 0,n_fix_code: 0,n_min: 0,n_kg_crop: 0,yield_i: 0,n_kg_fix: 0,n_kg_min: 0,n_fert_i:0};
-
-        
-            const keyName = utils.camelize(crop.crop_latin_name);
-            const cropObj = await nutrientsL3FertilicalcModel.getCropsByCrop(keyName);
-
-            item.name = cropObj.name;
-            item.latin_name = cropObj.latin_name;
-            item.n_res = cropObj.residues.N_resi/100;
-            item.p_res = cropObj.residues.P_resi/100;
-            item.k_res = cropObj.residues.K_resi/100;
-            item.dmh = cropObj.harvest.dm_harv/100;
-            item.dmr = cropObj.residues.K_resi/100;
-            item.crop_type = cropObj.type;
-            item.n_fix_code = cropObj.residues.N_fix_c;
-            item.n_min = cropObj.residues.N_min / 100;
-            item.n_max = cropObj.residues.N_max / 100;
-            item.p_thres = defdata_soil.p_higher;
-            item.k_thres = defdata_soil.k_higher;
-            item.fk = defdata_soil.fk_hig;
-
-            if(item.n_res == 0 || item.n_res==9.99)
-                item.n_res = 1.0/100;
-            if(item.p_res == 0 || item.p_res==9.99)
-                item.p_res = 1.0/100;
-            if(item.k_res == 0 || item.k_res==9.99)
-                item.k_res = 1.0/100;
-            if(item.dmr == 0 || item.dmr==9.99)
-                item.dmr = elem.dmh;
-
-
-        
-        
-
-        return item;
-    }*/
-
     async function _transfOutputs(inputs){
 
         let result = [];
@@ -394,11 +351,11 @@ module.exports = function () {
     }
 
     async function getCrops(){
-        return  nutrientsL3FertilicalcModel.crops;
+        return  navigatorN3Model.crops;
     }
 
     async function getCrop(crop){
-        return  nutrientsL3FertilicalcModel.crops.find(element => element.crop === crop);
+        return  navigatorN3Model.crops.find(element => element.crop === crop);
     }
 
     

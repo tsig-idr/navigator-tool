@@ -1,5 +1,5 @@
 
-  var urlService = '/nutrients/navigator-f3-npk';
+  var urlService = '/nutrients/navigator-n3-npk';
 
   function _refreshListCrops(tblBody){
     var rowlength = tblBody.rows.length;

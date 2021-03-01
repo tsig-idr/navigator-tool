@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 
-class NutrientsL3FertilicalcModel {
+class NavigatorN3Model {
 
   constructor() {
     this.pathDataSource = null;
@@ -57,4 +57,4 @@ class NutrientsL3FertilicalcModel {
 
 }
 
-module.exports = NutrientsL3FertilicalcModel;
+module.exports = NavigatorN3Model;

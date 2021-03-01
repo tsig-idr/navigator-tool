@@ -7,7 +7,7 @@ const utils = require('../utils/utils');
 const asyncHandler = require('express-async-handler');
 const fs = require('fs');
 const npkL3Ctrl = require('../controllers/NutrientsL3Ctrl')();
-const npkFertilicalcL3Ctrl = require('../controllers/L3Fertilicalc/NPKrequirementsCtrl')();
+const navN3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorN3Ctrl')();
 
 module.exports = function () {
 
@@ -30,7 +30,7 @@ module.exports = function () {
 
 
 
-	router.post('/navigator-f3-npk', asyncHandler(async (req, res) => {
+	router.post('/navigator-n3-npk', asyncHandler(async (req, res) => {
 		let response = {"results": []}
 
 		const crops = req.body.crops || req.params.crops; // || req.query.crops;
@@ -41,7 +41,7 @@ module.exports = function () {
 			plot: characteristics_plot
 		};
 		
-		response.results = await npkFertilicalcL3Ctrl.nutrientNPKbalance(params);
+		response.results = await navN3Ctrl.nutrientNPKbalance(params);
 
 
 		res.json( response);
@@ -49,7 +49,7 @@ module.exports = function () {
 
 	router.get('/crops', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
-		response.results = await npkFertilicalcL3Ctrl.getCrops();
+		response.results = await navN3Ctrl.getCrops();
 		res.json( response);
 	}));
 
@@ -57,7 +57,7 @@ module.exports = function () {
 		let response = {"results": []}	
 
 		const crop = req.body.crop || req.params.crop || req.query.crop;
-		response.results = await npkFertilicalcL3Ctrl.getCrop(crop);
+		response.results = await navN3Ctrl.getCrop(crop);
 		res.json( response);
 	}));
 

@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const L3FertilicalcFertilizersCtrl = require('../controllers/L3Fertilicalc/fertilizersCtrl')();
+const navF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorF3Ctrl')();
 
 module.exports = function () {
 
@@ -10,7 +10,7 @@ module.exports = function () {
 		
 		const names = typeof req.query.names === 'string' && req.query.names.split(',');
 		res.json({
-			results: L3FertilicalcFertilizersCtrl.get(names, false)
+			results: navF3Ctrl.get(names, false)
 		});
 	}));
 
@@ -23,10 +23,10 @@ module.exports = function () {
 			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0,
 			S = typeof req.query.S === 'string' && parseFloat(req.query.S) || 0.0,
 			N_ur = typeof req.query.N_ur === 'string' && parseFloat(req.query.N_ur)*N || 0.0,
-			fertilizers = L3FertilicalcFertilizersCtrl.bestCombination(L3FertilicalcFertilizersCtrl.get(include, exclude), N, P, K, S, N_ur);
+			fertilizers = navF3Ctrl.bestCombination(navF3Ctrl.get(include, exclude), N, P, K, S, N_ur);
 		res.json({
 			results: fertilizers,
-			total: L3FertilicalcFertilizersCtrl.aggregate(fertilizers)
+			total: navF3Ctrl.aggregate(fertilizers)
 		});
 	}));
 
@@ -41,10 +41,10 @@ module.exports = function () {
 			K = req.body.K && parseFloat(req.body.K) || req.params.K && parseFloat(req.params.K) || 0.0,
 			S = req.body.S && parseFloat(req.body.S) || req.params.S && parseFloat(req.params.S) || 0.0,
 			N_ur = (req.body.N_ur && parseFloat(req.body.N_ur) || req.params.N_ur && parseFloat(req.params.N_ur))*N || 0.0,
-			fertilizers = L3FertilicalcFertilizersCtrl.bestCombination(L3FertilicalcFertilizersCtrl.get(include, exclude), N, P, K, S, N_ur);
+			fertilizers = navF3Ctrl.bestCombination(navF3Ctrl.get(include, exclude), N, P, K, S, N_ur);
 		res.json({
 			results: fertilizers,
-			total: L3FertilicalcFertilizersCtrl.aggregate(fertilizers)
+			total: navF3Ctrl.aggregate(fertilizers)
 		});
 	}));
 
