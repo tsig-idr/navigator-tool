@@ -1,0 +1,635 @@
+[
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 2
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 3
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 4
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 6
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 10
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 4
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 9
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 14
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 30
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 3
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 4
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 6
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 10
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 15
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 9
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 16
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 25
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 45
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 4
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 6
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 10
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 15
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 25
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 12
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 25
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 35
+    },
+    {
+        "case": "tilledNFertilizer",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 55
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 3
+    }, 
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 4
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 6
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 10
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 10
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 9
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 14
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 20
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 30
+    },
+    {
+        "case": "noTillage",
+        "som": "(,2]",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 30
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 4
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 6
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 10
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 15
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 15
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 16
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 20
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 25
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 45
+    },
+    {
+        "case": "noTillage",
+        "som": "(2,5]",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 45
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 6
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 10
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 15
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 25
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 25
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 20
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 25
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 35
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 55
+    },
+    {
+        "case": "noTillage",
+        "som": "(5,]",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 55
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 4
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 6
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 8
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 12
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 8
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 18
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 28
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 40
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[,2)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 60
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 6
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 8
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 12
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 30
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 18
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 32
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 40
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 50
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[2,5)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 90
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 8
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "high",
+        "desnitrification": 12
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "medium",
+        "desnitrification": 20
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "low",
+        "desnitrification": 30
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 1,
+        "rateDrainage": "veryLow",
+        "desnitrification": 50
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "veryHigh",
+        "desnitrification": 24
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "high",
+        "desnitrification": 40
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "medium",
+        "desnitrification": 50
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "low",
+        "desnitrification": 70
+    },
+    {
+        "case": "tilledNManure",
+        "som": "[5,)",
+        "waterSupply": 0,
+        "rateDrainage": "veryLow",
+        "desnitrification": 95
+    }
+    
+
+
+]

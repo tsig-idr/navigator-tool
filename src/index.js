@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 /* ---- Routers ---- */
 const npkNutrientsRouter = require('./routes/npk-nutrients');
 const fertilizersRouter = require('./routes/fertilizers');
+const nutrientRequirementsRouter = require('./routes/nutrient-requirements');
 /* ----------------- */
 
 dotenv.config();
@@ -33,6 +34,8 @@ app.use(bodyParser.json({
 app.use('/nutrients', npkNutrientsRouter());
 
 app.use('/fertilizers', fertilizersRouter());
+
+app.use('/nutrient-requirements', nutrientRequirementsRouter());
 
 app.listen(SERVER_PORT, () => {
   console.log(`App listening on port ${SERVER_PORT}`);
