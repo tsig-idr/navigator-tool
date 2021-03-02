@@ -41,10 +41,29 @@ module.exports = function () {
 		});
 	}));
 
-	router.get('/volatilization', asyncHandler(async (req, res) => {
+	router.post('/volatilization', asyncHandler(async (req, res) => {
+
+		const factorCrop =  req.body.factor_crop || req.params.factor_crop && req.query.factor_crop,
+		method = req.body.method || req.params.method && req.query.method,
+		fertilizerType = req.body.fertilizer_type || req.params.fertilizer_type && req.query.fertilizer_type,
+		soilpH = req.body.pH || req.params.pH && req.query.pH,
+		soilCEC = req.body.cec || req.params.cec && req.query.cec,
+		climate = req.body.climate || req.params.climate && req.query.climate;
+
+		const params = {
+			crop: factorCrop,
+			method: method,
+			fertilizer : fertilizerType,
+			soilpH: soilpH,
+			soilCEC: soilCEC,
+			climate: climate
+		}
+
+		const volatilization = navNR3Ctrl.volatilization(params);
+
 
 		res.json({
-			results: "volatilization"
+			results: volatilization
 		});
 	}));
 

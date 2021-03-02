@@ -151,6 +151,34 @@ function camelize(str) {
   }).replace(/\s+/g, '');
 }
 
+function isNumeric(x) {
+
+  // check if the passed value is a number
+  if(typeof x == 'number' && !isNaN(x)){
+  
+      // check if it is integer
+      if (Number.isInteger(x)) {
+        return true;
+        //console.log(`${x} is integer.`);
+      }
+      else {
+        return true;
+        //console.log(`${x} is a float value.`);
+      }
+  
+  } else {
+      return false;
+      //console.log(`${x} is not a number`);
+  }
+}
+
+function parseToNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!  
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
+
 
 module.exports = {
   readFile: readFile,
@@ -167,6 +195,8 @@ module.exports = {
   arrayCompare: compare,
   epsgCode: epsgCode,
   distanceBBOX, distanceBBOX,
-  camelize: camelize
+  camelize: camelize,
+  isNumeric: isNumeric,
+  parseToNumeric: parseToNumeric
 
 }

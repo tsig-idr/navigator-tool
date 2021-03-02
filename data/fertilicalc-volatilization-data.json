@@ -1,0 +1,222 @@
+{
+    "fertilizer" : [
+        { 
+            "key": "AS",
+            "name": "Ammonium sulfate",
+            "value": 0.429
+        },
+        { 
+            "key": "AN",
+            "name": "Ammonium nitrate",
+            "value": -0.35
+        },
+        { 
+            "key": "CAN",
+            "name": "Calcium ammonium nitrate",
+            "value": -1.064
+        },
+        { 
+            "key": "AA",
+            "name": "Ammonium anhydrous",
+            "value": -1.151
+        },
+        { 
+            "key": "Nsol",
+            "name": "",
+            "value": -0.748
+        },
+        { 
+            "key": "CN",
+            "name": "Calcium nitrate",
+            "value": -1.581
+        },
+        { 
+            "key": "ABC",
+            "name": "Ammonium bicarbonate",
+            "value": 0.387
+        },
+        { 
+            "key": "UAN",
+            "name": "Urea - ammonium nitrate",
+            "value": 0
+        },
+        { 
+            "key": "MAP",
+            "name": "Monoammonium phosphate",
+            "value": -0.622
+        },
+        { 
+            "key": "DAP",
+            "name": "Diammonium phosphate",
+            "value": 0.182
+        },
+        { 
+            "key": "U+DAP",
+            "name": "Urea + Diammonium phosphate",
+            "value": 0.803
+        },
+        { 
+            "key": "U+MAP",
+            "name": "Urea + Monoammonium phosphate",
+            "value": -0.48
+        },
+        { 
+            "key": "UP",
+            "name": "UP",
+            "value": -0.25
+        },
+        { 
+            "key": "UUP",
+            "name": "UUP",
+            "value": 0.45
+        },
+        { 
+            "key": "O",
+            "name": "O",
+            "value": 0.995
+        },
+        { 
+            "key": "Meadows",
+            "name": "Meadows",
+            "value": -0.378
+        },
+        { 
+            "key": "Urine",
+            "name": "Urine",
+            "value": 0.747
+        },
+        { 
+            "key": "AN+prados",
+            "name": "AN+prados",
+            "value": 1.229
+        },
+        { 
+            "key": "Uc",
+            "name": "Uc",
+            "value": 0.25
+        },
+        { 
+            "key": "U+KCI",
+            "name": "U+KCI",
+            "value": 0.469
+        },
+        { 
+            "key": "U+Ca/Mg",
+            "name": "U+Ca/Mg",
+            "value": 0.753
+        },
+        { 
+            "key": "UCN",
+            "name": "UCN",
+            "value": -0.43
+        },
+        { 
+            "key": "U+FYM",
+            "name": "U+FYM",
+            "value": 0.385
+        }
+        
+    ],
+    "climate": [
+        {
+            "key": "tempered",
+            "name": "Tempered",
+            "value": -0.402
+        },
+        {
+            "key": "tropical",
+            "name": "Tropical",
+            "value": 0
+        }
+    ],
+    "crop": [
+        {
+            "key": "rainfedCultivation",
+            "name": "Rainfed cultivation",
+            "value": -0.045
+        },
+        {
+            "key": "meadows",
+            "name": "Meadows",
+            "value": -0.158
+        },
+        {
+            "key": "floodedCrops",
+            "name": "Flooded crops",
+            "value": 0
+        }
+    ],
+    "method": [
+        {
+            "key": "b",
+            "name": "Application for flooded fields",
+            "value": -0.158
+        },
+        {
+            "key": "i",
+            "name": "i - Fertilizer application before flooding",
+            "value": -1.895
+        },
+        {
+            "key": "s",
+            "name": "s",
+            "value": -1.292
+        },
+        {
+            "key": "bf;i/f",
+            "name": "bf;i/f. Fertilizer application before flooding",
+            "value": -1.844
+        },
+        {
+            "key": "bpi",
+            "name": "Application at the beginning of the panicle",
+            "value": -2.465
+        }
+    ],
+    "soilpH": [
+        {
+            "key": "(,5.5]",
+            "name": "pH≤5,5",
+            "value": -1.072
+        },
+        {
+            "key": "(5.5,7.3]",
+            "name": "5,5<pH≤7,3",
+            "value": -0.933
+        },
+        {
+            "key": "(7.3,8.5]",
+            "name": "7,3<pH≤8,5",
+            "value": -0.608
+        },
+        {
+            "key": "(8.5,]",
+            "name": "pH>8,5",
+            "value": 0
+        }
+    ],
+    "soilCEC": [
+        {
+            "key": "(,16]",
+            "name": "CIC≤16",
+            "value": 0.088
+        },
+        {
+            "key": "(16,24]",
+            "name": "16<CIC≤24",
+            "value": 0.012
+        },
+        {
+            "key": "(24,32]",
+            "name": "24<CIC≤32",
+            "value": 0.163
+        },
+        {
+            "key": "(32,]",
+            "name": "CIC>32",
+            "value": 0
+        }
+    ]
+
+
+}
