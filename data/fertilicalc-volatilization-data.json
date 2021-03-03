@@ -62,17 +62,17 @@
         },
         { 
             "key": "UP",
-            "name": "UP",
+            "name": "Urea phosphate",
             "value": -0.25
         },
         { 
             "key": "UUP",
-            "name": "UUP",
+            "name": " Urea - urea phosphate",
             "value": 0.45
         },
         { 
             "key": "O",
-            "name": "O",
+            "name": "Organic fertilizers",
             "value": 0.995
         },
         { 
@@ -97,22 +97,22 @@
         },
         { 
             "key": "U+KCI",
-            "name": "U+KCI",
+            "name": "Urea + potassium chloride",
             "value": 0.469
         },
         { 
             "key": "U+Ca/Mg",
-            "name": "U+Ca/Mg",
+            "name": "Urea + calcium/magnesium",
             "value": 0.753
         },
         { 
             "key": "UCN",
-            "name": "UCN",
+            "name": "Nitrate of lime - urea",
             "value": -0.43
         },
         { 
             "key": "U+FYM",
-            "name": "U+FYM",
+            "name": "Urea + farmyard manure",
             "value": 0.385
         }
         
