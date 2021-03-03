@@ -43,12 +43,12 @@ module.exports = function () {
 
 	router.post('/volatilization', asyncHandler(async (req, res) => {
 
-		const factorCrop =  req.body.factor_crop || req.params.factor_crop && req.query.factor_crop,
+		const factorCrop =  req.body.factor_crop || req.params.factor_crop || req.query.factor_crop,
 		method = req.body.method || req.params.method && req.query.method,
-		fertilizerType = req.body.fertilizer_type || req.params.fertilizer_type && req.query.fertilizer_type,
-		soilpH = req.body.pH || req.params.pH && req.query.pH,
-		soilCEC = req.body.cec || req.params.cec && req.query.cec,
-		climate = req.body.climate || req.params.climate && req.query.climate;
+		fertilizerType = req.body.fertilizer_type || req.params.fertilizer_type || req.query.fertilizer_type,
+		soilpH = req.body.pH || req.params.pH || req.query.pH,
+		soilCEC = req.body.cec || req.params.cec || req.query.cec,
+		climate = req.body.climate || req.params.climate || req.query.climate;
 
 		const params = {
 			crop: factorCrop,
@@ -67,11 +67,34 @@ module.exports = function () {
 		});
 	}));
 
-	router.get('/leaching', asyncHandler(async (req, res) => {
+	router.post('/leaching', asyncHandler(async (req, res) => {
 
-		
+		const Ninit =  req.body.Ninit && parseFloat(req.body.Ninit) || req.params.Ninit && parseFloat(req.params.Ninit) || req.query.Ninit && parseFloat(req.query.Ninit),
+		Z = req.body.Z && parseFloat(req.body.Z) || req.params.Z && parseFloat(req.params.Z) || req.query.Z && parseFloat(req.query.Z),
+		P = req.body.P && parseFloat(req.body.P) || req.params.P && parseFloat(req.params.P) || req.query.P && parseFloat(req.query.P),
+		averageWaterPercolation = req.body.average_water_percolation && parseFloat(req.body.average_water_percolation) || req.params.average_water_percolation && parseFloat(req.params.average_water_percolation) || req.query.average_water_percolation && parseFloat(req.query.average_water_percolation),
+		Pw = req.body.Pw && parseFloat(req.body.Pw) || req.params.Pw && parseFloat(req.params.Pw) || req.query.pw && parseFloat(req.query.Pw),
+		coverType = req.body.cover_type  || req.params.cover_type || req.query.cover_type,
+		treatment = req.body.treatment  || req.params.treatment || req.query.treatment,
+		hidrologic = req.body.hidrologic  || req.params.hidrologic || req.query.hidrologic || "good",
+		soilHidroGroup = req.body.soil_hidro_group  || req.params.soil_hidro_group || req.query.soil_hidro_group || "A";
+
+		const params = {
+			Ninit: Ninit,
+			Z: Z,
+			P: P,
+			averageWaterPercolation: averageWaterPercolation,
+			Pw: Pw,
+			coverType: coverType,
+			treatment: treatment,
+			hidrologic: hidrologic,
+			soilHidrologicaGroup: soilHidroGroup
+		}
+
+		const leaching = navNR3Ctrl.leaching(params);
+
 		res.json({
-			results: "leaching"
+			results: leaching
 		});
 	}));
 

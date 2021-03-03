@@ -154,12 +154,12 @@
         },
         {
             "key": "i",
-            "name": "i - Fertilizer application before flooding",
+            "name": "Application of fertilizer incorporated",
             "value": -1.895
         },
         {
             "key": "s",
-            "name": "s",
+            "name": "Application of fertilizer in solution",
             "value": -1.292
         },
         {

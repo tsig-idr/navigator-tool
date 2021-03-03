@@ -1,0 +1,280 @@
+{
+    "cn": [
+        {
+            "cover": "fallow",
+            "treatment" : "CR",
+            "hidrologic": "---",
+            "soilHidrologicalGroup": [77, 86, 91, 94]
+        },
+        {
+            "cover": "fallow",
+            "treatment" : "CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [76, 85, 90,93]
+        },
+        {
+            "cover": "fallow",
+            "treatment" : "CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [74, 83, 88, 90]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "SR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [72, 81, 88, 91]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "SR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [67, 78, 85, 89]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "SR&CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [71, 80, 87, 90]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "SR&CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [64, 75, 82, 85]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [70, 79, 84, 88]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [65, 75, 82, 86]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [69, 78, 83, 87]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [64, 74, 81, 85]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [66, 74, 80, 82]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [62, 71, 78, 81]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&T+CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [65, 73, 79, 81]
+        },
+        {
+            "cover": "rowCrops",
+            "treatment" : "C&T+CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [61, 70, 77, 80]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "SR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [65, 76, 84, 88]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "SR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [63, 75, 83, 87]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "SR+CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [64, 75, 83, 86]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "SR+CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [60, 72, 80, 84]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [63, 74, 82, 85]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [61, 73, 81, 84]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [62, 73, 81, 84]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [60, 72, 80, 83]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [61, 72, 79, 82]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [59, 70, 78, 81]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&T+CR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [60, 71, 78, 81]
+        },
+        {
+            "cover": "smallGrain",
+            "treatment" : "C&T+CR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [58, 69, 77, 80]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "SR",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [66, 77, 85, 89]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "SR",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [58, 72, 81, 85]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "C",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [64, 75, 83, 85]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "C",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [55, 69, 78, 83]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [63, 73, 80, 83]
+        },
+        {
+            "cover": "closeSeeded",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [51, 67, 76, 80]
+        },
+        {
+            "cover": "pastureGrassland",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [68, 79, 86, 89]
+        },
+        {
+            "cover": "pastureGrassland",
+            "treatment" : "C&T",
+            "hidrologic": "fair",
+            "soilHidrologicalGroup": [49, 69, 79, 84]
+        },
+        {
+            "cover": "pastureGrassland",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [39, 61, 74, 80]
+        },
+        {
+            "cover": "meadow",
+            "treatment" : "C&T",
+            "hidrologic": "",
+            "soilHidrologicalGroup": [30, 58, 71, 78]
+        },
+        {
+            "cover": "brushWeedGrass",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [48, 67, 77, 83]
+        },
+        {
+            "cover": "brushWeedGrass",
+            "treatment" : "C&T",
+            "hidrologic": "fair",
+            "soilHidrologicalGroup": [35, 56, 70, 77]
+        },
+        {
+            "cover": "brushWeedGrass",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [30, 48, 65, 73]
+        },
+        {
+            "cover": "woodsGrassCombination",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [57, 73, 82, 86]
+        },
+        {
+            "cover": "woodsGrassCombination",
+            "treatment" : "C&T",
+            "hidrologic": "fair",
+            "soilHidrologicalGroup": [43, 65, 76, 82]
+        },
+        {
+            "cover": "woodsGrassCombination",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [32, 58, 72, 79]
+        },
+        {
+            "cover": "woods",
+            "treatment" : "C&T",
+            "hidrologic": "poor",
+            "soilHidrologicalGroup": [45, 66, 77, 83]
+        },
+        {
+            "cover": "woods",
+            "treatment" : "C&T",
+            "hidrologic": "fair",
+            "soilHidrologicalGroup": [36, 60, 73, 79]
+        },
+        {
+            "cover": "woods",
+            "treatment" : "C&T",
+            "hidrologic": "good",
+            "soilHidrologicalGroup": [30, 55, 70, 77]
+        }
+    ]
+}

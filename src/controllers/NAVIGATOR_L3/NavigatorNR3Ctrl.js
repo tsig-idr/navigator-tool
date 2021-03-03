@@ -79,8 +79,37 @@ module.exports = function () {
 
 	}
 
+	function leaching (params) {
+
+		var result = {
+			params: params,
+			Nleached: 0
+		};
+		const arraySoilHGroup = ["A", "B", "C", "D"];
+		const dataLeaching = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-leaching-data.json'), 'utf8'));
+
+		const cnItem =  dataLeaching.cn.find(item => {
+			return (item.cover === params.coverType && item.treatment === params.treatment && item.hidrologic === params.hidrologic);
+		})
+
+		if(cnItem){
+			//CN Value for soil Hydrologic Group
+			params.CN = cnItem.soilHidrologicalGroup[arraySoilHGroup.indexOf(params.soilHidrologicaGroup)];
+
+			var PI = (Math.pow((params.P-(10160/params.CN)+101.6),2))/(params.P+15240/params.CN-152.4);
+			var SI= Math.pow((2*params.Pw)/params.P,1/3);
+			var LI = PI*SI;
+			var Nleached = (params.Ninit*(1-Math.exp(-LI/(params.Z*params.averageWaterPercolation))));
+
+			result.Nleached = Nleached;
+		}
+
+		return result;
+	}
+
 	return {
 		desnitrification: desnitrification,
-		volatilization: volatilization
+		volatilization: volatilization,
+		leaching: leaching
 	}
 }
