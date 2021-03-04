@@ -30,8 +30,8 @@ module.exports = function () {
 
 		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-volatilization-data.json'), 'utf8'));
 
-		if(!utils.isNumeric(params.soilpH))
-			params.soilpH = utils.parseToNumeric(params.soilpH);
+		if(!utils.isNumeric(params.soilpH) && utils.parseToNumeric(params.soilpH))
+			params.soilpH = parseFloat(params.soilpH) 
 
 		if(utils.isNumeric(params.soilpH)){
 			if(params.soilpH <= 5.5){
@@ -73,7 +73,7 @@ module.exports = function () {
 		}, 0);
 
 		return {
-			results: volatilizationCoefficient,
+			params: volatilizationCoefficient,
 			volatilizationCoefficient: Math.exp(sumVolCoeTotal)
 		}
 
@@ -83,7 +83,11 @@ module.exports = function () {
 
 		var result = {
 			params: params,
-			Nleached: 0
+			Nleached: 0,
+			PI: 0,
+			SI: 0,
+			LI: 0,
+			CN: 0
 		};
 		const arraySoilHGroup = ["A", "B", "C", "D"];
 		const dataLeaching = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-leaching-data.json'), 'utf8'));
@@ -94,22 +98,34 @@ module.exports = function () {
 
 		if(cnItem){
 			//CN Value for soil Hydrologic Group
-			params.CN = cnItem.soilHidrologicalGroup[arraySoilHGroup.indexOf(params.soilHidrologicaGroup)];
+			var CN = cnItem.soilHidrologicalGroup[arraySoilHGroup.indexOf(params.soilHidrologicaGroup)];
 
-			var PI = (Math.pow((params.P-(10160/params.CN)+101.6),2))/(params.P+15240/params.CN-152.4);
+			var PI = (Math.pow((params.P-(10160/CN)+101.6),2))/(params.P+15240/CN-152.4);
 			var SI= Math.pow((2*params.Pw)/params.P,1/3);
 			var LI = PI*SI;
 			var Nleached = (params.Ninit*(1-Math.exp(-LI/(params.Z*params.averageWaterPercolation))));
 
-			result.Nleached = Nleached;
+			result.Nleached = Nleached; // Final results
+			// Intermediate results..
+			result.PI = PI; 
+			result.SI = SI;
+			result.LI = LI;
+			result.CN = CN;
+
 		}
 
 		return result;
 	}
 
+	function getVolatilizationFertilizerTypes(){
+		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-volatilization-data.json'), 'utf8'));
+		return dataVolatilization.fertilizer;
+	}
+
 	return {
 		desnitrification: desnitrification,
 		volatilization: volatilization,
-		leaching: leaching
+		leaching: leaching,
+		getVolatilizationFertilizerTypes: getVolatilizationFertilizerTypes
 	}
 }

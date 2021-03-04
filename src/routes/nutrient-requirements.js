@@ -98,5 +98,11 @@ module.exports = function () {
 		});
 	}));
 
+	router.get('/volatilization-fertilizer-types', asyncHandler(async (req, res) => {
+		let response = {"results": []}	
+		response.results = await navNR3Ctrl.getVolatilizationFertilizerTypes();
+		res.json( response);
+	}));
+
 	return router;
 }

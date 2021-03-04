@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="David Cifuentes" />
+    <meta name="generator" content="" />
+    <title>NAVIGATOR - Calculation of losses </title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <!-- Custom styles for this template -->
+    <link href="../css/product.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column h-100">
+    <navbar></navbar>
+
+    <main class="flex-shrink-0">
+      <div class="container-fluid pt-5">
+        <div class="pt-3 text-center">
+          <!--<img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+          <h2>NAVIGATOR - Calculation of losses</h2>
+          <p> </p>
+        </div>
+        <!-- Leaching -->
+        <div class="row">
+          <form class="needs-validation" id="formLeachingNR3" novalidate>
+            <div class="col-md-12">
+              <div class="card">
+                <h5 class="card-header bg-success text-white">Leaching:</h5>
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label for="leachingNinit" class="form-label"
+                            >Ninit (kg N/ha) </label
+                          >
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="leachingNinit"
+                            name="Ninit"
+                            min="0"
+                            step="any"
+                            placeholder="Ninit (kg N/ha)"
+                            value="0"
+                          />
+                          <div class="invalid-feedback">
+                              Ninit (kg N/ha) 
+                          </div>
+                        </div>
+      
+                    <div class="col-md-2">
+                      <label for="leachingZ" class="form-label"
+                        >Z: Soil depth (mm)</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="leachingZ"
+                        name="Z"
+                        min="0"
+                        step="any"
+                        placeholder="Soil depth (mm)"
+                        value="0"
+                      />
+                      <div class="invalid-feedback">
+                          Soil depth (mm)
+                      </div>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label
+                        for="leachingP"
+                        class="form-label"
+                        title="Annual rainfall (mm)"
+                        >P: Annual rainfall (mm) </label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="leachingP"
+                        name="P"
+                        min="0"
+                        step="any"
+                        placeholder="Annual rainfall (mm)"
+                        value="0"
+                      />
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="leachingAverageWater"
+                        class="form-label"
+                        title="Average water content during percolation"
+                      >
+                      θ mean (m3m-3) </label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="leachingAverageWater"
+                        name="average_water_percolation"
+                        min="0"
+                        placeholder="Average water percolation"
+                        value="0"
+                      />
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="leachingPw"
+                        class="form-label"
+                        title="Total rainfall (mm) during autumn and winter "
+                      >
+                      Pw (mm)  </label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="leachingPw"
+                        name="Pw"
+                        min="0"
+                        placeholder="Total rainfall"
+                        value="0"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <label
+                        for="leachingCoverType"
+                        class="form-label"
+                        title="Cover Type"
+                      >
+                      Cover type </label
+                      >
+                      <select
+                      class="form-select"
+                      id="leachingCoverType"
+                      name="cover_type"
+                      required
+                    >
+                      <option value="fallow">Fallow</option>
+                      <option value="rowCrops">Row Crops</option>
+                      <option value="smallGrain">Small grain</option>
+                      <option value="closeSeeded">
+                          Close-seeded or broadcast legumes or rotation meadow
+                      </option>
+                      <option value="pastureGrassland">Pasture, grassland or range continuos grazing</option>
+                      <option value="meadow">Meadow- continuos grass, protected mowed for hay</option>
+                      <option value="brushWeedGrass">Brush-weed-grass mixture</option>
+                      <option value="woodsGrassCombination">Woods- grass combination (orchand)</option>
+                      <option value="woods">Woods</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="leachingTreatment"
+                        class="form-label"
+                        title="Treatment"
+                      >
+                      Treatment  </label
+                      >
+                      <select
+                      class="form-select"
+                      id="leachingTreatment"
+                      name="treatment"
+                      required
+                    >
+                      <option value="CR">CR: Bare soil crop residue (CR)</option>
+                      <option value="SR">SR: Straight row (SR)</option>
+                      <option value="SR&CR">SR&CR: Straight row (SR) and Bare soil crop residue(CR)</option>
+                      <option value="C">C: Contoured ( C )</option>
+                      <option value="C&CR">C and CR</option>
+                      <option value="C&T">C&T: Contoured and terraced (C&T)</option>
+                      <option value="C&T+CR">C&T + CR</option>
+                      <option value="SR+CR">SR + CR</option>
+          
+
+                    </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="leachingHidrologicCondition"
+                        class="form-label"
+                        title="Hidrologic Condition"
+                      >
+                      Hidrologic Condition  </label
+                      >
+                      <select
+                      class="form-select"
+                      id="leachingHidrologicCondition"
+                      name="hidrologic"
+                      required
+                    >
+                      <option value="poor">Poor</option>
+                      <option value="good">Good</option>
+                      <option value="fair">Fair</option>
+                    </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="leachingSoilHidrologicalGroup"
+                        class="form-label"
+                        title="Soil hidrological group"
+                      >
+                      Soil hidrological group  </label
+                      >
+                      <select
+                      class="form-select"
+                      id="leachingSoilHidrologicalGroup"
+                      name="soil_hidro_group"
+                      required
+                    >
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                    </select>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label
+                      for="submitLeachingNR3"
+                      class="form-label"
+                      title="Calculate Leaching NR3 "
+                    >
+                        &nbsp;  </label
+                    >
+                      <button
+                      type="button"
+                      class="form-control btn btn-primary"
+                      id="submitLeachingNR3">
+                      <i class="fa fa-play"></i> Calculate
+                      </button>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+
+      
+
+          <section id="LeachingNR3Results" class="d-none">
+            <div class="row pt-4">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="tableLeachingNR3Results">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">CN´</th>
+                        <th scope="col">PI</th>
+                        <th scope="col">SI</th>
+                        <th scope="col">LI</th>
+                        <th scope="col">Nleached (kg N/ha)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- tabla de resultados vacia-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+        <!-- Volatilization -->
+        <div class="row"> 
+          <form class="needs-validation" id="formVolatilizationNR3" novalidate>
+            <div class="col-md-12">
+              <div class="card">
+                <h5 class="card-header bg-success text-white">Volatilization:</h5>
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label for="volatilizationFactor" class="form-label"
+                            >Factor value of crop type </label
+                          >
+                          <select
+                            class="form-select"
+                            id="volatilizationFactor"
+                            name="factor_crop"
+                            required
+                          >
+                            <option value="meadows">Meadows</option>
+                            <option value="rainfedCultivation">Rainfed cultivation</option>
+                            <option value="floodedCrops">Flooded crops</option>
+                          </select>
+                        </div>
+      
+                    <div class="col-md-2">
+                      <label for="volatilizationMethod" class="form-label"
+                        >Application method</label
+                      >
+                      <select
+                            class="form-select"
+                            id="volatilizationMethod"
+                            name="method"
+                            required
+                          >
+                            <option value="b">Application for flooded fields</option>
+                            <option value="i">Application of fertilizer incorporated</option>
+                            <option value="s">Application of fertilizer in solution</option>
+                            <option value="bf;i/f">Fertilizer application before flooding</option> 
+                            <option value="bpi">Application at the beginning of the panicle</option>
+                          </select>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label
+                        for="volatilizationFertilizerType"
+                        class="form-label"
+                        title="Fertilizer type"
+                        >Fertilizer type </label
+                      >
+                      <select
+                      class="form-select"
+                      id="volatilizationFertilizerType"
+                      name="fertilizer_type"
+                      required
+                    >
+                      
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="volatilizationPH"
+                        class="form-label"
+                        title="Soil pH"
+                      >
+                      Soil pH </label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="volatilizationPH"
+                        name="pH"
+                        min="0"
+                        placeholder="Soil pH"
+                        value="0"
+                      />
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="volatilizationCEC"
+                        class="form-label"
+                        title="CEC"
+                      >
+                      Soil CEC  </label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="volatilizationCEC"
+                        name="cec"
+                        min="0"
+                        placeholder="CEC"
+                        value="0"
+                      />
+                    </div>              
+                    <div class="col-md-2">
+                      <label
+                        for="volatilizationClimate"
+                        class="form-label"
+                        title="Climate"
+                      >
+                      Climate </label
+                      >
+                      <select
+                            class="form-select"
+                            id="volatilizationClimate"
+                            name="climate"
+                            required
+                          >
+                            <option value="tempered">Tempered</option>
+                            <option value="tropical">Tropical</option>
+                          </select>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label
+                      for="submitVolatilizationNR3"
+                      class="form-label"
+                      title="Calculate Volatilization NR3 "
+                    >
+                        &nbsp;  </label
+                    >
+                      <button
+                      type="button"
+                      class="form-control btn btn-primary"
+                      id="submitVolatilizationNR3">
+                      <i class="fa fa-play"></i> Calculate
+                      </button>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <section id="VolatilizationNR3Results" class="d-none">
+            <div class="row pt-4">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="tableVolatilizationNR3Results">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Factor</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">Fertilizer type</th>
+                        <th scope="col">pH</th>
+                        <th scope="col">CEC</th>
+                        <th scope="col">climate</th>
+                        <th scope="col">Volatilization coefficient</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- tabla de resultados vacia-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Desnitrification -->
+        <div class="row"> 
+          <form class="needs-validation" id="formDesnitrificationNR3" novalidate>
+            <div class="col-md-12">
+              <div class="card">
+                <h5 class="card-header bg-success text-white">Volatilization:</h5>
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label for="desnitrificationCase" class="form-label"
+                            >Case</label
+                          >
+                          <select
+                            class="form-select"
+                            id="desnitrificationCase"
+                            name="case"
+                            required
+                          >
+                            <option value="tilledNFertilizer">Tilled (N from fertilizer)</option>
+                            <option value="noTillage">No tillage</option>
+                            <option value="tilledNManure">Tilled (N from manure)</option>
+                          </select>
+                        </div>
+      
+                    <div class="col-md-2">
+                      <label for="desnitrificationSOM" class="form-label"
+                        >% O.M.</label
+                      >
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="desnitrificationSOM"
+                        name="som"
+                        min="0"
+                        placeholder="SOM"
+                        value="0"
+                      />
+                    </div>
+
+                    <div class="col-md-2">
+                      <label
+                        for="desnitrificationClimate"
+                        class="form-label"
+                        title="Climate"
+                        >Climate </label
+                      >
+                      <select
+                      class="form-select"
+                      id="desnitrificationClimate"
+                      name="water_supply"
+                      required
+                    >
+                    <option value="1">Arid and semiarid rainfed crops</option>
+                    <option value="0">Irrigated crops or humid areas</option>
+                      
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <label
+                        for="desnitrificationDrainage"
+                        class="form-label"
+                        title="Soil pH"
+                      >
+                      Rate of drainage </label
+                      >
+                      <select
+                      class="form-select"
+                      id="desnitrificationDrainage"
+                      name="drainage"
+                      required
+                    >
+                    <option value="veryHigh">Very High</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                    <option value="veryLow">Very Low</option>
+                      
+                      </select>
+                    </div>
+                    
+
+                    <div class="col-md-2">
+                      <label
+                      for="submitDesnitrificationNR3"
+                      class="form-label"
+                      title="Calculate Desnitrification NR3 "
+                    >
+                        &nbsp;  </label
+                    >
+                      <button
+                      type="button"
+                      class="form-control btn btn-primary"
+                      id="submitDesnitrificationNR3">
+                      <i class="fa fa-play"></i> Calculate
+                      </button>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <section id="DesnitrificationNR3Results" class="d-none">
+            <div class="row pt-4">
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-striped" id="tableDesnitrificationNR3Results">
+                    <thead class="table-dark">
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Case</th>
+                        <th scope="col">% O.M</th>
+                        <th scope="col">Climate</th>
+                        <th scope="col">Rate of drainage</th>
+                        <th scope="col">Denitrification coefficient (%)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- tabla de resultados vacia-->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-light"></footer>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+    <script src="/js/form-losses-nr3.js"></script>
+    <script src="/js/global-scripts.js"></script>
+  </body>
+</html>
