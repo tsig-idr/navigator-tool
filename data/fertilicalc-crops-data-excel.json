@@ -1,0 +1,2045 @@
+[{
+    "uri": "navigatortool:crops:<_Crops:BARLEY_2_ROW_>",
+    "cropID": "BARLEY_2_ROW",
+    "name": "BARLEY_2_ROW",
+    "latin_name": "Hordeum vulgare L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 86.5,
+        "Nc_h_min": 2.2,
+        "Nc_h_max": 2.4,
+        "Nc_h_typn": 2.3
+    },
+    "residues": {
+        "DM_r": 90.5,
+        "Kc_r": 2.1
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BARLEY_6_ROW_>",
+    "cropID": "BARLEY_6_ROW",
+    "name": "BARLEY_6_ROW",
+    "latin_name": "Hordeum vulgare L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 88.5,
+        "Nc_h_min": 1.5,
+        "Nc_h_max": 1.8,
+        "Nc_h_typn": 1.6
+    },
+    "residues": {
+        "DM_r": 90,
+        "Kc_r": 1.8
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BUCKWEAHT_>",
+    "cropID": "BUCKWEAHT",
+    "name": "BUCKWEAHT",
+    "latin_name": "Fagopyrum esculentum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 94.85,
+        "Nc_h_typn": 2.96
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CORN_GRAIN_>",
+    "cropID": "CORN_GRAIN",
+    "name": "CORN_GRAIN",
+    "latin_name": "Zea mays L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 86,
+        "Nc_h_min": 1.35,
+        "Nc_h_max": 1.75,
+        "Nc_h_typn": 1.6
+    },
+    "residues": {
+        "DM_r": 87,
+        "Nc_r_max": 1.1,
+        "Kc_r": 1.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:MAIZE_SILAGE_>",
+    "cropID": "MAIZE_SILAGE",
+    "name": "MAIZE_SILAGE",
+    "latin_name": "Zea mays L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 30,
+        "Nc_h_min": 1.1,
+        "Nc_h_max": 1.45,
+        "Nc_h_typn": 1.25
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MILLET_FINGER_>",
+    "cropID": "MILLET_FINGER",
+    "name": "MILLET_FINGER",
+    "latin_name": "Setaria italica L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_typn": 2.2
+    },
+    "residues": {
+        "DM_r": 92,
+        "Kc_r": 1.6
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:MILLET_PEARL_>",
+    "cropID": "MILLET_PEARL",
+    "name": "MILLET_PEARL",
+    "latin_name": "Pennisetum glaucum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 89.5,
+        "Nc_h_typn": 2
+    },
+    "residues": {
+        "DM_r": 91.5,
+        "Kc_r": 1.6
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:MILLET_PROSO_>",
+    "cropID": "MILLET_PROSO",
+    "name": "MILLET_PROSO",
+    "latin_name": "Panicum miliaceum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 90.5,
+        "Nc_h_typn": 2.3
+    },
+    "residues": {
+        "DM_r": 92,
+        "Kc_r": 1.6
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:OAT_>",
+    "cropID": "OAT",
+    "name": "OAT",
+    "latin_name": "Avena sativa L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 91,
+        "Nc_h_min": 1.5,
+        "Nc_h_max": 1.8,
+        "Nc_h_typn": 1.6
+    },
+    "residues": {
+        "DM_r": 89.5,
+        "Kc_r": 2.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:QUINOA_>",
+    "cropID": "QUINOA",
+    "name": "QUINOA",
+    "latin_name": "Chenopodium quinoa L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 94.5,
+        "Nc_h_typn": 2.43,
+        "Kc_h": 1.12
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:RICE_>",
+    "cropID": "RICE",
+    "name": "RICE",
+    "latin_name": "Oryza sativa L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 94,
+        "Nc_h_typn": 1.33
+    },
+    "residues": {
+        "Kc_r": 1.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:RICE_MILLED_>",
+    "cropID": "RICE_MILLED",
+    "name": "RICE_MILLED",
+    "latin_name": "Oryza sativa L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 1.05,
+        "Nc_h_max": 1.65,
+        "Nc_h_typn": 1.4
+    },
+    "residues": {
+        "DM_r": 90,
+        "Kc_r": 1.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:RYE_>",
+    "cropID": "RYE",
+    "name": "RYE",
+    "latin_name": "Secale cereale L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87,
+        "Nc_h_min": 2,
+        "Nc_h_max": 2.4,
+        "Nc_h_typn": 2.2
+    },
+    "residues": {
+        "DM_r": 90.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SORGHUM_GRAIN_>",
+    "cropID": "SORGHUM_GRAIN",
+    "name": "SORGHUM_GRAIN",
+    "latin_name": "Sorghum bicolor L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 1.45,
+        "Nc_h_max": 2,
+        "Nc_h_typn": 1.9
+    },
+    "residues": {
+        "DM_r": 92
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SORGHUM_SILAGE_>",
+    "cropID": "SORGHUM_SILAGE",
+    "name": "SORGHUM_SILAGE",
+    "latin_name": "Sorghum bicolor L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 26,
+        "Nc_h_max": 1.3,
+        "Nc_h_typn": 1
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SORGHUM_GREEN_>",
+    "cropID": "SORGHUM_GREEN",
+    "name": "SORGHUM_GREEN",
+    "latin_name": "Sorghum bicolor L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 20,
+        "Nc_h_min": 1.3,
+        "Nc_h_max": 1.4,
+        "Nc_h_typn": 1.37
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:TRITICALE_>",
+    "cropID": "TRITICALE",
+    "name": "TRITICALE",
+    "latin_name": "x Triticosecale Wittmack",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 89,
+        "Nc_h_min": 2.2,
+        "Nc_h_max": 2.5,
+        "Nc_h_typn": 2.45
+    },
+    "residues": {
+        "DM_r": 90,
+        "Kc_r": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:WHEAT_BREAD_HARD_>",
+    "cropID": "WHEAT_BREAD_HARD",
+    "name": "WHEAT_BREAD_HARD",
+    "latin_name": "Triticum aestivum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 1.85,
+        "Nc_h_max": 2.2,
+        "Nc_h_typn": 2.1
+    },
+    "residues": {
+        "DM_r": 90.4,
+        "Kc_r": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:WHEAT_BREAD_SOFT_>",
+    "cropID": "WHEAT_BREAD_SOFT",
+    "name": "WHEAT_BREAD_SOFT",
+    "latin_name": "Triticum aestivum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 1.85,
+        "Nc_h_max": 2.3,
+        "Nc_h_typn": 2.2
+    },
+    "residues": {
+        "DM_r": 90.5,
+        "Kc_r": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:WHEAT_DURUM_>",
+    "cropID": "WHEAT_DURUM",
+    "name": "WHEAT_DURUM",
+    "latin_name": "Triticum durum L.",
+    "group": "CEREALS_PSEUDOCEREALS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 2.05,
+        "Nc_h_max": 2.7,
+        "Nc_h_typn": 2.4
+    },
+    "residues": {
+        "DM_r": 90.5,
+        "Kc_r": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CASTORBEAN_>",
+    "cropID": "CASTORBEAN",
+    "name": "CASTORBEAN",
+    "latin_name": "Ricinus communis L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 95,
+        "Nc_h_typn": 2.7
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:COTTON_>",
+    "cropID": "COTTON",
+    "name": "COTTON",
+    "latin_name": "Gossypium L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 91,
+        "Nc_h_min": 2.32,
+        "Nc_h_max": 2.75,
+        "Nc_h_typn": 2.53
+    },
+    "residues": {
+        "DM_r": 92.5,
+        "Nc_r_max": 1,
+        "Kc_r": 1.6
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:FLAX_>",
+    "cropID": "FLAX",
+    "name": "FLAX",
+    "latin_name": "Linum usitatissimum L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 93.5,
+        "Nc_h_min": 3.3,
+        "Nc_h_max": 4.3,
+        "Nc_h_typn": 3.8
+    },
+    "residues": {
+        "DM_r": 93,
+        "Nc_r_min": 1,
+        "Nc_r_max": 1.2,
+        "Nc_h_typn": 1.06,
+        "Kc_r": 1.74
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:OPIUM_POPPY_>",
+    "cropID": "OPIUM_POPPY",
+    "name": "OPIUM_POPPY",
+    "latin_name": "Papaver somniferum L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 2.3,
+        "Nc_h_max": 3.1,
+        "Nc_h_typn": 2.6,
+        "Kc_h": 2.4
+    },
+    "residues": {
+        "DM_r": 90,
+        "Nc_r_max": 1.2,
+        "Nc_h_typn": 1,
+        "Kc_r": 3.1
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:RAPESEED_>",
+    "cropID": "RAPESEED",
+    "name": "RAPESEED",
+    "latin_name": "Brassica napus L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 91,
+        "Nc_h_min": 3.4,
+        "Nc_h_max": 4.3,
+        "Nc_h_typn": 3.9
+    },
+    "residues": {
+        "DM_r": 82.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SAFFLOWER_>",
+    "cropID": "SAFFLOWER",
+    "name": "SAFFLOWER",
+    "latin_name": "Carthamus tinctorius L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 92,
+        "Nc_h_min": 2.6,
+        "Nc_h_max": 2.8,
+        "Nc_h_typn": 2.7
+    },
+    "residues": {
+        "DM_r": 90
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SUGARBEET_ROOT_CROWN_>",
+    "cropID": "SUGARBEET_ROOT_CROWN",
+    "name": "SUGARBEET_ROOT_CROWN",
+    "latin_name": "Beta vulgaris var. saccharífera L",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 20,
+        "Nc_h_min": 1.2,
+        "Nc_h_max": 1.4,
+        "Nc_h_typn": 1.3,
+        "Kc_h": 2.46
+    },
+    "residues": {
+        "DM_r": 18,
+        "Nc_r_min": 1.8,
+        "Nc_r_max": 2.8,
+        "Nc_h_typn": 2.3,
+        "Kc_r": 6.26
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SUGARBEET_ROOT_>",
+    "cropID": "SUGARBEET_ROOT",
+    "name": "SUGARBEET_ROOT",
+    "latin_name": "Beta vulgaris var. saccharífera L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 21,
+        "Nc_h_max": 1.1,
+        "Nc_h_typn": 1.05,
+        "Kc_h": 1.54
+    },
+    "residues": {
+        "DM_r": 18,
+        "Nc_r_min": 1.8,
+        "Nc_r_max": 2.8,
+        "Nc_h_typn": 2.3,
+        "Kc_r": 5.8
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SUGARCANE_>",
+    "cropID": "SUGARCANE",
+    "name": "SUGARCANE",
+    "latin_name": "Saccharum officinarum L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 25
+    },
+    "residues": {
+        "DM_r": 26
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SUNFLOWER_OIL_>",
+    "cropID": "SUNFLOWER_OIL",
+    "name": "SUNFLOWER_OIL",
+    "latin_name": "Helianthus annuus L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 91.5,
+        "Nc_h_min": 2.2,
+        "Nc_h_max": 3.2,
+        "Nc_h_typn": 2.95
+    },
+    "residues": {
+        "DM_r": 87,
+        "Nc_r_max": 1.1
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SUFLOWER_SEED_>",
+    "cropID": "SUFLOWER_SEED",
+    "name": "SUFLOWER_SEED",
+    "latin_name": "Helianthus annuus L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 91.5,
+        "Nc_h_min": 2.8,
+        "Nc_h_max": 3.6,
+        "Nc_h_typn": 3.2
+    },
+    "residues": {
+        "DM_r": 87,
+        "Nc_r_max": 1.1,
+        "Kc_r": 2.52
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:TOBACCO_BURLEY_>",
+    "cropID": "TOBACCO_BURLEY",
+    "name": "TOBACCO_BURLEY",
+    "latin_name": "Nicotiana Tabacum Brasiliensis L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 75,
+        "Nc_h_min": 3.8,
+        "Nc_h_max": 4.2,
+        "Nc_h_typn": 4,
+        "Kc_h": 3.86
+    },
+    "residues": {
+        "Kc_r": 3.86
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:TOBACCO_FLUE_>",
+    "cropID": "TOBACCO_FLUE",
+    "name": "TOBACCO_FLUE",
+    "latin_name": "Nicotiana Tabacum Brasiliensis L.",
+    "group": "SUGAR_OIL_FIBER_CROPS",
+    "harvest": {
+        "DM_h": 8,
+        "Nc_h_min": 2,
+        "Nc_h_max": 2.3,
+        "Nc_h_typn": 2.1,
+        "Kc_h": 2
+    },
+    "residues": {
+        "DM_r": 9,
+        "Nc_r_max": 1,
+        "Kc_r": 2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BEAN_DRY_>",
+    "cropID": "BEAN_DRY",
+    "name": "BEAN_DRY",
+    "latin_name": "Phaseolus vulgaris L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 89,
+        "Nc_h_min": 3.5,
+        "Nc_h_max": 4.5,
+        "Nc_h_typn": 4,
+        "Kc_h": 2.7
+    },
+    "residues": {
+        "DM_r": 89,
+        "Nc_r_min": 1.1,
+        "Nc_r_max": 1.4,
+        "Nc_h_typn": 1.2,
+        "Kc_r": 1.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BLACK_EYED_PEA_>",
+    "cropID": "BLACK_EYED_PEA",
+    "name": "BLACK_EYED_PEA",
+    "latin_name": "Vigna sinensis Endl",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_min": 4,
+        "Nc_h_max": 4.2,
+        "Nc_h_typn": 4.1,
+        "Kc_h": 1.5
+    },
+    "residues": {
+        "DM_r": 90,
+        "Nc_h_typn": 1.25,
+        "Kc_r": 1.55
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHICKPEA_DESI_>",
+    "cropID": "CHICKPEA_DESI",
+    "name": "CHICKPEA_DESI",
+    "latin_name": "Cicer arietinum L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 89.5,
+        "Nc_h_typn": 3.5,
+        "Kc_h": 1.2
+    },
+    "residues": {
+        "DM_r": 89.5,
+        "Kc_r": 2.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHICKPEA_KABULI_>",
+    "cropID": "CHICKPEA_KABULI",
+    "name": "CHICKPEA_KABULI",
+    "latin_name": "Cicer arietinum L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 89.5,
+        "Nc_h_typn": 3.6,
+        "Kc_h": 1.2
+    },
+    "residues": {
+        "DM_r": 89.5,
+        "Kc_r": 2.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:FABA_BEAN_DRY_>",
+    "cropID": "FABA_BEAN_DRY",
+    "name": "FABA_BEAN_DRY",
+    "latin_name": "Vicia faba L",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_min": 3,
+        "Nc_h_max": 4.9,
+        "Nc_h_typn": 3.7,
+        "Kc_h": 1.2
+    },
+    "residues": {
+        "DM_r": 85,
+        "Nc_r_max": 2.5,
+        "Nc_h_typn": 1.6,
+        "Kc_r": 1.55
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:GROUNDNUT_FRUITS_>",
+    "cropID": "GROUNDNUT_FRUITS",
+    "name": "GROUNDNUT_FRUITS",
+    "latin_name": "Arachis hypogaea L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 93,
+        "Nc_h_min": 4.1,
+        "Nc_h_max": 4.3,
+        "Nc_h_typn": 4.25
+    },
+    "residues": {
+        "DM_r": 90.5,
+        "Nc_r_min": 1.5,
+        "Nc_r_max": 1.7,
+        "Nc_h_typn": 1.65,
+        "Kc_r": 1.38
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:GROUNDNUT_SEEDS_>",
+    "cropID": "GROUNDNUT_SEEDS",
+    "name": "GROUNDNUT_SEEDS",
+    "latin_name": "Arachis hypogaea L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 92,
+        "Nc_h_min": 4.7,
+        "Nc_h_max": 4.9,
+        "Nc_h_typn": 4.85
+    },
+    "residues": {
+        "DM_r": 90.5,
+        "Nc_r_min": 1.5,
+        "Nc_r_max": 1.7,
+        "Nc_h_typn": 1.65
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:LENTIL_>",
+    "cropID": "LENTIL",
+    "name": "LENTIL",
+    "latin_name": "Lens esculenta Moench",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 89,
+        "Nc_h_min": 4.2,
+        "Nc_h_max": 4.4,
+        "Nc_h_typn": 4.3
+    },
+    "residues": {
+        "DM_r": 91,
+        "Nc_h_typn": 1.1,
+        "Kc_r": 1.15
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEA_>",
+    "cropID": "PEA",
+    "name": "PEA",
+    "latin_name": "Pisum sativum L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_min": 4,
+        "Nc_h_max": 4.3,
+        "Nc_h_typn": 4.2,
+        "Kc_h": 1.3
+    },
+    "residues": {
+        "DM_r": 88.5,
+        "Nc_r_min": 1.2,
+        "Nc_r_max": 1.4,
+        "Nc_h_typn": 1.3,
+        "Kc_r": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SOYBEAN_>",
+    "cropID": "SOYBEAN",
+    "name": "SOYBEAN",
+    "latin_name": "Glycine soja L.",
+    "group": "LEGUMES",
+    "harvest": {
+        "DM_h": 87.5,
+        "Nc_h_min": 6.1,
+        "Nc_h_max": 6.9,
+        "Nc_h_typn": 6.5,
+        "Kc_h": 1.5
+    },
+    "residues": {
+        "DM_r": 89,
+        "Nc_r_min": 1,
+        "Nc_r_max": 1
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:ALFALFA_GREEN_VEGETATIVE_>",
+    "cropID": "ALFALFA_GREEN_VEGETATIVE",
+    "name": "ALFALFA_GREEN_VEGETATIVE",
+    "latin_name": "Medicago sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 25,
+        "Nc_h_min": 3.05,
+        "Nc_h_max": 4.05,
+        "Nc_h_typn": 3.55,
+        "Kc_h": 2.1
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ALFALFA_GREEN_FLOWERING_>",
+    "cropID": "ALFALFA_GREEN_FLOWERING",
+    "name": "ALFALFA_GREEN_FLOWERING",
+    "latin_name": "Medicago sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 25,
+        "Nc_h_min": 2.1,
+        "Nc_h_max": 3.1,
+        "Nc_h_typn": 2.6
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ALFALFA_HAY_VEGETATIVE_>",
+    "cropID": "ALFALFA_HAY_VEGETATIVE",
+    "name": "ALFALFA_HAY_VEGETATIVE",
+    "latin_name": "Medicago sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 85,
+        "Nc_h_min": 2.8,
+        "Nc_h_max": 3.8,
+        "Nc_h_typn": 3.3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ALFALFA_HAY_FLOWERING_>",
+    "cropID": "ALFALFA_HAY_FLOWERING",
+    "name": "ALFALFA_HAY_FLOWERING",
+    "latin_name": "Medicago sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 85,
+        "Nc_h_min": 2,
+        "Nc_h_max": 3,
+        "Nc_h_typn": 2.5
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:BLUEGRASS_HAY_>",
+    "cropID": "BLUEGRASS_HAY",
+    "name": "BLUEGRASS_HAY",
+    "latin_name": "Poa pratensis L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.1,
+        "Nc_h_typn": 1.6,
+        "Kc_h": 1.92
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:BROMEGRASS_HAY_>",
+    "cropID": "BROMEGRASS_HAY",
+    "name": "BROMEGRASS_HAY",
+    "latin_name": "Bromus sp",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 91.1,
+        "Nc_h_typn": 1.53,
+        "Kc_h": 1.64
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CANARYGRASS_REED_HAY_>",
+    "cropID": "CANARYGRASS_REED_HAY",
+    "name": "CANARYGRASS_REED_HAY",
+    "latin_name": "Phalaris arundinacea",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89,
+        "Nc_h_typn": 1.7,
+        "Kc_h": 2.99
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CLOVER_ALSIKE_HAY_>",
+    "cropID": "CLOVER_ALSIKE_HAY",
+    "name": "CLOVER_ALSIKE_HAY",
+    "latin_name": "Trifolium hybridum L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 87.4,
+        "Nc_h_typn": 2.27,
+        "Kc_h": 2.48
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CLOVER_CRIMSON_HAY_>",
+    "cropID": "CLOVER_CRIMSON_HAY",
+    "name": "CLOVER_CRIMSON_HAY",
+    "latin_name": "Trifolium incarnatum L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 88.3,
+        "Nc_h_typn": 2.65,
+        "Kc_h": 2.76
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CLOVER_RED_HAY_>",
+    "cropID": "CLOVER_RED_HAY",
+    "name": "CLOVER_RED_HAY",
+    "latin_name": "Trifolium pratense L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 86.1,
+        "Nc_h_typn": 2.51,
+        "Kc_h": 1.89
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CLOVER_WHITE_HAY_>",
+    "cropID": "CLOVER_WHITE_HAY",
+    "name": "CLOVER_WHITE_HAY",
+    "latin_name": "Trifolium repens L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 90.3,
+        "Nc_h_typn": 3.09,
+        "Kc_h": 2.3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CLOVER_WHITE_LADINO_HAY_>",
+    "cropID": "CLOVER_WHITE_LADINO_HAY",
+    "name": "CLOVER_WHITE_LADINO_HAY",
+    "latin_name": "Trifolium repens L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.2,
+        "Nc_h_typn": 3.32,
+        "Kc_h": 2.43
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:FESCUE_HAY_>",
+    "cropID": "FESCUE_HAY",
+    "name": "FESCUE_HAY",
+    "latin_name": "Festuca o Lolium sp.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_typn": 1.51
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:FESCUE_MEADOW_HAY_>",
+    "cropID": "FESCUE_MEADOW_HAY",
+    "name": "FESCUE_MEADOW_HAY",
+    "latin_name": "Lolium pratense",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 88.4,
+        "Nc_h_typn": 1.19
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:FESCUE_TALL_HAY_>",
+    "cropID": "FESCUE_TALL_HAY",
+    "name": "FESCUE_TALL_HAY",
+    "latin_name": "Lolium arundinaceum",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 91.6,
+        "Nc_h_typn": 2.31
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:GRASS_HAY_>",
+    "cropID": "GRASS_HAY",
+    "name": "GRASS_HAY",
+    "latin_name": "Poaceae",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.1,
+        "Nc_h_typn": 1.52,
+        "Kc_h": 1.45
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:GRASS_SILAGE_>",
+    "cropID": "GRASS_SILAGE",
+    "name": "GRASS_SILAGE",
+    "latin_name": "Poaceae",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 24.9,
+        "Nc_h_typn": 1.84,
+        "Kc_h": 1.88
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MILLET_FOXTAIL_SILAGE_>",
+    "cropID": "MILLET_FOXTAIL_SILAGE",
+    "name": "MILLET_FOXTAIL_SILAGE",
+    "latin_name": "Setaria italica",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 27.6,
+        "Nc_h_typn": 1.59,
+        "Kc_h": 1.94
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MLLET_PEARL_SILAGE_>",
+    "cropID": "MLLET_PEARL_SILAGE",
+    "name": "MLLET_PEARL_SILAGE",
+    "latin_name": "Pennisetum glaucum",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 21.6,
+        "Nc_h_typn": 1.54,
+        "Kc_h": 1.63
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:OAT_HAY_>",
+    "cropID": "OAT_HAY",
+    "name": "OAT_HAY",
+    "latin_name": "Avena sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.8,
+        "Nc_h_typn": 1.37,
+        "Kc_h": 1.26
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ORCHARDGRASS_GREEN_CHOP_>",
+    "cropID": "ORCHARDGRASS_GREEN_CHOP",
+    "name": "ORCHARDGRASS_GREEN_CHOP",
+    "latin_name": "Dactylis glomerata L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 25.9,
+        "Nc_h_typn": 2.37,
+        "Kc_h": 2.64
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ORCHARDGRASS_HAY_>",
+    "cropID": "ORCHARDGRASS_HAY",
+    "name": "ORCHARDGRASS_HAY",
+    "latin_name": "Dactylis glomerata L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.2,
+        "Nc_h_typn": 1.71,
+        "Kc_h": 2.64
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:RYE_HAY_>",
+    "cropID": "RYE_HAY",
+    "name": "RYE_HAY",
+    "latin_name": "Secale cereale L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 92.6,
+        "Nc_h_typn": 1.21,
+        "Kc_h": 1.24
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:RYEGRASS_HAY_>",
+    "cropID": "RYEGRASS_HAY",
+    "name": "RYEGRASS_HAY",
+    "latin_name": "Lolium perenne ssp. perenne",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 87.3,
+        "Nc_h_typn": 1.49,
+        "Kc_h": 1.42
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SWEETCLOVER_HAY_>",
+    "cropID": "SWEETCLOVER_HAY",
+    "name": "SWEETCLOVER_HAY",
+    "latin_name": "Melilotus sp.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 89.6,
+        "Nc_h_typn": 2.65,
+        "Kc_h": 1.65
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:TIMOTHY_HAY_>",
+    "cropID": "TIMOTHY_HAY",
+    "name": "TIMOTHY_HAY",
+    "latin_name": "Phleum pratense",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 90.5,
+        "Nc_h_typn": 1.2,
+        "Kc_h": 1.63
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:TREFOIL_HAY_>",
+    "cropID": "TREFOIL_HAY",
+    "name": "TREFOIL_HAY",
+    "latin_name": "Lotus corniculatus",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 90,
+        "Nc_h_typn": 2.52,
+        "Kc_h": 1.89
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:TURNIP_GREEN_CROP_>",
+    "cropID": "TURNIP_GREEN_CROP",
+    "name": "TURNIP_GREEN_CROP",
+    "latin_name": "Brassica rapa var. rapa",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 13.5,
+        "Nc_h_typn": 3.3,
+        "Kc_h": 3.02
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:VETCH_GREEN_FLOWERING_>",
+    "cropID": "VETCH_GREEN_FLOWERING",
+    "name": "VETCH_GREEN_FLOWERING",
+    "latin_name": "Vicia sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 25,
+        "Nc_h_min": 2.6,
+        "Nc_h_max": 3.4,
+        "Nc_h_typn": 3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:VETCH_HAY_>",
+    "cropID": "VETCH_HAY",
+    "name": "VETCH_HAY",
+    "latin_name": "Vicia sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 87.8,
+        "Nc_h_typn": 2.6,
+        "Kc_h": 2.24
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:VETCH_HAY_FLOWERING_>",
+    "cropID": "VETCH_HAY_FLOWERING",
+    "name": "VETCH_HAY_FLOWERING",
+    "latin_name": "Vicia sativa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 85,
+        "Nc_h_min": 2.5,
+        "Nc_h_max": 3.3,
+        "Nc_h_typn": 2.9
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:VETCH_HAIRY_HAY_>",
+    "cropID": "VETCH_HAIRY_HAY",
+    "name": "VETCH_HAIRY_HAY",
+    "latin_name": "Vicia villosa L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 87.9,
+        "Nc_h_typn": 3.68,
+        "Kc_h": 2.23
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:WHEATGRASS_HAY_>",
+    "cropID": "WHEATGRASS_HAY",
+    "name": "WHEATGRASS_HAY",
+    "latin_name": "T. usneoides L.",
+    "group": "FORAGES",
+    "harvest": {
+        "DM_h": 91.6,
+        "Nc_h_typn": 1.34,
+        "Kc_h": 2.7
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ARTICHOKE_>",
+    "cropID": "ARTICHOKE",
+    "name": "ARTICHOKE",
+    "latin_name": "Cynara scolymus L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 17,
+        "Nc_h_min": 2.4,
+        "Nc_h_max": 2.6,
+        "Nc_h_typn": 2.5,
+        "Kc_h": 2
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ASPARAGUS_GREEN_>",
+    "cropID": "ASPARAGUS_GREEN",
+    "name": "ASPARAGUS_GREEN",
+    "latin_name": "Asparagus officinalis L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 8,
+        "Nc_h_min": 5.4,
+        "Nc_h_max": 5.6,
+        "Nc_h_typn": 5.5,
+        "Kc_h": 3.4
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ASPARAGUS_WHITE_>",
+    "cropID": "ASPARAGUS_WHITE",
+    "name": "ASPARAGUS_WHITE",
+    "latin_name": "Asparagus officinalis L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 7,
+        "Nc_h_min": 4.2,
+        "Nc_h_max": 4.4,
+        "Nc_h_typn": 4.3,
+        "Kc_h": 4
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:BEAN_GREEN_>",
+    "cropID": "BEAN_GREEN",
+    "name": "BEAN_GREEN",
+    "latin_name": "Phaseolus vulgaris L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 30,
+        "Nc_h_min": 3,
+        "Nc_h_max": 3.7,
+        "Nc_h_typn": 3.3,
+        "Kc_h": 2.7
+    },
+    "residues": {
+        "DM_r": 89,
+        "Nc_r_min": 1.1,
+        "Nc_r_max": 1.4,
+        "Nc_h_typn": 1.2,
+        "Kc_r": 1.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BEET_>",
+    "cropID": "BEET",
+    "name": "BEET",
+    "latin_name": "Beta vulgaris L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 12,
+        "Nc_h_min": 2.1,
+        "Nc_h_max": 2.2,
+        "Nc_h_typn": 2.15,
+        "Kc_h": 2.46
+    },
+    "residues": {
+        "DM_r": 12,
+        "Nc_r_min": 3.6,
+        "Nc_r_max": 3.8,
+        "Nc_h_typn": 3.7,
+        "Kc_r": 6.26
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:BROCCOLI_>",
+    "cropID": "BROCCOLI",
+    "name": "BROCCOLI",
+    "latin_name": "Brassica oleracea var. italica",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 45,
+        "Nc_h_min": 3.3,
+        "Nc_h_max": 3.4,
+        "Nc_h_typn": 3.35
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:BRUSSELS SPROUTS_>",
+    "cropID": "BRUSSELS SPROUTS",
+    "name": "BRUSSELS SPROUTS",
+    "latin_name": "Brassica oleracea var. gemmifera",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 13,
+        "Nc_h_min": 4.9,
+        "Nc_h_max": 5.1,
+        "Nc_h_typn": 5,
+        "Kc_h": 3.25
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CABBAGE_>",
+    "cropID": "CABBAGE",
+    "name": "CABBAGE",
+    "latin_name": "Brassica oleracea var. capitata",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 3,
+        "Nc_h_max": 3.5,
+        "Nc_h_typn": 3.3,
+        "Kc_h": 2.73
+    },
+    "residues": {
+        "DM_r": 14,
+        "Nc_r_min": 2.6,
+        "Nc_r_max": 2.8,
+        "Nc_h_typn": 2.7
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CARROT_>",
+    "cropID": "CARROT",
+    "name": "CARROT",
+    "latin_name": "Daucutus carota",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 12,
+        "Nc_h_min": 1.4,
+        "Nc_h_max": 1.6,
+        "Nc_h_typn": 1.5,
+        "Kc_h": 2.43
+    },
+    "residues": {
+        "DM_r": 16,
+        "Nc_r_min": 2.3,
+        "Nc_r_max": 2.4,
+        "Nc_h_typn": 2.35,
+        "Kc_r": 1.88
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CAULIFLOWER_>",
+    "cropID": "CAULIFLOWER",
+    "name": "CAULIFLOWER",
+    "latin_name": "Brassica oleracea var. botrytis",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 4.3,
+        "Nc_h_max": 4.5,
+        "Nc_h_typn": 4.4,
+        "Kc_h": 3.21
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CELERY_>",
+    "cropID": "CELERY",
+    "name": "CELERY",
+    "latin_name": "Apium graveolens",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 5,
+        "Nc_h_min": 2.3,
+        "Nc_h_max": 2.5,
+        "Nc_h_typn": 2.4,
+        "Kc_h": 4.8
+    },
+    "residues": {
+        "Kc_r": 4.8
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHICORY_>",
+    "cropID": "CHICORY",
+    "name": "CHICORY",
+    "latin_name": "Cichorium intybus",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 6,
+        "Nc_h_min": 3.1,
+        "Nc_h_max": 3.3,
+        "Nc_h_typn": 3.2,
+        "Kc_h": 4
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CUCUMBER_>",
+    "cropID": "CUCUMBER",
+    "name": "CUCUMBER",
+    "latin_name": "Cucumis sativus",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 4,
+        "Nc_h_min": 2.4,
+        "Nc_h_max": 2.6,
+        "Nc_h_typn": 2.5,
+        "Kc_h": 4.25
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:EGGPLANT_>",
+    "cropID": "EGGPLANT",
+    "name": "EGGPLANT",
+    "latin_name": "Solanum melongena",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 7,
+        "Nc_h_min": 2.4,
+        "Nc_h_max": 2.6,
+        "Nc_h_typn": 2.5,
+        "Kc_h": 3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ENDIVE_>",
+    "cropID": "ENDIVE",
+    "name": "ENDIVE",
+    "latin_name": "Cichorium endivia",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 5,
+        "Nc_h_min": 4.1,
+        "Nc_h_max": 4.2,
+        "Nc_h_typn": 4.15,
+        "Kc_h": 5.6
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:FABA_BEAN_GREEN_>",
+    "cropID": "FABA_BEAN_GREEN",
+    "name": "FABA_BEAN_GREEN",
+    "latin_name": "Vicia faba L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 19,
+        "Nc_h_min": 4.6,
+        "Nc_h_max": 4.8,
+        "Nc_h_typn": 4.7,
+        "Kc_h": 1.32
+    },
+    "residues": {
+        "DM_r": 25,
+        "Nc_h_typn": 2.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:GARLIC_>",
+    "cropID": "GARLIC",
+    "name": "GARLIC",
+    "latin_name": "Allium sativum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 39,
+        "Nc_h_min": 2.5,
+        "Nc_h_max": 2.8,
+        "Nc_h_typn": 2.6,
+        "Kc_h": 1.38
+    },
+    "residues": {
+        "Nc_h_typn": 1.5,
+        "Kc_r": 1.3
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:LEEK_>",
+    "cropID": "LEEK",
+    "name": "LEEK",
+    "latin_name": "Allium porrum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 17,
+        "Nc_h_min": 1.3,
+        "Nc_h_max": 1.5,
+        "Nc_h_typn": 1.4,
+        "Kc_h": 1.06
+    },
+    "residues": {
+        "DM_r": 20
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:LETTUCE_ICEBERG_>",
+    "cropID": "LETTUCE_ICEBERG",
+    "name": "LETTUCE_ICEBERG",
+    "latin_name": "Lactuca sativa L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 5,
+        "Nc_h_min": 2.4,
+        "Nc_h_max": 2.7,
+        "Nc_h_typn": 2.55,
+        "Kc_h": 2
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:LETTUCE_ROMAN_>",
+    "cropID": "LETTUCE_ROMAN",
+    "name": "LETTUCE_ROMAN",
+    "latin_name": "Lactuca sativa L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 6,
+        "Nc_h_min": 4,
+        "Nc_h_max": 4.4,
+        "Nc_h_typn": 4.27,
+        "Kc_h": 6.67
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MELON_>",
+    "cropID": "MELON",
+    "name": "MELON",
+    "latin_name": "Cucumis melo L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 12,
+        "Nc_h_max": 1,
+        "Kc_h": 2.58
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MUSCK_MELON_>",
+    "cropID": "MUSCK_MELON",
+    "name": "MUSCK_MELON",
+    "latin_name": "Cucumis melo L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 10,
+        "Nc_h_min": 1.4,
+        "Nc_h_max": 1.6,
+        "Nc_h_typn": 1.5,
+        "Kc_h": 3.16
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ONION_>",
+    "cropID": "ONION",
+    "name": "ONION",
+    "latin_name": "Allium cepa L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 10,
+        "Nc_h_min": 1.9,
+        "Nc_h_max": 2.5,
+        "Nc_h_typn": 2.2,
+        "Kc_h": 1.2
+    },
+    "residues": {
+        "DM_r": 8,
+        "Nc_r_min": 3.8,
+        "Nc_r_max": 4.1,
+        "Nc_h_typn": 4,
+        "Kc_r": 2.75
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:PARSLEY_>",
+    "cropID": "PARSLEY",
+    "name": "PARSLEY",
+    "latin_name": "Petroselinum crispum (Mill.) Fuss",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 10,
+        "Nc_h_min": 3.3,
+        "Nc_h_max": 3.6,
+        "Nc_h_typn": 3.5,
+        "Kc_h": 2.7
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEA_GREEN_FRUITS_>",
+    "cropID": "PEA_GREEN_FRUITS",
+    "name": "PEA_GREEN_FRUITS",
+    "latin_name": "Pisum sativum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 12.5,
+        "Nc_h_min": 2.2,
+        "Nc_h_max": 3.7,
+        "Nc_h_typn": 3
+    },
+    "residues": {
+        "DM_r": 25,
+        "Nc_r_min": 1.9,
+        "Nc_r_max": 2.1,
+        "Nc_h_typn": 2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEA_GREEN_SEEDS_>",
+    "cropID": "PEA_GREEN_SEEDS",
+    "name": "PEA_GREEN_SEEDS",
+    "latin_name": "Pisum sativum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 21,
+        "Nc_h_min": 4.3,
+        "Nc_h_max": 4.5,
+        "Nc_h_typn": 4.4
+    },
+    "residues": {
+        "DM_r": 25,
+        "Nc_r_min": 1.9,
+        "Nc_r_max": 2.1,
+        "Nc_h_typn": 2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEPPER_GREEN_>",
+    "cropID": "PEPPER_GREEN",
+    "name": "PEPPER_GREEN",
+    "latin_name": "Capsicum annuum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 10.5,
+        "Nc_h_min": 2.1,
+        "Nc_h_max": 2.4,
+        "Nc_h_typn": 2.3,
+        "Kc_h": 2
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEPPER_RED_>",
+    "cropID": "PEPPER_RED",
+    "name": "PEPPER_RED",
+    "latin_name": "Capsicum annuum L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 12.5,
+        "Nc_h_min": 1.4,
+        "Nc_h_max": 2,
+        "Nc_h_typn": 1.9,
+        "Kc_h": 2.4
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PUMPKIN_>",
+    "cropID": "PUMPKIN",
+    "name": "PUMPKIN",
+    "latin_name": "Cucurbita spp.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 2.5,
+        "Nc_h_max": 2.7,
+        "Nc_h_typn": 2.6,
+        "Kc_h": 2.78
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:RADISH_>",
+    "cropID": "RADISH",
+    "name": "RADISH",
+    "latin_name": "Raphanus sativus L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 6,
+        "Nc_h_min": 1.5,
+        "Nc_h_max": 1.7,
+        "Nc_h_typn": 1.6,
+        "Kc_h": 3.17
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SPINACH_>",
+    "cropID": "SPINACH",
+    "name": "SPINACH",
+    "latin_name": "Spinacia oleracea",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 5.1,
+        "Nc_h_max": 5.3,
+        "Nc_h_typn": 5.2,
+        "Kc_h": 5.66
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SQUASH_INMATURE_>",
+    "cropID": "SQUASH_INMATURE",
+    "name": "SQUASH_INMATURE",
+    "latin_name": "Cucurbita pepo L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 5.5,
+        "Nc_h_min": 2.7,
+        "Nc_h_max": 3.84,
+        "Nc_h_typn": 3.2,
+        "Kc_h": 3.5
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SQUASH_MATURE_>",
+    "cropID": "SQUASH_MATURE",
+    "name": "SQUASH_MATURE",
+    "latin_name": "Cucurbita pepo L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 14,
+        "Nc_h_max": 1,
+        "Kc_h": 3.5
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:STRAWBERRY_>",
+    "cropID": "STRAWBERRY",
+    "name": "STRAWBERRY",
+    "latin_name": "Fragaria L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 1.1,
+        "Nc_h_max": 1.6,
+        "Nc_h_typn": 1.35
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:SWEET_CORN_DRY_>",
+    "cropID": "SWEET_CORN_DRY",
+    "name": "SWEET_CORN_DRY",
+    "latin_name": "Zea mays L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 90.5,
+        "Nc_h_min": 1.9,
+        "Nc_h_max": 2.1,
+        "Nc_h_typn": 2
+    },
+    "residues": {
+        "DM_r": 91,
+        "Nc_r_max": 1.1,
+        "Nc_h_typn": 1.05
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SWEET_CORN_FRESH_>",
+    "cropID": "SWEET_CORN_FRESH",
+    "name": "SWEET_CORN_FRESH",
+    "latin_name": "Zea mays L.",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 35,
+        "Nc_h_min": 1.5,
+        "Nc_h_max": 1.7,
+        "Nc_h_typn": 1.6
+    },
+    "residues": {
+        "DM_r": 23,
+        "Nc_r_min": 1.1,
+        "Nc_r_max": 1.3,
+        "Nc_h_typn": 1.2
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:TOMATO_>",
+    "cropID": "TOMATO",
+    "name": "TOMATO",
+    "latin_name": "Lycopersicon esculentum",
+    "group": "HORTICULTURAL_CROPS",
+    "harvest": {
+        "DM_h": 6,
+        "Nc_h_min": 2.3,
+        "Nc_h_max": 3.1,
+        "Nc_h_typn": 2.6,
+        "Kc_h": 4.28
+    },
+    "residues": {
+        "DM_r": 20,
+        "Nc_h_typn": 1.8,
+        "Kc_r": 1.9
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:WATERMELON_>",
+    "cropID": "WATERMELON",
+    "name": "WATERMELON",
+    "latin_name": "Citrullus lanatus",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 9,
+        "Nc_h_min": 1,
+        "Nc_h_max": 1.5,
+        "Nc_h_typn": 1.25,
+        "Kc_h": 1.33
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:ALMOND_>",
+    "cropID": "ALMOND",
+    "name": "ALMOND",
+    "latin_name": "Prunus amygdalus",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 85,
+        "Nc_h_min": 3,
+        "Nc_h_max": 3.6,
+        "Nc_h_typn": 3.3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:APPLE_>",
+    "cropID": "APPLE",
+    "name": "APPLE",
+    "latin_name": "Malus sylvestris",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 18
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:APRICOT_>",
+    "cropID": "APRICOT",
+    "name": "APRICOT",
+    "latin_name": "Prunus armeniaca",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 14,
+        "Nc_h_min": 1.5,
+        "Nc_h_max": 1.7,
+        "Nc_h_typn": 1.65,
+        "Kc_h": 2.17
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:AVOCADO_>",
+    "cropID": "AVOCADO",
+    "name": "AVOCADO",
+    "latin_name": "Persea americana",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 27,
+        "Nc_h_min": 1.1,
+        "Nc_h_max": 1.3,
+        "Nc_h_typn": 1.2,
+        "Kc_h": 2.31
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:BANANA_>",
+    "cropID": "BANANA",
+    "name": "BANANA",
+    "latin_name": "Musa paradisiaca",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 26,
+        "Kc_h": 1.54
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHERIMOYA_>",
+    "cropID": "CHERIMOYA",
+    "name": "CHERIMOYA",
+    "latin_name": "Annona cherimola",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 26,
+        "Kc_h": 1.17
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHERRY_>",
+    "cropID": "CHERRY",
+    "name": "CHERRY",
+    "latin_name": "Prunus avium",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 19,
+        "Nc_h_min": 1,
+        "Nc_h_max": 1.2,
+        "Nc_h_typn": 1.07,
+        "Kc_h": 1.16
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:DATEPALM_>",
+    "cropID": "DATEPALM",
+    "name": "DATEPALM",
+    "latin_name": "Phoenix dactylifera",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 77
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:FIG_>",
+    "cropID": "FIG",
+    "name": "FIG",
+    "latin_name": "Ficus carica",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 21,
+        "Kc_h": 1.11
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:GRAPE_TABLE_>",
+    "cropID": "GRAPE_TABLE",
+    "name": "GRAPE_TABLE",
+    "latin_name": "Vitis vinifera",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 19,
+        "Kc_h": 1.02
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:GRAPE_WINE_>",
+    "cropID": "GRAPE_WINE",
+    "name": "GRAPE_WINE",
+    "latin_name": "Vitis vinifera",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {},
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:GRAPEFRUIT_>",
+    "cropID": "GRAPEFRUIT",
+    "name": "GRAPEFRUIT",
+    "latin_name": "Citrus paradisi",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 11,
+        "Kc_h": 1.38
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:HAZELNUT_>",
+    "cropID": "HAZELNUT",
+    "name": "HAZELNUT",
+    "latin_name": "Corylus avellana",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 94.5,
+        "Nc_h_min": 2.1,
+        "Nc_h_max": 2.3,
+        "Nc_h_typn": 2.2
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:KIWI_>",
+    "cropID": "KIWI",
+    "name": "KIWI",
+    "latin_name": "Actinidia spp",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 17,
+        "Kc_h": 1.43
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:LEMON_>",
+    "cropID": "LEMON",
+    "name": "LEMON",
+    "latin_name": "Citrus limon",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 13,
+        "Nc_h_min": 1.3,
+        "Nc_h_max": 1.7,
+        "Nc_h_typn": 1.5,
+        "Kc_h": 1.15
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:MANGO_>",
+    "cropID": "MANGO",
+    "name": "MANGO",
+    "latin_name": "Mangifera indica",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 18
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:OILPALM_>",
+    "cropID": "OILPALM",
+    "name": "OILPALM",
+    "latin_name": "Elaeis guineensis",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 79,
+        "Nc_h_typn": 1.25
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:OLIVE_>",
+    "cropID": "OLIVE",
+    "name": "OLIVE",
+    "latin_name": "Olea europaea",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 50,
+        "Kc_h": 1.25
+    },
+    "residues": {
+        "DM_r": 70,
+        "Nc_r_min": 1,
+        "Nc_r_max": 2,
+        "Nc_h_typn": 1.5
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:ORANGE_>",
+    "cropID": "ORANGE",
+    "name": "ORANGE",
+    "latin_name": "Citrus sinensis",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 18,
+        "Nc_h_min": 1,
+        "Nc_h_max": 1.4,
+        "Nc_h_typn": 1.2,
+        "Kc_h": 1.35
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEACH_>",
+    "cropID": "PEACH",
+    "name": "PEACH",
+    "latin_name": "Prunus persica",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 12,
+        "Nc_h_max": 1.2,
+        "Nc_h_typn": 1,
+        "Kc_h": 1.55
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PEAR_>",
+    "cropID": "PEAR",
+    "name": "PEAR",
+    "latin_name": "Pyrus communis",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 18
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PERSIMMON_>",
+    "cropID": "PERSIMMON",
+    "name": "PERSIMMON",
+    "latin_name": "Dyospiros kaki",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 20,
+        "Kc_h": 1.01
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:PLUM_>",
+    "cropID": "PLUM",
+    "name": "PLUM",
+    "latin_name": "Prunus domestica",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 15,
+        "Kc_h": 1.16
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:POMEGRANATE_>",
+    "cropID": "POMEGRANATE",
+    "name": "POMEGRANATE",
+    "latin_name": "Punica granatum",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 25,
+        "Kc_h": 1.04
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:QUINCE_>",
+    "cropID": "QUINCE",
+    "name": "QUINCE",
+    "latin_name": "Cydonia oblonga",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 16
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:WALNUT_>",
+    "cropID": "WALNUT",
+    "name": "WALNUT",
+    "latin_name": "Juglans regia",
+    "group": "FRUIT_TREES_VINES_AND_SHRUBS",
+    "harvest": {
+        "DM_h": 93
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CASSAVA_>",
+    "cropID": "CASSAVA",
+    "name": "CASSAVA",
+    "latin_name": "Manihot esculenta",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 68.8
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:CHINESE_YAM_>",
+    "cropID": "CHINESE_YAM",
+    "name": "CHINESE_YAM",
+    "latin_name": "Dioscorea opposita",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 59.3,
+        "Nc_h_typn": 1.39
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:POTATO_>",
+    "cropID": "POTATO",
+    "name": "POTATO",
+    "latin_name": "Solanum tuberosum",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 23.5,
+        "Nc_h_min": 1.2,
+        "Nc_h_max": 1.9,
+        "Nc_h_typn": 1.6,
+        "Kc_h": 2
+    },
+    "residues": {
+        "DM_r": 51,
+        "Nc_r_min": 2,
+        "Nc_r_max": 2.4,
+        "Nc_h_typn": 2.2,
+        "Kc_r": 3.95
+    }
+}, {
+    "uri": "navigatortool:crops:<_Crops:SWEET_POTATO_>",
+    "cropID": "SWEET_POTATO",
+    "name": "SWEET_POTATO",
+    "latin_name": "Ipomoea batatas",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 65,
+        "Kc_h": 1.22
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:WHITE_YAM_>",
+    "cropID": "WHITE_YAM",
+    "name": "WHITE_YAM",
+    "latin_name": "Dioscorea rotundata",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 63.1,
+        "Kc_h": 2.3
+    },
+    "residues": {}
+}, {
+    "uri": "navigatortool:crops:<_Crops:YELLOW_YAM_>",
+    "cropID": "YELLOW_YAM",
+    "name": "YELLOW_YAM",
+    "latin_name": "Dioscorea cayenensis",
+    "group": "ROOTS_TUBERS_BULBS",
+    "harvest": {
+        "DM_h": 58.3
+    },
+    "residues": {}
+}]

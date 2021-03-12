@@ -1,34 +1,72 @@
 [
     {
+        "uri": "navigatortool:crops:<_Crops:BARLEY_2_ROW_>",
+        "cropID": "BARLEY_2_ROW",
+        "name": "Barley 2 row",
+        "latin_name": "Hordeum vulgare L.",
+        "group": "CEREALS_AND_PSEUDOCEREALS",
+        "harvest": {
+            "harvested_part": "grain",
+            "DM_h": 86.5,
+            "Nc_h_min": 2.2,
+            "Nc_h_max": 2.4,
+            "Nc_h_typn": 2.3,
+            "Pc_h": 0.35, 
+            "Kc_h": 0.49, 
+            "Ca_h": "",
+            "Mgc_h": "",
+            "Sc_h": ""
+        },
+        "residues": {
+            "residue_part": "",
+            "name": "residues",
+            "DM_r": 90.5,
+            "Nc_r_min": 0.58,
+            "Nc_r_max": 0.88,
+            "Nc_h_typn": 0.7,
+            "Pc_r": 0.08, 
+            "Kc_r": 2.1, 
+            "Ca_r": "",
+            "Mgc_r": "",
+            "Sc_r": ""
+        },
+        "soil": {
+            "N_fix_c": 0
+        }
+    },
+    {
         "uri": "navigatortool:crops:<_Crops:helianthusAnnuss_>",
         "crop": "helianthusAnnuus",
         "name": "Girasol (aceite)",
         "latin_name": "Helianthus annuus",
         "type": "industrial",
-        "harvested_part": "seed",
+        "group": "CEREALS_AND_PSEUDOCEREALS",
         "harvest": {
+            "part_harvested": "seed",
             "dm_harv": 91.5,
             "N_harv": 2.95,
-            "P_harv": 0.63,
-            "K_harv": 0.72,
+            "P_harv": 0.63, 
+            "K_harv": 0.72, 
             "Ca_harv": "",
             "Mg_harv": "",
-            "S_harv": "",
+            "S_harv": "", 
             "h_i_estimation": 35,
-            "fres_estimation": 100
+            "fres_estimation": 100,
+            "N_min": 2.2,
+            "N_max": 3.2
         },
         "residues": {
+            "part_residues": ""
             "name": "residues",
             "dm_resi": 87,
-            "N_resi": 0.8,
+            "N_resi": 0.8, 
             "P_resi": 0.14,
-            "K_resi": 2.52,
+            "K_resi": 2.52, 
             "Ca_resi": "",
             "Mg_resi": "",
             "S_resi": "",
-            "N_fix_c": 0,
-            "N_min": 2.2,
-            "N_max": 3.2
+            "N_fix_c": 0
+           
         }
     },
     {
@@ -47,7 +85,9 @@
             "Mg_harv": "",
             "S_harv": "",
             "h_i_estimation": 40,
-            "fres_estimation": 10
+            "fres_estimation": 10,
+            "N_min": 2.05,
+            "N_max": 2.7
         },
         "residues": {
             "name": "straw",
@@ -58,9 +98,8 @@
             "Ca_resi": "",
             "Mg_resi": "",
             "S_resi": "",
-            "N_fix_c": 0,
-            "N_min": 2.05,
-            "N_max": 2.7
+            "N_fix_c": 0
+            
         }
     }
 ]
