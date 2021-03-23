@@ -13,7 +13,7 @@ module.exports = function () {
 			//TODO: Change inverse calcule to generic condition.
 			var rangeSOM = '[,2)';
 
-			const SOM = params.SOM || params.plot.SOM || 0, 
+			const SOM = params.SOM || 0, 
 				waterSupply = params.waterSupply || params.plot.waterSupply || params.plot.water_supply || 0,
 				rateDrainage = params.rateDrainage || params.plot.drainage,
 				caseDesnitrification = params.case || params.plot.case || params.plot.case_desnitrification;

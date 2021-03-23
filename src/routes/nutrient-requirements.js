@@ -7,7 +7,7 @@ const navNR3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNR3Ctrl')();
 module.exports = function () {
 
 	router.post('/desnitrification', asyncHandler(async (req, res) => {
-		let som =  req.body.som && parseFloat(req.body.som) || req.params.som && parseFloat(req.params.som) || 0.0;
+		let som =  req.body.som && parseFloat(req.body.som) || req.params.som && parseFloat(req.params.som) || req.body.SOM && parseFloat(req.body.SOM) || req.params.SOM && parseFloat(req.params.SOM) || 0.0;
 		if(req.body.plot && req.body.plot.som){
 			som = req.body.plot.som;
 		}
@@ -28,7 +28,7 @@ module.exports = function () {
 		}
 		
 		const params = {
-			som: som,
+			SOM: som,
 			waterSupply: water_supply,
 			case: tillage,
 			rateDrainage: rate_drainage

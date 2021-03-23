@@ -1,6 +1,6 @@
 {
   "name": "navigator-tool",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "NAVIGATOR Tool -  framework for the quantitative advice of crop nutrient requirements and greenhouse gas emissions and removal assessment at farm",
   "main": "src/index.js",
   "scripts": {

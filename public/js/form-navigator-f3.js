@@ -285,11 +285,11 @@ function _loadSelectFertilizers(){
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
       row.insertCell(2).innerHTML = dataRow.nutrient_requirements.yield;
-      row.insertCell(3).innerHTML = (dataRow.nutrient_requirements.Ncf_avg)  ? dataRow.nutrient_requirements.Ncf_avg.toFixed(3) : '-';
-      row.insertCell(4).innerHTML = (dataRow.nutrient_requirements.Pcf)  ? dataRow.nutrient_requirements.Pcf.toFixed(3) : '-';
-      row.insertCell(5).innerHTML = (dataRow.nutrient_requirements.Kcf)  ? dataRow.nutrient_requirements.Kcf.toFixed(3) : '-';
-      row.insertCell(6).innerHTML = (dataRow.nutrient_requirements.P205cf)  ? dataRow.nutrient_requirements.P205cf.toFixed(3) : '-';
-      row.insertCell(7).innerHTML = (dataRow.nutrient_requirements.K2Ocf)  ? dataRow.nutrient_requirements.K2Ocf.toFixed(3) : '-';
+      row.insertCell(3).innerHTML = (dataRow.nutrient_requirements.Ncf_avg)  ? dataRow.nutrient_requirements.Ncf_avg.toFixed(3) : '0';
+      row.insertCell(4).innerHTML = (dataRow.nutrient_requirements.Pcf)  ? dataRow.nutrient_requirements.Pcf.toFixed(3) : '0';
+      row.insertCell(5).innerHTML = (dataRow.nutrient_requirements.Kcf)  ? dataRow.nutrient_requirements.Kcf.toFixed(3) : '0';
+      row.insertCell(6).innerHTML = (dataRow.nutrient_requirements.P205cf)  ? dataRow.nutrient_requirements.P205cf.toFixed(3) : '0';
+      row.insertCell(7).innerHTML = (dataRow.nutrient_requirements.K2Ocf)  ? dataRow.nutrient_requirements.K2Ocf.toFixed(3) : '0';
 
 
   }
