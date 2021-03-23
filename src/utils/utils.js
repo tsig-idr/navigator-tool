@@ -1,9 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const turf = require('@turf/turf');
-const transformation = require('transform-coordinates')
-
 /**** UTILS ******/
 async function readFile(file) {
 
@@ -54,24 +51,6 @@ function epsgCode(epsg){
     return epsg.substring(5, epsg.length);
 
   return epsg;
-}
-
-function distanceBBOX(coords, options){
-
-  const epsg = epsgCode(coords.srs);
-
-  if(!options)
-    options = {units: 'kilometers'};
-
-  const transform = transformation(epsg, '4326');
-  const fromMercator = transform.forward({x: parseFloat(coords.minx), y: parseFloat(coords.miny)});
-  const toMercator = transform.forward({x: parseFloat(coords.maxx), y: parseFloat(coords.maxy)});
-
-  const from = turf.point([fromMercator.x, fromMercator.y]);
-  const to = turf.point([toMercator.x, toMercator.y]);
-    
-  return turf.distance(from, to, options);
-
 }
 
 function makeid(length) {
@@ -194,7 +173,6 @@ module.exports = {
   makeid: makeid,
   arrayCompare: compare,
   epsgCode: epsgCode,
-  distanceBBOX, distanceBBOX,
   camelize: camelize,
   isNumeric: isNumeric,
   parseToNumeric: parseToNumeric
