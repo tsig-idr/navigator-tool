@@ -56,7 +56,7 @@
             "N_max": 3.2
         },
         "residues": {
-            "part_residues": ""
+            "part_residues": "",
             "name": "residues",
             "dm_resi": 87,
             "N_resi": 0.8, 

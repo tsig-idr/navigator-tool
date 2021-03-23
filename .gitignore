@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Files
+files/fertilizerOptimizationV2.xlsx
+files/fertilizerOptimizationV3.xlsx
+files/studyFaSTM1excelv01.xlsx

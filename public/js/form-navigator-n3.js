@@ -1,5 +1,5 @@
 
-  var urlService = '/nutrients/navigator-n3-npk';
+  var urlService = '/nutrients/navigator-n3';
 
   function _refreshListCrops(tblBody){
     var rowlength = tblBody.rows.length;
@@ -47,17 +47,17 @@
       var dataRow = data.results[j];
       // table row creation
       var row = tblBody.insertRow(j);
-      var cropname=  '<span title="' +  dataRow.crop + '">' +  dataRow.crop_latin_name + '</span>';
+      var cropname=  '<span title="' +  dataRow.cropID + '">' +  dataRow.crop_latin_name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
       row.insertCell(2).innerHTML = dataRow.crop_name;
-      row.insertCell(3).innerHTML = dataRow.n_fert_min.toFixed(3);
-      row.insertCell(4).innerHTML = dataRow.n_fert_max.toFixed(3);
-      row.insertCell(5).innerHTML = dataRow.n_fert_avg.toFixed(3);
-      row.insertCell(6).innerHTML = dataRow.p_fert.toFixed(3);
-      row.insertCell(7).innerHTML = dataRow.k_fert.toFixed(3);
-      row.insertCell(8).innerHTML = dataRow.p_fert_oxide.toFixed(3);
-      row.insertCell(9).innerHTML = dataRow.k_fert_oxide.toFixed(3);
+      row.insertCell(3).innerHTML = dataRow.Ncf_min.toFixed(3);
+      row.insertCell(4).innerHTML = dataRow.Ncf_max.toFixed(3);
+      row.insertCell(5).innerHTML = dataRow.Ncf_avg.toFixed(3);
+      row.insertCell(6).innerHTML = dataRow.Pcf.toFixed(3);
+      row.insertCell(7).innerHTML = dataRow.Kcf.toFixed(3);
+      row.insertCell(8).innerHTML = dataRow.P205cf.toFixed(3);
+      row.insertCell(9).innerHTML = dataRow.K2Ocf.toFixed(3);
     }
   }
 
@@ -102,23 +102,23 @@
 
       var form = document.forms[0];
       var item = data.results;
-      //var selectElement = form.querySelector('input[name="crops['+idrow+'][cv]"]');
-      //selectElement.value = 400;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][CV]"]');
+      selectElement.value = item.CV || 20;
 
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][harvest_index]"]');
-      selectElement.value = item.harvest.h_i_estimation;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][HI_est]"]');
+      selectElement.value = item.harvest.HI_est;
     
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][fres]"]');
-      selectElement.value = item.harvest.fres_estimation;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][fmc_r]"]');
+      selectElement.value = item.residues.fmc_r || 100;
 
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][N_harv]"]');
-      selectElement.value = item.harvest.N_harv;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][Nc_h]"]');
+      selectElement.value = item.harvest.Nc_h_typn;
 
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][P_harv]"]');
-      selectElement.value = item.harvest.P_harv;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][Pc_h]"]');
+      selectElement.value = item.harvest.Pc_h;
 
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][K_harv]"]');
-      selectElement.value = item.harvest.K_harv;
+      var selectElement = form.querySelector('input[name="crops['+idrow+'][Kc_h]"]');
+      selectElement.value = item.harvest.Kc_h;
       
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -133,7 +133,7 @@
     var form = document.querySelector('#formFertilicalc');
     let json = FormDataJson.formToJson(form);
     let result = Object.entries(json.crops).map(( [k, v] ) => (v) );
-    const crops = result.filter(v => v.crop);
+    const crops = result.filter(v => v.cropID);
     json.crops = crops;
 
 
@@ -163,14 +163,14 @@
       return Promise.reject(response);
     }).then(function (data) {
       
-      var combo = document.getElementsByName("crops[0][crop]")[0];
+      var combo = document.getElementsByName("crops[0][cropID]")[0];
 
       for(var i=0; i<data.results.length; i++){
         var elem = data.results[i];
         var option = document.createElement("option");
-        option.appendChild( document.createTextNode(elem.name) );
+        option.appendChild( document.createTextNode(elem.crop_name) );
         // set value property of opt
-        option.value = elem.crop; 
+        option.value = elem.cropID; 
         combo.appendChild(option); 
       }
 

@@ -11,16 +11,16 @@ module.exports = function () {
         let list_crops = await _transfInputCrops(req.crops);
 
         if(!req.plot.soil_type)
-            req.plot.fert_strategy = 'none';
-        if (!req.plot.fert_strategy){
-            req.plot.fert_strategy = 'maintenance';
+            req.plot.PK_strategy = 'none';
+        if (!req.plot.PK_strategy){
+            req.plot.PK_strategy = 'maintenance';
         }
         if (!req.plot.tillage){
             req.plot.tillage = 0;
         }
 
         const def_params_soil = await navigatorN3Model.getParmsTypeOfSoil(req.plot.soil_type);
-        const def_params_strategy = await navigatorN3Model.getParmsStrategy(req.plot.fert_strategy);
+        const def_params_strategy = await navigatorN3Model.getParmsStrategy(req.plot.PK_strategy);
         const def_params_nutrients = await navigatorN3Model.getParmsNutrients();
 
         let inputs =  {
@@ -29,7 +29,7 @@ module.exports = function () {
             crops: list_crops,
             n_rotation: list_crops.length,
             data_soil:  def_params_soil,
-            strategy: def_params_strategy,
+            PK_strategy: def_params_strategy,
             nutrients: def_params_nutrients
         };
 
@@ -40,48 +40,66 @@ module.exports = function () {
         return result;
     }
 
+    function getValue(x){
+        if (typeof x !== 'undefined'){
+            try {
+                var n = parseFloat(x);
+                return n;
+            } catch (error) {
+                return 0;
+            }
+        }
+        return 0;
+    }
+
+
     //Step 1
     async function _calcDryMatterCropResidue(inputs){
 
-        let items  = new Array(10).fill().map( u => ({n_max: 0,n_res: 0,p_res: 0,k_res: 0,crop_type: 'nothing',dmh: 0,dmr: 0,n_fix_code: 0,n_min: 0,n_kg_crop: 0,yield_i: 0,n_kg_fix: 0,n_kg_min: 0,n_fert_i:0}));
+        let items  = new Array(10).fill().map( u => ({Nc_h_max: 0,Nc_r: 0,Pc_r: 0,Kc_r: 0,crop_type: 'nothing',DM_h: 0,DM_r: 0, DM_yield: 0, n_fix_code: 0,Nc_h_min: 0, N_kg_crop: 0,yield_i: [],N_kg_fix: 0,N_kg_min: 0,N_fert_i:0, N_res_prev_h:0}));
 
         //let item  = {n_max: 0,n_res: 0,p_res: 0,k_res: 0,crop_type: 'nothing',dmh: 0,dmr: 0,n_fix_code: 0,n_min: 0,n_kg_crop: 0,yield_i: 0,n_kg_fix: 0,n_kg_min: 0,n_fert_i:0};
 
         for(var i=0; i< inputs.n_rotation; i++){
             let keyName= '';
-            if(inputs.crops[i].crop)
-                keyName = inputs.crops[i].crop;
-            else if(inputs.crops[i].crop_latin_name){
+            if(inputs.crops[i].cropID){
+                keyName = inputs.crops[i].cropID;
+            }/*else if(inputs.crops[i].crop_latin_name){
                 keyName = utils.camelize(inputs.crops[i].crop_latin_name);
+            }*/
+            if(inputs.crops[i].yield){
+                items[i].yield = inputs.crops[i].yield;
             }
             
-            const cropObj = await navigatorN3Model.getCropsByCrop(keyName);
+            const cropObj = await navigatorN3Model.getCropsByCropID(keyName);
 
             if(keyName && cropObj){
-                items[i].crop = keyName;
-                items[i].name = cropObj.name;
-                items[i].latin_name = cropObj.latin_name;
-                items[i].n_res = cropObj.residues.N_resi/100;
-                items[i].p_res = cropObj.residues.P_resi/100;
-                items[i].k_res = cropObj.residues.K_resi/100;
-                items[i].dmh = cropObj.harvest.dm_harv/100;
-                items[i].dmr = cropObj.residues.dm_resi/100;
-                items[i].crop_type = cropObj.type;
-                items[i].n_fix_code = cropObj.residues.N_fix_c;
-                items[i].n_min = cropObj.harvest.N_min / 100;
-                items[i].n_max = cropObj.harvest.N_max / 100;
-                items[i].p_thres = inputs.data_soil.p_higher;
-                items[i].k_thres = inputs.data_soil.k_higher;
-                items[i].fk = inputs.data_soil.fk_hig;
+                items[i].cropID = keyName;
+                items[i].crop_name = cropObj.crop_name;
+                items[i].crop_latin_name = cropObj.crop_latin_name;
+                items[i].Nc_r = getValue(cropObj.residues.Nc_r_typn)/100;
+                items[i].Pc_r = getValue(cropObj.residues.Pc_r_typn)/100;
+                items[i].Kc_r = getValue(cropObj.residues.Kc_r_typn)/100;
+                items[i].DM_h = getValue(cropObj.harvest.DM_h)/100;
+                items[i].DM_r = getValue(cropObj.residues.DM_r)/100;
+                items[i].crop_type = cropObj.group;
+                // ??? items[i].n_fix_code = cropObj.residues.N_fix_c;
+                items[i].Nc_h_min = getValue(cropObj.harvest.Nc_h_min) / 100;
+                items[i].Nc_h_max = getValue(cropObj.harvest.Nc_h_max) / 100;
+                items[i].Pc_thres = inputs.data_soil.Pc_s_max;
+                items[i].Kc_thres = inputs.data_soil.Kc_s_max;
+                items[i].fk = inputs.data_soil.PKc_s_max;
+                items[i].Nc_s_initial = (inputs.crops[i].Nc_s_initial) ? inputs.crops[i].Nc_s_initial: 0;
+                items[i].Nc_water = (inputs.crops[i].Nc_water) ? inputs.crops[i].Nc_water: 0;
     
-                if(items[i].n_res == 0 || items[i].n_res==9.99)
-                    items[i].n_res = 1.0/100;
-                if(items[i].p_res == 0 || items[i].p_res==9.99)
-                    items[i].p_res = 1.0/100;
-                if(items[i].k_res == 0 || items[i].k_res==9.99)
-                    items[i].k_res = 1.0/100;
-                if(items[i].dmr == 0 || items[i].dmr==9.99)
-                    items[i].dmr = items[i].dmh;
+                if(items[i].Nc_r == 0 || items[i].Nc_r==9.99)
+                    items[i].Nc_r = 1.0/100;
+                if(items[i].Pc_r == 0 || items[i].Pc_r==9.99)
+                    items[i].Pc_r = 1.0/100;
+                if(items[i].Kc_r == 0 || items[i].Kc_r==9.99)
+                    items[i].Kc_r = 1.0/100;
+                if(items[i].DM_r == 0 || items[i].DM_r==9.99)
+                    items[i].DM_r = items[i].DM_h;
             }
         }
         
@@ -90,139 +108,180 @@ module.exports = function () {
         return inputs;
     }
 
+    async function fixation(SOM, crop){
+        var n_fix_per = 0;
+        if(crop.crop_type == "LEGUMES" || crop.crop_type == "FORAGES"){
+            if (SOM < 3){
+                n_fix_per = 90;
+            }else{
+                n_fix_per = 60;
+            }
+        }else{
+            if (SOM < 3){
+                n_fix_per = 80;
+            }else{
+                n_fix_per = 50;
+            }
+        }
+        return n_fix_per;
+    }
+
     async function _calcDryMatterCropSoil(inputs){
 
 
-        const bulk_dens = inputs.data_soil.bd;
+        const density_s_basic = inputs.data_soil.density_s_basic;
 
         for(var i=0; i< inputs.n_rotation; i++){
 
             let ip = (i -1 < 0) ? inputs.n_rotation-1: i-1;
 
             //Parametros de suelo
-            if (inputs.strategy.value == 1 || inputs.strategy.value == 2){
-                inputs.items[i].p_thres = inputs.data_soil.p_lower; 
-                inputs.items[i].k_thres = inputs.data_soil.k_lower;
-                inputs.items[i].fk = inputs.data_soil.fk_low;
+            if (inputs.PK_strategy.value == 1 || inputs.PK_strategy.value == 2){
+                inputs.items[i].Pc_thres = inputs.data_soil.Pc_s_min; 
+                inputs.items[i].Kc_thres = inputs.data_soil.Kc_s_min;
+                inputs.items[i].fk = inputs.data_soil.PKc_s_min;
             }
 
-            inputs.items[i].burn = inputs.crops[i].burning;
+            inputs.items[i].burning = inputs.crops[i].burning;
+
+            // ----  Fixation ----- 
+            if(inputs.plot.SOM == 0){
+                inputs.plot.SOM = 2.0;
+            }
+            var crop_cycle = inputs.crops[i].crop_cycle;
+            if (crop_cycle == 'Perennial'){
+                inputs.items[i].N_fix_per = fixation(inputs.plot.SOM, inputs.crops[i]);
+            }
+            if(inputs.items[i].crop_type == "LEGUMES" || inputs.items[i].crop_type == "FORAGES" && crop_cycle == 'Perennial'){
+                inputs.items[i].n_fix_code = 1;
+            }
+
+            /*
             const n_fix = inputs.items[i].n_fix_code;
-            if(inputs.plot.som == 0){
-                inputs.plot.som = 2.0;
+            if(inputs.plot.SOM == 0){
+                inputs.plot.SOM = 2.0;
             }
             if(n_fix == 1){
-                if(inputs.items[i].crop_type == "Forage_legume"){
-                    if (inputs.plot.som < 3){
+                if(inputs.items[i].crop_type == "LEGUMES" || inputs.items[i].crop_type == "FORAGES"){
+                    if (inputs.plot.SOM < 3){
                         inputs.items[i].n_fix_per = 90;
                     }else{
                         inputs.items[i].n_fix_per = 60;
                     }
                 }else{
-                    if (inputs.plot.som < 3){
+                    if (inputs.plot.SOM < 3){
                         inputs.items[i].n_fix_per = 80;
                     }else{
                         inputs.items[i].n_fix_per = 50;
                     }
                 }
             }
+            */
 
-            if (inputs.strategy.value == 1 || inputs.strategy.value == 2){
-                inputs.items[i].nc_y = inputs.items[i].n_min;
-                inputs.items[i].nc_yp = inputs.items[ip].n_min; //elem.nc_yp = n_min[ip]
+            // ----  -------- ----- 
+
+            if (inputs.PK_strategy.value == 1 || inputs.PK_strategy.value == 2){
+                inputs.items[i].nc_y = inputs.items[i].Nc_h_min;
+                inputs.items[i].nc_yp = inputs.items[ip].Nc_h_min; //elem.nc_yp = n_min[ip]
                 
             }else{
-                inputs.items[i].nc_y = inputs.crops[i].n_harv;
-                inputs.items[i].nc_yp = inputs.crops[ip].n_harv; //elem.nc_yp = input_n_harv[ip]
+                inputs.items[i].nc_y = inputs.crops[i].Nc_h;
+                inputs.items[i].nc_yp = inputs.crops[ip].Nc_h; //elem.nc_yp = input_n_harv[ip]
             }
 
-            const y_dm_med = inputs.crops[i].yield * inputs.items[i].dmh;
-            const r_dm_med = y_dm_med * (1 - inputs.crops[i].h_i) / inputs.crops[i].h_i;
-            const r_dm_medp = inputs.crops[ip].yield * inputs.items[ip].dmh * (1 - inputs.crops[ip].h_i) / inputs.crops[ip].h_i;
+            const y_dm_med = inputs.crops[i].yield * inputs.items[i].DM_h;
+            const r_dm_med = y_dm_med * (1 - inputs.crops[i].HI_est) / inputs.crops[i].HI_est;
+            const r_dm_medp = inputs.crops[ip].yield * inputs.items[ip].DM_h * (1 - inputs.crops[ip].HI_est) / inputs.crops[ip].HI_est;
             
-            inputs.items[i].n_kg_crop = (y_dm_med * inputs.items[i].nc_y + r_dm_med * inputs.items[i].n_res) * (1 + inputs.nutrients.fnr);
+            inputs.items[i].N_kg_crop = (y_dm_med * inputs.items[i].nc_y + r_dm_med * inputs.items[i].Nc_r) * (1 + inputs.nutrients.Nc_fnr);
 
             const oProbCrop = await _calcProbability(inputs, i);
-            inputs.items[i].n_fert_avg = oProbCrop.n_fert_i[5];
-            inputs.items[i].n_fert_min=  oProbCrop.n_fert_i[2];
-            inputs.items[i].n_fert_max=  oProbCrop.n_fert_i[8];
-            inputs.items[i].y_dm = oProbCrop.y_dm;
-            inputs.items[i].r_dm = oProbCrop.r_dm;
+            inputs.items[i].Nc_crop = oProbCrop.n_fert_i[5];
+            inputs.items[i].Nc_crop_min=  oProbCrop.n_fert_i[2];
+            inputs.items[i].Nc_crop_max=  oProbCrop.n_fert_i[8];
+            inputs.items[i].DM_yield = oProbCrop.DM_yield;
+            inputs.items[i].DM_r = oProbCrop.DM_r;
 
 
-            let p_thres_factor = (oProbCrop.y_dm * inputs.crops[i].p_harv - 10) / 30;
-            if (p_thres_factor > 2)
-                p_thres_factor = 2;
-            if (p_thres_factor < 1)
-                p_thres_factor = 1;
+            let Pc_thres_factor = (oProbCrop.DM_yield * inputs.crops[i].Pc_h - 10) / 30;
+            if (Pc_thres_factor > 2)
+                Pc_thres_factor = 2;
+            if (Pc_thres_factor < 1)
+                Pc_thres_factor = 1;
 
-            inputs.items[i].p_thres = p_thres_factor * inputs.items[i].p_thres;
+            inputs.items[i].Pc_thres = Pc_thres_factor * inputs.items[i].Pc_thres;
             
             // ----------------------
 
-            const p_exported = oProbCrop.y_dm * inputs.crops[i].p_harv + oProbCrop.r_dm * (1 - inputs.crops[i].fres) * inputs.items[i].p_res;
+            const p_exported = oProbCrop.DM_yield * inputs.crops[i].Pc_h + oProbCrop.DM_r * (1 - inputs.crops[i].fmc_r) * inputs.items[i].Pc_r;
 
-            if (inputs.strategy.value == 4) {
-                inputs.items[i].p_rate = p_exported;
+            if (inputs.PK_strategy.value == 4) {
+                inputs.items[i].P_rate = p_exported;
             }else{
-                if (inputs.strategy.value == 1){
+                if (inputs.PK_strategy.value == 1){
                     // strategy of sufficiency
-                    if (inputs.plot.soil_P_conc > inputs.items[i].p_thres){
-                        inputs.items[i].p_rate = 0;
+                    if (inputs.plot.Pc_s > inputs.items[i].Pc_thres){
+                        inputs.items[i].P_rate = 0;
                     }else {
-                        const nyears = parseInt(0.1* bulk_dens * inputs.nutrients.soil_depth* (inputs.items[i].p_thres - inputs.plot.soil_P_conc));
-                        inputs.items[i].p_rate = 10 * bulk_dens * inputs.nutrients.soil_depth / nyears * (inputs.items[i].p_thres - inputs.crops[i].soil_P_conc);
+                        const nyears = parseInt(0.1* density_s_basic * inputs.nutrients.depth_s* (inputs.items[i].Pc_thres - inputs.plot.Pc_s));
+                        inputs.items[i].P_rate = 10 * density_s_basic * inputs.nutrients.depth_s / nyears * (inputs.items[i].Pc_thres - inputs.plot.Pc_s);
                     }
                 }else{
                     //strategy of buildup and maintenance
-                    if (inputs.plot.soil_P_conc < inputs.items[i].p_thres) {
-                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * (inputs.items[i].p_thres - inputs.plot.soil_P_conc)/(100 - p_exported));
-                        inputs.items[i].p_rate = p_exported + 10 * bulk_dens * inputs.nutrients.soil_depth / nyears * (inputs.items[i].p_thres - inputs.plot.soil_P_conc);
+                    if (inputs.plot.Pc_s < inputs.items[i].Pc_thres) {
+                        const nyears = parseInt(10 * density_s_basic * inputs.nutrients.depth_s * (inputs.items[i].Pc_thres - inputs.plot.Pc_s)/(100 - p_exported));
+                        inputs.items[i].P_rate = p_exported + 10 * density_s_basic * inputs.nutrients.depth_s / nyears * (inputs.items[i].Pc_thres - inputs.plot.Pc_s);
                     }else{
-                        if (inputs.plot.soil_P_conc < 2 * inputs.items[i].p_thres){
-                            inputs.items[i].p_rate = p_exported;
+                        if (inputs.plot.Pc_s < 2 * inputs.items[i].Pc_thres){
+                            inputs.items[i].P_rate = p_exported;
                         }else{
-                            inputs.items[i].p_rate = 0.5 * p_exported;
+                            inputs.items[i].P_rate = 0.5 * p_exported;
                         }
                     }
+                }
+
+                if(inputs.items[i].P_rate == 'Infinity'){
+                    inputs.items[i].P_rate = 0;
                 }
             }
 
             // -----------------
 
-            const k_exported = oProbCrop.y_dm * inputs.crops[i].k_harv + oProbCrop.r_dm * (1 - inputs.crops[i].fres) * inputs.items[i].k_res;
+            const k_exported = oProbCrop.DM_yield * inputs.crops[i].Kc_h + oProbCrop.DM_r * (1 - inputs.crops[i].fmc_r) * inputs.items[i].Kc_r;
  
-            if (inputs.strategy.value == 4){
-                inputs.items[i].k_rate = k_exported;
+            if (inputs.PK_strategy.value == 4){
+                inputs.items[i].K_rate = k_exported;
             }else{
-                if( inputs.strategy.value == 1) {
+                if( inputs.PK_strategy.value == 1) {
                     // strategy of sufficiency
-                    if (inputs.plot.soil_K_conc > inputs.items[i].k_thres){
-                        inputs.items[i].k_rate = 0
+                    if (inputs.plot.Kc_s > inputs.items[i].Kc_thres){
+                        inputs.items[i].K_rate = 0
                     }else{
-                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk * (inputs.items[i].k_thres - inputs.plot.soil_K_conc) / 275) + 1;
-                        inputs.items[i].k_rate = 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
+                        const nyears = parseInt(10 * density_s_basic * inputs.nutrients.depth_s * inputs.items[i].fk * (inputs.items[i].Kc_thres - inputs.plot.Kc_s) / 275) + 1;
+                        inputs.items[i].K_rate = 10 * density_s_basic * inputs.nutrients.depth_s * inputs.items[i].fk / nyears * (inputs.items[i].Kc_thres - inputs.plot.Kc_s);
                     }
                 }else{
                     // strategy of buildup and maintenance
 
-                    if (inputs.plot.soil_K_conc < inputs.items[i].k_thres){
-                        const nyears = parseInt(10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk *(inputs.items[i].k_thres - inputs.plot.soil_K_conc) / (275 - k_exported)) + 1;
-                        inputs.items[i].k_rate = k_exported + 10 * bulk_dens * inputs.nutrients.soil_depth * inputs.items[i].fk / nyears * (inputs.items[i].k_thres - inputs.plot.soil_K_conc);
+                    if (inputs.plot.Kc_s < inputs.items[i].Kc_thres){
+                        const nyears = parseInt(10 * density_s_basic * inputs.nutrients.depth_s * inputs.items[i].fk *(inputs.items[i].Kc_thres - inputs.plot.Kc_s) / (275 - k_exported)) + 1;
+                        inputs.items[i].K_rate = k_exported + 10 * density_s_basic * inputs.nutrients.depth_s * inputs.items[i].fk / nyears * (inputs.items[i].Kc_thres - inputs.plot.Kc_s);
                     }else{
-                        if (inputs.plot.soil_K_conc < 2 * inputs.items[i].k_thres){
-                            inputs.items[i].k_rate = k_exported;
+                        if (inputs.plot.Kc_s < 2 * inputs.items[i].Kc_thres){
+                            inputs.items[i].K_rate = k_exported;
                         }else{
-                            inputs.items[i].k_rate = 0.5 * k_exported;
+                            inputs.items[i].K_rate = 0.5 * k_exported;
                         }
                     }
                 }
             }
 
-            inputs.items[i].p_fert = parseFloat(inputs.items[i].p_rate);
-            inputs.items[i].p_fert_oxide= 2.29 * inputs.items[i].p_fert;
-            inputs.items[i].k_fert=parseFloat(inputs.items[i].k_rate);
-            inputs.items[i].k_fert_oxide = 1.2047* inputs.items[i].k_fert;
+            
+
+            inputs.items[i].Pcf = parseFloat(inputs.items[i].P_rate); //P concentration of fertilizer 
+            inputs.items[i].P205cf= 2.29 * inputs.items[i].Pcf;
+            inputs.items[i].Kcf=parseFloat(inputs.items[i].K_rate); // K concentration of fertilizer 
+            inputs.items[i].K2Ocf = 1.2047* inputs.items[i].Kcf;
         }
 
         const result = await _transfOutputs(inputs);
@@ -242,41 +301,43 @@ module.exports = function () {
         let y_dm, r_dm; 
 
         for(var i_prob=1; i_prob< 10; i_prob++){
-            const t=parseFloat(inputs.nutrients.t_i[i_prob]);
+            const t=parseFloat(inputs.nutrients.t_levels[i_prob]);
             const y_mean= parseFloat(inputs.crops[index].yield);
-            const cvar=parseFloat(inputs.crops[index].cv);
+            const cvar=parseFloat(inputs.crops[index].CV);
             yield_i[i_prob] = y_mean * (1 + cvar/ 100 * t);
 
-            y_dm = yield_i[i_prob] * inputs.items[index].dmh;
-            r_dm = y_dm * (1 - inputs.crops[index].h_i) / inputs.crops[index].h_i;
-            const y_dmp = inputs.crops[ip].yield * inputs.items[ip].dmh;
-            const r_dmp = inputs.crops[ip].yield * inputs.items[ip].dmh * (1 - inputs.crops[ip].h_i) / inputs.crops[ip].h_i;
+            y_dm = yield_i[i_prob] * inputs.items[index].DM_h;
+            r_dm = y_dm * (1 - inputs.crops[index].HI_est) / inputs.crops[index].HI_est;
+            const y_dmp = inputs.crops[ip].yield * inputs.items[ip].DM_h;
+            const r_dmp = inputs.crops[ip].yield * inputs.items[ip].DM_h * (1 - inputs.crops[ip].HI_est) / inputs.crops[ip].HI_est;
 
             const ny = y_dm * inputs.items[index].nc_y;
-            const nr = r_dm * inputs.items[index].n_res;
+            const nr = r_dm * inputs.items[index].Nc_r;
             const nyp = y_dmp * inputs.items[index].nc_yp;
-            const nrp = r_dmp * inputs.items[ip].n_res;
-            const tillage = (inputs.plot.tillage == 1 || inputs.plot.tillage == 'on') ? 1: 0; 
+            const nrp = r_dmp * inputs.items[ip].Nc_r;
+            const tillage = (inputs.plot.tillage == 1 || inputs.plot.tillage == 'on') ? 1: 0;
+            // The coefficient of mineralization 
             const kim = 0.5 + 0.2 * (inputs.items[ip].n_fix_code + tillage);
-            const n_kg_min = (1 - inputs.items[index].burn) * kim * inputs.crops[ip].fres * nrp;
+            inputs.items[index].N_kg_min = (1 - inputs.items[index].burning) * kim * inputs.crops[ip].fmc_r * nrp;
+            inputs.items[index].kim = kim;
 
             let n_fert = 0;
-            if (inputs.items[index].crop_type != "Trees") {
+            if (inputs.items[index].crop_type != "FRUIT_TREES_VINES_AND_SHRUBS") {
                 if (inputs.items[index].n_fix_code == 0){
-                    n_fert = (inputs.nutrients.n_end + (1 + inputs.nutrients.fnr) * (ny + nr) - (1 - inputs.items[index].burn) * kim * inputs.crops[ip].fres * nrp - inputs.nutrients.fnr * (nyp + nrp) - inputs.nutrients.n_other) / (1 - inputs.nutrients.fnloss);
+                    n_fert = (inputs.nutrients.Nc_s_end + (1 + inputs.nutrients.Nc_fnr) * (ny + nr) - (1 - inputs.items[index].burning) * kim * inputs.crops[ip].fmc_r * nrp - inputs.nutrients.Nc_fnr * (nyp + nrp) - inputs.nutrients.Nc_other) / (1 - inputs.nutrients.Nc_loss);
                 }else{
-                    const n_fixation = (1 + inputs.nutrients.fnr) * (ny + nr) * inputs.items[i].n_fix_per / 100;
-                    n_fert = (inputs.nutrients.n_end + (1 + inputs.nutrients.fnr) * (ny + nr) - (1 - items[index].burn) * kim * inputs.crops[ip].fres * nrp - inputs.nutrients.fnr * (nyp + nrp) - inputs.nutrients.n_other - n_fixation) / (1 - inputs.nutrients.fnloss);
-                    inputs.items[index].n_kg_fix = n_fixation;
+                    const n_fixation = (1 + inputs.nutrients.Nc_fnr) * (ny + nr) * inputs.items[index].N_fix_per / 100;
+                    n_fert = (inputs.nutrients.Nc_s_end + (1 + inputs.nutrients.Nc_fnr) * (ny + nr) - (1 - inputs.items[index].burning) * kim * inputs.crops[ip].fmc_r * nrp - inputs.nutrients.Nc_fnr * (nyp + nrp) - inputs.nutrients.Nc_other - n_fixation) / (1 - inputs.nutrients.Nc_loss);
+                    inputs.items[index].N_kg_fix = n_fixation;
                 }
             }
             if (n_fert < 0){
-                n_fert = 0.0
+                n_fert = 0.0;
             }else{
-                if (inputs.items[index].n_res == 0) {
-                    n_fert = y_dm * (inputs.items[index].nc_y + inputs.nutrients.beta_pl * (1 - inputs.crops[index].h_i) / inputs.crops[index].h_i * 0.01 * (1 - 0.5 * (1 - inputs.items[index].burn) * inputs.items[ip].fres)) / inputs.nutrients.efic;
+                if (inputs.items[index].Nc_r == 0) {
+                    n_fert = y_dm * (inputs.items[index].nc_y + inputs.nutrients.beta_pl * (1 - inputs.crops[index].HI_est) / inputs.crops[index].HI_est * 0.01 * (1 - 0.5 * (1 - inputs.items[index].burning) * inputs.items[ip].fmc_r)) / inputs.nutrients.efic;
                 }else{
-                    n_fert = (inputs.nutrients.n_end + (1 + inputs.nutrients.fnr) * (ny + nr) - (1 - inputs.items[index].burn) * kim * inputs.crops[ip].fres * nrp - inputs.nutrients.fnr * (nyp + nrp) - inputs.nutrients.n_other) / (1 - inputs.nutrients.fnloss);
+                    n_fert = (inputs.nutrients.Nc_s_end + (1 + inputs.nutrients.Nc_fnr) * (ny + nr) - (1 - inputs.items[index].burning) * kim * inputs.crops[ip].fmc_r * nrp - inputs.nutrients.Nc_fnr * (nyp + nrp) - inputs.nutrients.Nc_other) / (1 - inputs.nutrients.Nc_loss);
                 }
                   
                 if (n_fert < 0) {
@@ -285,10 +346,13 @@ module.exports = function () {
             }
             n_fert_i[i_prob] = n_fert;
         }
+
+        inputs.items[index].yield_i = yield_i;
+
         return {
             n_fert_i: n_fert_i,
-            y_dm: y_dm,
-            r_dm: r_dm
+            DM_yield: y_dm,
+            DM_r: r_dm
         }
 
     }
@@ -299,16 +363,22 @@ module.exports = function () {
         for(var j=0; j<inputs.n_rotation; j++){
             const x = inputs.items[j];
             result.push({
-                "crop": x.crop,
-                "crop_name": x.name,
-                "crop_latin_name": x.latin_name,
-                "n_fert_min": x.n_fert_min,
-                "n_fert_max": x.n_fert_max,
-                "n_fert_avg": x.n_fert_avg,
-                "p_fert": x.p_fert,
-                "k_fert": x.k_fert,
-                "p_fert_oxide": x.p_fert_oxide,
-                "k_fert_oxide": x.k_fert_oxide
+                "cropID": x.cropID,
+                "crop_name": x.crop_name,
+                "crop_latin_name": x.crop_latin_name,
+                "crop_type": x.crop_type,
+                "yield": x.yield,
+                "Ncf_min": x.Nc_crop_min,
+                "Ncf_max": x.Nc_crop_max,
+                "Ncf_avg": x.Nc_crop,
+                "Pcf": x.Pcf,
+                "Kcf": x.Kcf,
+                "P205cf": x.P205cf,
+                "K2Ocf": x.K2Ocf,
+                "N_balance": {
+                    "mineralization": x.kim,
+                    "fixation": x
+                }
              
             });
         }
@@ -335,16 +405,17 @@ module.exports = function () {
 
         return inputs.map(x => {
             return {
-                "crop": x.crop,
+                "cropID": x.cropID,
                 "crop_name": x.crop_name,
                 "crop_latin_name": x.crop_latin_name,
+                "crop_cycle": x.crop_cycle,
                 "yield": parseInt(x.yield),
-                "cv": parseInt(x.cv),
-                "h_i": x.harvest_index/100,
-                "fres": x.fres/100,
-                "n_harv": x.N_harv/100,
-                "p_harv": x.P_harv/100,
-                "k_harv": x.K_harv/100,
+                "CV": parseInt(x.CV),
+                "HI_est": x.HI_est/100,
+                "fmc_r": x.fmc_r/100,
+                "Nc_h": x.Nc_h/100,
+                "Pc_h": x.Pc_h/100,
+                "Kc_h": x.Kc_h/100,
                 "burning": (x.burning == 1 || x.burning == 'on') ? 1: 0
             }
         });
@@ -354,15 +425,31 @@ module.exports = function () {
         return  navigatorN3Model.crops;
     }
 
-    async function getCrop(crop){
-        return  navigatorN3Model.crops.find(element => element.crop === crop);
+    async function getCrop(cropID){
+        return  navigatorN3Model.crops.find(element => element.cropID === cropID);
     }
 
-    
+    async function getTypesOfSoils(){
+        var types_of_soils = await navigatorN3Model.getParmsTypeOfSoils();
+        var soils =  types_of_soils.map(element  => {
+            return {
+                "type": element.type,
+                "name": element.name,
+            }
+        });
+
+        return soils.filter(item => item.type !== 'none');
+    }
+
+    async function PKStrategies(){
+        return navigatorN3Model.getParmsStrategies();
+    }
 
     return {
         nutrientNPKbalance: nutrientNPKbalance,
         getCrops: getCrops,
-        getCrop: getCrop
+        getCrop: getCrop,
+        getTypesOfSoils: getTypesOfSoils,
+        PKStrategies: PKStrategies
     }
 }

@@ -37,7 +37,7 @@ function _createTableBestFertilizerResults(data){
       var dataRow = results[j];
       // table row creation
       var row = tblBody.insertRow(j);
-      var name=  '<span title="' +  dataRow.name + '">' +  dataRow.name + '</span>';
+      var name=  '<span title="' +  dataRow.fertilizerID + '">' +  dataRow.fertilizer_name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = name;
       row.insertCell(2).innerHTML = dataRow.amount;

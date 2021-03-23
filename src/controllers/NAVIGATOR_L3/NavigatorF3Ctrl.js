@@ -5,18 +5,26 @@ const solver = require('javascript-lp-solver');
 // Fertilizers
 module.exports = function () {
 
+	var datasource = 'fertilicalc-fertilizers-data-excel.json';
+
 	function get (names, but_names) {
 
-		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-fertilizers-data.json'), 'utf8'));
+		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
 		names && but_names &&
-			(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.name) && !but_names.includes(fertilizer.name)))
+			(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.fertilizerID) && !but_names.includes(fertilizer.fertilizerID)))
 		|| 
 			names && 
-				(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.name)))
+				(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.fertilizerID)))
 			||
 				but_names && 
-					(fertilizers = fertilizers.filter(fertilizer => !but_names.includes(fertilizer.name)));
+					(fertilizers = fertilizers.filter(fertilizer => !but_names.includes(fertilizer.fertilizerID)));
 		return fertilizers;
+	}
+
+	function getFertilizerID (fertilizerID) {
+
+		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
+		return fertilizers.find(fertilizer => fertilizer.fertilizerID === fertilizerID);
 	}
 
 	function bestCombination (fertilizers, N_req, P_req, K_req, S_req, lim_N_ur) {
@@ -26,30 +34,30 @@ module.exports = function () {
 			opType: 'min',
 			constraints: {
 				N: {
-					min: N_req
+					min: (N_req / 100 || 0)
 				},
 				P: {
-					min: P_req
+					min: (P_req / 100 || 0)
 				},
 				K: {
-					min: K_req
+					min: (K_req / 100 || 0)
 				},
 				S: {
-					min: S_req
+					min: (S_req / 100 || 0)
 				},
 				N_ur: {
-					max: lim_N_ur
+					max: (lim_N_ur / 100 || 0)
 				}
 			},
 			variables: {}
 		};
 		fertilizers.forEach(fertilizer => {
-			model.variables[fertilizer.name] = {
-				N: (fertilizer.N_total || 0) / 100,
-				P: (fertilizer.P_total || 0) / 100,
-				K: (fertilizer.K_total || 0) / 100,
-				S: (fertilizer.S_total || 0) / 100,
-				N_ur: (fertilizer.N_urea || 0) / 100,
+			model.variables[fertilizer.fertilizerID] = {
+				N: (fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
+				P: (fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
+				K: (fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
+				S: (fertilizer.Scf || fertilizer.sulphur.Scf || 0), 
+				N_ur: (fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0),
 				price: (fertilizer.price || 0)
 			};
 		});
@@ -57,16 +65,17 @@ module.exports = function () {
 		const solution = solver.Solve(model),
 			bestFertilizers = [];
 		fertilizers.forEach(fertilizer => {
-			if (fertilizer.name in solution) {
-				Q = solution[fertilizer.name];
+			if (fertilizer.fertilizerID in solution) {
+				Q = solution[fertilizer.fertilizerID]*100; // %
 				bestFertilizers.push({
-					name: fertilizer.name,
+					fertilizerID: fertilizer.fertilizerID,
+					fertilizer_name: fertilizer.fertilizer_name,
 					amount: Q,
-					N: Q*(fertilizer.N_total || 0) / 100,
-					P: Q*(fertilizer.P_total || 0) / 100,
-					K: Q*(fertilizer.K_total || 0) / 100,
-					S: Q*(fertilizer.S_total || 0) / 100,
-					N_ur: Q*(fertilizer.N_urea || 0) / 100,
+					N: Q*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
+					P: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
+					K: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
+					S: Q*(fertilizer.Scf || fertilizer.sulphur.Scf || 0),
+					N_ur: Q*(fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0),
 					cost: Q*(fertilizer.price || 0)
 				});
 			}
@@ -99,6 +108,7 @@ module.exports = function () {
 
 	return {
 		get: get,
+		getFertilizerID: getFertilizerID,
 		bestCombination: bestCombination,
 		aggregate: aggregate
 	}

@@ -47,7 +47,7 @@ module.exports = function () {
 		method = req.body.method || req.params.method && req.query.method,
 		fertilizerType = req.body.fertilizer_type || req.params.fertilizer_type || req.query.fertilizer_type,
 		soilpH = req.body.pH || req.params.pH || req.query.pH,
-		soilCEC = req.body.cec || req.params.cec || req.query.cec,
+		soilCEC = req.body.cec || req.params.cec || req.query.cec || req.body.CEC || req.params.CEC || req.query.CEC || req.query.plot.CEC,
 		climate = req.body.climate || req.params.climate || req.query.climate;
 
 		const params = {

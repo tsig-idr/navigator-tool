@@ -211,210 +211,210 @@
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 1,
         "rateDrainage": "veryHigh",
         "desnitrification": 3
     }, 
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 1,
         "rateDrainage": "high",
         "desnitrification": 4
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 1,
         "rateDrainage": "medium",
         "desnitrification": 6
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 1,
         "rateDrainage": "low",
         "desnitrification": 10
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 1,
         "rateDrainage": "veryLow",
         "desnitrification": 10
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 0,
         "rateDrainage": "veryHigh",
         "desnitrification": 9
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 0,
         "rateDrainage": "high",
         "desnitrification": 14
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 0,
         "rateDrainage": "medium",
         "desnitrification": 20
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 0,
         "rateDrainage": "low",
         "desnitrification": 30
     },
     {
         "case": "noTillage",
-        "som": "(,2]",
+        "som": "[,2)",
         "waterSupply": 0,
         "rateDrainage": "veryLow",
         "desnitrification": 30
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 1,
         "rateDrainage": "veryHigh",
         "desnitrification": 4
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 1,
         "rateDrainage": "high",
         "desnitrification": 6
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 1,
         "rateDrainage": "medium",
         "desnitrification": 10
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 1,
         "rateDrainage": "low",
         "desnitrification": 15
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 1,
         "rateDrainage": "veryLow",
         "desnitrification": 15
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 0,
         "rateDrainage": "veryHigh",
         "desnitrification": 16
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 0,
         "rateDrainage": "high",
         "desnitrification": 20
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 0,
         "rateDrainage": "medium",
         "desnitrification": 25
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 0,
         "rateDrainage": "low",
         "desnitrification": 45
     },
     {
         "case": "noTillage",
-        "som": "(2,5]",
+        "som": "[2,5)",
         "waterSupply": 0,
         "rateDrainage": "veryLow",
         "desnitrification": 45
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 1,
         "rateDrainage": "veryHigh",
         "desnitrification": 6
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 1,
         "rateDrainage": "high",
         "desnitrification": 10
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 1,
         "rateDrainage": "medium",
         "desnitrification": 15
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 1,
         "rateDrainage": "low",
         "desnitrification": 25
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 1,
         "rateDrainage": "veryLow",
         "desnitrification": 25
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 0,
         "rateDrainage": "veryHigh",
         "desnitrification": 20
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 0,
         "rateDrainage": "high",
         "desnitrification": 25
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 0,
         "rateDrainage": "medium",
         "desnitrification": 35
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 0,
         "rateDrainage": "low",
         "desnitrification": 55
     },
     {
         "case": "noTillage",
-        "som": "(5,]",
+        "som": "[5,)",
         "waterSupply": 0,
         "rateDrainage": "veryLow",
         "desnitrification": 55

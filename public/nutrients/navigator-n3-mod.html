@@ -75,7 +75,7 @@
                       type="number"
                       class="form-control"
                       id="som"
-                      name="plot[som]"
+                      name="plot[SOM]"
                       min="0"
                       step="any"
                       placeholder="Soil organic matter (%)"
@@ -94,7 +94,7 @@
                       type="number"
                       class="form-control"
                       id="cec"
-                      name="plot[cec]"
+                      name="plot[CEC]"
                       min="0"
                       placeholder="Cation Exchange Capacity"
                       value="80"
@@ -107,7 +107,7 @@
                       type="number"
                       class="form-control"
                       id="ph"
-                      name="plot[ph]"
+                      name="plot[pH]"
                       min="0"
                       placeholder="Soil pH"
                       value="7.0"
@@ -136,7 +136,7 @@
                       type="number"
                       class="form-control"
                       id="soilPConc"
-                      name="plot[soil_P_conc]"
+                      name="plot[Pc_s]"
                       min="0"
                       placeholder="Soil P concentration (ppm)"
                       value="0"
@@ -150,7 +150,7 @@
                       type="number"
                       class="form-control"
                       id="soilKConc"
-                      name="plot[soil_K_conc]"
+                      name="plot[Kc_s]"
                       min="0"
                       placeholder="Soil K concentration (ppm)"
                       value="0"
@@ -164,7 +164,7 @@
                     <select
                       class="form-select"
                       id="soilPMethod"
-                      name="plot[soil_P_method]"
+                      name="plot[P_soil_method]"
                       disabled
                     >
                       <option value="">Choose...</option>
@@ -193,7 +193,7 @@
                     <select
                       class="form-select"
                       id="pStrategy"
-                      name="plot[fert_strategy]"
+                      name="plot[PK_strategy]"
                     >
                       <option value="1">Sufficiency</option>
                       <option value="2">
@@ -255,7 +255,7 @@
                   <th scope="row">1</th>
                   <td></td>
                   <td>
-                    <select class="form-select" name="crops[0][crop]" required onchange="onChangeCrop(this)">
+                    <select class="form-select" name="crops[0][cropID]" required onchange="onChangeCrop(this)">
                       <option value="">Choose...</option>
                     </select>
                     <input
@@ -285,7 +285,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][cv]"
+                      name="crops[0][CV]"
                       placeholder="Coefficient of Variation of yield (%)"
                       min="0"
                       max="100"
@@ -296,7 +296,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][harvest_index]"
+                      name="crops[0][HI_est]"
                       placeholder="Harvest Index (%)"
                       min="0"
                       max="100"
@@ -307,7 +307,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][fres]"
+                      name="crops[0][fmc_r]"
                       placeholder="Fraction of crop residues remaining in the field after harvest (%)"
                       min="0"
                       max="100"
@@ -318,7 +318,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][N_harv]"
+                      name="crops[0][Nc_h]"
                       placeholder="N concentration of harvested organ (% over dry mass)"
                       min="0"
                       max="100"
@@ -330,7 +330,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][P_harv]"
+                      name="crops[0][Pc_h]"
                       placeholder=" P concentration of harvested organ (% over dry mass)"
                       min="0"
                       max="100"
@@ -342,7 +342,7 @@
                     <input
                       type="number"
                       class="form-control"
-                      name="crops[0][K_harv]"
+                      name="crops[0][Kc_h]"
                       placeholder=" K concentration of harvested organ (% over dry mass)"
                       min="0"
                       max="100"

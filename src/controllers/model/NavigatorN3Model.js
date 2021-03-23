@@ -17,7 +17,7 @@ class NavigatorN3Model {
 
    _init() {
     // fertilicalc-crops-data.json 
-    this.pathDataSource = path.join(path.resolve(), 'data', 'fertilicalc-crops-data.json');
+    this.pathDataSource = path.join(path.resolve(), 'data', 'fertilicalc-crops-data-excel.json');
     this.crops = JSON.parse(fs.readFileSync(this.pathDataSource, 'utf8'));
     // fertilicalc-params-data.json
     this.pathDataSource = path.join(path.resolve(), 'data', 'fertilicalc-params-data.json');
@@ -29,12 +29,16 @@ class NavigatorN3Model {
     return this.crops;
   }
 
-  async getCropsByCrop(crop){
-    return this.crops.find(x => x.crop === crop);
+  async getCropsByCropID(cropID){
+    return this.crops.find(x => x.cropID === cropID);
   }
 
   async getParameters() {
     return this.parameters;
+  }
+
+  async getParmsStrategies(){
+    return this.parameters.strategies;
   }
 
   async getParmsStrategy(strategy){
@@ -45,6 +49,10 @@ class NavigatorN3Model {
       return this.parameters.strategies.find(x => x.title == strategy.toLowerCase());
     else
       return this.parameters.strategies.find(x => x.value == straNumber);
+  }
+
+  async getParmsTypeOfSoils(){
+    return this.parameters.types_of_soil;
   }
 
   async getParmsTypeOfSoil(type){

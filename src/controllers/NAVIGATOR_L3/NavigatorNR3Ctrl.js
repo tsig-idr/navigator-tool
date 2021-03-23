@@ -13,15 +13,21 @@ module.exports = function () {
 			//TODO: Change inverse calcule to generic condition.
 			var rangeSOM = '[,2)';
 
-			if(params.som < 2){
+			const SOM = params.SOM || params.plot.SOM || 0, 
+				waterSupply = params.waterSupply || params.plot.waterSupply || params.plot.water_supply || 0,
+				rateDrainage = params.rateDrainage || params.plot.drainage,
+				caseDesnitrification = params.case || params.plot.case || params.plot.case_desnitrification;
+
+
+			if(SOM < 2){
 				rangeSOM = '[,2)';
-			}else if( params.som >= 2 && params.som < 5){
+			}else if( SOM >= 2 && SOM < 5){
 				rangeSOM = '[2,5)';
 			}else{
 				rangeSOM = '[5,)';
 			}
 
-			return ((rangeSOM === desnitrification.som) && (params.waterSupply === desnitrification.waterSupply) && (params.rateDrainage === desnitrification.rateDrainage) && (params.tillage === desnitrification.tillage));
+			return ((rangeSOM === desnitrification.som) && (parseInt(waterSupply) === desnitrification.waterSupply) && (rateDrainage === desnitrification.rateDrainage) && (caseDesnitrification === desnitrification.case));
 		});
 
 	}

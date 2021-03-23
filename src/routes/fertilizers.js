@@ -14,6 +14,14 @@ module.exports = function () {
 		});
 	}));
 
+	router.get('/:fertilizerID', asyncHandler(async (req, res) => {
+		
+		const fertilizerID = req.params.fertilizerID || req.query.fertilizerID; 
+		res.json({
+			results: navF3Ctrl.getFertilizerID(fertilizerID)
+		});
+	}));
+
 	router.get('/optimization', asyncHandler(async (req, res) => {
 
 		const include = typeof req.query.include === 'string' && req.query.include.split(','),
