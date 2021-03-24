@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 
-class NavigatorN3Model {
+class NavigatorNutrient3Model {
 
   constructor() {
     this.pathDataSource = null;
@@ -16,11 +16,11 @@ class NavigatorN3Model {
   }
 
    _init() {
-    // fertilicalc-crops-data.json 
-    this.pathDataSource = path.join(path.resolve(), 'data', 'fertilicalc-crops-data-excel.json');
+
+    this.pathDataSource = path.join(path.resolve(), 'data', 'crops-data-excel.json');
     this.crops = JSON.parse(fs.readFileSync(this.pathDataSource, 'utf8'));
-    // fertilicalc-params-data.json
-    this.pathDataSource = path.join(path.resolve(), 'data', 'fertilicalc-params-data.json');
+
+    this.pathDataSource = path.join(path.resolve(), 'data', 'n3-fertilicalc-params-data.json');
     this.parameters = JSON.parse(fs.readFileSync(this.pathDataSource, 'utf8'));
 
   }
@@ -65,4 +65,4 @@ class NavigatorN3Model {
 
 }
 
-module.exports = NavigatorN3Model;
+module.exports = NavigatorNutrient3Model;

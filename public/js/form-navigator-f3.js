@@ -38,7 +38,7 @@ var nf3 = {
 * Cargador de datos combo de cultivos
 */
 function _loadSelectCrops(){
-  fetch('/nutrients/crops').then(function (response) {
+  fetch('/nutrient-requirements/crops').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -76,7 +76,7 @@ function _loadSelectCrops(){
 * Cargador de datos de combo de PK Strategy
 */
 function _loadSelectPKStrategy(){
-  fetch('/nutrients/pkstrategies').then(function (response) {
+  fetch('/nutrient-requirements/pkstrategies').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -105,7 +105,7 @@ function _loadSelectPKStrategy(){
 * Cargador de datos combo de Tipos de suelo
 */
 function _loadSelectTypeOfSoils(){
-  fetch('/nutrients/soil/types').then(function (response) {
+  fetch('/nutrient-requirements/soil/types').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -129,7 +129,7 @@ function _loadSelectTypeOfSoils(){
 }
 
 function _loadSelectFertilizerType(){
-  fetch('/nutrient-requirements/volatilization-fertilizer-types').then(function (response) {
+  fetch('/nitrogen-balance/volatilization-fertilizer-types').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -456,7 +456,7 @@ function _loadSelectFertilizers(){
 
   function onChangeCrop(selectObject){
 
-    fetch('/nutrients/crop/' + selectObject.value).then(function (response) {
+    fetch('/nutrient-requirements/crop/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -538,7 +538,7 @@ function _loadSelectFertilizers(){
     
   }
 
-  function _sendFormNPKNavigatorN3(){
+  function _sendFormNPKRequirementsF3(){
     var form = document.querySelector('#formPlotNavigatorF3');
     let json = FormDataJson.formToJson(form);
     let result = Object.entries(json.crops).map(( [k, v] ) => (v) );
@@ -546,7 +546,7 @@ function _loadSelectFertilizers(){
     json.crops = crops;
 
 
-    fetch('/nutrients/navigator-n3', {
+    fetch('/nutrient-requirements/navigator-f3-npk', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -607,7 +607,7 @@ function _loadSelectFertilizers(){
     
     nf3.data.fertilizers = Object.keys(f1.fertilizers).map(function(key) {return f1.fertilizers[key];});
 
-    fetch('/nutrients/navigator-f3', {
+    fetch('/nutrient-requirements/navigator-f3-npk-fertilization', {
       method: 'POST',
       body: JSON.stringify(nf3.data),
       headers: {
@@ -668,7 +668,7 @@ function _loadSelectFertilizers(){
       element.classList.remove("d-none");
       element2.classList.remove("d-none");
       element3.classList.remove("d-none");
-     _sendFormNPKNavigatorN3();
+     _sendFormNPKRequirementsF3();
     }
        
       

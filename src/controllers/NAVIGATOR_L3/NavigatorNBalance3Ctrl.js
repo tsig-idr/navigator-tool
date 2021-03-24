@@ -2,12 +2,16 @@ const path = require('path');
 const fs = require('fs');
 const utils = require('../../utils/utils');
 
-// Fertilizers
+
 module.exports = function () {
+
+	const desnitrificationPath = 'n3-desnitrification-data.json';
+	const volatilizationPath = 'n3-volatilization-data.json';
+	const leachingPath = 'n3-leaching-data.json';
 
 	function desnitrification (params) {
 
-		let desnitrifications = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-desnitrification-data.json'), 'utf8'));
+		let desnitrifications = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', desnitrificationPath ), 'utf8'));
 
 		return desnitrifications.find(desnitrification => {
 			//TODO: Change inverse calcule to generic condition.
@@ -34,7 +38,7 @@ module.exports = function () {
 
 	function volatilization (params) {
 
-		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-volatilization-data.json'), 'utf8'));
+		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', volatilizationPath), 'utf8'));
 
 		if(!utils.isNumeric(params.soilpH) && utils.parseToNumeric(params.soilpH))
 			params.soilpH = parseFloat(params.soilpH) 
@@ -96,7 +100,7 @@ module.exports = function () {
 			CN: 0
 		};
 		const arraySoilHGroup = ["A", "B", "C", "D"];
-		const dataLeaching = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-leaching-data.json'), 'utf8'));
+		const dataLeaching = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', leachingPath), 'utf8'));
 
 		const cnItem =  dataLeaching.cn.find(item => {
 			return (item.cover === params.coverType && item.treatment === params.treatment && item.hidrologic === params.hidrologic);
@@ -124,7 +128,7 @@ module.exports = function () {
 	}
 
 	function getVolatilizationFertilizerTypes(){
-		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', 'fertilicalc-volatilization-data.json'), 'utf8'));
+		const dataVolatilization = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', volatilizationPath), 'utf8'));
 		return dataVolatilization.fertilizer;
 	}
 

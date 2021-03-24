@@ -114,7 +114,7 @@ function main(){
     }
         
     const jsonData = JSON.stringify(data_results);
-    fs.writeFile('data/fertilical-fertilizers-data-excel.json', jsonData, 'utf8', function (err) {});
+    fs.writeFile('data/fertilizers-data-excel.json', jsonData, 'utf8', function (err) {});
     
 }
 

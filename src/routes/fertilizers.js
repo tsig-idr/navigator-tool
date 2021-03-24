@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorF3Ctrl')();
+const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
 
 module.exports = function () {
 
@@ -10,7 +10,7 @@ module.exports = function () {
 		
 		const names = typeof req.query.names === 'string' && req.query.names.split(',');
 		res.json({
-			results: navF3Ctrl.get(names, false)
+			results: navBestFertiCtrl.get(names, false)
 		});
 	}));
 
@@ -18,7 +18,7 @@ module.exports = function () {
 		
 		const fertilizerID = req.params.fertilizerID || req.query.fertilizerID; 
 		res.json({
-			results: navF3Ctrl.getFertilizerID(fertilizerID)
+			results: navBestFertiCtrl.getFertilizerID(fertilizerID)
 		});
 	}));
 
@@ -31,10 +31,10 @@ module.exports = function () {
 			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0,
 			S = typeof req.query.S === 'string' && parseFloat(req.query.S) || 0.0,
 			N_ur = typeof req.query.N_ur === 'string' && parseFloat(req.query.N_ur)*N || 0.0,
-			fertilizers = navF3Ctrl.bestCombination(navF3Ctrl.get(include, exclude), N, P, K, S, N_ur);
+			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_ur);
 		res.json({
 			results: fertilizers,
-			total: navF3Ctrl.aggregate(fertilizers)
+			total: navBestFertiCtrl.aggregate(fertilizers)
 		});
 	}));
 
@@ -49,10 +49,10 @@ module.exports = function () {
 			K = req.body.K && parseFloat(req.body.K) || req.params.K && parseFloat(req.params.K) || 0.0,
 			S = req.body.S && parseFloat(req.body.S) || req.params.S && parseFloat(req.params.S) || 0.0,
 			N_ur = (req.body.N_ur && parseFloat(req.body.N_ur) || req.params.N_ur && parseFloat(req.params.N_ur))*N || 0.0,
-			fertilizers = navF3Ctrl.bestCombination(navF3Ctrl.get(include, exclude), N, P, K, S, N_ur);
+			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_ur);
 		res.json({
 			results: fertilizers,
-			total: navF3Ctrl.aggregate(fertilizers)
+			total: navBestFertiCtrl.aggregate(fertilizers)
 		});
 	}));
 

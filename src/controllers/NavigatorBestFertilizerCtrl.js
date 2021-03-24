@@ -5,7 +5,7 @@ const solver = require('javascript-lp-solver');
 // Fertilizers
 module.exports = function () {
 
-	var datasource = 'fertilicalc-fertilizers-data-excel.json';
+	var datasource = 'fertilizers-data-excel.json';
 
 	function get (names, but_names) {
 

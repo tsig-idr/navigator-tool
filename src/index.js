@@ -4,9 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-const npkNutrientsRouter = require('./routes/npk-nutrients');
+const nutrientRequirementsRouter = require('./routes/l3-nutrient-requirements');
 const fertilizersRouter = require('./routes/fertilizers');
-const nutrientRequirementsRouter = require('./routes/nutrient-requirements');
+const nitrogenBalanceRouter = require('./routes/l3-nitrogen-balance');
 const l1Router = require('./routes/l1');
 /* ----------------- */
 
@@ -29,9 +29,9 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-app.use('/nutrients', npkNutrientsRouter());
-app.use('/fertilizers', fertilizersRouter());
 app.use('/nutrient-requirements', nutrientRequirementsRouter());
+app.use('/fertilizers', fertilizersRouter());
+app.use('/nitrogen-balance', nitrogenBalanceRouter());
 app.use('/l1', l1Router());
 
 app.listen(SERVER_PORT, () => {

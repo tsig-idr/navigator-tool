@@ -1,22 +1,19 @@
 'use strict';
 
 const router = require('express').Router();
-
-const utils = require('../utils/utils');
-
 const asyncHandler = require('express-async-handler');
 const fs = require('fs');
-const npkL3Ctrl = require('../controllers/NutrientsL3Ctrl')();
-const navN3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorN3Ctrl')();
-const navFerti3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorF3Ctrl')();
-const navNR3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNR3Ctrl')();
+
+const navNutri3FertilicalcCtrl = require('../controllers/NAVIGATOR_L3/NavigatorNutrient3FertilicalcCtrl')();
+const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
+const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
 
 module.exports = function () {
 
 	/*
 	* Nutrient requirements
 	*/
-	router.post('/navigator-n3', asyncHandler(async (req, res) => {
+	router.post('/navigator-f3-npk', asyncHandler(async (req, res) => {
 		let response = {"results": []}
 
 		const crops = req.body.crops || req.params.crops; // || req.query.crops;
@@ -27,8 +24,7 @@ module.exports = function () {
 			plot: characteristics_plot
 		};
 		
-		response.results = await navN3Ctrl.nutrientNPKbalance(params);
-
+		response.results = await navNutri3FertilicalcCtrl.nutrientNPKbalance(params);
 
 		res.json( response);
 	}));
@@ -36,7 +32,7 @@ module.exports = function () {
 	/*
 	* Nutrient requirements & Fertilization
 	*/
-	router.post('/navigator-f3', asyncHandler(async (req, res) => {
+	router.post('/navigator-f3-npk-fertilization', asyncHandler(async (req, res) => {
 		let response = {"results": []}
 
 		const crops = req.body.crops || req.params.crops; // || req.query.crops;
@@ -50,10 +46,8 @@ module.exports = function () {
 			plot: characteristics_plot,
 			fertilizers: fertilizers
 		};
-		//Requerimientos de nutrientes de los cultivos
-		const nutrients = await navN3Ctrl.nutrientNPKbalance(params);
-
-		//Para cada cultivo se calcula: Fertilizers, Desnitrification, volatilization , leaching
+		//External nutrients requirements
+		const nutrients = await navNutri3FertilicalcCtrl.nutrientNPKbalance(params);
 
 		for(var c = 0; c < nutrients.length; c++){
 			var nu = { ...nutrients[c] };
@@ -97,7 +91,7 @@ module.exports = function () {
 			});
 
 			//Cantidad de fertilizante
-			const fertilization = navFerti3Ctrl.bestCombination(listFertilizers, N, P, K, S, N_ur);
+			const fertilization = navBestFertiCtrl.bestCombination(listFertilizers, N, P, K, S, N_ur);
 			
 			/*
 			item.fertilization = fertilization.map(e => {
@@ -112,7 +106,7 @@ module.exports = function () {
 			item.fertilization = fertilization;
 			
 			//desnitrificacion
-			const desnitrification = navNR3Ctrl.desnitrification(params);
+			const desnitrification = navNBalance3Ctrl.desnitrification(params);
 			item.desnitrification = (desnitrification) ? desnitrification.desnitrification : 0;
 			//Volatilizacion asociada al fertilizante.
 			//const fertilizerIDs = fertilizers.map(e => e.fertilizerID);
@@ -129,7 +123,7 @@ module.exports = function () {
 
 	router.get('/crops', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
-		response.results = await navN3Ctrl.getCrops();
+		response.results = await navNutri3FertilicalcCtrl.getCrops();
 		res.json( response);
 	}));
 
@@ -137,20 +131,20 @@ module.exports = function () {
 		let response = {"results": []}	
 
 		const cropID = req.body.cropID || req.params.cropID || req.query.cropID;
-		response.results = await navN3Ctrl.getCrop(cropID);
+		response.results = await navNutri3FertilicalcCtrl.getCrop(cropID);
 		res.json( response);
 	}));
 
 	router.get('/soil/types', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
-		response.results = await navN3Ctrl.getTypesOfSoils();
+		response.results = await navNutri3FertilicalcCtrl.getTypesOfSoils();
 		
 		res.json( response);
 	}));
 
 	router.get('/pkstrategies', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
-		response.results = await navN3Ctrl.PKStrategies();
+		response.results = await navNutri3FertilicalcCtrl.PKStrategies();
 		res.json( response);
 	}));
 

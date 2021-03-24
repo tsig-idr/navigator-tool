@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navNR3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNR3Ctrl')();
+const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
 
 module.exports = function () {
 
@@ -34,7 +34,7 @@ module.exports = function () {
 			rateDrainage: rate_drainage
 		};
 
-		const item = navNR3Ctrl.desnitrification(params);
+		const item = navNBalance3Ctrl.desnitrification(params);
 
 		res.json({
 			results: item
@@ -59,7 +59,7 @@ module.exports = function () {
 			climate: climate
 		}
 
-		const volatilization = navNR3Ctrl.volatilization(params);
+		const volatilization = navNBalance3Ctrl.volatilization(params);
 
 
 		res.json({
@@ -91,7 +91,7 @@ module.exports = function () {
 			soilHidrologicaGroup: soilHidroGroup
 		}
 
-		const leaching = navNR3Ctrl.leaching(params);
+		const leaching = navNBalance3Ctrl.leaching(params);
 
 		res.json({
 			results: leaching
@@ -100,7 +100,7 @@ module.exports = function () {
 
 	router.get('/volatilization-fertilizer-types', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
-		response.results = await navNR3Ctrl.getVolatilizationFertilizerTypes();
+		response.results = await navNBalance3Ctrl.getVolatilizationFertilizerTypes();
 		res.json( response);
 	}));
 

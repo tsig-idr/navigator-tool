@@ -114,7 +114,7 @@ for(var i=5; i<=npk_crops_json.length; i++){
 }
     
 const jsonCrops = JSON.stringify(listCrops);
-fs.writeFile('data/fertilicalc-crops-data-excel.json', jsonCrops, 'utf8', function (err) {});
+fs.writeFile('data/crops-data-excel.json', jsonCrops, 'utf8', function (err) {});
 
 
 

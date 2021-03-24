@@ -1,10 +1,9 @@
-
-const NavigatorN3Model = require('../model/NavigatorN3Model');
+const NavigatorNutrient3Model = require('../model/NavigatorNutrient3Model');
 const utils = require('../../utils/utils');
 // Nutrients (NPK)
 module.exports = function () {
 
-    const navigatorN3Model =  new NavigatorN3Model();
+    const navNutrient3Model =  new NavigatorNutrient3Model();
 
     async function nutrientNPKbalance(req){
         // Se preparan los datos de entrada 
@@ -19,9 +18,9 @@ module.exports = function () {
             req.plot.tillage = 0;
         }
 
-        const def_params_soil = await navigatorN3Model.getParmsTypeOfSoil(req.plot.soil_type);
-        const def_params_strategy = await navigatorN3Model.getParmsStrategy(req.plot.PK_strategy);
-        const def_params_nutrients = await navigatorN3Model.getParmsNutrients();
+        const def_params_soil = await navNutrient3Model.getParmsTypeOfSoil(req.plot.soil_type);
+        const def_params_strategy = await navNutrient3Model.getParmsStrategy(req.plot.PK_strategy);
+        const def_params_nutrients = await navNutrient3Model.getParmsNutrients();
 
         let inputs =  {
             items: [],
@@ -58,7 +57,6 @@ module.exports = function () {
 
         let items  = new Array(10).fill().map( u => ({Nc_h_max: 0,Nc_r: 0,Pc_r: 0,Kc_r: 0,crop_type: 'nothing',DM_h: 0,DM_r: 0, DM_yield: 0, n_fix_code: 0,Nc_h_min: 0, N_kg_crop: 0,yield_i: [],N_kg_fix: 0,N_kg_min: 0,N_fert_i:0, N_res_prev_h:0}));
 
-        //let item  = {n_max: 0,n_res: 0,p_res: 0,k_res: 0,crop_type: 'nothing',dmh: 0,dmr: 0,n_fix_code: 0,n_min: 0,n_kg_crop: 0,yield_i: 0,n_kg_fix: 0,n_kg_min: 0,n_fert_i:0};
 
         for(var i=0; i< inputs.n_rotation; i++){
             let keyName= '';
@@ -71,7 +69,7 @@ module.exports = function () {
                 items[i].yield = inputs.crops[i].yield;
             }
             
-            const cropObj = await navigatorN3Model.getCropsByCropID(keyName);
+            const cropObj = await navNutrient3Model.getCropsByCropID(keyName);
 
             if(keyName && cropObj){
                 items[i].cropID = keyName;
@@ -422,15 +420,15 @@ module.exports = function () {
     }
 
     async function getCrops(){
-        return  navigatorN3Model.crops;
+        return  navNutrient3Model.crops;
     }
 
     async function getCrop(cropID){
-        return  navigatorN3Model.crops.find(element => element.cropID === cropID);
+        return  navNutrient3Model.crops.find(element => element.cropID === cropID);
     }
 
     async function getTypesOfSoils(){
-        var types_of_soils = await navigatorN3Model.getParmsTypeOfSoils();
+        var types_of_soils = await navNutrient3Model.getParmsTypeOfSoils();
         var soils =  types_of_soils.map(element  => {
             return {
                 "type": element.type,
@@ -442,7 +440,7 @@ module.exports = function () {
     }
 
     async function PKStrategies(){
-        return navigatorN3Model.getParmsStrategies();
+        return navNutrient3Model.getParmsStrategies();
     }
 
     return {
