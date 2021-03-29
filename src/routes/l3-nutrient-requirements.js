@@ -7,9 +7,30 @@ const fs = require('fs');
 const navNutri3FertilicalcCtrl = require('../controllers/NAVIGATOR_L3/NavigatorNutrient3FertilicalcCtrl')();
 const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
 const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
+const navNF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNF3Ctrl')();
 
 module.exports = function () {
 
+	router.post('/navigator-f3-nitrogen-requeriments', asyncHandler(async (req, res) => {
+		let response = {"results": []}
+
+		const crops = req.body.crops || req.params.crops; // || req.query.crops;
+		const characteristics_plot  = req.body.plot || req.params.plot; // || req.query.plot;
+		const fertilization =  req.body.fertilization || req.params.fertilization;
+		const soil = req.body.soil || req.params.soil;
+
+		const params = {
+			crops: crops,
+			plot: characteristics_plot,
+			fertilization: fertilization,
+			soil: soil
+		}
+
+		response.results = await navNF3Ctrl.Nrequeriments(params);
+
+		res.json( response);
+
+	}));
 	/*
 	* Nutrient requirements
 	*/
@@ -145,6 +166,12 @@ module.exports = function () {
 	router.get('/pkstrategies', asyncHandler(async (req, res) => {
 		let response = {"results": []}	
 		response.results = await navNutri3FertilicalcCtrl.PKStrategies();
+		res.json( response);
+	}));
+
+	router.get('/soil-textures', asyncHandler(async (req, res) => {
+		let response = {"results": []}	
+		response.results = await navNF3Ctrl.getSoilTextures();
 		res.json( response);
 	}));
 

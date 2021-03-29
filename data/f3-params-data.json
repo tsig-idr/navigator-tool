@@ -1,0 +1,554 @@
+{
+    "climate_zones": [
+        {
+            "climate_zone": "alpine",
+            "factor_humidity": 1,
+            "rain_a": 1500,
+            "rain_w": 900
+
+        },
+        {
+            "climate_zone": "atlantic",
+            "factor_humidity": 0.8,
+            "rain_a": 800,
+            "rain_w": 480
+        },
+        {
+            "climate_zone": "continental",
+            "factor_humidity": 1,
+            "rain_a": 1000,
+            "rain_w": 600
+        },
+        {
+            "climate_zone": "northem",
+            "factor_humidity": 0.9,
+            "rain_a": 700,
+            "rain_w": 420
+        },
+        {
+            "climate_zone": "southem",
+            "factor_humidity": 0.6,
+            "rain_a": 500,
+            "rain_w": 300
+        }
+
+    ],
+    "soil_textures": [
+        {
+            "soil_texture": "sand",
+            "name": "SAND",
+            "level": 1,
+            "drain_rate": "veryHigh",
+            "vol_water_s": 0.08,
+            "hydrologic_soil_group": "A",
+            "cn": 28,
+            "CEC": 30,
+            "mineratilization_group": "sandy",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 13
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 25
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 68
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 83
+                }
+            ]
+        },
+        {
+            "soil_texture": "loamySand",
+            "name": "LOAMY_SAND",
+            "level": 1,
+            "drain_rate": "veryHigh",
+            "vol_water_s": 0.09,
+            "hydrologic_soil_group": "A",
+            "cn": 28,
+            "CEC": 30,
+            "mineratilization_group": "sandy",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 13
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 25
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 68
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 83
+                }
+            ]
+        },
+        {
+            "soil_texture": "sandyLoam",
+            "name": "SANDY_LOAM",
+            "level": 2,
+            "vol_water_s": 0.12,
+            "hydrologic_soil_group": "B",
+            "cn": 21,
+            "CEC": 75,
+            "mineratilization_group": "sandy",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 13
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 25
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 68
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 83
+                }
+            ]
+        },
+        {
+            "soil_texture": "loam",
+            "name": "LOAM",
+            "level": 3,
+            "vol_water_s": 0.13,
+            "hydrologic_soil_group": "B",
+            "cn": 21,
+            "CEC": 100,
+            "mineratilization_group": "loam",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 10
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 20
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 40
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 65
+                }
+            ]
+        },
+        {
+            "soil_texture": "siltyLoam",
+            "name": "SILTY_LOAM",
+            "level": 4,
+            "vol_water_s": 0.14,
+            "hydrologic_soil_group": "C",
+            "cn": 17,
+            "CEC": 80,
+            "mineratilization_group": "loam",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 10
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 20
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 40
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 65
+                }
+            ]
+        },
+        {
+            "soil_texture": "silt",
+            "name": "SILT",
+            "level": 4,
+            "vol_water_s": 0.15,
+            "hydrologic_soil_group": "C",
+            "cn": 17,
+            "CEC": 80,
+            "mineratilization_group": "loam",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 10
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 20
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 40
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 65
+                }
+            ]
+        },
+        {
+            "soil_texture": "clayLoam",
+            "name": "CLAY_LOAM",
+            "level": 4,
+            "vol_water_s": 0.14,
+            "hydrologic_soil_group": "C",
+            "cn": 17,
+            "CEC": 80,
+            "mineratilization_group": "loam",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 10
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 20
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 40
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 50
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 65
+                }
+            ]
+        },
+        {
+            "soil_texture": "sandyClayLoam",
+            "name": "SANDY_CLAY_LOAM",
+            "level": 5,
+            "vol_water_s": 0.13,
+            "hydrologic_soil_group": "D",
+            "cn": 15,
+            "CEC": 220,
+            "mineratilization_group": "clay",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 8
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 15
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 23
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 50
+                }
+            ]
+        },
+        {
+            "soil_texture": "siltyClayLoam",
+            "name": "SILTY_CLAY_LOAM",
+            "level": 5,
+            "vol_water_s": 0.13,
+            "hydrologic_soil_group": "D",
+            "cn": 15,
+            "CEC": 220,
+            "mineratilization_group": "clay",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 8
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 15
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 23
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 50
+                }
+            ]
+        },
+        {
+            "soil_texture": "sandyClay",
+            "name": "SANDY_CLAY",
+            "level": 5,
+            "vol_water_s": 0.15,
+            "hydrologic_soil_group": "D",
+            "cn": 15,
+            "CEC": 220,
+            "mineratilization_group": "clay",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 8
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 15
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 23
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 50
+                }
+            ]
+        },
+        {
+            "soil_texture": "siltyClay",
+            "name": "SILTY_CLAY",
+            "level": 5,
+            "vol_water_s": 0.13,
+            "hydrologic_soil_group": "D",
+            "cn": 15,
+            "CEC": 220,
+            "mineratilization_group": "clay",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 8
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 15
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 23
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 50
+                }
+            ]
+        },
+        {
+            "soil_texture": "clay",
+            "name": "CLAY",
+            "level": 6,
+            "vol_water_s": 0.14,
+            "hydrologic_soil_group": "D",
+            "cn": 15,
+            "CEC": 300,
+            "mineratilization_group": "clay",
+            "mineralizations" : [
+                {
+                    "SOM": "(,0.5]",
+                    "Nmineralization_SOM": 8
+                },
+                {
+                    "SOM": "(0.5,1]",
+                    "Nmineralization_SOM": 15
+                },
+                {
+                    "SOM": "(1,1.5]",
+                    "Nmineralization_SOM": 23
+                },
+                {
+                    "SOM": "(1.5,2]",
+                    "Nmineralization_SOM": 30
+                },
+                {
+                    "SOM": "(2,2.5]",
+                    "Nmineralization_SOM": 38
+                },
+                {
+                    "SOM": "(2.5,)",
+                    "Nmineralization_SOM": 50
+                }
+            ]
+        }
+    ],
+    "default_parameters": {
+        "Nc_s_initial": 30,
+        "Nc_end": 20,
+        "depth_s": 300,
+        "vol_water_s": 0.13, 
+        "Nc_fnr": 0.1,
+        "t_levels": [0, -1.29, -0.84, -0.525, -0.25, 0, 0.25, 0.525, 0.84, 1.29],
+        "Nc_NO3_water": 25,
+        "fert_DM_amendment" : 20,
+        "fert_Nc_DM_amendment": 0.99,
+        "dose_irrigation": 3000
+    },
+    "volatilization": {
+        "water_supply": [
+            {
+                "key": "rainfed",
+                "name": "Rainfed cultivation",
+                "value": -0.045
+            },
+            {
+                "key": "irrigated",
+                "name": "Irrigated",
+                "value": 0
+            }
+        ],
+        "application_method": [
+            {
+                "key": "incorporated",
+                "name": "Application incorporated",
+                "value": -1.895
+            },
+            {
+                "key": "beginning",
+                "name": "Application beginning",
+                "value": -2.465
+            }
+        ],
+        "pH": [
+            {
+                "key": "(,5.5]",
+                "name": "pH≤5,5",
+                "value": -1.072
+            },
+            {
+                "key": "(5.5,7.3]",
+                "name": "5,5<pH≤7,3",
+                "value": -0.933
+            },
+            {
+                "key": "(7.3,8.5]",
+                "name": "7,3<pH≤8,5",
+                "value": -0.608
+            },
+            {
+                "key": "(8.5,]",
+                "name": "pH>8,5",
+                "value": 0
+            }
+        ],
+        "CEC": [
+            {
+                "key": "(,16]",
+                "name": "CIC≤16",
+                "value": 0.088
+            },
+            {
+                "key": "(16,24]",
+                "name": "16<CIC≤24",
+                "value": 0.012
+            },
+            {
+                "key": "(24,32]",
+                "name": "24<CIC≤32",
+                "value": 0.163
+            },
+            {
+                "key": "(32,]",
+                "name": "CIC>32",
+                "value": 0
+            }
+        ]
+    }
+}

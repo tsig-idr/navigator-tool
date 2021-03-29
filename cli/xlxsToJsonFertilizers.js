@@ -3,7 +3,7 @@ var fs = require('fs');
 
 
 function readSheet () {
-    const bookData = XLSX.readFile('files/fertilizerOptimizationV4.xlsx')
+    const bookData = XLSX.readFile('files/fertilizerOptimizationV5.xlsx')
     if (bookData.SheetNames.length <= 0) {
      throw new Error(`fertilizerOptimization sheets`)
     }
@@ -21,6 +21,16 @@ function getGroup(name){
 
 function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function getPrice(v){
+    if(isNumeric(v)){
+        return parseFloat(v);
+    }else{
+        return 0;
+    }
+        
+    
 }
 
 function getValue(x){
@@ -49,6 +59,7 @@ function getValue(x){
     }
 }
 
+
 function main(){
 
     var data_json = readSheet();
@@ -58,19 +69,19 @@ function main(){
     
         var elem = data_json[i];
 
-        if(elem && elem['__EMPTY_1']){
+        if(elem && elem['Fertilizer_ID']){
     
-            var itemID = elem['__EMPTY_1'];
-            var group = getGroup(elem['__EMPTY_2']);
+            var itemID = elem['Fertilizer_ID'];
             var item = {
                 "uri": 'navigatortool:fertilizer:<_Fertilizer:'+itemID+'_>',
                 "fertilizerID": itemID,
-                "fertilizerKey": getValue(elem['__EMPTY']),
-                "fertilizer_name": elem['__EMPTY_2'],
-                "price": elem['__EMPTY_5'],
+                "fertilizerKey": getValue(elem['Acronym']),
+                "fertilizer_name": elem['type_fm'],
+                "price": getPrice(elem['price']),
+                "clasification": getGroup(elem['clasification_fm']),
                 "volatilization": {
-                    "vlt_group":  getGroup(elem['__EMPTY_3']),
-                    "vlt_coef": getValue(elem['__EMPTY_4'])
+                    "vlt_group":  getGroup(elem['vol_group']),
+                    "vlt_coef": getValue(elem['vola_coeff'])
                 },
                 "nitrogen": {
                     "Ncf_ure" : getValue(elem['Ncf_ure']),
@@ -87,6 +98,10 @@ function main(){
                     "Kcf": getValue(elem['Kcf']),
                     "K2Ocf": getValue(elem['K2Ocf'])
                 },
+                "drymatter":{
+                    "DM": getValue(elem['dm_amendment'])
+                },
+                "MO": getValue(elem['MO']),
                 "sulphur": {
                     "Scf": getValue(elem['Scf']),
                     "SO4cf": getValue(elem['SO4cf']),
