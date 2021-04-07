@@ -108,7 +108,7 @@ function _loadSelectSoilTextures(){
       var option = document.createElement("option");
       option.appendChild( document.createTextNode(elem.name) );
       // set value property of opt
-      option.value = elem.type; 
+      option.value = elem.soil_texture; 
       combo.appendChild(option); 
     }
 
@@ -142,14 +142,14 @@ function _loadSelectFertilizerType(){
 }
 
 function _loadSelectFertilizers(){
-  fetch('/fertilizers').then(function (response) {
+  fetch('/fertilizers/all').then(function (response) {
     if (response.ok) {
       return response.json();
     }
     return Promise.reject(response);
   }).then(function (data) {
     
-    var combo = document.getElementsByName("fertilization[type_f]")[0];
+    var combo = document.getElementsByName("fertilizers[0][fertilizerID]")[0];
 
     for(var i=0; i<data.results.length; i++){
       var elem = data.results[i];
@@ -162,6 +162,30 @@ function _loadSelectFertilizers(){
 
   }).catch(function (error) {
     console.warn('Something went wrong _loadSelectFertilizers.', error);
+  });
+}
+
+function _loadSelectOrganicFertilizers(){
+  fetch('/fertilizers/organics').then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    
+    var combo = document.getElementsByName("fertilization[type_fmanure]")[0];
+
+    for(var i=0; i<data.results.length; i++){
+      var elem = data.results[i];
+      var option = document.createElement("option");
+      option.appendChild( document.createTextNode(elem.fertilizer_name) );
+      // set value property of opt
+      option.value = elem.fertilizerID; 
+      combo.appendChild(option); 
+    }
+
+  }).catch(function (error) {
+    console.warn('Something went wrong _loadSelectOrganicFertilizers.', error);
   });
 }
 
@@ -470,10 +494,10 @@ function _loadSelectFertilizers(){
       selectElement.value = item.harvest.Nc_h_typn;
 
       var selectElement = form.querySelector('input[name="crops['+idrow+'][Pc_h]"]');
-      selectElement.value = item.harvest.Pc_h;
+      selectElement.value = item.harvest.Pc_h || 0;
 
       var selectElement = form.querySelector('input[name="crops['+idrow+'][Kc_h]"]');
-      selectElement.value = item.harvest.Kc_h;
+      selectElement.value = item.harvest.Kc_h || 0;
       
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -482,7 +506,7 @@ function _loadSelectFertilizers(){
 
   function onChangeFertilizer(selectObject){
 
-    fetch('/fertilizers/' + selectObject.value).then(function (response) {
+    fetch('/fertilizers/fertilizer/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -527,6 +551,57 @@ function _loadSelectFertilizers(){
     
   }
 
+  function onChangeWaterSypply(selectObject) {
+    var typeIrrigatedElement = document.getElementById('type_irrigated');
+    var doseIrrigationElement = document.getElementById('dose_irrigation');
+    
+    if(parseInt(selectObject.value) === 1 ){
+      typeIrrigatedElement.disabled = false;
+      doseIrrigationElement.disabled = false;
+    }else{
+      typeIrrigatedElement.disabled = true;
+      doseIrrigationElement.disabled = true;
+    }
+  }
+
+
+
+  function onChangeClimaticZone(selectObject){
+
+    fetch('/nutrient-requirements/climate-zone/' + selectObject.value).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then(function (data) {
+      
+      var item = data.results;
+      document.getElementById('rain_a').value= item.rain_a;
+      document.getElementById('rain_w').value= item.rain_w;
+      
+    }).catch(function (error) {
+      console.warn('Something went wrong.', error);
+  }); 
+  }
+
+  function onChangeSoilTexture(selectObject){
+
+    fetch('/nutrient-requirements/soil-texture/' + selectObject.value).then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    }).then(function (data) {
+      
+      var item = data.results;
+      document.getElementById('Pc_s').value= item.Pc_s_thres.Pc_s_thres_avg;
+      document.getElementById('Kc_s').value= item.Kc_s_thres.Kc_s_thres_avg;
+      
+    }).catch(function (error) {
+      console.warn('Something went wrong.', error);
+  }); 
+  }
+
   function _sendFormNPKRequirementsF3(){
     var form = document.querySelector('#formPlotNavigatorF3');
     let json = FormDataJson.formToJson(form);
@@ -535,7 +610,7 @@ function _loadSelectFertilizers(){
     json.crops = crops;
 
 
-    fetch('/nutrient-requirements/navigator-f3-npk', {
+    fetch('/nutrient-requirements/navigator-n3-requeriments', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -596,7 +671,7 @@ function _loadSelectFertilizers(){
     
     nf3.data.fertilizers = Object.keys(f1.fertilizers).map(function(key) {return f1.fertilizers[key];});
 
-    fetch('/nutrient-requirements/navigator-f3-npk-fertilization', {
+    fetch('/nutrient-requirements/navigator-n3-requeriments-fertilizers', {
       method: 'POST',
       body: JSON.stringify(nf3.data),
       headers: {
@@ -701,6 +776,7 @@ function _loadSelectFertilizers(){
     _loadSelectCrops();
     _loadSelectSoilTextures();
     _loadSelectFertilizers();
+    _loadSelectOrganicFertilizers();
     //_loadSelectFertilizerType();
 
   

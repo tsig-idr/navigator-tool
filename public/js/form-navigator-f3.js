@@ -153,7 +153,7 @@ function _loadSelectFertilizerType(){
 }
 
 function _loadSelectFertilizers(){
-  fetch('/fertilizers').then(function (response) {
+  fetch('/fertilizers/all').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -481,10 +481,10 @@ function _loadSelectFertilizers(){
       selectElement.value = item.harvest.Nc_h_typn;
 
       var selectElement = form.querySelector('input[name="crops['+idrow+'][Pc_h]"]');
-      selectElement.value = item.harvest.Pc_h;
+      selectElement.value = item.harvest.Pc_h || 0;
 
       var selectElement = form.querySelector('input[name="crops['+idrow+'][Kc_h]"]');
-      selectElement.value = item.harvest.Kc_h;
+      selectElement.value = item.harvest.Kc_h || 0;
       
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -493,7 +493,7 @@ function _loadSelectFertilizers(){
 
   function onChangeFertilizer(selectObject){
 
-    fetch('/fertilizers/' + selectObject.value).then(function (response) {
+    fetch('/fertilizers/fertilizer/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -546,7 +546,7 @@ function _loadSelectFertilizers(){
     json.crops = crops;
 
 
-    fetch('/nutrient-requirements/navigator-f3-npk', {
+    fetch('/nutrient-requirements/n3-fertilicalc', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -607,7 +607,7 @@ function _loadSelectFertilizers(){
     
     nf3.data.fertilizers = Object.keys(f1.fertilizers).map(function(key) {return f1.fertilizers[key];});
 
-    fetch('/nutrient-requirements/navigator-f3-npk-fertilization', {
+    fetch('/nutrient-requirements/n3-fertilicalc-fertilizers', {
       method: 'POST',
       body: JSON.stringify(nf3.data),
       headers: {

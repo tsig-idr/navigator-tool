@@ -24,9 +24,9 @@
     <div class="container-fluid pt-5">
       <div class="pt-3 text-center">
         <!--<img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-        <h2>NAVIGATOR TOOL F3</h2>
+        <h2>NAVIGATOR TOOL F3 (ITAP)</h2>
         <p>
-          The tool allows you to calculate the Nitrogen requirements for your plot.
+          The tool allows you to calculate the Nitrogen requirements for your plot. (based on the ITAP model ).
         </p>
       </div>
 
@@ -51,13 +51,15 @@
                               <th scope="col">Type of crop</th>
                               <th scope="col">Application method</th>
                               -->
-                            <th scope="col">Yield</th>
+                            <th scope="col">Yield (kg/ha)</th>
+                            <th scope="col">Exports residues (%)</th>
                             <th scope="col">CV (%)</th>
                             <th scope="col">HI (%)</th>
                             <th scope="col">FRES (%)</th>
                             <th scope="col">N (%)</th>
                             <th scope="col">P (%)</th>
                             <th scope="col">K (%)</th>
+                            <th scope="col">PK Strategy</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -79,22 +81,26 @@
                                 placeholder="Crop yield (kg commercial product/ha)" min="0" required />
                             </td>
                             <td>
+                              <input type="number" class="form-control" name="crops[0][export_r]"
+                                placeholder="Export residue (%)" min="0" max="100" value="100" required disabled />
+                            </td>
+                            <td>
                               <input type="number" class="form-control" name="crops[0][CV]"
-                                placeholder="Coefficient of Variation of yield (%)" min="0" max="100" required />
+                                placeholder="Coefficient of Variation of yield (%)" min="0" max="100" required disabled />
                             </td>
                             <td>
                               <input type="number" class="form-control" name="crops[0][HI_est]"
-                                placeholder="Harvest Index (%)" min="0" max="100" required />
+                                placeholder="Harvest Index (%)" min="0" max="100" required disabled />
                             </td>
                             <td>
                               <input type="number" class="form-control" name="crops[0][fmc_r]"
                                 placeholder="Fraction of crop residues remaining in the field after harvest (%)" min="0"
-                                max="100" required />
+                                max="100" required disabled />
                             </td>
                             <td>
                               <input type="number" class="form-control" name="crops[0][Nc_h]"
                                 placeholder="N concentration of harvested organ (% over dry mass)" min="0" max="100"
-                                step="any" required />
+                                step="any" disabled />
                             </td>
                             <td>
                               <input type="number" class="form-control" name="crops[0][Pc_h]"
@@ -106,6 +112,17 @@
                                 placeholder=" K concentration of harvested organ (% over dry mass)" min="0" max="100"
                                 step="any" disabled />
                             </td>
+                            <td>
+                              <select class="form-select" name="crops[0][PK_strategy]" required>
+                                <option value="maximum-yield">Buildup & maintenance (maximum yield)</option>
+                                <option value="minimum-fertilizer">Buildup & maintenance (reduced fertilizer)</option>
+                                <option value="sufficiency">Sufficiency (minimum fertilizer)</option>
+                                <option value="maintenance">Maintenance (soil analysis not avalable)</option>
+                              </select>
+                              <input type="hidden" class="form-control" name="crops[0][crop_name]" placeholder="" />
+                              <input type="hidden" class="form-control" name="crops[0][crop_latin_name]"
+                                placeholder="" />
+                            </td>
                           </tr>
                         </tbody>
             
@@ -114,9 +131,9 @@
                   </div> <!-- col-md-12 -->
                 </div> <!-- row -->
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <label for="soilTexture" class="form-label">Soil texture</label>
-                    <select class="form-select" id="soilTexture" name="soil[soil_texture]" required></select>
+                    <select class="form-select" id="soilTexture" name="soil[soil_texture]" required  onchange="onChangeSoilTexture(this)"></select>
                     <div class="invalid-feedback">
                       Please select a valid soil texture.
                     </div>
@@ -127,40 +144,99 @@
                     <input type="number" class="form-control" id="SOM" name="soil[SOM]" min="0" step="any"
                       placeholder="Soil organic matter (%)" value="0" />
                   </div>
+                  <div class="col-md-3">
+                    <label for="case_soil" class="form-label">Case</label>
+                    <select class="form-select" id="case_soil" name="soil[case]">
+                      <option value="tilledNFertilizer">Tilled (N from fertiizer)</option>
+                      <option value="noTillage">No tillage</option>
+                      <option value="tilledNManure">Tilled (N from manure)</option>
+                      
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid method of Case.
+                    </div>
+                  </div>
                   <div class="col-md-2">
                     <label for="ph" class="form-label">pH </label>
                     <input type="number" class="form-control" id="ph" name="soil[pH]" min="0" placeholder="Soil pH"
-                      value="7.0" />
+                      value="7.0" disabled />
                   </div>
                   <div class="col-md-2">
                     <label for="cec" class="form-label" title="Cation Exchange Capacity">
                       CEC (meq/kg)</label>
                     <input type="number" class="form-control" id="cec" name="soil[CEC]" min="0"
-                      placeholder="Cation Exchange Capacity" value="80" />
+                      placeholder="Cation Exchange Capacity" value="80" disabled/>
                   </div>
+                  <!-- 
                   <div class="col-md-2">
                     <label for="vol_water_s" class="form-label" title="Vol water in soil">
                       Vol. water (m3m-3)</label>
-                    <input type="number" class="form-control" id="vol_water_s" name="soil[vol_water_s]" min="0"
+                    <input type="number" class="form-control" id="vol_water_s" name="soil[vol_water_s]" min="0" step="0.01"
                       placeholder="Vol water in soil" value="0.13" />
                   </div>
+                  -->
+                </div>
+                <div class="row">
                   <div class="col-md-2">
                     <label for="depth_s" class="form-label" title="Depth soil">
-                      Soil depth (mm)</label>
+                      Soil depth (m)</label>
                     <input type="number" class="form-control" id="depth_s" name="soil[depth_s]" min="0"
-                      placeholder="Depth soil" value="300" />
+                      placeholder="Depth soil" value="0.3" disabled />
                   </div>
                   <div class="col-md-2">
                     <label for="Nc_s_initial" class="form-label" title="Nitrogen soil initial">
                       Soil N initial (kgN/ha)</label>
                     <input type="number" class="form-control" id="Nc_s_initial" name="soil[Nc_s_initial]" min="0"
-                      placeholder="Nitrogen soil initial" value="30" />
+                      placeholder="Nitrogen soil initial" value="30" disabled />
                   </div>
                   <div class="col-md-2">
                     <label for="Nc_end" class="form-label" title="Nitrogen soil end">
                       Soil N end (kgN/ha)</label>
                     <input type="number" class="form-control" id="Nc_end" name="soil[Nc_end]" min="0"
-                      placeholder="Nitrogen soil end" value="20" />
+                      placeholder="Nitrogen soil end" value="20" disabled />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <label for="Pc_s" class="form-label" title="Pc_s">
+                      P (ppm)</label>
+                    <input type="number" class="form-control" id="Pc_s" name="soil[Pc_s]" min="0"
+                      placeholder="P" value="9" disabled />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="Pc_method" class="form-label">P method</label>
+                    <select class="form-select" id="Pc_method" name="soil[Pc_method]" disabled>
+                      <option value="olsen">Olsen</option>
+                      <option value="ammoniumLactate">Ammonium lactate</option>
+                      <option value="mehlichIII">Mehlich III</option>
+                      <option value="bray">Bray</option>
+                      <option value="amoniumAcetate+EDTA">Ammonium acetate + EDTA</option>
+                      <option value="calciumLactate">Calcium lactate</option>
+                      <option value="calciumLactateAcetate">Calcium lactate acetate</option>
+                      <option value="paperStrip">Paper strip</option>
+                      <option value="acidAmmoniumAcetate">Acid ammonium acetate</option>
+                      <option value="H2O">H2O</option>
+                      <option value="saturatedWater">saturated water</option>
+                      <option value="CaCl2">Ca Cl2</option> 
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid method of soil P analysis
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="Kc_s" class="form-label" title="Kc_s">
+                      K (ppm)</label>
+                    <input type="number" class="form-control" id="Kc_s" name="soil[Kc_s]" min="0"
+                      placeholder="K" value="100" disabled />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="Kc_method" class="form-label">K method</label>
+                    <select class="form-select" id="Kc_method" name="soil[Kc_method]" disabled>
+                      <option value="0">Acetato de amonio</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid method of soil K analysis
+                    </div>
                   </div>
                 </div> 
                 <hr>
@@ -168,7 +244,7 @@
                   
                   <div class="col-md-3">
                     <label for="water_supply" class="form-label">Water supply</label>
-                    <select class="form-select" id="water_supply" name="plot[water_supply]">
+                    <select class="form-select" id="water_supply" name="plot[water_supply]" onchange="onChangeWaterSypply(this)">
                       <option value="0">Rainfed</option>
                       <option value="1">Irrigated</option>
                     </select>
@@ -179,7 +255,7 @@
 
                   <div class="col-md-3">
                     <label for="type_irrigated" class="form-label">Type Irrigated</label>
-                    <select class="form-select" id="type_irrigated" name="plot[type_irrigated]">
+                    <select class="form-select" id="type_irrigated" name="plot[type_irrigated]" disabled>
                       <option value="trickle">Trickle</option>
                       <option value="splinkler">Splinkler</option>
                       <option value="surface">Surface</option>
@@ -189,36 +265,51 @@
                     </div>
                   </div>
                   <div class="col-md-2">
+                    <label for="dose_irrigation" class="form-label" title="Dose Irrigation (m3/ha)">
+                      Dose Irrigation (m3/ha)</label>
+                    <input type="number" class="form-control" id="dose_irrigation" name="plot[dose_irrigation]" min="0"
+                      placeholder="Dose Irrigation" value="0" disabled />
+                  </div>
+                  <div class="col-md-2">
+                    <label for="Nc_NO3_water" class="form-label" title="Nc_NO3_water">
+                      Nc_NO3_water (ppm)</label>
+                    <input type="number" class="form-control" id="Nc_NO3_water" name="plot[Nc_NO3_water]" min="0"
+                      placeholder="Dose Irrigation" value="25" disabled />
+                  </div>
+                  <div class="col-md-3">
+                    <label for="climatic_zone" class="form-label">Climatic Zone</label>
+                    <select class="form-select" id="climatic_zone" name="plot[climatic_zone]" onchange="onChangeClimaticZone(this)">
+                      <option value="alpine">Alpine</option>
+                      <option value="atlantic">Atlantic</option>
+                      <option value="continental">Continental</option>
+                      <option value="northem">Northem</option>
+                      <option value="southem">Southem</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid method of Climatic Zone
+                    </div>
+                  </div>
+                  <div class="col-md-2">
                     <label for="rain_a" class="form-label" title="Annual rainfall">
                       Annual Rainfall (mm)</label>
                     <input type="number" class="form-control" id="rain_a" name="plot[rain_a]" min="0"
-                      placeholder="Annual rainfall" value="1000" />
+                      placeholder="Annual rainfall" value="0" disabled />
                   </div>
 
                   <div class="col-md-2">
                     <label for="rain_w" class="form-label" title="Total rainfall during autumn and winter">
                       Autumn-Winter Rainfall (mm)</label>
                     <input type="number" class="form-control" id="rain_w" name="plot[rain_w]" min="0"
-                      placeholder="Autumn & Winter Rainfall" value="600" />
+                      placeholder="Autumn & Winter Rainfall" value="600" disabled />
                   </div>
-                  <div class="col-md-2">
-                    <label for="dose_irrigation" class="form-label" title="Dose Irrigation (m3/ha)">
-                      Dose Irrigation (m3/ha)</label>
-                    <input type="number" class="form-control" id="dose_irrigation" name="plot[dose_irrigation]" min="0"
-                      placeholder="Dose Irrigation" value="0" />
-                  </div>
-                  <div class="col-md-2">
-                    <label for="Nc_NO3_water" class="form-label" title="Nc_NO3_water">
-                      Nc_NO3_water (ppm)</label>
-                    <input type="number" class="form-control" id="Nc_NO3_water" name="plot[Nc_NO3_water]" min="0"
-                      placeholder="Dose Irrigation" value="25" />
-                  </div>
+                 
+                  
                 </div>
                 <hr>
                 <div class="row">
                   <div class="col-md-3">
-                    <label for="type_fmanure" class="form-label">Type Fert. manure</label>
-                    <select class="form-select" id="type_fmanure" name="fertilization[type_fmanure]" disabled>
+                    <label for="type_fmanure" class="form-label">Organic Fertilizer</label>
+                    <select class="form-select" id="type_fmanure" name="fertilization[type_fmanure]">
                      
                     </select>
                     <div class="invalid-feedback">
@@ -236,14 +327,14 @@
                   <div class="col-md-2">
                     <label for="fert_Nc_DM" class="form-label" title="Nc DM amendment">
                       Nc DM amendment (%)</label>
-                    <input type="number" class="form-control" id="fert_Nc_DM" name="fertilization[Nc_DM]" min="0"
-                      placeholder="Nc DM amendment (%)" value="0.99" />
+                    <input type="number" class="form-control" id="fert_Nc_DM" name="fertilization[Nc_DM]" min="0" step="0.01"
+                      placeholder="Nc DM amendment (%)" value="0.99" disabled />
                   </div>
                   <div class="col-md-2">
                     <label for="fert_DM_amendment" class="form-label" title="DM_amendment">
                       DM_amendment (%)</label>
                     <input type="number" class="form-control" id="fert_Nc_dm_amendment" name="fertilization[DM_amendment]" min="0"
-                      placeholder="DM amendment (%)" value="20" />
+                      placeholder="DM amendment (%)" value="20" disabled />
                   </div>
                   <div class="col-md-2">
                     <label for="fert_frec_application" class="form-label" title="Frec. Application">
@@ -261,12 +352,14 @@
                         <option value="beginning">Beginning</option>
                       </select>
                   </div>
+                  <!--
                   <div class="col-md-2">
                     <label for="fert_type_f" class="form-label" title="Type of fertilizer">
                       Type of fertilizer</label>
                       <select class="form-select" id="fert_type_f" name="fertilization[type_f]">
                       </select>
                   </div>
+                -->
                 </div>
                 
                 <div class="row">
@@ -498,7 +591,7 @@
 
       <div class="row d-none" id="stepLaunch">
         <div class="col-12 text-center">
-          <button type="button" class="btn btn-primary btn-lg" id="btnLaunchF3" disabled>
+          <button type="button" class="btn btn-primary btn-lg" id="btnLaunchF3">
             <i class="fa fa-play"></i> Launch NPK data
           </button>
         </div>

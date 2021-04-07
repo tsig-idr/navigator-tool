@@ -21,6 +21,21 @@ module.exports = function () {
 		return fertilizers;
 	}
 
+	function getOrganic (names, but_names) {
+
+		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
+		fertilizers = fertilizers.filter(fertilizer => fertilizer.clasification == 'organic');
+		names && but_names &&
+			(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.fertilizerID) && !but_names.includes(fertilizer.fertilizerID)))
+		|| 
+			names && 
+				(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.fertilizerID)))
+			||
+				but_names && 
+					(fertilizers = fertilizers.filter(fertilizer => !but_names.includes(fertilizer.fertilizerID)));
+		return fertilizers;
+	}
+
 	function getFertilizerID (fertilizerID) {
 
 		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
@@ -109,6 +124,7 @@ module.exports = function () {
 	return {
 		get: get,
 		getFertilizerID: getFertilizerID,
+		getOrganic: getOrganic,
 		bestCombination: bestCombination,
 		aggregate: aggregate
 	}

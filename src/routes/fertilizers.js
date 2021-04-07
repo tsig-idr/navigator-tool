@@ -6,7 +6,7 @@ const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')()
 
 module.exports = function () {
 
-	router.get('/', asyncHandler(async (req, res) => {
+	router.get('/all', asyncHandler(async (req, res) => {
 		
 		const names = typeof req.query.names === 'string' && req.query.names.split(',');
 		res.json({
@@ -14,11 +14,19 @@ module.exports = function () {
 		});
 	}));
 
-	router.get('/:fertilizerID', asyncHandler(async (req, res) => {
+	router.get('/fertilizer/:fertilizerID', asyncHandler(async (req, res) => {
 		
 		const fertilizerID = req.params.fertilizerID || req.query.fertilizerID; 
 		res.json({
 			results: navBestFertiCtrl.getFertilizerID(fertilizerID)
+		});
+	}));
+
+	router.get('/organics', asyncHandler(async (req, res) => {
+		
+		const names = typeof req.query.names === 'string' && req.query.names.split(',');
+		res.json({
+			results: navBestFertiCtrl.getOrganic(names, false)
 		});
 	}));
 

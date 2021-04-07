@@ -20,12 +20,15 @@ module.exports = function () {
 	const dataDesnitrifications = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', desnitrificationPath ), 'utf8'));
 
 
-	async function Nrequeriments(params){
+	async function NPKrequeriments(params){
 
+		const result = [];
 		const cropInput = params.crops[0]; //L3 only supports one crop  
 		const soilInput = params.soil;
 		const plotInput = params.plot;
 		let fertilizationInput = params.fertilization;
+
+		
 
 		const cropObj = dataCrops.find(crop => crop.cropID === cropInput.cropID);
 
@@ -33,21 +36,42 @@ module.exports = function () {
 		const soilTextureObj =  dataParams.soil_textures.find(e => e.soil_texture == soilInput.soil_texture);
 		const climateZoneObj =  dataParams.climate_zones.find(e => e.climate_zone == plotInput.climatic_zone);
 
+		cropInput.PK_strategy = (cropInput.PK_strategy) || dataParams.PKstrategies[0].key;
+
 		const Nc_h = (cropInput.Nc_h) || cropObj.harvest.Nc_h_typn;
 		const Nc_r = (cropInput.Nc_r) || cropObj.residues.Nc_r_typn;
+		const Pc_h = (cropInput.Pc_h) || cropObj.harvest.Pc_h || 0;
+		const Pc_r = (cropInput.Pc_r) || cropObj.residues.Pc_r || 0;
+		const Pc_s = (soilInput.Pc_s) || soilTextureObj.Pc_s_thres.Pc_s_thres_avg || 0;
+		const Kc_h = (cropInput.Kc_h) || cropObj.harvest.Kc_h || 0;
+		const Kc_r = (cropInput.Kc_r) || cropObj.residues.Kc_r || 0;
+		const Kc_s = (soilInput.Kc_s) || soilTextureObj.Kc_s_thres.Kc_s_thres_avg || 0;
+		const export_r = (cropInput.export_r) || 100;
+
 		const HI_est = (cropInput.HI_est) || cropObj.harvest.HI_est;
 		const DM_h = (cropInput.DM_h) || cropObj.harvest.DM_h;
 		const CV = (cropInput.CV) || cropObj.CV;
 		const pH = (soilInput.pH) || 2;
-		const CEC = (soilInput.CEC) || soilTextureObj.CEC;
+		const CEC = (soilInput.CEC) || soilTextureObj.CEC || 0;
 		const SOM = (soilInput.SOM) || 0;
 		const depth_s = (soilInput.depth_s) || dataParams.default_parameters.depth_s;
 		const Nmin_h = (soilInput.Nmin_h) || dataParams.default_parameters.Nc_end;
+		const Pc_method = (soilInput.Pc_method) || dataParams.P_methods[0].key;
 
 		const dose_irrigation = (plotInput.dose_irrigation) || dataParams.default_parameters.dose_irrigation; 
 		const Nc_NO3_water = (plotInput.Nc_NO3_water) || dataParams.default_parameters.Nc_NO3_water; 
 		const Nc_s_initial = (soilInput.Nc_s_initial) || dataParams.default_parameters.Nc_s_initial;
 		const water_supply = (plotInput.water_supply == 1 || plotInput.water_supply == 'on') ? 1: 0;
+
+		const drain_rate = soilTextureObj.drain_rate;
+		const Pc_s_thres_min = soilTextureObj.Pc_s_thres.Pc_s_thres_min;
+		const Pc_s_thres_max = soilTextureObj.Pc_s_thres.Pc_s_thres_max;
+		const Kc_s_thres_min = soilTextureObj.Kc_s_thres.Kc_s_thres_min;
+		const Kc_s_thres_max = soilTextureObj.Kc_s_thres.Kc_s_thres_max;
+		const fk = soilTextureObj.fk.fk_avg;
+		const density_s = (soilTextureObj.density.density_avg) || 0;
+
+		
 
 		fertilizationInput.DM_amendment = (fertilizationInput.DM_amendment) || dataParams.default_parameters.fert_DM_amendment;
 		fertilizationInput.Nc_DM = (fertilizationInput.Nc_DM) || dataParams.default_parameters.fert_Nc_DM_amendment;
@@ -63,6 +87,8 @@ module.exports = function () {
 		const NminInitial = _NminInitial(soilInput.Nc_s_initial);
 
 		const NInputTerms = Nmineralization + Nfixation[0] + Nwater + NminInitial;
+		const NInputTerms_min = Nmineralization + Nfixation[2] + Nwater + NminInitial;
+		const NInputTerms_max = Nmineralization + Nfixation[8] + Nwater + NminInitial;
 
 		//Output terms: Leaching + Uptake + Desnitrification + Nmin postharvest + Volatilization
 
@@ -70,7 +96,7 @@ module.exports = function () {
 		/*array*/
 		const Nuptake = await _Nuptake(cropInput.yield, Nc_h, Nc_r, HI_est, DM_h, CV);
 
-		const NdesnitrificationObj = await _Ndesnitrification (soilInput.case, SOM, plotInput.water_supply, plotInput.drain_rate);
+		const NdesnitrificationObj = await _Ndesnitrification (soilInput.case, SOM, plotInput.water_supply, drain_rate);
 		const Ndesnitrification = (NdesnitrificationObj) ? NdesnitrificationObj.desnitrification : 0;
 		
 		const NminPostharvest = _NminPostharvest(Nmin_h);
@@ -78,12 +104,129 @@ module.exports = function () {
 		const Nvolatilization = await _Nvolatilization (water_supply, fertilizationInput.application_method, fertilizationInput.fertilizerID, pH, CEC);
 
 		const NOutputTerms = Nleaching + Nuptake[0] + Ndesnitrification + NminPostharvest + Nvolatilization;
+		const NOutputTerms_min = Nleaching + Nuptake[2] + Ndesnitrification + NminPostharvest + Nvolatilization;
+		const NOutputTerms_max = Nleaching + Nuptake[8] + Ndesnitrification + NminPostharvest + Nvolatilization;
 
 		const Nc_crop = NOutputTerms - NInputTerms;
+		const Nc_crop_min = NOutputTerms_min - NInputTerms_min;
+		const Nc_crop_max = NOutputTerms_max - NInputTerms_max;
 
-		return Nc_crop;
+		
+		//P:
+		const Prequirements = await _Prequeriments(cropInput.yield, HI_est, DM_h, CV, Pc_h, Pc_r, Pc_s, Pc_method, Pc_s_thres_min, Pc_s_thres_max, density_s, depth_s, export_r );
+		const Krequirements = await _Krequeriments(cropInput.yield, HI_est, DM_h, CV, Kc_h, Kc_r, Kc_s, Kc_s_thres_min, Kc_s_thres_max, density_s, depth_s, export_r, fk);
+	
+		result.push({
+			"cropID": cropObj.cropID,
+			"crop_name": cropObj.crop_name,
+			"crop_latin_name": cropObj.crop_latin_name,
+			"crop_type": cropObj.crop_type,
+			"yield": cropInput.yield,
+			"Ncf_min": Nc_crop_min,
+			"Ncf_max": Nc_crop_max,
+			"Ncf_avg": Nc_crop,
+			"Pcf": Prequirements[cropInput.PK_strategy],
+			"Kcf": Krequirements[cropInput.PK_strategy],
+			//"Kcf": x.Kcf
+		});
+		
+		return result;
+		
 
 	}
+
+
+	async function _Prequeriments(yield, HI_est, DM_h, CV, Pc_h, Pc_r, Pc_s, P_method, Pc_s_thres_min, Pc_s_thres_max, density_s, depth_s, export_r){
+		
+		const P_methodObj = await getPhosphorusMethod(P_method);
+		const Pc_soil = Pc_s*P_methodObj.value;
+		
+		const t_levels =  dataParams.default_parameters.t_levels;
+		const fmc_r = dataParams.default_parameters.fmc_r;
+
+		const h_dm_med = yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
+		const r_dm_med = h_dm_med*(1-(HI_est/100))/(HI_est/100);
+
+		const STL_STLt_min = (Pc_s<Pc_s_thres_min) ? 1: 0;
+		const STL_2_STLt_min = (Pc_s>2*Pc_s_thres_min) ? 0.5: 1;
+
+		const STL_STLt_max = (Pc_s<Pc_s_thres_max) ? 1: 0;
+		const STL_2_STLt_max = (Pc_s>2*Pc_s_thres_max) ? 0.5: 1;
+
+		const P_exported = h_dm_med*(Pc_h/100)+r_dm_med*(1-fmc_r)*(Pc_r/100)*(export_r/100);
+		
+		const P_crop_p_min = P_exported*STL_2_STLt_min+10*density_s*depth_s*(Pc_s_thres_min-Pc_s)*STL_STLt_min;
+		const P_crop_p_max = P_exported*STL_2_STLt_max+10*density_s*depth_s*(Pc_s_thres_max-Pc_s)*STL_STLt_max;
+		
+		let P_nyears_min = 1;
+		if(P_crop_p_min>dataParams.default_parameters.P_crop_max){
+			P_nyears_min =  Math.ceil(P_crop_p_min/ dataParams.default_parameters.P_crop_max);
+		}
+
+		let P_nyears_max = 1;
+		if(P_crop_p_max > dataParams.default_parameters.P_crop_max) {
+			P_nyears_max = Math.ceil(P_crop_p_max/ dataParams.default_parameters.P_crop_max);
+		}
+
+		const P_strategy_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min-Pc_s)*STL_STLt_min/P_nyears_min;
+		const P_BandM_minimum = (P_exported*STL_2_STLt_min+10*density_s*depth_s*(Pc_s_thres_min-Pc_s)*STL_STLt_min)/P_nyears_min;
+		const P_BandM_maximum = (P_exported*STL_2_STLt_max+10*density_s*depth_s*(Pc_s_thres_max-Pc_s)*STL_STLt_max)/P_nyears_max;
+		const P_Maintenance = P_exported;
+
+		return {
+			"sufficiency": P_strategy_sufficiency,
+			"minimum-fertilizer": P_BandM_minimum,
+			"maximum-yield": P_BandM_maximum,
+			"maintenance": P_Maintenance
+		}
+
+	}
+
+
+	async function _Krequeriments(yield, HI_est, DM_h, CV, Kc_h, Kc_r, Kc_s, Kc_s_thres_min, Kc_s_thres_max, density_s, depth_s, export_r, fk){
+		
+		const t_levels =  dataParams.default_parameters.t_levels;
+		const fmc_r = dataParams.default_parameters.fmc_r;
+
+		const h_dm_med = yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
+		const r_dm_med = h_dm_med*(1-(HI_est/100))/(HI_est/100);
+		
+		const STL_STLt_min = (Kc_s<Kc_s_thres_min) ? 1: 0;
+		const STL_2_STLt_min = (Kc_s>2*Kc_s_thres_min) ? 0.5: 1;
+
+		const STL_STLt_max = (Kc_s<Kc_s_thres_max) ? 1: 0;
+		const STL_2_STLt_max = (Kc_s>2*Kc_s_thres_max) ? 0.5: 1;
+
+		const K_exported = h_dm_med*(Kc_h/100)+r_dm_med*(1-fmc_r)*(Kc_r/100)*(export_r/100);
+		
+		const K_crop_p_min = K_exported*STL_2_STLt_min+10*density_s*depth_s*(Kc_s_thres_min-Kc_s)*fk*STL_STLt_min;
+		const K_crop_p_max = K_exported*STL_2_STLt_max+10*density_s*depth_s*(Kc_s_thres_max-Kc_s)*fk*STL_STLt_max;
+
+		let K_nyears_min = 1;
+		if(K_crop_p_min>dataParams.default_parameters.K_crop_max){
+			K_nyears_min =  Math.ceil(K_crop_p_min/ dataParams.default_parameters.K_crop_max);
+		}
+
+		let K_nyears_max = 1;
+		if(K_crop_p_max > dataParams.default_parameters.K_crop_max) {
+			K_nyears_max = Math.ceil(K_crop_p_max/ dataParams.default_parameters.K_crop_max);
+		}
+
+		const K_strategy_sufficiency = 10*density_s*depth_s*(Kc_s_thres_min-Kc_s)*STL_STLt_min/K_nyears_min;
+		const K_BandM_minimum = (K_exported*STL_2_STLt_min+10*density_s*depth_s*(Kc_s_thres_min-Kc_s)*fk*STL_STLt_min)/K_nyears_min;
+		const K_BandM_maximum = (K_exported*STL_2_STLt_max+10*density_s*depth_s*(Kc_s_thres_max-Kc_s)*fk*STL_STLt_max)/K_nyears_max;
+		const K_Maintenance = K_exported;
+
+		return {
+			"sufficiency": K_strategy_sufficiency,
+			"minimum-fertilizer": K_BandM_minimum,
+			"maximum-yield": K_BandM_maximum,
+			"maintenance": K_Maintenance
+		}
+	}
+	
+
+
 
 	//Input terms: Nmineralization + Nfixation+ Nwater + NminInitial
 
@@ -202,7 +345,7 @@ module.exports = function () {
 		depth_s = (depth_s) || dataParams.default_parameters.depth_s;
 		Nc_s_initial = (Nc_s_initial) || dataParams.default_parameters.Nc_s_initial;
 
-		const Nc_leached = (Nc_s_initial*(1-Math.exp(-LI/(depth_s*vol_water_s))));
+		const Nc_leached = (Nc_s_initial*(1-Math.exp(-LI/(depth_s*1000*vol_water_s))));
 
 		return Nc_leached;
 
@@ -342,13 +485,33 @@ module.exports = function () {
 		dataFertilizers.find(element => element.clasification === clasification);
 	}
 
+	async function getClimaticZones(){
+		return  dataParams.climate_zones;
+	}
+
+	async function getClimaticZone(climate_zone){
+		return  dataParams.climate_zones.find(element => element.climate_zone === climate_zone);
+	}
+
+	async function getPhosphorusMethods(){
+		return  dataParams.P_methods;
+	}
+
+	async function getPhosphorusMethod(key){
+		return  dataParams.P_methods.find(element => element.key === key);
+	}
+
 
 
     return {
-		Nrequeriments : Nrequeriments,
+		NPKrequeriments : NPKrequeriments,
 		getSoilTextures: getSoilTextures,
 		getSoilTexture: getSoilTexture,
-		getFertilizersByClafication: getFertilizersByClafication
+		getFertilizersByClafication: getFertilizersByClafication,
+		getClimaticZones: getClimaticZones,
+		getClimaticZone: getClimaticZone,
+		getPhosphorusMethods: getPhosphorusMethods,
+		getPhosphorusMethod: getPhosphorusMethod
 
 	}
 }
