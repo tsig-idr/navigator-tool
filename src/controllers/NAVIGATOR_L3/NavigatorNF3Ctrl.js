@@ -153,7 +153,7 @@ module.exports = function () {
 	}
 
 
-	async function _Prequeriments(yield, HI_est, DM_h, CV, Pc_h, Pc_r, Pc_s, P_method, Pc_s_thres_min, Pc_s_thres_max, density_s, depth_s, export_r){
+	async function _Prequeriments(_yield, HI_est, DM_h, CV, Pc_h, Pc_r, Pc_s, P_method, Pc_s_thres_min, Pc_s_thres_max, density_s, depth_s, export_r){
 		
 		const P_methodObj = await getPhosphorusMethod(P_method);
 		const Pc_soil = Pc_s*P_methodObj.value;
@@ -161,7 +161,7 @@ module.exports = function () {
 		const t_levels =  dataParams.default_parameters.t_levels;
 		const fmc_r = dataParams.default_parameters.fmc_r;
 
-		const h_dm_med = yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
+		const h_dm_med = _yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
 		const r_dm_med = h_dm_med*(1-(HI_est/100))/(HI_est/100);
 
 		const STL_STLt_min = (Pc_s<Pc_s_thres_min) ? 1: 0;
@@ -200,12 +200,12 @@ module.exports = function () {
 	}
 
 
-	async function _Krequeriments(yield, HI_est, DM_h, CV, Kc_h, Kc_r, Kc_s, Kc_s_thres_min, Kc_s_thres_max, density_s, depth_s, export_r, fk){
+	async function _Krequeriments(_yield, HI_est, DM_h, CV, Kc_h, Kc_r, Kc_s, Kc_s_thres_min, Kc_s_thres_max, density_s, depth_s, export_r, fk){
 		
 		const t_levels =  dataParams.default_parameters.t_levels;
 		const fmc_r = dataParams.default_parameters.fmc_r;
 
-		const h_dm_med = yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
+		const h_dm_med = _yield * (DM_h/100) * (1 + (CV/100)*t_levels[0]);
 		const r_dm_med = h_dm_med*(1-(HI_est/100))/(HI_est/100);
 		
 		const STL_STLt_min = (Kc_s<Kc_s_thres_min) ? 1: 0;
@@ -285,7 +285,7 @@ module.exports = function () {
 		return Nc_mineralization_amendment + Nc_mineralization_SOM;
 	}
 
-	async function _Nfixation(cropObj, yield, CV, SOM){
+	async function _Nfixation(cropObj, _yield, CV, SOM){
 
 		const t_levels =  dataParams.default_parameters.t_levels;
 		const fnr = dataParams.default_parameters.Nc_fnr;
@@ -306,7 +306,7 @@ module.exports = function () {
 
 		for(var i_prob=0; i_prob< t_levels.length; i_prob++){
 
-			const y_dm = DM_h * (yield*(1+ (CV/100)*t_levels[i_prob]));
+			const y_dm = DM_h * (_yield*(1+ (CV/100)*t_levels[i_prob]));
 			const r_dm = (y_dm*(1-HI_est))/HI_est;
 			const N_res = r_dm * Nc_r;
 			const N_yield = y_dm*Nc_h;
@@ -370,7 +370,7 @@ module.exports = function () {
 	}
 
 
-	function _Nuptake(yield, Nc_h, Nc_r, HI_est, DM_h, CV){
+	function _Nuptake(_yield, Nc_h, Nc_r, HI_est, DM_h, CV){
 
 
 		const t_i = dataParams.default_parameters.t_levels;
@@ -384,7 +384,7 @@ module.exports = function () {
 		Nc_r = Nc_r/100;
 
 		for(var i_prob=0; i_prob< t_i.length; i_prob++){
-			const h_dm_med = yield*DM_h*(1+CV*t_i[i_prob]);
+			const h_dm_med = _yield*DM_h*(1+CV*t_i[i_prob]);
 			const r_dm_med = h_dm_med*(1 - HI_est)/HI_est;
 			Nc_up_h[i_prob] = (h_dm_med*Nc_h+r_dm_med*Nc_r) * (1 + fnr);
 		}
