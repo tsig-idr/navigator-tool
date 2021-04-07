@@ -273,13 +273,35 @@ function _loadSelectOrganicFertilizers(){
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
       row.insertCell(2).innerHTML = dataRow.yield;
-      //row.insertCell(3).innerHTML = dataRow.Ncf_min.toFixed(3);
-      //row.insertCell(4).innerHTML = dataRow.Ncf_max.toFixed(3);
       row.insertCell(3).innerHTML = (dataRow.Ncf_avg)  ? dataRow.Ncf_avg.toFixed(3) : '-';
       row.insertCell(4).innerHTML = (dataRow.Pcf)  ? dataRow.Pcf.toFixed(3) : '-';
       row.insertCell(5).innerHTML = (dataRow.Kcf)  ? dataRow.Kcf.toFixed(3) : '-';
       row.insertCell(6).innerHTML = (dataRow.P205cf)  ? dataRow.P205cf.toFixed(3) : '-';
       row.insertCell(7).innerHTML = (dataRow.K2Ocf)  ? dataRow.K2Ocf.toFixed(3) : '-';
+
+      
+    }
+  }
+
+  function _createTableBalanceIO(tblBody, data){
+    tblBody.innerHTML = '';
+    // cells creation
+    for (var j = 0; j < data.results.length; j++) {
+      var dataRow = data.results[j];
+      // table row creation
+      var row = tblBody.insertRow(j);
+      var cropname=  '<span title="' +  dataRow.cropID + '">' +  dataRow.crop_name + '</span>';
+      row.insertCell(0).innerHTML = j +1;
+      row.insertCell(1).innerHTML = cropname;
+      row.insertCell(2).innerHTML = (dataRow.Ninputs_terms.Nmineralization) ? dataRow.Ninputs_terms.Nmineralization.toFixed(2) : '0' ;
+      row.insertCell(3).innerHTML = (dataRow.Ninputs_terms.Nfixation)  ? dataRow.Ninputs_terms.Nfixation.toFixed(2) : '0';
+      row.insertCell(4).innerHTML = (dataRow.Ninputs_terms.Nwater)  ? dataRow.Ninputs_terms.Nwater.toFixed(2) : '0';
+      row.insertCell(5).innerHTML = (dataRow.Ninputs_terms.NminInitial)  ? dataRow.Ninputs_terms.NminInitial.toFixed(2) : '0';
+      row.insertCell(6).innerHTML = (dataRow.Noutputs_terms.Nleaching)  ? dataRow.Noutputs_terms.Nleaching.toFixed(2) : '0';
+      row.insertCell(7).innerHTML = (dataRow.Noutputs_terms.Nuptake)  ? dataRow.Noutputs_terms.Nuptake.toFixed(2) : '0';
+      row.insertCell(8).innerHTML = (dataRow.Noutputs_terms.Ndesnitrification)  ? dataRow.Noutputs_terms.Ndesnitrification.toFixed(2) : '0';
+      row.insertCell(9).innerHTML = (dataRow.Noutputs_terms.NminPostharvest)  ? dataRow.Noutputs_terms.NminPostharvest.toFixed(2) : '0';
+      row.insertCell(10).innerHTML = (dataRow.Noutputs_terms.Nvolatilization)  ? dataRow.Noutputs_terms.Nvolatilization.toFixed(2) : '0';
     }
   }
 
@@ -303,10 +325,10 @@ function _loadSelectOrganicFertilizers(){
       row.insertCell(5).innerHTML = (dataRow.nutrient_requirements.Kcf)  ? dataRow.nutrient_requirements.Kcf.toFixed(3) : '0';
       row.insertCell(6).innerHTML = (dataRow.nutrient_requirements.P205cf)  ? dataRow.nutrient_requirements.P205cf.toFixed(3) : '0';
       row.insertCell(7).innerHTML = (dataRow.nutrient_requirements.K2Ocf)  ? dataRow.nutrient_requirements.K2Ocf.toFixed(3) : '0';
-
-
+    }
   }
-}
+
+
 
 
 
@@ -624,6 +646,7 @@ function _loadSelectOrganicFertilizers(){
     }).then(function (data) {
       nf3.results.nutrient_requirements = data.results;
       _createTableNPKrequirementsResults(document.querySelector('#tableNPKrequirements tbody'), data);
+      _createTableBalanceIO(document.querySelector('#tableBalanceIO tbody'), data)
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
     });
@@ -727,9 +750,11 @@ function _loadSelectOrganicFertilizers(){
       var element =  document.getElementById('NPKresults');
       var element2 =  document.getElementById('step2');
       var element3 =  document.getElementById('stepLaunch');
+      var element4 =  document.getElementById('NBalanceInputsOutputs');
       element.classList.remove("d-none");
       element2.classList.remove("d-none");
       element3.classList.remove("d-none");
+      element4.classList.remove("d-none");
      _sendFormNPKRequirementsF3();
     }
        

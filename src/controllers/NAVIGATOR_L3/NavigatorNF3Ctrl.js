@@ -127,6 +127,23 @@ module.exports = function () {
 			"Ncf_avg": Nc_crop,
 			"Pcf": Prequirements[cropInput.PK_strategy],
 			"Kcf": Krequirements[cropInput.PK_strategy],
+			"Ninputs_terms": {
+				"Nmineralization": Nmineralization,
+				"Nfixation": Nfixation[0],
+				"Nfixation_min": Nfixation[2],
+				"Nfixation_max": Nfixation[8],
+				"Nwater": Nwater,
+				"NminInitial": NminInitial
+			},
+			"Noutputs_terms": {
+				"Nleaching": Nleaching,
+				"Nuptake" : Nuptake[0],
+				"Nuptake_min": Nuptake[2],
+				"Nuptake_max": Nuptake[8],
+				"Ndesnitrification": Ndesnitrification,
+				"NminPostharvest": NminPostharvest,
+				"Nvolatilization": Nvolatilization
+			}
 			//"Kcf": x.Kcf
 		});
 		
