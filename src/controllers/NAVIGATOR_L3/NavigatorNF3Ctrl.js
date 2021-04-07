@@ -38,8 +38,8 @@ module.exports = function () {
 
 		cropInput.PK_strategy = (cropInput.PK_strategy) || dataParams.PKstrategies[0].key;
 
-		const Nc_h = (cropInput.Nc_h) || cropObj.harvest.Nc_h_typn;
-		const Nc_r = (cropInput.Nc_r) || cropObj.residues.Nc_r_typn;
+		const Nc_h = (cropInput.Nc_h) || cropObj.harvest.Nc_h_typn || 0;
+		const Nc_r = (cropInput.Nc_r) || cropObj.residues.Nc_r_typn || 0;
 		const Pc_h = (cropInput.Pc_h) || cropObj.harvest.Pc_h || 0;
 		const Pc_r = (cropInput.Pc_r) || cropObj.residues.Pc_r || 0;
 		const Pc_s = (soilInput.Pc_s) || soilTextureObj.Pc_s_thres.Pc_s_thres_avg || 0;
@@ -48,9 +48,9 @@ module.exports = function () {
 		const Kc_s = (soilInput.Kc_s) || soilTextureObj.Kc_s_thres.Kc_s_thres_avg || 0;
 		const export_r = (cropInput.export_r) || 100;
 
-		const HI_est = (cropInput.HI_est) || cropObj.harvest.HI_est;
-		const DM_h = (cropInput.DM_h) || cropObj.harvest.DM_h;
-		const CV = (cropInput.CV) || cropObj.CV;
+		const HI_est = (cropInput.HI_est) || cropObj.harvest.HI_est || 100;
+		const DM_h = (cropInput.DM_h) || cropObj.harvest.DM_h || 0;
+		const CV = (cropInput.CV) || cropObj.CV || 20;
 		const pH = (soilInput.pH) || 2;
 		const CEC = (soilInput.CEC) || soilTextureObj.CEC || 0;
 		const SOM = (soilInput.SOM) || 0;
