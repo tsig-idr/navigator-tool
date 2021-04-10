@@ -45,7 +45,7 @@ var nf3 = {
       "fertilizers" : [],
     },
     "results": {
-      "nutrient_requirements": [], // Resultados de necesidades
+      "crops": [], 
       "total_nutrients" : {}
     }
 };
@@ -89,6 +89,41 @@ function _loadSelectCrops(){
   });
 }
 
+function _loadSelectFertilizers(){
+  fetch('/fertilizers/all').then(function (response) {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(response);
+  }).then(function (data) {
+    var combo = document.getElementsByName("fertilizers[0][fertilizerID]")[0];
+
+    const groups = data.results.reduce((groups, item) => {
+      const group = (groups[item.clasification] || []);
+      group.push(item);
+      groups[item.clasification] = group;
+      return groups;
+    }, {});
+
+    Object.keys(groups).forEach(key => {
+      var optgroup = document.createElement("optgroup");
+      optgroup.setAttribute("label",key+":");
+      var groupList = groups[key];
+      for(var j=0; j<groupList.length; j++){
+        var elem = groupList[j];
+        var option = document.createElement("option");
+        option.appendChild( document.createTextNode(elem.fertilizer_name) );
+        // set value property of opt
+        option.value = elem.fertilizerID; 
+        optgroup.appendChild(option); 
+      }
+      combo.appendChild(optgroup); 
+    });
+
+  }).catch(function (error) {
+    console.warn('Something went wrong.', error);
+  });
+}
 
 /*
 * Cargador de datos combo de Tipos de suelo
@@ -141,6 +176,7 @@ function _loadSelectFertilizerType(){
   });
 }
 
+/*
 function _loadSelectFertilizers(){
   fetch('/fertilizers/all').then(function (response) {
     if (response.ok) {
@@ -164,6 +200,7 @@ function _loadSelectFertilizers(){
     console.warn('Something went wrong _loadSelectFertilizers.', error);
   });
 }
+*/
 
 function _loadSelectOrganicFertilizers(){
   fetch('/fertilizers/organics').then(function (response) {
@@ -265,19 +302,22 @@ function _loadSelectOrganicFertilizers(){
     //var tblBody = document.querySelector('#tableNPKrequirements tbody');
     tblBody.innerHTML = '';
     // cells creation
-    for (var j = 0; j < data.results.length; j++) {
-      var dataRow = data.results[j];
+    for (var j = 0; j < data.length; j++) {
+      var dataRow = data[j];
+      var dataNPKRow = dataRow.nutrient_requirements;
       // table row creation
       var row = tblBody.insertRow(j);
       var cropname=  '<span title="' +  dataRow.cropID + '">' +  dataRow.crop_name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
       row.insertCell(2).innerHTML = dataRow.yield;
-      row.insertCell(3).innerHTML = (dataRow.Ncf_avg)  ? dataRow.Ncf_avg.toFixed(3) : '-';
-      row.insertCell(4).innerHTML = (dataRow.Pcf)  ? dataRow.Pcf.toFixed(3) : '-';
-      row.insertCell(5).innerHTML = (dataRow.Kcf)  ? dataRow.Kcf.toFixed(3) : '-';
-      row.insertCell(6).innerHTML = (dataRow.P205cf)  ? dataRow.P205cf.toFixed(3) : '-';
-      row.insertCell(7).innerHTML = (dataRow.K2Ocf)  ? dataRow.K2Ocf.toFixed(3) : '-';
+      row.insertCell(3).innerHTML = (dataNPKRow.Ncf_avg)  ?  Math.round(dataNPKRow.Ncf_avg) : '-';
+      row.insertCell(4).innerHTML = (dataNPKRow.Ncf_min)  ? Math.round(dataNPKRow.Ncf_min) : '-';
+      row.insertCell(5).innerHTML = (dataNPKRow.Ncf_max)  ?  Math.round(dataNPKRow.Ncf_max) : '-';
+      row.insertCell(6).innerHTML = (dataNPKRow.Pcf)  ?  Math.round(dataNPKRow.Pcf) : '-';
+      row.insertCell(7).innerHTML = (dataNPKRow.Kcf)  ?  Math.round(dataNPKRow.Kcf) : '-';
+      row.insertCell(8).innerHTML = (dataNPKRow.P205cf)  ?  Math.round(dataNPKRow.P205cf) : '-';
+      row.insertCell(9).innerHTML = (dataNPKRow.K2Ocf)  ?  Math.round(dataNPKRow.K2Ocf) : '-';
 
       
     }
@@ -288,20 +328,21 @@ function _loadSelectOrganicFertilizers(){
     // cells creation
     for (var j = 0; j < data.results.length; j++) {
       var dataRow = data.results[j];
+      var dataNPKRow = dataRow.nutrient_requirements;
       // table row creation
       var row = tblBody.insertRow(j);
       var cropname=  '<span title="' +  dataRow.cropID + '">' +  dataRow.crop_name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
-      row.insertCell(2).innerHTML = (dataRow.Ninputs_terms.Nmineralization) ? dataRow.Ninputs_terms.Nmineralization.toFixed(2) : '0' ;
-      row.insertCell(3).innerHTML = (dataRow.Ninputs_terms.Nfixation)  ? dataRow.Ninputs_terms.Nfixation.toFixed(2) : '0';
-      row.insertCell(4).innerHTML = (dataRow.Ninputs_terms.Nwater)  ? dataRow.Ninputs_terms.Nwater.toFixed(2) : '0';
-      row.insertCell(5).innerHTML = (dataRow.Ninputs_terms.NminInitial)  ? dataRow.Ninputs_terms.NminInitial.toFixed(2) : '0';
-      row.insertCell(6).innerHTML = (dataRow.Noutputs_terms.Nleaching)  ? dataRow.Noutputs_terms.Nleaching.toFixed(2) : '0';
-      row.insertCell(7).innerHTML = (dataRow.Noutputs_terms.Nuptake)  ? dataRow.Noutputs_terms.Nuptake.toFixed(2) : '0';
-      row.insertCell(8).innerHTML = (dataRow.Noutputs_terms.Ndesnitrification)  ? dataRow.Noutputs_terms.Ndesnitrification.toFixed(2) : '0';
-      row.insertCell(9).innerHTML = (dataRow.Noutputs_terms.NminPostharvest)  ? dataRow.Noutputs_terms.NminPostharvest.toFixed(2) : '0';
-      row.insertCell(10).innerHTML = (dataRow.Noutputs_terms.Nvolatilization)  ? dataRow.Noutputs_terms.Nvolatilization.toFixed(2) : '0';
+      row.insertCell(2).innerHTML = (dataNPKRow.Ninputs_terms.Nmineralization) ?  Math.round(dataNPKRow.Ninputs_terms.Nmineralization) : '0' ;
+      row.insertCell(3).innerHTML = (dataNPKRow.Ninputs_terms.Nfixation)  ?  Math.round(dataNPKRow.Ninputs_terms.Nfixation) : '0';
+      row.insertCell(4).innerHTML = (dataNPKRow.Ninputs_terms.Nwater)  ?  Math.round(dataNPKRow.Ninputs_terms.Nwater) : '0';
+      row.insertCell(5).innerHTML = (dataNPKRow.Ninputs_terms.NminInitial)  ?  Math.round(dataNPKRow.Ninputs_terms.NminInitial) : '0';
+      row.insertCell(6).innerHTML = (dataNPKRow.Noutputs_terms.Nleaching)  ?  Math.round(dataNPKRow.Noutputs_terms.Nleaching) : '0';
+      row.insertCell(7).innerHTML = (dataNPKRow.Noutputs_terms.Nuptake)  ?  Math.round(dataNPKRow.Noutputs_terms.Nuptake) : '0';
+      row.insertCell(8).innerHTML = (dataNPKRow.Noutputs_terms.Ndesnitrification)  ?  Math.round(dataNPKRow.Noutputs_terms.Ndesnitrification) : '0';
+      row.insertCell(9).innerHTML = (dataNPKRow.Noutputs_terms.NminPostharvest)  ?  Math.round(dataNPKRow.Noutputs_terms.NminPostharvest) : '0';
+      row.insertCell(10).innerHTML = (dataNPKRow.Noutputs_terms.Nvolatilization)  ?  Math.round(dataNPKRow.Noutputs_terms.Nvolatilization) : '0';
     }
   }
 
@@ -311,20 +352,22 @@ function _loadSelectOrganicFertilizers(){
     tblBody.innerHTML = '';
     // cells creation
 
-    for (var j = 0; j < nf3.results.length; j++) {
-      var dataRow = nf3.results[j]; //Crop data
-
+    for (var j = 0; j < nf3.results.crops.length; j++) {
+      var dataRow = nf3.results.crops[j]; //Crop data
+      var dataNPKRow = dataRow.nutrient_requirements;
       // table row creation
       var row = tblBody.insertRow(j);
       var cropname=  '<span title="' +  dataRow.cropID + '">' +  dataRow.crop_name + '</span>';
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
-      row.insertCell(2).innerHTML = dataRow.nutrient_requirements.yield;
-      row.insertCell(3).innerHTML = (dataRow.nutrient_requirements.Ncf_avg)  ? dataRow.nutrient_requirements.Ncf_avg.toFixed(3) : '0';
-      row.insertCell(4).innerHTML = (dataRow.nutrient_requirements.Pcf)  ? dataRow.nutrient_requirements.Pcf.toFixed(3) : '0';
-      row.insertCell(5).innerHTML = (dataRow.nutrient_requirements.Kcf)  ? dataRow.nutrient_requirements.Kcf.toFixed(3) : '0';
-      row.insertCell(6).innerHTML = (dataRow.nutrient_requirements.P205cf)  ? dataRow.nutrient_requirements.P205cf.toFixed(3) : '0';
-      row.insertCell(7).innerHTML = (dataRow.nutrient_requirements.K2Ocf)  ? dataRow.nutrient_requirements.K2Ocf.toFixed(3) : '0';
+      row.insertCell(2).innerHTML = dataRow.yield;
+      row.insertCell(3).innerHTML = (dataNPKRow.Ncf_min)  ?  Math.round(dataNPKRow.Ncf_min) : '0';
+      row.insertCell(4).innerHTML = (dataNPKRow.Ncf_max)  ?  Math.round(dataNPKRow.Ncf_max) : '0';
+      row.insertCell(5).innerHTML = (dataNPKRow.Ncf_avg)  ?  Math.round(dataNPKRow.Ncf_avg) : '0';
+      row.insertCell(6).innerHTML = (dataNPKRow.Pcf)  ?  Math.round(dataNPKRow.Pcf) : '0';
+      row.insertCell(7).innerHTML = (dataNPKRow.Kcf)  ?  Math.round(dataNPKRow.Kcf) : '0';
+      row.insertCell(8).innerHTML = (dataNPKRow.P205cf)  ?  Math.round(dataNPKRow.P205cf) : '0';
+      row.insertCell(9).innerHTML = (dataNPKRow.K2Ocf)  ?  Math.round(dataNPKRow.K2Ocf) : '0';
     }
   }
 
@@ -344,13 +387,14 @@ function _loadSelectOrganicFertilizers(){
 			K: 0,
 			S: 0,
 			N_ur: 0,
-			cost: 0
+			cost: 0,
+      vol: 0s
 		};
 
     // cells creation
     var num_row=0;
-    for (var j = 0; j < nf3.results.length; j++) {
-      var dataRow = nf3.results[j]; //Crop data
+    for (var j = 0; j < nf3.results.crops.length; j++) {
+      var dataRow = nf3.results.crops[j]; //Crop data
       
       for(var f = 0; f < dataRow.fertilization.length; f++){
         var dataRowFer = dataRow.fertilization[f];
@@ -361,13 +405,15 @@ function _loadSelectOrganicFertilizers(){
         row.insertCell(1).innerHTML = cropname;
         var fertilizername=  '<span title="' +  dataRowFer.fertilizerID + '">' +  dataRowFer.fertilizer_name + '</span>';
         row.insertCell(2).innerHTML = fertilizername;
-        row.insertCell(3).innerHTML = (dataRowFer.N)  ? dataRowFer.N.toFixed(3) : '0';
-        row.insertCell(4).innerHTML = (dataRowFer.N_ur)  ? dataRowFer.N_ur.toFixed(3) : '0';
-        row.insertCell(5).innerHTML = (dataRowFer.P)  ? dataRowFer.P.toFixed(3) : '0';
-        row.insertCell(6).innerHTML = (dataRowFer.K)  ? dataRowFer.K.toFixed(3) : '0';
-        row.insertCell(7).innerHTML = (dataRowFer.S)  ? dataRowFer.S.toFixed(3) : '0';
-        row.insertCell(8).innerHTML = (dataRowFer.amount)  ? dataRowFer.amount.toFixed(2) : '0';
-        row.insertCell(9).innerHTML = (dataRowFer.cost)  ? dataRowFer.cost.toFixed(2) : '0';
+        row.insertCell(3).innerHTML = (dataRowFer.amount)  ? dataRowFer.amount.toFixed(2) : '0';
+        row.insertCell(4).innerHTML = (dataRowFer.cost)  ? dataRowFer.cost.toFixed(2) : '0';
+        row.insertCell(5).innerHTML = (dataRowFer.N)  ? dataRowFer.N.toFixed(2) : '0';
+        row.insertCell(6).innerHTML = (dataRowFer.N_ur)  ? dataRowFer.N_ur.toFixed(2) : '0';
+        row.insertCell(7).innerHTML = (dataRowFer.P)  ? dataRowFer.P.toFixed(2) : '0';
+        row.insertCell(8).innerHTML = (dataRowFer.K)  ? dataRowFer.K.toFixed(2) : '0';
+        row.insertCell(9).innerHTML = (dataRowFer.S)  ? dataRowFer.S.toFixed(2) : '0';
+        row.insertCell(10).innerHTML = (dataRowFer.volatilization.total)  ?  dataRowFer.volatilization.total.toFixed(2) : '0';
+       
 
         aggregated.amount += dataRowFer.amount;
         aggregated.N += dataRowFer.N;
@@ -376,6 +422,7 @@ function _loadSelectOrganicFertilizers(){
         aggregated.S += dataRowFer.S;
         aggregated.N_ur += dataRowFer.N_ur;
         aggregated.cost += dataRowFer.cost;
+        aggregated.vol += dataRowFer.volatilization.total;
 
         num_row++;
       }
@@ -386,14 +433,15 @@ function _loadSelectOrganicFertilizers(){
     row.insertCell(0).innerHTML = '#';
     row.insertCell(1).innerHTML = 'TOTAL:';
     row.insertCell(2).innerHTML = '>';
-    row.insertCell(3).innerHTML = (aggregated.N)  ? aggregated.N.toFixed(3) : '0';
-    row.insertCell(4).innerHTML = (aggregated.N_ur)  ? aggregated.N_ur.toFixed(3) : '0';
-    row.insertCell(5).innerHTML = (aggregated.P)  ? aggregated.P.toFixed(3) : '0';
-    row.insertCell(6).innerHTML = (aggregated.K)  ? aggregated.K.toFixed(3) : '0';
-    row.insertCell(7).innerHTML = (aggregated.S)  ? aggregated.S.toFixed(3) : '0';
-    row.insertCell(8).innerHTML = (aggregated.amount)  ? aggregated.amount.toFixed(2) : '0';
-    row.insertCell(9).innerHTML = (aggregated.cost)  ? aggregated.cost.toFixed(2) : '0';
-
+    row.insertCell(3).innerHTML = (aggregated.amount)  ? aggregated.amount.toFixed(2) : '0';
+    row.insertCell(4).innerHTML = (aggregated.cost)  ? aggregated.cost.toFixed(2) : '0';
+    row.insertCell(5).innerHTML = (aggregated.N)  ? aggregated.N.toFixed(2) : '0';
+    row.insertCell(6).innerHTML = (aggregated.N_ur)  ? aggregated.N_ur.toFixed(2) : '0';
+    row.insertCell(7).innerHTML = (aggregated.P)  ? aggregated.P.toFixed(2) : '0';
+    row.insertCell(8).innerHTML = (aggregated.K)  ? aggregated.K.toFixed(2) : '0';
+    row.insertCell(9).innerHTML = (aggregated.S)  ? aggregated.S.toFixed(2) : '0';
+    row.insertCell(10).innerHTML = (aggregated.vol)  ? aggregated.vol.toFixed(2) : '0';
+    
   }
 
   function _refreshTableNLossed(){
@@ -509,8 +557,8 @@ function _loadSelectOrganicFertilizers(){
       var selectElement = form.querySelector('input[name="crops['+idrow+'][HI_est]"]');
       selectElement.value = item.harvest.HI_est;
     
-      var selectElement = form.querySelector('input[name="crops['+idrow+'][fmc_r]"]');
-      selectElement.value = item.residues.fmc_r || 100;
+      //var selectElement = form.querySelector('input[name="crops['+idrow+'][fmc_r]"]');
+      //selectElement.value = item.residues.fmc_r || 100;
 
       var selectElement = form.querySelector('input[name="crops['+idrow+'][Nc_h]"]');
       selectElement.value = item.harvest.Nc_h_typn;
@@ -576,13 +624,31 @@ function _loadSelectOrganicFertilizers(){
   function onChangeWaterSypply(selectObject) {
     var typeIrrigatedElement = document.getElementById('type_irrigated');
     var doseIrrigationElement = document.getElementById('dose_irrigation');
+    var NcNO3WaterElement = document.getElementById('Nc_NO3_water');
     
     if(parseInt(selectObject.value) === 1 ){
       typeIrrigatedElement.disabled = false;
       doseIrrigationElement.disabled = false;
+      NcNO3WaterElement.disabled = false;
     }else{
       typeIrrigatedElement.disabled = true;
       doseIrrigationElement.disabled = true;
+      NcNO3WaterElement.disabled = true;
+    }
+  }
+
+  function onChangePKStrategy(selectObject) {
+
+    var cropKchElement = document.getElementsByName('crops[0][Kc_h]')[0];
+    var cropPchElement = document.getElementsByName('crops[0][Pc_h]')[0];
+    if(selectObject.value === "maintenance"){
+      cropKchElement.disabled = true;
+      cropKchElement.value = "";
+      cropPchElement.disabled = true;
+      cropPchElement.value = "";
+    }else{
+      cropKchElement.disabled = false;
+      cropPchElement.disabled = false;
     }
   }
 
@@ -600,6 +666,7 @@ function _loadSelectOrganicFertilizers(){
       var item = data.results;
       document.getElementById('rain_a').value= item.rain_a;
       document.getElementById('rain_w').value= item.rain_w;
+     
       
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -618,10 +685,20 @@ function _loadSelectOrganicFertilizers(){
       var item = data.results;
       document.getElementById('Pc_s').value= item.Pc_s_thres.Pc_s_thres_avg;
       document.getElementById('Kc_s').value= item.Kc_s_thres.Kc_s_thres_avg;
+      document.getElementById('cec').value= item.CEC;
       
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
   }); 
+  }
+
+  function onChangeApplyOrganicFertilizer(selectObject){
+    if(selectObject.checked){
+      document.getElementById('type_fmanure').disabled = false;
+    }else{
+      document.getElementById('type_fmanure').disabled = true;
+    }
+      
   }
 
   function _sendFormNPKRequirementsF3(){
@@ -644,9 +721,15 @@ function _loadSelectOrganicFertilizers(){
       }
       return Promise.reject(response);
     }).then(function (data) {
-      nf3.results.nutrient_requirements = data.results;
-      _createTableNPKrequirementsResults(document.querySelector('#tableNPKrequirements tbody'), data);
+      nf3.results.crops = [];
+      data.results.forEach(element => {
+        nf3.results.crops.push(element);
+      });
+      _updateTotalNutrientsRequeriments();
+      _createTableNPKrequirementsResults(document.querySelector('#tableNPKrequirements tbody'), data.results);
       _createTableBalanceIO(document.querySelector('#tableBalanceIO tbody'), data)
+
+      console.log(nf3.results)
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
     });
@@ -706,10 +789,16 @@ function _loadSelectOrganicFertilizers(){
       }
       return Promise.reject(response);
     }).then(function (data) {
-      nf3.results = data.results;
+      nf3.results.crops = [];
+      data.results.forEach(element => {
+        nf3.results.crops.push(element);
+      });
+      _updateTotalNutrientsRequeriments();
+      _createTableNPKrequirementsResults(document.querySelector('#tableNutrientsRequirements tbody'), nf3.results.crops);
+      //_createTableNutrientsRequirements();
       _refreshTableFertilization();
       //_refreshTableNLossed();
-      _createTableNutrientsRequirements();
+     
 
     }).catch(function (error) {
       console.warn('Something went wrong.', error);
@@ -730,19 +819,26 @@ function _loadSelectOrganicFertilizers(){
   });
 
   document.getElementById('btnBestFertilizer').addEventListener('click', function () {
-    var nutrients = nf3.results.nutrient_requirements;
-    if(nutrients.length > 0){
-      var totalNutrients = {
-        N:  nutrients.reduce((a, b) => +a + +b.Ncf_avg, 0),
-        P:  nutrients.reduce((a, b) => +a + +b.Pcf, 0),
-        K:  nutrients.reduce((a, b) => +a + +b.Kcf, 0),
-        S:  nutrients.reduce((a, b) => +a + +b.Scf, 0),
-        N_ur :  nutrients.reduce((a, b) => +a + +b.Ncf_ure, 0),
-      }
-      nf3.results.total_nutrients = totalNutrients;
-      _getBestFertilizers(totalNutrients);
-    }
+    _updateTotalNutrientsRequeriments();
+      _getBestFertilizers(nf3.results.total_nutrients);
   });
+
+  function _updateTotalNutrientsRequeriments(){
+    var crops = nf3.results.crops;
+    var totalNutrients = { N: 0, P: 0,  K: 0, S: 0, N_ur: 0 };
+    crops.forEach(item => {
+      var nutrients = item.nutrient_requirements;
+      totalNutrients = {
+        N:  totalNutrients.N + nutrients.Ncf_avg,
+        P:  totalNutrients.N + nutrients.Pcf,
+        K:  totalNutrients.N + nutrients.Kcf,
+        S:  totalNutrients.N + nutrients.Scf,
+        N_ur :  totalNutrients.N + nutrients.Ncf_ure
+      }
+    })
+   
+    nf3.results.total_nutrients = totalNutrients;
+  }
 
   
   document.getElementById('calculateNPKrequirements').addEventListener('click', function () {
@@ -801,7 +897,7 @@ function _loadSelectOrganicFertilizers(){
     _loadSelectCrops();
     _loadSelectSoilTextures();
     _loadSelectFertilizers();
-    _loadSelectOrganicFertilizers();
+   // _loadSelectOrganicFertilizers();
     //_loadSelectFertilizerType();
 
   
