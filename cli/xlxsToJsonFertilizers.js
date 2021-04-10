@@ -3,7 +3,7 @@ var fs = require('fs');
 
 
 function readSheet () {
-    const bookData = XLSX.readFile('files/fertilizerOptimizationV5.xlsx')
+    const bookData = XLSX.readFile('files/fertilizerOptimizationV6.xlsx')
     if (bookData.SheetNames.length <= 0) {
      throw new Error(`fertilizerOptimization sheets`)
     }
@@ -25,7 +25,7 @@ function isNumeric(n) {
 
 function getPrice(v){
     if(isNumeric(v)){
-        return parseFloat(v);
+        return parseFloat(v)/1000;
     }else{
         return 0;
     }
@@ -39,7 +39,7 @@ function getValue(x){
         
         try {
             var n = x.replace(/,/g,'.');
-            var n = x.replace(/%/g,'');
+            n = n.replace(/%/g,'');
             if (isNumeric(n)){
                 return parseFloat(n);
             }else if (x === "-"){
@@ -57,6 +57,19 @@ function getValue(x){
     }else{
         return undefined;
     }
+}
+
+function getPercent(x){
+    if (typeof x === 'string' || x instanceof String){
+        var n = x.replace(",", ".");
+        n = n.replace(/%/g,'');
+        return parseFloat(n);
+    }else if(typeof x == 'number' && !isNaN(x)){
+        return parseFloat(x)*100;
+    }else{
+        return undefined;
+    }
+   
 }
 
 
@@ -84,42 +97,42 @@ function main(){
                     "vlt_coef": getValue(elem['vola_coeff'])
                 },
                 "nitrogen": {
-                    "Ncf_ure" : getValue(elem['Ncf_ure']),
-                    "Ncf_NO3": getValue(elem['Ncf_NO3']),
-                    "Ncf_NH4": getValue(elem['Ncf_NH4']),
-                    "Ncf_CN2": getValue(elem['Ncf_CN2']),
-                    "Ncf": getValue(elem['Ncf'])
+                    "Ncf_ure" : getPercent(elem['Ncf_ure']),
+                    "Ncf_NO3": getPercent(elem['Ncf_NO3']),
+                    "Ncf_NH4": getPercent(elem['Ncf_NH4']),
+                    "Ncf_CN2": getPercent(elem['Ncf_CN2']),
+                    "Ncf": getPercent(elem['Ncf'])
                 },
                 "phosphorus": {
-                    "Pcf": getValue(elem['Pcf']),
-                    "P2O5cf": getValue(elem['P2O5cf'])
+                    "Pcf": getPercent(elem['Pcf']),
+                    "P2O5cf": getPercent(elem['P2O5cf'])
                 },
                 "potassium": {
-                    "Kcf": getValue(elem['Kcf']),
-                    "K2Ocf": getValue(elem['K2Ocf'])
+                    "Kcf": getPercent(elem['Kcf']),
+                    "K2Ocf": getPercent(elem['K2Ocf'])
                 },
                 "drymatter":{
-                    "DM": getValue(elem['dm_amendment'])
+                    "DM": getPercent(elem['dm_amendment'])
                 },
-                "MO": getValue(elem['MO']),
+                "MO": getPercent(elem['MO']),
                 "sulphur": {
-                    "Scf": getValue(elem['Scf']),
-                    "SO4cf": getValue(elem['SO4cf']),
-                    "SO3cf": getValue(elem['SO3cf'])
+                    "Scf": getPercent(elem['Scf']),
+                    "SO4cf": getPercent(elem['SO4cf']),
+                    "SO3cf": getPercent(elem['SO3cf'])
                 },
                 "calcium": {
-                    "Cacf": getValue(elem['Cacf']),
-                    "CAOcf": getValue(elem['CAOcf']),
+                    "Cacf": getPercent(elem['Cacf']),
+                    "CAOcf": getPercent(elem['CAOcf']),
                 },
                 "magnesium": {
-                    "Mgcf": getValue(elem['Mgcf']),
-                    "MgOcf": getValue(elem['MgOcf'])
+                    "Mgcf": getPercent(elem['Mgcf']),
+                    "MgOcf": getPercent(elem['MgOcf'])
                 },
                 "sodium": {
-                    "Nacf": getValue(elem['Nacf'])
+                    "Nacf": getPercent(elem['Nacf'])
                 },
                 "chlorine" : {
-                    "Clcf" : getValue(elem['Clcf'])
+                    "Clcf" : getPercent(elem['Clcf'])
                 }
                 
             };
@@ -129,7 +142,7 @@ function main(){
     }
         
     const jsonData = JSON.stringify(data_results);
-    fs.writeFile('data/fertilizers-data-excel.json', jsonData, 'utf8', function (err) {});
+    fs.writeFile('data/fertilizers-data-excel-v6.json', jsonData, 'utf8', function (err) {});
     
 }
 

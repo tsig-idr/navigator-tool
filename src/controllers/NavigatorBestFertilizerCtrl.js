@@ -49,19 +49,19 @@ module.exports = function () {
 			opType: 'min',
 			constraints: {
 				N: {
-					min: (N_req / 100 || 0)
+					min: (N_req || 0)
 				},
 				P: {
-					min: (P_req / 100 || 0)
+					min: (P_req || 0)
 				},
 				K: {
-					min: (K_req / 100 || 0)
+					min: (K_req || 0)
 				},
 				S: {
-					min: (S_req / 100 || 0)
+					min: (S_req || 0)
 				},
 				N_ur: {
-					max: (lim_N_ur / 100 || 0)
+					max: (lim_N_ur || 0)
 				}
 			},
 			variables: {}
@@ -81,7 +81,7 @@ module.exports = function () {
 			bestFertilizers = [];
 		fertilizers.forEach(fertilizer => {
 			if (fertilizer.fertilizerID in solution) {
-				Q = solution[fertilizer.fertilizerID]*100; // %
+				Q = solution[fertilizer.fertilizerID]; // %
 				bestFertilizers.push({
 					fertilizerID: fertilizer.fertilizerID,
 					fertilizer_name: fertilizer.fertilizer_name,

@@ -51,6 +51,8 @@ module.exports = function () {
 			fertilizers: fertilizers
 		}
 
+		const soilTextureObj = await navNF3Ctrl.getSoilTexture(params.soil.soil_texture);
+
 		const crops_nutrients = await navNF3Ctrl.NPKrequeriments(params);
 
 		/* // Total nutrientes de los cultivos
@@ -87,40 +89,95 @@ module.exports = function () {
 				sulphur: {
 					Scf: (e.S_req || e.Scf || 0),
 				},
-				price: e.price || 0
+				price: e.price || 0,
+				amount: e.amount,
+				application_method: e.application_method || 'incorporated'
 			}
 		});
 
+		const aggregated = {
+			amount: 0,
+			N: 0,
+			P: 0,
+			K: 0,
+			S: 0,
+			N_ur: 0,
+			cost: 0
+		};
+
+		listFertilizers.forEach(fertilizer => {
+				aggregated.amount += fertilizer.amount;
+				aggregated.N += parseFloat(fertilizer.nitrogen.Ncf) || 0.0,
+				aggregated.P += parseFloat(fertilizer.phosphorus.Pcf) || 0.0,
+				aggregated.K = parseFloat(fertilizer.potassium.Kcf) || 0.0,
+				aggregated.S = parseFloat(fertilizer.sulphur.Scf) || 0.0,
+				aggregated.N_ur = parseFloat(fertilizer.nitrogen.N_ure) || 0.0;
+				aggregated.price += (fertilizer.price) || 0;
+		});
+			
+		
+		// se agrega un fertilizante "none" que cubra los elementos NPKS(N_ur) no cubiertos para poder realizar el bestferlizer
+		listFertilizers.push({
+				fertilizerID: 'none',
+				fertilizer_name: 'none',
+				nitrogen: {
+					Ncf: (aggregated.N != 0) ? 0: 0.001,
+					Ncf_ure: 0},
+				phosphorus: {Pcf: (aggregated.P != 0) ? 0: 0.001},
+				potassium: {Kcf:  (aggregated.K != 0) ? 0: 0.001},
+				sulphur: {Scf: (aggregated.S != 0) ? 0: 0.001},
+				price: 9999,
+				application_method: 'incorporated'
+		});
+		
+
+		const water_supply = (params.plot.water_supply == 1 || params.plot.water_supply == 'on') ? 1: 0;
+		const pH = (params.soil.pH) || 7;
+		const CEC = (params.CEC) || soilTextureObj.CEC || 0;
+
 		for(var c = 0; c < crops_nutrients.length; c++){
-			var nu = { ...crops_nutrients[c] };
-			delete nu.cropID;
-			delete nu.crop_latin_name;
-			delete nu.crop_name;
-			delete nu.crop_type;
-
-			var item = {
-				"cropID": crops_nutrients[c].cropID,
-				"crop_latin_name": crops_nutrients[c].crop_latin_name,
-				"crop_name": crops_nutrients[c].crop_name,
-				"crop_type": crops_nutrients[c].crop_type,
-				"nutrient_requirements" : nu,
-				"fertilization" : [],
-				"volatilization": 0, // Descartado
-				"desnitrification": 0,
-				"leaching": 0,	//Descartado
-				"N_losses": 0,	// Descartado
-				"acidification ": 0 //Descartado
-			}
-
+			var item = { ...crops_nutrients[c] };
+		
 			// Preparar datos de fertilizantes
-			const N = parseFloat(crops_nutrients[c].Ncf_avg) || 0.0,
-			P = parseFloat(crops_nutrients[c].Pcf) || 0.0,
-			K = parseFloat(crops_nutrients[c].Kcf) || 0.0,
-			S = parseFloat(crops_nutrients[c].Scf) || 0.0,
-			N_ur = parseFloat(crops_nutrients[c].N_ur) || 0.0;
+			const N = parseFloat(item.nutrient_requirements.Ncf_avg) || 0.0,
+			P = parseFloat(item.nutrient_requirements.Pcf) || 0.0,
+			K = parseFloat(item.nutrient_requirements.Kcf) || 0.0,
+			S = parseFloat(item.nutrient_requirements.Scf) || 0.0,
+			N_ur = parseFloat(item.nutrient_requirements.N_ur) || 0.0;
 
+			const fertilization = navBestFertiCtrl.bestCombination(listFertilizers, N, P, K, S, N_ur);
 			//Cantidad de fertilizante
-			item.fertilization = navBestFertiCtrl.bestCombination(listFertilizers, N, P, K, S, N_ur);
+		
+
+			for(var f =0; f< fertilization.length; f++){
+				const element = fertilization[f];
+				
+				const fertilizerObj = listFertilizers.find(e => e.fertilizerID === element.fertilizerID );
+				const volaObj = await navNF3Ctrl.Nvolatilization (water_supply, pH, CEC, fertilizerObj.application_method, fertilizerObj.fertilizerID);
+
+				fertilization[f].volatilization = {
+					vola_coef: volaObj.vola_coeff, 
+					total: element.amount*volaObj.vola_coeff 
+				}
+			}
+			//Eliminar el fertilizante temporal de suplemento
+			item.fertilization = fertilization.filter(elm => elm.fertilizerID !== 'none');
+			
+
+			/*
+			item.volatilization = new Array();
+
+			for(var f =0; f< listFertilizers.length; f++){
+				const fertilizerID = listFertilizers[f].fertilizerID;
+				const volaObj = await navNF3Ctrl.Nvolatilization (water_supply, pH, CEC, listFertilizers[f].application_method, fertilizerID);
+				
+				const fertilizationObj = item.fertilization.find(x => x.fertilizerID === fertilizerID);
+				item.volatilization.push({fertilizerID: fertilizerID, vola_coef: volaObj.vola_coeff, total: fertilizationObj.amount*volaObj.vola_coeff });
+				
+			}
+			*/
+
+			
 
 			response.results.push(item);
 		}

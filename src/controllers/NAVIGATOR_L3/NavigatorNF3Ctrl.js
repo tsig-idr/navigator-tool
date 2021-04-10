@@ -51,7 +51,7 @@ module.exports = function () {
 		const HI_est = (cropInput.HI_est) || cropObj.harvest.HI_est || 100;
 		const DM_h = (cropInput.DM_h) || cropObj.harvest.DM_h || 0;
 		const CV = (cropInput.CV) || cropObj.CV || 20;
-		const pH = (soilInput.pH) || 2;
+		const pH = (soilInput.pH) || 7;
 		const CEC = (soilInput.CEC) || soilTextureObj.CEC || 0;
 		const SOM = (soilInput.SOM) || 0;
 		const depth_s = (soilInput.depth_s) || dataParams.default_parameters.depth_s;
@@ -71,20 +71,34 @@ module.exports = function () {
 		const fk = soilTextureObj.fk.fk_avg;
 		const density_s = (soilTextureObj.density.density_avg) || 0;
 
-		
 
-		fertilizationInput.DM_amendment = (fertilizationInput.DM_amendment) || dataParams.default_parameters.fert_DM_amendment;
-		fertilizationInput.Nc_DM = (fertilizationInput.Nc_DM) || dataParams.default_parameters.fert_Nc_DM_amendment;
-		fertilizationInput.dose_amendment = (fertilizationInput.dose_amendment) || 15000;
+		if(fertilizationInput){
+			fertilizationInput.DM_amendment = (fertilizationInput.DM_amendment) || dataParams.default_parameters.fert_DM_amendment;
+			fertilizationInput.Nc_DM = (fertilizationInput.Nc_DM) || dataParams.default_parameters.fert_Nc_DM_amendment;
+			fertilizationInput.dose_amendment = (fertilizationInput.dose_amendment) || 15000;
+			fertilizationInput.fertilizerID = (fertilizationInput.type_fmanure) || (fertilizationInput.fertilizerID);
+		}else{
+			fertilizationInput = {
+				DM_amendment :  dataParams.default_parameters.fert_DM_amendment,
+				Nc_DM : dataParams.default_parameters.fert_Nc_DM_amendment,
+				dose_amendment : 15000,
+				frequent_application: 'annual',
+				fertilizerID: null,
+				application_method: 'incorporated'
+
+
+			}
+		}
+		
 
 		//Input terms: Nmineralization + Nfixation+ Nwater + NminInitial
 		const Nmineralization = await _Nmineralization(fertilizationInput.Nc_DM, fertilizationInput.DM_amendment, fertilizationInput.dose_amendment, fertilizationInput.frequent_application, soilInput.soil_texture, soilInput.SOM, plotInput.water_supply, plotInput.climatic_zone );
 		/* array */
 		const Nfixation = await _Nfixation(cropObj, cropInput.yield, CV, SOM);
 
-		const Nwater = await _Nwater(water_supply, plotInput.type_irrigation, dose_irrigation, Nc_NO3_water);
+		const Nwater = await _Nwater(water_supply, plotInput.type_irrigated, dose_irrigation, Nc_NO3_water);
 
-		const NminInitial = _NminInitial(soilInput.Nc_s_initial);
+		const NminInitial = _NminInitial(Nc_s_initial);
 
 		const NInputTerms = Nmineralization + Nfixation[0] + Nwater + NminInitial;
 		const NInputTerms_min = Nmineralization + Nfixation[2] + Nwater + NminInitial;
@@ -101,7 +115,9 @@ module.exports = function () {
 		
 		const NminPostharvest = _NminPostharvest(Nmin_h);
 
-		const Nvolatilization = await _Nvolatilization (water_supply, fertilizationInput.application_method, fertilizationInput.fertilizerID, pH, CEC);
+		const NvolatilizationObj = await _Nvolatilization (water_supply, pH, CEC, fertilizationInput.application_method, fertilizationInput.fertilizerID);
+
+		const Nvolatilization = (fertilizationInput.fertilizerID) ? NvolatilizationObj.vola_total : NvolatilizationObj.vola_estimated;
 
 		const NOutputTerms = Nleaching + Nuptake[0] + Ndesnitrification + NminPostharvest + Nvolatilization;
 		const NOutputTerms_min = Nleaching + Nuptake[2] + Ndesnitrification + NminPostharvest + Nvolatilization;
@@ -122,29 +138,33 @@ module.exports = function () {
 			"crop_latin_name": cropObj.crop_latin_name,
 			"crop_type": cropObj.crop_type,
 			"yield": cropInput.yield,
-			"Ncf_min": Nc_crop_min,
-			"Ncf_max": Nc_crop_max,
-			"Ncf_avg": Nc_crop,
-			"Pcf": Prequirements[cropInput.PK_strategy],
-			"Kcf": Krequirements[cropInput.PK_strategy],
-			"Ninputs_terms": {
-				"Nmineralization": Nmineralization,
-				"Nfixation": Nfixation[0],
-				"Nfixation_min": Nfixation[2],
-				"Nfixation_max": Nfixation[8],
-				"Nwater": Nwater,
-				"NminInitial": NminInitial
-			},
-			"Noutputs_terms": {
-				"Nleaching": Nleaching,
-				"Nuptake" : Nuptake[0],
-				"Nuptake_min": Nuptake[2],
-				"Nuptake_max": Nuptake[8],
-				"Ndesnitrification": Ndesnitrification,
-				"NminPostharvest": NminPostharvest,
-				"Nvolatilization": Nvolatilization
+			"nutrient_requirements": {
+				"Ncf_min": Nc_crop_min,
+				"Ncf_max": Nc_crop_max,
+				"Ncf_avg": Nc_crop,
+				"Pcf": Prequirements[cropInput.PK_strategy],
+				"Kcf": Krequirements[cropInput.PK_strategy],
+				"Ninputs_terms": {
+					"Nmineralization": Nmineralization,
+					"Nfixation": Nfixation[0],
+					"Nfixation_min": Nfixation[2],
+					"Nfixation_max": Nfixation[8],
+					"Nwater": Nwater,
+					"NminInitial": NminInitial
+				},
+				"Noutputs_terms": {
+					"Nleaching": Nleaching,
+					"Nuptake" : Nuptake[0],
+					"Nuptake_min": Nuptake[2],
+					"Nuptake_max": Nuptake[8],
+					"Ndesnitrification": Ndesnitrification,
+					"NminPostharvest": NminPostharvest,
+					"Nvolatilization": Nvolatilization
+				},
+				"P205cf": Prequirements[cropInput.PK_strategy]*2.293,
+				"K2Ocf": Krequirements[cropInput.PK_strategy]*1.205
 			}
-			//"Kcf": x.Kcf
+			
 		});
 		
 		return result;
@@ -349,7 +369,7 @@ module.exports = function () {
 
 	function _NminInitial(Nc_s_initial){
 		const NminInitial = (Nc_s_initial) || dataParams.default_parameters.Nc_s_initial;
-		return NminInitial;
+		return NminInitial*1;
 	}
 
 	//Output terms: Leaching + Uptake + Desnitrification + Nmin postharvest + Volatilization
@@ -419,23 +439,27 @@ module.exports = function () {
     /*
     * vtl_fertilizer_group: type_f
     */
-    async function _Nvolatilization (water_supply, application_method, fertilizerID, pH, CEC) {
-        
+    async function _Nvolatilization (water_supply, pH, CEC, application_method, fertilizerID) {
+
+        const volatilizationCoefficient = new Array();
+
 		const waterSupply = (water_supply == 1) ?  "irrigated" : "rainfed";
+
+		//const volWaterSupplyObj = dataParams.volatilization.water_supply.find(water => water.key === waterSupply);
+		//const volAppMethodObj = dataParams.volatilization.application_method.find(method => method.key === application_method);
+
+
         //factors in the linear regression model
 		const factorsKeys = new Map([['water_supply', waterSupply],['application_method', application_method],['pH','(,5.5]'],['CEC','(,16]']]);
 		const fertilizerObj =  dataFertilizers.find(fertilizer => fertilizer.fertilizerID === fertilizerID);
-		
+		const vol_group = {
+			'key': 'vlt_group',
+			'value': 0
+		};
 		if(fertilizerObj) {
-			const vol_group = {
-				'key': 'vlt_group',
-				'value': fertilizerObj.volatilization.vlt_group
-			};
-	
-			volatilizationCoefficient.push(vol_group);
-		}else{
-			return 10;
+			vol_group.value = fertilizerObj.volatilization.vlt_coef || 0;
 		}
+		volatilizationCoefficient.push(vol_group);
 
 		if(!utils.isNumeric(pH) && utils.parseToNumeric(pH))
             pH = parseFloat(pH) 
@@ -456,17 +480,17 @@ module.exports = function () {
 			CEC = parseFloat(CEC);
 		if(utils.isNumeric(CEC)){
 			if(CEC <= 16){
-				factorsKeys.set('pH','(,16]');
+				factorsKeys.set('CEC','(,16]');
 			}else if(CEC > 16 && CEC <= 24){
-                factorsKeys.set('pH','(16,24]');
+                factorsKeys.set('CEC','(16,24]');
 			}else if(CEC > 24 && CEC <= 32){
-				factorsKeys.set('pH','(24,32]');
+				factorsKeys.set('CEC','(24,32]');
 			}else{
-                factorsKeys.set('pH','(32,]');
+                factorsKeys.set('CEC','(32,]');
 			}
 		}
 
-		const volatilizationCoefficient = new Array();
+		
 
 		for (let [key, value] of factorsKeys) {
 			const items = dataParams.volatilization[key];
@@ -487,7 +511,29 @@ module.exports = function () {
 			return prev + cur.value;
 		}, 0));
 
-		return  vola_coeff*10;
+		return {
+			"vola_coeff": vola_coeff,
+			"vola_estimated": 10
+		}
+	}
+
+	async function _NvolatilizationCoefFertilizers (water_supply, pH, CEC, fertilizers) {
+
+        const volatilizationCoefficient = new Array();
+
+		for(var i=0; i<fertilizers.length; i++){
+			var item = fertilizers[i];
+			const application_method = (item.application_method) || 'incorporated';
+			const volObj = await _Nvolatilization(water_supply, pH, CEC, application_method, item.fertilizerID);
+			volatilizationCoefficient.push(volObj.vola_coeff);
+
+		}
+		// media de coef volatilizacion
+		var sum = volatilizationCoefficient.reduce(function(a, b){
+			return a + b;
+		}, 0);
+		return  sum/ volatilizationCoefficient.length;
+		
 	}
 
 	async function getSoilTextures(){
@@ -528,7 +574,9 @@ module.exports = function () {
 		getClimaticZones: getClimaticZones,
 		getClimaticZone: getClimaticZone,
 		getPhosphorusMethods: getPhosphorusMethods,
-		getPhosphorusMethod: getPhosphorusMethod
+		getPhosphorusMethod: getPhosphorusMethod,
+		NvolatilizationCoefFertilizers: _NvolatilizationCoefFertilizers,
+		Nvolatilization: _Nvolatilization
 
 	}
 }

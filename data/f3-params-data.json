@@ -20,13 +20,13 @@
             "rain_w": 600
         },
         {
-            "climate_zone": "northem",
+            "climate_zone": "northern",
             "factor_humidity": 0.9,
             "rain_a": 700,
             "rain_w": 420
         },
         {
-            "climate_zone": "southem",
+            "climate_zone": "southern",
             "factor_humidity": 0.6,
             "rain_a": 500,
             "rain_w": 300
@@ -36,7 +36,7 @@
     "soil_textures": [
         {
             "soil_texture": "sand",
-            "name": "SAND",
+            "name": "Sand",
             "level": 1,
             "drain_rate": "veryHigh",
             "vol_water_s": 0.08,
@@ -91,7 +91,7 @@
         },
         {
             "soil_texture": "loamySand",
-            "name": "LOAMY_SAND",
+            "name": "Loamy sand",
             "level": 1,
             "drain_rate": "veryHigh",
             "vol_water_s": 0.09,
@@ -146,7 +146,7 @@
         },
         {
             "soil_texture": "sandyLoam",
-            "name": "SANDY_LOAM",
+            "name": "Sandy loam",
             "level": 2,
             "drain_rate": "high",
             "vol_water_s": 0.12,
@@ -201,7 +201,7 @@
         },
         {
             "soil_texture": "loam",
-            "name": "LOAM",
+            "name": "Loam",
             "level": 3,
             "drain_rate": "high",
             "vol_water_s": 0.13,
@@ -257,7 +257,7 @@
         },
         {
             "soil_texture": "siltyLoam",
-            "name": "SILTY_LOAM",
+            "name": "Silty loam",
             "level": 4,
             "drain_rate": "medium",
             "vol_water_s": 0.14,
@@ -312,7 +312,7 @@
         },
         {
             "soil_texture": "silt",
-            "name": "SILT",
+            "name": "Silt",
             "level": 4,
             "drain_rate": "medium",
             "vol_water_s": 0.15,
@@ -367,7 +367,7 @@
         },
         {
             "soil_texture": "clayLoam",
-            "name": "CLAY_LOAM",
+            "name": "Clay loam",
             "level": 4,
             "drain_rate": "medium",
             "vol_water_s": 0.14,
@@ -422,7 +422,7 @@
         },
         {
             "soil_texture": "sandyClayLoam",
-            "name": "SANDY_CLAY_LOAM",
+            "name": "Sandy clay loam",
             "level": 5,
             "drain_rate": "low",
             "vol_water_s": 0.13,
@@ -477,7 +477,7 @@
         },
         {
             "soil_texture": "siltyClayLoam",
-            "name": "SILTY_CLAY_LOAM",
+            "name": "Silty clay loam",
             "level": 5,
             "drain_rate": "low",
             "vol_water_s": 0.13,
@@ -532,7 +532,7 @@
         },
         {
             "soil_texture": "sandyClay",
-            "name": "SANDY_CLAY",
+            "name": "Sandy clay",
             "level": 5,
             "drain_rate": "low",
             "vol_water_s": 0.15,
@@ -587,7 +587,7 @@
         },
         {
             "soil_texture": "siltyClay",
-            "name": "SILTY_CLAY",
+            "name": "Silty clay",
             "level": 5,
             "drain_rate": "low",
             "vol_water_s": 0.13,
@@ -642,7 +642,7 @@
         },
         {
             "soil_texture": "clay",
-            "name": "CLAY",
+            "name": "Clay",
             "level": 6,
             "drain_rate": "veryLow",
             "vol_water_s": 0.14,
@@ -713,24 +713,26 @@
     },
     "PKstrategies": [
         {
-        "key": "maximum-yield",
-        "title": "Buildup & maintenance (maximum yield)"
-        },{
-            "key": "minimum-fertilizer",
-            "title": "Buildup & maintenance (reduced fertilizer)"
+            "key": "maintenance",
+            "title": "Maintenance (soil analysis not avalable)"
         },
-            {
+        {
             "key": "sufficiency",
             "title": "Sufficiency (minimum fertilizer)"
         },
         {
-            "key": "maintenance",
-            "title": "Maintenance (soil analysis not avalable)"
-        }],
+            "key": "maximum-yield",
+            "title": "Buildup & maintenance (maximum yield)"
+        },
+        {
+            "key": "minimum-fertilizer",
+            "title": "Buildup & maintenance (reduced fertilizer)"
+        }
+        ],
     "P_methods": [
         { 
-            "key": "oslen",
-            "name": "Oslen",
+            "key": "olsen",
+            "name": "Olsen",
             "value": 1
         },
         { 
