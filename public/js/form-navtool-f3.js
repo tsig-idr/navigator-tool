@@ -388,7 +388,7 @@ function _loadSelectOrganicFertilizers(){
 			S: 0,
 			N_ur: 0,
 			cost: 0,
-      vol: 0s
+      vol: 0
 		};
 
     // cells creation
