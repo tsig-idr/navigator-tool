@@ -361,9 +361,9 @@ function _loadSelectOrganicFertilizers(){
       row.insertCell(0).innerHTML = j +1;
       row.insertCell(1).innerHTML = cropname;
       row.insertCell(2).innerHTML = dataRow.yield;
-      row.insertCell(3).innerHTML = (dataNPKRow.Ncf_min)  ?  Math.round(dataNPKRow.Ncf_min) : '0';
-      row.insertCell(4).innerHTML = (dataNPKRow.Ncf_max)  ?  Math.round(dataNPKRow.Ncf_max) : '0';
-      row.insertCell(5).innerHTML = (dataNPKRow.Ncf_avg)  ?  Math.round(dataNPKRow.Ncf_avg) : '0';
+      row.insertCell(3).innerHTML = (dataNPKRow.Ncf_avg)  ?  Math.round(dataNPKRow.Ncf_avg) : '0';
+      row.insertCell(4).innerHTML = (dataNPKRow.Ncf_min)  ?  Math.round(dataNPKRow.Ncf_min) : '0';
+      row.insertCell(5).innerHTML = (dataNPKRow.Ncf_max)  ?  Math.round(dataNPKRow.Ncf_max) : '0';
       row.insertCell(6).innerHTML = (dataNPKRow.Pcf)  ?  Math.round(dataNPKRow.Pcf) : '0';
       row.insertCell(7).innerHTML = (dataNPKRow.Kcf)  ?  Math.round(dataNPKRow.Kcf) : '0';
       row.insertCell(8).innerHTML = (dataNPKRow.P205cf)  ?  Math.round(dataNPKRow.P205cf) : '0';
@@ -441,7 +441,14 @@ function _loadSelectOrganicFertilizers(){
     row.insertCell(8).innerHTML = (aggregated.K)  ? aggregated.K.toFixed(2) : '0';
     row.insertCell(9).innerHTML = (aggregated.S)  ? aggregated.S.toFixed(2) : '0';
     row.insertCell(10).innerHTML = (aggregated.vol)  ? aggregated.vol.toFixed(2) : '0';
-    
+
+
+    row.cells.item(5).style.color = (Math.round(aggregated.N) < Math.round(nf3.results.total_nutrients.N)) ? 'red': 'green';
+    row.cells.item(7).style.color = (Math.round(aggregated.P) < Math.round(nf3.results.total_nutrients.P)) ? 'red': 'green';
+    row.cells.item(8).style.color = (Math.round(aggregated.K) < Math.round(nf3.results.total_nutrients.K)) ? 'red': 'green';
+    row.cells.item(9).style.color = (Math.round(aggregated.S) < Math.round(nf3.results.total_nutrients.S)) ? 'red': 'green';
+
+
   }
 
   function _refreshTableNLossed(){
