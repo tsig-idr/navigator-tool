@@ -1,0 +1,9 @@
+Tª;Coef_min;Tª media;Grados favorables considerados;
+-10;0;< 13 ºC;Temperatura media del día *0;
+13;0,3;13 - 14 ºC;Temperatura media del día *0.3;
+14;0,4;14 - 15 ºC;Temperatura media del día *0.4;
+15;0,6;15 - 16 ºC;Temperatura media del día *0.6;
+16;0,7;16 - 17 ºC;Temperatura media del día *0.7;
+17;0,8;17 - 18 ºC;Temperatura media del día *0.8;
+18;0,9;18 - 19 ºC;Temperatura media del día *0.9;
+19;1;>19 ºC;Temperatura media del día;

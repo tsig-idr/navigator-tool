@@ -40,6 +40,6 @@
     "express-async-handler": "^1.1.4",
     "path": "^0.12.7",
     "javascript-lp-solver": "^0.4.24",
-    "sheetscript": "^1.1.5"
+    "sheetscript": "^1.1.6"
   }
 }
