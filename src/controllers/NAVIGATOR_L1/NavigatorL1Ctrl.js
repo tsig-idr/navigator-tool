@@ -136,5 +136,21 @@ function customEngine () {
 		date.setUTCDate(date.getUTCDate() + 4 - date.getUTCDay() || 7);
 		return Math.ceil(((date - new Date(Date.UTC(date.getUTCFullYear(), 0, 1))) / 86400000 + 1) / 7);
 	});
+	// Devuelve el dia de la fecha representada por s
+	engine.setFunction('user', 'DAY', 1, s => parseInt(s.split('/')[0]));
+	// Devuelve el mes de la fecha representada por s
+	engine.setFunction('user', 'MONTH', 1, s => parseInt(s.split('/')[1]));
+	// Devuelve el anyo de la fecha representada por s
+	engine.setFunction('user', 'YEAR', 1, s => parseInt(s.split('/')[2]));
+	// Devuelve el residuo de n/d
+	engine.setFunction('user', 'MOD', 2, (n, d) => n - d*Math.floor(n/d));
+	// Devuelve el maximo de los argumentos
+	engine.setFunction('user', 'MAX', 1, function () {
+		return Math.max(...arguments);
+	});
+	// Devuelve el minimo de los argumentos
+	engine.setFunction('user', 'MIN', 1, function () {
+		return Math.min(...arguments);
+	});
 	return engine;
 }

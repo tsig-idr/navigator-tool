@@ -1,7 +1,23 @@
 Clima = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Clima.csv')))
 Meteo = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Meteo.csv')))
+Riegos = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Riego.csv')))
 NDVI_real = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_real.csv'))), 1)
 NDVI_tipo = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_tipo.csv'))), 1)
+root_min = 0.2
+Lini = 31
+Ldev = 38
+Lmid = 33
+Llate = 29
+JPlant = TRUNC (275*MONTH (cropDate)/9 - 31 + DAY (cropDate)) + IF (MONTH (cropDate) > 2; 0 - 2; 0) + IF (MOD (YEAR (cropDate); 4) == 0; 1; 0)
+JDev = JPlant + Lini
+JMid = JDev + Ldev
+JLate = JMid + Lmid
+JHarv = JLate + Llate
+Kc_veg = 1.15
+Kc_soil = 1
+cf_Kr = 0.15
+dose_max = 15
+irr_cut = 236
 
 fechas = GENNDATES(cropDate, n)
 SWB4days = []
@@ -9,10 +25,18 @@ SWB4days = []
 fecha = GET (fechas, 1)
 NDVI_interpolado_ = IF_ERROR (VLOOKUP (GET (fechas, 0); NDVI_real; 2); VLOOKUP (GET (fechas, 0); NDVI_tipo; 2))
 NDVI_interpolado = IF_ERROR (VLOOKUP (fecha; NDVI_real; 2); VLOOKUP (fecha; NDVI_tipo; 2))
+fc_ = 0
+fw_ = 0
+De_final_ = 0
+Profundidad_radicular_ = 0
+RAW_ = 0
+Riego_neto_necesario_ = 0
+ETc_adj_ac_ = 0
+Final_agotamiento_corregido_ = 0
 Biomasa_acumulada_ = 0
 Nuptake_ = 0
 
-n = 8
+n = 8 + 2
 i = 1
 while i < n - 1 then begin '{'
 	i = i + 1
@@ -22,14 +46,93 @@ while i < n - 1 then begin '{'
 
 	SET (SWB4day, 'fecha', fecha)
 
+	month = MONTH (fecha)
+	day = DAY (fecha)
+	year = YEAR (fecha)
+
+	J = FLOOR (275*month/9 - 30 + day) + IF (month > 2; 0 - 2; 0) + IF (MOD (year; 4) == 0; IF (month > 2; 1; 0); 0)
+	SET (SWB4day, 'J', J)
+
 	P_RO = IF_ERROR (VLOOKUP (fecha; Meteo; 12); VLOOKUP (fecha; Clima; 12))
 	SET (SWB4day, 'P_RO', P_RO)
+
+	Kcb = MIN (Kc_veg; NDVI_interpolado*1.44 - 0.1)
+	SET (SWB4day, 'Kcb', Kcb)
 
 	_NDVI_interpolado = IF_ERROR (VLOOKUP (_fecha; NDVI_real; 2); VLOOKUP (_fecha; NDVI_tipo; 2))
 	SET (SWB4day, 'NDVI_interpolado', NDVI_interpolado)
 
 	ETo = IF_ERROR (VLOOKUP (fecha; Meteo; 13); VLOOKUP (fecha; Clima; 13))
 	SET (SWB4day, 'ETo', ETo)
+
+	Req_neto_riego = IF (Riego_neto_necesario_ > 0; Riego_neto_necesario_/fw_0; 0)
+	SET (SWB4day, 'Req_neto_riego', Req_neto_riego)
+
+	fc = MAX (fc_; 1.19*NDVI_interpolado - 0.16)
+	SET (SWB4day, 'fc', fc)
+
+	fw = IF (Req_neto_riego > 0; fw_0; IF (P_RO > 0; 1; IF (i > 2; fw_; fw_0)))
+	SET (SWB4day, 'fw', fw)
+
+	few = MIN (1 - fc; fw)
+	SET (SWB4day, 'few', few)
+
+	De_inicio = MAX (IF (i > 2; De_final_; De_0) - P_RO - Req_neto_riego; 0)
+	SET (SWB4day, 'De_inicio', De_inicio)
+
+	Kr = MAX (IF (De_inicio < REW; IF (ETo > REW; REW/ETo; 1); MIN (REW/ETo; ((TEW - De_inicio)*cf_Kr)/(TEW - REW))); 0)
+	SET (SWB4day, 'Kr', Kr)
+
+	Kc_max = fc*Kc_veg + (1 - fc)*Kc_soil
+	SET (SWB4day, 'Kc_max', Kc_max)
+
+	Ke = MIN (Kr*(Kc_max - Kcb); few*Kc_max)
+	SET (SWB4day, 'Ke', Ke)
+
+	E = Ke*ETo
+	SET (SWB4day, 'E', E)
+
+	DPe = MAX (P_RO + Req_neto_riego - De_final_; 0)
+	SET (SWB4day, 'DPe', DPe)
+
+	De_final = IF (i > 2; De_final_; De_0) - P_RO - Req_neto_riego + E/few + DPe
+	SET (SWB4day, 'De_final', E/few)
+
+	Kc = Kcb + Ke
+	SET (SWB4day, 'Kc', Kc)
+
+	ETc = Kc*ETo
+	SET (SWB4day, 'ETc', ETc)
+
+	Profundidad_radicular = MIN (root_max; MAX(root_min; MAX ((Kcb - Kcb_ini)/(Kcb_mid - Kcb_ini)*(root_max - root_min) + root_min; Profundidad_radicular_)))
+	SET (SWB4day, 'Profundidad_radicular', Profundidad_radicular)
+
+	RAW = MAX (IF (J < JDev; 65; 65)/100*Profundidad_radicular*waterAvail; RAW_)
+	SET (SWB4day, 'RAW', RAW)
+
+	Final_agotamiento = IF (i > 2; Final_agotamiento_corregido_ - P_RO - Riego_neto_necesario_ + ETc; De_0 - P_RO + ETc)
+	SET (SWB4day, 'Final_agotamiento', Final_agotamiento)
+
+	Riego_neto_necesario = IF_ERROR (VLOOKUP (fecha; Riegos; 2); IF (irrigation; IF (J > 120 && NDVI_interpolado < 0.45; 0; IF (Final_agotamiento_corregido_ + ETc >= RAW; MIN (Final_agotamiento_corregido_; irrigationDose); 0)); 0))
+	SET (SWB4day, 'Riego_neto_necesario', Riego_neto_necesario)
+
+	DP = MAX (IF (i > 2; P_RO + Riego_neto_necesario_ - ETc - Final_agotamiento_corregido_; ETo - few - De_0); 0)
+	SET (SWB4day, 'DP', DP)
+
+	Ks = MAX (0; IF (Final_agotamiento > RAW; (Profundidad_radicular*waterAvail - Final_agotamiento)/(Profundidad_radicular*waterAvail - RAW); 1))
+	SET (SWB4day, 'Ks', Ks)
+
+	Kc_adj = Ke + Kcb*Ks
+	SET (SWB4day, 'Kc_adj', Kc_adj)
+
+	ETc_adj = Kc_adj*ETo
+	SET (SWB4day, 'ETc_adj', ETc_adj)
+
+	ETc_adj_ac = ETc_adj + ETc_adj_ac_
+	SET (SWB4day, 'ETc_adj_ac', ETc_adj_ac)
+
+	Final_agotamiento_corregido = IF (i > 2; Final_agotamiento_corregido_ - Riego_neto_necesario_; De_0) - P_RO + Kc_adj*ETo + DP
+	SET (SWB4day, 'Final_agotamiento_corregido', Final_agotamiento_corregido)
 
 	Transp_ciclo = IF_ERROR (IF (_NDVI_interpolado - NDVI_interpolado > 0 && NDVI_interpolado > 0.3 && NDVI_interpolado < 0.45; (NDVI_interpolado*1.5 - 0.2)*ETo; IF (NDVI_interpolado > 0.45; (NDVI_interpolado*1.5 - 0.2)*ETo; IF (_NDVI_interpolado - NDVI_interpolado_ > 0 && NDVI_interpolado > 0.45; (NDVI_interpolado*1.5 - 0.2)*ETo; 0))); 0)
 	SET (SWB4day, 'Transp_ciclo', Transp_ciclo)
@@ -51,6 +154,14 @@ while i < n - 1 then begin '{'
 	fecha = _fecha
 	NDVI_interpolado_ = NDVI_interpolado
 	NDVI_interpolado = _NDVI_interpolado
+	fc_ = fc
+	fw_ = fw
+	De_final_ = De_final
+	Profundidad_radicular_ = Profundidad_radicular
+	RAW_ = RAW
+	Riego_neto_necesario_ = Riego_neto_necesario
+	ETc_adj_ac_ = ETc_adj_ac
+	Final_agotamiento_corregido_ = Final_agotamiento_corregido
 	Biomasa_acumulada_ = Biomasa_acumulada
 	Nuptake_ = Nuptake
 '}' end
