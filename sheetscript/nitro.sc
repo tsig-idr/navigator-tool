@@ -1,83 +1,136 @@
-CSVSWB = [[]]
 CSVAgro = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_CSVAgro.csv')))
 Clima = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Clima.csv')))
 Meteo = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Meteo.csv')))
+Fertiliza = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Fertiliza.csv')))
+FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/', 'FenoT.csv'))
+FenoBBCH = SP_CSV2ARRAY(CONCAT('sheetscript/', 'BBCH.csv'))
 Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/', 'Extracciones.csv'))
 Mineral = SP_CSV2ARRAY(CONCAT('sheetscript/', 'Mineral.csv'))
 MO = SP_CSV2ARRAY(CONCAT('sheetscript/', 'MO.csv'))
-NDVI = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_real.csv'))), 1)
+NDVIreal = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_real.csv')))
+NDVIreali = LINTER4DATES (NDVIreal, 1)
+NDVItipo = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_tipo.csv')))
+NDVItipoi = LINTER4DATES (NDVItipo, 1)
 
-agroasesor = 'yes'
+agroasesor = 'no'
 c_mineral = VLOOKUP (FLOOR (soilOrganicMaterial*100); MO; 2)
 UFN = soilDepth*100*soilDensity*1000*(1 - soilStony)*soilNmin_0/1000000
 extr_ha = cropExtractions*cropYield/1000
 
+Fechas = GENNDATES(cropDate, n)
+n = 200 + 1
+m = LEN(FenoT)
 
+ET0_acc_ = 0
+n_days_Eto = 0
+l = 1
+k = 1
+while k < n then begin '{'
+	row = GET (FenoT, l)
+	SET (row, 4, n_days_Eto)
+	SET (FenoT, l, row)
+	val = FLOAT(GET (row, 0))
+	Fecha = GET (Fechas, k)
+	ET0 = IF_ERROR (VLOOKUP (Fecha; Meteo; 13); IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Clima; 13)); 0))
+	ET0_acc = ET0 + ET0_acc_
+	ET0_acc_ = ET0_acc
+	n_days_Eto = IF (ET0_acc >= val; 1; n_days_Eto + 1)
+	l = IF (ET0_acc >= val; l + 1; l)
+	k = IF (l < m; k + 1; n)
+'}' end
 
-
-fechas = GENNDATES(cropDate, n)
+row_ = [0]
+i_days_Eto = 0
 nitro4days = []
+Eto_acumulada_ = 0
+Eto_acumulada_real_ = 0
+Eto_acumulada_elegida_ = 0
 Prec_efec_Acc_ = 0
 Riego_Efec_ = 0
 Riego_Acc_ = 0
 N_extrA_ = 0
-n = 3
-i = 0
+N_extrA_1_ = 0
+Nh_ = UFN
+N_NO3_ = 0
+N_mineralizado_A_ = 0
+N_agua_A_ = 0
+Nl_A_ = 0
+j = 0
+i = 1
 while i < n then begin '{'
-	fecha = GET (fechas, i)
+	Fecha = GET (Fechas, i)
 	i = i + 1
 
-	SWB4day = GET (CSVSWB, fecha)
+	SWB4day = GET (SWB4days, Fecha)
+
 	nitro4day = NEW()
 
-	SET (nitro4day, 'fecha', fecha)
+	SET (nitro4day, 'Fecha', Fecha)
 
-	Jp = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 3); GET (SWB4day; 'J')); ' ')
+	Jp = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 3); GET (SWB4day; 'J')); ' ')
 	SET (nitro4day, 'Jp', Jp)
 
-	Etapa = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 2); ' '); ' ')
+	Etapa = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 2); ' '); ' ')
 	SET (nitro4day, 'Etapa', Etapa)
 
-	ET0 = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 8); VLOOKUP (fecha; Meteo; 13)); 0)
+	Eto_tipo = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Clima; 13)); 0)
+	SET (nitro4day, 'Eto_tipo', Eto_tipo)
+
+	Eto_acumulada = Eto_tipo + Eto_acumulada_
+	SET (nitro4day, 'Eto_acumulada', Eto_acumulada)
+
+	Eto_real = IF_ERROR (VLOOKUP (Fecha; Meteo; 13); 0 - 999)
+	SET (nitro4day, 'Eto_real', Eto_real)
+
+	Eto_acumulada_real = IF (Eto_real == 0 - 999; 0 - 999; Eto_real + Eto_acumulada_real_)
+	SET (nitro4day, 'Eto_acumulada_real', Eto_acumulada_real)
+
+	Eto_elegida = IF (Eto_real == 0 - 999; Eto_tipo; Eto_real)
+	SET (nitro4day, 'Eto_elegida', Eto_elegida)
+
+	Eto_acumulada_elegida = Eto_elegida + Eto_acumulada_elegida_
+	SET (nitro4day, 'Eto_acumulada_elegida', Eto_acumulada_elegida)
+
+	ET0 = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Meteo; 13)); 0)
 	SET (nitro4day, 'ET0', ET0)
 
-	Kcb = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 13); GET (SWB4day; 'Kcb')); 0)
+	Kcb = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 13); GET (SWB4day; 'Kcb')); 0)
 	SET (nitro4day, 'Kcb', Kcb)
 
 	h = 0
 	SET (nitro4day, 'h', h)
 
-	Ke = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 26); 0); 0)
+	Ke = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 26); 0); 0)
 	SET (nitro4day, 'Ke', Ke)
 
-	Kc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 29); 0); 0)
+	Kc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 29); 0); 0)
 	SET (nitro4day, 'Kc', Kc)
 
-	ETc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 30); 0); 0)
+	ETc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 30); 0); 0)
 	SET (nitro4day, 'ETc', ETc)
 
-	Prec_efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 12); GET (SWB4day, 'P_RO')); 0)
+	Prec_efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 12); GET (SWB4day, 'P_RO')); 0)
 	SET (nitro4day, 'Prec_efec', Prec_efec)
 
-	Riego_neces = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 35); GET (SWB4day; 'Riego_neto_necesario')); 0)
+	Riego_neces = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 35); GET (SWB4day; 'Riego_neto_necesario')); 0)
 	SET (nitro4day, 'Riego_neces', Riego_neces)
 
-	DP = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 37); GET (SWB4day; 'DP')); 0)
+	DP = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 37); GET (SWB4day; 'DP')); 0)
 	SET (nitro4day, 'DP', DP)
 
-	Riego_Efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 36); GET (SWB4day; 'Riego_neto_necesario')); 0)
+	Riego_Efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 36); GET (SWB4day; 'Riego_neto_necesario')); 0)
 	SET (nitro4day, 'Riego_Efec', Riego_Efec)
 
-	t = IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 16); IF_ERROR (VLOOKUP (fecha; Meteo; 2); VLOOKUP (fecha; Clima; 2)))
+	t = IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 16); IF_ERROR (VLOOKUP (Fecha; Meteo; 2); VLOOKUP (Fecha; Clima; 2)))
 	SET (nitro4day, 't', t)
 
-	Etc_Acc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 42); GET (SWB4day; 'ETc_adj_ac')); 0)
+	Etc_Acc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 42); GET (SWB4day; 'ETc_adj_ac')); 0)
 	SET (nitro4day, 'Etc_Acc', Etc_Acc)
 
 	Prec_efec_Acc = Prec_efec + Prec_efec_Acc_
 	SET (nitro4day, 'Prec_efec_Acc', Prec_efec_Acc)
 
-	Riego_Acc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 43); Riego_Efec_ + Riego_Acc_); 0)
+	Riego_Acc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 43); Riego_Efec_ + Riego_Acc_); 0)
 	SET (nitro4day, 'Riego_Acc', Riego_Acc)
 
 	Tm = t
@@ -89,7 +142,7 @@ while i < n then begin '{'
 	J = Jp
 	SET (nitro4day, 'J', J)
 
-	Sem = IF (ISOWEEKNUMBER (fecha) < 40; ISOWEEKNUMBER (fecha); ISOWEEKNUMBER (fecha) - 53)
+	Sem = IF (ISOWEEKNUMBER (Fecha) < 40; ISOWEEKNUMBER (Fecha); ISOWEEKNUMBER (Fecha) - 53)
 	SET (nitro4day, 'Sem', Sem)
 
 	N_extrA = IF (IT > VLOOKUP (crop; Extracciones; 3) && IT < VLOOKUP (crop; Extracciones; 5); (IT - VLOOKUP (crop; Extracciones; 3))*soilDelta_N_NH4; 0)
@@ -98,116 +151,108 @@ while i < n then begin '{'
 	N_extr = MAX(N_extrA - N_extrA_; 0)
 	SET (nitro4day, 'N_extr', N_extr)
 
-	N_extr_1 = IF_ERROR (-VLOOKUP (fecha; FenoT; 9); 0)
+	val = FLOAT(GET (row_, 0))
+	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
+	row = IF (j < m; GET (FenoT, j); [99999, 0, 0, 0, 0])
+	row_ = row
+	n_days_Eto = GET (row, 4)
+	i_days_Eto = IF (Eto_acumulada_elegida >= val; 1; i_days_Eto + 1)
+
+	ExtracR_N = IF (n_days_Eto > 0; GET (row, 2)/n_days_Eto; 0)
+	ExtracR_N_Kg = ExtracR_N*extr_ha
+	N_extr_1 = IF_ERROR (0 - ExtracR_N_Kg; 0)
 	SET (nitro4day, 'N_extr_1', N_extr_1)
 
-	N_mineralizado = IF (N_extr_1 == 0; VLOOKUP (Tm; Mineral; 2)*Tm*c_mineral*mineralizationSlowdown; VLOOKUP (Tm; Mineral; 2)*Tm*c_mineral)
+	N_mineralizado = IF (N_extr_1 == 0; VLOOKUP (Tm; Mineral; 2; 1)*Tm*c_mineral*mineralizationSlowdown; VLOOKUP (Tm; Mineral; 2; 1)*Tm*c_mineral)
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
 
-
-
-
-
-
-
-
-
-
-
-	N_agua = SUMA(K60; M60)*waterNitrate*14/(100*62)
+	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
-	
-	N_fert_neto = IF_ERROR (VLOOKUP (fecha; Fertiliza; 9; 0); 0)
+
+	N_fert_neto = IF_ERROR(VLOOKUP (Fecha; Fertiliza; 3)/100*VLOOKUP (Fecha; Fertiliza; 8)*VLOOKUP (Fecha; Fertiliza; 7)*VLOOKUP (Fecha; Fertiliza; 6); 0)
 	SET (nitro4day, 'N_fert_neto', N_fert_neto)
-	
-	N_fert_bruto = IF_ERROR (Z60/VLOOKUP (fecha; Fertiliza; 7); 0)
+
+	N_fert_bruto = IF_ERROR (N_fert_neto/VLOOKUP (Fecha; Fertiliza; 6); 0)
 	SET (nitro4day, 'N_fert_bruto', N_fert_bruto)
-	
-	BBCH = VLOOKUP (fecha; FenoT; 11)
+
+	BBCH = GET (row, 1)
 	SET (nitro4day, 'BBCH', BBCH)
-	
-	Nl = -L60*AH59/100
+
+	Nl = (0 - DP)*N_NO3_/100
 	SET (nitro4day, 'Nl', Nl)
-	
-	N_extrA_1 = AE59 + AD60
+
+	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
-	
-	Nh = AF59 + SUMA(X60:Z60) + SUMA(AC60:AD60)
+
+	Nh = Nh_ + SUM(N_mineralizado; N_agua; N_fert_neto) + SUM(Nl; N_extr_1)
 	SET (nitro4day, 'Nh', Nh)
-	
-	N_recom = VLOOKUP (fecha; FenoT; 10)
+
+	N_recom = GET (row, 3)
 	SET (nitro4day, 'N_recom', N_recom)
-	
-	N_NO3 = AF60*1000000/(soilDepth*100*soilDensity*1000*(1 - soilStony)*(1 + soilDelta_N_NH4))
+
+	N_NO3 = Nh*1000000/(soilDepth*100*soilDensity*1000*(1 - soilStony)*(1 + soilDelta_N_NH4))
 	SET (nitro4day, 'N_NO3', N_NO3)
-	
-	Nmin_medido = IF_ERROR (HLOOKUP (fecha; [[soilDate_Nmin_0], [UFN]]; 2); -100)
+
+	Nmin_medido = IF_ERROR (HLOOKUP (Fecha; [[soilDate_Nmin_0], [UFN]]; 2); 0 - 100)
 	SET (nitro4day, 'Nmin_medido', Nmin_medido)
-	
-	T_Nf_recomendado = IF (AF60 > AG60; 0; 1)
+
+	T_Nf_recomendado = IF (Nh > N_recom; 0; 1)
 	SET (nitro4day, 'T_Nf_recomendado', T_Nf_recomendado)
-	
-	N_mineralizado_A = X60 + AK59
+
+	N_mineralizado_A = N_mineralizado + N_mineralizado_A_
 	SET (nitro4day, 'N_mineralizado_A', N_mineralizado_A)
-	
-	N_agua_A = Y60 + AL59
+
+	N_agua_A = N_agua + N_agua_A_
 	SET (nitro4day, 'N_agua_A', N_agua_A)
-	
-	Nl_A = AC60 + AM59
+
+	Nl_A = Nl + Nl_A_
 	SET (nitro4day, 'Nl_A', Nl_A)
-	
-	Eto_tipo = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (fecha; CSVAgro; 9; FALSO); VLOOKUP (fecha; Clima; 13; FALSO)); 0)
-	SET (nitro4day, 'Eto_tipo', Eto_tipo)
-	
-	Eto_acumulada = AN60 + AO59
-	SET (nitro4day, 'Eto_acumulada', Eto_acumulada)
-	
-	BBCH_tipo = IF_ERROR (VLOOKUP (fecha; 'F TrB'!$C$3:$O$21; 3; FALSO); -9999)
+
+	BBCH_tipo = IF (i_days_Eto == n_days_Eto; GET (row, 1); 0 - 9999)
 	SET (nitro4day, 'BBCH_tipo', BBCH_tipo)
-	
-	BBCH_graf = IF (AP60 > 0; 1,4; -999)
+
+	BBCH_graf = IF (BBCH_tipo > 0; 1.4; 0 - 999)
 	SET (nitro4day, 'BBCH_graf', BBCH_graf)
-	
-	BBCH_real_et = IF_ERROR (IF (VLOOKUP (fecha; 'F TrB'!$Q$3:$R$21; 2; FALSO)=0; -99999; VLOOKUP (fecha; 'F TrB'!$Q$3:$R$21; 2; FALSO)); -99999)
+
+	BBCH_real_et = IF_ERROR (VLOOKUP (Fecha; FenoBBCH; 2); 0 - 99999)
 	SET (nitro4day, 'BBCH_real_et', BBCH_real_et)
-	
-	BBCH_real = IF (AR60 > 1; 1,4; -99999)
+
+	BBCH_real = IF (BBCH_real_et > 1; 1.4; 0 - 99999)
 	SET (nitro4day, 'BBCH_real', BBCH_real)
-	
-	NDVI_tipo = IF_ERROR (VLOOKUP (fecha; 'NDVI tipo'!$Q$8:$S$30; 2; FALSO); "")
+
+	NDVI_tipo = IF_ERROR (VLOOKUP (Fecha; NDVItipo; 2); '')
 	SET (nitro4day, 'NDVI_tipo', NDVI_tipo)
-	
-	NDVI_tipo_i = IF_ERROR (VLOOKUP (fecha; 'NDVI tipo'!$Q$8:$S$50; 2; FALSO); AU59 + VLOOKUP (fecha; 'NDVI tipo'!$Q$8:$S$50; 3; VERDADERO))
+
+	NDVI_tipo_i = IF_ERROR (VLOOKUP (Fecha; NDVItipoi; 2); '')
 	SET (nitro4day, 'NDVI_tipo_i', NDVI_tipo_i)
-	
-	NDVI_real = IF_ERROR (VLOOKUP (fecha; 'NDVI real'!$Q$8:$S$44; 2; FALSO); -999)
+
+	NDVI_real = IF_ERROR (VLOOKUP (Fecha; NDVIreal; 2); '')
 	SET (nitro4day, 'NDVI_real', NDVI_real)
-	
-	NDVI_int = IF_ERROR (VLOOKUP (fecha; 'NDVI real'!$T$8:$U$350; 2; FALSO); "")
+
+	NDVI_int = IF_ERROR (VLOOKUP (Fecha; NDVIreali; 2); '')
 	SET (nitro4day, 'NDVI_int', NDVI_int)
-	
+
 	Biomasa = IF_ERROR (GET (SWB4day, 'Biomasa_acumulada'); '')
 	SET (nitro4day, 'Biomasa', Biomasa)
-	
+
 	Nuptake = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
 	SET (nitro4day, 'Nuptake', Nuptake)
-	
-	Eto_real = IF_ERROR (VLOOKUP (fecha; Meteo; 13; FALSO); -999)
-	SET (nitro4day, 'Eto_real', Eto_real)
-	
-	Eto_acumulada_real = IF (AZ60= -999; -999; AZ60 + BA59)
-	SET (nitro4day, 'Eto_acumulada_real', Eto_acumulada_real)
-	
-	Eto_elegida = IF (AZ60= -999; VLOOKUP (fecha; $A$45:$AN$232; 40; FALSO); VLOOKUP (fecha; $A$45:$AZ$232; 52; FALSO))
-	SET (nitro4day, 'Eto_elegida', Eto_elegida)
-	
-	Eto_acumulada_elegida = BB60 + BC59
-	SET (nitro4day, 'Eto_acumulada_elegida', Eto_acumulada_elegida)
-	
+
 	PUSH (nitro4days, nitro4day)
 
+	Eto_acumulada_ = Eto_acumulada
+	Eto_acumulada_real_ = Eto_acumulada_real
+	Eto_acumulada_elegida_ = Eto_acumulada_elegida
 	Prec_efec_Acc_ = Prec_efec_Acc
 	Riego_Efec_ = Riego_Efec
 	Riego_Acc_ = Riego_Acc
 	N_extrA_ = N_extrA
+	N_extrA_1_ = N_extrA_1
+	Nh_ = Nh
+	N_NO3_ = N_NO3
+	N_mineralizado_A_ = N_mineralizado_A
+	N_agua_A_ = N_agua_A
+	Nl_A_ = Nl_A
 '}' end
+
+

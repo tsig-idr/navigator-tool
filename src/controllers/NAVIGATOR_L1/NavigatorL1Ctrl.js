@@ -6,9 +6,12 @@ module.exports = function () {
 
 	async function nitro (input, outputnames) {
 
-		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'nitro.sc'), 'utf8'),
-			engine = customEngine(),
-			output = await sheetscript.run(engine, code, input, outputnames);
+		const engine = customEngine();
+		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'swb.sc'), 'utf8'),
+			output = await sheetscript.run(engine, code, input);
+		code  = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'nitro.sc'), 'utf8');
+		input = {...input, ...output};
+		output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
 	}
 
@@ -108,11 +111,21 @@ function customEngine () {
 		return csv.replace(/\r/g, '').split('\n').map(line => line.split(','));
 	});
 	// Equivalente a la BUSCARV de Excel
-	engine.setFunction('user', 'VLOOKUP', 3, (v, table, index) => {
+	engine.setFunction('user', 'VLOOKUP', 3, (v, table, index, ranged = false) => {
 		if (index && typeof table == 'object' && table.length) {
-			for (let i = 0; i < table.length; i++) {
-				if (typeof table[i] == 'object' && table[i].length && table[i][0] == v) {
-					return table[i][index - 1];
+			if (ranged) {
+				v = parseFloat(v);
+				for (let i = table.length - 1; i >= 0; i--) {
+					if (typeof table[i] == 'object' && table[i].length && parseFloat(table[i][0]) < v) {
+						return table[i][index - 1];
+					}
+				}
+			}
+			else {
+				for (let i = 0; i < table.length; i++) {
+					if (typeof table[i] == 'object' && table[i].length && table[i][0] == v) {
+						return table[i][index - 1];
+					}
 				}
 			}
 		}
@@ -144,6 +157,8 @@ function customEngine () {
 	engine.setFunction('user', 'YEAR', 1, s => parseInt(s.split('/')[2]));
 	// Devuelve el residuo de n/d
 	engine.setFunction('user', 'MOD', 2, (n, d) => n - d*Math.floor(n/d));
+	// Transforma el string s en un numero real
+	engine.setFunction('user', 'FLOAT', 1, s => parseFloat(s));
 	// Devuelve el maximo de los argumentos
 	engine.setFunction('user', 'MAX', 1, function () {
 		return Math.max(...arguments);
@@ -151,6 +166,9 @@ function customEngine () {
 	// Devuelve el minimo de los argumentos
 	engine.setFunction('user', 'MIN', 1, function () {
 		return Math.min(...arguments);
+	});
+	engine.setFunction('user', 'test', 1, function () {
+		console.log(...arguments);
 	});
 	return engine;
 }

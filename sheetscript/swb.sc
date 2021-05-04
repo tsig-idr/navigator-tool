@@ -20,7 +20,7 @@ dose_max = 15
 irr_cut = 236
 
 fechas = GENNDATES(cropDate, n)
-SWB4days = []
+SWB4days = NEW()
 
 fecha = GET (fechas, 1)
 NDVI_interpolado_ = IF_ERROR (VLOOKUP (GET (fechas, 0); NDVI_real; 2); VLOOKUP (GET (fechas, 0); NDVI_tipo; 2))
@@ -36,15 +36,13 @@ Final_agotamiento_corregido_ = 0
 Biomasa_acumulada_ = 0
 Nuptake_ = 0
 
-n = 8 + 2
+n = 200 + 2
 i = 1
 while i < n - 1 then begin '{'
 	i = i + 1
 	_fecha = GET (fechas, i)
 
 	SWB4day = NEW()
-
-	SET (SWB4day, 'fecha', fecha)
 
 	month = MONTH (fecha)
 	day = DAY (fecha)
@@ -149,7 +147,7 @@ while i < n - 1 then begin '{'
 	Nuptakediario = Nuptake - Nuptake_
 	SET (SWB4day, 'Nuptakediario', Nuptakediario)
 
-	PUSH (SWB4days, SWB4day)
+	SET (SWB4days, fecha, SWB4day)
 
 	fecha = _fecha
 	NDVI_interpolado_ = NDVI_interpolado
