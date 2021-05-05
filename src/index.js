@@ -4,10 +4,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-const nutrientRequirementsRouter = require('./routes/l3-nutrient-requirements');
-const fertilizersRouter = require('./routes/fertilizers');
-const nitrogenBalanceRouter = require('./routes/l3-nitrogen-balance');
-const l1Router = require('./routes/l1');
+const nutrientRequirementsRouter = require('./routes/F3-nutrient-requirements');
+const fertilizersRouter = require('./routes/F3-fertilizers');
+const nitrogenBalanceRouter = require('./routes/F3-nitrogen-balance');
+const F1Router = require('./routes/F1');
 /* ----------------- */
 
 dotenv.config();
@@ -32,7 +32,7 @@ app.use(express.json());
 app.use('/nutrient-requirements', nutrientRequirementsRouter());
 app.use('/fertilizers', fertilizersRouter());
 app.use('/nitrogen-balance', nitrogenBalanceRouter());
-app.use('/l1', l1Router());
+app.use('/F1', F1Router());
 
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);

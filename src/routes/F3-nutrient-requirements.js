@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const navNutri3FertilicalcCtrl = require('../controllers/NAVIGATOR_L3/NavigatorNutrient3FertilicalcCtrl')();
 const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
-const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
+const navBestFertiCtrl = require('../controllers/NAVIGATOR_L3/NavigatorBestFertilizerCtrl')();
 const navNF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNF3Ctrl')();
 
 module.exports = function () {

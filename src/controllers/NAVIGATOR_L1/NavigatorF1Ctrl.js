@@ -5,7 +5,35 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function nitro (input, outputnames) {
-
+		!input &&
+			(input = {
+				crop: 'Trigo Blando',
+				soilDensity: 1.4,
+				soilDepth: 35,
+				soilStony: 0.15,
+				soilOrganicMaterial: 0.018,
+				soilDelta_N_NH4: 0.2,
+				soilNmin_0: 16,
+				soilDate_Nmin_0: '30/12/2014',
+				cropDate: '11/01/2015',
+				mineralizationSlowdown: 0.1,
+				waterNitrate: 15,
+				irrigation: true,
+				irrigationDose: 5,
+				root_max: 0.6,
+				Kcb_ini: 0.16,
+				Kcb_mid: 0.7,
+				Kcb_end: 0.65,
+				waterAvail: 100,
+				fw_0: 1,
+				REW:4,
+				TEW: 8,
+				De_0: 8,
+				fw_0: 1,
+				cropYield: 9000,
+				cropExtractions: 33,
+				nitrificationPostDays: 7
+			});
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'swb.sc'), 'utf8'),
 			output = await sheetscript.run(engine, code, input);
@@ -16,16 +44,84 @@ module.exports = function () {
 	}
 
 	async function swb (input, outputnames) {
-
+		!input &&
+			(input = {
+				crop: 'Trigo Blando',
+				soilDensity: 1.4,
+				soilDepth: 35,
+				soilStony: 0.15,
+				soilOrganicMaterial: 0.018,
+				soilDelta_N_NH4: 0.2,
+				soilNmin_0: 16,
+				soilDate_Nmin_0: '30/12/2014',
+				cropDate: '11/01/2015',
+				mineralizationSlowdown: 0.1,
+				waterNitrate: 15,
+				irrigation: true,
+				irrigationDose: 5,
+				root_max: 0.6,
+				Kcb_ini: 0.16,
+				Kcb_mid: 0.7,
+				Kcb_end: 0.65,
+				waterAvail: 100,
+				fw_0: 1,
+				REW:4,
+				TEW: 8,
+				De_0: 8,
+				fw_0: 1,
+				cropYield: 9000,
+				cropExtractions: 33,
+				nitrificationPostDays: 7
+			});
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'swb.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
 	}
 
+	async function resume (nitro) {
+		return nitro.reduce((weeks, day) => {
+			let index = weeks.findIndex(week => week && week.Sem === day.Sem);
+			if (index < 0) {
+				weeks.push({
+					Sem: day.Sem,
+					Fecha: day.Fecha,
+					N_mineralizado: 0,
+					N_agua: 0,
+					N_fert_neto: 0,
+					Nl: 0,
+					N_extr_1: 0,
+					N_extrA_1: -999999,
+					N_recom: 0,
+					Nmin_medido: -100,
+					Eto_acumulada: 0,
+					BBCH_tipo: -9999,
+					BBCH_real_et: -99999,
+					NDVI_tipo_i: 0,
+					NDVI_int: 0,
+					Biomasa: 0,
+					Eto_acumulada_real: 0,
+				});
+				index = weeks.length - 1;
+			}
+			const sum_vars = ['N_mineralizado', 'N_agua', 'N_fert_neto', 'Nl', 'N_extr_1'],
+				max_vars = ['N_extrA_1', 'N_recom', 'Nmin_medido', 'Eto_acumulada', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo_i', 'NDVI_int', 'Biomasa', 'Eto_acumulada_real'];
+			let i;
+			for (i = 0; i < sum_vars.length; i++) {
+				weeks[index][sum_vars[i]]+= day[sum_vars[i]];
+			}
+			for (i = 0; i < max_vars.length; i++) {
+				weeks[index][max_vars[i]] < day[max_vars[i]] &&
+					(weeks[index][max_vars[i]] = day[max_vars[i]]);
+			}
+			return weeks;
+		}, []);
+	}
+
 	return {
 		nitro: nitro,
-		swb: swb
+		swb: swb,
+		resume: resume
 	}
 }
 
@@ -35,7 +131,7 @@ function customEngine () {
 
 	/* Aqui las nuevas funciones que vayamos necesitando... */
 
-	// Genera un listado de N fechas (en formato hispano) a partir de una determinada
+	// Genera un listado de N fechas (en formato hispano) a partir de una fecha determinada
 	engine.setFunction('user', 'GENNDATES', 2, (start, n) => {
 		(start = start.split('/')) &&
 		(start = `${start[2]}/${start[1]}/${start[0]}`);
@@ -43,7 +139,7 @@ function customEngine () {
 			t_day = 1000*60*60*24,
 			dates = [],
 			formatDate = date => {
-				var day = date.getDate();
+				var day = date.getDate(),
 					month = date.getMonth() + 1;
 				day < 10 &&
 					(day = `0${day}`);
@@ -57,7 +153,7 @@ function customEngine () {
 		}
 		return dates;
 	});
-	// Convierte un listado de tuplas (fecha, valor) interpolando al dia 
+	// Transforma un listado de tuplas (fecha, valor) interpolando al dia 
 	engine.setFunction('user', 'LINTER4DATES', 1, (tuples, spanish) => {
 		if (typeof tuples != 'object' || !tuples.length || tuples.length < 2 || typeof tuples[0] != 'object' || !tuples[0].length || tuples[0].length < 2) {
 			return tuples;
@@ -65,7 +161,7 @@ function customEngine () {
 		const t_day = 1000*60*60*24,
 			formatTime = t => {
 				var date = new Date(t),
-					day = date.getDate();
+					day = date.getDate(),
 					month = date.getMonth() + 1;
 				day < 10 &&
 					(day = `0${day}`);
@@ -116,7 +212,7 @@ function customEngine () {
 			if (ranged) {
 				v = parseFloat(v);
 				for (let i = table.length - 1; i >= 0; i--) {
-					if (typeof table[i] == 'object' && table[i].length && parseFloat(table[i][0]) < v) {
+					if (typeof table[i] == 'object' && table[i].length && parseFloat(table[i][0]) <= v) {
 						return table[i][index - 1];
 					}
 				}
@@ -167,8 +263,18 @@ function customEngine () {
 	engine.setFunction('user', 'MIN', 1, function () {
 		return Math.min(...arguments);
 	});
-	engine.setFunction('user', 'test', 1, function () {
-		console.log(...arguments);
+	// Suma n dias a la fecha d y devuelve la nueva fecha (formato hispano)
+	engine.setFunction('user', 'SP_ADD2DATE', 2, (d, n) => {
+		date = d.split('/');
+		date = new Date(`${date[2]}/${date[1]}/${date[0]}`);
+		date.setDate(date.getDate() + n);
+		var day = date.getDate(),
+			month = date.getMonth() + 1;
+		day < 10 &&
+			(day = `0${day}`);
+		month < 10 &&
+			(month = `0${month}`);
+		return `${day}/${month}/${date.getFullYear()}`;
 	});
 	return engine;
 }

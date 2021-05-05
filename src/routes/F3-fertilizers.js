@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
+const navBestFertiCtrl = require('../controllers/NAVIGATOR_L3/NavigatorBestFertilizerCtrl')();
 
 module.exports = function () {
 

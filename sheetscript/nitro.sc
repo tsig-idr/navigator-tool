@@ -41,7 +41,8 @@ while k < n then begin '{'
 
 row_ = [0]
 i_days_Eto = 0
-nitro4days = []
+nitro4days = NEW()
+results = []
 Eto_acumulada_ = 0
 Eto_acumulada_real_ = 0
 Eto_acumulada_elegida_ = 0
@@ -50,7 +51,8 @@ Riego_Efec_ = 0
 Riego_Acc_ = 0
 N_extrA_ = 0
 N_extrA_1_ = 0
-Nh_ = UFN
+row = GET (Fertiliza, 1)
+Nh_ = UFN + IF_ERROR(GET (row, 2)/100*GET (row, 7)*GET (row, 6)*GET (row, 5); 0)
 N_NO3_ = 0
 N_mineralizado_A_ = 0
 N_agua_A_ = 0
@@ -100,13 +102,13 @@ while i < n then begin '{'
 	h = 0
 	SET (nitro4day, 'h', h)
 
-	Ke = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 26); 0); 0)
+	Ke = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 26); GET (SWB4day, 'Ke')); 0)
 	SET (nitro4day, 'Ke', Ke)
 
-	Kc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 29); 0); 0)
+	Kc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 29); GET (SWB4day, 'Kc')); 0)
 	SET (nitro4day, 'Kc', Kc)
 
-	ETc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 30); 0); 0)
+	ETc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 30); GET (SWB4day, 'ETc')); 0)
 	SET (nitro4day, 'ETc', ETc)
 
 	Prec_efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 12); GET (SWB4day, 'P_RO')); 0)
@@ -238,7 +240,9 @@ while i < n then begin '{'
 	Nuptake = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
 	SET (nitro4day, 'Nuptake', Nuptake)
 
-	PUSH (nitro4days, nitro4day)
+	SET (nitro4days, Fecha, nitro4day)
+
+	PUSH(results, nitro4day)
 
 	Eto_acumulada_ = Eto_acumulada
 	Eto_acumulada_real_ = Eto_acumulada_real
@@ -255,4 +259,66 @@ while i < n then begin '{'
 	Nl_A_ = Nl_A
 '}' end
 
+pre_sowing_day = [0, 0, 0, 0, UFN, GET (GET (FenoT, 0), 3)]
+top_dressing_1_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 2), 0), nitrificationPostDays))
+top_dressing_2_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 3), 0), nitrificationPostDays))
+top_dressing_3_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 4), 0), nitrificationPostDays))
+top_dressing_4_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 5), 0), nitrificationPostDays))
+top_dressing_5_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 6), 0), nitrificationPostDays))
+final_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 7), 0), nitrificationPostDays))
 
+pre_sowing_N_extrA_1 = GET (top_dressing_1_day, 'N_extrA_1') - GET (pre_sowing_day, 0)
+top_dressing_1_N_extrA_1 = GET (top_dressing_2_day, 'N_extrA_1') - GET (top_dressing_1_day, 'N_extrA_1')
+top_dressing_2_N_extrA_1 = GET (top_dressing_3_day, 'N_extrA_1') - GET (top_dressing_2_day, 'N_extrA_1')
+top_dressing_3_N_extrA_1 = GET (top_dressing_4_day, 'N_extrA_1') - GET (top_dressing_3_day, 'N_extrA_1')
+top_dressing_4_N_extrA_1 = GET (top_dressing_5_day, 'N_extrA_1') - GET (top_dressing_4_day, 'N_extrA_1')
+top_dressing_5_N_extrA_1 = GET (final_day, 'N_extrA_1') - GET (top_dressing_5_day, 'N_extrA_1')
+
+pre_sowing_N_mineralizado_A = GET (top_dressing_1_day, 'N_mineralizado_A') - GET (pre_sowing_day, 1)
+top_dressing_1_N_mineralizado_A = GET (top_dressing_2_day, 'N_mineralizado_A') - GET (top_dressing_1_day, 'N_mineralizado_A')
+top_dressing_2_N_mineralizado_A = GET (top_dressing_3_day, 'N_mineralizado_A') - GET (top_dressing_2_day, 'N_mineralizado_A')
+top_dressing_3_N_mineralizado_A = GET (top_dressing_4_day, 'N_mineralizado_A') - GET (top_dressing_3_day, 'N_mineralizado_A')
+top_dressing_4_N_mineralizado_A = GET (top_dressing_5_day, 'N_mineralizado_A') - GET (top_dressing_4_day, 'N_mineralizado_A')
+top_dressing_5_N_mineralizado_A = GET (final_day, 'N_mineralizado_A') - GET (top_dressing_5_day, 'N_mineralizado_A')
+
+pre_sowing_N_agua_A = GET (top_dressing_1_day, 'N_agua_A') - GET (pre_sowing_day, 2)
+top_dressing_1_N_agua_A = GET (top_dressing_2_day, 'N_agua_A') - GET (top_dressing_1_day, 'N_agua_A')
+top_dressing_2_N_agua_A = GET (top_dressing_3_day, 'N_agua_A') - GET (top_dressing_2_day, 'N_agua_A')
+top_dressing_3_N_agua_A = GET (top_dressing_4_day, 'N_agua_A') - GET (top_dressing_3_day, 'N_agua_A')
+top_dressing_4_N_agua_A = GET (top_dressing_5_day, 'N_agua_A') - GET (top_dressing_4_day, 'N_agua_A')
+top_dressing_5_N_agua_A = GET (final_day, 'N_agua_A') - GET (top_dressing_5_day, 'N_agua_A')
+
+pre_sowing_Nl_A = GET (top_dressing_1_day, 'Nl_A') - GET (pre_sowing_day, 3)
+top_dressing_1_Nl_A = GET (top_dressing_2_day, 'Nl_A') - GET (top_dressing_1_day, 'Nl_A')
+top_dressing_2_Nl_A = GET (top_dressing_3_day, 'Nl_A') - GET (top_dressing_2_day, 'Nl_A')
+top_dressing_3_Nl_A = GET (top_dressing_4_day, 'Nl_A') - GET (top_dressing_3_day, 'Nl_A')
+top_dressing_4_Nl_A = GET (top_dressing_5_day, 'Nl_A') - GET (top_dressing_4_day, 'Nl_A')
+top_dressing_5_Nl_A = GET (final_day, 'Nl_A') - GET (top_dressing_5_day, 'Nl_A')
+
+pre_sowing_N_fert = GET (GET (Fertiliza, 1), 2)/100*GET (GET (Fertiliza, 1), 7)*GET (GET (Fertiliza, 1), 6)*GET (GET (Fertiliza, 1), 5)
+top_dressing_1_N_fert = GET (GET (Fertiliza, 2), 2)/100*GET (GET (Fertiliza, 2), 7)*GET (GET (Fertiliza, 2), 6)*GET (GET (Fertiliza, 2), 5)
+top_dressing_2_N_fert = GET (GET (Fertiliza, 3), 2)/100*GET (GET (Fertiliza, 3), 7)*GET (GET (Fertiliza, 3), 6)*GET (GET (Fertiliza, 3), 5)
+top_dressing_3_N_fert = GET (GET (Fertiliza, 4), 2)/100*GET (GET (Fertiliza, 4), 7)*GET (GET (Fertiliza, 4), 6)*GET (GET (Fertiliza, 4), 5)
+top_dressing_4_N_fert = GET (GET (Fertiliza, 5), 2)/100*GET (GET (Fertiliza, 5), 7)*GET (GET (Fertiliza, 5), 6)*GET (GET (Fertiliza, 5), 5)
+top_dressing_5_N_fert = GET (GET (Fertiliza, 6), 2)/100*GET (GET (Fertiliza, 6), 7)*GET (GET (Fertiliza, 6), 6)*GET (GET (Fertiliza, 6), 5)
+
+pre_sowing_Nh = GET (pre_sowing_day, 4)
+top_dressing_1_Nh = GET (top_dressing_1_day, 'Nh')
+top_dressing_2_Nh = GET (top_dressing_2_day, 'Nh')
+top_dressing_3_Nh = GET (top_dressing_3_day, 'Nh')
+top_dressing_4_Nh = GET (top_dressing_4_day, 'Nh')
+top_dressing_5_Nh = GET (top_dressing_5_day, 'Nh')
+
+pre_sowing_Balance = SUM(pre_sowing_N_extrA_1, pre_sowing_N_mineralizado_A, pre_sowing_N_agua_A, pre_sowing_Nl_A, pre_sowing_N_fert, pre_sowing_Nh)
+top_dressing_1_Balance = SUM(top_dressing_1_N_extrA_1, top_dressing_1_N_mineralizado_A, top_dressing_1_N_agua_A, top_dressing_1_Nl_A, top_dressing_1_N_fert, top_dressing_1_Nh)
+top_dressing_2_Balance = SUM(top_dressing_2_N_extrA_1, top_dressing_2_N_mineralizado_A, top_dressing_2_N_agua_A, top_dressing_2_Nl_A, top_dressing_2_N_fert, top_dressing_2_Nh)
+top_dressing_3_Balance = SUM(top_dressing_3_N_extrA_1, top_dressing_3_N_mineralizado_A, top_dressing_3_N_agua_A, top_dressing_3_Nl_A, top_dressing_3_N_fert, top_dressing_3_Nh)
+top_dressing_4_Balance = SUM(top_dressing_4_N_extrA_1, top_dressing_4_N_mineralizado_A, top_dressing_4_N_agua_A, top_dressing_4_Nl_A, top_dressing_4_N_fert, top_dressing_4_Nh)
+top_dressing_5_Balance = SUM(top_dressing_5_N_extrA_1, top_dressing_5_N_mineralizado_A, top_dressing_5_N_agua_A, top_dressing_5_Nl_A, top_dressing_5_N_fert, top_dressing_5_Nh)
+
+pre_sowing_N_recom = GET (pre_sowing_day, 5)
+top_dressing_1_N_recom = GET (top_dressing_1_day, 'N_recom')
+top_dressing_2_N_recom = GET (top_dressing_2_day, 'N_recom')
+top_dressing_3_N_recom = GET (top_dressing_3_day, 'N_recom')
+top_dressing_4_N_recom = GET (top_dressing_4_day, 'N_recom')
+top_dressing_5_N_recom = GET (top_dressing_5_day, 'N_recom')
