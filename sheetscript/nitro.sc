@@ -322,3 +322,32 @@ top_dressing_2_N_recom = GET (top_dressing_2_day, 'N_recom')
 top_dressing_3_N_recom = GET (top_dressing_3_day, 'N_recom')
 top_dressing_4_N_recom = GET (top_dressing_4_day, 'N_recom')
 top_dressing_5_N_recom = GET (top_dressing_5_day, 'N_recom')
+
+pre_sowing_N_neto = MAX(0 - pre_sowing_Balance + top_dressing_1_N_recom; 0)
+top_dressing_1_N_neto = MAX(0 - top_dressing_1_Balance + top_dressing_2_N_recom; 0)
+top_dressing_2_N_neto = MAX(0 - top_dressing_2_Balance + top_dressing_3_N_recom; 0)
+top_dressing_3_N_neto = MAX(0 - top_dressing_3_Balance + top_dressing_4_N_recom; 0)
+top_dressing_4_N_neto = MAX(0 - top_dressing_4_Balance + top_dressing_5_N_recom; 0)
+top_dressing_5_N_neto = MAX(0 - top_dressing_5_Balance + GET (final_day, 'N_recom'); 0)
+
+pre_sowing_N_bruto = pre_sowing_N_neto/GET (GET (Fertiliza, 1), 5)
+top_dressing_1_N_bruto = top_dressing_1_N_neto/GET (GET (Fertiliza, 2), 5)
+top_dressing_2_N_bruto = top_dressing_2_N_neto/GET (GET (Fertiliza, 3), 5)
+top_dressing_3_N_bruto = top_dressing_3_N_neto/GET (GET (Fertiliza, 4), 5)
+top_dressing_4_N_bruto = top_dressing_4_N_neto/GET (GET (Fertiliza, 5), 5)
+top_dressing_5_N_bruto = top_dressing_5_N_neto/GET (GET (Fertiliza, 6), 5)
+
+pre_sowing_Fertilizante = CEIL (pre_sowing_N_bruto*10/GET (GET (Fertiliza, 1), 2); 0)*10
+top_dressing_1_Fertilizante = CEIL (top_dressing_1_N_bruto*10/GET (GET (Fertiliza, 2), 2); 0)*10
+top_dressing_2_Fertilizante = CEIL (top_dressing_2_N_bruto*10/GET (GET (Fertiliza, 3), 2); 0)*10
+top_dressing_3_Fertilizante = CEIL (top_dressing_3_N_bruto*10/GET (GET (Fertiliza, 4), 2); 0)*10
+top_dressing_4_Fertilizante = CEIL (top_dressing_4_N_bruto*10/GET (GET (Fertiliza, 5), 2); 0)*10
+top_dressing_5_Fertilizante = CEIL (top_dressing_5_N_bruto*10/GET (GET (Fertiliza, 6), 2); 0)*10
+
+pre_sowing_UFN = CEIL (pre_sowing_N_bruto/5; 0)*5
+top_dressing_1_UFN = CEIL (top_dressing_1_N_bruto/5; 0)*5
+top_dressing_2_UFN = CEIL (top_dressing_2_N_bruto/5; 0)*5
+top_dressing_3_UFN = CEIL (top_dressing_3_N_bruto/5; 0)*5
+top_dressing_4_UFN = CEIL (top_dressing_4_N_bruto/5; 0)*5
+top_dressing_5_UFN = CEIL (top_dressing_5_N_bruto/5; 0)*5
+

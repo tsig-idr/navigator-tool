@@ -6,6 +6,13 @@ const navL1Ctrl = require('../controllers/NAVIGATOR_L1/NavigatorF1Ctrl')();
 
 module.exports = function () {
 
+	router.post('/SWB', asyncHandler(async (req, res) => {
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		res.json({
+			results: (await navL1Ctrl.swb(input, ['SWB4days'])).SWB4days
+		});
+	}));
+
 	router.post('/SNB/daily', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
 		res.json(await navL1Ctrl.nitro(input, ['results']));
@@ -34,13 +41,6 @@ module.exports = function () {
 		delete nitro.results;
 		res.json({
 			results: nitro
-		});
-	}));
-
-	router.post('/SWB', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
-		res.json({
-			results: (await navL1Ctrl.swb(input, ['SWB4days'])).SWB4days
 		});
 	}));
 
@@ -95,5 +95,29 @@ const calendarVars = [
 	'top_dressing_2_N_recom',
 	'top_dressing_3_N_recom',
 	'top_dressing_4_N_recom',
-	'top_dressing_5_N_recom'
+	'top_dressing_5_N_recom',
+	'pre_sowing_N_neto',
+	'top_dressing_1_N_neto',
+	'top_dressing_2_N_neto',
+	'top_dressing_3_N_neto',
+	'top_dressing_4_N_neto',
+	'top_dressing_5_N_neto',
+	'pre_sowing_N_bruto',
+	'top_dressing_1_N_bruto',
+	'top_dressing_2_N_bruto',
+	'top_dressing_3_N_bruto',
+	'top_dressing_4_N_bruto',
+	'top_dressing_5_N_bruto',
+	'pre_sowing_Fertilizante',
+	'top_dressing_1_Fertilizante',
+	'top_dressing_2_Fertilizante',
+	'top_dressing_3_Fertilizante',
+	'top_dressing_4_Fertilizante',
+	'top_dressing_5_Fertilizante',
+	'pre_sowing_UFN',
+	'top_dressing_1_UFN',
+	'top_dressing_2_UFN',
+	'top_dressing_3_UFN',
+	'top_dressing_4_UFN',
+	'top_dressing_5_UFN'
 ];
