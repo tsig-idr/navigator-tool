@@ -85,7 +85,7 @@ module.exports = function () {
 				bestFertilizers.push({
 					fertilizerID: fertilizer.fertilizerID,
 					fertilizer_name: fertilizer.fertilizer_name,
-					amount: Q,
+					amount: Q*100,
 					N: Q*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
 					P: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
 					K: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
