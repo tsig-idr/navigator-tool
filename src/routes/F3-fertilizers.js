@@ -7,7 +7,6 @@ const navBestFertiCtrl = require('../controllers/NAVIGATOR_L3/NavigatorBestFerti
 module.exports = function () {
 
 	router.get('/all', asyncHandler(async (req, res) => {
-		
 		const names = typeof req.query.names === 'string' && req.query.names.split(',');
 		res.json({
 			results: navBestFertiCtrl.get(names, false)
@@ -15,7 +14,6 @@ module.exports = function () {
 	}));
 
 	router.get('/fertilizer/:fertilizerID', asyncHandler(async (req, res) => {
-		
 		const fertilizerID = req.params.fertilizerID || req.query.fertilizerID; 
 		res.json({
 			results: navBestFertiCtrl.getFertilizerID(fertilizerID)
@@ -23,7 +21,6 @@ module.exports = function () {
 	}));
 
 	router.get('/organics', asyncHandler(async (req, res) => {
-		
 		const names = typeof req.query.names === 'string' && req.query.names.split(',');
 		res.json({
 			results: navBestFertiCtrl.getOrganic(names, false)
@@ -31,7 +28,6 @@ module.exports = function () {
 	}));
 
 	router.get('/optimization', asyncHandler(async (req, res) => {
-
 		const include = typeof req.query.include === 'string' && req.query.include.split(','),
 			exclude = typeof req.query.exclude === 'string' && req.query.exclude.split(','),
 			N = typeof req.query.N === 'string' && parseFloat(req.query.N) || 0.0,
@@ -47,7 +43,6 @@ module.exports = function () {
 	}));
 
 	router.post('/optimization', asyncHandler(async (req, res) => {
-
 		const include = typeof req.body.include === 'object' && req.body.include.length !== undefined && req.body.include 
 				|| typeof req.params.include === 'object' && req.params.include.length !== undefined && req.params.include,
 			exclude = typeof req.body.exclude === 'object' && req.body.exclude.length !== undefined && req.body.exclude

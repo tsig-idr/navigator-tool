@@ -3,7 +3,7 @@ function _sendFormLeachingNR(){
     var form = document.querySelector('#formLeachingNR3');
     let json = FormDataJson.formToJson(form);
     
-    fetch('/nitrogen-balance/leaching', {
+    fetch('/F3/leaching', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -48,7 +48,7 @@ function _sendFormVolatilizationNR3(){
   var form = document.querySelector('#formVolatilizationNR3');
   let json = FormDataJson.formToJson(form);
   
-  fetch('/nitrogen-balance/volatilization', {
+  fetch('/F3/volatilization', {
     method: 'POST',
     body: JSON.stringify(json),
     headers: {
@@ -99,7 +99,7 @@ function _createTableVolatilizationNR3Results(data){
 }
 
   function _loadSelectFertilizerType(){
-    fetch('/nitrogen-balance/volatilization-fertilizer-types').then(function (response) {
+    fetch('/F3/volatilization-fertilizer-types').then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -130,7 +130,7 @@ function _sendFormDesnitrificationNR3(){
   var form = document.querySelector('#formDesnitrificationNR3');
   let json = FormDataJson.formToJson(form);
   
-  fetch('/nitrogen-balance/desnitrification', {
+  fetch('/F3/desnitrification', {
     method: 'POST',
     body: JSON.stringify(json),
     headers: {

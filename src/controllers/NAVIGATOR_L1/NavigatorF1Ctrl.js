@@ -35,9 +35,9 @@ module.exports = function () {
 				nitrificationPostDays: 7
 			});
 		const engine = customEngine();
-		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'swb.sc'), 'utf8'),
+		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			output = await sheetscript.run(engine, code, input);
-		code  = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'nitro.sc'), 'utf8');
+		code  = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'nitro.sc'), 'utf8');
 		input = {...input, ...output};
 		output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
@@ -73,7 +73,7 @@ module.exports = function () {
 				cropExtractions: 33,
 				nitrificationPostDays: 7
 			});
-		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'swb.sc'), 'utf8'),
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
@@ -128,8 +128,6 @@ module.exports = function () {
 function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
-
-	/* Aqui las nuevas funciones que vayamos necesitando... */
 
 	// Genera un listado de N fechas (en formato hispano) a partir de una fecha determinada
 	engine.setFunction('user', 'GENNDATES', 2, (start, n) => {

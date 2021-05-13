@@ -1,5 +1,5 @@
 
-  var urlService = '/nutrient-requirements/navigator-f3-npk';
+  var urlService = '/F3/navigator-f3-npk';
 
   function _refreshListCrops(tblBody){
     var rowlength = tblBody.rows.length;
@@ -90,7 +90,7 @@
 
   function onChangeCrop(selectObject){
 
-    fetch('/nutrient-requirements/crop/' + selectObject.value).then(function (response) {
+    fetch('/F3/crop/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -156,7 +156,7 @@
   }
   
   function _loadSelectCrops(){
-    fetch('/nutrient-requirements/crops').then(function (response) {
+    fetch('/F3/crops').then(function (response) {
       if (response.ok) {
         return response.json();
       }

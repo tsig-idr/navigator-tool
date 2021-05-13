@@ -4,10 +4,14 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-const nutrientRequirementsRouter = require('./routes/F3-nutrient-requirements');
-const fertilizersRouter = require('./routes/F3-fertilizers');
-const nitrogenBalanceRouter = require('./routes/F3-nitrogen-balance');
+//const nutrientRequirementsRouter = require('./routes/F3-nutrient-requirements');
+//const fertilizersRouter = require('./routes/F3-fertilizers');
+//const nitrogenBalanceRouter = require('./routes/F3-nitrogen-balance');
+
+const filesRouter = require('./routes/files');
 const F1Router = require('./routes/F1');
+const F3Router = require('./routes/F3');
+const G3Router = require('./routes/G3');
 /* ----------------- */
 
 dotenv.config();
@@ -29,10 +33,14 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-app.use('/nutrient-requirements', nutrientRequirementsRouter());
-app.use('/fertilizers', fertilizersRouter());
-app.use('/nitrogen-balance', nitrogenBalanceRouter());
+//app.use('/nutrient-requirements', nutrientRequirementsRouter());
+//app.use('/fertilizers', fertilizersRouter());
+//app.use('/nitrogen-balance', nitrogenBalanceRouter());
+
+app.use('/files', filesRouter());
 app.use('/F1', F1Router());
+app.use('/F3', F3Router());
+app.use('/G3', G3Router());
 
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);

@@ -1,8 +1,8 @@
-Clima = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Clima.csv')))
-Meteo = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Meteo.csv')))
-Riegos = SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_Riego.csv')))
-NDVI_real = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_real.csv'))), 1)
-NDVI_tipo = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/', CONCAT(uid, '_NDVI_tipo.csv'))), 1)
+Clima = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Clima.csv')))
+Meteo = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Meteo.csv')))
+Riegos = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Riego.csv')))
+NDVI_real = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_real.csv'))), 1)
+NDVI_tipo = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_tipo.csv'))), 1)
 root_min = 0.2
 Lini = 31
 Ldev = 38

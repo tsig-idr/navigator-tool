@@ -38,7 +38,7 @@ var nf3 = {
 * Cargador de datos combo de cultivos
 */
 function _loadSelectCrops(){
-  fetch('/nutrient-requirements/crops').then(function (response) {
+  fetch('/F3/crops').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -76,7 +76,7 @@ function _loadSelectCrops(){
 * Cargador de datos de combo de PK Strategy
 */
 function _loadSelectPKStrategy(){
-  fetch('/nutrient-requirements/pkstrategies').then(function (response) {
+  fetch('/F3/pkstrategies').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -105,7 +105,7 @@ function _loadSelectPKStrategy(){
 * Cargador de datos combo de Tipos de suelo
 */
 function _loadSelectTypeOfSoils(){
-  fetch('/nutrient-requirements/soil/types').then(function (response) {
+  fetch('/F3/soil/types').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -129,7 +129,7 @@ function _loadSelectTypeOfSoils(){
 }
 
 function _loadSelectFertilizerType(){
-  fetch('/nitrogen-balance/volatilization-fertilizer-types').then(function (response) {
+  fetch('/F3/volatilization-fertilizer-types').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -153,7 +153,7 @@ function _loadSelectFertilizerType(){
 }
 
 function _loadSelectFertilizers(){
-  fetch('/fertilizers/all').then(function (response) {
+  fetch('/F3/fertilizers/all').then(function (response) {
     if (response.ok) {
       return response.json();
     }
@@ -456,7 +456,7 @@ function _loadSelectFertilizers(){
 
   function onChangeCrop(selectObject){
 
-    fetch('/nutrient-requirements/crop/' + selectObject.value).then(function (response) {
+    fetch('/F3/crop/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -493,7 +493,7 @@ function _loadSelectFertilizers(){
 
   function onChangeFertilizer(selectObject){
 
-    fetch('/fertilizers/fertilizer/' + selectObject.value).then(function (response) {
+    fetch('/F3/fertilizers/' + selectObject.value).then(function (response) {
       if (response.ok) {
         return response.json();
       }
@@ -546,7 +546,7 @@ function _loadSelectFertilizers(){
     json.crops = crops;
 
 
-    fetch('/nutrient-requirements/n3-fertilicalc', {
+    fetch('/F3/n3-fertilicalc', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -567,7 +567,7 @@ function _loadSelectFertilizers(){
 
   function _getBestFertilizers(json){
 
-    fetch('/fertilizers/optimization', {
+    fetch('/F3/fertilizers/optimization', {
       method: 'POST',
       body: JSON.stringify(json),
       headers: {
@@ -607,7 +607,7 @@ function _loadSelectFertilizers(){
     
     nf3.data.fertilizers = Object.keys(f1.fertilizers).map(function(key) {return f1.fertilizers[key];});
 
-    fetch('/nutrient-requirements/n3-fertilicalc-fertilizers', {
+    fetch('/F3/n3-fertilicalc-fertilizers', {
       method: 'POST',
       body: JSON.stringify(nf3.data),
       headers: {
