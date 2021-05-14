@@ -4,10 +4,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-//const nutrientRequirementsRouter = require('./routes/F3-nutrient-requirements');
-//const fertilizersRouter = require('./routes/F3-fertilizers');
-//const nitrogenBalanceRouter = require('./routes/F3-nitrogen-balance');
-
 const filesRouter = require('./routes/files');
 const F1Router = require('./routes/F1');
 const F3Router = require('./routes/F3');
@@ -30,12 +26,10 @@ app.disable('x-powered-by');
 
 app.use(cors());
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({
+	extended: true
+}));
 app.use(express.json());
-
-//app.use('/nutrient-requirements', nutrientRequirementsRouter());
-//app.use('/fertilizers', fertilizersRouter());
-//app.use('/nitrogen-balance', nitrogenBalanceRouter());
 
 app.use('/files', filesRouter());
 app.use('/F1', F1Router());
