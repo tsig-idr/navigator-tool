@@ -19,66 +19,428 @@
 					<p>bla bla bla</p>
 				</div>
 				<form class="needs-validation" novalidate id="formF1">
-					<p>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Climatic data</h5>
-									<div class="card-body">
-										<input name="Clima" type="file" accept=".csv" />
-									</div>
+					<input name="input[uid]" type="hidden" value="default"/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Climatic data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Clima" type="file" accept=".csv" />
 								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Meteo data</h5>
-									<div class="card-body">
-										<input name="Meteo" type="file" accept=".csv" />
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Meteo data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Meteo" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">NDVI typical data</h5>
+								<div class="card-body">
+									<input class="form-control" name="NDVI_tipo" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">NDVI real data</h5>
+								<div class="card-body">
+									<input class="form-control" name="NDVI_real" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Irrigation data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Riego" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Fertilization data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Fertiliza" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header ">Soil data</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<label for="soilDensity" class="form-label">Density (g/cm3)</label>
+									<input required type="number" class="form-control" id="soilDensity" name="input[soilDensity]" value="1.4" />
+								</div>
+								<div class="col-sm-3">
+									<label for="soilDepth" class="form-label">Depth (cm)</label>
+									<input required type="number" class="form-control" id="soilDepth" name="input[soilDepth]" value="35" />
+								</div>
+								<div class="col-sm-3">
+									<label for="soilStony" class="form-label">Stony (ratio)</label>
+									<input required type="number" class="form-control" id="soilStony" name="input[soilStony]" value="0.15" />
+								</div>
+								<div class="col-sm-3">
+									<label for="soilOrganicMaterial" class="form-label">Organic material (ratio)</label>
+									<input required type="number" class="form-control" id="soilOrganicMaterial" name="input[soilOrganicMaterial]" value="0.018" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3">
+									<label for="soilDelta_N_NH4" class="form-label">&#916;(N - NH4)</label>
+									<input required type="number" class="form-control" id="soilDelta_N_NH4" name="input[soilDelta_N_NH4]" value="0.2" />
+								</div>
+								<div class="col-sm-3">
+									<label for="soilNmin_0" class="form-label">Nmin initial (ppm)</label>
+									<input required type="number" class="form-control" id="soilNmin_0" name="input[soilNmin_0]" value="16" />
+								</div>
+								<div class="col-sm-3">
+									<label for="soilDate_Nmin_0" class="form-label">Date for Nmin initial</label>
+									<input required type="date" class="form-control" id="soilDate_Nmin_0" name="input[soilDate_Nmin_0]" value="2014-12-30" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="card">
+								<h5 class="card-header ">Crop data</h5>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-3">
+											<label for="crop" class="form-label">Name</label>
+											<select required id="crop" class="form-select" name="input[crop]">
+												<option value="Adormidera">Opium poppy</option>
+												<option value="Ajo chino">Chinese garlic</option>
+												<option value="Ajo morado">Purple garlic</option>
+												<option value="Cebolla">Onion</option>
+												<option value="Cebada">Barley</option>
+												<option value="Maiz">Corn</option>
+												<option selected value="Trigo Blando">Wheat (soft)</option>
+												<option value="Trigo Duro">Wheat (hard)</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<label for="cropDate" class="form-label">Seeding Date</label>
+											<input required type="date" class="form-control" id="cropDate" name="input[cropDate]" value="2015-01-11" />
+										</div>
+										<div class="col-sm-3">
+											<label for="cropYield" class="form-label">Yield (Kg/ha)</label>
+											<input required type="number" class="form-control" id="cropYield" name="input[cropYield]" value="9000" />
+										</div>
+										<div class="col-sm-3">
+											<label for="cropExtractions" class="form-label">&#916; root extraction</label>
+											<input required type="number" class="form-control" id="cropExtractions" name="input[cropExtractions]" value="33" />
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</p>
-					<p>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">NDVI typical data</h5>
-									<div class="card-body">
-										<input name="NDVI_tipo" type="file" accept=".csv" />
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">NDVI real data</h5>
-									<div class="card-body">
-										<input name="NDVI_real" type="file" accept=".csv" />
-									</div>
-								</div>
-							</div>
-						</div>
-					</p>
-					<p>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Irrigation data</h5>
-									<div class="card-body">
-										<input name="Riego" type="file" accept=".csv" />
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Fertilization data</h5>
-									<div class="card-body">
-										<input name="Fertiliza" type="file" accept=".csv" />
+						<div class="col-sm-4">
+							<div class="card">
+								<h5 class="card-header ">Water data</h5>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-6">
+											<label for="waterNitrate" class="form-label">NO3 contained (ppm)</label>
+											<input required type="number" class="form-control" id="waterNitrate" name="input[waterNitrate]" value="15" />
+										</div>
+										<div class="col-sm-6">
+											<label for="waterAvail" class="form-label">Availability (mm/m)</label>
+											<input required type="number" class="form-control" id="waterAvail" name="input[waterAvail]" value="100" />
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</p>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header ">Other data</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-2">
+									<label for="nitrificationPostDays" class="form-label">Nitro post days</label>
+									<input required type="number" class="form-control" id="nitrificationPostDays" name="input[nitrificationPostDays]" value="7" />
+								</div>
+								<div class="col-sm-2">
+									<label for="mineralizationSlowdown" class="form-label">Mineralization slowdown</label>
+									<input required type="number" class="form-control" id="mineralizationSlowdown" name="input[mineralizationSlowdown]" value="0.1" />
+								</div>
+								<div class="col-sm-2">
+									<label for="root_max" class="form-label">Root max (m)</label>
+									<input required type="number" class="form-control" id="root_max" name="input[root_max]" value="0.6" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Kcb_ini" class="form-label">Kcb ini</label>
+									<input required type="number" class="form-control" id="Kcb_ini" name="input[Kcb_ini]" value="0.16" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Kcb_mid" class="form-label">Kcb mid</label>
+									<input required type="number" class="form-control" id="Kcb_mid" name="input[Kcb_mid]" value="0.7" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Kcb_end" class="form-label">Kcb end</label>
+									<input required type="number" class="form-control" id="Kcb_end" name="input[Kcb_end]" value="0.65" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-2">
+									<label for="REW" class="form-label">REW (mm)</label>
+									<input required type="number" class="form-control" id="REW" name="input[REW]" value="4" />
+								</div>
+								<div class="col-sm-2">
+									<label for="TEW" class="form-label">TEW (mm)</label>
+									<input required type="number" class="form-control" id="TEW" name="input[TEW]" value="8" />
+								</div>
+								<div class="col-sm-2">
+									<label for="De_0" class="form-label">De initial (mm)</label>
+									<input required type="number" class="form-control" id="De_0" name="input[De_0]" value="8" />
+								</div>
+								<div class="col-sm-2">
+									<label for="fw_0" class="form-label">Fw initial</label>
+									<input required type="number" class="form-control" id="fw_0" name="input[fw_0]" value="1" />
+								</div>
+								<div class="col-sm-2">
+									<label for="irrigationDose" class="form-label">Irrigation Dose (mm)</label>
+									<input required type="number" class="form-control" id="irrigationDose" name="input[irrigationDose]" value="5" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-4 d-flex align-items-center justify-content-center">
+							<button type="button" class="btn btn-info" name="SWB">
+								<i class="fa fa-play"></i> Water Balance
+							</button>
+						</div>
+						<div class="col-sm-4 d-flex align-items-center justify-content-center">
+							<button type="button" class="btn btn-success" name="SNB/weekly">
+								<i class="fa fa-play"></i> Nitrogen Balance
+							</button>
+						</div>
+						<div class="col-sm-4 d-flex align-items-center justify-content-center">
+							<button type="button" class="btn btn-warning" name="SNB/calendar">
+								<i class="fa fa-play"></i> Fertilization Calendar
+							</button>
+						</div>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-info d-none" name="SWB">
+							<thead>
+								<tr>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+									<th scope="col">Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="template">
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+									<td name="Fecha"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-success d-none" name="SNB/weekly">
+							<thead>
+								<tr>
+									<th scope="col">Week</th>
+									<th scope="col">Date</th>
+									<th scope="col">N_miner</th>
+									<th scope="col">N water</th>
+									<th scope="col">N fert</th>
+									<th scope="col">Nl</th>
+									<th scope="col">N extr1</th>
+									<th scope="col">N extr1 Acc</th>
+									<th scope="col">Nmin</th>
+									<th scope="col">ETo Acc</th>
+									<th scope="col">N recom</th>
+									<th scope="col">BBCH</th>
+									<th scope="col">NDVI</th>
+									<th scope="col">Biomass</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="template">
+									<td name="Sem"></td>
+									<td name="Fecha"></td>
+									<td name="N_mineralizado"></td>
+									<td name="N_agua"></td>
+									<td name="N_fert_neto"></td>
+									<td name="Nl"></td>
+									<td name="N_extr_1"></td>
+									<td name="N_extrA_1"></td>
+									<td name="Nmin_medido"></td>
+									<td name="Eto_acumulada_real"></td>
+									<td name="N_recom"></td>
+									<td name="BBCH_real_et"></td>
+									<td name="NDVI_int"></td>
+									<td name="Biomasa"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none" name="SNB/calendar">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">N extrA 1</th>
+									<th scope="col">N_miner A</th>
+									<th scope="col">N water A</th>
+									<th scope="col">Nl A</th>
+									<th scope="col">N fert</th>
+									<th scope="col">Nh</th>
+									<th scope="col">Balance</th>
+									<th scope="col">N recom</th>
+									<th scope="col">N net</th>
+									<th scope="col">N gross</th>
+									<th scope="col">Fertilizer</th>
+									<th scope="col">UFN</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="presowing">
+									<td>
+										<b>Pre sowing</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+								<tr name="topdressing1">
+									<td>
+										<b>Top dressing 1</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+								<tr name="topdressing2">
+									<td>
+										<b>Top dressing 2</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+								<tr name="topdressing3">
+									<td>
+										<b>Top dressing 3</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+								<tr name="topdressing4">
+									<td>
+										<b>Top dressing 4</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+								<tr name="topdressing5">
+									<td>
+										<b>Top dressing 5</b>
+									</td>
+									<td name="N_extrA_1"></td>
+									<td name="N_mineralizado_A"></td>
+									<td name="N_agua_A"></td>
+									<td name="Nl_A"></td>
+									<td name="N_fert"></td>
+									<td name="Nh"></td>
+									<td name="Balance"></td>
+									<td name="N_recom"></td>
+									<td name="N_neto"></td>
+									<td name="N_bruto"></td>
+									<td name="Fertilizante"></td>
+									<td name="UFN"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</form>
 			</div>
 		</main>

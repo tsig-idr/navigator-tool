@@ -7,7 +7,7 @@ module.exports = function () {
 	async function livestock (input, outputnames) {
 		!input &&
 			(input = {
-				uid: 123,
+				uid: 'default',
 				d_c_4000: 3,
 				d_c_6000: 3,
 				d_c_8000: 3,
@@ -29,7 +29,12 @@ module.exports = function () {
 				p_growing: 3,
 				po_hen: 3,
 				po_broiler: 3,
-				po_other: 3
+				po_other: 3,
+				p_mature_feed: 3,
+				p_growing_feed: 3,
+				po_hen_feed: 3,
+				po_broiler_feed: 3,
+				po_other_feed: 3
 			});
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'livestock.sc'), 'utf8'),
 			engine = customEngine(),
@@ -46,14 +51,22 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	// Similiar a IF_ERROR pero con arrays 
+	engine.setFunction('user', 'IF_VOID', 2, (list, replacement) => !list.length && replacement || list);
 	// Transforma un archivo CSV estandar a un array de arrays
 	engine.setFunction('user', 'STD_CSV2ARRAY', 1, filename => {
-		const csv = fs.readFileSync(path.join(path.resolve(), filename), 'utf8');
+		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+		return null;
+		}
+		const csv = fs.readFileSync(filename, 'utf8');
 		return csv.replace(/\r/g, '').split('\n').map(line => line.split(','));
 	});
 	// Transforma un archivo CSV hispano a un array de arrays
 	engine.setFunction('user', 'SP_CSV2ARRAY', 1, filename => {
-		const csv = fs.readFileSync(path.join(path.resolve(), filename), 'utf8');
+		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+			return null;
+		}
+		const csv = fs.readFileSync(filename, 'utf8');
 		return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
 	});
 	// Equivalente a la BUSCARV de Excel

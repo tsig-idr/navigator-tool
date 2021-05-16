@@ -7,6 +7,7 @@ module.exports = function () {
 	async function nitro (input, outputnames) {
 		!input &&
 			(input = {
+				uid: 'default',
 				crop: 'Trigo Blando',
 				soilDensity: 1.4,
 				soilDepth: 35,
@@ -18,7 +19,6 @@ module.exports = function () {
 				cropDate: '11/01/2015',
 				mineralizationSlowdown: 0.1,
 				waterNitrate: 15,
-				irrigation: true,
 				irrigationDose: 5,
 				root_max: 0.6,
 				Kcb_ini: 0.16,
@@ -34,6 +34,10 @@ module.exports = function () {
 				cropExtractions: 33,
 				nitrificationPostDays: 7
 			});
+		input.irrigation = input.irrigationDose > 0;
+		input.cropDate = reformatDate(input.cropDate);
+		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
+
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			output = await sheetscript.run(engine, code, input);
@@ -46,7 +50,7 @@ module.exports = function () {
 	async function swb (input, outputnames) {
 		!input &&
 			(input = {
-				crop: 'Trigo Blando',
+				uid: 'default',
 				soilDensity: 1.4,
 				soilDepth: 35,
 				soilStony: 0.15,
@@ -54,25 +58,28 @@ module.exports = function () {
 				soilDelta_N_NH4: 0.2,
 				soilNmin_0: 16,
 				soilDate_Nmin_0: '30/12/2014',
+				crop: 'Trigo Blando',
 				cropDate: '11/01/2015',
-				mineralizationSlowdown: 0.1,
+				cropYield: 9000,
+				cropExtractions: 33,
 				waterNitrate: 15,
-				irrigation: true,
+				waterAvail: 100,
 				irrigationDose: 5,
-				root_max: 0.6,
+				nitrificationPostDays: 7,
+				mineralizationSlowdown: 0.1,
 				Kcb_ini: 0.16,
 				Kcb_mid: 0.7,
 				Kcb_end: 0.65,
-				waterAvail: 100,
+				root_max: 0.6,
 				fw_0: 1,
 				REW:4,
 				TEW: 8,
 				De_0: 8,
-				fw_0: 1,
-				cropYield: 9000,
-				cropExtractions: 33,
-				nitrificationPostDays: 7
 			});
+		input.irrigation = input.irrigationDose > 0;
+		input.cropDate = reformatDate(input.cropDate);
+		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
+
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);
@@ -125,6 +132,12 @@ module.exports = function () {
 	}
 }
 
+function reformatDate (date) {
+	(date = date.replace(/\-/g, '/')) &&
+	(date = date.split('/'));
+	return `${date[2]}/${date[1]}/${date[0]}`;
+}
+
 function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
@@ -151,6 +164,8 @@ function customEngine () {
 		}
 		return dates;
 	});
+	// Similiar a IF_ERROR pero con arrays 
+	engine.setFunction('user', 'IF_VOID', 2, (list, replacement) => !list.length && replacement || list);
 	// Transforma un listado de tuplas (fecha, valor) interpolando al dia 
 	engine.setFunction('user', 'LINTER4DATES', 1, (tuples, spanish) => {
 		if (typeof tuples != 'object' || !tuples.length || tuples.length < 2 || typeof tuples[0] != 'object' || !tuples[0].length || tuples[0].length < 2) {
@@ -196,12 +211,18 @@ function customEngine () {
 	});
 	// Transforma un archivo CSV hispano a un array de arrays
 	engine.setFunction('user', 'SP_CSV2ARRAY', 1, filename => {
-		const csv = fs.readFileSync(path.join(path.resolve(), filename), 'utf8');
+		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+			return null;
+		}
+		const csv = fs.readFileSync(filename, 'utf8');
 		return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
 	});
 	// Transforma un archivo CSV estandar a un array de arrays
 	engine.setFunction('user', 'STD_CSV2ARRAY', 1, filename => {
-		const csv = fs.readFileSync(path.join(path.resolve(), filename), 'utf8');
+		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+			return null;
+		}
+		const csv = fs.readFileSync(filename, 'utf8');
 		return csv.replace(/\r/g, '').split('\n').map(line => line.split(','));
 	});
 	// Equivalente a la BUSCARV de Excel
@@ -265,7 +286,7 @@ function customEngine () {
 	engine.setFunction('user', 'SP_ADD2DATE', 2, (d, n) => {
 		date = d.split('/');
 		date = new Date(`${date[2]}/${date[1]}/${date[0]}`);
-		date.setDate(date.getDate() + n);
+		date.setDate(date.getDate() + parseInt(n));
 		var day = date.getDate(),
 			month = date.getMonth() + 1;
 		day < 10 &&

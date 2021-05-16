@@ -14,6 +14,10 @@ module.exports = function () {
 				'CO2fromPastures',
 				'CO2fromManure',
 				'CO2fromEnteric',
+				'CH4fromEnteric',
+				'CH4fromManure',
+				'N2OfromPastures',
+				'N2OfromManure',
 				'test'
 			]))
 		});

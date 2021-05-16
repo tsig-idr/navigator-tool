@@ -1,8 +1,8 @@
-Clima = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Clima.csv')))
-Meteo = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Meteo.csv')))
-Riegos = SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Riego.csv')))
-NDVI_real = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_real.csv'))), 1)
-NDVI_tipo = LINTER4DATES (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_tipo.csv'))), 1)
+Clima = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Clima.csv'))); [[]])
+Meteo = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Meteo.csv'))); [[]])
+Riegos = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Riego.csv'))); [[]])
+NDVI_real = LINTER4DATES (IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_real.csv'))); [[]]), 1)
+NDVI_tipo = LINTER4DATES (IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_tipo.csv'))); [[]]), 1)
 root_min = 0.2
 Lini = 31
 Ldev = 38
@@ -47,6 +47,8 @@ while i < n - 1 then begin '{'
 	month = MONTH (fecha)
 	day = DAY (fecha)
 	year = YEAR (fecha)
+
+	SET (SWB4day, 'Fecha', fecha)
 
 	J = FLOOR (275*month/9 - 30 + day) + IF (month > 2; 0 - 2; 0) + IF (MOD (year; 4) == 0; IF (month > 2; 1; 0); 0)
 	SET (SWB4day, 'J', J)

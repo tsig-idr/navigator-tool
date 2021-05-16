@@ -18,59 +18,295 @@
 					<h2>NAVIGATOR TOOL G3</h2>
 					<p>bla bla bla</p>
 				</div>
-				<form class="needs-validation" novalidate id="formF1">
-					<p>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Feeds data</h5>
-									<div class="card-body">
-										<input name="Feeds" type="file" accept=".csv" />
+				<form class="needs-validation" novalidate id="formG3">
+					<input name="input[uid]" type="hidden" value="default"/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header ">Feed data</h5>
+								<div class="card-body">
+									<input name="Feeds" class="form-control" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header ">Manure data</h5>
+								<div class="card-body">
+									<input name="Manure" class="form-control" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header">Number of animals</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-8">
+									<div class="card">
+										<h6 class="card-header">Dairy Cattle</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-3">
+													<label for="d_c_4000" class="form-label">Cows 4000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_4000" name="input[d_c_4000]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_6000" class="form-label">Cows 6000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_6000" name="input[d_c_6000]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_8000" class="form-label">Cows 8000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_8000" name="input[d_c_8000]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_10000" class="form-label">Cows 10000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_10000" name="input[d_c_10000]" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-3">
+													<label for="d_c_mature" class="form-label">Mature cattle</label>
+													<input required type="number" class="form-control" id="d_c_mature" name="input[d_c_mature]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_calves" class="form-label">Calves</label>
+													<input required type="number" class="form-control" id="d_c_calves" name="input[d_c_calves]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_growing_1" class="form-label">Growing &lt; 2 years</label>
+													<input required type="number" class="form-control" id="d_c_growing_1" name="input[d_c_growing_1]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_growing_2" class="form-label">Growing &gt; 2 years</label>
+													<input required type="number" class="form-control" id="d_c_growing_2" name="input[d_c_growing_2]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Meat Cattle</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="m_c_mature" class="form-label">Mature cattle</label>
+													<input required type="number" class="form-control" id="m_c_mature" name="input[m_c_mature]" min="0" value="0" />
+												</div>
+												<div class="col-sm-6">
+													<label for="m_c_calves" class="form-label">Calves</label>
+													<input required type="number" class="form-control" id="m_c_calves" name="input[m_c_calves]" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="m_c_growing_1" class="form-label">Growing &lt; 2 years</label>
+													<input required type="number" class="form-control" id="m_c_growing_1" name="input[m_c_growing_1]" min="0" value="0" />
+												</div>
+												<div class="col-sm-6">
+													<label for="m_c_growing_2" class="form-label">Growing &gt; 2 years</label>
+													<input required type="number" class="form-control" id="m_c_growing_2" name="input[m_c_growing_2]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="card">
-									<h5 class="card-header bg-success text-white">Manure data</h5>
-									<div class="card-body">
-										<input name="Manure" type="file" accept=".csv" />
+							<br/>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Sheep (milk and meat)</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="s_mature" class="form-label">Mature sheep</label>
+													<input required type="number" class="form-control" id="s_mature" name="input[s_mature]" min="0" value="0" />
+												</div>
+												<div class="col-sm-6">
+													<label for="s_growing" class="form-label">Growing sheep</label>
+													<input required type="number" class="form-control" id="s_growing" name="input[s_growing]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Goats (milk and meat)</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="g_mature" class="form-label">Mature goats</label>
+													<input required type="number" class="form-control" id="g_mature" name="input[g_mature]" min="0" value="0" />
+												</div>
+												<div class="col-sm-6">
+													<label for="g_growing" class="form-label">Growing goats</label>
+													<input required type="number" class="form-control" id="g_growing" name="input[g_growing]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Pigs</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="p_mature" class="form-label">Mature pigs</label>
+													<input required type="number" class="form-control" id="p_mature" name="input[p_mature]" min="0" value="0" />
+												</div>
+												<div class="col-sm-6">
+													<label for="p_growing" class="form-label">Growing pigs</label>
+													<input required type="number" class="form-control" id="p_growing" name="input[p_growing]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="card">
+										<h6 class="card-header">Other rumiants</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-12">
+													<label for="r_others" class="form-label">Other rumiants</label>
+													<input required type="number" class="form-control" id="r_others" name="input[r_others]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-9">
+									<div class="card">
+										<h6 class="card-header">Poultry</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-4">
+													<label for="po_hen" class="form-label">Hens</label>
+													<input required type="number" class="form-control" id="po_hen" name="input[po_hen]" min="0" value="0" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_broiler" class="form-label">Broiler chicken</label>
+													<input required type="number" class="form-control" id="po_broiler" name="input[po_broiler]" min="0" value="0" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_other" class="form-label">Other poultry</label>
+													<input required type="number" class="form-control" id="po_other" name="input[po_other]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</p>
-					<p>
-						<div class="card">
-							<h5 class="card-header bg-success text-white">Animals number</h5>
-							<div class="card-body">
-								<div class="row">
-									<div class="col-sm-2">
-										<label for="d_c_4000" class="form-label">Dairy cows 4000 kg milk</label>
-										<input type="number" class="form-control" id="d_c_4000" name="input[d_c_4000]" min="0" value="0" />
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header">Feed for animals (t/year)</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="card">
+										<h6 class="card-header">Pigs</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-4">
+													<label for="p_mature_feed" class="form-label">Mature pigs</label>
+													<input required type="number" class="form-control" id="p_mature_feed" name="input[p_mature_feed]" value="0" />
+												</div>
+												<div class="col-sm-4">
+													<label for="p_growing_feed" class="form-label">Growing pigs</label>
+													<input required type="number" class="form-control" id="p_growing_feed" name="input[p_growing_feed]" value="0" />
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="col-sm-2">
-										<label for="d_c_6000" class="form-label">Dairy cows 6000 kg milk</label>
-										<input type="number" class="form-control" id="d_c_6000" name="input[d_c_6000]" min="0" value="0" />
-									</div>
-									<div class="col-sm-2">
-										<label for="d_c_8000" class="form-label">Dairy cows 8000 kg milk</label>
-										<input type="number" class="form-control" id="d_c_8000" name="input[d_c_8000]" min="0" value="0" />
-									</div>
-									<div class="col-sm-2">
-										<label for="d_c_10000" class="form-label">Dairy cows 10000 kg milk</label>
-										<input type="number" class="form-control" id="d_c_10000" name="input[d_c_10000]" min="0" value="0" />
+								</div>
+								<div class="col-sm-6">
+									<div class="card">
+										<h6 class="card-header">Poultry</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-4">
+													<label for="po_hen_feed" class="form-label">Hens</label>
+													<input required type="number" class="form-control" id="po_hen_feed" name="input[po_hen_feed]" value="0" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_broiler_feed" class="form-label">Broiler chicken</label>
+													<input required type="number" class="form-control" id="po_broiler_feed" name="input[po_broiler_feed]" value="0" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_other_feed" class="form-label">Other poultry</label>
+													<input required type="number" class="form-control" id="po_other_feed" name="input[po_other_feed]" value="0" />
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</p>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-warning">
+							<i class="fa fa-cloud"></i> Calculate GHG emissions
+						</button>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">CH4 (Kg/year)</th>
+									<th scope="col">N2O (Kg/year)</th>
+									<th scope="col">
+										<b>CO2 (Kg/year)</b>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="Enteric">
+									<td>Enteric fermentation</td>
+									<td name="CH4"></td>
+									<td name="N2O"> - </td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Manure">
+									<td>Manure management</td>
+									<td name="CH4"></td>
+									<td name="N2O"></td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Pastures">
+									<td>Pastures</td>
+									<td name="CH4"> - </td>
+									<td name="N2O"></td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Feed">
+									<td>Feed</td>
+									<td name="CH4"> - </td>
+									<td name="N2O"> - </td>
+									<td name="CO2"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</form>
 			</div>
 		</main>
 		<footer class="footer mt-auto py-3 bg-light"></footer>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
-		<script src="/js/form-f1.js"></script>
+		<script src="/js/form-g3.js"></script>
 		<script src="/js/global-scripts.js"></script>
 	</body>
 </html>
