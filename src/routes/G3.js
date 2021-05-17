@@ -18,6 +18,8 @@ module.exports = function () {
 				'CH4fromManure',
 				'N2OfromPastures',
 				'N2OfromManure',
+				'MEATCATTLE_entericCH4',
+				'POULTRY_entericCH4',
 				'test'
 			]))
 		});
