@@ -1,5 +1,10 @@
+CO2_GWP = 1
+CH4_GWP	= 25
+N2O_GWP	= 298
+
 Feeds = SP_CSV2ARRAY(CONCAT('tmp/G3/', CONCAT(uid, '_Feeds.csv')))
 Manure = SP_CSV2ARRAY(CONCAT('tmp/G3/', CONCAT(uid, '_Manure.csv')))
+T50 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T50.csv'))
 T51 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T51.csv'))
 T52 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T52.csv'))
 T53 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T53.csv'))
@@ -10,49 +15,19 @@ T62 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T62.csv'))
 T63 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T63.csv'))
 T64 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T64.csv'))
 T65 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T65.csv'))
+T72 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T72.csv'))
+T73 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T73.csv'))
+T74 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T74.csv'))
 JRC = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'JRC.csv'))
 
-CO2_GWP = 1
-CH4_GWP	= 25
-N2O_GWP	= 298
-
-DAIRYCATTLE_forageCO2 = 0
-DAIRYCATTLE_simpleCO2 = 0
-DAIRYCATTLE_complexCO2 = 0
-DAIRYCATTLE_mixedCO2 = 0
-DAIRYCATTLE_milkCO2 = 0
-MEATCATTLE_forageCO2 = 0
-MEATCATTLE_simpleCO2 = 0
-MEATCATTLE_complexCO2 = 0
-MEATCATTLE_mixedCO2 = 0
-MEATCATTLE_milkCO2 = 0
-SHEEP_forageCO2 = 0
-SHEEP_simpleCO2 = 0
-SHEEP_complexCO2 = 0
-SHEEP_mixedCO2 = 0
-SHEEP_milkCO2 = 0
-GOATS_forageCO2 = 0
-GOATS_simpleCO2 = 0
-GOATS_complexCO2 = 0
-GOATS_mixedCO2 = 0
-GOATS_milkCO2 = 0
-OtherRUMIANTS_forageCO2 = 0
-OtherRUMIANTS_simpleCO2 = 0
-OtherRUMIANTS_complexCO2 = 0
-OtherRUMIANTS_mixedCO2 = 0
-OtherRUMIANTS_milkCO2 = 0
-PIGS_forageCO2 = 0
-PIGS_simpleCO2 = 0
-PIGS_complexCO2 = 0
-PIGS_mixedCO2 = 0
-POULTRY_forageCO2 = 0
-POULTRY_simpleCO2 = 0
-POULTRY_complexCO2 = 0
-POULTRY_mixedCO2 = 0
-LayingHENS_forageCO2 = 0
-LayingHENS_simpleCO2 = 0
-LayingHENS_complexCO2 = 0
-LayingHENS_mixedCO2 = 0
+DAIRYCATTLE_forageCO2 = DAIRYCATTLE_simpleCO2 = DAIRYCATTLE_complexCO2 = DAIRYCATTLE_mixedCO2 = DAIRYCATTLE_milkCO2 = 0
+MEATCATTLE_forageCO2 = MEATCATTLE_simpleCO2 = MEATCATTLE_complexCO2 = MEATCATTLE_mixedCO2 = MEATCATTLE_milkCO2 = 0
+SHEEP_forageCO2 = SHEEP_simpleCO2 = SHEEP_complexCO2 = SHEEP_mixedCO2 = SHEEP_milkCO2 = 0
+GOATS_forageCO2 = GOATS_simpleCO2 = GOATS_complexCO2 = GOATS_mixedCO2 = GOATS_milkCO2 = 0
+OtherRUMIANTS_forageCO2 = OtherRUMIANTS_simpleCO2 = OtherRUMIANTS_complexCO2 = OtherRUMIANTS_mixedCO2 = OtherRUMIANTS_milkCO2 = 0
+PIGS_forageCO2 = PIGS_simpleCO2 = PIGS_complexCO2 = PIGS_mixedCO2 = 0
+POULTRY_forageCO2 = POULTRY_simpleCO2 = POULTRY_complexCO2 = POULTRY_mixedCO2 = 0
+LayingHENS_forageCO2 = LayingHENS_simpleCO2 = LayingHENS_complexCO2 = LayingHENS_mixedCO2 = 0
 
 DAIRYCATTLE_DE = DAIRYCATTLE_N = 0
 MEATCATTLE_DE = MEATCATTLE_N = 0
@@ -63,15 +38,15 @@ PIGS_DE = PIGS_N = 0
 POULTRY_DE = POULTRY_N = 0
 LayingHENS_DE = LayingHENS_N = 0
 
-n = LEN(Feeds)
+n = LEN (Feeds)
 i = 1
 while i < n then begin '{'
-	row = GET(Feeds, i)
-	animal = GET(row, 0)
-	feed = GET(row, 1)
-	produced = IF_ERROR (GET(row, 2); 0)
+	row = GET (Feeds, i)
+	animal = GET (row, 0)
+	feed = GET (row, 1)
+	produced = IF_ERROR (GET (row, 2); 0)
 	produced = IF (produced == ''; 0; produced)
-	purchased = IF_ERROR (GET(row, 3); 0)
+	purchased = IF_ERROR (GET (row, 3); 0)
 	purchased = IF (purchased == ''; 0; purchased)
 
 	forageCO2 = IF_ERROR (VLOOKUP (feed; T60; 3); 0)
@@ -146,6 +121,14 @@ OtherRUMIANTS_DE = IF (OtherRUMIANTS_N == 0; 0; OtherRUMIANTS_DE/OtherRUMIANTS_N
 PIGS_DE = IF (PIGS_N == 0; 0; PIGS_DE/PIGS_N)
 POULTRY_DE = IF (POULTRY_N == 0; 0; POULTRY_DE/POULTRY_N)
 
+DAIRYCATTLE_B0 = VLOOKUP ('Dairy cattle'; T50; 2)
+MEATCATTLE_B0 = VLOOKUP ('Meat cattle'; T50; 2)
+SHEEP_B0 = VLOOKUP ('Sheep'; T50; 2)
+GOATS_B0 = VLOOKUP ('Goats'; T50; 2)
+OtherRUMIANTS_B0 = VLOOKUP ('Horses. others'; T50; 2)
+PIGS_B0 = VLOOKUP ('Pigs'; T50; 2)
+POULTRY_B0 = VLOOKUP ('Poultry'; T50; 2)
+
 DAIRYCATTLE_Ym = 9.75 - 0.05*DAIRYCATTLE_DE*100
 MEATCATTLE_Ym = 9.75 - 0.05*MEATCATTLE_DE*100
 SHEEP_Ym = 9.75 - 0.05*SHEEP_DE*100
@@ -161,6 +144,22 @@ GOATS_REM = IF_ERROR (1.123 - 4.092*0.001*GOATS_DE*100 + 1.126*0.00001*(GOATS_DE
 OtherRUMIANTS_REM = IF_ERROR (1.123 - 4.092*0.001*OtherRUMIANTS_DE*100 + 1.126*0.00001*(OtherRUMIANTS_DE*100)**2 - 25.4/(OtherRUMIANTS_DE*100); 0)
 PIGS_REM = IF_ERROR (1.123 - 4.092*0.001*PIGS_DE*100 + 1.126*0.00001*(PIGS_DE*100)**2 - 25.4/(PIGS_DE*100); 0)
 POULTRY_REM = IF_ERROR (1.123 - 4.092*0.001*POULTRY_DE*100 + 1.126*0.00001*(POULTRY_DE*100)**2 - 25.4/(POULTRY_DE*100); 0)
+
+DAIRYCATTLE_ashes = VLOOKUP ('Dairy cattle'; T50; 3)
+MEATCATTLE_ashes = VLOOKUP ('Meat cattle'; T50; 3)
+SHEEP_ashes = VLOOKUP ('Sheep'; T50; 3)
+GOATS_ashes = VLOOKUP ('Goats'; T50; 3)
+OtherRUMIANTS_ashes = VLOOKUP ('Horses. others'; T50; 3)
+PIGS_ashes = VLOOKUP ('Pigs'; T50; 3)
+POULTRY_ashes = VLOOKUP ('Poultry'; T50; 3)
+
+DAIRYCATTLE_UE = VLOOKUP ('Dairy cattle'; T50; 4)
+MEATCATTLE_UE = VLOOKUP ('Meat cattle'; T50; 4)
+SHEEP_UE = VLOOKUP ('Sheep'; T50; 4)
+GOATS_UE = VLOOKUP ('Goats'; T50; 4)
+OtherRUMIANTS_UE = VLOOKUP ('Horses. others'; T50; 4)
+PIGS_UE = VLOOKUP ('Pigs'; T50; 4)
+POULTRY_UE = VLOOKUP ('Poultry'; T50; 4)
 
 d_c_4000BW = VLOOKUP ('Dairy cows 4000 kg milk'; T52; 2)
 d_c_6000BW = VLOOKUP ('Dairy cows 6000 kg milk'; T52; 2)
@@ -233,19 +232,42 @@ s_growingNex = VLOOKUP ('Growing sheep'; T52; 3)*s_growing
 g_matureNex = VLOOKUP ('Mature goats'; T52; 3)*g_mature
 g_growingNex = VLOOKUP ('Growing goats'; T52; 3)*g_growing
 r_othersNex = VLOOKUP ('Others ruminants'; T52; 3)*r_others
-p_matureNex = VLOOKUP ('Mature pigs'; T53; 3)*p_mature
-p_growingNex = VLOOKUP ('Growing pigs'; T53; 3)*p_growing
-po_henNex = VLOOKUP ('Hens'; T54; 3)*po_hen
-po_broilerNex = VLOOKUP ('Broiler chicken'; T54; 3)*po_broiler
-po_otherNex = VLOOKUP ('Other poultry'; T54; 3)*po_other
+p_matureNex = VLOOKUP ('Mature pigs'; T53; 8)*p_mature
+p_growingNex = VLOOKUP ('Growing pigs'; T53; 8)*p_growing
+po_henNex = VLOOKUP ('Hens'; T54; 8)*po_hen
+po_broilerNex = VLOOKUP ('Broiler chicken'; T54; 8)*po_broiler
+po_otherNex = VLOOKUP ('Other poultry'; T54; 8)*po_other
 
-DAIRYCATTLE_Nex = SUM(d_c_4000Nex; d_c_6000Nex; d_c_8000Nex; d_c_10000Nex; d_c_calvesNex; d_c_growing_1Nex; d_c_growing_2Nex; d_c_matureNex)
-MEATCATTLE_Nex = SUM(m_c_matureNex; m_c_calvesNex; m_c_growing_1Nex; m_c_growing_2Nex)
-SHEEP_Nex = SUM(s_matureNex; s_growingNex)
-GOATS_Nex = SUM(g_matureNex; g_growingNex)
-OtherRUMIANTS_Nex = SUM(r_othersNex)
-PIGS_Nex = SUM(p_matureNex; p_growingNex)
-POULTRY_Nex = SUM(po_henNex; po_broilerNex; po_otherNex)
+DAIRYCATTLE_Nex = SUM (d_c_4000Nex; d_c_6000Nex; d_c_8000Nex; d_c_10000Nex; d_c_calvesNex; d_c_growing_1Nex; d_c_growing_2Nex; d_c_matureNex)
+MEATCATTLE_Nex = SUM (m_c_matureNex; m_c_calvesNex; m_c_growing_1Nex; m_c_growing_2Nex)
+SHEEP_Nex = SUM (s_matureNex; s_growingNex)
+GOATS_Nex = SUM (g_matureNex; g_growingNex)
+OtherRUMIANTS_Nex = SUM (r_othersNex)
+PIGS_Nex = SUM (p_matureNex; p_growingNex)
+POULTRY_Nex = SUM (po_henNex; po_broilerNex; po_otherNex)
+
+d_c_4000VS = d_c_4000DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_6000VS = d_c_6000DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_8000VS = d_c_8000DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_10000VS = d_c_10000DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_calvesVS = d_c_calvesDMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_growing_1VS = d_c_growing_1DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_growing_2VS = d_c_growing_2DMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+d_c_matureVS = d_c_matureDMI*(1 - DAIRYCATTLE_DE - DAIRYCATTLE_UE)*(1 - DAIRYCATTLE_ashes)
+m_c_matureVS = m_c_matureDMI*(1 - MEATCATTLE_DE - MEATCATTLE_UE)*(1 - MEATCATTLE_ashes)
+m_c_calvesVS = m_c_calvesDMI*(1 - MEATCATTLE_DE - MEATCATTLE_UE)*(1 - MEATCATTLE_ashes)
+m_c_growing_1VS = m_c_growing_1DMI*(1 - MEATCATTLE_DE - MEATCATTLE_UE)*(1 - MEATCATTLE_ashes)
+m_c_growing_2VS = m_c_growing_2DMI*(1 - MEATCATTLE_DE - MEATCATTLE_UE)*(1 - MEATCATTLE_ashes)
+s_matureVS = s_matureDMI*(1 - SHEEP_DE - SHEEP_UE)*(1 - SHEEP_ashes)
+s_growingVS = s_growingDMI*(1 - SHEEP_DE - SHEEP_UE)*(1 - SHEEP_ashes)
+g_matureVS = g_matureDMI*(1 - GOATS_DE - GOATS_UE)*(1 - GOATS_ashes)
+g_growingVS =  g_growingDMI*(1 - GOATS_DE - GOATS_UE)*(1 - GOATS_ashes)
+r_othersVS =  r_othersDMI*(1 - OtherRUMIANTS_DE - OtherRUMIANTS_UE)*(1 - OtherRUMIANTS_ashes)
+p_matureVS = p_matureDMI*(1 - PIGS_DE - PIGS_UE)*(1 - PIGS_ashes)
+p_growingVS = p_growingDMI*(1 - PIGS_DE - PIGS_UE)*(1 - PIGS_ashes)
+po_henVS = po_henDMI*(1 - POULTRY_DE - POULTRY_UE)*(1 - POULTRY_ashes)
+po_broilerVS = po_broilerDMI*(1 - POULTRY_DE - POULTRY_UE)*(1 - POULTRY_ashes)
+po_otherVS = po_otherDMI*(1 - POULTRY_DE - POULTRY_UE)*(1 - POULTRY_ashes)
 
 factor = 365*VLOOKUP ('Diet energy ratio'; T51; 2)/VLOOKUP ('Methan energy'; T51; 2)
 DAIRYCATTLE_entericCH4 = (d_c_4000*d_c_4000DMI + d_c_6000*d_c_6000DMI + d_c_8000*d_c_8000DMI + d_c_10000*d_c_10000DMI + d_c_calves*d_c_calvesDMI + d_c_growing_1*d_c_growing_1DMI + d_c_growing_2*d_c_growing_2DMI + d_c_mature*d_c_matureDMI)*factor*DAIRYCATTLE_Ym/100
@@ -275,13 +297,46 @@ milkCO2 = SUM (DAIRYCATTLE_milkCO2; MEATCATTLE_milkCO2; SHEEP_milkCO2; GOATS_mil
 
 CO2fromFeed = SUM (forageCO2; simpleCO2; complexCO2; mixedCO2; milkCO2)
 
+N2OfromManure_pasture = N2OfromManure_liquid = N2OfromManure_solid = 0
 
-m = LEN(Manure)
+DAIRYCATTLE_MCF = MEATCATTLE_MCF = SHEEP_MCF = GOATS_MCF = OtherRUMIANTS_MCF = PIGS_MCF = POULTRY_MCF = 0
+
+m = LEN (Manure)
 j = 1
 while j < m then begin '{'
-	row = GET(Manure, j)
-	animal = GET(row, 0)
-	type = GET(row, 1)
+	row = GET (Manure, j)
+	animal = GET (row, 0)
+	type = GET (row, 1)
+	share = IF_ERROR (GET (row, 2); 0)
+	share = IF (share == ''; 0; share)
+	state = VLOOKUP (type; T73; 3)
 
+	MCF = IF_ERROR (VLOOKUP (type; T74; 16); 0)
+	DAIRYCATTLE_MCF = DAIRYCATTLE_MCF + IF (animal == 'DAIRY CATTLE'; MCF; 0)
+	MEATCATTLE_MCF = MEATCATTLE_MCF + IF (animal == 'MEAT CATTLE'; MCF; 0)
+	SHEEP_MCF = SHEEP_MCF + IF (animal == 'SHEEP'; MCF; 0)
+	GOATS_MCF = GOATS_MCF + IF (animal == 'GOATS'; MCF; 0)
+	OtherRUMIANTS_MCF = OtherRUMIANTS_MCF + IF (animal == 'Other RUMIANTS'; MCF; 0)
+	PIGS_MCF = PIGS_MCF + IF (animal == 'PIGS'; MCF; 0)
+	POULTRY_MCF = POULTRY_MCF + IF (animal == 'POULTRY'; MCF; 0)
+	EF3 = IF_ERROR (IF (type == 'Pasture. range. paddock'; VLOOKUP (animal; T72; 2); VLOOKUP (type; T74; 2)); 0)
+	Nex = share/100*IF (animal == 'DAIRY CATTLE'; DAIRYCATTLE_Nex; IF (IF (animal == 'MEAT CATTLE'; MEATCATTLE_Nex; IF (IF (animal == 'SHEEP'; SHEEP_Nex; IF (IF (animal == 'GOATS'; GOATS_Nex; IF (IF (animal == 'Other RUMIANTS'; OtherRUMIANTS_Nex; IF (IF (animal == 'PIGS'; PIGS_Nex; IF (IF (animal == 'POULTRY' || animal == 'Laying HENS'; POULTRY_Nex; 0)))))))))))))
+	N2OfromManure_pasture = N2OfromManure_pasture + IF (state == 'pasture'; Nex*EF3; 0)
+	N2OfromManure_liquid = N2OfromManure_liquid + IF (state == 'liquid'; Nex*EF3; 0)
+	N2OfromManure_solid = N2OfromManure_solid + IF (state == 'solid'; Nex*EF3; 0)
 	j = j + 1
 '}' end
+
+DAIRYCATTLE_manureCH4 = (d_c_4000*d_c_4000VS + d_c_6000*d_c_6000VS + d_c_8000*d_c_8000VS + d_c_10000*d_c_10000VS + d_c_calves*d_c_calvesVS + d_c_growing_1*d_c_growing_1VS + d_c_growing_2*d_c_growing_2VS + d_c_mature*d_c_matureVS)*365*DAIRYCATTLE_B0*VLOOKUP ('methan density'; T51; 2)*DAIRYCATTLE_MCF
+MEATCATTLE_manureCH4 = (m_c_calves*m_c_calvesVS + m_c_growing_1*m_c_growing_1VS + m_c_growing_2*m_c_growing_2VS + m_c_mature*m_c_matureVS)*365*MEATCATTLE_B0*VLOOKUP ('methan density'; T51; 2)*MEATCATTLE_MCF
+SHEEP_manureCH4 = (s_growing*s_growingVS + s_mature*s_matureVS)*365*SHEEP_B0*VLOOKUP ('methan density'; T51; 2)*SHEEP_MCF
+GOATS_manureCH4 = (g_growing*g_growingVS + g_mature*g_matureVS)*365*GOATS_B0*VLOOKUP ('methan density'; T51; 2)*GOATS_MCF
+OtherRUMIANTS_manureCH4 = (r_others*r_othersVS)*365*OtherRUMIANTS_B0*VLOOKUP ('methan density'; T51; 2)*OtherRUMIANTS_MCF
+PIGS_manureCH4 = (p_growing*p_growingVS + p_mature*p_matureVS)*365*PIGS_B0*VLOOKUP ('methan density'; T51; 2)*PIGS_MCF
+POULTRY_manureCH4 = (po_hen*po_henVS + po_broiler*po_broilerVS + po_other*po_otherVS)*365*POULTRY_B0*VLOOKUP ('methan density'; T51; 2)*POULTRY_MCF
+
+N2OfromPastures = N2OfromManure_pasture*44/28
+CO2fromPastures = N2OfromPastures*N2O_GWP
+N2OfromManure = (N2OfromManure_liquid + N2OfromManure_solid)*44/28
+CH4fromManure = SUM (DAIRYCATTLE_manureCH4; MEATCATTLE_manureCH4; SHEEP_manureCH4; GOATS_manureCH4; OtherRUMIANTS_manureCH4; PIGS_manureCH4; POULTRY_manureCH4)
+CO2fromManure = CH4fromManure*CH4_GWP + N2OfromManure*N2O_GWP

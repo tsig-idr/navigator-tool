@@ -20,63 +20,6 @@
 				</div>
 				<form class="needs-validation" novalidate id="formF1">
 					<input name="input[uid]" type="hidden" value="default"/>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">Climatic data</h5>
-								<div class="card-body">
-									<input class="form-control" name="Clima" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">Meteo data</h5>
-								<div class="card-body">
-									<input class="form-control" name="Meteo" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">NDVI typical data</h5>
-								<div class="card-body">
-									<input class="form-control" name="NDVI_tipo" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">NDVI real data</h5>
-								<div class="card-body">
-									<input class="form-control" name="NDVI_real" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-					</div>
-					<br/>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">Irrigation data</h5>
-								<div class="card-body">
-									<input class="form-control" name="Riego" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<h5 class="card-header">Fertilization data</h5>
-								<div class="card-body">
-									<input class="form-control" name="Fertiliza" type="file" accept=".csv" />
-								</div>
-							</div>
-						</div>
-					</div>
-					<br/>
 					<div class="card">
 						<h5 class="card-header ">Soil data</h5>
 						<div class="card-body">
@@ -116,12 +59,12 @@
 					</div>
 					<br/>
 					<div class="row">
-						<div class="col-sm-8">
+						<div class="col-sm-9">
 							<div class="card">
 								<h5 class="card-header ">Crop data</h5>
 								<div class="card-body">
 									<div class="row">
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<label for="crop" class="form-label">Name</label>
 											<select required id="crop" class="form-select" name="input[crop]">
 												<option value="Adormidera">Opium poppy</option>
@@ -134,15 +77,15 @@
 												<option value="Trigo Duro">Wheat (hard)</option>
 											</select>
 										</div>
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<label for="cropDate" class="form-label">Seeding Date</label>
 											<input required type="date" class="form-control" id="cropDate" name="input[cropDate]" value="2015-01-11" />
 										</div>
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 											<label for="cropYield" class="form-label">Yield (Kg/ha)</label>
 											<input required type="number" class="form-control" id="cropYield" name="input[cropYield]" value="9000" />
 										</div>
-										<div class="col-sm-3">
+										<div class="col-sm-2">
 											<label for="cropExtractions" class="form-label">&#916; root extraction</label>
 											<input required type="number" class="form-control" id="cropExtractions" name="input[cropExtractions]" value="33" />
 										</div>
@@ -150,7 +93,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div class="card">
 								<h5 class="card-header ">Water data</h5>
 								<div class="card-body">
@@ -218,6 +161,63 @@
 								<div class="col-sm-2">
 									<label for="irrigationDose" class="form-label">Irrigation Dose (mm)</label>
 									<input required type="number" class="form-control" id="irrigationDose" name="input[irrigationDose]" value="5" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Climatic data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Clima" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Meteo data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Meteo" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">NDVI typical data</h5>
+								<div class="card-body">
+									<input class="form-control" name="NDVI_tipo" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">NDVI real data</h5>
+								<div class="card-body">
+									<input class="form-control" name="NDVI_real" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Irrigation data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Riego" type="file" accept=".csv" />
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">Fertilization data</h5>
+								<div class="card-body">
+									<input class="form-control" name="Fertiliza" type="file" accept=".csv" />
 								</div>
 							</div>
 						</div>

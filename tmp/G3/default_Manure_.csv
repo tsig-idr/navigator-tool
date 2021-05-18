@@ -1,0 +1,17 @@
+Animal;Type Manure management system;Share of dry matter (%)
+DAIRY CATTLE;Pasture, range, paddock;50
+DAIRY CATTLE;Solid storage;50
+MEAT CATTLE;Pasture, range, paddock;50
+MEAT CATTLE;Solid storage;50
+SHEEP;Pasture, range, paddock;50
+SHEEP;Solid storage;50
+GOATS;Pasture, range, paddock;50
+GOATS;Solid storage;50
+Other RUMIANTS;Pasture, range, paddock;50
+Other RUMIANTS;Solid storage;50
+PIGS;Pasture, range, paddock;50
+PIGS;Solid storage;50
+POULTRY;Pasture, range, paddock;50
+POULTRY;Dry lot;50
+Laying HENS;Pasture, range, paddock;50
+Laying HENS;Dry lot;50

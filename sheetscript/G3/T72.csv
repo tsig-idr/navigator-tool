@@ -2,9 +2,9 @@ type of livestock,EF3 (kg N2O-N/kg nitrogen excreted)
 DAIRY CATTLE,0.02
 MEAT CATTLE,0.02
 MILK SHEEP,0.01
-SHEEP (milk and meat),0.01
-GOAT (milk and meat),0.01
-Other RUMINANTS,0.01
+SHEEP,0.01
+GOATS,0.01
+Other RUMIANTS,0.01
 PIGS,0.02
-POULTRIES,0.02
+POULTRY,0.02
 Laying HENS,0.02
