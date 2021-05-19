@@ -30,11 +30,11 @@ module.exports = function () {
 				po_hen: 1,
 				po_broiler: 1,
 				po_other: 1,
-				p_mature_feed: 0.1,
-				p_growing_feed: 0.1,
-				po_hen_feed: 0.1,
-				po_broiler_feed: 0.1,
-				po_other_feed: 0.1
+				p_mature_feed: 10,
+				p_growing_feed: 10,
+				po_hen_feed: 10,
+				po_broiler_feed: 10,
+				po_other_feed: 10
 			});
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'livestock.sc'), 'utf8'),
 			engine = customEngine(),

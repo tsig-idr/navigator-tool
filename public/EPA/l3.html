@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR TOOL E3</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="../css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>NAVIGATOR TOOL E3</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<input name="input[uid]" type="hidden" value="default"/>
+					<div class="card">
+						<h5 class="card-header">Costs</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<label for="SC" class="form-label">Specific costs (&euro;)</label>
+									<input required type="number" class="form-control" id="SC" name="input[SC]" value="123546" />
+								</div>
+								<div class="col-sm-6">
+									<label for="OCS" class="form-label">Other generic costs (&euro;)</label>
+									<input required type="number" class="form-control" id="OCS" name="input[OCS]" value="9624" />
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-sm-6">
+									<label for="HWC" class="form-label">Human work cost (&euro;)</label>
+									<input required type="number" class="form-control" id="HWC" name="input[HWC]" value="20949" />
+								</div>
+								<div class="col-sm-6">
+									<label for="MWC" class="form-label">Machinery work cost (&euro;)</label>
+									<input required type="number" class="form-control" id="MWC" name="input[MWC]" value="6478" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header">Profits</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<label for="TGV" class="form-label">Total Gross Value (&euro;)</label>
+									<input required type="number" class="form-control" id="TGV" name="input[TGV]" value="208638" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-warning">
+							<i class="fa fa-play"></i> Economic indicators
+						</button>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none">
+							<thead></thead>
+							<tbody>
+								<tr>
+									<td>
+										<b>Total direct costs (&euro;)</b>
+									</td>
+									<td name="TDC"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Gross margin (&euro;)</b>
+									</td>
+									<td name="GM"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Operating income (&euro;)</b>
+									</td>
+									<td name="OI"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+		<script src="/js/form-e3.js"></script>
+		<script src="/js/global-scripts.js"></script>
+	</body>
+</html>

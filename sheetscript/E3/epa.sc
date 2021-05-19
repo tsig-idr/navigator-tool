@@ -1,0 +1,3 @@
+TDC = SC + OCS
+GM = TGV - TDC
+OI = GM - (HWC + MWC)

@@ -1,4 +1,4 @@
-var form = (form = document.querySelector('form')),
+var form = document.querySelector('form'),
 	uid = '';
 
 form.querySelector('button').addEventListener('click', function () {

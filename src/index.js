@@ -8,6 +8,7 @@ const filesRouter = require('./routes/files');
 const F1Router = require('./routes/F1');
 const F3Router = require('./routes/F3');
 const G3Router = require('./routes/G3');
+const E3Router = require('./routes/E3');
 /* ----------------- */
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.use('/files', filesRouter());
 app.use('/F1', F1Router());
 app.use('/F3', F3Router());
 app.use('/G3', G3Router());
+app.use('/E3', E3Router());
 
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);
