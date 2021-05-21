@@ -1,0 +1,146 @@
+Animal;Feed;Self produced (t dm);Purchased (t dm)
+DAIRY CATTLE;Grazing (grasslands);;
+DAIRY CATTLE;Grazing (grasslands);;
+DAIRY CATTLE;Grazing (grasslands);;1
+DAIRY CATTLE;Grazing (grasslands);;1
+DAIRY CATTLE;Grazing (grasslands);;1
+DAIRY CATTLE;Grazing (grasslands);;
+DAIRY CATTLE;Grazing (grasslands);;
+DAIRY CATTLE;Wheat;;
+DAIRY CATTLE;Wheat;;1
+DAIRY CATTLE;Wheat;;1
+DAIRY CATTLE;Wheat;;1
+DAIRY CATTLE;Wheat;;
+DAIRY CATTLE;Suckler cow, 18% crude protein, pellet form;;
+DAIRY CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+DAIRY CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+DAIRY CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+DAIRY CATTLE;Suckler cow, 18% crude protein, pellet form;;
+DAIRY CATTLE;Cereals;;2
+DAIRY CATTLE;Proteins (pulses, soy, distilled grains,…);;2
+DAIRY CATTLE;Energy (molasses, starch, co-products,…);;2
+DAIRY CATTLE;Milk powder;;2
+MEAT CATTLE;Grazing (grasslands);;
+MEAT CATTLE;Grazing (grasslands);;
+MEAT CATTLE;Grazing (grasslands);;1
+MEAT CATTLE;Grazing (grasslands);;1
+MEAT CATTLE;Grazing (grasslands);;1
+MEAT CATTLE;Grazing (grasslands);;
+MEAT CATTLE;Grazing (grasslands);;
+MEAT CATTLE;Wheat;;
+MEAT CATTLE;Wheat;;1
+MEAT CATTLE;Wheat;;1
+MEAT CATTLE;Wheat;;1
+MEAT CATTLE;Wheat;;
+MEAT CATTLE;Suckler cow, 18% crude protein, pellet form;;
+MEAT CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+MEAT CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+MEAT CATTLE;Suckler cow, 18% crude protein, pellet form;;1
+MEAT CATTLE;Suckler cow, 18% crude protein, pellet form;;
+MEAT CATTLE;Cereals;;2
+MEAT CATTLE;Proteins (pulses, soy, distilled grains,…);;2
+MEAT CATTLE;Energy (molasses, starch, co-products,…);;2
+MEAT CATTLE;Milk powder;;2
+SHEEP;Grazing (grasslands);;
+SHEEP;Grazing (grasslands);;
+SHEEP;Grazing (grasslands);;1
+SHEEP;Grazing (grasslands);;1
+SHEEP;Grazing (grasslands);;1
+SHEEP;Grazing (grasslands);;
+SHEEP;Grazing (grasslands);;
+SHEEP;Wheat;;
+SHEEP;Wheat;;1
+SHEEP;Wheat;;1
+SHEEP;Wheat;;1
+SHEEP;Wheat;;
+SHEEP;Meat sheep, 16% crude protein, pellet form;;
+SHEEP;Meat sheep, 16% crude protein, pellet form;;1
+SHEEP;Meat sheep, 16% crude protein, pellet form;;1
+SHEEP;Meat sheep, 16% crude protein, pellet form;;1
+SHEEP;Meat sheep, 16% crude protein, pellet form;;
+SHEEP;Cereals;;2
+SHEEP;Proteins (pulses, soy, distilled grains,…);;2
+SHEEP;Energy (molasses, starch, co-products,…);;2
+SHEEP;Milk powder;;2
+GOATS;Grazing (grasslands);;
+GOATS;Grazing (grasslands);;
+GOATS;Grazing (grasslands);;1
+GOATS;Grazing (grasslands);;1
+GOATS;Grazing (grasslands);;1
+GOATS;Grazing (grasslands);;
+GOATS;Grazing (grasslands);;
+GOATS;Wheat;;
+GOATS;Wheat;;1
+GOATS;Wheat;;1
+GOATS;Wheat;;1
+GOATS;Wheat;;
+GOATS;Goat, 24% crude protein, pellet form;;
+GOATS;Goat, 24% crude protein, pellet form;;1
+GOATS;Goat, 24% crude protein, pellet form;;1
+GOATS;Goat, 24% crude protein, pellet form;;1
+GOATS;Goat, 24% crude protein, pellet form;;
+GOATS;Cereals;;2
+GOATS;Proteins (pulses, soy, distilled grains,…);;2
+GOATS;Energy (molasses, starch, co-products,…);;2
+GOATS;Milk powder;;2
+Other RUMIANTS;Grazing (grasslands);;
+Other RUMIANTS;Grazing (grasslands);;
+Other RUMIANTS;Grazing (grasslands);;1
+Other RUMIANTS;Grazing (grasslands);;1
+Other RUMIANTS;Grazing (grasslands);;1
+Other RUMIANTS;Grazing (grasslands);;
+Other RUMIANTS;Grazing (grasslands);;
+Other RUMIANTS;Wheat;;
+Other RUMIANTS;Wheat;;1
+Other RUMIANTS;Wheat;;1
+Other RUMIANTS;Wheat;;1
+Other RUMIANTS;Wheat;;
+Other RUMIANTS;Horse, 14% crude protein, pellet form;;
+Other RUMIANTS;Horse, 14% crude protein, pellet form;;1
+Other RUMIANTS;Horse, 14% crude protein, pellet form;;1
+Other RUMIANTS;Horse, 14% crude protein, pellet form;;1
+Other RUMIANTS;Horse, 14% crude protein, pellet form;;
+Other RUMIANTS;Cereals;;2
+Other RUMIANTS;Proteins (pulses, soy, distilled grains,…);;2
+Other RUMIANTS;Energy (molasses, starch, co-products,…);;2
+Other RUMIANTS;Milk powder;;2
+PIGS;Grazing (grasslands);;
+PIGS;Grazing (grasslands);;
+PIGS;Grazing (grasslands);;1
+PIGS;Grazing (grasslands);;1
+PIGS;Grazing (grasslands);;1
+PIGS;Grazing (grasslands);;
+PIGS;Grazing (grasslands);;
+PIGS;Wheat;;
+PIGS;Wheat;;1
+PIGS;Wheat;;1
+PIGS;Wheat;;1
+PIGS;Wheat;;
+PIGS;Pregnant sow, pellet form;;
+PIGS;Pregnant sow, pellet form;;1
+PIGS;Pregnant sow, pellet form;;1
+PIGS;Pregnant sow, pellet form;;1
+PIGS;Pregnant sow, pellet form;;
+PIGS;Cereals;;2
+PIGS;Proteins (pulses, soy, distilled grains,…);;2
+PIGS;Energy (molasses, starch, co-products,…);;2
+POULTRY;Grazing (grasslands);;
+POULTRY;Grazing (grasslands);;
+POULTRY;Grazing (grasslands);;1
+POULTRY;Grazing (grasslands);;1
+POULTRY;Grazing (grasslands);;1
+POULTRY;Grazing (grasslands);;
+POULTRY;Grazing (grasslands);;
+POULTRY;Wheat;;
+POULTRY;Wheat;;1
+POULTRY;Wheat;;1
+POULTRY;Wheat;;1
+POULTRY;Wheat;;
+POULTRY;Wheat-based, pellet form;;
+POULTRY;Wheat-based, pellet form;;1
+POULTRY;Wheat-based, pellet form;;1
+POULTRY;Wheat-based, pellet form;;1
+POULTRY;Wheat-based, pellet form;;
+POULTRY;Cereals;;2
+POULTRY;Proteins (pulses, soy, distilled grains,…);;2
+POULTRY;Energy (molasses, starch, co-products,…);;2

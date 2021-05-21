@@ -7,6 +7,7 @@ const navNutri3FertilicalcCtrl = require('../controllers/NAVIGATOR_L3/NavigatorN
 const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
 const navBestFertiCtrl = require('../controllers/NAVIGATOR_L3/NavigatorBestFertilizerCtrl')();
 const navNF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNF3Ctrl')();
+const navF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorF3Ctrl')();
 
 module.exports = function () {
 
@@ -367,6 +368,22 @@ module.exports = function () {
 		res.json({
 			results: fertilizers,
 			total: navBestFertiCtrl.aggregate(fertilizers)
+		});
+	}));
+
+	router.post('/requirements', asyncHandler(async (req, res) => {
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		res.json({
+			results: (await navF3Ctrl.requeriments(input, [
+				'Nuptake',
+				'Nuptake_min',
+				'Nuptake_max',
+				'P_sufficiency',
+				'P_minBM',
+				'P_maxBM',
+				'P_maintenance',
+				'test'
+			]))
 		});
 	}));
 
