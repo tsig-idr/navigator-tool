@@ -382,6 +382,22 @@ module.exports = function () {
 				'P_minBM',
 				'P_maxBM',
 				'P_maintenance',
+				'K_sufficiency',
+				'K_minBM',
+				'K_maxBM',
+				'K_maintenance',
+				'P2O5_sufficiency',
+				'P2O5_minBM',
+				'P2O5_maxBM',
+				'P2O5_maintenance',
+				'K2O_sufficiency',
+				'K2O_minBM',
+				'K2O_maxBM',
+				'K2O_maintenance',
+				'Nmineralization',
+				'Nfixation',
+				'Nirrigation',
+				'Nc_s_initial',
 				'test'
 			]))
 		});
