@@ -372,34 +372,120 @@ module.exports = function () {
 	}));
 
 	router.post('/requirements', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object'; 
+		const vars = [
+			'P_sufficiency',
+			'P_minBM',
+			'P_maxBM',
+			'P_maintenance',
+			'K_sufficiency',
+			'K_minBM',
+			'K_maxBM',
+			'K_maintenance',
+			'P2O5_sufficiency',
+			'P2O5_minBM',
+			'P2O5_maxBM',
+			'P2O5_maintenance',
+			'K2O_sufficiency',
+			'K2O_minBM',
+			'K2O_maxBM',
+			'K2O_maintenance',
+			'Nmineralization',
+			'Nfixation',
+			'Nirrigation',
+			'Nc_s_initial',
+			'Nleaching',
+			'Nuptake',
+			'Nuptake_min',
+			'Nuptake_max',
+			'Nc_s_end',
+			'Ndenitrification',
+			'Nvolatilization',
+			'Ncrop_avg',
+			'Ncrop_min',
+			'Ncrop_max',
+			'test'
+		];
+		const fertilizers = navBestFertiCtrl.get(input.fertilizers);
+		input.fertilizers = [];
+		let output = await navF3Ctrl.requeriments(input, vars),
+			N = output.Ncrop_avg, 
+			P, K;
+		switch (input.PK_strategy) {
+			case 'maximum-yield':
+				P = output.P_maxBM;
+				K = output.K_maxBM;
+				break;
+			case 'minimum-fertilizer':
+				P = output.P_minBM;
+				K = output.K_minBM;
+				break;
+			case 'sufficiency':
+				P = output.P_sufficiency;
+				K = output.K_sufficiency;
+				break;
+			case 'maintenance':
+				P = output.P_maintenance;
+				K = output.K_maintenance;
+				break;
+			default:
+				break;
+		}
+		input.fertilizers = navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N);
+		output = await navF3Ctrl.requeriments(input, vars);
+		N = output.Ncrop_avg;
+		switch (input.PK_strategy) {
+			case 'maximum-yield':
+				P = output.P_maxBM;
+				K = output.K_maxBM;
+				break;
+			case 'minimum-fertilizer':
+				P = output.P_minBM;
+				K = output.K_minBM;
+				break;
+			case 'sufficiency':
+				P = output.P_sufficiency;
+				K = output.K_sufficiency;
+				break;
+			case 'maintenance':
+				P = output.P_maintenance;
+				K = output.K_maintenance;
+				break;
+			default:
+				break;
+		}
 		res.json({
-			results: (await navF3Ctrl.requeriments(input, [
-				'Nuptake',
-				'Nuptake_min',
-				'Nuptake_max',
-				'P_sufficiency',
-				'P_minBM',
-				'P_maxBM',
-				'P_maintenance',
-				'K_sufficiency',
-				'K_minBM',
-				'K_maxBM',
-				'K_maintenance',
-				'P2O5_sufficiency',
-				'P2O5_minBM',
-				'P2O5_maxBM',
-				'P2O5_maintenance',
-				'K2O_sufficiency',
-				'K2O_minBM',
-				'K2O_maxBM',
-				'K2O_maintenance',
-				'Nmineralization',
-				'Nfixation',
-				'Nirrigation',
-				'Nc_s_initial',
-				'test'
-			]))
+			results: [
+				{
+					cropID: input.cropID,
+					yield: input.yield,
+					nutrient_requirements: {
+						Ncf_min: output.Ncrop_min,
+						Ncf_max: output.Ncrop_max,
+						Ncf_avg: N,
+						Pcf: P,
+						Kcf: K,
+						Ninputs_terms: {
+							Nmineralization: output.Nmineralization,
+							Nfixation: output.Nfixation,
+							Nwater: output.Nirrigation,
+							NminInitial: output.Nc_s_initial
+						},
+						Noutputs_terms: {
+							Nleaching: output.Nleaching,
+							Nuptake : output.Nuptake,
+							Nuptake_min: output.Nuptake_min,
+							Nuptake_max: output.Nuptake_max,
+							Ndenitrification: output.Ndenitrification,
+							NminPostharvest: output.Nc_s_end,
+							Nvolatilization: output.Nvolatilization
+						},
+						P2O5cf: 2.293*P,
+						K2Ocf: 1.205*K,
+					},
+					fertilization: navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N)
+				}
+			]
 		});
 	}));
 
