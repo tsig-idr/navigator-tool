@@ -372,45 +372,12 @@ module.exports = function () {
 	}));
 
 	router.post('/requirements', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object'; 
-		const vars = [
-			'P_sufficiency',
-			'P_minBM',
-			'P_maxBM',
-			'P_maintenance',
-			'K_sufficiency',
-			'K_minBM',
-			'K_maxBM',
-			'K_maintenance',
-			'P2O5_sufficiency',
-			'P2O5_minBM',
-			'P2O5_maxBM',
-			'P2O5_maintenance',
-			'K2O_sufficiency',
-			'K2O_minBM',
-			'K2O_maxBM',
-			'K2O_maintenance',
-			'Nmineralization',
-			'Nfixation',
-			'Nirrigation',
-			'Nc_s_initial',
-			'Nleaching',
-			'Nuptake',
-			'Nuptake_min',
-			'Nuptake_max',
-			'Nc_s_end',
-			'Ndenitrification',
-			'Nvolatilization',
-			'Ncrop_avg',
-			'Ncrop_min',
-			'Ncrop_max',
-			'test'
-		];
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object' || {};
 		const fertilizers = navBestFertiCtrl.get(input.fertilizers);
 		input.fertilizers = [];
-		let output = await navF3Ctrl.requeriments(input, vars),
+		let output = await navF3Ctrl.requeriments(input),
 			N = output.Ncrop_avg, 
-			P, K;
+			P, K, P2O5, K2O;
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
 				P = output.P_maxBM;
@@ -432,24 +399,32 @@ module.exports = function () {
 				break;
 		}
 		input.fertilizers = navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N);
-		output = await navF3Ctrl.requeriments(input, vars);
+		output = await navF3Ctrl.requeriments(input);
 		N = output.Ncrop_avg;
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
 				P = output.P_maxBM;
 				K = output.K_maxBM;
+				P2O5 = output.P2O5_maxBM;
+				K2O = output.K2O_maxBM;
 				break;
 			case 'minimum-fertilizer':
 				P = output.P_minBM;
 				K = output.K_minBM;
+				P2O5 = output.P2O5_minBM;
+				K2O = output.K2O_minBM;
 				break;
 			case 'sufficiency':
 				P = output.P_sufficiency;
 				K = output.K_sufficiency;
+				P2O5 = output.P2O5_sufficiency;
+				K2O = output.K2O_sufficiency;
 				break;
 			case 'maintenance':
 				P = output.P_maintenance;
 				K = output.K_maintenance;
+				P2O5 = output.P2O5_maintenance;
+				K2O = output.K2O_maintenance;
 				break;
 			default:
 				break;
@@ -480,8 +455,8 @@ module.exports = function () {
 							NminPostharvest: output.Nc_s_end,
 							Nvolatilization: output.Nvolatilization
 						},
-						P2O5cf: 2.293*P,
-						K2Ocf: 1.205*K,
+						P2O5cf: P2O5,
+						K2Ocf: K2O,
 					},
 					fertilization: navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N)
 				}

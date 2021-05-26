@@ -1,10 +1,6 @@
 y = yield
 crop_type = cropID
-soil_texture = soil
-export_r = residues/100
-depth_s = depth
-climate_zone = zone
-Nc_s_initial = Nc_s_0
+export_r_ = export_r/100
 HI_est_ = HI_est/100
 CV_ = CV/100
 
@@ -67,7 +63,7 @@ P_nyears_max = IF (P_crop_max_ > P_crop_max; CEIL (P_crop_max_/P_crop_max); 1)
 P_STL_STLtmax = IF (Pc_s < Pc_s_thres_max; 1; 0)
 P_STL_2STLtmax = IF (Pc_s > 2*Pc_s_thres_max; 0.5; 1)
 Pc_si = Pc_s_0*density_s*depth_s*10
-P_exported = h_dm_med_50*Pc_h + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r
+P_exported = h_dm_med_50*Pc_h + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r_
 
 P_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin/P_nyears_min
 P_minBM = (P_exported*P_STL_2STLtmin + 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin)/P_nyears_min
@@ -93,7 +89,7 @@ K_STL_2STLtmax = IF (Kc_s > 2*Kc_s_thres_max; 0.5; 1)
 K_crop_max_ = K_minBM*K_STL_2STLtmax + 10*density_s*depth_s*(Kc_s_thres_max - Kc_s)*fK*K_STL_STLtmax
 K_nyears_max = IF (K_crop_max_ > K_crop_max; CEIL (K_crop_max_/K_crop_max); 1)
 fK = VLOOKUP (soil_texture; SoilData; 24) 
-K_exported = h_dm_med_50*Kc_h + r_dm_med_50*(1 - fmc_r)*Kc_r*export_r
+K_exported = h_dm_med_50*Kc_h + r_dm_med_50*(1 - fmc_r)*Kc_r*export_r_
 
 K_sufficiency = 10*density_s*depth_s*(Kc_s_thres_min - Kc_s)*fK*K_STL_STLtmin/K_nyears_min
 K_minBM = (K_exported*K_STL_2STLtmin + 10*density_s*depth_s*(Kc_s_thres_min - Kc_s)*fK*K_STL_STLtmin)/K_nyears_min
@@ -105,7 +101,7 @@ K2O_minBM = K_minBM*1.205
 K2O_maxBM = K_maxBM*1.205
 K2O_maintenance = K_maintenance*1.205
 
-factor_humidity = VLOOKUP (climate_zone; Clima; 2)
+factor_humidity = VLOOKUP (climatic_zone; Clima; 2)
 Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1) + 1), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]) + 1)*factor_humidity
 Nmineralization = Nc_mineralization_SOM + Nc_mineralization_amendment
 
@@ -117,8 +113,8 @@ r_dm = y_dm*(1 - HI_est_)/HI_est_
 y_dm = yield*dm_h
 Nfixation = IF (n_fix_code =='Non_legume'; 10; (1 + fnr)*(N_yield + N_res)*n_fix_per)
 
-factor_irrigation = IF (type_irrigated == 'Trickle'; 0.9; IF (type_irrigated == 'Sprinkler'; 0.85; IF (type_irrigated == 'Surface'; 0.7; 0)))
-Nirrigation = IF (water_supply == 'Rainfed'; 0; Nc_NO3_water*dose_irrigation*factor_irrigation*22.6/100000)
+factor_irrigation = IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
+Nirrigation = IF (water_supply == '0'; 0; Nc_NO3_water*dose_irrigation*factor_irrigation*22.6/100000)
 
 Nc_s_initial = Nc_s_0*density_s*depth_s*10
 Nc_s_end = Nc_s_n*density_s*depth_s*10
@@ -138,9 +134,9 @@ Nuptake_min = (h_dm_med_20*Nc_h + (h_dm_med_20*(1 - HI_est_)/HI_est_)*Nc_r)*(1 +
 Nuptake_max = (h_dm_med_80*Nc_h + (h_dm_med_80*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 
 drain_rate = VLOOKUP (soil_texture; SoilData; 5)
-j = IF (water_supply == 'Irrigated'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
-inorgDrain = GET (GET (Drainage, IF (tilled == 'No'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
-orgDrain = IF (tilled == 'Yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)
+j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
+inorgDrain = GET (GET (Drainage, IF (tilled == 'no'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
+orgDrain = IF (tilled == 'yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)
 Ndenitrification = SUM (inorgDrain*(inorg_N_vol_applied + inorg_N_vol_planned); orgDrain*(org_N_vol_applied + org_N_vol_planned))
 Ndenitrification_min = Ndenitrification*(SUM (Nleaching; Nuptake_min; Nc_s_end) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_min)
 Ndenitrification_max = Ndenitrification*(SUM (Nleaching; Nuptake_max; Nc_s_end) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_max)

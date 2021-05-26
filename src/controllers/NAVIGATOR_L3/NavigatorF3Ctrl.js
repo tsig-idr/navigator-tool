@@ -3,29 +3,28 @@ const fs = require('fs');
 const sheetscript = require('sheetscript');
 
 module.exports = function () {
-
+// Kc_method, CEC, pH, Nc_h, Kc_h, Pc_h
 	async function requeriments (input, outputnames) {
 		!input &&
 			(input = {
-				uid: 'default',
 				cropID: 'BARLEY_6_ROW',
-				soil: 'Loam',
-				Pc_method: 'Olsen',
-				zone: 'atlantic_zone',
-				water_supply: 'Irrigated',
-				type_irrigated: 'Sprinkler',
+				soil_texture: 'loam',
+				Pc_method: 'olsen',
+				climatic_zone: 'atlantic',
+				water_supply: '1',
+				type_irrigated: 'sprinkler',
 				PK_strategy: 'maximum-yield',
-				tilled: 'No',
+				tilled: 'no',
 				yield: 10000,
-				residues: 100,
-				depth: 0.5,
+				export_r: 100,
+				depth_s: 0.5,
 				HI_est: 40,
 				CV: 20,
-				Pc_s_0: 10,
-				Kc_s_0: 0.026,
+				Pc_s: 10,
+				Kc_s: 0.026,
 				SOM: 1.8,
-				Nc_s_0: 4,
-				Nc_s_n: 5,
+				Nc_s_initial: 4,
+				Nc_end: 5,
 				dose_irrigation: 4000,
 				Nc_NO3_water: 25,
 				rain_a: 800,
@@ -33,6 +32,11 @@ module.exports = function () {
 			});
 		!input.fertilizers &&
 			(input.fertilizers = []);
+		input.Pc_s_0 = input.Pc_s;
+		input.Kc_s_0 = input.Kc_s;
+		input.Nc_s_0 = input.Nc_s_initial;
+		input.Nc_s_n = input.Nc_end;
+
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F3', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);

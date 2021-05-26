@@ -1,6 +1,6 @@
 climate_zone;factor_humidity
-alpine_zone;1
-atlantic_zone;0,9
-continental_zone;1
-northern_zone;0,8
-southern_zone;0,6
+alpine;1
+atlantic;0,9
+continental;1
+northern;0,8
+southern;0,6
