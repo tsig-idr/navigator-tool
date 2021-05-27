@@ -3,7 +3,6 @@ const fs = require('fs');
 const sheetscript = require('sheetscript');
 
 module.exports = function () {
-// Kc_method, CEC, pH, Nc_h, Kc_h, Pc_h
 	async function requeriments (input, outputnames) {
 		!input &&
 			(input = {

@@ -111,11 +111,11 @@
 								</div>
 								<div class="col-sm-2">
 									<label for="Pc_s" class="form-label">P (ppm)</label>
-									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.01" />
+									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.001" value="10" />
 								</div>
 								<div class="col-sm-2">
 									<label for="Kc_s" class="form-label">K (ppm)</label>
-									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.01" />
+									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.001" value="0.026" />
 								</div>
 							</div>
 						</div>
@@ -192,27 +192,25 @@
 						</button>
 					</div>
 					<br/>
-					<div class="d-none">
-						<h4>N balance</h4>
-						<div class="table-responsive">
+					<div class="d-none" id="results">
+						<h3 class="text-center">N balance</h3>
+						<div class="table-responsive" id="balance">
 							<table class="table table-warning">
 								<thead>
 									<tr>
-										<th></th>
 										<th colspan="4">INPUTS terms (kg/ha)</th>
 										<th colspan="5">OUTPUTS terms (kg/ha)</th>
 									</tr>
 								</thead>
 								<thead>
 									<tr>
-										<th scope="col">Crop</th>
 										<th scope="col">Mineralization</th>
 										<th scope="col">Fixation</th>
 										<th scope="col">N water</th>
 										<th scope="col">Nmin initial</th>
 										<th scope="col">Leaching</th>
 										<th scope="col">Uptake</th>
-										<th scope="col">Desnitrification</th>
+										<th scope="col">Denitrification</th>
 										<th scope="col">Nmin postharvest</th>
 										<th scope="col">Volatilization</th>
 									</tr>
@@ -220,13 +218,11 @@
 								<tbody></tbody>
 							</table>
 						</div>
-						<h4>NPK requirements</h4>
-						<div class="table-responsive">
+						<h3 class="text-center">NPK requirements</h3>
+						<div class="table-responsive" id="requirements">
 							<table class="table table-warning">
 								<thead>
 									<tr>
-										<th scope="col">Crop</th>
-										<th scope="col">Yield (kg/ha)</th>
 										<th scope="col">N (kg/ha)</th>
 										<th scope="col">N 20% (kg/ha)</th>
 										<th scope="col">N 80% (kg/ha)</th>
@@ -239,12 +235,11 @@
 								<tbody></tbody>
 							</table>
 						</div>
-						<h4>Best fertilization</h4>
-						<div class="table-responsive">
+						<h3 class="text-center">Best fertilization</h3>
+						<div class="table-responsive" id="fertilization">
 							<table class="table table-warning">
 								<thead>
 									<tr>
-										<th scope="col">Crop</th>
 										<th scope="col">Fertilizer</th>
 										<th scope="col">Amount (kg/ha)</th>
 										<th scope="col">Cost (€/ha)</th>
