@@ -1,7 +1,7 @@
 var form = document.querySelector('form'),
 	uid = '';
 
-form.querySelector('button').addEventListener('click', function () {
+form.querySelector('button').addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
 	form.classList.add('was-validated');
@@ -14,12 +14,7 @@ form.querySelector('button').addEventListener('click', function () {
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
-	}).then(function (response) {
-		if (response.ok) {
-			return response.json();
-		}
-		return Promise.reject(response);
-	}).then(function (data) {
+	}).then(res => res.json()).then(data => {
 		let parts, 
 			td;
 		for (const name in data.results) {
@@ -28,20 +23,20 @@ form.querySelector('button').addEventListener('click', function () {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
-	}).catch(function (error) {
+	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
 });
 
-document.querySelectorAll('[type="file"]').forEach(function (input) {
-	input.addEventListener('change', function (ev) {
+document.querySelectorAll('[type="file"]').forEach(input => {
+	input.addEventListener('change', ev => {
 		var file = ev.target.files[0],
 			reader;
 		if (!file) {
 			return false;
 		}
 		reader = new FileReader();
-		reader.onload = function (ev) {
+		reader.onload = ev => {
 			fetch(`/files/G3/${input.name}.csv?uid=${uid}`, {
 				method: 'POST',
 				body: JSON.stringify({
@@ -50,14 +45,9 @@ document.querySelectorAll('[type="file"]').forEach(function (input) {
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
-			}).then(function (response) {
-				if (response.ok) {
-					return response.json();
-				}
-				return Promise.reject(response);
-			}).then(function (data) {
+			}).then(res => res.json()).then(data => {
 				form['input[uid]'].value = uid = data.uid;
-			}).catch(function (error) {
+			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
 		};

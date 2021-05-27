@@ -1,2805 +1,2907 @@
-[{
-    "uri": "navigatortool:fertilizer:<_Fertilizer:NaN_>",
-    "fertilizerID": "NaN",
-    "fertilizerKey": "A.01",
-    "fertilizer_name": "Sodium nitrate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "UCN",
-        "vlt_coef": -0.43
-    },
-    "nitrogen": {
-        "Ncf_NO3": 15,
-        "Ncf": 15
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {
-        "Nacf": 26
-    },
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:CaN_>",
-    "fertilizerID": "CaN",
-    "fertilizerKey": "A.02",
-    "fertilizer_name": "Calcium nitrate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 15,
-        "Ncf": 15
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {
-        "Cacf": 20,
-        "CAOcf": 28.000000000000004
-    },
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:MgN_>",
-    "fertilizerID": "MgN",
-    "fertilizerKey": "A.03",
-    "fertilizer_name": "Magnesium nitrate",
-    "price": 0.28,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 11,
-        "Ncf": 11
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {
-        "Mgcf": 9.6,
-        "MgOcf": 16
-    },
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumS_>",
-    "fertilizerID": "AumS",
-    "fertilizerKey": "A.04",
-    "fertilizer_name": "Ammonium sulphate",
-    "price": 0.215,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {
-        "Ncf_NH4": 21,
-        "Ncf": 21
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 24
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:U_>",
-    "fertilizerID": "U",
-    "fertilizerKey": "A.05",
-    "fertilizer_name": "Urea",
-    "price": 0.305,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_ure": 46,
-        "Ncf": 46
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumN_>",
-    "fertilizerID": "AumN",
-    "fertilizerKey": "A.06",
-    "fertilizer_name": "Ammonium nitrate",
-    "price": 0.275,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 16.8,
-        "Ncf_NH4": 16.7,
-        "Ncf": 33.5
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:CaAumN_>",
-    "fertilizerID": "CaAumN",
-    "fertilizerKey": "A.07",
-    "fertilizer_name": "Calcium ammonium nitrate",
-    "price": 0.301,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 13,
-        "Ncf_NH4": 13,
-        "Ncf": 26
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {
-        "Cacf": 6,
-        "CAOcf": 8
-    },
-    "magnesium": {
-        "Mgcf": 2.1,
-        "MgOcf": 3.5
-    },
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:NSAum_>",
-    "fertilizerID": "NSAum",
-    "fertilizerKey": "A.08",
-    "fertilizer_name": "Ammonium nitrosulphate",
-    "price": 0.247,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {
-        "Ncf_NO3": 6.5,
-        "Ncf_NH4": 19.5,
-        "Ncf": 26
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 14.8,
-        "SO3cf": 37
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:N32_>",
-    "fertilizerID": "N32",
-    "fertilizerKey": "A.09",
-    "fertilizer_name": "Nitrogen solutions (32%)",
-    "price": 0.325,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_ure": 16,
-        "Ncf_NO3": 8,
-        "Ncf_NH4": 8,
-        "Ncf": 32
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Uf_>",
-    "fertilizerID": "Uf",
-    "fertilizerKey": "B.01",
-    "fertilizer_name": "Urea formaldehyde (UF)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 38,
-        "Ncf": 38
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Ibdu_>",
-    "fertilizerID": "Ibdu",
-    "fertilizerKey": "B.02",
-    "fertilizer_name": "Isobutylidene diurea (IBDU)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 32.2,
-        "Ncf": 32.2
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Cdu_>",
-    "fertilizerID": "Cdu",
-    "fertilizerKey": "B.03",
-    "fertilizer_name": "Crotonylidene diurea (CDU)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 29.3,
-        "Ncf_NO3": 3.3,
-        "Ncf": 32.5
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sPsi_>",
-    "fertilizerID": "sPsi",
-    "fertilizerKey": "C.01",
-    "fertilizer_name": "Superphosphate simple",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 9,
-        "P2O5cf": 20
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 3.9,
-        "SO4cf": 12
-    },
-    "calcium": {
-        "Cacf": 20
-    },
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sPco_>",
-    "fertilizerID": "sPco",
-    "fertilizerKey": "C.02",
-    "fertilizer_name": "Superphosphate concentrate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 18,
-        "P2O5cf": 42
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:TSP_>",
-    "fertilizerID": "TSP",
-    "fertilizerKey": "C.03",
-    "fertilizer_name": "Triple superphosphate (TSP)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 20,
-        "P2O5cf": 46
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Pac_>",
-    "fertilizerID": "Pac",
-    "fertilizerKey": "C.04",
-    "fertilizer_name": "Phosphoric acid",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 23,
-        "P2O5cf": 52
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sPac_>",
-    "fertilizerID": "sPac",
-    "fertilizerKey": "C.05",
-    "fertilizer_name": "Superphosphoric acid",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 30,
-        "P2O5cf": 68
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:DCaP_>",
-    "fertilizerID": "DCaP",
-    "fertilizerKey": "C.06",
-    "fertilizer_name": "Dycalcium phosphate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 8,
-        "P2O5cf": 18
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {
-        "Cacf": 21
-    },
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:CameP_>",
-    "fertilizerID": "CameP",
-    "fertilizerKey": "C.07",
-    "fertilizer_name": "Calcium metaphosphate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 26,
-        "P2O5cf": 60
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:caP_>",
-    "fertilizerID": "caP",
-    "fertilizerKey": "C.08",
-    "fertilizer_name": "Calcined phosphate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:bs_>",
-    "fertilizerID": "bs",
-    "fertilizerKey": "C.09",
-    "fertilizer_name": "Basic slags",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 4,
-        "P2O5cf": 9
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:gPr_>",
-    "fertilizerID": "gPr",
-    "fertilizerKey": "C.10",
-    "fertilizer_name": "Ground phosphate rock",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 1,
-        "P2O5cf": 3
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:KCl_>",
-    "fertilizerID": "KCl",
-    "fertilizerKey": "D.01",
-    "fertilizer_name": "Potassium chloride",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 50,
-        "K2Ocf": 60
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {
-        "Clcf": 46
+[
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:NaN_>",
+        "fertilizerID": "NaN",
+        "fertilizerKey": "A.01",
+        "fertilizer_name": "Sodium nitrate",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "UCN",
+            "vlt_coef": -0.43
+        },
+        "nitrogen": {
+            "Ncf_NO3": 15,
+            "Ncf": 15
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {
+            "Nacf": 26
+        },
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:CaN_>",
+        "fertilizerID": "CaN",
+        "fertilizerKey": "A.02",
+        "fertilizer_name": "Calcium nitrate",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 15,
+            "Ncf": 15
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {
+            "Cacf": 20,
+            "CAOcf": 28.000000000000004
+        },
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:MgN_>",
+        "fertilizerID": "MgN",
+        "fertilizerKey": "A.03",
+        "fertilizer_name": "Magnesium nitrate",
+        "price": 0.28,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 11,
+            "Ncf": 11
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {
+            "Mgcf": 9.6,
+            "MgOcf": 16
+        },
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumS_>",
+        "fertilizerID": "AumS",
+        "fertilizerKey": "A.04",
+        "fertilizer_name": "Ammonium sulphate",
+        "price": 0.215,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {
+            "Ncf_NH4": 21,
+            "Ncf": 21
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 24
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:U_>",
+        "fertilizerID": "U",
+        "fertilizerKey": "A.05",
+        "fertilizer_name": "Urea",
+        "price": 0.305,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_ure": 46,
+            "Ncf": 46
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumN_>",
+        "fertilizerID": "AumN",
+        "fertilizerKey": "A.06",
+        "fertilizer_name": "Ammonium nitrate",
+        "price": 0.275,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 16.8,
+            "Ncf_NH4": 16.7,
+            "Ncf": 33.5
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:CaAumN_>",
+        "fertilizerID": "CaAumN",
+        "fertilizerKey": "A.07",
+        "fertilizer_name": "Calcium ammonium nitrate",
+        "price": 0.301,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 13,
+            "Ncf_NH4": 13,
+            "Ncf": 26
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {
+            "Cacf": 6,
+            "CAOcf": 8
+        },
+        "magnesium": {
+            "Mgcf": 2.1,
+            "MgOcf": 3.5
+        },
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:NSAum_>",
+        "fertilizerID": "NSAum",
+        "fertilizerKey": "A.08",
+        "fertilizer_name": "Ammonium nitrosulphate",
+        "price": 0.247,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {
+            "Ncf_NO3": 6.5,
+            "Ncf_NH4": 19.5,
+            "Ncf": 26
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 14.8,
+            "SO3cf": 37
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:N32_>",
+        "fertilizerID": "N32",
+        "fertilizerKey": "A.09",
+        "fertilizer_name": "Nitrogen solutions (32%)",
+        "price": 0.325,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_ure": 16,
+            "Ncf_NO3": 8,
+            "Ncf_NH4": 8,
+            "Ncf": 32
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Uf_>",
+        "fertilizerID": "Uf",
+        "fertilizerKey": "B.01",
+        "fertilizer_name": "Urea formaldehyde (UF)",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 38,
+            "Ncf": 38
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Ibdu_>",
+        "fertilizerID": "Ibdu",
+        "fertilizerKey": "B.02",
+        "fertilizer_name": "Isobutylidene diurea (IBDU)",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 32.2,
+            "Ncf": 32.2
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Cdu_>",
+        "fertilizerID": "Cdu",
+        "fertilizerKey": "B.03",
+        "fertilizer_name": "Crotonylidene diurea (CDU)",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 29.3,
+            "Ncf_NO3": 3.3,
+            "Ncf": 32.5
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sPsi_>",
+        "fertilizerID": "sPsi",
+        "fertilizerKey": "C.01",
+        "fertilizer_name": "Superphosphate simple",
+        "price": 0.273,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 9,
+            "P2O5cf": 20
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 3.9,
+            "SO4cf": 12
+        },
+        "calcium": {
+            "Cacf": 20
+        },
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sPco_>",
+        "fertilizerID": "sPco",
+        "fertilizerKey": "C.02",
+        "fertilizer_name": "Superphosphate concentrate",
+        "price": 0.202,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 18,
+            "P2O5cf": 42
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:TSP_>",
+        "fertilizerID": "TSP",
+        "fertilizerKey": "C.03",
+        "fertilizer_name": "Triple superphosphate (TSP)",
+        "price": 0.32,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 20,
+            "P2O5cf": 46
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Pac_>",
+        "fertilizerID": "Pac",
+        "fertilizerKey": "C.04",
+        "fertilizer_name": "Phosphoric acid",
+        "price": 0.641,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 23,
+            "P2O5cf": 52
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sPac_>",
+        "fertilizerID": "sPac",
+        "fertilizerKey": "C.05",
+        "fertilizer_name": "Superphosphoric acid",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 30,
+            "P2O5cf": 68
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:DCaP_>",
+        "fertilizerID": "DCaP",
+        "fertilizerKey": "C.06",
+        "fertilizer_name": "Dycalcium phosphate",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 8,
+            "P2O5cf": 18
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {
+            "Cacf": 21
+        },
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:CameP_>",
+        "fertilizerID": "CameP",
+        "fertilizerKey": "C.07",
+        "fertilizer_name": "Calcium metaphosphate",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 26,
+            "P2O5cf": 60
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:caP_>",
+        "fertilizerID": "caP",
+        "fertilizerKey": "C.08",
+        "fertilizer_name": "Calcined phosphate",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:bs_>",
+        "fertilizerID": "bs",
+        "fertilizerKey": "C.09",
+        "fertilizer_name": "Basic slags",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 4,
+            "P2O5cf": 9
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:gPr_>",
+        "fertilizerID": "gPr",
+        "fertilizerKey": "C.10",
+        "fertilizer_name": "Ground phosphate rock",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 1,
+            "P2O5cf": 3
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:KCl_>",
+        "fertilizerID": "KCl",
+        "fertilizerKey": "D.01",
+        "fertilizer_name": "Potassium chloride",
+        "price": 0.365,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 50,
+            "K2Ocf": 60
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {
+            "Clcf": 46
+        }
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:PS_>",
+        "fertilizerID": "PS",
+        "fertilizerKey": "D.02",
+        "fertilizer_name": "Potassium sulphate",
+        "price": 0.516,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 44,
+            "K2Ocf": 53
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 16,
+            "SO3cf": 40
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:MAP_>",
+        "fertilizerID": "MAP",
+        "fertilizerKey": "E.01",
+        "fertilizer_name": "Mono-ammonium phosphate (MAP)",
+        "price": 0.548,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "MAP",
+            "vlt_coef": -0.622
+        },
+        "nitrogen": {
+            "Ncf_NO3": 12,
+            "Ncf": 12
+        },
+        "phosphorus": {
+            "Pcf": 27,
+            "P2O5cf": 52
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 15,
+            "SO3cf": 4
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:DAP_>",
+        "fertilizerID": "DAP",
+        "fertilizerKey": "E.02",
+        "fertilizer_name": "Di-ammonium phosphate (DAP)",
+        "price": 0.411,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "DAP",
+            "vlt_coef": 0.182
+        },
+        "nitrogen": {
+            "Ncf_NH4": 18,
+            "Ncf": 18
+        },
+        "phosphorus": {
+            "Pcf": 20,
+            "P2O5cf": 46
+        },
+        "potassium": {
+            "Kcf": 0,
+            "K2Ocf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:APP_>",
+        "fertilizerID": "APP",
+        "fertilizerKey": "E.03",
+        "fertilizer_name": "Ammonium polyphosphates (APP)",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "MAP",
+            "vlt_coef": -0.622
+        },
+        "nitrogen": {
+            "Ncf_NH4": 11,
+            "Ncf": 11
+        },
+        "phosphorus": {
+            "Pcf": 16,
+            "P2O5cf": 37
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:NP_>",
+        "fertilizerID": "NP",
+        "fertilizerKey": "E.04",
+        "fertilizer_name": "Nitrophosphates",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 8,
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 16
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:KP_>",
+        "fertilizerID": "KP",
+        "fertilizerKey": "F.01",
+        "fertilizer_name": "Potassium phosphates",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 23,
+            "P2O5cf": 52
+        },
+        "potassium": {
+            "Kcf": 28.000000000000004,
+            "K2Ocf": 34
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:KN_>",
+        "fertilizerID": "KN",
+        "fertilizerKey": "G.01",
+        "fertilizer_name": "Potassium nitrate",
+        "price": 0.55,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "UCN",
+            "vlt_coef": -0.43
+        },
+        "nitrogen": {
+            "Ncf_NO3": 13,
+            "Ncf": 13
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 38,
+            "K2Ocf": 46
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x8-15-15_>",
+        "fertilizerID": "x8-15-15",
+        "fertilizerKey": "H.01",
+        "fertilizer_name": "Complex 8-15-15",
+        "price": 0.281,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 2,
+            "Ncf_NH4": 6,
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 15
+        },
+        "potassium": {
+            "Kcf": 12,
+            "K2Ocf": 15
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x12-12-24_>",
+        "fertilizerID": "x12-12-24",
+        "fertilizerKey": "H.02",
+        "fertilizer_name": "Complex 12-12-24",
+        "price": 0.371,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 5,
+            "Ncf_NH4": 7,
+            "Ncf": 12
+        },
+        "phosphorus": {
+            "Pcf": 5,
+            "P2O5cf": 12
+        },
+        "potassium": {
+            "Kcf": 20,
+            "K2Ocf": 24
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x15-15-15_>",
+        "fertilizerID": "x15-15-15",
+        "fertilizerKey": "H.03",
+        "fertilizer_name": "Complex 15-15-15",
+        "price": 0.349,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_ure": 2,
+            "Ncf_NH4": 13,
+            "Ncf": 15
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 15
+        },
+        "potassium": {
+            "Kcf": 12,
+            "K2Ocf": 15
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x9-18-27_>",
+        "fertilizerID": "x9-18-27",
+        "fertilizerKey": "H.04",
+        "fertilizer_name": "Complex 9-18-27",
+        "price": 0.357,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 9,
+            "Ncf": 9
+        },
+        "phosphorus": {
+            "Pcf": 8,
+            "P2O5cf": 18
+        },
+        "potassium": {
+            "Kcf": 22,
+            "K2Ocf": 27
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x8-24-8_>",
+        "fertilizerID": "x8-24-8",
+        "fertilizerKey": "H.05",
+        "fertilizer_name": "Complex 8-24-8",
+        "price": 0.325,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 1.5,
+            "Ncf_NH4": 6.5,
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 10,
+            "P2O5cf": 24
+        },
+        "potassium": {
+            "Kcf": 7.000000000000001,
+            "K2Ocf": 8
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x8-24-16_>",
+        "fertilizerID": "x8-24-16",
+        "fertilizerKey": "H.06",
+        "fertilizer_name": "Complex 8-24-16",
+        "price": 0.341,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 1.5,
+            "Ncf_NH4": 6.5,
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 10,
+            "P2O5cf": 24
+        },
+        "potassium": {
+            "Kcf": 13,
+            "K2Ocf": 16
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x12-24-8_>",
+        "fertilizerID": "x12-24-8",
+        "fertilizerKey": "H.07",
+        "fertilizer_name": "Complex 12-24-8",
+        "price": 0.315,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_ure": 5.3,
+            "Ncf_NH4": 7,
+            "Ncf": 12
+        },
+        "phosphorus": {
+            "Pcf": 10,
+            "P2O5cf": 24
+        },
+        "potassium": {
+            "Kcf": 7.000000000000001,
+            "K2Ocf": 8
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x12-24-12_>",
+        "fertilizerID": "x12-24-12",
+        "fertilizerKey": "H.08",
+        "fertilizer_name": "Complex 12-24-12",
+        "price": 0.32,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 12,
+            "Ncf": 12
+        },
+        "phosphorus": {
+            "Pcf": 10,
+            "P2O5cf": 24
+        },
+        "potassium": {
+            "Kcf": 10,
+            "K2Ocf": 12
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x9-12-24_>",
+        "fertilizerID": "x9-12-24",
+        "fertilizerKey": "H.09",
+        "fertilizer_name": "Complex 9-12-24",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 9,
+            "Ncf": 9
+        },
+        "phosphorus": {
+            "Pcf": 5,
+            "P2O5cf": 12
+        },
+        "potassium": {
+            "Kcf": 20,
+            "K2Ocf": 24
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x10-20-10_>",
+        "fertilizerID": "x10-20-10",
+        "fertilizerKey": "H.10",
+        "fertilizer_name": "Complex 10-20-10",
+        "price": 0.23,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 10,
+            "Ncf": 10
+        },
+        "phosphorus": {
+            "Pcf": 9,
+            "P2O5cf": 20
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x8-16-8_>",
+        "fertilizerID": "x8-16-8",
+        "fertilizerKey": "H.11",
+        "fertilizer_name": "Complex 8-16-8",
+        "price": 0.305,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 8,
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 16
+        },
+        "potassium": {
+            "Kcf": 7.000000000000001,
+            "K2Ocf": 8
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x18-46-0_>",
+        "fertilizerID": "x18-46-0",
+        "fertilizerKey": "H.12",
+        "fertilizer_name": "Complex 18-46-0",
+        "price": 0.385,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NH4": 18,
+            "Ncf": 18
+        },
+        "phosphorus": {
+            "Pcf": 20,
+            "P2O5cf": 46
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x10-10-17_>",
+        "fertilizerID": "x10-10-17",
+        "fertilizerKey": "H.13",
+        "fertilizer_name": "Complex 10-10-17",
+        "price": 0.292,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_ure": 6,
+            "Ncf_NH4": 4,
+            "Ncf": 10
+        },
+        "phosphorus": {
+            "Pcf": 4,
+            "P2O5cf": 10
+        },
+        "potassium": {
+            "Kcf": 14.000000000000002,
+            "K2Ocf": 17
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:x12-36-12_>",
+        "fertilizerID": "x12-36-12",
+        "fertilizerKey": "H.14",
+        "fertilizer_name": "Complex 12-36-12",
+        "price": 0.39,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_ure": 1.6,
+            "Ncf_NO3": 3.4,
+            "Ncf_NH4": 7,
+            "Ncf": 12
+        },
+        "phosphorus": {
+            "Pcf": 16,
+            "P2O5cf": 36
+        },
+        "potassium": {
+            "Kcf": 10,
+            "K2Ocf": 12
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s4-16-10_>",
+        "fertilizerID": "s4-16-10",
+        "fertilizerKey": "H.15",
+        "fertilizer_name": "Suspension 4-16-10",
+        "price": 0.27,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 4
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 16
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s5-10-10_>",
+        "fertilizerID": "s5-10-10",
+        "fertilizerKey": "H.16",
+        "fertilizer_name": "Suspension 5-10-10",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 5,
+            "Ncf": 5
+        },
+        "phosphorus": {
+            "Pcf": 4,
+            "P2O5cf": 10
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s5-20-5_>",
+        "fertilizerID": "s5-20-5",
+        "fertilizerKey": "H.17",
+        "fertilizer_name": "Suspension 5-20-5",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 5
+        },
+        "phosphorus": {
+            "Pcf": 9,
+            "P2O5cf": 20
+        },
+        "potassium": {
+            "Kcf": 4,
+            "K2Ocf": 5
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s6-12-16_>",
+        "fertilizerID": "s6-12-16",
+        "fertilizerKey": "H.18",
+        "fertilizer_name": "Suspension 6-12-16",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 6
+        },
+        "phosphorus": {
+            "Pcf": 5,
+            "P2O5cf": 12
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s6-16-10_>",
+        "fertilizerID": "s6-16-10",
+        "fertilizerKey": "H.19",
+        "fertilizer_name": "Suspension 6-16-10",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 6
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 16
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:s10-20-0_>",
+        "fertilizerID": "s10-20-0",
+        "fertilizerKey": "H.20",
+        "fertilizer_name": "Suspension 10-20-0",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 10
+        },
+        "phosphorus": {
+            "Pcf": 9,
+            "P2O5cf": 20
+        },
+        "potassium": {
+            "Kcf": 0,
+            "K2Ocf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:P7-15-6_>",
+        "fertilizerID": "P7-15-6",
+        "fertilizerKey": "H.21",
+        "fertilizer_name": "Fosfoplus 7-15-6 + 5%S + 9% PHC",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 7.000000000000001
+        },
+        "phosphorus": {
+            "Pcf": 7.000000000000001,
+            "P2O5cf": 15
+        },
+        "potassium": {
+            "Kcf": 5,
+            "K2Ocf": 6
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 5
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:P8-8-10_>",
+        "fertilizerID": "P8-8-10",
+        "fertilizerKey": "H.22",
+        "fertilizer_name": "Fosfoplus 8-8-10 + 5%S + 9% PHC",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 8
+        },
+        "phosphorus": {
+            "Pcf": 3,
+            "P2O5cf": 8
+        },
+        "potassium": {
+            "Kcf": 8,
+            "K2Ocf": 10
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 5
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sP18_>",
+        "fertilizerID": "sP18",
+        "fertilizerKey": "H.23",
+        "fertilizer_name": "Superphosphate 18%",
+        "price": 0.242,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 0
+        },
+        "phosphorus": {
+            "Pcf": 8,
+            "P2O5cf": 18
+        },
+        "potassium": {
+            "Kcf": 0,
+            "K2Ocf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sP45_>",
+        "fertilizerID": "sP45",
+        "fertilizerKey": "H.24",
+        "fertilizer_name": "Superphosphate 45%",
+        "price": 0.32,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {
+            "Ncf": 0
+        },
+        "phosphorus": {
+            "Pcf": 20,
+            "P2O5cf": 45
+        },
+        "potassium": {
+            "Kcf": 0,
+            "K2Ocf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:acP_>",
+        "fertilizerID": "acP",
+        "fertilizerKey": "H.25",
+        "fertilizer_name": "acid phosphoric",
+        "price": 0.641,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "GENERAL",
+            "vlt_coef": 0
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 24,
+            "P2O5cf": 54
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:U46_>",
+        "fertilizerID": "U46",
+        "fertilizerKey": "H.26",
+        "fertilizer_name": "Urea 46%",
+        "price": 0.345,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 46,
+            "Ncf": 46
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:U46i_>",
+        "fertilizerID": "U46i",
+        "fertilizerKey": "H.27",
+        "fertilizer_name": "Urea 46%+ Inhibidor",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 46,
+            "Ncf": 46
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:U40S_>",
+        "fertilizerID": "U40S",
+        "fertilizerKey": "H.28",
+        "fertilizer_name": "Urea 40%+ Azufre (YARA Sulfamid)",
+        "price": 0.28,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 40,
+            "Ncf": 40
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 5,
+            "SO4cf": 14.000000000000002
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumNS26_>",
+        "fertilizerID": "AumNS26",
+        "fertilizerKey": "H.29",
+        "fertilizer_name": "ammonium nitrophosphate 26%",
+        "price": 0.29,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {
+            "Ncf_NO3": 6.5,
+            "Ncf_NH4": 19.5,
+            "Ncf": 26
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 12,
+            "SO4cf": 37
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumNS21_>",
+        "fertilizerID": "AumNS21",
+        "fertilizerKey": "H.30",
+        "fertilizer_name": "ammonium nitrophosphate 21%",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {
+            "Ncf_NH4": 21,
+            "Ncf": 21
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:soN32_>",
+        "fertilizerID": "soN32",
+        "fertilizerKey": "H.31",
+        "fertilizer_name": "Solución N-32",
+        "price": 0.24,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_ure": 16,
+            "Ncf_NO3": 8,
+            "Ncf_NH4": 8,
+            "Ncf": 32
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:soN20_>",
+        "fertilizerID": "soN20",
+        "fertilizerKey": "H.32",
+        "fertilizer_name": "Solución N-20",
+        "price": 0.175,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_NO3": 10,
+            "Ncf_NH4": 10,
+            "Ncf": 20
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:soN26_>",
+        "fertilizerID": "soN26",
+        "fertilizerKey": "H.33",
+        "fertilizer_name": "Solución N-26",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_ure": 14,
+            "Ncf_NO3": 5,
+            "Ncf_NH4": 7,
+            "Ncf": 26
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 2,
+            "SO3cf": 6
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:CaNso_>",
+        "fertilizerID": "CaNso",
+        "fertilizerKey": "H.34",
+        "fertilizer_name": "Calcium nitrate solution",
+        "price": 0.92,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_NO3": 9,
+            "Ncf": 9
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {
+            "Cacf": 11,
+            "CAOcf": 16
+        },
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:MgNso_>",
+        "fertilizerID": "MgNso",
+        "fertilizerKey": "H.35",
+        "fertilizer_name": "Magnesium nitrate solution",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Nsol",
+            "vlt_coef": -0.748
+        },
+        "nitrogen": {
+            "Ncf_NO3": 7,
+            "Ncf": 7.000000000000001
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {
+            "Mgcf": 5.7,
+            "MgOcf": 9.5
+        },
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:N33_>",
+        "fertilizerID": "N33",
+        "fertilizerKey": "H.36",
+        "fertilizer_name": "Nitro33",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 23,
+            "Ncf_NH4": 10,
+            "Ncf": 33
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 12,
+            "SO3cf": 30
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Nplus_>",
+        "fertilizerID": "Nplus",
+        "fertilizerKey": "H.37",
+        "fertilizer_name": "Nitroplus",
+        "price": 0.307,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "Urea",
+            "vlt_coef": 0.666
+        },
+        "nitrogen": {
+            "Ncf_ure": 15,
+            "Ncf_NH4": 3,
+            "Ncf": 18
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 2,
+            "SO3cf": 5
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:Nac_>",
+        "fertilizerID": "Nac",
+        "fertilizerKey": "H.38",
+        "fertilizer_name": "Nitric acid",
+        "price": 0.443,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 13,
+            "Ncf": 13
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumN33_>",
+        "fertilizerID": "AumN33",
+        "fertilizerKey": "H.39",
+        "fertilizer_name": "Ammonium nitrate 33%",
+        "price": 0.45,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 0,
+            "Ncf_NH4": 50,
+            "Ncf": 33.3
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumN27_>",
+        "fertilizerID": "AumN27",
+        "fertilizerKey": "H.40",
+        "fertilizer_name": "Ammonium nitrate 27% (NAC)",
+        "price": 0.255,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 16.6,
+            "Ncf_NH4": 16.6,
+            "Ncf": 27
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumN20_>",
+        "fertilizerID": "AumN20",
+        "fertilizerKey": "H.41",
+        "fertilizer_name": "Ammonium nitrate 20%",
+        "price": 100,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AN",
+            "vlt_coef": -0.35
+        },
+        "nitrogen": {
+            "Ncf_NO3": 10,
+            "Ncf_NH4": 10,
+            "Ncf": 20
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:MgS_>",
+        "fertilizerID": "MgS",
+        "fertilizerKey": "H.42",
+        "fertilizer_name": "Magnesium sulfate",
+        "price": 0.32,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 13,
+            "SO3cf": 32
+        },
+        "calcium": {},
+        "magnesium": {
+            "Mgcf": 9.6,
+            "MgOcf": 16
+        },
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:AumS21_>",
+        "fertilizerID": "AumS21",
+        "fertilizerKey": "H.43",
+        "fertilizer_name": "Ammonium sulfate 21%",
+        "price": 0.238,
+        "clasification": "Inorganic",
+        "volatilization": {
+            "vlt_group": "AS",
+            "vlt_coef": 0.429
+        },
+        "nitrogen": {
+            "Ncf_NH4": 21,
+            "Ncf": 21
+        },
+        "phosphorus": {
+            "Pcf": 0
+        },
+        "potassium": {
+            "Kcf": 0
+        },
+        "drymatter": {},
+        "sulphur": {
+            "Scf": 24,
+            "SO3cf": 60
+        },
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:cm_>",
+        "fertilizerID": "cm",
+        "fertilizerKey": "O.01",
+        "fertilizer_name": "Cow manure",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.35000000000000003
+        },
+        "potassium": {
+            "Kcf": 0.6
+        },
+        "drymatter": {},
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:dc_>",
+        "fertilizerID": "dc",
+        "fertilizerKey": "O.02",
+        "fertilizer_name": "Dairy Cow",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.11
+        },
+        "potassium": {
+            "Kcf": 0.4
+        },
+        "drymatter": {
+            "DM": 20
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:dh_>",
+        "fertilizerID": "dh",
+        "fertilizerKey": "O.03",
+        "fertilizer_name": "Dairy Heifer",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.16999999999999998
+        },
+        "potassium": {
+            "Kcf": 0.51
+        },
+        "drymatter": {
+            "DM": 20
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:bc_>",
+        "fertilizerID": "bc",
+        "fertilizerKey": "O.04",
+        "fertilizer_name": "Beef Cow",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.16
+        },
+        "potassium": {
+            "Kcf": 0.33
+        },
+        "drymatter": {
+            "DM": 25
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:bf_>",
+        "fertilizerID": "bf",
+        "fertilizerKey": "O.05",
+        "fertilizer_name": "Beef Feeder",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.19
+        },
+        "potassium": {
+            "Kcf": 0.44999999999999996
+        },
+        "drymatter": {
+            "DM": 25
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:bes_>",
+        "fertilizerID": "bes",
+        "fertilizerKey": "O.06",
+        "fertilizer_name": "Beef Stocker",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.13999999999999999
+        },
+        "potassium": {
+            "Kcf": 0.41000000000000003
+        },
+        "drymatter": {
+            "DM": 25
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sm_>",
+        "fertilizerID": "sm",
+        "fertilizerKey": "O.07",
+        "fertilizer_name": "Swine Manure",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.6
+        },
+        "potassium": {
+            "Kcf": 0.4
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sf_>",
+        "fertilizerID": "sf",
+        "fertilizerKey": "O.08",
+        "fertilizer_name": "Swine Finishing",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.31
+        },
+        "potassium": {
+            "Kcf": 0.45999999999999996
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sg_>",
+        "fertilizerID": "sg",
+        "fertilizerKey": "O.09",
+        "fertilizer_name": "Swine Growing",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.18
+        },
+        "potassium": {
+            "Kcf": 0.35000000000000003
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sn_>",
+        "fertilizerID": "sn",
+        "fertilizerKey": "O.10",
+        "fertilizer_name": "Swine Nursery",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.2
+        },
+        "potassium": {
+            "Kcf": 0.32
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:sgs_>",
+        "fertilizerID": "sgs",
+        "fertilizerKey": "O.11",
+        "fertilizer_name": "Swine Gestating sow",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.37
+        },
+        "potassium": {
+            "Kcf": 0.43
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:ss_>",
+        "fertilizerID": "ss",
+        "fertilizerKey": "O.12",
+        "fertilizer_name": "Swine Sow and litter",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.2
+        },
+        "potassium": {
+            "Kcf": 0.32
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pm_>",
+        "fertilizerID": "pm",
+        "fertilizerKey": "O.13",
+        "fertilizer_name": "Poultry Manure",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 2.5
+        },
+        "potassium": {
+            "Kcf": 2
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pl_>",
+        "fertilizerID": "pl",
+        "fertilizerKey": "O.14",
+        "fertilizer_name": "Poultry Layer",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.47000000000000003
+        },
+        "potassium": {
+            "Kcf": 0.53
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pb_>",
+        "fertilizerID": "pb",
+        "fertilizerKey": "O.15",
+        "fertilizer_name": "Poultry Broiler",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.66
+        },
+        "potassium": {
+            "Kcf": 0.8699999999999999
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pt_>",
+        "fertilizerID": "pt",
+        "fertilizerKey": "O.16",
+        "fertilizer_name": "Poultry Turkey",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.7799999999999999
+        },
+        "potassium": {
+            "Kcf": 0.91
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pd_>",
+        "fertilizerID": "pd",
+        "fertilizerKey": "O.17",
+        "fertilizer_name": "Poultry Duck",
+        "price": 0.002,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.44999999999999996
+        },
+        "potassium": {
+            "Kcf": 0.5599999999999999
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pg_>",
+        "fertilizerID": "pg",
+        "fertilizerKey": "O.18",
+        "fertilizer_name": "Poultry Goose",
+        "price": 0.002,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.26
+        },
+        "potassium": {
+            "Kcf": 0.41000000000000003
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:oh_>",
+        "fertilizerID": "oh",
+        "fertilizerKey": "O.19",
+        "fertilizer_name": "Other Horse",
+        "price": 100,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.11
+        },
+        "potassium": {
+            "Kcf": 0.44999999999999996
+        },
+        "drymatter": {
+            "DM": 20
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:os_>",
+        "fertilizerID": "os",
+        "fertilizerKey": "O.20",
+        "fertilizer_name": "Other Sheep",
+        "price": 0.011,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.4
+        },
+        "potassium": {
+            "Kcf": 1
+        },
+        "drymatter": {
+            "DM": 20
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:og_>",
+        "fertilizerID": "og",
+        "fertilizerKey": "O.21",
+        "fertilizer_name": "Other Goat",
+        "price": 0.02,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.24
+        },
+        "potassium": {
+            "Kcf": 0.89
+        },
+        "drymatter": {
+            "DM": 20
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:or_>",
+        "fertilizerID": "or",
+        "fertilizerKey": "O.22",
+        "fertilizer_name": "Other Rabbit",
+        "price": 0.005,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.53
+        },
+        "potassium": {
+            "Kcf": 0.7100000000000001
+        },
+        "drymatter": {
+            "DM": 66
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:d_>",
+        "fertilizerID": "d",
+        "fertilizerKey": "O.23",
+        "fertilizer_name": "Digestato",
+        "price": 0.0108,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.26
+        },
+        "potassium": {
+            "Kcf": 0.6
+        },
+        "drymatter": {
+            "DM": 50
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:se_>",
+        "fertilizerID": "se",
+        "fertilizerKey": "O.24",
+        "fertilizer_name": "Sludge EDAR",
+        "price": 100,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 1.2
+        },
+        "potassium": {
+            "Kcf": 0.1
+        },
+        "drymatter": {
+            "DM": 50
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:ps_>",
+        "fertilizerID": "ps",
+        "fertilizerKey": "O.25",
+        "fertilizer_name": "Poultry slurry",
+        "price": 0.001,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 1
+        },
+        "potassium": {
+            "Kcf": 0.7000000000000001
+        },
+        "drymatter": {
+            "DM": 65
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:rs_>",
+        "fertilizerID": "rs",
+        "fertilizerKey": "O.26",
+        "fertilizer_name": "Rabbit slurry",
+        "price": 100,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 1.3
+        },
+        "potassium": {
+            "Kcf": 0.75
+        },
+        "drymatter": {
+            "DM": 66
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:pigs_>",
+        "fertilizerID": "pigs",
+        "fertilizerKey": "O.27",
+        "fertilizer_name": "Pig slurry",
+        "price": 0.002,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.4
+        },
+        "potassium": {
+            "Kcf": 0.35000000000000003
+        },
+        "drymatter": {
+            "DM": 4.2
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
+    },
+    {
+        "uri": "navigatortool:fertilizer:<_Fertilizer:cs_>",
+        "fertilizerID": "cs",
+        "fertilizerKey": "O.28",
+        "fertilizer_name": "Cattle slurry",
+        "price": 0.002,
+        "clasification": "Organic",
+        "volatilization": {
+            "vlt_group": "O",
+            "vlt_coef": 0.995
+        },
+        "nitrogen": {},
+        "phosphorus": {
+            "Pcf": 0.25
+        },
+        "potassium": {
+            "Kcf": 0.5
+        },
+        "drymatter": {
+            "DM": 8
+        },
+        "sulphur": {},
+        "calcium": {},
+        "magnesium": {},
+        "sodium": {},
+        "chlorine": {}
     }
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:PS_>",
-    "fertilizerID": "PS",
-    "fertilizerKey": "D.02",
-    "fertilizer_name": "Potassium sulphate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 44,
-        "K2Ocf": 53
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 16,
-        "SO3cf": 40
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:MAP_>",
-    "fertilizerID": "MAP",
-    "fertilizerKey": "E.01",
-    "fertilizer_name": "Mono-ammonium phosphate (MAP)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "MAP",
-        "vlt_coef": -0.622
-    },
-    "nitrogen": {
-        "Ncf_NO3": 12,
-        "Ncf": 12
-    },
-    "phosphorus": {
-        "Pcf": 27,
-        "P2O5cf": 52
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 15,
-        "SO3cf": 4
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:DAP_>",
-    "fertilizerID": "DAP",
-    "fertilizerKey": "E.02",
-    "fertilizer_name": "Di-ammonium phosphate (DAP)",
-    "price": 0.39,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "DAP",
-        "vlt_coef": 0.182
-    },
-    "nitrogen": {
-        "Ncf_NH4": 18,
-        "Ncf": 18
-    },
-    "phosphorus": {
-        "Pcf": 20,
-        "P2O5cf": 46
-    },
-    "potassium": {
-        "Kcf": 0,
-        "K2Ocf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:APP_>",
-    "fertilizerID": "APP",
-    "fertilizerKey": "E.03",
-    "fertilizer_name": "Ammonium polyphosphates (APP)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "MAP",
-        "vlt_coef": -0.622
-    },
-    "nitrogen": {
-        "Ncf_NH4": 11,
-        "Ncf": 11
-    },
-    "phosphorus": {
-        "Pcf": 16,
-        "P2O5cf": 37
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:NP_>",
-    "fertilizerID": "NP",
-    "fertilizerKey": "E.04",
-    "fertilizer_name": "Nitrophosphates",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 8,
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 16
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:KP_>",
-    "fertilizerID": "KP",
-    "fertilizerKey": "F.01",
-    "fertilizer_name": "Potassium phosphates",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 23,
-        "P2O5cf": 52
-    },
-    "potassium": {
-        "Kcf": 28.000000000000004,
-        "K2Ocf": 34
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:KN_>",
-    "fertilizerID": "KN",
-    "fertilizerKey": "G.01",
-    "fertilizer_name": "Potassium nitrate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "UCN",
-        "vlt_coef": -0.43
-    },
-    "nitrogen": {
-        "Ncf_NO3": 13,
-        "Ncf": 13
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 38,
-        "K2Ocf": 46
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x8-15-15_>",
-    "fertilizerID": "x8-15-15",
-    "fertilizerKey": "H.01",
-    "fertilizer_name": "Complex 8-15-15",
-    "price": 0.277,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 2,
-        "Ncf_NH4": 6,
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 15
-    },
-    "potassium": {
-        "Kcf": 12,
-        "K2Ocf": 15
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x12-12-24_>",
-    "fertilizerID": "x12-12-24",
-    "fertilizerKey": "H.02",
-    "fertilizer_name": "Complex 12-12-24",
-    "price": 0.371,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 5,
-        "Ncf_NH4": 7,
-        "Ncf": 12
-    },
-    "phosphorus": {
-        "Pcf": 5,
-        "P2O5cf": 12
-    },
-    "potassium": {
-        "Kcf": 20,
-        "K2Ocf": 24
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x15-15-15_>",
-    "fertilizerID": "x15-15-15",
-    "fertilizerKey": "H.03",
-    "fertilizer_name": "Complex 15-15-15",
-    "price": 0.349,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_ure": 2,
-        "Ncf_NH4": 13,
-        "Ncf": 15
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 15
-    },
-    "potassium": {
-        "Kcf": 12,
-        "K2Ocf": 15
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x9-18-27_>",
-    "fertilizerID": "x9-18-27",
-    "fertilizerKey": "H.04",
-    "fertilizer_name": "Complex 9-18-27",
-    "price": 0.357,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 9,
-        "Ncf": 9
-    },
-    "phosphorus": {
-        "Pcf": 8,
-        "P2O5cf": 18
-    },
-    "potassium": {
-        "Kcf": 22,
-        "K2Ocf": 27
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x8-24-8_>",
-    "fertilizerID": "x8-24-8",
-    "fertilizerKey": "H.05",
-    "fertilizer_name": "Complex 8-24-8",
-    "price": 0.314,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 1.5,
-        "Ncf_NH4": 6.5,
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 10,
-        "P2O5cf": 24
-    },
-    "potassium": {
-        "Kcf": 7.000000000000001,
-        "K2Ocf": 8
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x8-24-16_>",
-    "fertilizerID": "x8-24-16",
-    "fertilizerKey": "H.06",
-    "fertilizer_name": "Complex 8-24-16",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 1.5,
-        "Ncf_NH4": 6.5,
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 10,
-        "P2O5cf": 24
-    },
-    "potassium": {
-        "Kcf": 13,
-        "K2Ocf": 16
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x12-24-8_>",
-    "fertilizerID": "x12-24-8",
-    "fertilizerKey": "H.07",
-    "fertilizer_name": "Complex 12-24-8",
-    "price": 0.315,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_ure": 5.3,
-        "Ncf_NH4": 7,
-        "Ncf": 12
-    },
-    "phosphorus": {
-        "Pcf": 10,
-        "P2O5cf": 24
-    },
-    "potassium": {
-        "Kcf": 7.000000000000001,
-        "K2Ocf": 8
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x12-24-12_>",
-    "fertilizerID": "x12-24-12",
-    "fertilizerKey": "H.08",
-    "fertilizer_name": "Complex 12-24-12",
-    "price": 0.32,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 12,
-        "Ncf": 12
-    },
-    "phosphorus": {
-        "Pcf": 10,
-        "P2O5cf": 24
-    },
-    "potassium": {
-        "Kcf": 10,
-        "K2Ocf": 12
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x9-12-24_>",
-    "fertilizerID": "x9-12-24",
-    "fertilizerKey": "H.09",
-    "fertilizer_name": "Complex 9-12-24",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 9,
-        "Ncf": 9
-    },
-    "phosphorus": {
-        "Pcf": 5,
-        "P2O5cf": 12
-    },
-    "potassium": {
-        "Kcf": 20,
-        "K2Ocf": 24
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x10-20-10_>",
-    "fertilizerID": "x10-20-10",
-    "fertilizerKey": "H.10",
-    "fertilizer_name": "Complex 10-20-10",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 10,
-        "Ncf": 10
-    },
-    "phosphorus": {
-        "Pcf": 9,
-        "P2O5cf": 20
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x8-16-8_>",
-    "fertilizerID": "x8-16-8",
-    "fertilizerKey": "H.11",
-    "fertilizer_name": "Complex 8-16-8",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 8,
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 16
-    },
-    "potassium": {
-        "Kcf": 7.000000000000001,
-        "K2Ocf": 8
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x18-46-0_>",
-    "fertilizerID": "x18-46-0",
-    "fertilizerKey": "H.12",
-    "fertilizer_name": "Complex 18-46-0",
-    "price": 0.385,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NH4": 18,
-        "Ncf": 18
-    },
-    "phosphorus": {
-        "Pcf": 20,
-        "P2O5cf": 46
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x10-10-17_>",
-    "fertilizerID": "x10-10-17",
-    "fertilizerKey": "H.13",
-    "fertilizer_name": "Complex 10-10-17",
-    "price": 0.39,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_ure": 6,
-        "Ncf_NH4": 4,
-        "Ncf": 10
-    },
-    "phosphorus": {
-        "Pcf": 4,
-        "P2O5cf": 10
-    },
-    "potassium": {
-        "Kcf": 14.000000000000002,
-        "K2Ocf": 17
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:x12-36-12_>",
-    "fertilizerID": "x12-36-12",
-    "fertilizerKey": "H.14",
-    "fertilizer_name": "Complex 12-36-12",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_ure": 1.6,
-        "Ncf_NO3": 3.4,
-        "Ncf_NH4": 7,
-        "Ncf": 12
-    },
-    "phosphorus": {
-        "Pcf": 16,
-        "P2O5cf": 36
-    },
-    "potassium": {
-        "Kcf": 10,
-        "K2Ocf": 12
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s4-16-10_>",
-    "fertilizerID": "s4-16-10",
-    "fertilizerKey": "H.15",
-    "fertilizer_name": "Suspension 4-16-10",
-    "price": 0.27,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 4
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 16
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s5-10-10_>",
-    "fertilizerID": "s5-10-10",
-    "fertilizerKey": "H.16",
-    "fertilizer_name": "Suspension 5-10-10",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 5,
-        "Ncf": 5
-    },
-    "phosphorus": {
-        "Pcf": 4,
-        "P2O5cf": 10
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s5-20-5_>",
-    "fertilizerID": "s5-20-5",
-    "fertilizerKey": "H.17",
-    "fertilizer_name": "Suspension 5-20-5",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 5
-    },
-    "phosphorus": {
-        "Pcf": 9,
-        "P2O5cf": 20
-    },
-    "potassium": {
-        "Kcf": 4,
-        "K2Ocf": 5
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s6-12-16_>",
-    "fertilizerID": "s6-12-16",
-    "fertilizerKey": "H.18",
-    "fertilizer_name": "Suspension 6-12-16",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 6
-    },
-    "phosphorus": {
-        "Pcf": 5,
-        "P2O5cf": 12
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s6-16-10_>",
-    "fertilizerID": "s6-16-10",
-    "fertilizerKey": "H.19",
-    "fertilizer_name": "Suspension 6-16-10",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 6
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 16
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:s10-20-0_>",
-    "fertilizerID": "s10-20-0",
-    "fertilizerKey": "H.20",
-    "fertilizer_name": "Suspension 10-20-0",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 10
-    },
-    "phosphorus": {
-        "Pcf": 9,
-        "P2O5cf": 20
-    },
-    "potassium": {
-        "Kcf": 0,
-        "K2Ocf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:P7-15-6_>",
-    "fertilizerID": "P7-15-6",
-    "fertilizerKey": "H.21",
-    "fertilizer_name": "Fosfoplus 7-15-6 + 5%S + 9% PHC",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 7.000000000000001
-    },
-    "phosphorus": {
-        "Pcf": 7.000000000000001,
-        "P2O5cf": 15
-    },
-    "potassium": {
-        "Kcf": 5,
-        "K2Ocf": 6
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 5
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:P8-8-10_>",
-    "fertilizerID": "P8-8-10",
-    "fertilizerKey": "H.22",
-    "fertilizer_name": "Fosfoplus 8-8-10 + 5%S + 9% PHC",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 8
-    },
-    "phosphorus": {
-        "Pcf": 3,
-        "P2O5cf": 8
-    },
-    "potassium": {
-        "Kcf": 8,
-        "K2Ocf": 10
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 5
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sP18_>",
-    "fertilizerID": "sP18",
-    "fertilizerKey": "H.23",
-    "fertilizer_name": "Superphosphate 18%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 0
-    },
-    "phosphorus": {
-        "Pcf": 8,
-        "P2O5cf": 18
-    },
-    "potassium": {
-        "Kcf": 0,
-        "K2Ocf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sP45_>",
-    "fertilizerID": "sP45",
-    "fertilizerKey": "H.24",
-    "fertilizer_name": "Superphosphate 45%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {
-        "Ncf": 0
-    },
-    "phosphorus": {
-        "Pcf": 20,
-        "P2O5cf": 45
-    },
-    "potassium": {
-        "Kcf": 0,
-        "K2Ocf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:acP_>",
-    "fertilizerID": "acP",
-    "fertilizerKey": "H.25",
-    "fertilizer_name": "acid phosphoric",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "GENERAL",
-        "vlt_coef": 0
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 24,
-        "P2O5cf": 54
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:U46_>",
-    "fertilizerID": "U46",
-    "fertilizerKey": "H.26",
-    "fertilizer_name": "Urea 46%",
-    "price": 0.32,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 46,
-        "Ncf": 46
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:U46i_>",
-    "fertilizerID": "U46i",
-    "fertilizerKey": "H.27",
-    "fertilizer_name": "Urea 46%+ Inhibidor",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 46,
-        "Ncf": 46
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:U40S_>",
-    "fertilizerID": "U40S",
-    "fertilizerKey": "H.28",
-    "fertilizer_name": "Urea 40%+ Azufre (YARA Sulfamid)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 40,
-        "Ncf": 40
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 5,
-        "SO4cf": 14.000000000000002
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumNS26_>",
-    "fertilizerID": "AumNS26",
-    "fertilizerKey": "H.29",
-    "fertilizer_name": "ammonium nitrophosphate 26%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {
-        "Ncf_NO3": 6.5,
-        "Ncf_NH4": 19.5,
-        "Ncf": 26
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 12,
-        "SO4cf": 37
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumNS21_>",
-    "fertilizerID": "AumNS21",
-    "fertilizerKey": "H.30",
-    "fertilizer_name": "ammonium nitrophosphate 21%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {
-        "Ncf_NH4": 21,
-        "Ncf": 21
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:soN32_>",
-    "fertilizerID": "soN32",
-    "fertilizerKey": "H.31",
-    "fertilizer_name": "Solución N-32",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_ure": 16,
-        "Ncf_NO3": 8,
-        "Ncf_NH4": 8,
-        "Ncf": 32
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:soN20_>",
-    "fertilizerID": "soN20",
-    "fertilizerKey": "H.32",
-    "fertilizer_name": "Solución N-20",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_NO3": 10,
-        "Ncf_NH4": 10,
-        "Ncf": 20
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:soN26_>",
-    "fertilizerID": "soN26",
-    "fertilizerKey": "H.33",
-    "fertilizer_name": "Solución N-26",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_ure": 14,
-        "Ncf_NO3": 5,
-        "Ncf_NH4": 7,
-        "Ncf": 26
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 2,
-        "SO3cf": 6
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:CaNso_>",
-    "fertilizerID": "CaNso",
-    "fertilizerKey": "H.34",
-    "fertilizer_name": "Calcium nitrate solution",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_NO3": 9,
-        "Ncf": 9
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {
-        "Cacf": 11,
-        "CAOcf": 16
-    },
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:MgNso_>",
-    "fertilizerID": "MgNso",
-    "fertilizerKey": "H.35",
-    "fertilizer_name": "Magnesium nitrate solution",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Nsol",
-        "vlt_coef": -0.748
-    },
-    "nitrogen": {
-        "Ncf_NO3": 7,
-        "Ncf": 7.000000000000001
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {
-        "Mgcf": 5.7,
-        "MgOcf": 9.5
-    },
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:N33_>",
-    "fertilizerID": "N33",
-    "fertilizerKey": "H.36",
-    "fertilizer_name": "Nitro33",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 23,
-        "Ncf_NH4": 10,
-        "Ncf": 33
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 12,
-        "SO3cf": 30
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Nplus_>",
-    "fertilizerID": "Nplus",
-    "fertilizerKey": "H.37",
-    "fertilizer_name": "Nitroplus",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "Urea",
-        "vlt_coef": 0.666
-    },
-    "nitrogen": {
-        "Ncf_ure": 15,
-        "Ncf_NH4": 3,
-        "Ncf": 18
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 2,
-        "SO3cf": 5
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:Nac_>",
-    "fertilizerID": "Nac",
-    "fertilizerKey": "H.38",
-    "fertilizer_name": "Nitric acid",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 13,
-        "Ncf": 13
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumN33_>",
-    "fertilizerID": "AumN33",
-    "fertilizerKey": "H.39",
-    "fertilizer_name": "Ammonium nitrate 33%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 0,
-        "Ncf_NH4": 50,
-        "Ncf": 33.3
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumN27_>",
-    "fertilizerID": "AumN27",
-    "fertilizerKey": "H.40",
-    "fertilizer_name": "Ammonium nitrate 27% (NAC)",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 16.6,
-        "Ncf_NH4": 16.6,
-        "Ncf": 27
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumN20_>",
-    "fertilizerID": "AumN20",
-    "fertilizerKey": "H.41",
-    "fertilizer_name": "Ammonium nitrate 20%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AN",
-        "vlt_coef": -0.35
-    },
-    "nitrogen": {
-        "Ncf_NO3": 10,
-        "Ncf_NH4": 10,
-        "Ncf": 20
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:MgS_>",
-    "fertilizerID": "MgS",
-    "fertilizerKey": "H.42",
-    "fertilizer_name": "Magnesium sulfate",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 13,
-        "SO3cf": 32
-    },
-    "calcium": {},
-    "magnesium": {
-        "Mgcf": 9.6,
-        "MgOcf": 16
-    },
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:AumS21_>",
-    "fertilizerID": "AumS21",
-    "fertilizerKey": "H.43",
-    "fertilizer_name": "Ammonium sulfate 21%",
-    "price": 0,
-    "clasification": "Inorganic",
-    "volatilization": {
-        "vlt_group": "AS",
-        "vlt_coef": 0.429
-    },
-    "nitrogen": {
-        "Ncf_NH4": 21,
-        "Ncf": 21
-    },
-    "phosphorus": {
-        "Pcf": 0
-    },
-    "potassium": {
-        "Kcf": 0
-    },
-    "drymatter": {},
-    "sulphur": {
-        "Scf": 24,
-        "SO3cf": 60
-    },
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:cm_>",
-    "fertilizerID": "cm",
-    "fertilizerKey": "O.01",
-    "fertilizer_name": "Cow manure",
-    "price": 0,
-    "clasification": "Organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.35000000000000003
-    },
-    "potassium": {
-        "Kcf": 0.6
-    },
-    "drymatter": {},
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:dc_>",
-    "fertilizerID": "dc",
-    "fertilizerKey": "O.02",
-    "fertilizer_name": "Dairy Cow",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.11
-    },
-    "potassium": {
-        "Kcf": 0.4
-    },
-    "drymatter": {
-        "DM": 20
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:dh_>",
-    "fertilizerID": "dh",
-    "fertilizerKey": "O.03",
-    "fertilizer_name": "Dairy Heifer",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.16999999999999998
-    },
-    "potassium": {
-        "Kcf": 0.51
-    },
-    "drymatter": {
-        "DM": 20
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:bc_>",
-    "fertilizerID": "bc",
-    "fertilizerKey": "O.04",
-    "fertilizer_name": "Beef Cow",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.16
-    },
-    "potassium": {
-        "Kcf": 0.33
-    },
-    "drymatter": {
-        "DM": 25
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:bf_>",
-    "fertilizerID": "bf",
-    "fertilizerKey": "O.05",
-    "fertilizer_name": "Beef Feeder",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.19
-    },
-    "potassium": {
-        "Kcf": 0.44999999999999996
-    },
-    "drymatter": {
-        "DM": 25
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:bes_>",
-    "fertilizerID": "bes",
-    "fertilizerKey": "O.06",
-    "fertilizer_name": "Beef Stocker",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.13999999999999999
-    },
-    "potassium": {
-        "Kcf": 0.41000000000000003
-    },
-    "drymatter": {
-        "DM": 25
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sm_>",
-    "fertilizerID": "sm",
-    "fertilizerKey": "O.07",
-    "fertilizer_name": "Swine Manure",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.6
-    },
-    "potassium": {
-        "Kcf": 0.4
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sf_>",
-    "fertilizerID": "sf",
-    "fertilizerKey": "O.08",
-    "fertilizer_name": "Swine Finishing",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.31
-    },
-    "potassium": {
-        "Kcf": 0.45999999999999996
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sg_>",
-    "fertilizerID": "sg",
-    "fertilizerKey": "O.09",
-    "fertilizer_name": "Swine Growing",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.18
-    },
-    "potassium": {
-        "Kcf": 0.35000000000000003
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sn_>",
-    "fertilizerID": "sn",
-    "fertilizerKey": "O.10",
-    "fertilizer_name": "Swine Nursery",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.2
-    },
-    "potassium": {
-        "Kcf": 0.32
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:sgs_>",
-    "fertilizerID": "sgs",
-    "fertilizerKey": "O.11",
-    "fertilizer_name": "Swine Gestating sow",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.37
-    },
-    "potassium": {
-        "Kcf": 0.43
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:ss_>",
-    "fertilizerID": "ss",
-    "fertilizerKey": "O.12",
-    "fertilizer_name": "Swine Sow and litter",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.2
-    },
-    "potassium": {
-        "Kcf": 0.32
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pm_>",
-    "fertilizerID": "pm",
-    "fertilizerKey": "O.13",
-    "fertilizer_name": "Poultry Manure",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 2.5
-    },
-    "potassium": {
-        "Kcf": 2
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pl_>",
-    "fertilizerID": "pl",
-    "fertilizerKey": "O.14",
-    "fertilizer_name": "Poultry Layer",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.47000000000000003
-    },
-    "potassium": {
-        "Kcf": 0.53
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pb_>",
-    "fertilizerID": "pb",
-    "fertilizerKey": "O.15",
-    "fertilizer_name": "Poultry Broiler",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.66
-    },
-    "potassium": {
-        "Kcf": 0.8699999999999999
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pt_>",
-    "fertilizerID": "pt",
-    "fertilizerKey": "O.16",
-    "fertilizer_name": "Poultry Turkey",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.7799999999999999
-    },
-    "potassium": {
-        "Kcf": 0.91
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pd_>",
-    "fertilizerID": "pd",
-    "fertilizerKey": "O.17",
-    "fertilizer_name": "Poultry Duck",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.44999999999999996
-    },
-    "potassium": {
-        "Kcf": 0.5599999999999999
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pg_>",
-    "fertilizerID": "pg",
-    "fertilizerKey": "O.18",
-    "fertilizer_name": "Poultry Goose",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.26
-    },
-    "potassium": {
-        "Kcf": 0.41000000000000003
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:oh_>",
-    "fertilizerID": "oh",
-    "fertilizerKey": "O.19",
-    "fertilizer_name": "Other Horse",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.11
-    },
-    "potassium": {
-        "Kcf": 0.44999999999999996
-    },
-    "drymatter": {
-        "DM": 20
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:os_>",
-    "fertilizerID": "os",
-    "fertilizerKey": "O.20",
-    "fertilizer_name": "Other Sheep",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.4
-    },
-    "potassium": {
-        "Kcf": 1
-    },
-    "drymatter": {
-        "DM": 20
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:og_>",
-    "fertilizerID": "og",
-    "fertilizerKey": "O.21",
-    "fertilizer_name": "Other Goat",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.24
-    },
-    "potassium": {
-        "Kcf": 0.89
-    },
-    "drymatter": {
-        "DM": 20
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:or_>",
-    "fertilizerID": "or",
-    "fertilizerKey": "O.22",
-    "fertilizer_name": "Other Rabbit",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.53
-    },
-    "potassium": {
-        "Kcf": 0.7100000000000001
-    },
-    "drymatter": {
-        "DM": 66
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:d_>",
-    "fertilizerID": "d",
-    "fertilizerKey": "O.23",
-    "fertilizer_name": "Digestato",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.26
-    },
-    "potassium": {
-        "Kcf": 0.6
-    },
-    "drymatter": {
-        "DM": 50
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:se_>",
-    "fertilizerID": "se",
-    "fertilizerKey": "O.24",
-    "fertilizer_name": "Sludge EDAR",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 1.2
-    },
-    "potassium": {
-        "Kcf": 0.1
-    },
-    "drymatter": {
-        "DM": 50
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:ps_>",
-    "fertilizerID": "ps",
-    "fertilizerKey": "O.25",
-    "fertilizer_name": "Poultry slurry",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 1
-    },
-    "potassium": {
-        "Kcf": 0.7000000000000001
-    },
-    "drymatter": {
-        "DM": 65
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:rs_>",
-    "fertilizerID": "rs",
-    "fertilizerKey": "O.26",
-    "fertilizer_name": "Rabbit slurry",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 1.3
-    },
-    "potassium": {
-        "Kcf": 0.75
-    },
-    "drymatter": {
-        "DM": 66
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:pigs_>",
-    "fertilizerID": "pigs",
-    "fertilizerKey": "O.27",
-    "fertilizer_name": "Pig slurry",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.4
-    },
-    "potassium": {
-        "Kcf": 0.35000000000000003
-    },
-    "drymatter": {
-        "DM": 4.2
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}, {
-    "uri": "navigatortool:fertilizer:<_Fertilizer:cs_>",
-    "fertilizerID": "cs",
-    "fertilizerKey": "O.28",
-    "fertilizer_name": "Cattle slurry",
-    "price": 0,
-    "clasification": "organic",
-    "volatilization": {
-        "vlt_group": "O",
-        "vlt_coef": 0.995
-    },
-    "nitrogen": {},
-    "phosphorus": {
-        "Pcf": 0.25
-    },
-    "potassium": {
-        "Kcf": 0.5
-    },
-    "drymatter": {
-        "DM": 8
-    },
-    "sulphur": {},
-    "calcium": {},
-    "magnesium": {},
-    "sodium": {},
-    "chlorine": {}
-}]
+]

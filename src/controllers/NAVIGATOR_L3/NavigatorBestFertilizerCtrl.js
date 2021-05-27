@@ -91,7 +91,7 @@ module.exports = function () {
 					K: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
 					S: Q*(fertilizer.Scf || fertilizer.sulphur.Scf || 0),
 					N_ur: Q*(fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0),
-					cost: Q*(fertilizer.price || 0)
+					cost: Q*100*(fertilizer.price || 0)
 				});
 			}
 		});

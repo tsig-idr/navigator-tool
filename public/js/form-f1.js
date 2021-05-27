@@ -2,10 +2,10 @@ var form = document.querySelector('form'),
 	tables = form.querySelectorAll('table'),
 	uid = '';
 
-form.querySelectorAll('button').forEach(function (button) {
-	button.addEventListener('click', function (ev) {
+form.querySelectorAll('button').forEach(button => {
+	button.addEventListener('click', ev => {
 		const table = form.querySelector(`table[name="${ev.target.name}"]`);
-		tables.forEach(function (table) {
+		tables.forEach(table => {
 			table.classList.add('d-none');
 		});
 		form.classList.add('was-validated');
@@ -19,12 +19,7 @@ form.querySelectorAll('button').forEach(function (button) {
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
-			}).then(function (response) {
-				if (response.ok) {
-					return response.json();
-				}
-				return Promise.reject(response);
-			}).then(function (data) {
+			}).then(res => res.json()).then(data => {
 				let tr, td, tbody,
 					i, name;
 				switch (ev.target.name) {
@@ -59,21 +54,21 @@ form.querySelectorAll('button').forEach(function (button) {
 						break;
 				}
 				table.classList.remove('d-none');
-			}).catch(function (error) {
+			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
 	});
 });
 
-document.querySelectorAll('[type="file"]').forEach(function (input) {
-	input.addEventListener('change', function (ev) {
+document.querySelectorAll('[type="file"]').forEach(input => {
+	input.addEventListener('change', ev => {
 		var file = ev.target.files[0],
 			reader;
 		if (!file) {
 			return false;
 		}
 		reader = new FileReader();
-		reader.onload = function (ev) {
+		reader.onload = ev => {
 			fetch(`/files/F1/${input.name}.csv?uid=${uid}`, {
 				method: 'POST',
 				body: JSON.stringify({
@@ -82,14 +77,9 @@ document.querySelectorAll('[type="file"]').forEach(function (input) {
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
-			}).then(function (response) {
-				if (response.ok) {
-					return response.json();
-				}
-				return Promise.reject(response);
-			}).then(function (data) {
+			}).then(res => res.json()).then(data => {
 				form['input[uid]'].value = uid = data.uid;
-			}).catch(function (error) {
+			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
 		};
