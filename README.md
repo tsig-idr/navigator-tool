@@ -74,6 +74,7 @@ Web Services available are:
 | /F3/climate-zones     | 3    | GET        |                                |
 
 From above services, the ones belonging to line 1 share the same input params which should be sent in the body of the POST request. An example of JSON corresponding to such a body is as follows.
+```JSON
 {
 	"input": {
 		"crop": "Trigo Blando",
@@ -103,7 +104,7 @@ From above services, the ones belonging to line 1 share the same input params wh
 		"nitrificationPostDays": 7
 	}
 }
-
+```
 
 #### GHG
 
