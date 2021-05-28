@@ -61,7 +61,7 @@ Web Services available are:
 
 | URL                   | Line | HTTP Verb  | Funcionality                   |
 |-----------------------|------|------------|--------------------------------|
-| /F1/SWB               | 1    | POST       |                                |
+| /F1/SWB               | 1    | POST       | Computes simplified water balance for a daily basis |
 | /F1/SNB/daily         | 1    | POST       |                                |
 | /F1/SNB/weekly        | 1    | POST       |                                |
 | /F1/SNB/calendar      | 1    | POST       |                                |
