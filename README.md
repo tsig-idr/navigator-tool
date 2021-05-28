@@ -143,7 +143,37 @@ For its part, the input params which should be sent in the body of the POST requ
 
 An example of the body request is
 ```JSON
-{"input":{"uid":"default","d_c_4000":"1","d_c_6000":"1","d_c_8000":"1","d_c_10000":"1","d_c_mature":"1","d_c_calves":"1","d_c_growing_1":"1","d_c_growing_2":"1","m_c_mature":"1","m_c_calves":"1","m_c_growing_1":"1","m_c_growing_2":"1","s_mature":"1","s_growing":"1","g_mature":"1","g_growing":"1","p_mature":"1","p_growing":"1","r_others":"1","po_hen":"1","po_broiler":"1","po_other":"1","p_mature_feed":"10","p_growing_feed":"10","po_hen_feed":"10","po_broiler_feed":"10","po_other_feed":"10"}}
+{
+  "input": {
+    "d_c_4000": "1",
+    "d_c_6000": "1",
+    "d_c_8000": "1",
+    "d_c_10000": "1",
+    "d_c_mature": "1",
+    "d_c_calves": "1",
+    "d_c_growing_1": "1",
+    "d_c_growing_2": "1",
+    "m_c_mature": "1",
+    "m_c_calves": "1",
+    "m_c_growing_1": "1",
+    "m_c_growing_2": "1",
+    "s_mature": "1",
+    "s_growing": "1",
+    "g_mature": "1",
+    "g_growing": "1",
+    "p_mature": "1",
+    "p_growing": "1",
+    "r_others": "1",
+    "po_hen": "1",
+    "po_broiler": "1",
+    "po_other": "1",
+    "p_mature_feed": "10",
+    "p_growing_feed": "10",
+    "po_hen_feed": "10",
+    "po_broiler_feed": "10",
+    "po_other_feed": "10"
+  }
+}
 ```
 
 #### EPA
@@ -152,6 +182,18 @@ An example of the body request is
 |-----------------------|------|------------|--------------------------------|
 | /E3/epa               | 3    | POST       | Computes and returns a set of economic variables for the farm |
 
+An example of the body request is
+```JSON
+{
+  "input": {
+    "SC": "123546",
+    "OCS": "9624",
+    "HWC": "20949",
+    "MWC": "6478",
+    "TGV": "208638"
+  }
+}
+```
 
 # Goal
 
