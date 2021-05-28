@@ -100,7 +100,7 @@ F1, F3, E3 running & tested, G3 (partial) are implemented. The modules are indep
 # Architecture:
 Navigator Tool works with the Express web application framework that can run Node.js. The system architecture is based on client server through REST web services. Communication with the tool's computational core is based on text files and requests in JSON format. 
 
-![Image of Architecture](https://github.com/tsig-idr/navigator-tool/raw/master/.github/architecture_navigator_tool.png)
+![Image of Architecture](https://github.com/tsig-idr/navigator-tool/blob/main/.github/architecture_navigator_tool.png)
 
 # Configuration
 
