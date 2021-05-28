@@ -59,19 +59,19 @@ Web Services available are:
 
 #### NPK
 
-| URL                   | Line | HTTP Verb  | Funcionality                   |
-|-----------------------|------|------------|--------------------------------|
-| /F1/SWB               | 1    | POST       | Computes simplified water balance for a daily basis |
-| /F1/SNB/daily         | 1    | POST       |                                |
-| /F1/SNB/weekly        | 1    | POST       |                                |
-| /F1/SNB/calendar      | 1    | POST       |                                |
-| /F1/SNB/full          | 1    | POST       |                                |
-| /F3/requirements      | 3    | POST       |                                |
-| /F3/crops             | 3    | GET        |                                |
-| /F3/crop/:cropID      | 3    | GET        |                                |
-| /F3/soil-textures     | 3    | GET        |                                |
-| /F3/fertilizers/all   | 3    | GET        |                                |
-| /F3/climate-zones     | 3    | GET        |                                |
+| URL                   | Line | HTTP Verb | Funcionality |
+|-----------------------|------|-----------|--------------|
+| /F1/SWB               | 1    | POST      | Computes and returns a simplified water balance on a daily basis |
+| /F1/SNB/daily         | 1    | POST      | Computes and returns a nitrogen balance on a daily basis |
+| /F1/SNB/weekly        | 1    | POST      | Computes and returns a nitrogen balance on a weekly basis |
+| /F1/SNB/calendar      | 1    | POST      | Computes and returns a calendar of fertilization, for which a daily nitrogen balance is computed as well but not returned |
+| /F1/SNB/full          | 1    | POST      | Computes and returns a daily nitrogen balance, a weekly nitrogen balance, and a calendar of fertilization |
+| /F3/requirements      | 3    | POST      | Computes and returns NPK requirements as well as the best fertilization to meet those requirements |
+| /F3/crops             | 3    | GET       | Returns data of all the crops available in the system |
+| /F3/crop/:cropID      | 3    | GET       | Returns data of the crop identified by "cropID" |
+| /F3/soil-textures     | 3    | GET       | Returns data of all the soil textures available in the system |
+| /F3/fertilizers/all   | 3    | GET       | Returns data of all the fertilizers available in the system |
+| /F3/climate-zones     | 3    | GET       | Returns data of all the climitic zones available in the system |
 
 From above services, the ones belonging to line 1 share the same input params which should be sent in the body of the POST request. An example of JSON corresponding to such a body is as follows.
 ```JSON
