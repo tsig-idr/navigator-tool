@@ -33,7 +33,8 @@ form.querySelector('button').addEventListener('click', () => {
 				tbody.removeChild(tbody.lastChild);
 			}
 		});
-		let i, j, crop, fertilizer, tr, td;
+		let i, j, crop, fertilizer, tr, td, value,
+			totalFertilization = {};
 		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
 			balanceTbody.appendChild(tr = document.createElement('tr'));
 			for (j in balanceFields) {
@@ -47,15 +48,24 @@ form.querySelector('button').addEventListener('click', () => {
 				tr.appendChild(td = document.createElement('td'));
 				td.innerHTML = parseFloat(crop.nutrient_requirements[field]).toFixed(2);
 			});
-			for (j = 0; j < crop.fertilization.length && (fertilizer = crop.fertilization[j]); j++) {
+			fertilizationFields.forEach(field => totalFertilization[field] = 0);
+			for (j = 0, n = crop.fertilization.length; j < n && (fertilizer = crop.fertilization[j]); j++) {
 				fertilizationTbody.appendChild(tr = document.createElement('tr'));
 				tr.appendChild(td = document.createElement('td'));
 				td.innerHTML = fertilizer.fertilizer_name;
 				fertilizationFields.forEach(field => {
 					tr.appendChild(td = document.createElement('td'));
-					td.innerHTML = parseFloat(fertilizer[field]).toFixed(2);
+					td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(2);
+					totalFertilization[field]+= value;
 				});
 			}
+			fertilizationTbody.appendChild(tr = document.createElement('tr'));
+			tr.appendChild(td = document.createElement('td'));
+			td.innerHTML = 'TOTAL';
+			fertilizationFields.forEach(field => {
+				tr.appendChild(td = document.createElement('td'));
+				td.innerHTML = totalFertilization[field].toFixed(2);
+			});
 		}
 		resultsDiv.classList.remove('d-none');
 	}).catch(error => {
