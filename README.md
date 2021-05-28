@@ -73,7 +73,7 @@ Web Services available are:
 | /F3/fertilizers/all   | 3    | GET       | Returns data of all the fertilizers available in the system |
 | /F3/climate-zones     | 3    | GET       | Returns data of all the climitic zones available in the system |
 
-From above services, the ones belonging to line 1 share the same input params which should be sent in the body of the POST request. An example of JSON corresponding to such a body is as follows.
+From above services, the ones belonging to **line 1** share the same input params which should be sent in the body of their POST requests. An example of JSON corresponding to such a body is as follows.
 ```JSON
 {
 	"input": {
@@ -105,18 +105,52 @@ From above services, the ones belonging to line 1 share the same input params wh
 	}
 }
 ```
+For its part, the input params which should be sent in the body of the POST request for that one service belonging to **line 3** can be seen in this JSON:
+```JSON
+{
+    "input": {
+        "cropID": "BARLEY_6_ROW",
+        "soil_texture": "loam",
+        "Pc_method": "olsen",
+        "climatic_zone": "atlantic",
+        "water_supply": "1",
+        "type_irrigated": "sprinkler",
+        "PK_strategy": "maximum-yield",
+        "tilled": "yes",
+        "export_r": 100,
+        "depth_s": 0.5,
+        "HI_est": 40,
+        "Pc_s": 10,
+        "Kc_s": 0.026,
+        "yield": 10000,
+        "CV": 20,
+        "SOM": 1.8,
+        "Nc_s_initial": 4,
+        "Nc_end": 5,
+        "dose_irrigation": 4000 ,
+        "Nc_NO3_water": 25,
+        "rain_a": 800,
+        "rain_w": 480
+    }
+}
+```
 
 #### GHG
 
 | URL                   | Line | HTTP Verb  | Funcionality                   |
 |-----------------------|------|------------|--------------------------------|
-| /G3/livestock         | 3    | POST       |                                |
+| /G3/livestock         | 3    | POST       | Computes and returns the GHG emissions produced by the livestock of the farm |
+
+An example of the body request is
+```JSON
+{"input":{"uid":"default","d_c_4000":"1","d_c_6000":"1","d_c_8000":"1","d_c_10000":"1","d_c_mature":"1","d_c_calves":"1","d_c_growing_1":"1","d_c_growing_2":"1","m_c_mature":"1","m_c_calves":"1","m_c_growing_1":"1","m_c_growing_2":"1","s_mature":"1","s_growing":"1","g_mature":"1","g_growing":"1","p_mature":"1","p_growing":"1","r_others":"1","po_hen":"1","po_broiler":"1","po_other":"1","p_mature_feed":"10","p_growing_feed":"10","po_hen_feed":"10","po_broiler_feed":"10","po_other_feed":"10"}}
+```
 
 #### EPA
 
 | URL                   | Line | HTTP Verb  | Funcionality                   |
 |-----------------------|------|------------|--------------------------------|
-| /E3/epa               | 3    | POST       |                                |
+| /E3/epa               | 3    | POST       | Computes and returns a set of economic variables for the farm |
 
 
 # Goal
