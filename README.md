@@ -2,7 +2,6 @@
 
 The web-based Navigator Tool aims to perform modelling of nutrients recommendations, GHG emissions / removals and economic performance assessment (EPA), on a defined single crop and plot for a specified location, from a set of input data supplied by the user through an interface.
 
-The all information of the project can be found on the [website](https://fastnavigator.eu). 
 
 - [Getting Started](#getting-started)
     - [Running Navigator Tool](#running-navigator-tool)
