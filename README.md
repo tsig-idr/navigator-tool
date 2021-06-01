@@ -2,7 +2,6 @@
 
 The web-based Navigator Tool aims to perform modelling of nutrients recommendations, GHG emissions / removals and economic performance assessment (EPA), on a defined single crop and plot for a specified location, from a set of input data supplied by the user through an interface.
 
-The all information of the project can be found on the [website](https://fastnavigator.eu). 
 
 - [Getting Started](#getting-started)
     - [Running Navigator Tool](#running-navigator-tool)
@@ -59,34 +58,141 @@ Web Services available are:
 
 #### NPK
 
-| URL                   | Line | HTTP Verb  | Funcionality                   |
-|-----------------------|------|------------|--------------------------------|
-| /F1/SWB               | 1    | POST       |                                |
-| /F1/SNB/daily         | 1    | POST       |                                |
-| /F1/SNB/weekly        | 1    | POST       |                                |
-| /F1/SNB/calendar      | 1    | POST       |                                |
-| /F1/SNB/full          | 1    | POST       |                                |
-| /F3/requirements      | 3    | POST       |                                |
-| /F3/crops             | 3    | GET        |                                |
-| /F3/crop/:cropID      | 3    | GET        |                                |
-| /F3/soil-textures     | 3    | GET        |                                |
-| /F3/fertilizers/all   | 3    | GET        |                                |
-| /F3/climate-zones     | 3    | GET        |                                |
+| URL                   | Line | HTTP Verb | Funcionality |
+|-----------------------|------|-----------|--------------|
+| /F1/SWB               | 1    | POST      | Computes and returns a simplified water balance on a daily basis |
+| /F1/SNB/daily         | 1    | POST      | Computes and returns a nitrogen balance on a daily basis |
+| /F1/SNB/weekly        | 1    | POST      | Computes and returns a nitrogen balance on a weekly basis |
+| /F1/SNB/calendar      | 1    | POST      | Computes and returns a calendar of fertilization, for which a daily nitrogen balance is computed as well but not returned |
+| /F1/SNB/full          | 1    | POST      | Computes and returns a daily nitrogen balance, a weekly nitrogen balance, and a calendar of fertilization |
+| /F3/requirements      | 3    | POST      | Computes and returns NPK requirements as well as the best fertilization to meet those requirements |
+| /F3/crops             | 3    | GET       | Returns data of all the crops available in the system |
+| /F3/crop/:cropID      | 3    | GET       | Returns data of the crop identified by "cropID" |
+| /F3/soil-textures     | 3    | GET       | Returns data of all the soil textures available in the system |
+| /F3/fertilizers/all   | 3    | GET       | Returns data of all the fertilizers available in the system |
+| /F3/climate-zones     | 3    | GET       | Returns data of all the climitic zones available in the system |
 
-
+From above services, the ones belonging to **line 1** share the same input params which should be sent in the body of their POST requests. An example of JSON corresponding to such a body is as follows.
+```JSON
+{
+	"input": {
+		"crop": "Trigo Blando",
+		"soilDensity": 1.4,
+		"soilDepth": 35,
+		"soilStony": 0.15,
+		"soilOrganicMaterial": 0.018,
+		"soilDelta_N_NH4": 0.2,
+		"soilNmin_0": 16,
+		"soilDate_Nmin_0": "30/12/2014",
+		"cropDate": "11/01/2015",
+		"mineralizationSlowdown": 0.1,
+		"waterNitrate": 15,
+		"irrigation": true,
+		"irrigationDose": 5,
+		"root_max": 0.6,
+		"Kcb_ini": 0.16,
+		"Kcb_mid": 0.7,
+		"Kcb_end": 0.65,
+		"waterAvail": 100,
+		"fw_0": 1,
+		"REW":4,
+		"TEW": 8,
+		"De_0": 8,
+		"cropYield": 9000,
+		"cropExtractions": 33,
+		"nitrificationPostDays": 7
+	}
+}
+```
+For its part, the input params which should be sent in the body of the POST request for that one service belonging to **line 3** can be seen in this JSON:
+```JSON
+{
+    "input": {
+        "cropID": "BARLEY_6_ROW",
+        "soil_texture": "loam",
+        "Pc_method": "olsen",
+        "climatic_zone": "atlantic",
+        "water_supply": "1",
+        "type_irrigated": "sprinkler",
+        "PK_strategy": "maximum-yield",
+        "tilled": "yes",
+        "export_r": 100,
+        "depth_s": 0.5,
+        "HI_est": 40,
+        "Pc_s": 10,
+        "Kc_s": 0.026,
+        "yield": 10000,
+        "CV": 20,
+        "SOM": 1.8,
+        "Nc_s_initial": 4,
+        "Nc_end": 5,
+        "dose_irrigation": 4000 ,
+        "Nc_NO3_water": 25,
+        "rain_a": 800,
+        "rain_w": 480
+    }
+}
+```
 
 #### GHG
 
 | URL                   | Line | HTTP Verb  | Funcionality                   |
 |-----------------------|------|------------|--------------------------------|
-| /G3/livestock         | 3    | POST       |                                |
+| /G3/livestock         | 3    | POST       | Computes and returns the GHG emissions produced by the livestock of the farm |
+
+An example of the body request is
+```JSON
+{
+  "input": {
+    "d_c_4000": "1",
+    "d_c_6000": "1",
+    "d_c_8000": "1",
+    "d_c_10000": "1",
+    "d_c_mature": "1",
+    "d_c_calves": "1",
+    "d_c_growing_1": "1",
+    "d_c_growing_2": "1",
+    "m_c_mature": "1",
+    "m_c_calves": "1",
+    "m_c_growing_1": "1",
+    "m_c_growing_2": "1",
+    "s_mature": "1",
+    "s_growing": "1",
+    "g_mature": "1",
+    "g_growing": "1",
+    "p_mature": "1",
+    "p_growing": "1",
+    "r_others": "1",
+    "po_hen": "1",
+    "po_broiler": "1",
+    "po_other": "1",
+    "p_mature_feed": "10",
+    "p_growing_feed": "10",
+    "po_hen_feed": "10",
+    "po_broiler_feed": "10",
+    "po_other_feed": "10"
+  }
+}
+```
 
 #### EPA
 
 | URL                   | Line | HTTP Verb  | Funcionality                   |
 |-----------------------|------|------------|--------------------------------|
-| /E3/epa               | 3    | POST       |                                |
+| /E3/epa               | 3    | POST       | Computes and returns a set of economic variables for the farm |
 
+An example of the body request is
+```JSON
+{
+  "input": {
+    "SC": "123546",
+    "OCS": "9624",
+    "HWC": "20949",
+    "MWC": "6478",
+    "TGV": "208638"
+  }
+}
+```
 
 # Goal
 
@@ -100,7 +206,7 @@ F1, F3, E3 running & tested, G3 (partial) are implemented. The modules are indep
 # Architecture:
 Navigator Tool works with the Express web application framework that can run Node.js. The system architecture is based on client server through REST web services. Communication with the tool's computational core is based on text files and requests in JSON format. 
 
-![Image of Architecture](https://github.com/tsig-idr/navigator-tool/raw/master/.github/architecture_navigator_tool.png)
+![Image of Architecture](https://github.com/tsig-idr/navigator-tool/blob/main/.github/architecture_navigator_tool.png)
 
 # Configuration
 
