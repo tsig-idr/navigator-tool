@@ -1,0 +1,13 @@
+DD list Climate zones,climate zone (SOC LT),climate zone (organic factor),temperature regime,moisture regime
+tropical montane,tropical montane,tropical sub tropical,tropical montane,
+tropical wet,tropical wet,tropical sub tropical,tropical,moist
+tropical moist,tropical moist,tropical sub tropical,tropical,moist
+tropical dry,tropical dry,tropical sub tropical,tropical,dry
+warm temperate moist,warm temperate moist,warm temperate,temperate boreal,moist
+warm temperate dry,warm temperate dry,warm temperate,temperate boreal,dry
+cool temperate moist,cool temperate moist,boreal cool temperate,temperate boreal,moist
+cool temperate dry,cool temperate dry,boreal cool temperate,temperate boreal,dry
+boreal moist,boreal,boreal cool temperate,temperate boreal,moist
+boreal dry,boreal,boreal cool temperate,temperate boreal,dry
+polar moist,,,,moist
+polar dry,,,,dry

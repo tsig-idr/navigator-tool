@@ -23,5 +23,15 @@ module.exports = function () {
 		});
 	}));
 
+	router.post('/crops', asyncHandler(async (req, res) => {
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		res.json({
+			results: (await navG3Ctrl.crops(input, [
+				'CO2eqTotal',
+				'test'
+			]))
+		});
+	}));
+
 	return router;
 }

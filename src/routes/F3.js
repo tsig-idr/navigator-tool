@@ -434,6 +434,7 @@ module.exports = function () {
 				{
 					cropID: input.cropID,
 					yield: input.yield,
+					area: input.area,
 					nutrient_requirements: {
 						Ncf_min: output.Ncrop_min,
 						Ncf_max: output.Ncrop_max,

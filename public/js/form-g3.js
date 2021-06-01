@@ -1,6 +1,6 @@
-var form = document.querySelector('form'),
-	uid = '';
+var form = document.querySelector('form');
 
+form.files = {};
 form.querySelector('button').addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
@@ -8,9 +8,13 @@ form.querySelector('button').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
+	const data = FormDataJson.formToJson(form);
+	for (const name in form.files) {
+		data.input[name] = csv2json(form.files[name]);
+	}
 	fetch('/G3/livestock', {
 		method: 'POST',
-		body: JSON.stringify(FormDataJson.formToJson(form)),
+		body: JSON.stringify(data),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
@@ -27,7 +31,6 @@ form.querySelector('button').addEventListener('click', () => {
 		console.warn('Something went wrong.', error);
 	});
 });
-
 document.querySelectorAll('[type="file"]').forEach(input => {
 	input.addEventListener('change', ev => {
 		var file = ev.target.files[0],
@@ -36,21 +39,11 @@ document.querySelectorAll('[type="file"]').forEach(input => {
 			return false;
 		}
 		reader = new FileReader();
-		reader.onload = ev => {
-			fetch(`/files/G3/${input.name}.csv?uid=${uid}`, {
-				method: 'POST',
-				body: JSON.stringify({
-					data: ev.target.result
-				}),
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8'
-				}
-			}).then(res => res.json()).then(data => {
-				form['input[uid]'].value = uid = data.uid;
-			}).catch(error => {
-				console.warn('Something went wrong.', error);
-			});
-		};
+		reader.onload = ev => form.files[input.name] = ev.target.result;
 		reader.readAsText(file);
 	});
 });
+
+function csv2json (csv) {
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}

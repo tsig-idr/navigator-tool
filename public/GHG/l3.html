@@ -19,7 +19,6 @@
 					<p><b>IMPORTANT:</b> This module just implements that part of the G3 line concerning <b>livestock</b></p>
 				</div>
 				<form class="needs-validation" novalidate>
-					<input name="input[uid]" type="hidden" value="default"/>
 					<div class="card">
 						<h5 class="card-header">Number of animals</h5>
 						<div class="card-body">
@@ -240,7 +239,7 @@
 							<div class="card">
 								<h5 class="card-header ">Feed data</h5>
 								<div class="card-body">
-									<input name="Feeds" class="form-control" type="file" accept=".csv" />
+									<input required name="Feeds" class="form-control" type="file" accept=".csv" />
 									<a href="/csv/G3/Feeds.csv">Download example</a>
 								</div>
 							</div>
@@ -249,7 +248,7 @@
 							<div class="card">
 								<h5 class="card-header ">Manure data</h5>
 								<div class="card-body">
-									<input name="Manure" class="form-control" type="file" accept=".csv" />
+									<input required name="Manure" class="form-control" type="file" accept=".csv" />
 									<a href="/csv/G3/Manure.csv">Download example</a>
 								</div>
 							</div>

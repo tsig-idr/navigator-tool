@@ -1,8 +1,5 @@
-Clima = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Clima.csv'))); [[]])
-Meteo = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Meteo.csv'))); [[]])
-Riegos = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Riego.csv'))); [[]])
-NDVI_real = LINTER4DATES (IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_real.csv'))); [[]]), 1)
-NDVI_tipo = LINTER4DATES (IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_tipo.csv'))); [[]]), 1)
+NDVI_real = LINTER4DATES (IF_VOID (NDVIreal; [[]]), 1)
+NDVI_tipo = LINTER4DATES (IF_VOID (NDVItipo; [[]]), 1)
 root_min = 0.2
 Lini = 31
 Ldev = 38

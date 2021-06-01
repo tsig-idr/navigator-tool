@@ -7,7 +7,8 @@ module.exports = function () {
 	async function livestock (input, outputnames) {
 		!input &&
 			(input = {
-				uid: 'default',
+				Feeds: [[]],
+				Manure: [[]],
 				d_c_4000: 1,
 				d_c_6000: 1,
 				d_c_8000: 1,
@@ -41,9 +42,16 @@ module.exports = function () {
 			output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
 	}
+	async function crops (input, outputnames) {
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'crops.sc'), 'utf8'),
+			engine = customEngine(),
+			output = await sheetscript.run(engine, code, input, outputnames);
+		return output;
+	}
 
 	return {
-		livestock: livestock
+		livestock: livestock,
+		crops: crops
 	}
 }
 
@@ -84,6 +92,25 @@ function customEngine () {
 				for (let i = 0; i < table.length; i++) {
 					if (typeof table[i] == 'object' && table[i].length && table[i][0] == v) {
 						return table[i][index - 1];
+					}
+				}
+			}
+		}
+		return null;
+	});
+	// Variante de VLOOKUP que relaja el criterio de matching
+	engine.setFunction('user', 'VLOOKUP_NONSTRICT', 3, (v, table, index) => {
+		if (index && typeof table == 'object' && table.length) {
+			for (let i = 0, a, b, j, k; i < table.length; i++) {
+				if (typeof table[i] == 'object' && table[i].length) {
+					a = table[i][0].toLowerCase().split(' ');
+					b = v.toLowerCase().split(' ');
+					for (j = 0; j < a.length; j++) {
+						for (k = 0; k < b.length; k++) {
+							if (a[j] == b[k]) {
+								return table[i][index - 1];
+							}
+						}
 					}
 				}
 			}

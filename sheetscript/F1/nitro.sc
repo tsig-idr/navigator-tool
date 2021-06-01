@@ -1,15 +1,10 @@
-CSVAgro = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_CSVAgro.csv'))); [[]])
-Clima = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Clima.csv'))); [[]])
-Meteo = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Meteo.csv'))); [[]])
-Fertiliza = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_Fertiliza.csv'))); [[]])
+CSVAgro = [[]]
 FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'FenoT.csv'))
 FenoBBCH = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'BBCH.csv'))
 Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Extracciones.csv'))
 Mineral = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Mineral.csv'))
 MO = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'MO.csv'))
-NDVIreal = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_real.csv'))); [[]])
 NDVIreali = LINTER4DATES (NDVIreal, 1)
-NDVItipo = IF_VOID (SP_CSV2ARRAY(CONCAT('tmp/F1/', CONCAT(uid, '_NDVI_tipo.csv'))); [[]])
 NDVItipoi = LINTER4DATES (NDVItipo, 1)
 
 agroasesor = 'no'

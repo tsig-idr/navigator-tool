@@ -111,8 +111,8 @@ module.exports = function () {
 				});
 				index = weeks.length - 1;
 			}
-			const sum_vars = ['N_mineralizado', 'N_agua', 'N_fert_neto', 'Nl', 'N_extr_1'],
-				max_vars = ['N_extrA_1', 'N_recom', 'Nmin_medido', 'Eto_acumulada', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo_i', 'NDVI_int', 'Biomasa', 'Eto_acumulada_real'];
+			const sum_vars = ['N_mineralizado', 'N_agua', 'N_fert_neto', 'Nl', 'N_extr_1'];
+			const max_vars = ['N_extrA_1', 'N_recom', 'Nmin_medido', 'Eto_acumulada', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo_i', 'NDVI_int', 'Biomasa', 'Eto_acumulada_real'];
 			let i;
 			for (i = 0; i < sum_vars.length; i++) {
 				weeks[index][sum_vars[i]]+= day[sum_vars[i]];

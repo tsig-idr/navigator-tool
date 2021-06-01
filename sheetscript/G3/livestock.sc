@@ -2,8 +2,6 @@ CO2_GWP = 1
 CH4_GWP	= 25
 N2O_GWP	= 298
 
-Feeds = SP_CSV2ARRAY(CONCAT('tmp/G3/', CONCAT(uid, '_Feeds.csv')))
-Manure = SP_CSV2ARRAY(CONCAT('tmp/G3/', CONCAT(uid, '_Manure.csv')))
 T50 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T50.csv'))
 T51 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T51.csv'))
 T52 = STD_CSV2ARRAY(CONCAT('sheetscript/G3/', 'T52.csv'))

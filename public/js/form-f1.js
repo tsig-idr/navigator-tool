@@ -1,7 +1,7 @@
 var form = document.querySelector('form'),
-	tables = form.querySelectorAll('table'),
-	uid = '';
+	tables = form.querySelectorAll('table');
 
+form.files = {};
 form.querySelectorAll('button').forEach(button => {
 	button.addEventListener('click', ev => {
 		const table = form.querySelector(`table[name="${ev.target.name}"]`);
@@ -12,10 +12,14 @@ form.querySelectorAll('button').forEach(button => {
 		if (!form.checkValidity()) {
 			return false;
 		}
+		const data = FormDataJson.formToJson(form);
+		for (const name in form.files) {
+			data.input[name] = csv2json(form.files[name]);
+		}
 		ev.target.name &&
 			fetch(`/F1/${ev.target.name}`, {
 				method: 'POST',
-				body: JSON.stringify(FormDataJson.formToJson(form)),
+				body: JSON.stringify(data),
 				headers: {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
@@ -59,7 +63,6 @@ form.querySelectorAll('button').forEach(button => {
 			});
 	});
 });
-
 document.querySelectorAll('[type="file"]').forEach(input => {
 	input.addEventListener('change', ev => {
 		var file = ev.target.files[0],
@@ -68,21 +71,11 @@ document.querySelectorAll('[type="file"]').forEach(input => {
 			return false;
 		}
 		reader = new FileReader();
-		reader.onload = ev => {
-			fetch(`/files/F1/${input.name}.csv?uid=${uid}`, {
-				method: 'POST',
-				body: JSON.stringify({
-					data: ev.target.result
-				}),
-				headers: {
-					'Content-type': 'application/json; charset=UTF-8'
-				}
-			}).then(res => res.json()).then(data => {
-				form['input[uid]'].value = uid = data.uid;
-			}).catch(error => {
-				console.warn('Something went wrong.', error);
-			});
-		};
+		reader.onload = ev => form.files[input.name] = ev.target.result;
 		reader.readAsText(file);
 	});
 });
+
+function csv2json (csv) {
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}
