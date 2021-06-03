@@ -102,7 +102,7 @@ K2O_maxBM = K_maxBM*1.205
 K2O_maintenance = K_maintenance*1.205
 
 factor_humidity = VLOOKUP (climatic_zone; Clima; 2)
-Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1) + 1), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]) + 1)*factor_humidity
+Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity
 Nmineralization = Nc_mineralization_SOM + Nc_mineralization_amendment
 
 n_fix_code = VLOOKUP (crop_type; CropData; 7)

@@ -5,38 +5,6 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function livestock (input, outputnames) {
-		!input &&
-			(input = {
-				Feeds: [[]],
-				Manure: [[]],
-				d_c_4000: 1,
-				d_c_6000: 1,
-				d_c_8000: 1,
-				d_c_10000: 1,
-				d_c_calves: 1,
-				d_c_growing_1: 1,
-				d_c_growing_2: 1,
-				d_c_mature: 1,
-				m_c_mature: 1,
-				m_c_calves: 1,
-				m_c_growing_1: 1,
-				m_c_growing_2: 1,
-				s_mature: 1,
-				s_growing: 1,
-				g_mature: 1,
-				g_growing: 1,
-				r_others: 1,
-				p_mature: 1,
-				p_growing: 1,
-				po_hen: 1,
-				po_broiler: 1,
-				po_other: 1,
-				p_mature_feed: 10,
-				p_growing_feed: 10,
-				po_hen_feed: 10,
-				po_broiler_feed: 10,
-				po_other_feed: 10
-			});
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'livestock.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);
@@ -76,6 +44,27 @@ function customEngine () {
 		}
 		const csv = fs.readFileSync(filename, 'utf8');
 		return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+	});
+	// Equivalente a la COINCIDIR de Excel
+	engine.setFunction('user', 'MATCH', 2, (v, row, ranged = false) => {
+		if (typeof row == 'object' && row.length) {
+			if (ranged) {
+				v = parseFloat(v);
+				for (let i = row.length - 1; i >= 0; i--) {
+					if (parseFloat(row[i]) <= v) {
+						return i + 1;
+					}
+				}
+			}
+			else {
+				for (let i = 0; i < row.length; i++) {
+					if (row[i] == v) {
+						return i + 1;
+					}
+				}
+			}
+		}
+		return null;
 	});
 	// Equivalente a la BUSCARV de Excel
 	engine.setFunction('user', 'VLOOKUP', 3, (v, table, index, ranged = false) => {

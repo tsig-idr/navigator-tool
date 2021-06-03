@@ -93,14 +93,14 @@ function customEngine () {
 				v = parseFloat(v);
 				for (let i = row.length - 1; i >= 0; i--) {
 					if (parseFloat(row[i]) <= v) {
-						return i;
+						return i + 1;
 					}
 				}
 			}
 			else {
 				for (let i = 0; i < row.length; i++) {
 					if (row[i] == v) {
-						return i;
+						return i + 1;
 					}
 				}
 			}
