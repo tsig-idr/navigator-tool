@@ -1,67 +1,101 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand d-flex align-items-center" href="#">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto mr-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-				<strong>NAVIGATOR Tool</strong>
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenuDefault" aria-controls="navbarsMenuDefault" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-	
-			<div class="collapse navbar-collapse" id="navbarsMenuDefault">
-				<ul class="navbar-nav me-auto mb-2 mb-md-0">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Nutrients</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown01">
-							<li><a class="dropdown-item" href="/nutrients/l1.html">L1 <small>Fatima</small></a></li>
-							<li><a class="dropdown-item disabled" href="#">L2 <small>AGROAsesor</small></a></li>
-							<li class="dropdown-item dropdown-submenu p-0">
-								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">L3 <small>v1</small> </a>
-								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-									<li class="dropdown-item p-0">
-										<a href="/nutrients/navtool-f3.html" class="dropdown-item w-100">Navigator Tool F3</a>
-									</li>
-									<li class="dropdown-item p-0">
-										<a href="/nutrients/navigator-f3.html" class="dropdown-item w-100">Fertilicalc F3</a>
-									</li>
-									<li class="dropdown-item p-0"><hr></li>
-									<li class="dropdown-item p-0">
-										<a href="/nutrients/navigator-n3-mod.html" class="dropdown-item w-100">N3 Nutrient requirements</a>
-									</li>
-									<li class="dropdown-item p-0">
-										<a href="/nutrients/losses-nr3-mod.html" class="dropdown-item w-100">NR3 Calculation of losses</a>
-									</li>
-								</ul>
-							</li>
-							<li><a class="dropdown-item" href="/nutrients/l3.html">L3 <small>v2</small></a></li>
-							<li><a class="dropdown-item disabled" href="#">L4 <small></small></a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="/nutrients/best-fertilizer-mod.html">Best Fertilizer</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle active" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">GHG</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown02">
-							<li><a class="dropdown-item disabled" href="#">L1</a></li>
-							<li><a class="dropdown-item disabled" href="#">L2</a></li>
-							<li><a class="dropdown-item" href="/GHG/l3.html">L3</a></li>
-							<li><a class="dropdown-item disabled" href="#">L4</a></li>
-						</ul>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle active" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">EPA</a>
-						<ul class="dropdown-menu" aria-labelledby="dropdown03">
-							<li><a class="dropdown-item disabled" href="#">L1</a></li>
-							<li><a class="dropdown-item disabled" href="#">L2</a></li>
-							<li><a class="dropdown-item" href="/EPA/l3.html">L3</a></li>
-							<li><a class="dropdown-item disabled" href="#">L4</a></li>
-						</ul>
-					</li>
-				</ul>
-			
-			</div>
+	<div class="container-fluid">
+		<a class="navbar-brand d-flex align-items-center" href="#">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto mr-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+			<strong>NAVIGATOR Tool</strong>
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenuDefault" aria-controls="navbarsMenuDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarsMenuDefault">
+			<ul class="navbar-nav me-auto mb-2 mb-md-0">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Nutrients</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown01">
+						<li>
+							<a class="dropdown-item" href="/nutrients/l1.html">L1 <small>Fatima</small></a>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L2 <small>AGROAsesor</small></a>
+						</li>
+						<li class="dropdown-item dropdown-submenu p-0">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">L3 <small>v1</small> </a>
+							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+								<li class="dropdown-item p-0">
+									<a href="/nutrients/navtool-f3.html" class="dropdown-item w-100">Navigator Tool F3</a>
+								</li>
+								<li class="dropdown-item p-0">
+									<a href="/nutrients/navigator-f3.html" class="dropdown-item w-100">Fertilicalc F3</a>
+								</li>
+								<li class="dropdown-item p-0"><hr></li>
+								<li class="dropdown-item p-0">
+									<a href="/nutrients/navigator-n3-mod.html" class="dropdown-item w-100">N3 Nutrient requirements</a>
+								</li>
+								<li class="dropdown-item p-0">
+									<a href="/nutrients/losses-nr3-mod.html" class="dropdown-item w-100">NR3 Calculation of losses</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/nutrients/l3.html">L3 <small>v2</small></a>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L4 <small></small></a>
+						</li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li>
+							<a class="dropdown-item" href="/nutrients/best-fertilizer-mod.html">Best Fertilizer</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle active" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">GHG</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown02">
+						<li>
+							<a class="dropdown-item disabled" href="#">L1</a>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L2</a>
+						</li>
+						<li class="dropdown-item dropdown-submenu p-0">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">L3</a>
+							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+								<li class="dropdown-item p-0">
+									<a href="/GHG/l3-livestock.html" class="dropdown-item w-100">Livestock</a>
+								</li>
+								<li class="dropdown-item p-0">
+									<a href="/GHG/l3-crops.html" class="dropdown-item w-100">Crops</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L4</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle active" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">EPA</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdown03">
+						<li>
+							<a class="dropdown-item disabled" href="#">L1</a>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L2</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/EPA/l3.html">L3</a>
+						</li>
+						<li>
+							<a class="dropdown-item disabled" href="#">L4</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
-	</nav>
+	</div>
+</nav>

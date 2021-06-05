@@ -7,14 +7,14 @@ annual crop tropical dry,0.58
 temporary grassland tropical dry,0.58
 annual crop tropical moist,0.48
 temporary grassland tropical moist,0.48
-annual crop tropical montane ,0.64
-temporary grassland tropical montane ,0.64
-Paddy rice tropical montane dry,1.1
-Paddy rice tropical montane moist,1.1
-Paddy rice tropical dry,1.1
-Paddy rice tropical moist,1.1
-Paddy rice temperate boreal dry,1.1
-Paddy rice temperate boreal moist,1.1
+annual crop tropical montane,0.64
+temporary grassland tropical montane,0.64
+paddy rice tropical montane dry,1.1
+paddy rice tropical montane moist,1.1
+paddy rice tropical dry,1.1
+paddy rice tropical moist,1.1
+paddy rice temperate boreal dry,1.1
+paddy rice temperate boreal moist,1.1
 tree crop tropical montane dry,1
 tree crop tropical montane moist,1
 tree crop tropical dry,1
@@ -31,4 +31,4 @@ set aside tropical dry,0.93
 set aside temperate boreal dry,0.93
 set aside tropical moist,0.82
 set aside temperate boreal moist,0.82
-set aside tropical montane ,0.88
+set aside tropical montane,0.88

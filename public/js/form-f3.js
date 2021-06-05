@@ -7,7 +7,8 @@ var form = document.querySelector('form'),
 	},
 	requirementsFields = ['Ncf_avg', 'Ncf_min', 'Ncf_max', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
-	crops = {}, 
+	crops = {},
+	soils = {},
 	zones = {};
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
@@ -68,6 +69,7 @@ form.querySelector('button').addEventListener('click', () => {
 			});
 		}
 		resultsDiv.classList.remove('d-none');
+		window.localStorage.setItem('crops', data.results);
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
@@ -78,6 +80,12 @@ form.addEventListener('change', ev => {
 			form['input[CV]'].value = crops[ev.target.value].CV;
 			form['input[HI_est]'].value = crops[ev.target.value].harvest.HI_est;
 			form['input[export_r]'].value = crops[ev.target.value].residues.residue_part;
+			form['input[Nc_h]'].value = crops[ev.target.value].harvest.Nc_h_typn;
+			form['input[Pc_h]'].value = crops[ev.target.value].harvest.Pc_h;
+			form['input[Kc_h]'].value = crops[ev.target.value].harvest.Kc_h;
+			break;
+		case 'soil_texture':
+			form['input[CEC]'].value = soils[ev.target.value].CEC;
 			break;
 		case 'water_supply':
 			ev.target.value == '0' &&
@@ -113,8 +121,13 @@ form.addEventListener('change', ev => {
 		option.innerHTML = elem[obj.text];
 		form[obj.name].appendChild(option); 
 	}
-	obj.name == 'fertilizers' &&
+	if (obj.name == 'fertilizers') {
 		document.multiselect('#fertilizers').selectAll();
+	}
+	else {
+		data.results.forEach(s => soils[s.soil_texture] = s);
+		form['input[soil_texture]'].value = null;
+	}
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 }));

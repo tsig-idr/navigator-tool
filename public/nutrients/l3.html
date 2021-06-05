@@ -24,11 +24,11 @@
 						<h5 class="card-header bg-success text-white">Crop</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-5">
 									<label for="crop" class="form-label">Plant common name</label>
 									<select required class="form-select" id="crop" name="input[cropID]"></select>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-5">
 									<label for="PK_strategy" class="form-label">PK Strategy</label>
 									<select required class="form-select" id="PK_strategy" name="input[PK_strategy]">
 										<option value="maximum-yield">Buildup & maintenance (maximum yield)</option>
@@ -37,23 +37,35 @@
 										<option value="maintenance">Maintenance (soil analysis not avalable)</option>
 									</select>
 								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<label for="yield" class="form-label">Yield (kg/ha)</label>
 									<input required type="number" class="form-control" id="yield" name="input[yield]" min="0" />
 								</div>
-								<div class="col-sm-3">
+							</div>
+							<div class="row mt-2">
+								<div class="col-sm-2">
 									<label for="export_r" class="form-label">Export residues (%)</label>
 									<input required type="number" class="form-control" id="export_r" name="input[export_r]" min="0"  max="100" />
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<label for="HI_est" class="form-label">HI (%)</label>
 									<input required type="number" class="form-control" id="HI_est" name="input[HI_est]" min="0"  max="100"  />
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<label for="CV" class="form-label">CV (%)</label>
 									<input required type="number" class="form-control" id="CV" name="input[CV]" min="0"  max="100"  />
+								</div>
+								<div class="col-sm-2">
+									<label for="Nc_h" class="form-label">N (%)</label>
+									<input required type="number" class="form-control" id="Nc_h" name="input[Nc_h]" min="0"  max="100" step="0.01" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Pc_h" class="form-label">P (%)</label>
+									<input required type="number" class="form-control" id="Pc_h" name="input[Pc_h]" min="0"  max="100" step="0.01" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Kc_h" class="form-label">K (%)</label>
+									<input required type="number" class="form-control" id="Kc_h" name="input[Kc_h]" min="0"  max="100" step="0.01" />
 								</div>
 							</div>
 						</div>
@@ -63,18 +75,11 @@
 						<h5 class="card-header bg-secondary text-white">Soil</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label for="soil_texture" class="form-label">Soil texture</label>
 									<select required class="form-select" id="soil_texture" name="input[soil_texture]"></select>										
 								</div>
-								<div class="col-sm-2">
-									<label for="tilled" class="form-label">Tilled</label>
-									<select required class="form-select" id="tilled" name="input[tilled]">
-										<option value="yes">Yes</option>
-										<option value="no">No</option>
-									</select>
-								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label for="Pc_method" class="form-label">Pc Method</label>
 									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
 										<option value="olsen">Olsen</option>
@@ -90,6 +95,21 @@
 										<option value="saturatedWater">saturated water</option>
 										<option value="CaCl2">Ca Cl2</option> 
 									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="tilled" class="form-label">Tilled</label>
+									<select required class="form-select" id="tilled" name="input[tilled]">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="pH" class="form-label">pH</label>
+									<input required type="number" class="form-control" id="pH" name="input[pH]" value="8.2" step="0.1" value="0.026" />
+								</div>
+								<div class="col-sm-2">
+									<label for="CEC" class="form-label">CEC (meq/kg)</label>
+									<input required type="number" class="form-control" id="CEC" name="input[CEC]" min="0" step="0.01" />
 								</div>
 							</div>
 							<div class="row mt-2">
@@ -146,7 +166,7 @@
 									<label for="type_irrigated" class="form-label">Type of irrigation</label>
 									<select required class="form-select" id="type_irrigated" name="input[type_irrigated]">
 										<option value="trickle">Trickle</option>
-										<option selected value="splinkler">Splinkler</option>
+										<option selected value="sprinkler">Sprinkler</option>
 										<option value="surface">Surface</option>
 									</select>
 								</div>
