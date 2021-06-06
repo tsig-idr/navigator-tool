@@ -16,25 +16,133 @@
 			<div class="container-fluid pt-5">
 				<div class="pt-3 text-center">
 					<h2>NAVIGATOR TOOL G3</h2>
-					<p><b>IMPORTANT:</b> This module just implements that part of the G3 line concerning <b>livestock</b></p>
+					<p>This module just implements that part of the G3 line concerning <b>crops</b></p>
 				</div>
 				<form class="needs-validation" novalidate>
+					<div class="row">
+						<div class="col-sm-8 offset-sm-2">
+							<div class="alert alert-warning text-center" role="alert">
+								To be able to run this form, <b>first you should run F3 for a crop!</b>
+							</div>
+							<div class="alert alert-info text-center" role="alert">
+								You are using data corresponding to that F3 execution done at &nbsp;<b><i></i></b> 
+							</div>
+						</div>
+					</div>
 					<div class="card">
-						<h5 class="card-header">Feed for animals (t/year)</h5>
+						<h5 class="card-header">Plot</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-6">
+								<div class="col-sm-4">
+									<label for="crop_name" class="form-label">Crop</label>
+									<input required type="hidden" name="input[crops][0][cropID]" />
+									<input required readonly class="form-control" id="crop_name" name="input[crops][0][crop_name]" />
+								</div>
+								<div class="col-sm-2">
+									<label for="area" class="form-label">Area (ha)</label>
+									<input required type="number" class="form-control" id="area" name="input[crops][0][area]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label for="yield" class="form-label">Yield (kg/ha)</label>
+									<input required readonly type="number" class="form-control" id="yield" name="input[crops][0][yield]" min="0" />
+								</div>
+								<div class="col-sm-1">
+									<label for="SOM" class="form-label">SOM (%)</label>
+									<input required readonly type="number" class="form-control" id="SOM" name="input[crops][0][SOM]" min="0" max="100" step="0.1" />
+								</div>
+								<div class="col-sm-1">
+									<label for="tilled" class="form-label">Tilled</label>
+									<input required readonly class="form-control" id="tilled" name="input[crops][0][tilled]" />
+								</div>
+								<div class="col-sm-2">
+									<label for="drain_rate" class="form-label">Drain Rate</label>
+									<input required readonly class="form-control" id="drain_rate" name="input[crops][0][drain_rate]" />
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="col-sm-4">
+									<label for="combustible" class="form-label">Combustible</label>
+									<select required class="form-select" id="combustible" name="input[crops][0][combustible]">
+										<option value="Diesel">Diesel</option>
+										<option value="Fuel (heating)">Fuel (heating)</option>
+										<option value="Petrol/Gasoline, regular">Petrol/Gasoline, regular</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="consumption" class="form-label">Consumption (l/ha)</label>
+									<input required type="number" class="form-control" id="consumption" name="input[crops][0][consumption]" min="0" step="0.01" />
+								</div>
+								<div class="col-sm-2">
+									<label for="residues" class="form-label">Residues</label>
+									<select required class="form-select" id="residues" name="input[crops][0][residues]">
+										<option value="incorporated">Incorporated</option>
+										<option value="removed">Removed</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="spread" class="form-label">Organic matter spread</label>
+									<select required class="form-select" id="spread" name="input[crops][0][spread]">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="removed" class="form-label">Cover crops removed</label>
+									<select required class="form-select" id="removed" name="input[crops][0][removed]">
+										<option value="yes">Yes</option>
+										<option selected value="no">No</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
 									<div class="card">
-										<h6 class="card-header">Pigs</h6>
+										<h6 class="card-header">Seeds</h6>
+										<div class="card-body">
+											<label for="seeds" class="form-label">Amount (kg/ha)</label>
+											<input required type="number" class="form-control" id="seeds" name="input[crops][0][seeds]" min="0" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-9">
+									<div class="card">
+										<h6 class="card-header">Pesticides</h6>
 										<div class="card-body">
 											<div class="row">
-												<div class="col-sm-4">
-													<label for="p_mature_feed" class="form-label">Mature pigs</label>
-													<input required type="number" class="form-control" id="p_mature_feed" name="input[p_mature_feed]" value="10" />
+												<div class="col-sm-3">
+													<label for="herb" class="form-label">Herbicides (kg/ha)</label>
+													<input required type="number" class="form-control" id="herb" name="input[crops][0][herb]" min="0" />
 												</div>
-												<div class="col-sm-4">
-													<label for="p_growing_feed" class="form-label">Growing pigs</label>
-													<input required type="number" class="form-control" id="p_growing_feed" name="input[p_growing_feed]" value="10" />
+												<div class="col-sm-3">
+													<label for="fung" class="form-label">Fungicides (kg/ha)</label>
+													<input required type="number" class="form-control" id="fung" name="input[crops][0][fung]" min="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="insect" class="form-label">Insecticides (kg/ha)</label>
+													<input required type="number" class="form-control" id="insect" name="input[crops][0][insect]" min="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="otreat" class="form-label">Other treatments (kg/ha)</label>
+													<input required type="number" class="form-control" id="otreat" name="input[crops][0][otreat]" min="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-6">
+									<div class="card">
+										<h6 class="card-header">Nitrogen</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="leaching" class="form-label">Leaching (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="leaching" name="input[crops][0][nutrient_requirements][Noutputs_terms][Nleaching]" />
+												</div>
+												<div class="col-sm-6">
+													<label for="volatilization" class="form-label">Volatilization (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="volatilization" name="input[crops][0][nutrient_requirements][Noutputs_terms][Nvolatilization]" />
 												</div>
 											</div>
 										</div>
@@ -42,22 +150,9 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="card">
-										<h6 class="card-header">Poultry</h6>
+										<h6 class="card-header">Fertilization</h6>
 										<div class="card-body">
-											<div class="row">
-												<div class="col-sm-4">
-													<label for="po_hen_feed" class="form-label">Hens</label>
-													<input required type="number" class="form-control" id="po_hen_feed" name="input[po_hen_feed]" value="10" />
-												</div>
-												<div class="col-sm-4">
-													<label for="po_broiler_feed" class="form-label">Broiler chicken</label>
-													<input required type="number" class="form-control" id="po_broiler_feed" name="input[po_broiler_feed]" value="10" />
-												</div>
-												<div class="col-sm-4">
-													<label for="po_other_feed" class="form-label">Other poultry</label>
-													<input required type="number" class="form-control" id="po_other_feed" name="input[po_other_feed]" value="10" />
-												</div>
-											</div>
+											<ul></ul>
 										</div>
 									</div>
 								</div>
@@ -65,19 +160,75 @@
 						</div>
 					</div>
 					<br/>
-					<div class="row">
-						<div class="col-sm-2 offset-sm-5">
-							<button type="button" class="btn btn-warning">
-								<i class="fa fa-play"></i> GHG emissions
-							</button>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-6 offset-sm-3">
-							<div class="alert alert-warning" role="alert">
-								You can't run this form yet: <b>first you should run F3 for a crop!</b>
+					<div class="card">
+						<h5 class="card-header">Farm</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="climate" class="form-label">Climate</label>
+									<select required class="form-select" id="climate" name="input[climate]">
+										<option value="boreal">Boreal</option>
+										<option value="cool temperate dry">Cool Temperate Dry</option>
+										<option value="cool temperate moist">Cool Temperate Moist</option>
+										<option selected value="warm temperate dry">Warm Temperate Dry</option>
+										<option value="warm temperate moist">Warm Temperate Moist</option>
+										<option value="tropical dry">Tropical Dry</option>
+										<option value="tropical moist">Tropical Moist</option>
+										<option value="tropical wet">Tropical Wet</option>
+										<option value="tropical montane">Tropical Montane</option>
+									</select>
+								</div>
+								<div class="col-sm-4">
+									<label for="temp_reg" class="form-label">Temperature regime</label>
+									<select required class="form-select" id="temp_reg" name="input[temp_reg]">
+										<option selected value="temperate boreal">Temperate Boreal</option>
+										<option value="tropical">Tropical</option>
+										<option value="tropical montane">Tropical Montane</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="moist_reg" class="form-label">Moisture regime</label>
+									<select required class="form-select" id="moist_reg" name="input[moist_reg]">
+										<option value="dry">Dry</option>
+										<option value="moist">Moist</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="soil" class="form-label">Soil</label>
+									<select required class="form-select" id="soil" name="input[soil]">
+										<option value="Acrisol">Acrisol</option>
+										<option value="Albeluvisol">Albeluvisol</option>
+										<option value="Andosol">Andosol</option>
+										<option value="Anthrosol">Anthrosol</option>
+										<option selected value="Arenosol">Arenosol</option>
+										<option value="Calcisol">Calcisol</option>
+										<option value="Cambisol">Cambisol</option>
+										<option value="Chernozem">Chernozem</option>
+										<option value="Cryosol">Cryosol</option>
+										<option value="Fluvisol">Fluvisol</option>
+										<option value="Gleysol">Gleysol</option>
+										<option value="Gypsisol">Gypsisol</option>
+										<option value="Kastanozem">Kastanozem</option>
+										<option value="Leptosol">Leptosol</option>
+										<option value="Luvisol">Luvisol</option>
+										<option value="Phaeozem">Phaeozem</option>
+										<option value="Planosol">Planosol</option>
+										<option value="Podzol">Podzol</option>
+										<option value="Regosol">Regosol</option>
+										<option value="Solonchak">Solonchak</option>
+										<option value="Solonetz">Solonetz</option>
+										<option value="Umbrisol">Umbrisol</option>
+										<option value="Vertisol">Vertisol</option>
+									</select>
+								</div>
 							</div>
 						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-warning">
+							<i class="fa fa-play"></i> GHG emissions
+						</button>
 					</div>
 					<br/>
 					<div class="table-responsive">
@@ -85,37 +236,47 @@
 							<thead>
 								<tr>
 									<th scope="col"></th>
-									<th scope="col">CH4 (kg/year)</th>
-									<th scope="col">N2O (kg/year)</th>
-									<th scope="col">
-										<b>CO2 (kg/year)</b>
-									</th>
+									<th scope="col">CO2 (kg)</th>
+									<th scope="col">N2O (kg)</th>
+									<th scope="col">CH4 (kg)</th>
+									<th scope="col">CO2 eq. (kg)</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr name="Enteric">
-									<td>Enteric fermentation</td>
-									<td name="CH4"></td>
-									<td name="N2O"> - </td>
-									<td name="CO2"></td>
-								</tr>
-								<tr name="Manure">
-									<td>Manure management</td>
-									<td name="CH4"></td>
+								<tr name="Ground">
+									<td>Direct and indirect emissions from managed soils</td>
+									<td name="CO2"> - </td>
 									<td name="N2O"></td>
-									<td name="CO2"></td>
+									<td name="CH4"></td>
+									<td name="CO2eq"></td>
 								</tr>
-								<tr name="Pastures">
-									<td>Pastures</td>
-									<td name="CH4"> - </td>
-									<td name="N2O"></td>
+								<tr name="Sustances">
+									<td>Upstream emissions fertilizers, pesticides, seeds</td>
 									<td name="CO2"></td>
-								</tr>
-								<tr name="Feed">
-									<td>Feed</td>
-									<td name="CH4"> - </td>
 									<td name="N2O"> - </td>
+									<td name="CH4"> - </td>
+									<td name="CO2eq"></td>
+								</tr>
+								<tr name="Machinery">
+									<td>Upstream emissions machinery</td>
 									<td name="CO2"></td>
+									<td name="N2O"> - </td>
+									<td name="CH4"> - </td>
+									<td name="CO2eq"></td>
+								</tr>
+								<tr name="SOC">
+									<td>Carbon storage</td>
+									<td name="CO2"></td>
+									<td name="N2O"> - </td>
+									<td name="CH4"> - </td>
+									<td name="CO2eq"></td>
+								</tr>
+								<tr name="L">
+									<td>Carbon emission / removal</td>
+									<td name="CO2"></td>
+									<td name="N2O"> - </td>
+									<td name="CH4"> - </td>
+									<td name="CO2eq"></td>
 								</tr>
 							</tbody>
 						</table>

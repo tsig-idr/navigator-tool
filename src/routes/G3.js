@@ -29,15 +29,15 @@ module.exports = function () {
 			results: (await navG3Ctrl.crops(input, [
 				'N2Ototal',
 				'CH4total',
-				'CO2eqFromGround',
-				'CO2FromSustances',
-				'CO2eqFromSustances',
+				'CO2eqfromGround',
+				'CO2fromSustances',
+				'CO2eqfromSustances',
 				'CO2fromMachinery',
-				'CO2eqFromMachinery',
-				'SOC_total',
-				'CO2eqFromSOC',
-				'L_organic',
-				'CO2eqFromL',
+				'CO2eqfromMachinery',
+				'CO2fromSOC',
+				'CO2eqfromSOC',
+				'CO2fromL',
+				'CO2eqfromL',
 				'CO2total',
 				'CO2eqTotal'
 			]))

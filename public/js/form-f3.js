@@ -69,7 +69,8 @@ form.querySelector('button').addEventListener('click', () => {
 			});
 		}
 		resultsDiv.classList.remove('d-none');
-		window.localStorage.setItem('crops', data.results);
+		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('crops', JSON.stringify(data.results));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
@@ -77,6 +78,7 @@ form.querySelector('button').addEventListener('click', () => {
 form.addEventListener('change', ev => {
 	switch (ev.target.id) {
 		case 'crop':
+			form['input[crop_name]'].value = crops[ev.target.value].crop_name;
 			form['input[CV]'].value = crops[ev.target.value].CV;
 			form['input[HI_est]'].value = crops[ev.target.value].harvest.HI_est;
 			form['input[export_r]'].value = crops[ev.target.value].residues.residue_part;

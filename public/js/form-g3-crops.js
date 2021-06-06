@@ -1,7 +1,36 @@
-var form = document.querySelector('form'),
+const form = document.querySelector('form'),
+	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
-	crops = window.localStorage.getItem('crops');
+	timestamp = window.localStorage.getItem('timestamp');
+var crops, field, name;
 
+(crops = window.localStorage.getItem('crops')) &&
+	(crops = JSON.parse(crops)) &&
+	crops.forEach((crop, i) => {
+		for (field in crop) {
+			(name = `input[crops][${i}][${field}]`) in form &&
+				(form[name].value = crop[field]);
+		}
+		'nutrient_requirements' in crop && 'Noutputs_terms' in crop.nutrient_requirements &&
+			['Nleaching', 'Nvolatilization'].forEach(name => {
+				name in crop.nutrient_requirements.Noutputs_terms &&
+					(form[`input[crops][${i}][nutrient_requirements][Noutputs_terms][${name}]`].value = crop.nutrient_requirements.Noutputs_terms[name]);
+			});
+		if ('fertilization' in crop && crop.fertilization.length) {
+			let names = ['fertilizerID', 'fertilizer_name', 'amount'];
+			crop.fertilization.forEach((fertilizer, j) => {
+				let li, input;
+				ul.appendChild(li = document.createElement('li'));
+				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount} kg/ha`;
+				names.forEach(name => {
+					li.appendChild(input = document.createElement('input'));
+					input.type = 'hidden';
+					input.name = `input[crops][${i}][fertilization][${j}][${name}]`;
+					input.value = fertilizer[name];
+				});
+			});
+		}
+	});
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
@@ -28,7 +57,9 @@ button.addEventListener('click', () => {
 		console.warn('Something went wrong.', error);
 	});
 });
-(button.disabled = !crops || !crops.length) &&
-	(button.classList.add('d-none') || true)
+(button.disabled = !crops || !crops.length || !timestamp) &&
+	(button.classList.add('d-none') || true) &&
+	(form.querySelector('.alert-info').classList.add('d-none') || true)
 ||
-	form.querySelector('.alert').classList.add('d-none');
+	(form.querySelector('.alert-info i').innerHTML = timestamp) &&
+	form.querySelector('.alert-warning').classList.add('d-none');

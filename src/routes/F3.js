@@ -378,7 +378,6 @@ module.exports = function () {
 		let output = await navF3Ctrl.requeriments(input),
 			N = output.Ncrop_avg, 
 			P, K, P2O5, K2O;
-			console.log(output.test)
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
 				P = output.P_maxBM;
@@ -401,7 +400,6 @@ module.exports = function () {
 		}
 		input.fertilizers = navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N);
 		output = await navF3Ctrl.requeriments(input);
-		console.log(output.test)
 		N = output.Ncrop_avg;
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
@@ -435,6 +433,7 @@ module.exports = function () {
 			results: [
 				{
 					cropID: input.cropID,
+					crop_name: input.crop_name,
 					yield: input.yield,
 					SOM: input.SOM,
 					tilled: input.tilled,
