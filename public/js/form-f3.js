@@ -1,4 +1,5 @@
 var form = document.querySelector('form'),
+	ul = document.querySelector('ul'),
 	resultsDiv = form.querySelector('#results'),
 	resultsIds = ['balance', 'requirements', 'fertilization'],
 	balanceFields = {
@@ -9,11 +10,37 @@ var form = document.querySelector('form'),
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
 	crops = {},
 	soils = {},
-	zones = {};
+	zones = {},
+	applied = [];
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
-form.querySelector('button').addEventListener('click', () => {
+form.querySelector('button.btn-dark').addEventListener('click', () => {
+	if (!form.applied.value || !form.amount.value) {
+		return;
+	}
+	const li = document.createElement('li'),
+		span = document.createElement('span'),
+		button = document.createElement('button'),
+		index = applied.length;
+	ul.appendChild(li);
+	li.appendChild(span);
+	li.appendChild(button);
+	span.innerHTML = `${form.applied.querySelector(':checked').innerHTML} (${form.amount.value} kg/ha) `;
+	button.className = 'btn btn-sm fa fa-times';
+	button.addEventListener('click', ev => {
+		ul.removeChild(ev.target.parentNode);
+		applied[index] = null;
+		ul.querySelectorAll('li').length == 1 &&
+			ul.querySelector('.default').classList.remove('d-none');
+	});
+	applied.push({
+		fertilizerID: form.applied.value,
+		amount: form.amount.value
+	});
+	ul.querySelector('.default').classList.add('d-none');
+});
+form.querySelector('button.btn-warning').addEventListener('click', () => {
 	resultsDiv.classList.add('d-none');
 	form.classList.add('was-validated');
 	if (!form.checkValidity()) {
@@ -21,9 +48,12 @@ form.querySelector('button').addEventListener('click', () => {
 	}
 	const data = FormDataJson.formToJson(form);
 	data.input.fertilizers = data.fertilizers;
+	data.input.applied = applied;
+	data.fertilizers = data.applied = data.amount = undefined;
+
 	fetch('/F3/requirements', {
 		method: 'POST',
-		body: JSON.stringify(data),
+		body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
@@ -105,25 +135,27 @@ form.addEventListener('change', ev => {
 });
 [
 	{
-		name: 'input[soil_texture]',
+		names: ['input[soil_texture]'],
 		route: '/F3/soil-textures',
 		value: 'soil_texture',
 		text: 'name' 
 	}, {
-		name: 'fertilizers',
+		names: ['fertilizers', 'applied'],
 		route: '/F3/fertilizers/all',
 		value: 'fertilizerID',
 		text: 'fertilizer_name' 
 	}
 ].forEach(obj => fetch(obj.route).then(res => res.json()).then(data => {
 	let option, i, elem;
-	for (i = 0; i < data.results.length && (elem = data.results[i]); i++) {
-		option = document.createElement('option');
-		option.value = elem[obj.value];
-		option.innerHTML = elem[obj.text];
-		form[obj.name].appendChild(option); 
-	}
-	if (obj.name == 'fertilizers') {
+	obj.names.forEach(name => {
+		for (i = 0; i < data.results.length && (elem = data.results[i]); i++) {
+			option = document.createElement('option');
+			option.value = elem[obj.value];
+			option.innerHTML = elem[obj.text];
+			form[name].appendChild(option); 
+		}
+	});
+	if (obj.value == 'fertilizerID') {
 		document.multiselect('#fertilizers').selectAll();
 	}
 	else {

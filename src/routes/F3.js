@@ -373,11 +373,23 @@ module.exports = function () {
 
 	router.post('/requirements', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object' || {};
-		const fertilizers = navBestFertiCtrl.get(input.fertilizers);
-		input.fertilizers = [];
+		const liableFertilizers = navBestFertiCtrl.get(input.fertilizers);
+		const fertilizers = navBestFertiCtrl.get();
+		const applyForcedFertilizers = forcedFertilizers => {
+			forcedFertilizers.forEach(fertilizer => {
+				fertilizer = {...fertilizer, ...fertilizers.find(f => f.fertilizerID === fertilizer.fertilizerID)};
+				N-= fertilizer.amount*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0)/100;
+				P-= fertilizer.amount*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0)/100;
+				K-= fertilizer.amount*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0)/100;
+			});
+			N = Math.max(N, 0);
+			P = Math.max(P, 0);
+			K = Math.max(K, 0);
+		};
+		input.applied = input.applied || [];
+		input.fertilizers = input.applied;
 		let output = await navF3Ctrl.requeriments(input),
-			N = output.Ncrop_avg, 
-			P, K, P2O5, K2O;
+			N = output.Ncrop_avg, P, K;
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
 				P = output.P_maxBM;
@@ -398,37 +410,31 @@ module.exports = function () {
 			default:
 				break;
 		}
-		input.fertilizers = navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N);
+		applyForcedFertilizers(input.applied);
+		input.fertilizers = input.fertilizers.concat(navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N));
 		output = await navF3Ctrl.requeriments(input);
 		N = output.Ncrop_avg;
 		switch (input.PK_strategy) {
 			case 'maximum-yield':
 				P = output.P_maxBM;
 				K = output.K_maxBM;
-				P2O5 = output.P2O5_maxBM;
-				K2O = output.K2O_maxBM;
 				break;
 			case 'minimum-fertilizer':
 				P = output.P_minBM;
 				K = output.K_minBM;
-				P2O5 = output.P2O5_minBM;
-				K2O = output.K2O_minBM;
 				break;
 			case 'sufficiency':
 				P = output.P_sufficiency;
 				K = output.K_sufficiency;
-				P2O5 = output.P2O5_sufficiency;
-				K2O = output.K2O_sufficiency;
 				break;
 			case 'maintenance':
 				P = output.P_maintenance;
 				K = output.K_maintenance;
-				P2O5 = output.P2O5_maintenance;
-				K2O = output.K2O_maintenance;
 				break;
 			default:
 				break;
 		}
+		applyForcedFertilizers(input.applied);
 		res.json({
 			results: [
 				{
@@ -459,10 +465,10 @@ module.exports = function () {
 							NminPostharvest: output.Nc_s_end,
 							Nvolatilization: output.Nvolatilization
 						},
-						P2O5cf: P2O5,
-						K2Ocf: K2O,
+						P2O5cf: P*2.293,
+						K2Ocf: K*1.205,
 					},
-					fertilization: navBestFertiCtrl.bestCombination(fertilizers, N, P, K, 0.0, 0.25*N)
+					fertilization: navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
 				}
 			]
 		});

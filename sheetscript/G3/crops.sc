@@ -109,8 +109,8 @@ while i < n then begin '{'
 	i = i + 1
 '}' end
 
-N2OfromGround = N2Ototal
-CH4fromGround = CH4total
+N2OfromAll = N2OfromGround = N2Ototal
+CH4fromAll = CH4fromGround = CH4total
 CO2fromSOC = SOC_total
 CO2fromL = L_organic
 CO2fromSustances = CO2fromFertilization + CO2fromPesticides + CO2fromSeeds
@@ -119,5 +119,5 @@ CO2eqfromSustances = CO2fromSustances*CO2_GWP
 CO2eqfromMachinery = CO2fromMachinery*CO2_GWP
 CO2eqfromSOC = CO2fromSOC*CO2_GWP
 CO2eqfromL = CO2fromL*CO2_GWP
-CO2total = CO2fromSustances + CO2fromMachinery + CO2fromSOC + CO2fromL
-CO2eqTotal = CO2eqfromGround + CO2total*CO2_GWP
+CO2fromAll = CO2total = CO2fromSustances + CO2fromMachinery + CO2fromSOC + CO2fromL
+CO2eqfromAll = CO2eqfromGround + CO2total*CO2_GWP

@@ -2,6 +2,37 @@ const form = document.querySelector('form'),
 	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
 	timestamp = window.localStorage.getItem('timestamp');
+
+button.addEventListener('click', () => {
+	const table = form.querySelector('table');
+	table.classList.add('d-none');
+	form.classList.add('was-validated');
+	if (!form.checkValidity()) {
+		return false;
+	}
+	const data = FormDataJson.formToJson(form);
+	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
+		crop.fertilization = Object.values(crop.fertilization);
+	});
+	fetch('/G3/crops', {
+		method: 'POST',
+		body: JSON.stringify(data),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8'
+		}
+	}).then(res => res.json()).then(data => {
+		let parts, 
+			td;
+		for (const name in data.results) {
+			parts = name.split('from');
+			(td = table.querySelector(`tr[name="${parts[1]}"]>td[name="${parts[0]}"]`)) &&
+				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
+		}
+		table.classList.remove('d-none');
+	}).catch(error => {
+		console.warn('Something went wrong.', error);
+	});
+});
 var crops, field, name;
 
 (crops = window.localStorage.getItem('crops')) &&
@@ -21,7 +52,7 @@ var crops, field, name;
 			crop.fertilization.forEach((fertilizer, j) => {
 				let li, input;
 				ul.appendChild(li = document.createElement('li'));
-				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount} kg/ha`;
+				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount.toFixed(2)} kg/ha`;
 				names.forEach(name => {
 					li.appendChild(input = document.createElement('input'));
 					input.type = 'hidden';
@@ -31,32 +62,6 @@ var crops, field, name;
 			});
 		}
 	});
-button.addEventListener('click', () => {
-	const table = form.querySelector('table');
-	table.classList.add('d-none');
-	form.classList.add('was-validated');
-	if (!form.checkValidity()) {
-		return false;
-	}
-	fetch('/G3/crops', {
-		method: 'POST',
-		body: JSON.stringify(Object.assign(FormDataJson.formToJson(form)[0], crops[0])),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8'
-		}
-	}).then(res => res.json()).then(data => {
-		let parts, 
-			td;
-		for (const name in data.results) {
-			parts = name.split('from');
-			(td = table.querySelector(`tr[name="${parts[1]}"]>td[name="${parts[0]}"]`)) &&
-				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
-		}
-		table.classList.remove('d-none');
-	}).catch(error => {
-		console.warn('Something went wrong.', error);
-	});
-});
 (button.disabled = !crops || !crops.length || !timestamp) &&
 	(button.classList.add('d-none') || true) &&
 	(form.querySelector('.alert-info').classList.add('d-none') || true)

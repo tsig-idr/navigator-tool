@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-sm-8 offset-sm-2">
 							<div class="alert alert-warning text-center" role="alert">
-								To be able to run this form, <b>first you should run F3 for a crop!</b>
+								To be able to run this form, <b>first you should run F3 for a crop (Nutrients L3 v2)</b>
 							</div>
 							<div class="alert alert-info text-center" role="alert">
 								You are using data corresponding to that F3 execution done at &nbsp;<b><i></i></b> 
@@ -70,7 +70,7 @@
 								</div>
 								<div class="col-sm-2">
 									<label for="consumption" class="form-label">Consumption (l/ha)</label>
-									<input required type="number" class="form-control" id="consumption" name="input[crops][0][consumption]" min="0" step="0.01" />
+									<input required type="number" class="form-control" id="consumption" name="input[crops][0][consumption]" min="0" step="0.01" value="1" />
 								</div>
 								<div class="col-sm-2">
 									<label for="residues" class="form-label">Residues</label>
@@ -111,19 +111,19 @@
 											<div class="row">
 												<div class="col-sm-3">
 													<label for="herb" class="form-label">Herbicides (kg/ha)</label>
-													<input required type="number" class="form-control" id="herb" name="input[crops][0][herb]" min="0" />
+													<input required type="number" class="form-control" id="herb" name="input[crops][0][herb]" min="0" value="0" />
 												</div>
 												<div class="col-sm-3">
 													<label for="fung" class="form-label">Fungicides (kg/ha)</label>
-													<input required type="number" class="form-control" id="fung" name="input[crops][0][fung]" min="0" />
+													<input required type="number" class="form-control" id="fung" name="input[crops][0][fung]" min="0" value="0" />
 												</div>
 												<div class="col-sm-3">
 													<label for="insect" class="form-label">Insecticides (kg/ha)</label>
-													<input required type="number" class="form-control" id="insect" name="input[crops][0][insect]" min="0" />
+													<input required type="number" class="form-control" id="insect" name="input[crops][0][insect]" min="0" value="0" />
 												</div>
 												<div class="col-sm-3">
 													<label for="otreat" class="form-label">Other treatments (kg/ha)</label>
-													<input required type="number" class="form-control" id="otreat" name="input[crops][0][otreat]" min="0" />
+													<input required type="number" class="form-control" id="otreat" name="input[crops][0][otreat]" min="0" value="0" />
 												</div>
 											</div>
 										</div>
@@ -276,6 +276,13 @@
 									<td name="CO2"></td>
 									<td name="N2O"> - </td>
 									<td name="CH4"> - </td>
+									<td name="CO2eq"></td>
+								</tr>
+								<tr name="All">
+									<td>TOTAL</td>
+									<td name="CO2"></td>
+									<td name="N2O"></td>
+									<td name="CH4"></td>
 									<td name="CO2eq"></td>
 								</tr>
 							</tbody>

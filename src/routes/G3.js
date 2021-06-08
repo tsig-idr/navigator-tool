@@ -27,8 +27,8 @@ module.exports = function () {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
 		res.json({
 			results: (await navG3Ctrl.crops(input, [
-				'N2Ototal',
-				'CH4total',
+				'N2OfromGround',
+				'CH4fromGround',
 				'CO2eqfromGround',
 				'CO2fromSustances',
 				'CO2eqfromSustances',
@@ -38,8 +38,10 @@ module.exports = function () {
 				'CO2eqfromSOC',
 				'CO2fromL',
 				'CO2eqfromL',
-				'CO2total',
-				'CO2eqTotal'
+				'CO2eqfromAll',
+				'CO2fromAll',
+				'CH4fromAll',
+				'N2OfromAll',
 			]))
 		});
 	}));
