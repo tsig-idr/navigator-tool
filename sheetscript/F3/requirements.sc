@@ -28,8 +28,7 @@ pH4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'pH4vol.csv'))
 CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CEC4vol.csv'))
 
 vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) + VLOOKUP (CEC/10; CEC4vol; 2; 1) + 0-0.402)
-dm_amendment = Nc_mineralization_amendment = 0
-inorg_N_vol_applied = org_N_vol_applied = inorg_N_vol_planned = org_N_vol_planned = 0
+Nc_mineralization_amendment = inorg_N_vol_applied = org_N_vol_applied = inorg_N_vol_planned = org_N_vol_planned = 0
 N = N_final_losses = 0
 n = LEN (fertilizers)
 i = 0
@@ -45,6 +44,7 @@ while i < n then begin '{'
 	method = VLOOKUP (id; Fertilizers_aux; 2)
 	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
 	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
+	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
 	frecu_application_amendment = IF (id == 'dc' || id == 'bc' || id == 'sn' || id == 'pt'; 0.5; 1)
 	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
 	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
@@ -52,6 +52,29 @@ while i < n then begin '{'
 	N = N + Nc_i*amount
 	N_final_losses = N_final_losses + N_bf*amount
 	i = i + 1
+'}' end
+m = LEN (applied)
+j = 0
+while j < m then begin '{'
+	row = GET (applied, j)
+	id = GET (row, 'fertilizerID')
+	amount = GET (row, 'amount')
+	clasification_fm = GET (row, 'type')
+	Ncf = GET (row, 'N')
+	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
+	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
+	method = GET (row, 'method')
+	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
+	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
+	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
+	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
+	frecu_application_amendment = IF (id == 'dc' || id == 'bc' || id == 'sn' || id == 'pt'; 0.5; 1)
+	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
+	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
+	org_N_vol_applied = org_N_vol_applied + IF (clasification_fm == 'Organic'; N_bf*amount; 0)
+	N = N + Nc_i*amount
+	N_final_losses = N_final_losses + N_bf*amount
+	j = j + 1
 '}' end
 
 dm_h = VLOOKUP (crop_type; CropData; 11)/100
@@ -122,7 +145,6 @@ Nfixation = IF (n_fix_code =='Non_legume'; 10; (1 + fnr)*(N_yield + N_res)*n_fix
 
 factor_irrigation = IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
 Nirrigation = IF (water_supply == '0'; 0; Nc_NO3_water*dose_irrigation*factor_irrigation*22.6/100000)
-test = type_irrigated
 
 Nc_s_initial = Nc_s_0*density_s*depth_s*10
 Nc_s_end = Nc_s_n*density_s*depth_s*10
@@ -149,7 +171,7 @@ Ndenitrification = SUM (inorgDrain*(inorg_N_vol_applied + inorg_N_vol_planned); 
 Ndenitrification_min = Ndenitrification*(SUM (Nleaching; Nuptake_min; Nc_s_end) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_min)
 Ndenitrification_max = Ndenitrification*(SUM (Nleaching; Nuptake_max; Nc_s_end) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_max)
 
-Nvolatilization = IF (n >= 1; N - N_final_losses; 10)
+Nvolatilization = IF (n + m >= 1; N - N_final_losses; 10)
 Nvolatilization_min = Nvolatilization*(SUM (Nleaching; Nuptake_min; Nc_s_end; Ndenitrification_min) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_min)
 Nvolatilization_max = Nvolatilization*(SUM (Nleaching; Nuptake_max; Nc_s_end; Ndenitrification_max) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_max)
 

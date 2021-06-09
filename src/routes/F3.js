@@ -374,20 +374,18 @@ module.exports = function () {
 	router.post('/requirements', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object' || {};
 		const liableFertilizers = navBestFertiCtrl.get(input.fertilizers);
-		const fertilizers = navBestFertiCtrl.get();
 		const applyForcedFertilizers = forcedFertilizers => {
 			forcedFertilizers.forEach(fertilizer => {
-				fertilizer = {...fertilizer, ...fertilizers.find(f => f.fertilizerID === fertilizer.fertilizerID)};
-				N-= fertilizer.amount*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0)/100;
-				P-= fertilizer.amount*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0)/100;
-				K-= fertilizer.amount*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0)/100;
+				N-= fertilizer.amount*(fertilizer.N || 0)/100;
+				P-= fertilizer.amount*(fertilizer.P || 0)/100;
+				K-= fertilizer.amount*(fertilizer.K || 0)/100;
 			});
 			N = Math.max(N, 0);
 			P = Math.max(P, 0);
 			K = Math.max(K, 0);
 		};
 		input.applied = input.applied || [];
-		input.fertilizers = input.applied;
+		input.fertilizers = [];
 		let output = await navF3Ctrl.requeriments(input),
 			N = output.Ncrop_avg, P, K;
 		switch (input.PK_strategy) {
@@ -411,7 +409,7 @@ module.exports = function () {
 				break;
 		}
 		applyForcedFertilizers(input.applied);
-		input.fertilizers = input.fertilizers.concat(navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N));
+		input.fertilizers = navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N);
 		output = await navF3Ctrl.requeriments(input);
 		N = output.Ncrop_avg;
 		switch (input.PK_strategy) {
@@ -468,7 +466,8 @@ module.exports = function () {
 						P2O5cf: P*2.293,
 						K2Ocf: K*1.205,
 					},
-					fertilization: navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
+					fertilization: navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N),
+					test: output.test
 				}
 			]
 		});

@@ -12,7 +12,7 @@ button.addEventListener('click', () => {
 	}
 	const data = FormDataJson.formToJson(form);
 	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
-		crop.fertilization = Object.values(crop.fertilization);
+		crop.fertilization = crop.fertilization && Object.values(crop.fertilization) || [];
 	});
 	fetch('/G3/crops', {
 		method: 'POST',

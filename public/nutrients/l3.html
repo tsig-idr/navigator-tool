@@ -197,34 +197,77 @@
 						<h5 class="card-header bg-danger text-white">Fertilizers</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-4">
-									<label for="fertilizers" class="form-label pull-right mt-2">Liable to be regarded when getting best fertilizer:</label>
+								<div class="col-sm-3">
+									<label for="fertilizers" class="form-label mt-2 pull-right">Liable to be regarded for best fertilizer:</label>
 								</div>
-								<div class="col-sm-8">
+								<div class="col-sm-9">
 									<select class="form-select" id="fertilizers" name="fertilizers" multiple></select>
 								</div>
 							</div>
-							<div class="row mt-2">
-								<div class="col-sm-4">
-									<label class="form-label pull-right">Forced to be applied:</label>
+							<div class="row mt-3">
+								<div class="col-sm-3">
+									<label class="form-label mt-1 pull-right">Forced to be applied:</label>
 								</div>
-								<div class="col-sm-8">
-									<div class="row">
-										<ul class="list-unstyled">
-											<li class="default">None</li>
-										</ul>
-									</div>
+								<div class="col-sm-9">
+									<ul class="list-unstyled">
+										<li class="default">
+											<span>None</span>
+											<button class="btn fa fa-trash text-white"></button>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="offset-sm-3 col-sm-9">
 									<div class="row">
 										<div class="col-sm-1">
-											<button type="button" class="btn btn-dark">Apply</button>
+											<button type="button" class="btn btn-dark">
+												<i class="fa fa-plus"></i>
+											</button>
 										</div>
-										<div class="col-sm-7">
-											<select class="form-select" name="applied">
+										<div class="col-sm-6">
+											<select class="form-select" id="fertilizerID" name="fertilizerID">
 												<option></option>
+												<option value="custom">CUSTOM</option>
 											</select>
 										</div>
-										<div class="col-sm-4">
-											<input type="number" class="form-control" name="amount" placeholder="Amount (kg)" min="0" />
+										<div class="col-sm-2">
+											<select disabled class="form-select" name="type">
+												<option value="Organic">Organic</option>
+												<option value="Inorganic">Inorganic</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<select class="form-select" name="method">
+												<option value="incorporated">Incorporated</option>
+												<option value="topdressing">Top-dressing</option>
+											</select>
+										</div>
+									</div>
+									<div class="row mt-2">
+										<div class="offset-sm-1 col-sm-3">
+											<input type="number" class="form-control" id="amount" name="amount" min="0" />
+											<label for="amount" class="form-label">kg/ha</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="N" name="N" value="0" min="0" max="100" step="0.001" />
+											<label for="N" class="form-label">% N</label>
+										</div>
+										<div class="col-sm-1">
+											<input disabled type="number" class="form-control" id="N_ur" name="N_ur" value="0" min="0" max="100" step="0.001" />
+											<label for="N_ur" class="form-label">% Ur</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="P" name="P" value="0" min="0" max="100" step="0.001" />
+											<label for="P" class="form-label">% P</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="K" name="K" value="0" min="0" max="100" step="0.001" />
+											<label for="K" class="form-label">% K</label>
+										</div>
+										<div class="col-sm-1">
+											<input disabled type="number" class="form-control" id="S" name="S" value="0" min="0" max="100" step="0.001" />
+											<label for="S" class="form-label">% S</label>
 										</div>
 									</div>
 								</div>

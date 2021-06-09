@@ -8,6 +8,8 @@ var form = document.querySelector('form'),
 	},
 	requirementsFields = ['Ncf_avg', 'Ncf_min', 'Ncf_max', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
+	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur', 'type'],
+	fertilizers = {},
 	crops = {},
 	soils = {},
 	zones = {},
@@ -16,28 +18,39 @@ var form = document.querySelector('form'),
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
 form.querySelector('button.btn-dark').addEventListener('click', () => {
-	if (!form.applied.value || !form.amount.value) {
+	[form.fertilizerID, form.amount].forEach(element => {
+		!element.value &&
+			(element.classList.add('border-danger') || true)
+		||
+			element.classList.remove('border-danger');
+	});
+	if (!form.fertilizerID.value || !form.amount.value) {
 		return;
 	}
 	const li = document.createElement('li'),
-		span = document.createElement('span'),
+		b = document.createElement('b'),
 		button = document.createElement('button'),
-		index = applied.length;
+		index = applied.length, 
+		fertilizer = {
+			fertilizerID: form.fertilizerID.value,
+			amount: form.amount.value,
+			method: form.method.value
+		};
 	ul.appendChild(li);
-	li.appendChild(span);
+	li.appendChild(b);
 	li.appendChild(button);
-	span.innerHTML = `${form.applied.querySelector(':checked').innerHTML} (${form.amount.value} kg/ha) `;
-	button.className = 'btn btn-sm fa fa-times';
+	b.innerHTML = `${form.fertilizerID.querySelector(':checked').innerHTML} (${form.method.value} ${form.amount.value} kg/ha) `;
+	button.className = 'btn fa fa-trash';
 	button.addEventListener('click', ev => {
 		ul.removeChild(ev.target.parentNode);
 		applied[index] = null;
 		ul.querySelectorAll('li').length == 1 &&
 			ul.querySelector('.default').classList.remove('d-none');
 	});
-	applied.push({
-		fertilizerID: form.applied.value,
-		amount: form.amount.value
+	fertilizersFields.forEach(field => {
+		fertilizer[field] = form[field].value;
 	});
+	applied.push(fertilizer);
 	ul.querySelector('.default').classList.add('d-none');
 });
 form.querySelector('button.btn-warning').addEventListener('click', () => {
@@ -49,7 +62,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	const data = FormDataJson.formToJson(form);
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
-	data.fertilizers = data.applied = data.amount = undefined;
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = undefined;
 
 	fetch('/F3/requirements', {
 		method: 'POST',
@@ -129,6 +142,21 @@ form.addEventListener('change', ev => {
 			form['input[rain_a]'].value = zones[ev.target.value].rain_a;
 			form['input[rain_w]'].value = zones[ev.target.value].rain_w;
 			break;
+		case 'fertilizerID':
+			let fertilizer;
+			(fertilizer = fertilizers[ev.target.value]) &&
+				(form.type.value = fertilizer.type) &&
+				fertilizersFields.forEach(field => {
+					fertilizer[field] !== undefined &&
+						(form[field].value = fertilizer[field])
+					||
+						(form[field].value = 0);
+				});
+			fertilizersFields.forEach(field => {
+				form[field].disabled = fertilizer !== undefined || !ev.target.value;
+			});
+			form.type.disabled = fertilizer !== undefined || !ev.target.value;
+			break;
 		default:
 			break;
 	}
@@ -140,7 +168,7 @@ form.addEventListener('change', ev => {
 		value: 'soil_texture',
 		text: 'name' 
 	}, {
-		names: ['fertilizers', 'applied'],
+		names: ['fertilizers', 'fertilizerID'],
 		route: '/F3/fertilizers/all',
 		value: 'fertilizerID',
 		text: 'fertilizer_name' 
@@ -156,11 +184,19 @@ form.addEventListener('change', ev => {
 		}
 	});
 	if (obj.value == 'fertilizerID') {
+		data.results.forEach(f => fertilizers[f.fertilizerID] = {
+			N: f.nitrogen.Ncf,
+			P: f.phosphorus.Pcf,
+			K: f.potassium.Kcf,
+			N_ur: f.nitrogen.Ncf_ure,
+			S: f.sulphur.Scf,
+			type: f.clasification
+		});
 		document.multiselect('#fertilizers').selectAll();
 	}
 	else {
 		data.results.forEach(s => soils[s.soil_texture] = s);
-		form['input[soil_texture]'].value = null;
+		form[obj.names[0]].value = null;
 	}
 }).catch(error => {
 	console.warn('Something went wrong.', error);
