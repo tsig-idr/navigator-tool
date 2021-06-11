@@ -3,32 +3,8 @@ const fs = require('fs');
 const sheetscript = require('sheetscript');
 
 module.exports = function () {
+
 	async function requeriments (input, outputnames) {
-		!input &&
-			(input = {
-				cropID: 'BARLEY_6_ROW',
-				soil_texture: 'loam',
-				Pc_method: 'olsen',
-				climatic_zone: 'atlantic',
-				water_supply: '1',
-				type_irrigated: 'sprinkler',
-				PK_strategy: 'maximum-yield',
-				tilled: 'no',
-				yield: 10000,
-				export_r: 100,
-				depth_s: 0.5,
-				HI_est: 40,
-				CV: 20,
-				Pc_s: 10,
-				Kc_s: 0.026,
-				SOM: 1.8,
-				Nc_s_initial: 4,
-				Nc_end: 5,
-				dose_irrigation: 4000,
-				Nc_NO3_water: 25,
-				rain_a: 800,
-				rain_w: 480,
-			});
 		!input.fertilizers &&
 			(input.fertilizers = []);
 		input.Pc_s_0 = input.Pc_s;

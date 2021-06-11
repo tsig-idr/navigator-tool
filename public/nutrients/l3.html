@@ -147,7 +147,10 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-4">
-									<label for="climatic_zone" class="form-label">Climatic Zone</label>
+									<label for="climatic_zone" class="form-label">Climatic Zone&nbsp;&nbsp;</label>
+									<a href="#" data-bs-toggle="modal" data-bs-target=".modal">
+										<i class="fa fa-info"></i>
+									</a>
 									<select required class="form-select" id="climatic_zone" name="input[climatic_zone]">
 										<option value="alpine">Alpine</option>
 										<option selected value="atlantic">Atlantic</option>
@@ -155,6 +158,13 @@
 										<option value="northern">Northern </option>
 										<option value="southern">Southern</option>
 									</select>
+									<div class="modal fade" tabindex="-1" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<img src="/img/climates.png" />
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="col-sm-4">
 									<label for="water_supply" class="form-label">Water supply</label>

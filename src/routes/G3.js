@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navG3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorG3Ctrl')();
+const navG3Ctrl = require('../controllers/L3/NavigatorG3Ctrl')();
 
 module.exports = function () {
 
@@ -42,6 +42,30 @@ module.exports = function () {
 				'CO2fromAll',
 				'CH4fromAll',
 				'N2OfromAll',
+			]))
+		});
+	}));
+
+	router.post('/luc', asyncHandler(async (req, res) => {
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		res.json({
+			results: (await navG3Ctrl.luc(input, [
+				'CO2fromInfrastructures',
+				'CO2fromLUC',
+				'test'
+			]))
+		});
+	}));
+
+	router.post('/energy', asyncHandler(async (req, res) => {
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		res.json({
+			results: (await navG3Ctrl.energy(input, [
+				'CO2fromElectricity',
+				'CO2fromEnergy',
+				'CO2fromBiomass',
+				'CO2fromFuels',
+				'CO2fromAll',
 			]))
 		});
 	}));

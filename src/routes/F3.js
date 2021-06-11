@@ -3,11 +3,11 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 
-const navNutri3FertilicalcCtrl = require('../controllers/NAVIGATOR_L3/NavigatorNutrient3FertilicalcCtrl')();
-const navNBalance3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNBalance3Ctrl')();
-const navBestFertiCtrl = require('../controllers/NAVIGATOR_L3/NavigatorBestFertilizerCtrl')();
-const navNF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorNF3Ctrl')();
-const navF3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorF3Ctrl')();
+const navNutri3FertilicalcCtrl = require('../controllers/L3/NavigatorNutrient3FertilicalcCtrl')();
+const navNBalance3Ctrl = require('../controllers/L3/NavigatorNBalance3Ctrl')();
+const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
+const navNF3Ctrl = require('../controllers/L3/NavigatorNF3Ctrl')();
+const navF3Ctrl = require('../controllers/L3/NavigatorF3Ctrl')();
 
 module.exports = function () {
 
@@ -432,7 +432,6 @@ module.exports = function () {
 			default:
 				break;
 		}
-		applyForcedFertilizers(input.applied);
 		res.json({
 			results: [
 				{
@@ -466,8 +465,7 @@ module.exports = function () {
 						P2O5cf: P*2.293,
 						K2Ocf: K*1.205,
 					},
-					fertilization: navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N),
-					test: output.test
+					fertilization: applyForcedFertilizers(input.applied) || navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
 				}
 			]
 		});

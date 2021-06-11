@@ -10,6 +10,7 @@ module.exports = function () {
 			output = await sheetscript.run(engine, code, input, outputnames);
 		return output;
 	}
+
 	async function crops (input, outputnames) {
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'crops.sc'), 'utf8'),
 			engine = customEngine(),
@@ -17,9 +18,25 @@ module.exports = function () {
 		return output;
 	}
 
+	async function luc (input, outputnames) {
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'luc.sc'), 'utf8'),
+			engine = customEngine(),
+			output = await sheetscript.run(engine, code, input, outputnames);
+		return output;
+	}
+
+	async function energy (input, outputnames) {
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'G3', 'energy.sc'), 'utf8'),
+			engine = customEngine(),
+			output = await sheetscript.run(engine, code, input, outputnames);
+		return output;
+	}
+
 	return {
 		livestock: livestock,
-		crops: crops
+		crops: crops,
+		luc: luc,
+		energy: energy
 	}
 }
 

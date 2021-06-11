@@ -47,7 +47,7 @@ while i < n then begin '{'
 	tilled = GET (crop, 'tilled')
 	drain_rate = GET (crop, 'drain_rate')
 	drained = drain_rate <> 'Very low' && drain_rate <> 'Low'
-	organic = SOM > 20
+	organic = SOM > 30
 	crop_name = VLOOKUP (cropID; CropData; 3)
 	crop_group = VLOOKUP (cropID; CropData; 2)
 	Noutputs_terms = GET (GET (crop, 'nutrient_requirements'), 'Noutputs_terms')

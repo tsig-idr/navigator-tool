@@ -1,0 +1,10 @@
+Fuels,Unit,LHV MJ / kg,kg eqCO2/GJ,Density,,EF kg eqCO2/unit
+Fuel oil,Litres,40.5,94.2,0.97,kg/Litre,3.70064700
+Diesel,Litres,43.1,95.1,0.832,kg/Litre,3.41020992
+Gasoline,Litres,43.2,93.3,0.745,kg/Litre,3.00276720
+Rape seed biodiesel,Litres,37.2,32,0.89,kg/Litre,1.05945600
+Sunflower biodiesel,Litres,37.2,26.1,0.89,kg/Litre,0.86411880
+Biodiesel mix,Litres,37.2,26.375,0.89,kg/Litre,0.87322350
+PVO rapeseed,Litres,37,33.4,0.92,kg/Litre,1.13693600
+PVO sunflower,Litres,37,27.2,0.92,kg/Litre,0.92588800
+PVO mix,Litres,37,27.475,0.92,kg/Litre,0.93524900

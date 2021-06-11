@@ -5,35 +5,6 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function nitro (input, outputnames) {
-		!input &&
-			(input = {
-				uid: 'default',
-				crop: 'Trigo Blando',
-				soilDensity: 1.4,
-				soilDepth: 35,
-				soilStony: 0.15,
-				soilOrganicMaterial: 0.018,
-				soilDelta_N_NH4: 0.2,
-				soilNmin_0: 16,
-				soilDate_Nmin_0: '30/12/2014',
-				cropDate: '11/01/2015',
-				mineralizationSlowdown: 0.1,
-				waterNitrate: 15,
-				irrigationDose: 5,
-				root_max: 0.6,
-				Kcb_ini: 0.16,
-				Kcb_mid: 0.7,
-				Kcb_end: 0.65,
-				waterAvail: 100,
-				fw_0: 1,
-				REW:4,
-				TEW: 8,
-				De_0: 8,
-				fw_0: 1,
-				cropYield: 9000,
-				cropExtractions: 33,
-				nitrificationPostDays: 7
-			});
 		input.irrigation = input.irrigationDose > 0;
 		input.cropDate = reformatDate(input.cropDate);
 		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
@@ -48,34 +19,6 @@ module.exports = function () {
 	}
 
 	async function swb (input, outputnames) {
-		!input &&
-			(input = {
-				uid: 'default',
-				soilDensity: 1.4,
-				soilDepth: 35,
-				soilStony: 0.15,
-				soilOrganicMaterial: 0.018,
-				soilDelta_N_NH4: 0.2,
-				soilNmin_0: 16,
-				soilDate_Nmin_0: '30/12/2014',
-				crop: 'Trigo Blando',
-				cropDate: '11/01/2015',
-				cropYield: 9000,
-				cropExtractions: 33,
-				waterNitrate: 15,
-				waterAvail: 100,
-				irrigationDose: 5,
-				nitrificationPostDays: 7,
-				mineralizationSlowdown: 0.1,
-				Kcb_ini: 0.16,
-				Kcb_mid: 0.7,
-				Kcb_end: 0.65,
-				root_max: 0.6,
-				fw_0: 1,
-				REW:4,
-				TEW: 8,
-				De_0: 8,
-			});
 		input.irrigation = input.irrigationDose > 0;
 		input.cropDate = reformatDate(input.cropDate);
 		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);

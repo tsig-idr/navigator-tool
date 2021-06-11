@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navL1Ctrl = require('../controllers/NAVIGATOR_L1/NavigatorF1Ctrl')();
+const navL1Ctrl = require('../controllers/L1/NavigatorF1Ctrl')();
 
 module.exports = function () {
 

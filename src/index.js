@@ -4,9 +4,9 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-const filesRouter = require('./routes/files');
 const F1Router = require('./routes/F1');
 const F3Router = require('./routes/F3');
+const F4Router = require('./routes/F4');
 const G3Router = require('./routes/G3');
 const E3Router = require('./routes/E3');
 /* ----------------- */
@@ -32,9 +32,9 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 
-app.use('/files', filesRouter());
 app.use('/F1', F1Router());
 app.use('/F3', F3Router());
+app.use('/F4', F4Router());
 app.use('/G3', G3Router());
 app.use('/E3', E3Router());
 

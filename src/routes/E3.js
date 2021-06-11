@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navE3Ctrl = require('../controllers/NAVIGATOR_L3/NavigatorE3Ctrl')();
+const navE3Ctrl = require('../controllers/L3/NavigatorE3Ctrl')();
 
 module.exports = function () {
 
@@ -12,8 +12,7 @@ module.exports = function () {
 			results: (await navE3Ctrl.epa(input, [
 				'TDC',
 				'GM',
-				'OI',
-				'test'
+				'OI'
 			]))
 		});
 	}));

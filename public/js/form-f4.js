@@ -1,18 +1,11 @@
 var form = document.querySelector('form'),
 	ul = document.querySelector('ul'),
 	resultsDiv = form.querySelector('#results'),
-	resultsIds = ['balance', 'requirements', 'fertilization'],
-	balanceFields = {
-		Ninputs_terms: ['Nmineralization', 'Nfixation', 'Nwater', 'NminInitial'],
-		Noutputs_terms: ['Nleaching', 'Nuptake', 'Ndenitrification', 'NminPostharvest', 'Nvolatilization']
-	},
-	requirementsFields = ['Ncf_avg', 'Ncf_min', 'Ncf_max', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
+	resultsIds = ['requirements', 'fertilization'],
+	requirementsFields = ['Ncf', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
 	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur', 'type'],
 	fertilizers = {},
-	crops = {},
-	soils = {},
-	zones = {},
 	applied = [];
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
@@ -61,12 +54,12 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
+	const data = FormDataJson.formToJson(form);
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = undefined;
 
-	fetch('/F3/requirements', {
+	fetch('/F4/requirements', {
 		method: 'POST',
 		body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 		headers: {
@@ -82,13 +75,6 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 		let i, j, crop, fertilizer, tr, td, value,
 			totalFertilization = {}, applied_;
 		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
-			balanceTbody.appendChild(tr = document.createElement('tr'));
-			for (j in balanceFields) {
-				balanceFields[j].forEach(field => {
-					tr.appendChild(td = document.createElement('td'));
-					td.innerHTML = parseFloat(crop.nutrient_requirements[j][field]).toFixed(2);
-				});
-			}
 			requirementsTbody.appendChild(tr = document.createElement('tr'));
 			requirementsFields.forEach(field => {
 				tr.appendChild(td = document.createElement('td'));
@@ -144,24 +130,8 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 });
 form.addEventListener('change', ev => {
 	switch (ev.target.id) {
-		case 'crop':
-			form['input[crop_name]'].value = crops[ev.target.value].crop_name;
-			form['input[CV]'].value = crops[ev.target.value].CV;
-			form['input[HI_est]'].value = crops[ev.target.value].harvest.HI_est;
-			form['input[export_r]'].value = crops[ev.target.value].residues.residue_part;
-			form['input[Nc_h]'].value = crops[ev.target.value].harvest.Nc_h_typn;
-			form['input[Pc_h]'].value = crops[ev.target.value].harvest.Pc_h;
-			form['input[Kc_h]'].value = crops[ev.target.value].harvest.Kc_h;
-			break;
-		case 'soil_texture':
-			form['input[CEC]'].value = soils[ev.target.value].CEC;
-			break;
 		case 'water_supply':
-			form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[Nc_NO3_water]'].disabled = ev.target.value == '0';
-			break;
-		case 'climatic_zone':
-			form['input[rain_a]'].value = zones[ev.target.value].rain_a;
-			form['input[rain_w]'].value = zones[ev.target.value].rain_w;
+			form['input[dose_irrigation]'].disabled = ev.target.value == '0';
 			break;
 		case 'fertilizerID':
 			let fertilizer;
@@ -182,49 +152,31 @@ form.addEventListener('change', ev => {
 			break;
 	}
 });
-[
-	{
-		names: ['input[soil_texture]'],
-		route: '/F3/soil-textures',
-		value: 'soil_texture',
-		text: 'name' 
-	}, {
-		names: ['fertilizers', 'fertilizerID'],
-		route: '/F3/fertilizers/all',
-		value: 'fertilizerID',
-		text: 'fertilizer_name' 
-	}
-].forEach(obj => fetch(obj.route).then(res => res.json()).then(data => {
-	let option, i, elem;
-	obj.names.forEach(name => {
+fetch('/F3/fertilizers/all').then(res => res.json()).then(data => {
+	let i, elem,
+		option;
+	['fertilizers', 'fertilizerID'].forEach(name => {
 		for (i = 0; i < data.results.length && (elem = data.results[i]); i++) {
 			option = document.createElement('option');
-			option.value = elem[obj.value];
-			option.innerHTML = elem[obj.text];
+			option.value = elem.fertilizerID;
+			option.innerHTML = elem.fertilizer_name;
 			form[name].appendChild(option); 
 		}
 	});
-	if (obj.value == 'fertilizerID') {
-		data.results.forEach(f => {
-			fertilizers[f.fertilizerID] = {
-				N: f.nitrogen.Ncf,
-				P: f.phosphorus.Pcf,
-				K: f.potassium.Kcf,
-				N_ur: f.nitrogen.Ncf_ure,
-				S: f.sulphur.Scf,
-				type: f.clasification
-			};
-		});
-		document.multiselect('#fertilizers').selectAll();
-	}
-	else {
-		data.results.forEach(s => soils[s.soil_texture] = s);
-		form[obj.names[0]].value = null;
-	}
+	document.multiselect('#fertilizers').selectAll();
+	data.results.forEach(f => {
+		fertilizers[f.fertilizerID] = {
+			N: f.nitrogen.Ncf,
+			P: f.phosphorus.Pcf,
+			K: f.potassium.Kcf,
+			N_ur: f.nitrogen.Ncf_ure,
+			S: f.sulphur.Scf,
+			type: f.clasification
+		};
+	});
 }).catch(error => {
 	console.warn('Something went wrong.', error);
-}));
-
+});
 fetch('/F3/crops').then(res => res.json()).then(data => {
 	const groups = data.results.reduce((cs, c) => {
 		!(c.group in cs) &&
@@ -242,14 +194,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 			option.innerHTML = crop.crop_name;
 			optgroup.appendChild(option); 
 		}
-		form['input[cropID]'].appendChild(optgroup); 
+		form['input[crop_type]'].appendChild(optgroup); 
 	}
-	data.results.forEach(c => crops[c.cropID] = c);
-	form['input[cropID]'].value = null;
+	form['input[crop_type]'].value = null;
 }).catch(error => {
-	console.warn('Something went wrong.', error);
-});
-
-fetch('/F3/climate-zones').then(res => res.json()).then(data => data.results.forEach(z => zones[z.climate_zone] = z)).catch(error => {
 	console.warn('Something went wrong.', error);
 });

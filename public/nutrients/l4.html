@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR TOOL G3</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="../css/multiselect.css" rel="stylesheet"/>
+		<link href="../css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>NAVIGATOR TOOL F4</h2>
+					<p>This module allows to get both the nutrients requirements and the best fertilizer for them</p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<div class="card">
+						<h5 class="card-header bg-success text-white">Crop</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<label for="crop_type" class="form-label">Plant common name</label>
+									<select required class="form-select" id="crop_type" name="input[crop_type]"></select>
+								</div>
+								<div class="col-sm-6">
+									<label for="yield" class="form-label">Yield (kg/ha)</label>
+									<input required type="number" class="form-control" id="yield" name="input[yield]" min="0" value="10000" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header bg-info text-white">Plot</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<label for="water_supply" class="form-label">Water supply</label>
+									<select required class="form-select" id="water_supply" name="input[water_supply]">
+										<option value="0">Rainfed</option>
+										<option selected value="1">Irrigated</option>
+									</select>								
+								</div>
+								<div class="col-sm-6">
+									<label for="dose_irrigation" class="form-label">Irrigation Dose (m3/ha)</label>
+									<input required type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" value="2500" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header bg-danger text-white">Fertilizers</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<label for="fertilizers" class="form-label mt-2 pull-right">Liable to be regarded for best fertilizer:</label>
+								</div>
+								<div class="col-sm-9">
+									<select class="form-select" id="fertilizers" name="fertilizers" multiple></select>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
+									<label class="form-label mt-1 pull-right">Forced to be applied:</label>
+								</div>
+								<div class="col-sm-9">
+									<ul class="list-unstyled">
+										<li class="default">
+											<span>None</span>
+											<button class="btn fa fa-trash text-white"></button>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="offset-sm-3 col-sm-9">
+									<div class="row">
+										<div class="col-sm-1">
+											<button type="button" class="btn btn-dark">
+												<i class="fa fa-plus"></i>
+											</button>
+										</div>
+										<div class="col-sm-6">
+											<select class="form-select" id="fertilizerID" name="fertilizerID">
+												<option></option>
+												<option value="custom">CUSTOM</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<select disabled class="form-select" name="type">
+												<option value="Organic">Organic</option>
+												<option value="Inorganic">Inorganic</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<select class="form-select" name="method">
+												<option value="incorporated">Incorporated</option>
+												<option value="topdressing">Top-dressing</option>
+											</select>
+										</div>
+									</div>
+									<div class="row mt-2">
+										<div class="offset-sm-1 col-sm-3">
+											<input type="number" class="form-control" id="amount" name="amount" min="0" />
+											<label for="amount" class="form-label">kg/ha</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="N" name="N" value="0" min="0" max="100" step="0.001" />
+											<label for="N" class="form-label">% N</label>
+										</div>
+										<div class="col-sm-1">
+											<input disabled type="number" class="form-control" id="N_ur" name="N_ur" value="0" min="0" max="100" step="0.001" />
+											<label for="N_ur" class="form-label">% Ur</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="P" name="P" value="0" min="0" max="100" step="0.001" />
+											<label for="P" class="form-label">% P</label>
+										</div>
+										<div class="col-sm-2">
+											<input disabled type="number" class="form-control" id="K" name="K" value="0" min="0" max="100" step="0.001" />
+											<label for="K" class="form-label">% K</label>
+										</div>
+										<div class="col-sm-1">
+											<input disabled type="number" class="form-control" id="S" name="S" value="0" min="0" max="100" step="0.001" />
+											<label for="S" class="form-label">% S</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-lg btn-warning">
+							<i class="fa fa-play"></i> NPK & BF
+						</button>
+					</div>
+					<br/>
+					<div class="d-none" id="results">
+						<h3 class="text-center">NPK requirements</h3>
+						<div class="table-responsive" id="requirements">
+							<table class="table table-warning">
+								<thead>
+									<tr>
+										<th scope="col">N (kg/ha)</th>
+										<th scope="col">P (kg/ha)</th>
+										<th scope="col">K (kg/ha)</th>
+										<th scope="col">P2O5 (kg/ha)</th>
+										<th scope="col">K2O (kg/ha)</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+						<h3 class="text-center">Best fertilization</h3>
+						<div class="table-responsive" id="fertilization">
+							<table class="table table-warning">
+								<thead>
+									<tr>
+										<th scope="col">Fertilizer</th>
+										<th scope="col">Amount (kg/ha)</th>
+										<th scope="col">Cost (€/ha)</th>
+										<th scope="col">N (kg/ha)</th>
+										<th scope="col">N_ureic (kg/ha)</th>
+										<th scope="col">P (kg/ha)</th>
+										<th scope="col">K (kg/ha)</th>
+										<th scope="col">S (kg/ha)</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+		<script src="/js/multiselect.min.js"></script>
+		<script src="/js/form-f4.js"></script>
+		<script src="/js/global-scripts.js"></script>
+	</body>
+</html>
