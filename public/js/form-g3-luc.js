@@ -7,20 +7,29 @@ form.querySelector('button').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = {
-		input: {}
+	let data = FormDataJson.formToJson(form),
+		row, 
+		rows;
+	data = {
+		input: {...data.input, ...{infrastructures: {}, forests: []}}
 	};
-	let rows,
-		row;
 	form.querySelectorAll('[data-field]').forEach(div => {
-		rows = [];
-		div.querySelectorAll('.row').forEach(div => {
-			rows.push(row = {});
+		if (div.classList.contains('row')) {
+			!(div.dataset.field in data.input.infrastructures) &&
+				(data.input.infrastructures[div.dataset.field] = []);
+			data.input.infrastructures[div.dataset.field].push(row = {});
 			div.querySelectorAll('input,select').forEach(node => row[node.name] = node.value);
-		});
-		data.input[div.dataset.field] = rows;
+		}
+		else {
+			rows = [];
+			div.querySelectorAll('.row:not(.row .row)').forEach(div => {
+				rows.push(row = {});
+				div.querySelectorAll('input,select').forEach(node => row[node.name] = node.value);
+			});
+			data.input[div.dataset.field] = rows;
+		}
 	});
-	fetch('/G3/energy', {
+	fetch('/G3/luc', {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {
@@ -41,11 +50,11 @@ form.querySelector('button').addEventListener('click', () => {
 });
 document.querySelectorAll('a.btn').forEach(plusA => {
 	plusA.addEventListener('click', () => {
-		let div = plusA.parentNode.parentNode, a;
-		div.parentNode.appendChild(div = div.cloneNode(true));
-		div.classList.add('mt-3');
-		a = div.querySelector('a');
+		let div = plusA.parentNode.parentNode, div_, a;
+		div.parentNode.insertBefore(div_ = div.cloneNode(true), div.nextSibling);
+		div_.classList.add('mt-3');
+		a = div_.querySelector('a');
 		a.querySelector('i').classList.add('fa-minus');
-		a.addEventListener('click', () => div.parentNode.removeChild(div));
+		a.addEventListener('click', () => div.parentNode.removeChild(div_));
 	});
 });

@@ -24,7 +24,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-7">
-									<select class="form-select" name="input[electricity][0][type]">
+									<select class="form-select" name="type">
 										<option value="Electricity EU average mix (≥110 kV)">Electricity EU average mix (≥110 kV)</option>
 										<option value="Electricity EU average mix (10-20 kV)">Electricity EU average mix (10-20 kV)</option>
 										<option value="Electricity EU average mix (0.4 kV)">Electricity EU average mix (0.4 kV)</option>
@@ -62,9 +62,9 @@
 									</select>
 								</div>
 								<div class="col-sm-4">
-									<input type="number" placeholder="Amount (kWh / year)" class="form-control" name="input[electricity][0][amount]" min="0" />
+									<input type="number" name="amount" placeholder="Amount (kWh / year)" class="form-control" min="0" />
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1 text-end">
 									<a type="button" class="btn btn-secondary">
 										<i class="fa fa-plus"></i>
 									</a>
@@ -78,7 +78,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-7">
-									<select class="form-select" name="input[energy][0][type]">
+									<select class="form-select" name="type">
 										<option value="Fuel oil">Fuel oil</option>
 										<option value="Heavy fuel oil">Heavy fuel oil</option>
 										<option value="Hard coal">Hard coal</option>
@@ -88,9 +88,9 @@
 									</select>
 								</div>
 								<div class="col-sm-4">
-									<input type="number" placeholder="Amount (kWh / year)" class="form-control" name="input[energy][0][amount]" min="0" />
+									<input type="number" name="amount" placeholder="Amount (kWh / year)" class="form-control" min="0" />
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1 text-end">
 									<a type="button" class="btn btn-secondary">
 										<i class="fa fa-plus"></i>
 									</a>
@@ -104,7 +104,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-7">
-									<select class="form-select" name="input[biomass][0][type]">
+									<select class="form-select" name="type">
 										<option value="Woodchips forestry residues">Woodchips forestry residues</option>
 										<option value="Woodchips SRC">Woodchips SRC</option>
 										<option value="Woodchips stemwood">Woodchips stemwood</option>
@@ -118,9 +118,9 @@
 									</select>
 								</div>
 								<div class="col-sm-4">
-									<input type="number" placeholder="Amount (kWh / year)" class="form-control" name="input[biomass][0][amount]" min="0" />
+									<input type="number" name="amount" placeholder="Amount (kWh / year)" class="form-control" min="0" />
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1 text-end">
 									<a type="button" class="btn btn-secondary">
 										<i class="fa fa-plus"></i>
 									</a>
@@ -134,7 +134,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-7">
-									<select class="form-select" name="input[fuels][0][type]">
+									<select class="form-select" name="type">
 										<option value="Fuel oil">Fuel oil</option>
 										<option value="Diesel">Diesel</option>
 										<option value="Gasoline">Gasoline</option>
@@ -147,9 +147,9 @@
 									</select>
 								</div>
 								<div class="col-sm-4">
-									<input type="number" placeholder="Amount (kWh / year)" class="form-control" name="input[fuels][0][amount]" min="0" />
+									<input type="number" name="amount" placeholder="Amount (kWh / year)" class="form-control" min="0" />
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1 text-end">
 									<a type="button" class="btn btn-secondary">
 										<i class="fa fa-plus"></i>
 									</a>
@@ -169,7 +169,7 @@
 							<thead>
 								<tr>
 									<th scope="col"></th>
-									<th scope="col">CO2 (kg/year)</th>
+									<th scope="col">CO2eq (kg/year)</th>
 								</tr>
 							</thead>
 							<tbody>

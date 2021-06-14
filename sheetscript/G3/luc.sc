@@ -1,123 +1,98 @@
-CO2_GWP = 1
-CH4_GWP	= 25
-N2O_GWP	= 298
+ForestryIncrease = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'ForestryIncrease.csv'))
+CIncrease = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CIncrease.csv'))
+SOC4forest = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4forest.csv'))
+BCEF = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'BCEF.csv'))
+SOC4LUC = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4LUC.csv'))
 
-T23 = 0.0075
-T24 = 0.01
+CO2fromInfrastructures = CO2fromForests = CO2fromLUC = 0
 
-T4 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T4.csv'))
-T11 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T11.csv'))
-T12 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T12.csv'))
-T13 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T13.csv'))
-T14 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T14.csv'))
-T15 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T15.csv'))
-T20 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T20.csv'))
-T35 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T35.csv'))
-T101 = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'T101.csv'))
-CO24manufFerts = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CO24manufFerts.csv'))
-CO24pesticides = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CO24pesticides.csv'))
-N2O4ferts = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'N2O4ferts.csv'))
-N2O4soils = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'N2O4soils.csv'))
-CropsRef = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CropsRef.csv'))
-CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CropData.csv'))
-Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Fertilizers.csv'))
+trees = GET (infrastructures, 'trees')
+orchards = GET (infrastructures, 'orchards')
+shrubby = GET (infrastructures, 'shrubby')
+low = GET (infrastructures, 'low')
 
-soil_dom = VLOOKUP (soil; T4; 2)
-SOC_ST = VLOOKUP (climate; T20; MATCH (soil_dom; GET (T20, 0)))
-
-CH4total = N2Ototal = CO2fromFertilization = CO2fromPesticides = CO2fromSeeds = CO2fromMachinery = SOC_total = L_organic = 0
-n = LEN (crops)
+n = LEN (trees)
 i = 0
 while i < n then begin '{'
-	crop = GET (crops, i)
-	cropID = GET (crop, 'cropID')
-	area = GET (crop, 'area')
-	yield = GET (crop, 'yield')
-	herb = GET (crop, 'herb')
-	fung = GET (crop, 'fung')
-	insect = GET (crop, 'insect')
-	otreat = GET (crop, 'otreat')
-	seeds = GET (crop, 'seeds')
-	consumption = GET (crop, 'consumption')
-	combustible = GET (crop, 'combustible')
-	residues = GET (crop, 'residues')
-	spread = GET (crop, 'spread')
-	removed = GET (crop, 'removed')
-	SOM = GET (crop, 'SOM')
-	tilled = GET (crop, 'tilled')
-	drain_rate = GET (crop, 'drain_rate')
-	drained = drain_rate <> 'Very low'
-	organic = SOM > 0
-	crop_name = VLOOKUP (cropID; CropData; 3)
-	crop_group = VLOOKUP (cropID; CropData; 2)
-	Noutputs_terms = GET (GET (crop, 'nutrient_requirements'), 'Noutputs_terms')
-	Nleaching = GET (Noutputs_terms, 'Nleaching')
-	Nvolatilization = GET (Noutputs_terms, 'Nvolatilization')
-	fertilization = GET (crop, 'fertilization')
-	m = LEN (fertilization)
-	j = N2OfromFertilization = 0
-	while j < m then begin '{'
-		fertilizer = GET (fertilization, j)
-		fertilizerID = GET (fertilizer, 'fertilizerID')
-		fertilizer_name = GET (fertilizer, 'fertilizer_name')
-		amount = GET (fertilizer, 'amount')
-		clasification_fm = VLOOKUP (fertilizerID; Fertilizers; 4)
-		N2OEF = IF (clasification_fm == 'Organic'; VLOOKUP ('Organic fertilizer'; N2O4soils; 2); IF_ERROR (VLOOKUP (fertilizer_name; N2O4ferts; 2); VLOOKUP ('Others N mineral fertilisers'; N2O4ferts; 2)))
-		N2OfromFertilization = N2OfromFertilization + amount*area*N2OEF*44/28
-		CO2EF = IF (clasification_fm == 'Organic'; VLOOKUP ('Potassium fertilisers'; CO24manufFerts; 3); IF_ERROR (VLOOKUP (fertilizer_name; CO24manufFerts; 3); VLOOKUP ('Nitrogen fertilisers'; CO24manufFerts; 3)))
-		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF
-		j = j + 1
-	'}' end
-	N2OfromLeaching = area*T23*44/28*Nleaching
-	N2OfromVolatilization = area*T24*44/28*Nvolatilization
-	N2OfromSoil = IF (drained && organic; area*VLOOKUP ('Organic soil'; N2O4soils; 2)*44/28; 0)
-	c_residues_A = VLOOKUP_NONSTRICT (crop_name; CropsRef; 13)
-	c_residues_B = VLOOKUP_NONSTRICT (crop_name; CropsRef; 14)
-	underground_biomass = VLOOKUP_NONSTRICT (crop_name; CropsRef; 15)
-	f_renew = 1
-	f_remove = IF (residues == 'incorporated'; 0; 1)
-	N_res_ab = VLOOKUP_NONSTRICT (crop_name; CropsRef; 16)
-	N_res_bel = VLOOKUP_NONSTRICT (crop_name; CropsRef; 17)
-	dry_matter = VLOOKUP_NONSTRICT (crop_name; CropsRef; 9)
-	residue_dry_matter = c_residues_A*(yield*dry_matter) + c_residues_B
-	Nresidues_above = area*N_res_ab*residue_dry_matter*(1 - f_remove)*f_renew
-	N2OfromOverground = Nresidues_above*1000*VLOOKUP ('Crop residues'; N2O4soils; 2)*44/28
-	Nresidues_below = area*N_res_bel*underground_biomass*(yield*dry_matter + (c_residues_A*yield*dry_matter + c_residues_B))*f_renew
-	N2OfromUnderground = Nresidues_below*1000*VLOOKUP ('Crop residues'; N2O4soils; 2)*44/28
-	Nresidues = Nresidues_above + Nresidues_below
-	N2OfromResidues = N2OfromOverground + N2OfromUnderground
-	N2Ototal = N2Ototal + SUM (N2OfromFertilization; N2OfromLeaching; N2OfromVolatilization; N2OfromResidues; N2OfromSoil)
-	CO2fromHerbicides = area*herb*VLOOKUP ('herbicides'; CO24pesticides; 5)
-	CO2fromInsecticides = area*fung*VLOOKUP ('insecticides'; CO24pesticides; 5)
-	CO2fromFungicides = area*insect*VLOOKUP ('fungicides'; CO24pesticides; 5)
-	CO2fromOther = area*otreat*VLOOKUP ('other treatments'; CO24pesticides; 5)
-	CO2fromPesticides = CO2fromPesticides + SUM (CO2fromHerbicides; CO2fromInsecticides; CO2fromFungicides; CO2fromOther)
-	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (crop_name; CropsRef; 20)
-	CO2fromMachinery = CO2fromMachinery + area*consumption*VLOOKUP (combustible; T35; 15)
-	SOC_ST_i = IF (organic; 0; SOC_ST)
-	name_FLU = SUM (IF (crop_name == 'Rice'; 'paddy rice'; 'annual crop'); ' '; temp_reg; ' '; moist_reg)
-	FLU = IF (crop_group == 'Fruit trees, vines and shrubs'; 1; VLOOKUP (name_FLU; T11; 2))
-	name_FMG = SUM (IF (tilled == 'no'; 'no tillage'; 'full tillage'); ' '; temp_reg; ' '; moist_reg)
-	FMG = IF (crop_group == 'Fruit trees, vines and shrubs'; 1; VLOOKUP (name_FMG; T12; 2))
-	name_inputLevel = SUM (residues; ' '; spread; ' '; removed)
-	inputLevel = VLOOKUP (name_inputLevel; T13; 2)
-	name_FI = SUM (inputLevel; ' '; temp_reg; ' '; moist_reg)
-	FI = IF (crop_group == 'Fruit trees, vines and shrubs'; 1; VLOOKUP (name_FI; T14; 2))
-	SOC = SOC_ST_i*FLU*FMG*FI
-	SOC_total = SOC_total + SOC*area
-	L_organic = L_organic + IF (organic && drained; area*VLOOKUP (temp_reg; T15; 2); 0)
+	row = GET (trees, i)
+	country = GET (row, 'country')
+	type = GET (row, 'type')
+	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)
+	quality = GET (row, 'quality')
+	fullname = CONCAT (country; quality)
+	increase = IF (fullname; VLOOKUP (fullname; ForestryIncrease; 5); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + IF (type; surface*increase/10000*44/12; 0)
+	i = i + 1
+'}' end
+n = LEN (shrubby)
+i = 0
+while i < n then begin '{'
+	row = GET (shrubby, i)
+	country = GET (row, 'country')
+	type = GET (row, 'type')
+	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)
+	quality = GET (row, 'quality')
+	fullname = CONCAT (country; quality)
+	increase = IF (fullname; VLOOKUP (fullname; ForestryIncrease; 5); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + IF (type; surface*increase/10000*44/12; 0)
+	i = i + 1
+'}' end
+n = LEN (orchards)
+i = 0
+while i < n then begin '{'
+	row = GET (orchards, i)
+	country = GET (row, 'country')
+	type = GET (row, 'type')
+	surface = IF_ERROR (GET (row, 'surface'); 0)
+	fullname = CONCAT (country; type)
+	increase = IF (fullname; VLOOKUP (fullname; CIncrease; 2); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + surface*increase*44/12
+	i = i + 1
+'}' end
+n = LEN (low)
+i = 0
+while i < n then begin '{'
+	row = GET (low, i)
+	country = GET (row, 'country')
+	type = GET (row, 'type')
+	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)
+	quality = GET (row, 'quality')
+	fullname = CONCAT (country; quality)
+	increase = IF (fullname; VLOOKUP (fullname; ForestryIncrease; 5); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + IF (type; surface*increase/10000*44/12; 0)
 	i = i + 1
 '}' end
 
-N2OfromAll = N2OfromGround = N2Ototal
-CH4fromAll = CH4fromGround = CH4total
-CO2fromSOC = SOC_total
-CO2fromL = L_organic
-CO2fromSustances = CO2fromFertilization + CO2fromPesticides + CO2fromSeeds
-CO2eqfromGround = N2Ototal*N2O_GWP + CH4total*CH4_GWP
-CO2eqfromSustances = CO2fromSustances*CO2_GWP
-CO2eqfromMachinery = CO2fromMachinery*CO2_GWP
-CO2eqfromSOC = CO2fromSOC*CO2_GWP
-CO2eqfromL = CO2fromL*CO2_GWP
-CO2fromAll = CO2total = CO2fromSustances + CO2fromMachinery + CO2fromSOC + CO2fromL
-CO2eqfromAll = CO2eqfromGround + CO2total*CO2_GWP
+n = LEN (forests)
+i = 0
+while i < n then begin '{'
+	row = GET (forests, i)
+	ecozone = GET (row, 'ecozone')
+	age = GET (row, 'age')
+	type = GET (row, 'type')
+	surface = IF_ERROR (GET (row, 'surface'); 0)
+	volume_t = GET (row, 'volume_t')
+	volume_b = GET (row, 'volume_b')
+	bark = IF_ERROR (GET (row, 'bark'); 0)
+	wood = IF_ERROR (GET (row, 'wood'); 0)
+	area = IF_ERROR (GET (row, 'area'); 0)
+	lost = IF_ERROR (GET (row, 'lost'); 0)
+	fullname_g = SUM (ecozone; ' '; age; ' '; type)
+	SOC = VLOOKUP (fullname_g; SOC4forest; 2)*surface
+	biomassGain = VLOOKUP (fullname_g; SOC4forest; 3)*(1 + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)*surface
+	fullname_l = IF (LIKE (ecozone, 'Temperate'); SUM ('Temperate '; type; ' '; volume_t); SUM ('Boreal '; type; ' '; volume_b))
+	biomassLoss_wood = bark*VLOOKUP (fullname_l; BCEF; 2)*(1 + wood + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)
+	biomassLoss_fuel = area*VLOOKUP (fullname_g; SOC4forest; 3)*(1 + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)*lost
+	CO2fromForests = CO2fromForests + (biomassGain - biomassLoss_wood - biomassLoss_fuel)*44/12
+	i = i + 1
+'}' end
+
+CO2fromForest2cropland = IF (forest2cropland; forest2cropland*VLOOKUP ('Conversion of forest to cropland'; SOC4LUC; 2)*44/12; 0)
+CO2fromForest2grassland = IF (forest2grassland; forest2grassland*VLOOKUP ('Conversion of forest to grassland'; SOC4LUC; 2)*44/12; 0)
+CO2fromGrassland2cropland = IF (grassland2cropland; grassland2cropland*VLOOKUP ('Conversion of grassland to cropland'; SOC4LUC; 2)*44/12; 0)
+CO2fromGrassland2forest = IF (grassland2forest; grassland2forest*VLOOKUP ('Conversion of grassland to forest'; SOC4LUC; 2)*44/12; 0)
+CO2fromCropland2grassland = IF (cropland2grassland; cropland2grassland*VLOOKUP ('Conversion of cropland to grassland'; SOC4LUC; 2)*44/12; 0)
+CO2fromCropland2forest = IF (cropland2forest; cropland2forest*VLOOKUP ('Conversion of cropland to forest'; SOC4LUC; 2)*44/12; 0)
+CO2fromLUC = SUM (CO2fromForest2cropland; CO2fromForest2grassland; CO2fromGrassland2cropland; CO2fromGrassland2forest; CO2fromCropland2grassland; CO2fromCropland2forest)
+
+CO2fromAll = SUM (CO2fromInfrastructures; CO2fromForests; CO2fromLUC)

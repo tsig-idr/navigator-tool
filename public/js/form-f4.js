@@ -54,7 +54,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form);
+	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = undefined;
@@ -122,8 +122,6 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			});
 		}
 		resultsDiv.classList.remove('d-none');
-		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
-		window.localStorage.setItem('crops', JSON.stringify(data.results));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});

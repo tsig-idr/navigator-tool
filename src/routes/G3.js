@@ -52,7 +52,9 @@ module.exports = function () {
 			results: (await navG3Ctrl.luc(input, [
 				'CO2fromInfrastructures',
 				'CO2fromLUC',
-				'test'
+				'CO2fromForests',
+				'CO2fromAll',
+				'test',
 			]))
 		});
 	}));

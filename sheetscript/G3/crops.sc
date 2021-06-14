@@ -63,7 +63,7 @@ while i < n then begin '{'
 		amount = GET (fertilizer, 'amount')
 		clasification_fm = VLOOKUP (fertilizerID; Fertilizers; 4)
 		N2OEF = IF (clasification_fm == 'Organic'; VLOOKUP ('Organic fertilizer'; N2O4soils; 2); IF_ERROR (VLOOKUP (fertilizer_name; N2O4ferts; 2); VLOOKUP ('Others N mineral fertilisers'; N2O4ferts; 2)))
-		N2OfromFertilization = N2OfromFertilization + amount*area*N2OEF*44/28
+		N2OfromFertilization = N2OfromFertilization + area*amount*N2OEF*44/28
 		CO2EF = IF (clasification_fm == 'Organic'; VLOOKUP ('Potassium fertilisers'; CO24manufFerts; 3); IF_ERROR (VLOOKUP (fertilizer_name; CO24manufFerts; 3); VLOOKUP ('Nitrogen fertilisers'; CO24manufFerts; 3)))
 		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF
 		j = j + 1

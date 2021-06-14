@@ -1,0 +1,25 @@
+Forest Climate zone,"Current C storage (above ground biomass) [t dm / ha]",Above ground net biomass growth [tdm/ha/yr],Ratio below ground biomass to above ground biomass ®,"Carbon fraction above ground biomass [t C / t dm]"
+Temperate oceanic <20y coniferous,120,2.3,0.29,0.51
+Temperate oceanic >20y coniferous,120,2.3,0.29,0.51
+Temperate oceanic <20y broadleaf,120,2.3,0.23,0.48
+Temperate oceanic >20y broadleaf,120,2.3,0.23,0.48
+Temperate continental <20y coniferous,20,4,0.4,0.51
+Temperate continental <20y broadleaf,20,4,0.46,0.48
+Temperate continental >20y coniferous,120,4,0.29,0.51
+Temperate continental >20y broadleaf,120,4,0.23,0.48
+Temperate mountain system <20y coniferous,100,3,0.29,0.51
+Temperate mountain system <20y broadleaf,100,3,0.23,0.48
+Temperate mountain system <20y coniferous,130,3,0.29,0.51
+Temperate mountain system <20y broadleaf,130,3,0.23,0.48
+Boreal <20y coniferous,50,1.1,0.39,0.51
+Boreal >20y coniferous,50,1.1,0.39,0.51
+Boreal <20y broadleaf,50,1.1,0.39,0.48
+Boreal >20y broadleaf,50,1.1,0.39,0.48
+Boreal tundra <20y coniferous,3.5,0.4,0.39,0.51
+Boreal tundra <20y broadleaf,3.5,0.4,0.39,0.48
+Boreal tundra >20y coniferous,17.5,0.4,0.39,0.51
+Boreal tundra >20y broadleaf,17.5,0.4,0.39,0.48
+Boreal mountain <20y coniferous,13.5,1.05,0.39,0.51
+Boreal mountain <20y broadleaf,13.5,1.05,0.39,0.48
+Boreal mountain >20y coniferous,45,1.3,0.39,0.51
+Boreal mountain >20y broadleaf,45,1.3,0.39,0.48
