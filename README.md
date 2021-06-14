@@ -133,6 +133,8 @@ For its part, the input params which should be sent in the body of the POST requ
 		"rain_w": 480
 	}
 }
+```
+
 And the input params which should be sent in the body of the POST request for that one service belonging to **line 4** can be seen in this JSON:
 ```JSON
 {
