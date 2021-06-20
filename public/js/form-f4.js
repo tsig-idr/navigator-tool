@@ -28,6 +28,7 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		fertilizer = {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
+			cost: form.price.value*form.amount.value,
 			amount: form.amount.value,
 			method: form.method.value
 		};
@@ -57,7 +58,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
-	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = undefined;
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = data.price = data.type = undefined;
 
 	fetch('/F4/requirements', {
 		method: 'POST',
@@ -135,6 +136,7 @@ form.addEventListener('change', ev => {
 			let fertilizer;
 			(fertilizer = fertilizers[ev.target.value]) &&
 				(form.type.value = fertilizer.type) &&
+				(form.price.value = fertilizer.price) &&
 				fertilizersFields.forEach(field => {
 					fertilizer[field] !== undefined &&
 						(form[field].value = fertilizer[field])
@@ -169,6 +171,7 @@ fetch('/F3/fertilizers/all').then(res => res.json()).then(data => {
 			K: f.potassium.Kcf,
 			N_ur: f.nitrogen.Ncf_ure,
 			S: f.sulphur.Scf,
+			price: f.price,
 			type: f.clasification
 		};
 	});

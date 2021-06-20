@@ -16,44 +16,272 @@
 			<div class="container-fluid pt-5">
 				<div class="pt-3 text-center">
 					<h2>NAVIGATOR TOOL E3</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+					<p>This module implements the EPA calculations</p>
 				</div>
 				<form class="needs-validation" novalidate>
-					<input name="input[uid]" type="hidden" value="default"/>
-					<div class="card">
-						<h5 class="card-header">Costs</h5>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-sm-6">
-									<label for="SC" class="form-label">Specific costs (&euro;)</label>
-									<input required type="number" class="form-control" id="SC" name="input[SC]" value="123546" />
+					<div class="row">
+						<div class="row">
+							<div class="col-sm-8 offset-sm-2">
+								<div class="alert alert-warning text-center" role="alert">
+									To be able to run this form, <b>first you should run G3 for crops (GHG L3 Crops)</b>
 								</div>
-								<div class="col-sm-6">
-									<label for="OCS" class="form-label">Other generic costs (&euro;)</label>
-									<input required type="number" class="form-control" id="OCS" name="input[OCS]" value="9624" />
+								<div class="alert alert-info text-center" role="alert">
+									You are using data corresponding to that G3 Crops execution done at &nbsp;<b><i></i></b>
 								</div>
 							</div>
-							<br/>
+						</div>
+					</div>
+					<div class="card">
+						<h5 class="card-header">Plot i</h5>
+						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-6">
-									<label for="HWC" class="form-label">Human work cost (&euro;)</label>
-									<input required type="number" class="form-control" id="HWC" name="input[HWC]" value="20949" />
+								<div class="col-sm-3">
+									<label for="crop_name" class="form-label">Crop</label>
+									<input required type="hidden" name="input[crops][0][cropID]" />
+									<input required readonly class="form-control" id="crop_name" name="input[crops][0][crop_name]" />
 								</div>
-								<div class="col-sm-6">
-									<label for="MWC" class="form-label">Machinery work cost (&euro;)</label>
-									<input required type="number" class="form-control" id="MWC" name="input[MWC]" value="6478" />
+								<div class="col-sm-3">
+									<label for="area" class="form-label">Area (ha)</label>
+									<input required readonly type="number" class="form-control" id="area" name="input[crops][0][area]" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<label for="yield" class="form-label">Yield (kg/ha)</label>
+									<input required readonly type="number" class="form-control" id="yield" name="input[crops][0][yield]" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<label for="price" class="form-label">Sell price (&euro;/kg)</label>
+									<input required type="number" class="form-control" id="price" name="input[crops][0][price]" min="0"  value="0" />
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
+									<label for="seeds" class="form-label">Seeds amount (kg/ha)</label>
+									<input required readonly type="number" class="form-control" id="seeds" name="input[crops][0][seeds]" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<label for="price_seeds" class="form-label">Seeds price (&euro;/kg)</label>
+									<input required type="number" class="form-control" id="price_seeds" name="input[crops][0][price_seeds]" min="0" value="0" />
+								</div>
+								<div class="col-sm-3">
+									<label for="dose_irrigation" class="form-label">Irrigation dose (m3 / ha)</label>
+									<input required readonly type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<label for="price_water" class="form-label">Water price (&euro; / m3)</label>
+									<input required type="number" class="form-control" id="price_water" name="input[price_water]" min="0" value="0" />
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-12">
+									<div class="card">
+										<h6 class="card-header">Pesticides</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-3">
+													<label for="herb" class="form-label">Herbicides amount (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="herb" name="input[crops][0][herb]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="fung" class="form-label">Fungicides amount (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="fung" name="input[crops][0][fung]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="insect" class="form-label">Insecticides amount (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="insect" name="input[crops][0][insect]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="otreat" class="form-label">Other treatments amount (kg/ha)</label>
+													<input required readonly type="number" class="form-control" id="otreat" name="input[crops][0][otreat]" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col-sm-3">
+													<label for="price_herb" class="form-label">Herbicides price (&euro;/kg)</label>
+													<input required type="number" class="form-control" id="price_herb" name="input[crops][0][price_herb]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="price_fung" class="form-label">Fungicides price (&euro;/kg)</label>
+													<input required type="number" class="form-control" id="price_fung" name="input[crops][0][price_fung]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="price_insect" class="form-label">Insecticides price (&euro;/kg)</label>
+													<input required type="number" class="form-control" id="price_insect" name="input[crops][0][price_insect]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="price_otreat" class="form-label">Other treatments price (&euro;/kg)</label>
+													<input required type="number" class="form-control" id="price_otreat" name="input[crops][0][price_otreat]" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-12">
+									<div class="card">
+										<h6 class="card-header">Fertilization</h6>
+										<div class="card-body">
+											<ul></ul>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<br/>
 					<div class="card">
-						<h5 class="card-header">Profits</h5>
+						<h5 class="card-header">Farm</h5>
 						<div class="card-body">
 							<div class="row">
+								<div class="col-sm-12">
+									<div class="card">
+										<h6 class="card-header">Energy</h6>
+										<div class="card-body">
+											<div class="row d-none" data-field="electricity">
+												<div class="col-sm-6">
+													<label class="form-label">Type</label>
+													<select disabled class="form-select" name="type">
+														<option value="Electricity EU average mix (≥110 kV)">Electricity EU average mix (≥110 kV)</option>
+														<option value="Electricity EU average mix (10-20 kV)">Electricity EU average mix (10-20 kV)</option>
+														<option value="Electricity EU average mix (0.4 kV)">Electricity EU average mix (0.4 kV)</option>
+														<option value="Electricity EU fossil mix (≥110 kV)">Electricity EU fossil mix (≥110 kV)</option>
+														<option value="Electricity EU fossil mix (10-20 kV)">Electricity EU fossil mix (10-20 kV)</option>
+														<option value="Electricity EU fossil mix (0.4 kV)">Electricity EU fossil mix (0.4 kV)</option>
+														<option value="Austria">Austria</option>
+														<option value="Belgium">Belgium</option>
+														<option value="Bulgaria">Bulgaria</option>
+														<option value="Croatia">Croatia</option>
+														<option value="Cyprus">Cyprus</option>
+														<option value="Czech Republic">Czech Republic</option>
+														<option value="Denmark">Denmark</option>
+														<option value="Estonia">Estonia</option>
+														<option value="Finland">Finland</option>
+														<option value="France">France</option>
+														<option value="Germany">Germany</option>
+														<option value="Greece">Greece</option>
+														<option value="Hungary">Hungary</option>
+														<option value="Ireland">Ireland</option>
+														<option value="Italy">Italy</option>
+														<option value="Latvia">Latvia</option>
+														<option value="Lithuania">Lithuania</option>
+														<option value="Luxemburg">Luxemburg</option>
+														<option value="Malta">Malta</option>
+														<option value="the Netherlands">the Netherlands</option>
+														<option value="Poland">Poland</option>
+														<option value="Portugal">Portugal</option>
+														<option value="Romania">Romania</option>
+														<option value="Slovakia">Slovakia</option>
+														<option value="Slovenia">Slovenia</option>
+														<option value="Spain">Spain</option>
+														<option value="Sweden">Sweden</option>
+														<option value="United Kingdom">United Kingdom</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Amount (kWh / year)</label>
+													<input required readonly type="number" name="amount" class="form-control" />
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Price (&euro; / kg)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row d-none" data-field="energy">
+												<div class="col-sm-6">
+													<label class="form-label">Type</label>
+													<select disabled class="form-select" name="type">
+														<option value="Fuel oil">Fuel oil</option>
+														<option value="Heavy fuel oil">Heavy fuel oil</option>
+														<option value="Hard coal">Hard coal</option>
+														<option value="Lignite">Lignite</option>
+														<option value="Natural gas (EU-mix)">Natural gas (EU-mix)</option>
+														<option value="LPG">LPG</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Amount (MJ / year)</label>
+													<input required readonly type="number" name="amount" class="form-control" />
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Price (&euro; / kg)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row d-none" data-field="biomass">
+												<div class="col-sm-6">
+													<label class="form-label">Type</label>
+													<select disabled class="form-select" name="type">
+														<option value="Woodchips forestry residues">Woodchips forestry residues</option>
+														<option value="Woodchips SRC">Woodchips SRC</option>
+														<option value="Woodchips stemwood">Woodchips stemwood</option>
+														<option value="Woodchips industry residues">Woodchips industry residues</option>
+														<option value="Wood pellets forestry residues">Wood pellets forestry residues</option>
+														<option value="Wood pellets SRC">Wood pellets SRC</option>
+														<option value="Wood pellets stemwood">Wood pellets stemwood</option>
+														<option value="Wood pellets industry residues">Wood pellets industry residues</option>
+														<option value="Agricultural residues">Agricultural residues</option>
+														<option value="Straw pellets">Straw pellets</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Amount (tonnes / year)</label>
+													<input required readonly type="number" name="amount" class="form-control" />
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Price (&euro; / kg)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row d-none" data-field="fuels">
+												<div class="col-sm-6">
+													<label class="form-label">Type</label>
+													<select disabled class="form-select" name="type">
+														<option value="Fuel oil">Fuel oil</option>
+														<option value="Diesel">Diesel</option>
+														<option value="Gasoline">Gasoline</option>
+														<option value="Rape seed biodiesel">Rape seed biodiesel</option>
+														<option value="Sunflower biodiesel">Sunflower biodiesel</option>
+														<option value="Biodiesel mix">Biodiesel mix</option>
+														<option value="PVO rapeseed">PVO rapeseed</option>
+														<option value="PVO sunflower">PVO sunflower</option>
+														<option value="PVO mix">PVO mix</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Amount (tonnes / year)</label>
+													<input required readonly type="number" name="amount" class="form-control" />
+												</div>
+												<div class="col-sm-3">
+													<label class="form-label">Price (&euro; / kg)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-4">
+									<label for="MWC" class="form-label">Machinery work cost (&euro;)</label>
+									<input required type="number" class="form-control" id="MWC" name="input[MWC]" value="0" min="0" />
+								</div>
+								<div class="col-sm-4">
+									<label for="HWC" class="form-label">Human work cost (&euro;)</label>
+									<input required type="number" class="form-control" id="HWC" name="input[HWC]" value="0" min="0" />
+								</div>
+								<div class="col-sm-4">
+									<label for="OCS" class="form-label">Other generic costs (&euro;)</label>
+									<input required type="number" class="form-control" id="OCS" name="input[OCS]" value="0" min="0" />
+								</div>
+							</div>
+							<div class="row mt-3">
 								<div class="col-sm-6">
-									<label for="TGV" class="form-label">Total Gross Value (&euro;)</label>
-									<input required type="number" class="form-control" id="TGV" name="input[TGV]" value="208638" />
+									<label for="LI" class="form-label">Livestock income (&euro;)</label>
+									<input required type="number" class="form-control" id="LI" name="input[LI]" value="0" min="0" />
+								</div>
+								<div class="col-sm-6">
+									<label for="TWI" class="form-label">Timber wood income (&euro;)</label>
+									<input required type="number" class="form-control" id="TWI" name="input[TWI]" value="0" min="0" />
 								</div>
 							</div>
 						</div>

@@ -52,6 +52,7 @@ while i < n then begin '{'
 	N = N + Nc_i*amount
 	N_final_losses = N_final_losses + N_bf*amount
 	i = i + 1
+	test = [N_bf, N_final_losses]
 '}' end
 m = LEN (applied)
 j = 0
@@ -60,10 +61,8 @@ while j < m then begin '{'
 	id = GET (row, 'fertilizerID')
 	amount = GET (row, 'amount')
 	clasification_fm = GET (row, 'type')
-	Ncf = GET (row, 'N')
-	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
-	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
 	method = GET (row, 'method')
+	Nc_i = GET (row, 'N')/100
 	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
 	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
 	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
@@ -93,7 +92,7 @@ P_crop_max_ = P_exported*P_STL_2STLtmax + 10*density_s*depth_s*(Pc_s_thres_max -
 P_nyears_max = IF (P_crop_max_ > P_crop_max; CEIL (P_crop_max_/P_crop_max); 1)
 P_STL_STLtmax = IF (Pc_s < Pc_s_thres_max; 1; 0)
 P_STL_2STLtmax = IF (Pc_s > 2*Pc_s_thres_max; 0.5; 1)
-Pc_si = Pc_s_0*density_s*depth_s*10
+Pc_si = Pc_s_0*1
 P_exported = h_dm_med_50*Pc_h_ + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r_
 
 P_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin/P_nyears_min
@@ -107,7 +106,7 @@ P2O5_maxBM = P_maxBM*2.293
 P2O5_maintenance = P_maintenance*2.293
 
 Kc_r = VLOOKUP (crop_type; CropData; 26)/100
-Kc_s = 39.1*Kc_s_0*density_s*depth_s*10
+Kc_s = Kc_s_0*1
 Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
 K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)
 K_STL_2STLtmin = IF (Kc_s > 2*Kc_s_thres_min; 0.5; 1)
@@ -146,8 +145,8 @@ Nfixation = IF (n_fix_code =='Non_legume'; 10; (1 + fnr)*(N_yield + N_res)*n_fix
 factor_irrigation = IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
 Nirrigation = IF (water_supply == '0'; 0; Nc_NO3_water*dose_irrigation*factor_irrigation*22.6/100000)
 
-Nc_s_initial = Nc_s_0*density_s*depth_s*10
-Nc_s_end = Nc_s_n*density_s*depth_s*10
+Nc_s_initial = Nc_s_0*1
+Nc_s_end = Nc_s_n*1
 
 cn = VLOOKUP (soil_texture; SoilData; 32)
 LI = PI*SI
@@ -171,7 +170,7 @@ Ndenitrification = SUM (inorgDrain*(inorg_N_vol_applied + inorg_N_vol_planned); 
 Ndenitrification_min = Ndenitrification*(SUM (Nleaching; Nuptake_min; Nc_s_end) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_min)
 Ndenitrification_max = Ndenitrification*(SUM (Nleaching; Nuptake_max; Nc_s_end) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_max)
 
-Nvolatilization = IF (n + m >= 1; N - N_final_losses; 10)
+Nvolatilization = N - N_final_losses
 Nvolatilization_min = Nvolatilization*(SUM (Nleaching; Nuptake_min; Nc_s_end; Ndenitrification_min) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_min)
 Nvolatilization_max = Nvolatilization*(SUM (Nleaching; Nuptake_max; Nc_s_end; Ndenitrification_max) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_max)
 
@@ -183,6 +182,4 @@ output_max = SUM (Nleaching; Nuptake_max; Nc_s_end; Ndenitrification_max; Nvolat
 Ncrop_avg = MAX (output_avg - input_avg; 0)
 Ncrop_min = MAX (output_min - input_min; 0)
 Ncrop_max = MAX (output_max - input_max; 0)
-
-
 

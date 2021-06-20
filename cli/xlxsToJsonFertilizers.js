@@ -27,7 +27,7 @@ function getPrice(v){
     if(isNumeric(v)){
         return parseFloat(v)/1000;
     }else{
-        return 0;
+        return 100;
     }
         
     

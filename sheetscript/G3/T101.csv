@@ -1,152 +1,155 @@
-nbcodcultur,Name,symbiotic fixation kg N/ u,N export,P2O5 export,K2O export,unit,observations,coeff energy,DM/U,species,crop categ,export unit of DM,Residues coefficient of A surface (slope),Residues coefficient of B surface (intercept),below-ground part of residues on the total biomass ,N content in above-ground residues (t N/unit),N content in below-ground residues (t N/tDM),Conversion coeff unit harvest/tonne,Crop type,Emission factor of crop seed (kgeqCO2/kg seeds),Land use category (SOC calculation),Soil cover during winter (default value),% of legumes in the crop (default value),Cf (combustion factor),Crop code
-,null,,0,0,0,t,solagro,0,1,aaucune,ca, ,,,,,,1,non,0,,no,,,0
-,Artichoke,,4,1.3,6.2,t,corpen,,0.2,artichoke,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Asparagus (roots. aerial sy.. tunions),,12.9,2.9,12.6,t,Hartman et Al (FAB PACA),1.08,0.1,asparagus,ca,t,0.6138,0,1,0.0169,0.0169,1,legu,0,annual crop,no,0,0.8,0
-,Asparagus (tunions),,3,1,3,t,CTIFL,1.08,0.1,asparagus,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Aubergine cultivated under greenhouse ,,7.5,1.6,7.1,t,Cornillon 71 (FAB PACA) + données internet cédric,0.7,0.07,aubergine,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Barley (winter. spring. brassiere),,15,8,7,t (RH 15%),corpen,15.93,0.85,barley,ca,t,0.98,0.59,0.22,0.0077,0.014,1,cop,0.408,annual crop,yes,0,0.8,0
-,Basil,,5,1.5,3,t,données internet - cédric,1.1,0.1,basil,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Buckwheat,,19,9,7,t,Données internet - cédric + NPK blé tendre,14.4,0.9,blackwheat,ca,t,,,,,,1,COP,0,annual crop,no,0,0.8,0
-,Bright tobacco,,40,5,30,t (RH 19%),ca31,13,0.81,tobacco,ca,t,,,,,,1,indus,0,annual crop,no,0,0.8,0
-,Broad bean,5,5,2.7,4.3,t,Données internet - cédric + FAB PACA,3,0.19,broad bean,ca,t,1.13,0.85,0.19,0.0011475,0.00088,1,legu,0,annual crop,no,1,0.8,0
-,Brown tobacco,,75,6,60,t (RH 19%),ca31,13,0.81,tobacco,ca,t,,,,,,1,indus,0,annual crop,no,0,0.8,0
-,Brussels sprout ,,4,1.7,5.1,t,N. Rosssier Migros 91 (FAB PACA) + données internet Cédric,1.4,0.15,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,yes,0,0.8,0
-,Cabbage ,,3.25,1.15,4.5,t,Chaux et Foury,1,0.1,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,yes,0,0.8,0
-,Cabbage broccoli,,5.3,1.4,4.3,t,Données internet - cédric + FAB PACA,1.2,0.1,cabbage broccoli,ca,t,0.3866,0,0.2,0.0622,0.0622,1,legu,0,annual crop,no,0,0.8,0
-,Carrot,,3,2,6,t,corpen,1.5,0.1,carot,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0,annual crop,no,0,0.8,0
-,Cauliflower,,11,3.7,10.7,1000,corpen,1.06,0.15,cabbage,ca,1000,0.1251,0,0.2,0.0293,0.0293,,legu,0,annual crop,no,0,0.8,0
-,Celeriac,,2,2,4.4,t,CTIFL,0.61,0.2,celery,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Celery,,2,2,6,t,CTIFL,1,0.15,celery,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Chick pea,37,37,11,16,t,Données internet - cédric + FAB PACA,5.7,0.89,pea,ca,t,1.13,0.85,0.19,0.001161,0.00088,1,legu,0,annual crop,yes,1,0.8,0
-,Chicory,,2.4,0.8,4.5,t,CTIFL (FAB PACA) + Données internet cédric,1,0.08,chicory,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Chilli cultivated under greenhouse,,9.2,2.7,17.3,t,Cornillon 71 (FAB PACA) + données internet cédric,0.7,0.07,chili,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Chive,,5.2,1.3,3.6,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.3,0.1,chive,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Coriander,,1.5,0.6,2.1,t,Données internet - cédric + FAB PACA,1,0.08,coriander,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Maize for grain,,14,7,5,t (RH 15%),CA31,16.21,0.85,maize,ca,t,1.03,0.61,0.22,0.007826,0.0077,1,COP,0.8963,annual crop,no,0,0.8,0
-,Cucumber,,2.4,0.9,3.65,t,CTIFL,0.59,0.1,cucumber,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Dill,,5.5,1.5,8.9,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.8,0.14,dill,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Fallow,,,,,none,,18.4,1,fallow,ca,none,,,,,,,fallow,0,set aside,no,0,0.8,0
-,Fallow with legume one year ,30,,,,none,,18.4,1,fallow,ca,none,,,,,,,rien,0,set aside,no,1,0.8,0
-,Fennel,,4.5,1.7,8.4,t,Anstett (FAB PACA) + Données internet - cédric,0.7,0.1,fennel,ca,t,0.1067,0,0.2,0.0208,0.0208,1,legu,0,annual crop,no,0,0.8,0
-,Flageolet,36,36,10,15,t (RH 12%),bilan minéraux IE,11.7,0.88,bean,ca,t,0.36,0.68,,0.01,0.01,1,legu,0,annual crop,no,1,0.8,0
-,Flax fibre,,1.1,2.6,2.1,t,ca31,15.93,0.16,flax,ca,t,0,0,0,0.01,0,1,indus,,annual crop,no,0,0.8,0
-,Fodder beet,,16,3.5,35,t DM,bilan minéraux IE,17.2,1,beet,ca,tDMFG,0,0,0,0.019,0,1,FG,6.827,annual crop,no,0,0.8,0
-,Fodder kale,,25,8.009153318,33.01204819,t DM,bilan minéraux IE,17.8,1,cabbage,ca,tDMFG,0.3,0,0.2,0.015,0.012,1,FG,0,annual crop,yes,0,0.8,0
-,Fodder radish,,1.8,0.3,4.2,,,1,0.15,radish,ca,t,0,0,0,0.019,0,1,legu,0,annual crop,no,0,0.8,0
-,Fodder sorghum,,15,5.949656751,20,t DM,bilan minéraux IE,17.8,1,sorghum,ca,tDMFG,0.88,1.33,0.22,0.00077,0.00066,1,FG,0,annual crop,no,0,0.8,0
-,Forage moha,,15,5.95,20,t DM,NRJ + NPK Sorgho fourrager,17.8,1,moha fourrager,ca,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,annual crop,no,0,0.8,0
-,Forage turnip ,,1.75,0.25,4,t,INRA,1,0.15,turnip,ca,tDMFG,0,0,0,0.019,0,1,FG,0,annual crop,no,0,0.8,0
-,French endive,,2.5,1.5,5,t,corpen,0.68,0.1,endive,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Garlic,,1.3,2.8,5.4,t,CA31,1.45,0.3,garlic,ca,t,0.0122,0,0.1,0.0606,0.0606,1,legu,0,annual crop,no,0,0.8,0
-,Grain sorghum,,20,8,5,t (RH 15%),CA31,16.43,0.84,sorghum,ca,t,0.88,1.33,0.22,0.007826,0.0066,1,COP,0.87,annual crop,no,0,0.8,0
-,Green bean ,3.4,3.4,1,3.2,t,bilan minéraux IE,1,0.1,bean,ca,t,,,,,,1,legu,0,annual crop,no,1,0.8,0
-,Green pea,7,7,2,3,t,CRABretagne légumes2008,1,0.1,green pea,ca,t,,,,,,1,legu,0.149,annual crop,no,0,0.8,0
-,Green rape,,35,16,16,t DM,ca31,17.8,1,rape,ca,tDMFG,0.3,0,0.2,0.015,0.012,1,FG,0,annual crop,yes,0,0.8,0
-,Durum wheat,,21,12,6,t (RH 15%),CA31,15.89,0.85,durum wheat,ca,t,1.09,0.88,0.22,0.00561,0.0099,1,COP,0.577,annual crop,yes,0,0.9,0
-,Hemp,0,7.5,,,t DM,diaterre,,1,Hemp,ca,t DM,0.3,0,0.22,0.006,0.012,1,indus,0,annual crop,no,0,0.8,0
-,Jerusalem artichocke,,3.55,1.7,6.5,t,Données internet - cédric + NPK pomme de terre,3.2,0.22,Jerusalem artichocke,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0,annual crop,no,0,0.8,0
-,Kohlrabi,,2.35,0.95,3.75,t,N. Rosssier Migros 91 (FAB PACA) + données internet Cédric,1.1,0.09,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,no,0,0.8,0
-,Lamb's lettuce,,4,2.5,7.5,t,CTIFL (FAB PACA) + Données internet cédric,0.8,0.07,lamb's lettuce,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Leek,,3.5,1.1,3.2,t,bilan minéraux IE,1.69,0.1,leek,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Lentil,38,38,5,8,t (RH 14%),,16.96,0.86,lentil,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,legu,0,annual crop,no,1,0.8,0
-,Lettuce,,2,1,5,t,bilan minéraux IE,1,,lettuce,ca,t,0.0189,0,0.1,0.089,0.089,1,legu,0,annual crop,no,0,0.8,0
-,Lupine,55.5,55.5,9,17,t (RH 14%),bilan minéraux IE,18.01,0.86,lupine,ca,t,1.13,0.85,0.19,0.0088,0.0088,1,COP,0,annual crop,no,1,0.8,0
-,Marrow,,2,0.7,4.8,t,Données internet - cédric + FAB PACA,0.9,0.05,marrow,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Melon,,2.2,0.8,0.4,t,bilan minéraux IE,1.14,0.1,melon,ca,t,0.0559,0,0.2,0.0191,0.0191,1,legu,0,annual crop,no,0,0.8,0
-,Meslin (wheat. barley. pea),10.8,22,8,8,t,1/3 blé. 1/3 orge et 1/3 pois,15.8,0.87,meslin,ca,t,1.51,0.52,0.24,0.00544,0.0099,1,COP,0,annual crop,yes,1,0.8,0
-,Millet,,20,8,5,t,Données internet - cédric + NPK Sorgho grain,15.8,0.91,millet,ca,t,0.88,1.33,0.22,0.007826,0.0066,1,COP,0,annual crop,no,0,0.8,0
-,Mint,,6,1.7,6.8,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.9,0.21,mint,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Oat,,19,8,7,t (RH 15%),corpen,17.45,0.85,oat,ca,t,0.91,0.89,0.25,0.0077,0.0088,1,COP,0,annual crop,no,0,0.8,0
-,Common evening primrose (Oenothera),,35,15,10,t,données colza,25.22,0.89,onager,ca,t,,,,,,1,flower,0,annual crop,no,0,0.8,0
-,Onion,,2,1.5,4.6,t,corpen,1.45,0.3,onion,ca,t,0.0122,0,0.1,0.0606,0.0606,1,legu,0,annual crop,no,0,0.8,0
-,Open grown  aubergine,,7,1.5,7.5,t,Chaux et Fourry 99 (FAB PACA) + données internet cédric,0.7,0.07,aubergine,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Open-grown chilli,,4.3,1.2,6.8,t,Cornillon 71 (FAB PACA) + données internet cédric,0.7,0.07,chili,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Open-grown tobacco,,1.6,0.6,3.4,t,bilan minéraux IE,0.77,0.1,tobacco,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Parsley,,2.5,1,8,t,Chaux et Foury,1,0.1,parsley,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Parsnip ,,1.9,1.6,4.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,3.1,0.2,parsnip ,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0,annual crop,no,0,0.8,0
-,Peanut ,,41.3,8.6,8.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,23.7,0.94,peanut ,ca,t,,,,,,1,fruit,0,annual crop,no,0,0.8,0
-,Peas (winter. spring),32.5,32.5,8,11,t (RH 14%),bilan minéraux IE,15.73,0.86,pea,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,cop,0.149,annual crop,yes,1,0.8,0
-,Pickle,,1.6,0.5,1.8,t,http://nutritiondata.self.com/facts/fruits-and-fruit-juices/2053/2,0.5,0.1,pickle,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Pimento,,3.2,1.1,4.1,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.7,0.08,pimento,ca,t,,,,,,1,legu,0,annual crop,,0,0.8,0
-,Poppy ,,19,13,8,t,Données internet cédric + NPK Tournesol,22.3,0.93,poppy ,ca,t,2,0,0.2,0.0165,0.0165,1,COP,0,annual crop,no,0,0.8,0
-,Potato,,3.55,1.7,6.5,t,corpen,3.45,0.2,potato,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0.105,annual crop,no,0,0.8,0
-,Pumpkin ,,2,0.7,4.8,t DM,Données internet - cédric + FAB PACA,1.3,0.1,pumpkin ,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Radish,,1.777777778,0.888888889,1.777777778,1000,CDDM,0.72,0.2,radish,ca,1000,,,,,,,legu,0,annual crop,no,0,0.8,0
-,Rape ,,35,15,10,t (RH 11%),CA31,25.22,0.89,rape,ca,t,2,0,0.2,0.0165,0.0165,1,COP,1.381,annual crop,yes,0,0.8,0
-,Red beet,,2.7,1.3,5.15,t,CTIFL,1,0.1,beet,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,no,0,0.8,0
-,Red cabbage,,1.9,0.65,2.6,t,N. Rosssier Migros 91 (FAB PACA) + données internet Cédric,1,0.09,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,no,0,0.8,0
-,Rhubarb,,1.4,0.3,3.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,0.9,0.07,rhubarb,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Rice,,14,3,3,t (RH 13%),ca31,15.56,0.87,rice,ca,t,0.95,2.46,0.16,0.0088,0,1,COP,0,annual crop,no,0,0.8,0
-,Rye,,14,10,6,t (RH 15%),corpen,17.45,0.85,rye,ca,t,1.09,0.88,0.22,0.004368,0.0121,1,COP,0.348,annual crop,yes,0,0.8,0
-,Rye-grass <= 18 mois,,25,0.8,31,t DM,,18.4,1,ryegrass,ca,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,annual crop,yes,0,0.8,0
-,Safflower,,19,13,8,t,données internet - cédric + NPK tournesol,2.1,0.93,safflower,ca,t,,,,,,1,fleur,0,annual crop,no,0,0.8,0
-,Salsify,,3,1,3,t,Données internet cédric + ADASEA 45,3.4,0.23,salsify,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Seed corn,,15,7,5,t (RH 13.5%),CA31,16.21,0.86,maize,ca,t,1.03,0.61,0.22,0.00066,0.00077,1,COP,0,annual crop,no,0,0.8,0
-,Seed flax,,35,18,12,t (RH 11%),ca31,23.47,0.89,flax,ca,t,,,,,,1,COP,0,annual crop,no,0,0.8,0
-,Shallot,,2,1.5,5.5,t,corpen,1.45,0.3,shallot,ca,t,0.0122,0,0.1,0.0606,0.0606,1,legu,0,annual crop,no,0,0.8,0
-,Sillage corn,,12.5,5.5,12.5,t DM,corpen,18.7,1,maize,ca,tDMFG,0.3,0,0.22,0.006,0.012,1,FG,0,annual crop,no,0,0.8,0
-,Soft wheat,,19,9,7,t (RH 15%),corpen,15.82,0.85,soft wheat,ca,t,1.51,0.52,0.24,0.00544,0.0099,1,COP,0.499,annual crop,no,0,0.9,0
-,Soya,56.5,56.5,14,17,t (RH 16%),bilan minéraux IE,20.18,0.84,soya,ca,t,0.93,1.35,0.19,0.0088,0.0088,1,COP,0.87,annual crop,no,1,0.8,0
-,Spelt,,19,9,70,t (RH 15%),idem blé,14.6,0.85,spelt,ca,t,1.51,0.52,0.24,0.00544,0.0099,1,COP,0,annual crop,yes,0,0.8,0
-,Spinach,,5,1.5,3,t,corpen,1,0.1,spinach,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Spring field bean ,35.5,35.5,12,13,t (RH 14%),bilan minéraux IE,15.99,0.86,field bean ,ca,t,1.13,0.85,0.19,0.011475,0.0088,1,COP,0,annual crop,no,1,0.8,0
-,Strawberry,,1.1,0.6,1.8,t,bilan minéraux IE,1.53,0.1,strawberry,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Sugar beet,,3.1,1,2.5,t,bilan minéraux IE,3.89,0.232,beet,ca,t,0.1,1.06,0.2,0.019,0.014,1,indus,6.827,annual crop,no,0,0.8,0
-,Sunflower,,19,13,8,t (RH 11%),CA31,26.13,0.89,sunflower,ca,t,2,0,0.22,0.0165,0.0165,1,COP,0.771359,annual crop,no,0,0.8,0
-,Swedish turnip ,,1.6,0.9,4.2,t,idem navet potager,1.4,0.15,swedish turnip ,ca,t,0,0,0,0.019,0,1,legu,0,annual crop,no,0,0.8,0
-,Sweet sorghum silage,,15,5.9,20,t,,17.8,1,sorghum,ca,tDMFG,0.3,0,0.2,0.006,0.014,1,FG,0,annual crop,no,0,0.8,0
-,Swiss chard ,,2,1.1,6.2,t,Anstett (FAB PACA) + données internet cédric,0.9,0.08,chard,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
-,Tomato cultivated under greenhouse,,2.6,0.9,6.1,t,Lefevre 74 (FAB PACA),0.77,0.1,tomato,ca,t,0.0631,0,0.1,0.0268,0.0268,1,legu,1.28,annual crop,no,0,0.8,0
-,Triticale,,19,9,6,t (RH 15%),corpen,16.22,0.85,triticale,ca,t,1.09,0.88,0.22,0.00391,0.0099,1,COP,0.576,annual crop,yes,0,0.8,0
-,Turnip,,1.555555556,0.888888889,4.222222222,t,Chaux et Foury,1,0.15,turnip ,ca,t,0,0,0.2,0.015,0.012,1,legu,0,annual crop,no,0,0.8,0
-,Vetch,32.5,32.5,8,11,t (RH 14%),idem pois,15.7,0.89,vetch,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,COP,0,annual crop,yes,1,0.8,0
-,Watermelon ,,1.3,0.9,2.2,t,CTIFL (FAB PACA) + Données internet cédric,1.3,0.08,watermelon ,ca,t,0.0559,0,0.2,0.0191,0.0191,1,legu,0,annual crop,no,0,0.8,0
-,Winter field bean ,32.9,32.9,12,13,t (RH 14%),bilan minéraux IE,15.99,0.86,field bean ,ca,t,1.13,0.85,0.19,0.011475,0.0088,1,COP,0,annual crop,yes,1,0.8,0
-,Zucchini ,,2,0.7,4.8,t,Données internet - cédric + FAB PACA,0.7,0.05,zucchini ,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
-,Sweet maize,,4.3,,,t,diaterre,,0.28,maize,ca,t,1.03,0.61,0.22,0.0007,0.0008,1,indus,0.8963,annual crop,no,0,0.8,0
-,,,,,,,,,,,,,,,,,,,,,,,,,
-Trees. bushes. vineyards,,,,,,,,,,,,,,,,,,,,,,,,,
-,Almond tree,,1.3,0.4,3,t,données internet - cédric,24.1,0.95,almond tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Apricot,,1.3,0.5,3.6,t,bilan minéraux IE,1.87,0.15,apricot,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Apple tree,,0.9,0.3,2,t,bilan minéraux IE,2.18,0.15,apple tree,cp,t,,,,,,1,fruit,0.407,tree crop,no,0,0.8,0
-,Avocado,,3.1,1.2,6.1,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,7,0.27,avocado,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Blackcurrant,,1.9,8,0.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.5,0.13,blackcurrant,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Cherry tree,,2,0.5,3,t,bilan minéraux IE,3.27,0.15,cherry tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Chestnut,,1.3,0.4,3,t,Données internet - cédric,7.3,0.48,chestnut,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Clementine,,1.3,0.5,2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.2,0.15,clementine,cp,t,,,,,,1,fruit,0.0584,tree crop,no,0,0.8,0
-,Fig tree,,1.6,0.7,3.5,t,Données internet - cédric + FAB PACA,2.7,0.2,fig tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Grapefruit ,,0.8,0.3,1.9,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.6,0.1,grapefruit ,cp,t,,,,,,1,fruit,0.031,tree crop,no,0,0.8,0
-,Hazelnut tree,,23.9,6.6,8.2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,26.3,0.95,hazelnut tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Quince,,0.6,0.4,2.4,t DM,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.4,0.17,quince,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Kiwi,,1.8,0.8,3.7,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.5,0.17,kiwi,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Lavender,,10,3,7,t,FAB PACA + NRJ et MS thym,4.2,0.35,lavender,cp,t,,,,,,1,fleur,0,tree crop,no,0,0.8,0
-,Lemon ,,2.4,0.3,1.9,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2,0.12,lemon ,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Mandarin orange,,1.3,0.5,2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.2,0.15,mandarin orange,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Miscanthus,,6,1,8.5,t DM,unifa,18.5,1,miscanthus,cp,t DM,0.3,0,0.22,0.006,0.012,1,indus,0,tree crop,yes,0,0.8,0
-,Orange,,1.1,0.3,2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.9,0.13,orange,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Olive tree  (black olives),,5,2.5,8,t,Données Internet - Cédric,12.3,0.5,olive,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Olive tree  (green olives),,5,2.5,8,t,Données Internet - Cédric,5,0.5,olive,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Peach tree,,0.8,0.5,2.8,t,Liwerant 1953,2.16,0.1,peach tree,cp,t,,,,,,1,fruit,0.276,tree crop,no,0,0.8,0
-,Pear tree,,0.6,0.4,1.6,t,bilan minéraux IE,2.35,0.1,pear tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Persimmon ,,1.3,0.5,3.6,t,Données internet - cédric + FAB PACA,3.3,0.2,persimmon ,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Plum tree,,1.3,0.4,3,t,bilan minéraux IE,2.23,0.15,plum tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Raisin,,1.6,0.5,2.4,t,bilan minéraux IE,3,0.1,vineyard,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Raspberry,,1.3,0,1.8,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.2,0.14,raspberry,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Redcurrant ,,1.6,0.6,3.4,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.3,0.12,redcurrant ,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Rosemary ,,5.3,1.5,8,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,5.5,0.32,rosemary ,cp,t,,,,,,1,legu,0,tree crop,no,0,0.8,0
-,Switchgrass,,6.3,0.63,2.1,t DM,INRA,,1,switchgrass,cp,t DM,0.3,0,0.22,0.006,0.012,1,indus,0,tree crop,no,0,0.8,0
-,Thyme,,1,0.3,0.7,t,Données internet - cédric + NPK lavande,4.2,0.35,thyme,cp,t,,,,,,1,legu,0,tree crop,no,0,0.8,0
-,Unproductive orchard,,40,0,0,HA,Estimation,0,,ochard,cp,HA,,,,,,,fruit,0,tree crop,no,0,0.8,0
-,Walnut tree,,1.4,0.4,3,t,,21.7,0.2,walnut tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
-,Wine,,0.85,0.27,1.1,HL,,0.54,0.03,vineyard,cp,HL,,,,,,,fruit,0.031,vineyard,no,0,0.8,0
-Grassland,,,,,,,,,,,,,,,,,,,,,,,,,
-,Cover crop - intermediate crop (leguminous 100%),39,39,,,tDMFG,Climagri,,1,Cover crop - intermediate crop (leguminous 100%),ca,tDMFG,0.29,0,0.4,0.027,0.019,1,FG,0,temporary grassland,yes,1,0.8,156
-,Cover crop - intermediate crop (30% leguminous),8.19,29.2,,,tDMFG,Climagri,,1,Cover crop - intermediate crop (30% leguminous),ca,tDMFG,0.3,0,0.8,0.018333333,0.014333333,1,FG,0,temporary grassland,yes,0.3,0.8,0
-,Cover crop - intermediate crop (grass 100%),0,25,,,tDMFG,Climagri,,1,Cover crop - intermediate crop (grass 100%),ca,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,temporary grassland,yes,0,0.8,0
-,Temporary grasslands: legumes,39,39,8,31,t DM,,18.4,1,Lucerne,pt,tDMFG,0.29,0,0.4,0.027,0.019,1,FG,0,temporary grassland,yes,1,0.8,0
-,Temporary grasslands: mixed,8.19,29.2,8,31,t DM,,18.4,1,mixed meadow,pt,tDMFG,0.3,0,0.8,0.018333333,0.014333333,1,FG,0,temporary grassland,yes,0.3,0.8,0
-,Temporary grasslands: grasses alone ,,25,8,31,t DM,climagri,18.4,1,others grasses meadow,pt,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,temporary grassland,yes,0,0.8,0
-,Fallow. five years (semi-permanent),,,,,none,,18.4,1,fallow permanent,pt,none,,,,,,,fallow,0,temporary grassland,no,0,0.8,0
-,Pasture < 30 years,4.1,27.1,8,31,t DM,climagri,18.4,1,meadow,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,yes,0.21,0.8,0
-,Pasture > 30 years,4.1,27.1,8,31,t DM,climagri,18.4,1,natural pasture,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,no,0.21,0.8,0
-,Pasture (orchard),,27.1,8,31,t DM,,18.4,1,ochard meadow,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,yes,0.21,0.8,0
+crop_ID,symbiotic fixation kg N/ u,N export,P2O5 export,K2O export,unit,observations,coeff energy,DM/U,species,crop categ,export unit of DM,Residues coefficient of A surface (slope),Residues coefficient of B surface (intercept),below-ground part of residues on the total biomass ,N content in above-ground residues (t N/unit),N content in below-ground residues (t N/tDM),Conversion coeff unit harvest/tonne,Crop type,Emission factor of crop seed (kgeqCO2/kg seeds),Land use category (SOC calculation),Soil cover during winter (default value),% of legumes in the crop (default value),Cf (combustion factor),Crop code
+null,,0,0,0,t,solagro,0,1,aaucune,ca, ,,,,,,1,non,0,,no,,,0
+,,,,,,,,,,,,,,,,,,,,,,,,
+ALFALFA_GREEN_FLOWERING,,,,,,,,,,,,,,,,,,,,,,,,
+ALFALFA_GREEN_VEGETATIVE,,,,,,,,,,,,,,,,,,,,,,,,
+ALFALFA_HAY_FLOWERING,,,,,,,,,,,,,,,,,,,,,,,,
+ALFALFA_HAY_VEGETATIVE,,,,,,,,,,,,,,,,,,,,,,,,
+ARTICHOKE,,4,1.3,6.2,t,corpen,,0.2,artichoke,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+ASPARAGUS_GREEN,,12.9,2.9,12.6,t,Hartman et Al (FAB PACA),1.08,0.1,asparagus,ca,t,0.6138,0,1,0.0169,0.0169,1,legu,0,annual crop,no,0,0.8,0
+ASPARAGUS_WHITE,,3,1,3,t,CTIFL,1.08,0.1,asparagus,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+BARLEY_2_ROW,,15,8,7,t (RH 15%),corpen,15.93,0.85,barley,ca,t,0.98,0.59,0.22,0.0077,0.014,1,cop,0.408,annual crop,yes,0,0.8,0
+BARLEY_6_ROW,,15,8,7,t (RH 15%),corpen,15.93,0.85,barley,ca,t,0.98,0.59,0.22,0.0077,0.014,1,cop,0.408,annual crop,yes,0,0.8,0
+BEAN_DRY,5,5,2.7,4.3,t,Données internet - cédric + FAB PACA,3,0.19,broad bean,ca,t,1.13,0.85,0.19,0.0011475,0.00088,1,legu,0,annual crop,no,1,0.8,0
+BEAN_GREEN,3.4,3.4,1,3.2,t,bilan minéraux IE,1,0.1,bean,ca,t,,,,,,1,legu,0,annual crop,no,1,0.8,0
+BEET,,16,3.5,35,t DM,bilan minéraux IE,17.2,1,beet,ca,tDMFG,0,0,0,0.019,0,1,FG,6.827,annual crop,no,0,0.8,0
+BLACK_EYED_PEA,,,,,,,,,,,,,,,,,,,,,,,,
+BLUEGRASS_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+BROCCOLI,,5.3,1.4,4.3,t,Données internet - cédric + FAB PACA,1.2,0.1,cabbage broccoli,ca,t,0.3866,0,0.2,0.0622,0.0622,1,legu,0,annual crop,no,0,0.8,0
+BROMEGRASS_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+BRUSSELS SPROUTS,,4,1.7,5.1,t,N. Rosssier Migros 91 (FAB PACA) + données internet Cédric,1.4,0.15,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,yes,0,0.8,0
+BUCKWHEAT,,19,9,7,t,Données internet - cédric + NPK blé tendre,14.4,0.9,blackwheat,ca,t,,,,,,1,COP,0,annual crop,no,0,0.8,0
+CABBAGE,,3.25,1.15,4.5,t,Chaux et Foury,1,0.1,cabbage,ca,t,0.0103,0,0.2,0.0442,0.0442,1,legu,0,annual crop,yes,0,0.8,0
+CANARYGRASS_REED_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CARROT,,3,2,6,t,corpen,1.5,0.1,carot,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0,annual crop,no,0,0.8,0
+CAULIFLOWER,,11,3.7,10.7,1000,corpen,1.06,0.15,cabbage,ca,1000,0.1251,0,0.2,0.0293,0.0293,,legu,0,annual crop,no,0,0.8,0
+CELERY,,2,2,6,t,CTIFL,1,0.15,celery,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+CHICKPEA_DESI,37,37,11,16,t,Données internet - cédric + FAB PACA,5.7,0.89,pea,ca,t,1.13,0.85,0.19,0.001161,0.00088,1,legu,0,annual crop,yes,1,0.8,0
+CHICKPEA_KABULI,37,37,11,16,t,Données internet - cédric + FAB PACA,5.7,0.89,pea,ca,t,1.13,0.85,0.19,0.001161,0.00088,1,legu,0,annual crop,yes,1,0.8,0
+CHICORY,,2.4,0.8,4.5,t,CTIFL (FAB PACA) + Données internet cédric,1,0.08,chicory,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+CLOVER_ALSIKE_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CLOVER_CRIMSON_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CLOVER_RED_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CLOVER_WHITE_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CLOVER_WHITE_LADINO_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+CORN_GRAIN,,14,7,5,t (RH 15%),CA31,16.21,0.85,maize,ca,t,1.03,0.61,0.22,0.007826,0.0077,1,COP,0.8963,annual crop,no,0,0.8,0
+CUCUMBER,,2.4,0.9,3.65,t,CTIFL,0.59,0.1,cucumber,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
+EGGPLANT,,7.5,1.6,7.1,t,Cornillon 71 (FAB PACA) + données internet cédric,0.7,0.07,aubergine,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
+ENDIVE,,2.5,1.5,5,t,corpen,0.68,0.1,endive,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+FABA_BEAN_DRY,35.5,35.5,12,13,t (RH 14%),bilan minéraux IE,15.99,0.86,field bean ,ca,t,1.13,0.85,0.19,0.011475,0.0088,1,COP,0,annual crop,no,1,0.8,0
+FABA_BEAN_GREEN,35.5,35.5,12,13,t (RH 14%),bilan minéraux IE,15.99,0.86,field bean ,ca,t,1.13,0.85,0.19,0.011475,0.0088,1,COP,0,annual crop,no,1,0.8,0
+FALLOW,,,,,none,,18.4,1,fallow,ca,none,,,,,,,fallow,0,set aside,no,0,0.8,0
+FALLOW_LEGUME_ONE_YEAR,30,,,,none,,18.4,1,fallow,ca,none,,,,,,,rien,0,set aside,no,1,0.8,0
+FESCUE_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+FESCUE_MEADOW_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+FESCUE_TALL_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+FLAX,,1.1,2.6,2.1,t,ca31,15.93,0.16,flax,ca,t,0,0,0,0.01,0,1,indus,,annual crop,no,0,0.8,0
+GARLIC,,1.3,2.8,5.4,t,CA31,1.45,0.3,garlic,ca,t,0.0122,0,0.1,0.0606,0.0606,1,legu,0,annual crop,no,0,0.8,0
+GRASS_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+GRASS_SILAGE,,,,,,,,,,,,,,,,,,,,,,,,
+LEEK,,3.5,1.1,3.2,t,bilan minéraux IE,1.69,0.1,leek,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+LENTIL,38,38,5,8,t (RH 14%),,16.96,0.86,lentil,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,legu,0,annual crop,no,1,0.8,0
+LETTUCE_ICEBERG,,2,1,5,t,bilan minéraux IE,1,,lettuce,ca,t,0.0189,0,0.1,0.089,0.089,1,legu,0,annual crop,no,0,0.8,0
+LETTUCE_ROMAN,,2,1,5,t,bilan minéraux IE,1,,lettuce,ca,t,0.0189,0,0.1,0.089,0.089,1,legu,0,annual crop,no,0,0.8,0
+MAIZE_SILAGE,,12.5,5.5,12.5,t DM,corpen,18.7,1,maize,ca,tDMFG,0.3,0,0.22,0.006,0.012,1,FG,0,annual crop,no,0,0.8,0
+MELON,,2.2,0.8,0.4,t,bilan minéraux IE,1.14,0.1,melon,ca,t,0.0559,0,0.2,0.0191,0.0191,1,legu,0,annual crop,no,0,0.8,0
+MILLET_FINGER,,,,,,,,,,,,,,,,,,,,,,,,
+MILLET_FOXTAIL_SILAGE,,,,,,,,,,,,,,,,,,,,,,,,
+MILLET_PEARL,,,,,,,,,,,,,,,,,,,,,,,,
+MILLET_PROSO,,,,,,,,,,,,,,,,,,,,,,,,
+MLLET_PEARL_SILAGE,,,,,,,,,,,,,,,,,,,,,,,,
+MUSCK_MELON,,,,,,,,,,,,,,,,,,,,,,,,
+OAT,,19,8,7,t (RH 15%),corpen,17.45,0.85,oat,ca,t,0.91,0.89,0.25,0.0077,0.0088,1,COP,0,annual crop,no,0,0.8,0
+OAT_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+ONION,,2,1.5,4.6,t,corpen,1.45,0.3,onion,ca,t,0.0122,0,0.1,0.0606,0.0606,1,legu,0,annual crop,no,0,0.8,0
+OPIUM_POPPY,,19,13,8,t,Données internet cédric + NPK Tournesol,22.3,0.93,poppy ,ca,t,2,0,0.2,0.0165,0.0165,1,COP,0,annual crop,no,0,0.8,0
+ORCHARDGRASS_GREEN_CHOP,,,,,,,,,,,,,,,,,,,,,,,,
+ORCHARDGRASS_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+PARSLEY,,2.5,1,8,t,Chaux et Foury,1,0.1,parsley,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+PEA,32.5,32.5,8,11,t (RH 14%),bilan minéraux IE,15.73,0.86,pea,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,cop,0.149,annual crop,yes,1,0.8,0
+PEA_GREEN_FRUITS,7,7,2,3,t,CRABretagne légumes2008,1,0.1,green pea,ca,t,,,,,,1,legu,0.149,annual crop,no,0,0.8,0
+PEA_GREEN_SEEDS,7,7,2,3,t,CRABretagne légumes2008,1,0.1,green pea,ca,t,,,,,,1,legu,0.149,annual crop,no,0,0.8,0
+PEANUT_PODS,,41.3,8.6,8.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,23.7,0.94,peanut ,ca,t,,,,,,1,fruit,0,annual crop,no,0,0.8,0
+PEANUT_SEEDS,,41.3,8.6,8.5,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,23.7,0.94,peanut ,ca,t,,,,,,1,fruit,0,annual crop,no,0,0.8,0
+PEPPER_GREEN,,3.2,1.1,4.1,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.7,0.08,pimento,ca,t,,,,,,1,legu,0,annual crop,,0,0.8,0
+PEPPER_RED,,3.2,1.1,4.1,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.7,0.08,pimento,ca,t,,,,,,1,legu,0,annual crop,,0,0.8,0
+PERSIMMON,,1.3,0.5,3.6,t,Données internet - cédric + FAB PACA,3.3,0.2,persimmon ,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+POTATO,,3.55,1.7,6.5,t,corpen,3.45,0.2,potato,ca,t,0.1,1.06,0.2,0.019,0.014,1,legu,0.105,annual crop,no,0,0.8,0
+PUMPKIN,,2,0.7,4.8,t,Données internet - cédric + FAB PACA,0.9,0.05,marrow,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
+QUINCE,,0.6,0.4,2.4,t DM,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.4,0.17,quince,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+QUINOA,,,,,,,,,,,,,,,,,,,,,,,,
+RADISH,,1.777777778,0.888888889,1.777777778,1000,CDDM,0.72,0.2,radish,ca,1000,,,,,,,legu,0,annual crop,no,0,0.8,0
+RAPESEED,,35,16,16,t DM,ca31,17.8,1,rape,ca,tDMFG,0.3,0,0.2,0.015,0.012,1,FG,0,annual crop,yes,0,0.8,0
+RICE,,14,3,3,t (RH 13%),ca31,15.56,0.87,rice,ca,t,0.95,2.46,0.16,0.0088,0,1,COP,0,annual crop,no,0,0.8,0
+RICE_MILLED,,14,3,3,t (RH 13%),ca31,15.56,0.87,rice,ca,t,0.95,2.46,0.16,0.0088,0,1,COP,0,annual crop,no,0,0.8,0
+RYE,,14,10,6,t (RH 15%),corpen,17.45,0.85,rye,ca,t,1.09,0.88,0.22,0.004368,0.0121,1,COP,0.348,annual crop,yes,0,0.8,0
+RYE_HAY,,14,10,6,t (RH 15%),corpen,17.45,0.85,rye,ca,t,1.09,0.88,0.22,0.004368,0.0121,1,COP,0.348,annual crop,yes,0,0.8,0
+RYEGRASS_HAY,,25,0.8,31,t DM,,18.4,1,ryegrass,ca,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,annual crop,yes,0,0.8,0
+SAFFLOWER,,19,13,8,t,données internet - cédric + NPK tournesol,2.1,0.93,safflower,ca,t,,,,,,1,fleur,0,annual crop,no,0,0.8,0
+SORGHUM_GRAIN,,20,8,5,t (RH 15%),CA31,16.43,0.84,sorghum,ca,t,0.88,1.33,0.22,0.007826,0.0066,1,COP,0.87,annual crop,no,0,0.8,0
+SORGHUM_GREEN,,15,5.949656751,20,t DM,bilan minéraux IE,17.8,1,sorghum,ca,tDMFG,0.88,1.33,0.22,0.00077,0.00066,1,FG,0,annual crop,no,0,0.8,0
+SORGHUM_SILAGE,,15,5.9,20,t,,17.8,1,sorghum,ca,tDMFG,0.3,0,0.2,0.006,0.014,1,FG,0,annual crop,no,0,0.8,0
+SOYBEAN,56.5,56.5,14,17,t (RH 16%),bilan minéraux IE,20.18,0.84,soya,ca,t,0.93,1.35,0.19,0.0088,0.0088,1,COP,0.87,annual crop,no,1,0.8,0
+SPINACH,,5,1.5,3,t,corpen,1,0.1,spinach,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+SQUASH_INMATURE,,2,0.7,4.8,t,Données internet - cédric + FAB PACA,0.7,0.05,zucchini ,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
+SQUASH_INMATURE,,,,,,,,,,,,,,,,,,,,,,,,
+SQUASH_MATURE,,2,0.7,4.8,t,Données internet - cédric + FAB PACA,0.7,0.05,zucchini ,ca,t,0.0747,0,0.1,0.0415,0.0415,1,legu,0,annual crop,no,0,0.8,0
+SQUASH_MATURE,,,,,,,,,,,,,,,,,,,,,,,,
+STRAWBERRY,,1.1,0.6,1.8,t,bilan minéraux IE,1.53,0.1,strawberry,ca,t,,,,,,1,legu,0,annual crop,no,0,0.8,0
+SUGARBEET_ROOT,,3.1,1,2.5,t,bilan minéraux IE,3.89,0.232,beet,ca,t,0.1,1.06,0.2,0.019,0.014,1,indus,6.827,annual crop,no,0,0.8,0
+SUGARBEET_ROOT_CROWN,,3.1,1,2.5,t,bilan minéraux IE,3.89,0.232,beet,ca,t,0.1,1.06,0.2,0.019,0.014,1,indus,6.827,annual crop,no,0,0.8,0
+SUNFLOWER_OIL,,19,13,8,t (RH 11%),CA31,26.13,0.89,sunflower,ca,t,2,0,0.22,0.0165,0.0165,1,COP,0.771359,annual crop,no,0,0.8,0
+SUNFLOWER_SEED,,19,13,8,t (RH 11%),CA31,26.13,0.89,sunflower,ca,t,2,0,0.22,0.0165,0.0165,1,COP,0.771359,annual crop,no,0,0.8,0
+SWEET_CORN_DRY,,4.3,,,t,diaterre,,0.28,maize,ca,t,1.03,0.61,0.22,0.0007,0.0008,1,indus,0.8963,annual crop,no,0,0.8,0
+SWEET_CORN_FRESH,,4.3,,,t,diaterre,,0.28,maize,ca,t,1.03,0.61,0.22,0.0007,0.0008,1,indus,0.8963,annual crop,no,0,0.8,0
+SWEETCLOVER_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+TIMOTHY_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+TOBACCO_BURLEY,,75,6,60,t (RH 19%),ca31,13,0.81,tobacco,ca,t,,,,,,1,indus,0,annual crop,no,0,0.8,0
+TOBACCO_FLUE,,40,5,30,t (RH 19%),ca31,13,0.81,tobacco,ca,t,,,,,,1,indus,0,annual crop,no,0,0.8,0
+TOMATO,,2.6,0.9,6.1,t,Lefevre 74 (FAB PACA),0.77,0.1,tomato,ca,t,0.0631,0,0.1,0.0268,0.0268,1,legu,1.28,annual crop,no,0,0.8,0
+TREFOIL_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+TRITICALE,,19,9,6,t (RH 15%),corpen,16.22,0.85,triticale,ca,t,1.09,0.88,0.22,0.00391,0.0099,1,COP,0.576,annual crop,yes,0,0.8,0
+TURNIP_GREEN_CROP,,1.75,0.25,4,t,INRA,1,0.15,turnip,ca,tDMFG,0,0,0,0.019,0,1,FG,0,annual crop,no,0,0.8,0
+VETCH_GREEN_FLOWERING,32.5,32.5,8,11,t (RH 14%),idem pois,15.7,0.89,vetch,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,COP,0,annual crop,yes,1,0.8,0
+VETCH_HAIRY_HAY,32.5,32.5,8,11,t (RH 14%),idem pois,15.7,0.89,vetch,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,COP,0,annual crop,yes,1,0.8,0
+VETCH_HAY,32.5,32.5,8,11,t (RH 14%),idem pois,15.7,0.89,vetch,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,COP,0,annual crop,yes,1,0.8,0
+VETCH_HAY_FLOWERING,32.5,32.5,8,11,t (RH 14%),idem pois,15.7,0.89,vetch,ca,t,1.13,0.85,0.19,0.01161,0.0088,1,COP,0,annual crop,yes,1,0.8,0
+WATERMELON,,1.3,0.9,2.2,t,CTIFL (FAB PACA) + Données internet cédric,1.3,0.08,watermelon ,ca,t,0.0559,0,0.2,0.0191,0.0191,1,legu,0,annual crop,no,0,0.8,0
+WHEAT_BREAD_HARD,,19,9,7,t (RH 15%),corpen,15.82,0.85,soft wheat,ca,t,1.51,0.52,0.24,0.00544,0.0099,1,COP,0.499,annual crop,no,0,0.9,0
+WHEAT_BREAD_SOFT,,19,9,7,t (RH 15%),corpen,15.82,0.85,soft wheat,ca,t,1.51,0.52,0.24,0.00544,0.0099,1,COP,0.499,annual crop,no,0,0.9,0
+WHEAT_DURUM,,21,12,6,t (RH 15%),CA31,15.89,0.85,durum wheat,ca,t,1.09,0.88,0.22,0.00561,0.0099,1,COP,0.577,annual crop,yes,0,0.9,0
+WHEATGRASS_HAY,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+ALMOND,,1.3,0.4,3,t,données internet - cédric,24.1,0.95,almond tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+APPLE,,0.9,0.3,2,t,bilan minéraux IE,2.18,0.15,apple tree,cp,t,,,,,,1,fruit,0.407,tree crop,no,0,0.8,0
+APRICOT,,1.3,0.5,3.6,t,bilan minéraux IE,1.87,0.15,apricot,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+AVOCADO,,3.1,1.2,6.1,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,7,0.27,avocado,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+CHERRY,,2,0.5,3,t,bilan minéraux IE,3.27,0.15,cherry tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+FIG,,1.6,0.7,3.5,t,Données internet - cédric + FAB PACA,2.7,0.2,fig tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+GRAPE_TABLE,,1.6,0.5,2.4,t,bilan minéraux IE,3,0.1,vineyard,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+GRAPE_WINE,,0.85,0.27,1.1,HL,,0.54,0.03,vineyard,cp,HL,,,,,,,fruit,0.031,vineyard,no,0,0.8,0
+GRAPEFRUIT,,0.8,0.3,1.9,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.6,0.1,grapefruit ,cp,t,,,,,,1,fruit,0.031,tree crop,no,0,0.8,0
+HAZELNUT,,23.9,6.6,8.2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,26.3,0.95,hazelnut tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+KIWI,,1.8,0.8,3.7,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2.5,0.17,kiwi,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+LEMON,,2.4,0.3,1.9,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,2,0.12,lemon ,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+OLIVE,,5,2.5,8,t,Données Internet - Cédric,12.3,0.5,olive,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+ORANGE,,1.1,0.3,2,t,http://www.nal.usda.gov/fnic/foodcomp/cgi-bin/list_nut_edit.pl,1.9,0.13,orange,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+PEACH,,0.8,0.5,2.8,t,Liwerant 1953,2.16,0.1,peach tree,cp,t,,,,,,1,fruit,0.276,tree crop,no,0,0.8,0
+PEAR,,0.6,0.4,1.6,t,bilan minéraux IE,2.35,0.1,pear tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+PLUM,,1.3,0.4,3,t,bilan minéraux IE,2.23,0.15,plum tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+POMEGRANATE,,,,,,,,,,,,,,,,,,,,,,,,
+WALNUT,,1.4,0.4,3,t,,21.7,0.2,walnut tree,cp,t,,,,,,1,fruit,0,tree crop,no,0,0.8,0
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,
+COVER_CROP_LEGUMES_100,39,39,,,tDMFG,Climagri,,1,COVER_CROP_LEGUMES_100,ca,tDMFG,0.29,0,0.4,0.027,0.019,1,FG,0,temporary grassland,yes,1,0.8,156
+COVER_CROP_LEGUMES_30,8.19,29.2,,,tDMFG,Climagri,,1,COVER_CROP_LEGUMES_30,ca,tDMFG,0.3,0,0.8,0.018333333,0.014333333,1,FG,0,temporary grassland,yes,0.3,0.8,0
+COVER_CROP_GRASS,0,25,,,tDMFG,Climagri,,1,COVER_CROP_GRASS,ca,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,temporary grassland,yes,0,0.8,0
+TEMPORARY_LEGUMES,39,39,8,31,t DM,,18.4,1,Lucerne,pt,tDMFG,0.29,0,0.4,0.027,0.019,1,FG,0,temporary grassland,yes,1,0.8,0
+TEMPORARY_MIXED,8.19,29.2,8,31,t DM,,18.4,1,mixed meadow,pt,tDMFG,0.3,0,0.8,0.018333333,0.014333333,1,FG,0,temporary grassland,yes,0.3,0.8,0
+TEMPORARY_GRASS,,25,8,31,t DM,climagri,18.4,1,others grasses meadow,pt,tDMFG,0.3,0,0.54,0.015,0.012,1,FG,0,temporary grassland,yes,0,0.8,0
+FALLOW_5_YEARS,,,,,none,,18.4,1,fallow permanent,pt,none,,,,,,,fallow,0,temporary grassland,no,0,0.8,0
+PASTURE_<30YERAS,4.1,27.1,8,31,t DM,climagri,18.4,1,meadow,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,yes,0.21,0.8,0
+PASTURE_>30YERAS,4.1,27.1,8,31,t DM,climagri,18.4,1,natural pasture,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,no,0.21,0.8,0
+PASTURE_ORCHARD,,27.1,8,31,t DM,,18.4,1,ochard meadow,sth,tDMFG,0.3,0,0.8,0.015,0.012,1,FG,0,permanent grassland,yes,0.21,0.8,0

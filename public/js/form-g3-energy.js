@@ -10,8 +10,8 @@ form.querySelector('button').addEventListener('click', () => {
 	const data = {
 		input: {}
 	};
-	let rows,
-		row;
+	let rows, row,
+		farm;
 	form.querySelectorAll('[data-field]').forEach(div => {
 		rows = [];
 		div.querySelectorAll('.row').forEach(div => {
@@ -20,6 +20,11 @@ form.querySelector('button').addEventListener('click', () => {
 		});
 		data.input[div.dataset.field] = rows;
 	});
+	(farm = window.localStorage.getItem('farm')) &&
+		(farm = {...data.input, ...JSON.parse(farm)})
+	||
+		(farm = data.input);
+
 	fetch('/G3/energy', {
 		method: 'POST',
 		body: JSON.stringify(data),
@@ -27,7 +32,7 @@ form.querySelector('button').addEventListener('click', () => {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
 	}).then(res => res.json()).then(data => {
-		let parts, 
+		let parts,
 			td;
 		for (const name in data.results) {
 			parts = name.split('from');
@@ -35,6 +40,8 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
+		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('farm', JSON.stringify(farm));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});

@@ -2155,13 +2155,15 @@
         "fertilizerID": "cm",
         "fertilizerKey": "O.01",
         "fertilizer_name": "Cow manure",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5
+        },
         "phosphorus": {
             "Pcf": 0.35000000000000003
         },
@@ -2180,13 +2182,15 @@
         "fertilizerID": "dc",
         "fertilizerKey": "O.02",
         "fertilizer_name": "Dairy Cow",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.48
+        },
         "phosphorus": {
             "Pcf": 0.11
         },
@@ -2207,13 +2211,15 @@
         "fertilizerID": "dh",
         "fertilizerKey": "O.03",
         "fertilizer_name": "Dairy Heifer",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.53
+        },
         "phosphorus": {
             "Pcf": 0.16999999999999998
         },
@@ -2234,13 +2240,15 @@
         "fertilizerID": "bc",
         "fertilizerKey": "O.04",
         "fertilizer_name": "Beef Cow",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.6
+        },
         "phosphorus": {
             "Pcf": 0.16
         },
@@ -2261,13 +2269,15 @@
         "fertilizerID": "bf",
         "fertilizerKey": "O.05",
         "fertilizer_name": "Beef Feeder",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5499999999999999
+        },
         "phosphorus": {
             "Pcf": 0.19
         },
@@ -2288,13 +2298,15 @@
         "fertilizerID": "bes",
         "fertilizerKey": "O.06",
         "fertilizer_name": "Beef Stocker",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.51
+        },
         "phosphorus": {
             "Pcf": 0.13999999999999999
         },
@@ -2315,13 +2327,15 @@
         "fertilizerID": "sm",
         "fertilizerKey": "O.07",
         "fertilizer_name": "Swine Manure",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.6
+        },
         "phosphorus": {
             "Pcf": 0.6
         },
@@ -2342,13 +2356,15 @@
         "fertilizerID": "sf",
         "fertilizerKey": "O.08",
         "fertilizer_name": "Swine Finishing",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.76
+        },
         "phosphorus": {
             "Pcf": 0.31
         },
@@ -2369,13 +2385,15 @@
         "fertilizerID": "sg",
         "fertilizerKey": "O.09",
         "fertilizer_name": "Swine Growing",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5499999999999999
+        },
         "phosphorus": {
             "Pcf": 0.18
         },
@@ -2396,13 +2414,15 @@
         "fertilizerID": "sn",
         "fertilizerKey": "O.10",
         "fertilizer_name": "Swine Nursery",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5499999999999999
+        },
         "phosphorus": {
             "Pcf": 0.2
         },
@@ -2423,13 +2443,15 @@
         "fertilizerID": "sgs",
         "fertilizerKey": "O.11",
         "fertilizer_name": "Swine Gestating sow",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.7799999999999999
+        },
         "phosphorus": {
             "Pcf": 0.37
         },
@@ -2450,13 +2472,15 @@
         "fertilizerID": "ss",
         "fertilizerKey": "O.12",
         "fertilizer_name": "Swine Sow and litter",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.44999999999999996
+        },
         "phosphorus": {
             "Pcf": 0.2
         },
@@ -2477,13 +2501,15 @@
         "fertilizerID": "pm",
         "fertilizerKey": "O.13",
         "fertilizer_name": "Poultry Manure",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 2.4
+        },
         "phosphorus": {
             "Pcf": 2.5
         },
@@ -2504,13 +2530,15 @@
         "fertilizerID": "pl",
         "fertilizerKey": "O.14",
         "fertilizer_name": "Poultry Layer",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.32
+        },
         "phosphorus": {
             "Pcf": 0.47000000000000003
         },
@@ -2531,13 +2559,15 @@
         "fertilizerID": "pb",
         "fertilizerKey": "O.15",
         "fertilizer_name": "Poultry Broiler",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.9800000000000002
+        },
         "phosphorus": {
             "Pcf": 0.66
         },
@@ -2558,13 +2588,15 @@
         "fertilizerID": "pt",
         "fertilizerKey": "O.16",
         "fertilizer_name": "Poultry Turkey",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.8900000000000001
+        },
         "phosphorus": {
             "Pcf": 0.7799999999999999
         },
@@ -2585,13 +2617,15 @@
         "fertilizerID": "pd",
         "fertilizerKey": "O.17",
         "fertilizer_name": "Poultry Duck",
-        "price": 0.002,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.01
+        },
         "phosphorus": {
             "Pcf": 0.44999999999999996
         },
@@ -2612,13 +2646,15 @@
         "fertilizerID": "pg",
         "fertilizerKey": "O.18",
         "fertilizer_name": "Poultry Goose",
-        "price": 0.002,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.0999999999999999
+        },
         "phosphorus": {
             "Pcf": 0.26
         },
@@ -2645,7 +2681,9 @@
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5700000000000001
+        },
         "phosphorus": {
             "Pcf": 0.11
         },
@@ -2666,13 +2704,15 @@
         "fertilizerID": "os",
         "fertilizerKey": "O.20",
         "fertilizer_name": "Other Sheep",
-        "price": 0.011,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.65
+        },
         "phosphorus": {
             "Pcf": 0.4
         },
@@ -2693,13 +2733,15 @@
         "fertilizerID": "og",
         "fertilizerKey": "O.21",
         "fertilizer_name": "Other Goat",
-        "price": 0.02,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.9900000000000001
+        },
         "phosphorus": {
             "Pcf": 0.24
         },
@@ -2720,13 +2762,15 @@
         "fertilizerID": "or",
         "fertilizerKey": "O.22",
         "fertilizer_name": "Other Rabbit",
-        "price": 0.005,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1.5599999999999998
+        },
         "phosphorus": {
             "Pcf": 0.53
         },
@@ -2747,13 +2791,15 @@
         "fertilizerID": "d",
         "fertilizerKey": "O.23",
         "fertilizer_name": "Digestato",
-        "price": 0.0108,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.36
+        },
         "phosphorus": {
             "Pcf": 0.26
         },
@@ -2780,7 +2826,9 @@
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1
+        },
         "phosphorus": {
             "Pcf": 1.2
         },
@@ -2801,13 +2849,15 @@
         "fertilizerID": "ps",
         "fertilizerKey": "O.25",
         "fertilizer_name": "Poultry slurry",
-        "price": 0.001,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 1
+        },
         "phosphorus": {
             "Pcf": 1
         },
@@ -2834,7 +2884,9 @@
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.8500000000000001
+        },
         "phosphorus": {
             "Pcf": 1.3
         },
@@ -2855,13 +2907,15 @@
         "fertilizerID": "pigs",
         "fertilizerKey": "O.27",
         "fertilizer_name": "Pig slurry",
-        "price": 0.002,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.6
+        },
         "phosphorus": {
             "Pcf": 0.4
         },
@@ -2882,13 +2936,15 @@
         "fertilizerID": "cs",
         "fertilizerKey": "O.28",
         "fertilizer_name": "Cattle slurry",
-        "price": 0.002,
+        "price": 100,
         "clasification": "Organic",
         "volatilization": {
             "vlt_group": "O",
             "vlt_coef": 0.995
         },
-        "nitrogen": {},
+        "nitrogen": {
+            "Ncf": 0.5
+        },
         "phosphorus": {
             "Pcf": 0.25
         },

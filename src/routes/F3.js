@@ -465,7 +465,7 @@ module.exports = function () {
 						P2O5cf: P*2.293,
 						K2Ocf: K*1.205,
 					},
-					fertilization: applyForcedFertilizers(input.applied) || navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
+					fertilization: applyForcedFertilizers(input.applied) || input.fertilizers//navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
 				}
 			]
 		});

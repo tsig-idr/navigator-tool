@@ -8,7 +8,7 @@ SOM = 1.5
 Tilled = 'No'
 pH = 7
 CEC = 100
-depth_s = 0.5
+depth_s = 0.3
 Nc_s_initial = 30
 Nc_s_end = 20
 Pc_s_0 = 11
@@ -17,7 +17,7 @@ Kc_s_0 = 163
 climatic_zone = 'southern'
 rain_a = 500
 rain_w = 300
-Nc_NO3_water = 25
+Nc_NO3_water = 24
 
 fnr = 0.1
 fmc_r = 0.15

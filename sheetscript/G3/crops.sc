@@ -18,7 +18,6 @@ CO24manufFerts = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CO24manufFerts.csv')
 CO24pesticides = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CO24pesticides.csv'))
 N2O4ferts = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'N2O4ferts.csv'))
 N2O4soils = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'N2O4soils.csv'))
-CropsRef = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'CropsRef.csv'))
 CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CropData.csv'))
 Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Fertilizers.csv'))
 
@@ -71,14 +70,14 @@ while i < n then begin '{'
 	N2OfromLeaching = area*T23*44/28*Nleaching
 	N2OfromVolatilization = area*T24*44/28*Nvolatilization
 	N2OfromSoil = IF (drained && organic; area*VLOOKUP ('Organic soil'; N2O4soils; 2)*44/28; 0)
-	c_residues_A = VLOOKUP_NONSTRICT (crop_name; CropsRef; 13)
-	c_residues_B = VLOOKUP_NONSTRICT (crop_name; CropsRef; 14)
-	underground_biomass = VLOOKUP_NONSTRICT (crop_name; CropsRef; 15)
+	c_residues_A = VLOOKUP_NONSTRICT (cropID; T101; 13)
+	c_residues_B = VLOOKUP_NONSTRICT (cropID; T101; 14)
+	underground_biomass = VLOOKUP_NONSTRICT (cropID; T101; 15)
 	f_renew = 1
 	f_remove = IF (residues == 'incorporated'; 0; 1)
-	N_res_ab = VLOOKUP_NONSTRICT (crop_name; CropsRef; 16)
-	N_res_bel = VLOOKUP_NONSTRICT (crop_name; CropsRef; 17)
-	dry_matter = VLOOKUP_NONSTRICT (crop_name; CropsRef; 9)
+	N_res_ab = VLOOKUP_NONSTRICT (cropID; T101; 16)
+	N_res_bel = VLOOKUP_NONSTRICT (cropID; T101; 17)
+	dry_matter = VLOOKUP_NONSTRICT (cropID; T101; 9)
 	residue_dry_matter = c_residues_A*(yield*dry_matter) + c_residues_B
 	Nresidues_above = area*N_res_ab*residue_dry_matter*(1 - f_remove)*f_renew
 	N2OfromOverground = Nresidues_above*1000*VLOOKUP ('Crop residues'; N2O4soils; 2)*44/28
@@ -92,7 +91,7 @@ while i < n then begin '{'
 	CO2fromFungicides = area*insect*VLOOKUP ('fungicides'; CO24pesticides; 5)
 	CO2fromOther = area*otreat*VLOOKUP ('other treatments'; CO24pesticides; 5)
 	CO2fromPesticides = CO2fromPesticides + SUM (CO2fromHerbicides; CO2fromInsecticides; CO2fromFungicides; CO2fromOther)
-	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (crop_name; CropsRef; 20)
+	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (cropID; T101; 20)
 	CO2fromMachinery = CO2fromMachinery + area*consumption*VLOOKUP (combustible; T35; 15)
 	SOC_ST_i = IF (organic; 0; SOC_ST)
 	name_FLU = SUM (IF (crop_name == 'Rice'; 'paddy rice'; 'annual crop'); ' '; temp_reg; ' '; moist_reg)

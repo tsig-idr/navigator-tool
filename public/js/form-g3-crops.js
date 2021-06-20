@@ -11,9 +11,14 @@ button.addEventListener('click', () => {
 		return false;
 	}
 	const data = FormDataJson.formToJson(form);
+	let fcrop;
 	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
-		crop.fertilization = crop.fertilization && Object.values(crop.fertilization) || [];
+		(fcrop = farm.crops.find(c => c.cropID == crop.cropID)) &&
+			(crop.fertilization = fcrop.fertilization) &&
+			(crop.nutrient_requirements = fcrop.nutrient_requirements);
 	});
+	farm = {...farm, ...data.input};
+
 	fetch('/G3/crops', {
 		method: 'POST',
 		body: JSON.stringify(data),
@@ -29,15 +34,17 @@ button.addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
+		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('farm', JSON.stringify(farm));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
 });
-var crops, field, name;
+var farm, field, name;
 
-(crops = window.localStorage.getItem('crops')) &&
-	(crops = JSON.parse(crops)) &&
-	crops.forEach((crop, i) => {
+(farm = window.localStorage.getItem('farm')) &&
+	(farm = JSON.parse(farm)).crops &&
+	farm.crops.forEach((crop, i) => {
 		for (field in crop) {
 			(name = `input[crops][${i}][${field}]`) in form &&
 				(form[name].value = crop[field]);
@@ -48,21 +55,20 @@ var crops, field, name;
 					(form[`input[crops][${i}][nutrient_requirements][Noutputs_terms][${name}]`].value = crop.nutrient_requirements.Noutputs_terms[name]);
 			});
 		if ('fertilization' in crop && crop.fertilization.length) {
-			let names = ['fertilizerID', 'fertilizer_name', 'amount'];
+			let li;//names = ['fertilizerID', 'fertilizer_name', 'amount'];
 			crop.fertilization.forEach((fertilizer, j) => {
-				let li, input;
 				ul.appendChild(li = document.createElement('li'));
 				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount.toFixed(2)} kg/ha`;
-				names.forEach(name => {
+				/*names.forEach(name => {
 					li.appendChild(input = document.createElement('input'));
 					input.type = 'hidden';
 					input.name = `input[crops][${i}][fertilization][${j}][${name}]`;
 					input.value = fertilizer[name];
-				});
+				});*/
 			});
 		}
 	});
-(button.disabled = !crops || !crops.length || !timestamp) &&
+(button.disabled = !farm.crops || !farm.crops.length || !timestamp) &&
 	(button.classList.add('d-none') || true) &&
 	(form.querySelector('.alert-info').classList.add('d-none') || true)
 ||

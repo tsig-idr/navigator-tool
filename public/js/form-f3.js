@@ -8,7 +8,7 @@ var form = document.querySelector('form'),
 	},
 	requirementsFields = ['Ncf_avg', 'Ncf_min', 'Ncf_max', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
-	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur', 'type'],
+	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur'],
 	fertilizers = {},
 	crops = {},
 	soils = {},
@@ -35,7 +35,9 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		fertilizer = {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
+			type: form.type.value,
 			amount: form.amount.value,
+			cost: form.price.value*form.amount.value,
 			method: form.method.value
 		};
 	ul.appendChild(li);
@@ -64,8 +66,10 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
-	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = undefined;
-
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = data.price = data.type = undefined;
+	fertilizersFields.forEach(field => {
+		data[field] = undefined;
+	});
 	fetch('/F3/requirements', {
 		method: 'POST',
 		body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
@@ -86,13 +90,13 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			for (j in balanceFields) {
 				balanceFields[j].forEach(field => {
 					tr.appendChild(td = document.createElement('td'));
-					td.innerHTML = parseFloat(crop.nutrient_requirements[j][field]).toFixed(2);
+					td.innerHTML = parseFloat(crop.nutrient_requirements[j][field]).toFixed();
 				});
 			}
 			requirementsTbody.appendChild(tr = document.createElement('tr'));
 			requirementsFields.forEach(field => {
 				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = parseFloat(crop.nutrient_requirements[field]).toFixed(2);
+				td.innerHTML = parseFloat(crop.nutrient_requirements[field]).toFixed();
 			});
 			applied_ = [];
 			applied.forEach(fertilizer => fertilizer && applied_.push({...fertilizer}));
@@ -119,7 +123,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 					fertilizationFields.forEach(field => {
 						tr.appendChild(td = document.createElement('td'));
 						fertilizer[field] !== undefined &&
-							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(2))
+							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(field == 'cost' ? 2 : 0))
 						||
 							(td.innerHTML = ' - ') &&
 							(value = 0);
@@ -132,12 +136,14 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			td.innerHTML = 'TOTAL';
 			fertilizationFields.forEach(field => {
 				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = totalFertilization[field].toFixed(2);
+				td.innerHTML = totalFertilization[field].toFixed(field == 'cost' ? 2 : 0);
 			});
 		}
 		resultsDiv.classList.remove('d-none');
 		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
-		window.localStorage.setItem('crops', JSON.stringify(data.results));
+		window.localStorage.setItem('farm', JSON.stringify({
+			crops: data.results
+		}));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
@@ -146,9 +152,7 @@ form.addEventListener('change', ev => {
 	switch (ev.target.id) {
 		case 'crop':
 			form['input[crop_name]'].value = crops[ev.target.value].crop_name;
-			form['input[CV]'].value = crops[ev.target.value].CV;
 			form['input[HI_est]'].value = crops[ev.target.value].harvest.HI_est;
-			form['input[export_r]'].value = crops[ev.target.value].residues.residue_part;
 			form['input[Nc_h]'].value = crops[ev.target.value].harvest.Nc_h_typn;
 			form['input[Pc_h]'].value = crops[ev.target.value].harvest.Pc_h;
 			form['input[Kc_h]'].value = crops[ev.target.value].harvest.Kc_h;
@@ -167,9 +171,10 @@ form.addEventListener('change', ev => {
 			let fertilizer;
 			(fertilizer = fertilizers[ev.target.value]) &&
 				(form.type.value = fertilizer.type) &&
+				(form.price.value = fertilizer.price) &&
 				fertilizersFields.forEach(field => {
 					fertilizer[field] !== undefined &&
-						(form[field].value = fertilizer[field])
+						(form[field].value = fertilizer[field].toFixed(2))
 					||
 						(form[field].value = 0);
 				});
@@ -177,6 +182,12 @@ form.addEventListener('change', ev => {
 				form[field].disabled = fertilizer !== undefined || !ev.target.value;
 			});
 			form.type.disabled = fertilizer !== undefined || !ev.target.value;
+			break;
+		case 'PK_strategy':
+			ev.target.value == 'maintenance' &&
+				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = true)
+			||
+				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = false);
 			break;
 		default:
 			break;
@@ -212,6 +223,7 @@ form.addEventListener('change', ev => {
 				K: f.potassium.Kcf,
 				N_ur: f.nitrogen.Ncf_ure,
 				S: f.sulphur.Scf,
+				price: f.price,
 				type: f.clasification
 			};
 		});
