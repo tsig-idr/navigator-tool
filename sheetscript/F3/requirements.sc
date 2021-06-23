@@ -52,7 +52,6 @@ while i < n then begin '{'
 	N = N + Nc_i*amount
 	N_final_losses = N_final_losses + N_bf*amount
 	i = i + 1
-	test = [N_bf, N_final_losses]
 '}' end
 m = LEN (applied)
 j = 0

@@ -44,7 +44,7 @@ module.exports = function () {
 							NminPostharvest: output.Nc_s_end
 						}
 					},
-					fertilization: applyForcedFertilizers(input.applied) || navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
+					fertilization: applyForcedFertilizers(input.applied || []) || navBestFertiCtrl.bestCombination(liableFertilizers, N, P, K, 0.0, 0.25*N)
 				}
 			]
 		});

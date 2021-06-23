@@ -140,7 +140,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			});
 		}
 		resultsDiv.classList.remove('d-none');
-		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4F3', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify({
 			crops: data.results
 		}));

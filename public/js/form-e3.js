@@ -1,7 +1,8 @@
 const form = document.querySelector('form'),
 	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
-	timestamp = window.localStorage.getItem('timestamp');
+	timestamp_c = window.localStorage.getItem('timestamp4G3_crops'),
+	timestamp_e = window.localStorage.getItem('timestamp4G3_energy');
 
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
@@ -10,9 +11,18 @@ button.addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
+	const data = FormDataJson.formToJson(form);
+	data.amount = data.price = undefined;
+	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
+		crop.fertilization =  Object.values(crop.fertilization);
+	});
+	form.querySelectorAll('.d-none[data-field]').forEach(div => {
+		data.input[div.dataset.field] &&
+			(data.input[div.dataset.field] = Object.values(data.input[div.dataset.field]));
+	});
 	fetch('/E3/epa', {
 		method: 'POST',
-		body: JSON.stringify(FormDataJson.formToJson(form)),
+		body: JSON.stringify(data),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
@@ -20,7 +30,7 @@ button.addEventListener('click', () => {
 		let td;
 		for (const name in data.results) {
 			(td = table.querySelector(`td[name="${name}"]`)) &&
-				(td.innerHTML = data.results[name]);
+				(td.innerHTML = data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
 	}).catch(error => {
@@ -52,7 +62,7 @@ var farm, field, name;
 		}
 	});
 farm &&
-	form.querySelectorAll('.row[data-field]').forEach(div => {
+	form.querySelectorAll('.d-none[data-field]').forEach(div => {
 		let names,
 			input,
 			div_;
@@ -69,11 +79,13 @@ farm &&
 					input.value = row[name];
 				});
 				div_.classList.remove('d-none');
+				div_.classList.add('mt-2');
 			});
 	});
-(button.disabled = !farm.crops || !farm.crops.length || !timestamp) &&
+(button.disabled = !timestamp_c || !timestamp_e) &&
 	(button.classList.add('d-none') || true) &&
-	(form.querySelector('.alert-info').classList.add('d-none') || true)
+	(form.querySelectorAll('.alert-info').forEach(div => div.classList.add('d-none')) || true)
 ||
-	(form.querySelector('.alert-info i').innerHTML = timestamp) &&
+	(form.querySelector('.alert-info[name=crops] i').innerHTML = timestamp_c) &&
+	(form.querySelector('.alert-info[name=energy] i').innerHTML = timestamp_e) &&
 	form.querySelector('.alert-warning').classList.add('d-none');

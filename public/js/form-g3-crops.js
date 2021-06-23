@@ -1,7 +1,7 @@
 const form = document.querySelector('form'),
 	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
-	timestamp = window.localStorage.getItem('timestamp');
+	timestamp = window.localStorage.getItem('timestamp4F3');
 
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
@@ -15,7 +15,8 @@ button.addEventListener('click', () => {
 	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
 		(fcrop = farm.crops.find(c => c.cropID == crop.cropID)) &&
 			(crop.fertilization = fcrop.fertilization) &&
-			(crop.nutrient_requirements = fcrop.nutrient_requirements);
+			(crop.nutrient_requirements = fcrop.nutrient_requirements) &&
+			(crop.dose_irrigation = fcrop.dose_irrigation);
 	});
 	farm = {...farm, ...data.input};
 
@@ -34,7 +35,7 @@ button.addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
-		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4G3_crops', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
@@ -68,7 +69,7 @@ var farm, field, name;
 			});
 		}
 	});
-(button.disabled = !farm.crops || !farm.crops.length || !timestamp) &&
+(button.disabled = !timestamp) &&
 	(button.classList.add('d-none') || true) &&
 	(form.querySelector('.alert-info').classList.add('d-none') || true)
 ||

@@ -21,7 +21,7 @@ form.querySelector('button').addEventListener('click', () => {
 		data.input[div.dataset.field] = rows;
 	});
 	(farm = window.localStorage.getItem('farm')) &&
-		(farm = {...data.input, ...JSON.parse(farm)})
+		(farm = { ...JSON.parse(farm), ...data.input})
 	||
 		(farm = data.input);
 
@@ -40,7 +40,7 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
-		window.localStorage.setItem('timestamp', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4G3_energy', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);

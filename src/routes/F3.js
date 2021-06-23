@@ -439,6 +439,7 @@ module.exports = function () {
 					crop_name: input.crop_name,
 					yield: input.yield,
 					SOM: input.SOM,
+					dose_irrigation: input.water_supply == '1' && input.dose_irrigation || 0,
 					tilled: input.tilled,
 					drain_rate: output.drain_rate,
 					nutrient_requirements: {

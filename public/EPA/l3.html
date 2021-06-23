@@ -21,12 +21,15 @@
 				<form class="needs-validation" novalidate>
 					<div class="row">
 						<div class="row">
-							<div class="col-sm-8 offset-sm-2">
+							<div class="col-sm-6 offset-sm-3">
 								<div class="alert alert-warning text-center" role="alert">
-									To be able to run this form, <b>first you should run G3 for crops (GHG L3 Crops)</b>
+									To be able to run this form, <b>first you should run G3 for crops (GHG F3 Crops) and G3 for energy (GHG F3 Energy)</b>
 								</div>
-								<div class="alert alert-info text-center" role="alert">
+								<div class="alert alert-info text-center" role="alert" name="crops">
 									You are using data corresponding to that G3 Crops execution done at &nbsp;<b><i></i></b>
+								</div>
+								<div class="alert alert-info text-center" role="alert" name="energy">
+									You are using data corresponding to that G3 Energy execution done at &nbsp;<b><i></i></b>
 								</div>
 							</div>
 						</div>
@@ -50,7 +53,7 @@
 								</div>
 								<div class="col-sm-3">
 									<label for="price" class="form-label">Sell price (&euro;/kg)</label>
-									<input required type="number" class="form-control" id="price" name="input[crops][0][price]" min="0"  value="0" />
+									<input required type="number" class="form-control" id="price" name="input[crops][0][price]" min="0" step="0.01" />
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -60,15 +63,15 @@
 								</div>
 								<div class="col-sm-3">
 									<label for="price_seeds" class="form-label">Seeds price (&euro;/kg)</label>
-									<input required type="number" class="form-control" id="price_seeds" name="input[crops][0][price_seeds]" min="0" value="0" />
+									<input required type="number" class="form-control" id="price_seeds" name="input[crops][0][price_seeds]" min="0" step="0.01" />
 								</div>
 								<div class="col-sm-3">
-									<label for="dose_irrigation" class="form-label">Irrigation dose (m3 / ha)</label>
-									<input required readonly type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" />
+									<label for="dose_irrigation" class="form-label">Irrigation dose (m3/ha)</label>
+									<input required readonly type="number" class="form-control" id="dose_irrigation" name="input[crops][0][dose_irrigation]" min="0" />
 								</div>
 								<div class="col-sm-3">
-									<label for="price_water" class="form-label">Water price (&euro; / m3)</label>
-									<input required type="number" class="form-control" id="price_water" name="input[price_water]" min="0" value="0" />
+									<label for="price_water" class="form-label">Water price (&euro;/m3)</label>
+									<input required type="number" class="form-control" id="price_water" name="input[crops][0][price_water]" min="0" value="0" step="0.01" />
 								</div>
 							</div>
 							<div class="row mt-3">
@@ -97,19 +100,19 @@
 											<div class="row mt-2">
 												<div class="col-sm-3">
 													<label for="price_herb" class="form-label">Herbicides price (&euro;/kg)</label>
-													<input required type="number" class="form-control" id="price_herb" name="input[crops][0][price_herb]" min="0" value="0" />
+													<input required type="number" class="form-control" id="price_herb" name="input[crops][0][price_herb]" min="0" value="0" step="0.01" />
 												</div>
 												<div class="col-sm-3">
 													<label for="price_fung" class="form-label">Fungicides price (&euro;/kg)</label>
-													<input required type="number" class="form-control" id="price_fung" name="input[crops][0][price_fung]" min="0" value="0" />
+													<input required type="number" class="form-control" id="price_fung" name="input[crops][0][price_fung]" min="0" value="0" step="0.01" />
 												</div>
 												<div class="col-sm-3">
 													<label for="price_insect" class="form-label">Insecticides price (&euro;/kg)</label>
-													<input required type="number" class="form-control" id="price_insect" name="input[crops][0][price_insect]" min="0" value="0" />
+													<input required type="number" class="form-control" id="price_insect" name="input[crops][0][price_insect]" min="0" value="0" step="0.01" />
 												</div>
 												<div class="col-sm-3">
 													<label for="price_otreat" class="form-label">Other treatments price (&euro;/kg)</label>
-													<input required type="number" class="form-control" id="price_otreat" name="input[crops][0][price_otreat]" min="0" value="0" />
+													<input required type="number" class="form-control" id="price_otreat" name="input[crops][0][price_otreat]" min="0" value="0" step="0.01" />
 												</div>
 											</div>
 										</div>
@@ -178,12 +181,12 @@
 													</select>
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Amount (kWh / year)</label>
+													<label class="form-label">Amount (kWh/year)</label>
 													<input required readonly type="number" name="amount" class="form-control" />
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Price (&euro; / kg)</label>
-													<input required type="number" class="form-control" name="price" min="0" value="0" />
+													<label class="form-label">Price (&euro;/kWh)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" step="0.01" />
 												</div>
 											</div>
 											<div class="row d-none" data-field="energy">
@@ -199,12 +202,12 @@
 													</select>
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Amount (MJ / year)</label>
+													<label class="form-label">Amount (MJ/year)</label>
 													<input required readonly type="number" name="amount" class="form-control" />
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Price (&euro; / kg)</label>
-													<input required type="number" class="form-control" name="price" min="0" value="0" />
+													<label class="form-label">Price (&euro;/MJ)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" step="0.01" />
 												</div>
 											</div>
 											<div class="row d-none" data-field="biomass">
@@ -224,12 +227,12 @@
 													</select>
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Amount (tonnes / year)</label>
+													<label class="form-label">Amount (tonnes/year)</label>
 													<input required readonly type="number" name="amount" class="form-control" />
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Price (&euro; / kg)</label>
-													<input required type="number" class="form-control" name="price" min="0" value="0" />
+													<label class="form-label">Price (&euro;/tonnes)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" step="0.01" />
 												</div>
 											</div>
 											<div class="row d-none" data-field="fuels">
@@ -248,12 +251,12 @@
 													</select>
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Amount (tonnes / year)</label>
+													<label class="form-label">Amount (tonnes/year)</label>
 													<input required readonly type="number" name="amount" class="form-control" />
 												</div>
 												<div class="col-sm-3">
-													<label class="form-label">Price (&euro; / kg)</label>
-													<input required type="number" class="form-control" name="price" min="0" value="0" />
+													<label class="form-label">Price (&euro;/tonnes)</label>
+													<input required type="number" class="form-control" name="price" min="0" value="0" step="0.01" />
 												</div>
 											</div>
 										</div>
@@ -263,25 +266,25 @@
 							<div class="row mt-3">
 								<div class="col-sm-4">
 									<label for="MWC" class="form-label">Machinery work cost (&euro;)</label>
-									<input required type="number" class="form-control" id="MWC" name="input[MWC]" value="0" min="0" />
+									<input required type="number" class="form-control" id="MWC" name="input[MWC]" value="0" min="0" step="0.01" />
 								</div>
 								<div class="col-sm-4">
 									<label for="HWC" class="form-label">Human work cost (&euro;)</label>
-									<input required type="number" class="form-control" id="HWC" name="input[HWC]" value="0" min="0" />
+									<input required type="number" class="form-control" id="HWC" name="input[HWC]" value="0" min="0" step="0.01" />
 								</div>
 								<div class="col-sm-4">
 									<label for="OCS" class="form-label">Other generic costs (&euro;)</label>
-									<input required type="number" class="form-control" id="OCS" name="input[OCS]" value="0" min="0" />
+									<input required type="number" class="form-control" id="OCS" name="input[OCS]" value="0" min="0" step="0.01" />
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-sm-6">
 									<label for="LI" class="form-label">Livestock income (&euro;)</label>
-									<input required type="number" class="form-control" id="LI" name="input[LI]" value="0" min="0" />
+									<input required type="number" class="form-control" id="LI" name="input[LI]" value="0" min="0" step="0.01" />
 								</div>
 								<div class="col-sm-6">
 									<label for="TWI" class="form-label">Timber wood income (&euro;)</label>
-									<input required type="number" class="form-control" id="TWI" name="input[TWI]" value="0" min="0" />
+									<input required type="number" class="form-control" id="TWI" name="input[TWI]" value="0" min="0" step="0.01" />
 								</div>
 							</div>
 						</div>
