@@ -4,7 +4,7 @@ var form = document.querySelector('form'),
 	resultsIds = ['requirements', 'fertilization'],
 	requirementsFields = ['Ncf', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
-	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur', 'type'],
+	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur'],
 	fertilizers = {},
 	applied = [];
 
@@ -29,13 +29,12 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
 			cost: form.price.value*form.amount.value,
-			amount: form.amount.value,
-			method: form.method.value
+			amount: form.amount.value
 		};
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
-	b.innerHTML = `${name} (${form.method.value} ${form.amount.value} kg/ha) `;
+	b.innerHTML = `${name} (${form.amount.value} kg/ha) `;
 	button.className = 'btn fa fa-trash';
 	button.addEventListener('click', ev => {
 		ul.removeChild(ev.target.parentNode);
@@ -58,7 +57,8 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
-	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = data.price = data.type = undefined;
+	data.input.prices = csv2json(form.file);
+	data.fertilizers = data.applied = data.fertilizerID = data.amount = data.price = undefined;
 
 	fetch('/F4/requirements', {
 		method: 'POST',
@@ -135,7 +135,6 @@ form.addEventListener('change', ev => {
 		case 'fertilizerID':
 			let fertilizer;
 			(fertilizer = fertilizers[ev.target.value]) &&
-				(form.type.value = fertilizer.type) &&
 				(form.price.value = fertilizer.price) &&
 				fertilizersFields.forEach(field => {
 					fertilizer[field] !== undefined &&
@@ -146,8 +145,16 @@ form.addEventListener('change', ev => {
 			fertilizersFields.forEach(field => {
 				form[field].disabled = fertilizer !== undefined || !ev.target.value;
 			});
-			form.type.disabled = fertilizer !== undefined || !ev.target.value;
 			break;
+		case 'prices':
+			let file = ev.target.files[0],
+				reader;
+			if (!file) {
+				return false;
+			}
+			reader = new FileReader();
+			reader.onload = ev => form.file = ev.target.result;
+			reader.readAsText(file);
 		default:
 			break;
 	}
@@ -171,8 +178,7 @@ fetch('/F3/fertilizers/all').then(res => res.json()).then(data => {
 			K: f.potassium.Kcf,
 			N_ur: f.nitrogen.Ncf_ure,
 			S: f.sulphur.Scf,
-			price: f.price,
-			type: f.clasification
+			price: f.price
 		};
 	});
 }).catch(error => {
@@ -201,3 +207,11 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });
+
+fetch('/csv/F4/Fertilizers.csv').then(res => res.text()).then(data => form.file = data).catch(error => {
+	console.warn('Something went wrong.', error);
+});
+
+function csv2json (csv) {
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}

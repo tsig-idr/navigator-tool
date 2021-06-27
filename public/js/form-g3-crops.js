@@ -56,16 +56,10 @@ var farm, field, name;
 					(form[`input[crops][${i}][nutrient_requirements][Noutputs_terms][${name}]`].value = crop.nutrient_requirements.Noutputs_terms[name]);
 			});
 		if ('fertilization' in crop && crop.fertilization.length) {
-			let li;//names = ['fertilizerID', 'fertilizer_name', 'amount'];
+			let li;
 			crop.fertilization.forEach((fertilizer, j) => {
 				ul.appendChild(li = document.createElement('li'));
 				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount.toFixed(2)} kg/ha`;
-				/*names.forEach(name => {
-					li.appendChild(input = document.createElement('input'));
-					input.type = 'hidden';
-					input.name = `input[crops][${i}][fertilization][${j}][${name}]`;
-					input.value = fertilizer[name];
-				});*/
 			});
 		}
 	});

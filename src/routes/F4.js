@@ -25,6 +25,11 @@ module.exports = function () {
 		let	N = output.Ncrop,
 			P = output.P_maintenance,
 			K = output.K_maintenance;
+		liableFertilizers.forEach(fertilizer => {
+			let row;
+			(row = input.prices.find(row => row[0] == fertilizer.fertilizerID)) &&
+				(fertilizer.price = row[2]/1000);
+		});
 		res.json({
 			results: [
 				{

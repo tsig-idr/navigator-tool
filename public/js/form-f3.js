@@ -38,12 +38,16 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 			type: form.type.value,
 			amount: form.amount.value,
 			cost: form.price.value*form.amount.value,
-			method: form.method.value
+			method: form.method.value,
+			frequency: form.frequency.value
 		};
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
-	b.innerHTML = `${name} (${form.method.value} ${form.amount.value} kg/ha) `;
+	fertilizer.type == 'Organic' &&
+		(b.innerHTML = `${name} (${form.frequency.value} ${form.method.value} ${form.amount.value} kg/ha) `)
+	||
+		(b.innerHTML = `${name} (${form.method.value} ${form.amount.value} kg/ha) `);
 	button.className = 'btn fa fa-trash';
 	button.addEventListener('click', ev => {
 		ul.removeChild(ev.target.parentNode);
@@ -66,7 +70,8 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
-	data.fertilizers = data.applied = data.fertilizerID = data.method = data.amount = data.price = data.type = undefined;
+	data.input.prices = csv2json(form.file);
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
 	fertilizersFields.forEach(field => {
 		data[field] = undefined;
 	});
@@ -171,6 +176,7 @@ form.addEventListener('change', ev => {
 			let fertilizer;
 			(fertilizer = fertilizers[ev.target.value]) &&
 				(form.type.value = fertilizer.type) &&
+				(form.method.value = fertilizer.method) &&
 				(form.price.value = fertilizer.price) &&
 				fertilizersFields.forEach(field => {
 					fertilizer[field] !== undefined &&
@@ -189,6 +195,15 @@ form.addEventListener('change', ev => {
 			||
 				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = false);
 			break;
+		case 'prices':
+			let file = ev.target.files[0],
+				reader;
+			if (!file) {
+				return false;
+			}
+			reader = new FileReader();
+			reader.onload = ev => form.file = ev.target.result;
+			reader.readAsText(file);
 		default:
 			break;
 	}
@@ -224,7 +239,8 @@ form.addEventListener('change', ev => {
 				N_ur: f.nitrogen.Ncf_ure,
 				S: f.sulphur.Scf,
 				price: f.price,
-				type: f.clasification
+				type: f.clasification,
+				method: f.clasification == 'Organic' ? 'incorporated' : 'topdressing'
 			};
 		});
 		document.multiselect('#fertilizers').selectAll();
@@ -265,3 +281,11 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 fetch('/F3/climate-zones').then(res => res.json()).then(data => data.results.forEach(z => zones[z.climate_zone] = z)).catch(error => {
 	console.warn('Something went wrong.', error);
 });
+
+fetch('/csv/F3/Fertilizers.csv').then(res => res.text()).then(data => form.file = data).catch(error => {
+	console.warn('Something went wrong.', error);
+});
+
+function csv2json (csv) {
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}

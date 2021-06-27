@@ -384,6 +384,11 @@ module.exports = function () {
 			P = Math.max(P, 0);
 			K = Math.max(K, 0);
 		};
+		liableFertilizers.forEach(fertilizer => {
+			let row;
+			(row = input.prices.find(row => row[0] == fertilizer.fertilizerID)) &&
+				(fertilizer.price = row[2]/1000);
+		});
 		input.applied = input.applied || [];
 		input.fertilizers = [];
 		let output = await navF3Ctrl.requeriments(input),

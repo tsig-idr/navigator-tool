@@ -8,6 +8,18 @@ module.exports = function () {
 		input.irrigation = input.irrigationDose > 0;
 		input.cropDate = reformatDate(input.cropDate);
 		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
+		!input.NDVIreal &&
+			(input.NDVIreal = sp_csv2array('tmp/F1/default_NDVI_real.csv'));
+		!input.NDVItipo &&
+			(input.NDVItipo = sp_csv2array('tmp/F1/default_NDVI_tipo.csv'));
+		!input.Clima &&
+			(input.Clima = sp_csv2array('tmp/F1/default_Clima.csv'));
+		!input.Meteo &&
+			(input.Meteo = sp_csv2array('tmp/F1/default_Meteo.csv'));
+		!input.Riegos &&
+			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
+		!input.Fertiliza &&
+			(input.Fertiliza = sp_csv2array('tmp/F1/default_Fertiliza.csv'));
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
@@ -79,6 +91,14 @@ function reformatDate (date) {
 	(date = date.replace(/\-/g, '/')) &&
 	(date = date.split('/'));
 	return `${date[2]}/${date[1]}/${date[0]}`;
+}
+
+function sp_csv2array (filename) {
+	if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+		return null;
+	}
+	const csv = fs.readFileSync(filename, 'utf8');
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
 }
 
 function customEngine () {
@@ -153,13 +173,7 @@ function customEngine () {
 		return newtuples;
 	});
 	// Transforma un archivo CSV hispano a un array de arrays
-	engine.setFunction('user', 'SP_CSV2ARRAY', 1, filename => {
-		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
-			return null;
-		}
-		const csv = fs.readFileSync(filename, 'utf8');
-		return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
-	});
+	engine.setFunction('user', 'SP_CSV2ARRAY', 1, sp_csv2array);
 	// Transforma un archivo CSV estandar a un array de arrays
 	engine.setFunction('user', 'STD_CSV2ARRAY', 1, filename => {
 		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {

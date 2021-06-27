@@ -45,7 +45,7 @@ while i < n then begin '{'
 	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
 	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
 	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
-	frecu_application_amendment = IF (id == 'dc' || id == 'bc' || id == 'sn' || id == 'pt'; 0.5; 1)
+	frecu_application_amendment = 1.0
 	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
 	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
 	org_N_vol_applied = org_N_vol_applied + IF (clasification_fm == 'Organic'; N_bf*amount; 0)
@@ -61,12 +61,13 @@ while j < m then begin '{'
 	amount = GET (row, 'amount')
 	clasification_fm = GET (row, 'type')
 	method = GET (row, 'method')
+	frequency = GET (row, 'frequency')
 	Nc_i = GET (row, 'N')/100
 	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
 	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
 	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
 	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
-	frecu_application_amendment = IF (id == 'dc' || id == 'bc' || id == 'sn' || id == 'pt'; 0.5; 1)
+	frecu_application_amendment = IF (frequency == 'biennial'; 0.5; 1.0)
 	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
 	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
 	org_N_vol_applied = org_N_vol_applied + IF (clasification_fm == 'Organic'; N_bf*amount; 0)

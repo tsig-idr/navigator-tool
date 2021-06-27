@@ -63,7 +63,7 @@ form.querySelectorAll('button').forEach(button => {
 			});
 	});
 });
-document.querySelectorAll('[type="file"]').forEach(input => {
+form.querySelectorAll('[type="file"]').forEach(input => {
 	input.addEventListener('change', ev => {
 		var file = ev.target.files[0],
 			reader;

@@ -60,6 +60,18 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-3">
+									<label for="fertilizers" class="form-label mt-2 pull-right">List of current prices:</label>
+								</div>
+								<div class="col-sm-5">
+									<input class="form-control" id="prices" type="file" accept=".csv" />
+								</div>
+								<div class="col-sm-4">
+									<a href="/csv/F3/Fertilizers.csv">Download default prices</a>
+									<span>(used if you don't supply)<span>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
 									<label for="fertilizers" class="form-label mt-2 pull-right">Liable to be regarded for best fertilizer:</label>
 								</div>
 								<div class="col-sm-9">
@@ -85,22 +97,10 @@
 										<i class="fa fa-plus"></i>
 									</button>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-11">
 									<select class="form-select" id="fertilizerID" name="fertilizerID">
 										<option></option>
 										<option value="custom">CUSTOM</option>
-									</select>
-								</div>
-								<div class="col-sm-2">
-									<select disabled class="form-select" name="type">
-										<option value="Organic">Organic</option>
-										<option value="Inorganic">Inorganic</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<select class="form-select" name="method">
-										<option value="incorporated">Incorporated</option>
-										<option value="topdressing">Top-dressing</option>
 									</select>
 								</div>
 							</div>
