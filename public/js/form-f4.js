@@ -1,12 +1,13 @@
 var form = document.querySelector('form'),
 	ul = document.querySelector('ul'),
 	resultsDiv = form.querySelector('#results'),
-	resultsIds = ['requirements', 'fertilization'],
-	requirementsFields = ['Ncf', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
+	resultsIds = ['balance_input', 'balance_output', 'fertilization'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
 	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur'],
 	fertilizers = {},
-	applied = [];
+	crops = {},
+	applied = [],
+	farm;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
@@ -28,13 +29,19 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		fertilizer = {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
+			type: form.type.value,
+			amount: form.amount.value,
 			cost: form.price.value*form.amount.value,
-			amount: form.amount.value
+			method: form.method.value,
+			frequency: form.frequency.value
 		};
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
-	b.innerHTML = `${name} (${form.amount.value} kg/ha) `;
+	fertilizer.type == 'Organic' &&
+		(b.innerHTML = `${name} (${form.frequency.value} ${form.method.value} ${form.amount.value} kg/ha) `)
+	||
+		(b.innerHTML = `${name} (${form.method.value} ${form.amount.value} kg/ha) `);
 	button.className = 'btn fa fa-trash';
 	button.addEventListener('click', ev => {
 		ul.removeChild(ev.target.parentNode);
@@ -58,9 +65,11 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.input.prices = csv2json(form.file);
-	data.fertilizers = data.applied = data.fertilizerID = data.amount = data.price = undefined;
-
-	fetch('/F4/requirements', {
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
+	fertilizersFields.forEach(field => {
+		data[field] = undefined;
+	});
+	fetch('/F4/requirements?format=v', {
 		method: 'POST',
 		body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 		headers: {
@@ -69,17 +78,46 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	}).then(res => res.json()).then(data => {
 		resultsIds.forEach(id => {
 			const tbody = window[`${id}Tbody`];
-			while (tbody.lastChild) {
-				tbody.removeChild(tbody.lastChild);
+			if (id == 'fertilization') {
+				while (tbody.lastChild) {
+					tbody.removeChild(tbody.lastChild);
+				}
+			}
+			else {
+				tbody.querySelectorAll('tr').forEach(tr => {
+					while (tr.children.length > 1) {
+						tr.removeChild(tr.lastChild);
+					}
+				});
 			}
 		});
-		let i, j, crop, fertilizer, tr, td, value,
+		const cols = ['N', 'P', 'K'];
+		let i, j, k, crop, fertilizer, tr, td, value, total,
 			totalFertilization = {}, applied_;
 		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
-			requirementsTbody.appendChild(tr = document.createElement('tr'));
-			requirementsFields.forEach(field => {
-				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = parseFloat(crop.nutrient_requirements[field]).toFixed(2);
+			['input', 'output'].forEach(type => {
+				total = [0, 0, 0];
+				for (j in crop.balance[type]) {
+					tr = window[`balance_${type}Tbody`].querySelector(`[name=${j}]`);
+					value = crop.balance[type][j];
+					if (typeof value != 'object') {
+						tr.appendChild(td = document.createElement('td'));
+						td.innerHTML = (value = parseFloat(value)).toFixed();
+						total[0]+= value;
+					}
+					else {
+						for (k = 0; k < cols.length; k++) {
+							tr.appendChild(td = document.createElement('td'));
+							td.innerHTML = (value[cols[k]] = parseFloat(value[cols[k]])).toFixed();
+							total[k]+= value[cols[k]]; 
+						}
+					}
+				}
+				tr = window[`balance_${type}Tbody`].querySelector('[name=total]');
+				for (k = 0; k < cols.length; k++) {
+					tr.appendChild(td = document.createElement('td'));
+					td.innerHTML = total[k].toFixed();
+				}
 			});
 			applied_ = [];
 			applied.forEach(fertilizer => fertilizer && applied_.push({...fertilizer}));
@@ -106,7 +144,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 					fertilizationFields.forEach(field => {
 						tr.appendChild(td = document.createElement('td'));
 						fertilizer[field] !== undefined &&
-							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(2))
+							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(field == 'cost' ? 2 : 0))
 						||
 							(td.innerHTML = ' - ') &&
 							(value = 0);
@@ -119,32 +157,40 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			td.innerHTML = 'TOTAL';
 			fertilizationFields.forEach(field => {
 				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = totalFertilization[field].toFixed(2);
+				td.innerHTML = totalFertilization[field].toFixed(field == 'cost' ? 2 : 0);
 			});
 		}
 		resultsDiv.classList.remove('d-none');
+		window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
+		window.localStorage.setItem('farm', JSON.stringify({
+			crops: data.results
+		}));
+		form.querySelector('a.btn-secondary').classList.remove('disabled');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
 });
 form.addEventListener('change', ev => {
 	switch (ev.target.id) {
-		case 'water_supply':
-			form['input[dose_irrigation]'].disabled = ev.target.value == '0';
+		case 'crop_type':
+			form['input[crop_name]'].value = crops[ev.target.value].crop_name;
 			break;
 		case 'fertilizerID':
 			let fertilizer;
 			(fertilizer = fertilizers[ev.target.value]) &&
+				(form.type.value = fertilizer.type) &&
+				(form.method.value = fertilizer.method) &&
 				(form.price.value = fertilizer.price) &&
 				fertilizersFields.forEach(field => {
 					fertilizer[field] !== undefined &&
-						(form[field].value = fertilizer[field])
+						(form[field].value = fertilizer[field].toFixed(2))
 					||
 						(form[field].value = 0);
 				});
 			fertilizersFields.forEach(field => {
 				form[field].disabled = fertilizer !== undefined || !ev.target.value;
 			});
+			form.type.disabled = fertilizer !== undefined || !ev.target.value;
 			break;
 		case 'prices':
 			let file = ev.target.files[0],
@@ -170,7 +216,6 @@ fetch('/F3/fertilizers/all').then(res => res.json()).then(data => {
 			form[name].appendChild(option); 
 		}
 	});
-	document.multiselect('#fertilizers').selectAll();
 	data.results.forEach(f => {
 		fertilizers[f.fertilizerID] = {
 			N: f.nitrogen.Ncf,
@@ -178,9 +223,12 @@ fetch('/F3/fertilizers/all').then(res => res.json()).then(data => {
 			K: f.potassium.Kcf,
 			N_ur: f.nitrogen.Ncf_ure,
 			S: f.sulphur.Scf,
-			price: f.price
+			price: f.price,
+			type: f.clasification,
+			method: f.clasification == 'Organic' ? 'incorporated' : 'topdressing'
 		};
 	});
+	document.multiselect('#fertilizers').selectAll();
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });
@@ -204,10 +252,20 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 		form['input[crop_type]'].appendChild(optgroup); 
 	}
 	form['input[crop_type]'].value = null;
+	data.results.forEach(c => crops[c.cropID] = c);
+
+	let field, name;
+	(farm = window.localStorage.getItem('farm')) &&
+		(farm = JSON.parse(farm)).crops &&
+		farm.crops.forEach(crop => {
+			for (field in crop) {
+				(name = `input[${field}]`) in form && crop[field] !== '' &&
+					(form[name].value = crop[field]);
+			}
+		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });
-
 fetch('/csv/F4/Fertilizers.csv').then(res => res.text()).then(data => form.file = data).catch(error => {
 	console.warn('Something went wrong.', error);
 });

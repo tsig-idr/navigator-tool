@@ -1,8 +1,7 @@
 const form = document.querySelector('form'),
 	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
-	timestamp_c = window.localStorage.getItem('timestamp4G3_crops'),
-	timestamp_e = window.localStorage.getItem('timestamp4G3_energy');
+	timestamp_c = window.localStorage.getItem('timestamp4G_crops');
 
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
@@ -43,7 +42,7 @@ var farm, field, name;
 	(farm = JSON.parse(farm)).crops &&
 	farm.crops.forEach((crop, i) => {
 		for (field in crop) {
-			(name = `input[crops][${i}][${field}]`) in form &&
+			(name = `input[crops][${i}][${field}]`) in form && crop[field] !== '' &&
 				(form[name].value = crop[field]);
 		}
 		if ('fertilization' in crop && crop.fertilization.length) {
@@ -82,10 +81,9 @@ farm &&
 				div_.classList.add('mt-2');
 			});
 	});
-(button.disabled = !timestamp_c || !timestamp_e) &&
+(button.disabled = !timestamp_c) &&
 	(button.classList.add('d-none') || true) &&
 	(form.querySelectorAll('.alert-info').forEach(div => div.classList.add('d-none')) || true)
 ||
 	(form.querySelector('.alert-info[name=crops] i').innerHTML = timestamp_c) &&
-	(form.querySelector('.alert-info[name=energy] i').innerHTML = timestamp_e) &&
 	form.querySelector('.alert-warning').classList.add('d-none');

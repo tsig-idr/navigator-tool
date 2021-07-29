@@ -29,7 +29,7 @@ n = LEN (crops)
 i = 0
 while i < n then begin '{'
 	crop = GET (crops, i)
-	cropID = GET (crop, 'cropID')
+	crop_type = GET (crop, 'crop_type')
 	area = GET (crop, 'area')
 	yield = GET (crop, 'yield')
 	herb = GET (crop, 'herb')
@@ -47,11 +47,11 @@ while i < n then begin '{'
 	drain_rate = GET (crop, 'drain_rate')
 	drained = drain_rate <> 'Very low' && drain_rate <> 'Low'
 	organic = SOM > 30
-	crop_name = VLOOKUP (cropID; CropData; 3)
-	crop_group = VLOOKUP (cropID; CropData; 2)
-	Noutputs_terms = GET (GET (crop, 'nutrient_requirements'), 'Noutputs_terms')
-	Nleaching = GET (Noutputs_terms, 'Nleaching')
-	Nvolatilization = GET (Noutputs_terms, 'Nvolatilization')
+	crop_name = VLOOKUP (crop_type; CropData; 3)
+	crop_group = VLOOKUP (crop_type; CropData; 2)
+	output = GET (GET (crop, 'balance'), 'output')
+	Nleaching = GET (output, 'Nleaching')
+	Nvolatilization = GET (output, 'Nvolatilization')
 	fertilization = GET (crop, 'fertilization')
 	m = LEN (fertilization)
 	j = N2OfromFertilization = 0
@@ -70,14 +70,14 @@ while i < n then begin '{'
 	N2OfromLeaching = area*T23*44/28*Nleaching
 	N2OfromVolatilization = area*T24*44/28*Nvolatilization
 	N2OfromSoil = IF (drained && organic; area*VLOOKUP ('Organic soil'; N2O4soils; 2)*44/28; 0)
-	c_residues_A = VLOOKUP_NONSTRICT (cropID; T101; 13)
-	c_residues_B = VLOOKUP_NONSTRICT (cropID; T101; 14)
-	underground_biomass = VLOOKUP_NONSTRICT (cropID; T101; 15)
+	c_residues_A = VLOOKUP_NONSTRICT (crop_type; T101; 13)
+	c_residues_B = VLOOKUP_NONSTRICT (crop_type; T101; 14)
+	underground_biomass = VLOOKUP_NONSTRICT (crop_type; T101; 15)
 	f_renew = 1
 	f_remove = IF (residues == 'incorporated'; 0; 1)
-	N_res_ab = VLOOKUP_NONSTRICT (cropID; T101; 16)
-	N_res_bel = VLOOKUP_NONSTRICT (cropID; T101; 17)
-	dry_matter = VLOOKUP_NONSTRICT (cropID; T101; 9)
+	N_res_ab = VLOOKUP_NONSTRICT (crop_type; T101; 16)
+	N_res_bel = VLOOKUP_NONSTRICT (crop_type; T101; 17)
+	dry_matter = VLOOKUP_NONSTRICT (crop_type; T101; 9)
 	residue_dry_matter = c_residues_A*(yield*dry_matter) + c_residues_B
 	Nresidues_above = area*N_res_ab*residue_dry_matter*(1 - f_remove)*f_renew
 	N2OfromOverground = Nresidues_above*1000*VLOOKUP ('Crop residues'; N2O4soils; 2)*44/28
@@ -91,7 +91,7 @@ while i < n then begin '{'
 	CO2fromFungicides = area*insect*VLOOKUP ('fungicides'; CO24pesticides; 5)
 	CO2fromOther = area*otreat*VLOOKUP ('other treatments'; CO24pesticides; 5)
 	CO2fromPesticides = CO2fromPesticides + SUM (CO2fromHerbicides; CO2fromInsecticides; CO2fromFungicides; CO2fromOther)
-	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (cropID; T101; 20)
+	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (crop_type; T101; 20)
 	CO2fromMachinery = CO2fromMachinery + area*consumption*VLOOKUP (combustible; T35; 15)
 	SOC_ST_i = IF (organic; 0; SOC_ST)
 	name_FLU = SUM (IF (crop_name == 'Rice'; 'paddy rice'; 'annual crop'); ' '; temp_reg; ' '; moist_reg)

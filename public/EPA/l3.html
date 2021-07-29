@@ -23,13 +23,10 @@
 						<div class="row">
 							<div class="col-sm-6 offset-sm-3">
 								<div class="alert alert-warning text-center" role="alert">
-									To be able to run this form, <b>first you should run G3 for crops (GHG F3 Crops) and G3 for energy (GHG F3 Energy)</b>
+									To be able to run this form, <b>first you should run GHG for crops</b>
 								</div>
 								<div class="alert alert-info text-center" role="alert" name="crops">
-									You are using data corresponding to that G3 Crops execution done at &nbsp;<b><i></i></b>
-								</div>
-								<div class="alert alert-info text-center" role="alert" name="energy">
-									You are using data corresponding to that G3 Energy execution done at &nbsp;<b><i></i></b>
+									You are using data corresponding to that GHG Crops execution done at &nbsp;<b><i></i></b>
 								</div>
 							</div>
 						</div>
@@ -40,7 +37,7 @@
 							<div class="row">
 								<div class="col-sm-3">
 									<label for="crop_name" class="form-label">Crop</label>
-									<input required type="hidden" name="input[crops][0][cropID]" />
+									<input required type="hidden" name="input[crops][0][crop_type]" />
 									<input required readonly class="form-control" id="crop_name" name="input[crops][0][crop_name]" />
 								</div>
 								<div class="col-sm-3">
@@ -291,9 +288,17 @@
 					</div>
 					<br/>
 					<div class="d-flex align-items-center justify-content-center">
-						<button type="button" class="btn btn-warning">
-							<i class="fa fa-play"></i> Economic indicators
-						</button>
+						<div class="btn-group" role="group">
+							<a href="/nutrients/l3.html" class="btn btn-lg btn-secondary">
+								<i class="fa fa-chevron-left"></i> Nutrients
+							</a>
+							<a href="/GHG/l3-crops.html" class="btn btn-lg btn-secondary">
+								<i class="fa fa-chevron-left"></i> GHG
+							</a>
+							<button type="button" class="btn btn-lg btn-warning">
+								<i class="fa fa-play"></i> EPA
+							</button>
+						</div>
 					</div>
 					<br/>
 					<div class="table-responsive">

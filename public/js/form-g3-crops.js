@@ -1,7 +1,7 @@
 const form = document.querySelector('form'),
 	ul = form.querySelector('ul'),
 	button = form.querySelector('button'),
-	timestamp = window.localStorage.getItem('timestamp4F3');
+	timestamp = window.localStorage.getItem('timestamp4F');
 
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
@@ -11,13 +11,12 @@ button.addEventListener('click', () => {
 		return false;
 	}
 	const data = FormDataJson.formToJson(form);
-	let fcrop;
-	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
-		(fcrop = farm.crops.find(c => c.cropID == crop.cropID)) &&
-			(crop.fertilization = fcrop.fertilization) &&
-			(crop.nutrient_requirements = fcrop.nutrient_requirements) &&
-			(crop.dose_irrigation = fcrop.dose_irrigation);
-	});
+	data.input.crops = Object.values(data.input.crops);
+	let fcrop, i;
+	for (i = 0; i < data.input.crops.length; i++) {
+		(fcrop = farm.crops.find(c => c.crop_type == data.input.crops[i].crop_type)) &&
+			(data.input.crops[i] = {...fcrop, ...data.input.crops[i]});
+	}
 	farm = {...farm, ...data.input};
 
 	fetch('/G3/crops', {
@@ -35,8 +34,9 @@ button.addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
-		window.localStorage.setItem('timestamp4G3_crops', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4G_crops', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
+		form.querySelectorAll('a.btn-secondary').forEach(a => a.classList.remove('disabled'));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
@@ -47,13 +47,13 @@ var farm, field, name;
 	(farm = JSON.parse(farm)).crops &&
 	farm.crops.forEach((crop, i) => {
 		for (field in crop) {
-			(name = `input[crops][${i}][${field}]`) in form &&
+			(name = `input[crops][${i}][${field}]`) in form && crop[field] !== '' &&
 				(form[name].value = crop[field]);
 		}
-		'nutrient_requirements' in crop && 'Noutputs_terms' in crop.nutrient_requirements &&
+		'balance' in crop && 'output' in crop.balance &&
 			['Nleaching', 'Nvolatilization'].forEach(name => {
-				name in crop.nutrient_requirements.Noutputs_terms &&
-					(form[`input[crops][${i}][nutrient_requirements][Noutputs_terms][${name}]`].value = crop.nutrient_requirements.Noutputs_terms[name]);
+				name in crop.balance.output &&
+					(form[`input[crops][${i}][balance][output][${name}]`].value = crop.balance.output[name]);
 			});
 		if ('fertilization' in crop && crop.fertilization.length) {
 			let li;

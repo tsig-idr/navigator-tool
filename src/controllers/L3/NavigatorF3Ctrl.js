@@ -18,8 +18,19 @@ module.exports = function () {
 		return output;
 	}
 
+	async function data4fertilizers (input) {
+		!input.fertilizers &&
+			(input.fertilizers = []);
+
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F3', 'nbf.sc'), 'utf8'),
+			engine = customEngine(),
+			output = await sheetscript.run(engine, code, input, ['updated_fertilizers']);
+		return output;
+	}
+
 	return {
-		requeriments: requeriments
+		requeriments: requeriments,
+		data4fertilizers: data4fertilizers
 	}
 }
 

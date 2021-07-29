@@ -68,7 +68,7 @@ module.exports = function () {
 		};
 		fertilizers.forEach(fertilizer => {
 			model.variables[fertilizer.fertilizerID] = {
-				N: (fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
+				N: (fertilizer.Nbf || 0),
 				P: (fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
 				K: (fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
 				S: (fertilizer.Scf || fertilizer.sulphur.Scf || 0), 
@@ -84,6 +84,7 @@ module.exports = function () {
 				Q = solution[fertilizer.fertilizerID]; // %
 				bestFertilizers.push({
 					fertilizerID: fertilizer.fertilizerID,
+					nbf: fertilizer.Nbf,
 					fertilizer_name: fertilizer.fertilizer_name,
 					amount: Q*100,
 					N: Q*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),

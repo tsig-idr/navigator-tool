@@ -40,7 +40,7 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
-		window.localStorage.setItem('timestamp4G3_energy', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4G_energy', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
 	}).catch(error => {
 		console.warn('Something went wrong.', error);

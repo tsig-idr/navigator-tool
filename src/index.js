@@ -4,11 +4,12 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
-const F1Router = require('./routes/F1');
-const F3Router = require('./routes/F3');
-const F4Router = require('./routes/F4');
-const G3Router = require('./routes/G3');
-const E3Router = require('./routes/E3');
+const F1Router = require('./routes/F1').router;
+const F3Router = require('./routes/F3').router;
+const F4Router = require('./routes/F4').router;
+const G3Router = require('./routes/G3').router;
+const E3Router = require('./routes/E3').router;
+const FGERouter = require('./routes/FGE').router;
 /* ----------------- */
 
 dotenv.config();
@@ -38,6 +39,7 @@ app.use('/F3', F3Router());
 app.use('/F4', F4Router());
 app.use('/G3', G3Router());
 app.use('/E3', E3Router());
+app.use('/FGE', FGERouter());
 
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);

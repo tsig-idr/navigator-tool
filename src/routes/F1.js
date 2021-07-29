@@ -4,36 +4,40 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const navL1Ctrl = require('../controllers/L1/NavigatorF1Ctrl')();
 
-module.exports = function () {
+const dispatcher = async input => {
+	return await navL1Ctrl.nitro(input, calendarVars);
+};
+
+module.exports.router = function () {
 
 	router.post('/SWB', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json({
 			results: Object.values((await navL1Ctrl.swb(input, ['SWB4days'])).SWB4days)
 		});
 	}));
 
 	router.post('/SNB/daily', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json(await navL1Ctrl.nitro(input, ['results']));
 	}));
 	
 	router.post('/SNB/weekly', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json({
 			results: await navL1Ctrl.resume((await navL1Ctrl.nitro(input, ['results'])).results)
 		});
 	}));
 
 	router.post('/SNB/calendar', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object';
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json({
-			results: await navL1Ctrl.nitro(input, calendarVars)
+			results: await dispatcher(input)
 		});
 	}));
 
 	router.post('/SNB/full', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input && req.params.input === 'object',
+		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {},
 			nitro = await navL1Ctrl.nitro(input, ['results', ...calendarVars]),
 			resume = await navL1Ctrl.resume(nitro.results);
 		nitro.SNB4days = nitro.results;
@@ -45,7 +49,9 @@ module.exports = function () {
 	}));
 
 	return router;
-}
+};
+
+module.exports.dispatcher = dispatcher;
 
 const calendarVars = [
 	'presowing_N_extrA_1',

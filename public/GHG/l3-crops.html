@@ -22,10 +22,10 @@
 					<div class="row">
 						<div class="col-sm-8 offset-sm-2">
 							<div class="alert alert-warning text-center" role="alert">
-								To be able to run this form, <b>first you should run F3 for a crop (Nutrients F3 v2)</b>
+								To be able to run this form, <b>first you should run nutrients for a crop</b>
 							</div>
 							<div class="alert alert-info text-center" role="alert">
-								You are using data corresponding to that F3 execution done at &nbsp;<b><i></i></b> 
+								You are using data corresponding to that nutrients execution done at &nbsp;<b><i></i></b> 
 							</div>
 						</div>
 					</div>
@@ -35,7 +35,7 @@
 							<div class="row">
 								<div class="col-sm-4">
 									<label for="crop_name" class="form-label">Crop</label>
-									<input required type="hidden" name="input[crops][0][cropID]" />
+									<input required type="hidden" name="input[crops][0][crop_type]" />
 									<input required readonly class="form-control" id="crop_name" name="input[crops][0][crop_name]" />
 								</div>
 								<div class="col-sm-2">
@@ -138,11 +138,11 @@
 											<div class="row">
 												<div class="col-sm-6">
 													<label for="leaching" class="form-label">Leaching (kg/ha)</label>
-													<input required readonly type="number" class="form-control" id="leaching" name="input[crops][0][nutrient_requirements][Noutputs_terms][Nleaching]" />
+													<input required readonly type="number" class="form-control" id="leaching" name="input[crops][0][balance][output][Nleaching]" />
 												</div>
 												<div class="col-sm-6">
 													<label for="volatilization" class="form-label">Volatilization (kg/ha)</label>
-													<input required readonly type="number" class="form-control" id="volatilization" name="input[crops][0][nutrient_requirements][Noutputs_terms][Nvolatilization]" />
+													<input required readonly type="number" class="form-control" id="volatilization" name="input[crops][0][balance][output][Nvolatilization]" />
 												</div>
 											</div>
 										</div>
@@ -226,9 +226,17 @@
 					</div>
 					<br/>
 					<div class="d-flex align-items-center justify-content-center">
-						<button type="button" class="btn btn-warning">
-							<i class="fa fa-play"></i> GHG emissions
-						</button>
+						<div class="btn-group" role="group">
+							<a href="/nutrients/l3.html" class="btn btn-lg btn-secondary">
+								<i class="fa fa-chevron-left"></i> Nutrients
+							</a>
+							<button type="button" class="btn btn-lg btn-warning">
+								<i class="fa fa-play"></i> GHG
+							</button>
+							<a href="/EPA/l3.html" class="btn btn-lg btn-secondary disabled">
+								EPA <i class="fa fa-chevron-right"></i>
+							</a>
+						</div>
 					</div>
 					<br/>
 					<div class="table-responsive">

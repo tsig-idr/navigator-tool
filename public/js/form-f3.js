@@ -1,19 +1,15 @@
 var form = document.querySelector('form'),
 	ul = document.querySelector('ul'),
 	resultsDiv = form.querySelector('#results'),
-	resultsIds = ['balance', 'requirements', 'fertilization'],
-	balanceFields = {
-		Ninputs_terms: ['Nmineralization', 'Nfixation', 'Nwater', 'NminInitial'],
-		Noutputs_terms: ['Nleaching', 'Nuptake', 'Ndenitrification', 'NminPostharvest', 'Nvolatilization']
-	},
-	requirementsFields = ['Ncf_avg', 'Ncf_min', 'Ncf_max', 'Pcf', 'Kcf', 'P2O5cf', 'K2Ocf'],
+	resultsIds = ['balance_input', 'balance_output', 'fertilization'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
 	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur'],
 	fertilizers = {},
 	crops = {},
 	soils = {},
 	zones = {},
-	applied = [];
+	applied = [],
+	farm;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
@@ -75,7 +71,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	fertilizersFields.forEach(field => {
 		data[field] = undefined;
 	});
-	fetch('/F3/requirements', {
+	fetch('/F3/requirements?format=v', {
 		method: 'POST',
 		body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 		headers: {
@@ -84,24 +80,46 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	}).then(res => res.json()).then(data => {
 		resultsIds.forEach(id => {
 			const tbody = window[`${id}Tbody`];
-			while (tbody.lastChild) {
-				tbody.removeChild(tbody.lastChild);
+			if (id == 'fertilization') {
+				while (tbody.lastChild) {
+					tbody.removeChild(tbody.lastChild);
+				}
 			}
-		});
-		let i, j, crop, fertilizer, tr, td, value,
-			totalFertilization = {}, applied_;
-		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
-			balanceTbody.appendChild(tr = document.createElement('tr'));
-			for (j in balanceFields) {
-				balanceFields[j].forEach(field => {
-					tr.appendChild(td = document.createElement('td'));
-					td.innerHTML = parseFloat(crop.nutrient_requirements[j][field]).toFixed();
+			else {
+				tbody.querySelectorAll('tr').forEach(tr => {
+					while (tr.children.length > 1) {
+						tr.removeChild(tr.lastChild);
+					}
 				});
 			}
-			requirementsTbody.appendChild(tr = document.createElement('tr'));
-			requirementsFields.forEach(field => {
-				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = parseFloat(crop.nutrient_requirements[field]).toFixed();
+		});
+		const cols = ['N', 'P', 'K'];
+		let i, j, k, crop, fertilizer, tr, td, value, total,
+			totalFertilization = {}, applied_;
+		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
+			['input', 'output'].forEach(type => {
+				total = [0, 0, 0];
+				for (j in crop.balance[type]) {
+					tr = window[`balance_${type}Tbody`].querySelector(`[name=${j}]`);
+					value = crop.balance[type][j];
+					if (typeof value != 'object') {
+						tr.appendChild(td = document.createElement('td'));
+						td.innerHTML = (value = parseFloat(value)).toFixed();
+						total[0]+= value;
+					}
+					else {
+						for (k = 0; k < cols.length; k++) {
+							tr.appendChild(td = document.createElement('td'));
+							td.innerHTML = (value[cols[k]] = parseFloat(value[cols[k]])).toFixed();
+							total[k]+= value[cols[k]]; 
+						}
+					}
+				}
+				tr = window[`balance_${type}Tbody`].querySelector('[name=total]');
+				for (k = 0; k < cols.length; k++) {
+					tr.appendChild(td = document.createElement('td'));
+					td.innerHTML = total[k].toFixed();
+				}
 			});
 			applied_ = [];
 			applied.forEach(fertilizer => fertilizer && applied_.push({...fertilizer}));
@@ -145,17 +163,18 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			});
 		}
 		resultsDiv.classList.remove('d-none');
-		window.localStorage.setItem('timestamp4F3', (new Date).toLocaleString());
+		window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify({
 			crops: data.results
 		}));
+		form.querySelector('a.btn-secondary').classList.remove('disabled');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
 });
 form.addEventListener('change', ev => {
 	switch (ev.target.id) {
-		case 'crop':
+		case 'crop_type':
 			form['input[crop_name]'].value = crops[ev.target.value].crop_name;
 			form['input[HI_est]'].value = crops[ev.target.value].harvest.HI_est;
 			form['input[Nc_h]'].value = crops[ev.target.value].harvest.Nc_h_typn;
@@ -252,7 +271,6 @@ form.addEventListener('change', ev => {
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 }));
-
 fetch('/F3/crops').then(res => res.json()).then(data => {
 	const groups = data.results.reduce((cs, c) => {
 		!(c.group in cs) &&
@@ -270,21 +288,32 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 			option.innerHTML = crop.crop_name;
 			optgroup.appendChild(option); 
 		}
-		form['input[cropID]'].appendChild(optgroup); 
+		form['input[crop_type]'].appendChild(optgroup); 
 	}
+	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
-	form['input[cropID]'].value = null;
+	
+	let field, name;
+	(farm = window.localStorage.getItem('farm')) &&
+		(farm = JSON.parse(farm)).crops &&
+		farm.crops.forEach(crop => {
+			for (field in crop) {
+				(name = `input[${field}]`) in form &&
+					(form[name].value = crop[field]) && crop[field] !== '' &&
+					field == 'PK_strategy' &&
+						form[name].value == 'maintenance' &&
+							(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = true);
+			}
+		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });
-
 fetch('/F3/climate-zones').then(res => res.json()).then(data => data.results.forEach(z => zones[z.climate_zone] = z)).catch(error => {
 	console.warn('Something went wrong.', error);
 });
-
 fetch('/csv/F3/Fertilizers.csv').then(res => res.text()).then(data => form.file = data).catch(error => {
 	console.warn('Something went wrong.', error);
-});
+});;
 
 function csv2json (csv) {
 	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));

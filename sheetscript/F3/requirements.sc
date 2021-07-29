@@ -1,5 +1,4 @@
 y = yield
-crop_type = cropID
 export_r_ = export_r/100
 HI_est_ = HI_est/100
 CV_ = CV/100
@@ -28,8 +27,14 @@ pH4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'pH4vol.csv'))
 CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CEC4vol.csv'))
 
 vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) + VLOOKUP (CEC/10; CEC4vol; 2; 1) + 0-0.402)
-Nc_mineralization_amendment = inorg_N_vol_applied = org_N_vol_applied = inorg_N_vol_planned = org_N_vol_planned = 0
-N = N_final_losses = 0
+
+drain_rate = VLOOKUP (soil_texture; SoilData; 5)
+j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
+inorgDrain = GET (GET (Drainage, IF (tilled == 'no'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
+orgDrain = IF (tilled == 'yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)
+
+Nc_mineralization_amendment = 0
+N_total_losses_vol = N_total_losses_deni = 0
 n = LEN (fertilizers)
 i = 0
 while i < n then begin '{'
@@ -42,15 +47,17 @@ while i < n then begin '{'
 	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
 	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
 	method = VLOOKUP (id; Fertilizers_aux; 2)
-	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
-	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
-	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
+	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
+	N_bf_vol = Nc_i*(1 - vol_losses)
+	deni_losses = IF (clasification_fm == 'Inorganic'; inorgDrain; orgDrain)
+	N_bf_deni = Nc_i*(1 - deni_losses)
+	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
 	frecu_application_amendment = 1.0
-	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
-	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
-	org_N_vol_applied = org_N_vol_applied + IF (clasification_fm == 'Organic'; N_bf*amount; 0)
-	N = N + Nc_i*amount
-	N_final_losses = N_final_losses + N_bf*amount
+	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
+	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
+	N_losses_vol = N_raw*vol_losses
+	N_total_losses_vol = N_total_losses_vol + N_losses_vol
+	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
 	i = i + 1
 '}' end
 m = LEN (applied)
@@ -64,15 +71,17 @@ while j < m then begin '{'
 	frequency = GET (row, 'frequency')
 	Nc_i = GET (row, 'N')/100
 	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
-	N_bf = Nc_i*(1 - EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c)
-	dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 21); 0)
-	dm_amendment = IF (dm_amendment == ''; 0; dm_amendment)
-	frecu_application_amendment = IF (frequency == 'biennial'; 0.5; 1.0)
-	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*dm_amendment*amount*frecu_application_amendment
-	inorg_N_vol_applied = inorg_N_vol_applied + IF (clasification_fm == 'Inorganic'; N_bf*amount; 0)
-	org_N_vol_applied = org_N_vol_applied + IF (clasification_fm == 'Organic'; N_bf*amount; 0)
-	N = N + Nc_i*amount
-	N_final_losses = N_final_losses + N_bf*amount
+	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
+	N_bf_vol = Nc_i*(1 - vol_losses)
+	deni_losses = IF (clasification_fm == 'Inorganic'; inorgDrain; orgDrain)
+	N_bf_deni = Nc_i*(1 - deni_losses)
+	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
+	frecu_application_amendment = IF (clasification_fm == 'Inorganic'; 1.0; IF (frequency == 'annual'; 1.0; 0.5))
+	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
+	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
+	N_losses_vol = N_raw*vol_losses
+	N_total_losses_vol = N_total_losses_vol + N_losses_vol
+	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
 	j = j + 1
 '}' end
 
@@ -130,9 +139,9 @@ K2O_minBM = K_minBM*1.205
 K2O_maxBM = K_maxBM*1.205
 K2O_maintenance = K_maintenance*1.205
 
-factor_humidity = VLOOKUP (climatic_zone; Clima; 2)
+factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
 Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity
-Nmineralization = Nc_mineralization_SOM + Nc_mineralization_amendment
+Nmineralization = Nc_mineralization_SOM
 
 n_fix_code = VLOOKUP (crop_type; CropData; 7)
 n_fix_per = IF (n_fix_code == 'Non_legume'; 0; VLOOKUP (CONCAT (n_fix_code; CONCAT (IF (SOM <= 3; '<=3'; '>3'); VLOOKUP (crop_type; CropData; 8))); n_fix_per; 2))
@@ -162,22 +171,18 @@ Nuptake = (h_dm_med_50*Nc_h_ + r_dm_med_50*Nc_r)*(1 + fnr)
 Nuptake_min = (h_dm_med_20*Nc_h_ + (h_dm_med_20*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 Nuptake_max = (h_dm_med_80*Nc_h_ + (h_dm_med_80*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 
-drain_rate = VLOOKUP (soil_texture; SoilData; 5)
-j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
-inorgDrain = GET (GET (Drainage, IF (tilled == 'no'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
-orgDrain = IF (tilled == 'yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)
-Ndenitrification = SUM (inorgDrain*(inorg_N_vol_applied + inorg_N_vol_planned); orgDrain*(org_N_vol_applied + org_N_vol_planned))
+Ndenitrification = N_total_losses_deni
 Ndenitrification_min = Ndenitrification*(SUM (Nleaching; Nuptake_min; Nc_s_end) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_min)
 Ndenitrification_max = Ndenitrification*(SUM (Nleaching; Nuptake_max; Nc_s_end) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end) - input_max)
 
-Nvolatilization = N - N_final_losses
+Nvolatilization = N_total_losses_vol
 Nvolatilization_min = Nvolatilization*(SUM (Nleaching; Nuptake_min; Nc_s_end; Ndenitrification_min) - input_min)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_min)
 Nvolatilization_max = Nvolatilization*(SUM (Nleaching; Nuptake_max; Nc_s_end; Ndenitrification_max) - input_max)/(SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification) - input_max)
 
 input_avg = input_min = input_max = SUM (Nmineralization; Nfixation; Nirrigation; Nc_s_initial)
-output_avg = SUM (Nleaching; Nuptake; Nc_s_end; Ndenitrification; Nvolatilization)
-output_min = SUM (Nleaching; Nuptake_min; Nc_s_end; Ndenitrification_min; Nvolatilization_min)
-output_max = SUM (Nleaching; Nuptake_max; Nc_s_end; Ndenitrification_max; Nvolatilization_max)
+output_avg = SUM (Nleaching; Nuptake; Nc_s_end)
+output_min = SUM (Nleaching; Nuptake_min; Nc_s_end)
+output_max = SUM (Nleaching; Nuptake_max; Nc_s_end)
 
 Ncrop_avg = MAX (output_avg - input_avg; 0)
 Ncrop_min = MAX (output_min - input_min; 0)

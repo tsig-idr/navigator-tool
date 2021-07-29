@@ -53,15 +53,15 @@ P7-15-6;Fosfoplus 7-15-6 + 5%S + 9% PHC;100000
 P8-8-10;Fosfoplus 8-8-10 + 5%S + 9% PHC;100000
 sP18;Superphosphate 18%;242
 sP45;Superphosphate 45%;320
-acP;acid phosphoric;641
+acP;Acid phosphoric;641
 U46;Urea 46%;345
-U46i;Urea 46%+ Inhibidor;100000
-U40S;Urea 40%+ Azufre (YARA Sulfamid);280
-AumNS26;ammonium nitrophosphate 26%;290
-AumNS21;ammonium nitrophosphate 21%;100000
-soN32;Solución N-32;240
-soN20;Solución N-20;175
-soN26;Solución N-26;100000
+U46i;Urea 46%+ Inhibitor;100000
+U40S;Urea 40%+ Sulfur (YARA Sulfamid);280
+AumNS26;Ammonium nitrophosphate 26%;290
+AumNS21;Ammonium nitrophosphate 21%;100000
+soN32;Solution N-32;240
+soN20;Solution N-20;175
+soN26;Solution N-26;100000
 CaNso;Calcium nitrate solution;920
 MgNso;Magnesium nitrate solution;100000
 N33;Nitro33;100000
