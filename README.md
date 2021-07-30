@@ -144,10 +144,10 @@ And the input params which should be sent in the body of the POST request for th
 ```JSON
 {
 	"input": {
-		"cropID": "BARLEY_6_ROW",
+		"crop_type": "BARLEY_6_ROW",
 		"yield": 10000,
 		"water_supply": "1",
-		"dose_irrigation": 4000,
+		"climatic_zone": "atlantic",
 	}
 }
 ```
@@ -411,6 +411,8 @@ Nutrient requirements calculation module: Nitrogen, Phosphorus and potassium, ba
 Parcel and crop characteristics.
 
 * F3: Empirical models. ITAP. Crop cycle nutrient balance. parcel and crop characteristics.
+
+* F4: Same as F3 but with simplified user inputs.
 
 ## GHG 
 
