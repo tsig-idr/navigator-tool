@@ -109,7 +109,7 @@ For its part, the input params which should be sent in the body of the POST requ
 ```JSON
 {
 	"input": {
-		"cropID": "BARLEY_6_ROW",
+		"crop_type": "BARLEY_6_ROW",
 		"soil_texture": "loam",
 		"Pc_method": "olsen",
 		"climatic_zone": "atlantic",
@@ -120,9 +120,14 @@ For its part, the input params which should be sent in the body of the POST requ
 		"export_r": 100,
 		"depth_s": 0.5,
 		"HI_est": 40,
+		"Nc_h": 2.3,
+		"Pc_h": 0.36,
+		"Kc_h": 0.49,
 		"Pc_s": 10,
-		"Kc_s": 0.026,
+		"Kc_s": 10,
 		"yield": 10000,
+		"pH": 8,
+		"CEC": 100,
 		"CV": 20,
 		"SOM": 1.8,
 		"Nc_s_initial": 4,
@@ -139,10 +144,10 @@ And the input params which should be sent in the body of the POST request for th
 ```JSON
 {
 	"input": {
-		"cropID": "BARLEY_6_ROW",
+		"crop_type": "BARLEY_6_ROW",
 		"yield": 10000,
 		"water_supply": "1",
-		"dose_irrigation": 4000,
+		"climatic_zone": "atlantic",
 	}
 }
 ```
@@ -406,6 +411,8 @@ Nutrient requirements calculation module: Nitrogen, Phosphorus and potassium, ba
 Parcel and crop characteristics.
 
 * F3: Empirical models. ITAP. Crop cycle nutrient balance. parcel and crop characteristics.
+
+* F4: Same as F3 but with simplified user inputs.
 
 ## GHG 
 
