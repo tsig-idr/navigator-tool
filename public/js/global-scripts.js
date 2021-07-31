@@ -2,7 +2,7 @@
 (function () {
     'use strict'
   
-    fetch("/global/navbar.html")
+    fetch("/navbar.html")
       .then(response => {
         return response.text()
       })
@@ -10,7 +10,7 @@
         document.querySelector("navbar").innerHTML = data;
       });
     
-    fetch("/global/footer.html")
+    fetch("/footer.html")
       .then(response => {
         return response.text()
       })

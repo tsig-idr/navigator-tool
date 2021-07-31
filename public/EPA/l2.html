@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR TOOL E2</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="../css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>NAVIGATOR TOOL E2</h2>
+					<p>This module implements the EPA calculations</p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<div class="card">
+						<h5 class="card-header">Farm</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<label for="crop_type" class="form-label">Member state</label>
+									<select required class="form-select" id="state" data-next="region" name="input[state]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="crop_type" class="form-label">Region</label>
+									<select required class="form-select" id="region" data-next="tf8_grouping" name="input[region]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="crop_type" class="form-label">TF8 grouping</label>
+									<select required class="form-select" id="tf8_grouping" data-next="economic_size" name="input[tf8_grouping]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="crop_type" class="form-label">Economic size</label>
+									<select required class="form-select" id="economic_size" name="input[economic_size]"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="btn-group" role="group">
+							<a href="/nutrients/l3.html" class="btn btn-lg btn-secondary">
+								<i class="fa fa-chevron-left"></i> Nutrients
+							</a>
+							<a href="/GHG/l3-crops.html" class="btn btn-lg btn-secondary">
+								<i class="fa fa-chevron-left"></i> GHG
+							</a>
+							<button type="button" class="btn btn-lg btn-warning">
+								<i class="fa fa-play"></i> EPA
+							</button>
+						</div>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none">
+							<thead></thead>
+							<tbody>
+								<tr>
+									<td>
+										<b>Total labour input (AWU)</b>
+									</td>
+									<td name="SE010"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total Utilised Agricultural Area (ha)</b>
+									</td>
+									<td name="SE025"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total livestock units (LU)</b>
+									</td>
+									<td name="SE080"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total output (&euro;/farm)</b>
+									</td>
+									<td name="SE131"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total output / Total input (ratio)</b>
+									</td>
+									<td name="SE132"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total output crops & crop production (&euro;/farm)</b>
+									</td>
+									<td name="SE135"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total crops output (&euro;/ha)</b>
+									</td>
+									<td name="SE136"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total output livestock & livestock products (&euro;/farm)</b>
+									</td>
+									<td name="SE206"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total Inputs (&euro;)</b>
+									</td>
+									<td name="SE270"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total specific costs (&euro;)</b>
+									</td>
+									<td name="SE281"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Specific crop costs (&euro;/ha)</b>
+									</td>
+									<td name="SE284"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Seeds and plants (&euro;)</b>
+									</td>
+									<td name="SE285"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Fertilisers (&euro;)</b>
+									</td>
+									<td name="SE295"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Crop protection (&euro;)</b>
+									</td>
+									<td name="SE300"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Other crop specific costs (&euro;)</b>
+									</td>
+									<td name="SE305"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Specific livestock costs (&euro;/LU)</b>
+									</td>
+									<td name="SE309"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Energy (&euro;)</b>
+									</td>
+									<td name="SE345"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Gross Farm Income (&euro;)</b>
+									</td>
+									<td name="SE410"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Farm Net Value Added (&euro;)</b>
+									</td>
+									<td name="SE415"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Farm Net Value Added (&euro;/AWU)</b>
+									</td>
+									<td name="SE425"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Total subsidies - excluding on investments (&euro;)</b>
+									</td>
+									<td name="SE605"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+		<script src="/js/form-e2.js"></script>
+		<script src="/js/global-scripts.js"></script>
+	</body>
+</html>

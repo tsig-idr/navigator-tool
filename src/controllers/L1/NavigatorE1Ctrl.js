@@ -5,7 +5,7 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function epa (input, outputnames) {
-		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'E3', 'epa.sc'), 'utf8'),
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'E1', 'epa.sc'), 'utf8'),
 			engine = customEngine(),
 			output = await sheetscript.run(engine, code, input, outputnames);
 		return output;

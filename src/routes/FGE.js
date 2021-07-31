@@ -4,14 +4,14 @@ const router = require('express').Router();
 const path = require('path');
 const fs = require('fs');
 const asyncHandler = require('express-async-handler');
-const { prototype } = require('../controllers/model/NavigatorNutrient3Model');
 
 const dispatchers = {
 	F1: require('./F1').dispatcher,
 	F3: require('./F3').dispatcher,
 	F4: require('./F4').dispatcher,
 	G3: require('./G3').dispatcher.crops,
-	E3: require('./E3').dispatcher
+	E1: require('./E1').dispatcher,
+	E2: require('./E2').dispatcher
 };
 
 module.exports.router = function () {

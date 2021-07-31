@@ -2,20 +2,30 @@
 
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const navE3Ctrl = require('../controllers/L3/NavigatorE3Ctrl')();
+const navE2Ctrl = require('../controllers/L2/NavigatorE2Ctrl')();
 const dispatcher = async input => {
-	!input.electricity &&
-		(input.electricity = []);
-	!input.energy &&
-		(input.energy = []);
-	!input.biomass &&
-		(input.biomass = []);
-	!input.fuels &&
-		(input.fuels = []);
-	return await navE3Ctrl.epa(input, [
-		'TDC',
-		'GM',
-		'OI'
+	return await navE2Ctrl.epa(input, [
+		'SE010', 
+		'SE025',
+		'SE080',
+		'SE131',
+		'SE132',
+		'SE135',
+		'SE136',
+		'SE206',
+		'SE270',
+		'SE281',
+		'SE284',
+		'SE285',
+		'SE295',
+		'SE300',
+		'SE305',
+		'SE309',
+		'SE345',
+		'SE410',
+		'SE415',
+		'SE425',
+		'SE605'
 	]);
 };
 module.exports.router = function () {
