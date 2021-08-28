@@ -8,7 +8,6 @@ module.exports = function () {
 	var datasource = 'fertilizers-data-excel.json';
 
 	function get (names, but_names) {
-
 		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
 		names && but_names &&
 			(fertilizers = fertilizers.filter(fertilizer => names.includes(fertilizer.fertilizerID) && !but_names.includes(fertilizer.fertilizerID)))
@@ -22,7 +21,6 @@ module.exports = function () {
 	}
 
 	function getOrganic (names, but_names) {
-
 		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
 		fertilizers = fertilizers.filter(fertilizer => fertilizer.clasification == 'organic');
 		names && but_names &&
@@ -37,13 +35,11 @@ module.exports = function () {
 	}
 
 	function getFertilizerID (fertilizerID) {
-
 		let fertilizers = JSON.parse(fs.readFileSync(path.join(path.resolve(), 'data', datasource), 'utf8'));
 		return fertilizers.find(fertilizer => fertilizer.fertilizerID === fertilizerID);
 	}
 
 	function bestCombination (fertilizers, N_req, P_req, K_req, S_req, lim_N_ur) {
-		
 		const model = {
 			optimize: 'price',
 			opType: 'min',
@@ -99,8 +95,42 @@ module.exports = function () {
 		return bestFertilizers;
 	}
 
+	function bestOne (fertilizers, N_req, P_req, K_req) {
+		let Nbf, Pcf, Kcf,
+			bestCost = Number.MAX_SAFE_INTEGER,
+			bestFertilizer = null,
+			amount, cost;
+		fertilizers.forEach(fertilizer => {
+			Nbf = fertilizer.Nbf || 0;
+			Pcf = fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0;
+			Kcf = fertilizer.Kcf || fertilizer.potassium.Kcf || 0;
+			if (!fertilizer.price || N_req && !Nbf || P_req && !Pcf || K_req && !Kcf) {
+				return;
+			}
+			Nbf /= 100;
+			Pcf /= 100;
+			Kcf /= 100;
+			amount = Math.max(N_req ? N_req/Nbf : 0, P_req ? P_req/Pcf : 0, K_req ? K_req/Kcf : 0);
+			cost = price*amount;
+			if (cost < bestCost) {
+				bestCost = cost;
+				bestFertilizer = {
+					fertilizerID: fertilizer.fertilizerID,
+					fertilizer_name: fertilizer.fertilizer_name,
+					amount: amount,
+					N: amount*Ncf,
+					P: amount*Pcf,
+					K: amount*Kcf,
+					S: amount*Scf,
+					N_ur: amount*Ncf_ur,
+					cost: amount*fertilizer.price
+				};
+			}
+		});
+		return bestFertilizer;
+	}
+
 	function aggregate (fertilizers) {
-		
 		const aggregated = {
 			amount: 0,
 			N: 0,
@@ -127,6 +157,7 @@ module.exports = function () {
 		getFertilizerID: getFertilizerID,
 		getOrganic: getOrganic,
 		bestCombination: bestCombination,
+		bestOne: bestOne,
 		aggregate: aggregate
 	}
 }

@@ -15,7 +15,11 @@ const dispatcher = async input => {
 	return await navE1Ctrl.epa(input, [
 		'TDC',
 		'GM',
-		'OI'
+		'OI',
+		'UCP',
+		'GMH',
+		'UGM',
+		'CPH',
 	]);
 };
 module.exports.router = function () {

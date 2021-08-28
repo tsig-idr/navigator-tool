@@ -133,6 +133,24 @@
 						<h5 class="card-header">Farm</h5>
 						<div class="card-body">
 							<div class="row">
+								<div class="col-sm-3">
+									<label for="state" class="form-label">Member state</label>
+									<select required class="form-select" id="state" data-next="region" name="input[state]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="region" class="form-label">Region</label>
+									<select required class="form-select" id="region" data-next="tf8_grouping" name="input[region]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="tf8_grouping" class="form-label">TF8 grouping</label>
+									<select required class="form-select" id="tf8_grouping" data-next="economic_size" name="input[tf8_grouping]"></select>
+								</div>
+								<div class="col-sm-3">
+									<label for="economic_size" class="form-label">Economic size</label>
+									<select required class="form-select" id="economic_size" name="input[economic_size]"></select>
+								</div>
+							</div>
+							<div class="row mt-3">
 								<div class="col-sm-12">
 									<div class="card">
 										<h6 class="card-header">Energy</h6>
@@ -303,25 +321,59 @@
 					<br/>
 					<div class="table-responsive">
 						<table class="table table-warning d-none">
-							<thead></thead>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Yours</th>
+									<th>Difference with alike farms (FADN)</th>
+								</tr>
+							</thead>
 							<tbody>
 								<tr>
 									<td>
 										<b>Total direct costs (&euro;)</b>
 									</td>
 									<td name="TDC"></td>
+									<td name="SE281" class="d-none"></td>
+									<td data-value="TDC" data-avg="SE281"></td>
 								</tr>
 								<tr>
 									<td>
 										<b>Gross margin (&euro;)</b>
 									</td>
 									<td name="GM"></td>
+									<td name="SE410" class="d-none"></td>
+									<td data-value="GM" data-avg="SE410"></td>
 								</tr>
 								<tr>
 									<td>
 										<b>Operating income (&euro;)</b>
 									</td>
 									<td name="OI"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Unit cost of production (&euro;/kg)</b>
+									</td>
+									<td name="UCP"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Gross margin per hectare (&euro;/ha)</b>
+									</td>
+									<td name="GMH"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Unit gross margin (&euro;/kg)</b>
+									</td>
+									<td name="UGM"></td>
+								</tr>
+								<tr>
+									<td>
+										<b>Costs Production per hectare (&euro;/ha)</b>
+									</td>
+									<td name="CPH"></td>
 								</tr>
 							</tbody>
 						</table>

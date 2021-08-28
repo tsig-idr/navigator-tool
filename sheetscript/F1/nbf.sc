@@ -5,6 +5,7 @@ Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Fertilizers_aux.csv'
 pH4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'pH4vol.csv'))
 CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CEC4vol.csv'))
 
+CEC = VLOOKUP (soil_texture; SoilData; 33)
 vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) + VLOOKUP (CEC/10; CEC4vol; 2; 1) + 0-0.402)
 drain_rate = VLOOKUP (soil_texture; SoilData; 5)
 j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
@@ -26,6 +27,9 @@ while i < n then begin '{'
 	N_bf_deni = Nc_i*(1 - IF (clasification_fm == 'Inorganic'; inorgDrain; orgDrain))
 	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
 	SET (row, 'Nbf', N_bf*100)
+	SET (row, 'method', method)
+	SET (row, 'classification', clasification_fm)
+	SET (row, 'name', VLOOKUP (id; Fertilizers; 2))
 	i = i + 1
 '}' end
 

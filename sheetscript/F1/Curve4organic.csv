@@ -1,0 +1,29 @@
+Tipo fertilizante ;;a;b
+Cow manure;Estiércol de vaca;-0,042;0,3354
+Dairy Cow;Vaca lechera;-0,042;0,3354
+Dairy Heifer;Novilla lechera;-0,042;0,3354
+Beef Cow;Vaca lechera;-0,042;0,3354
+Beef Feeder;Vacas de engorde;-0,042;0,3354
+Beef Stocker;Ganadería de vacuno;-0,042;0,3354
+Swine Manure;Estiércol porcino;-0,133;0,9055
+Swine Finishing;Porcino de acabado;-0,133;0,9055
+Swine Growing;Porcino de cría;-0,133;0,9055
+Swine Nursery;Porcino de Guardería;-0,133;0,9055
+Swine Gestating sow;Cerda gestante;-0,133;0,9055
+Swine Sow and litter;Cerda y yacija porcina;-0,133;0,9055
+Poultry Manure;Estiércol de aves de corral;-0,083;0,5893
+Poultry Layer;Aves de corral Ponedoras;-0,083;0,5893
+Poultry Broiler;Aves de corral de engorde;-0,083;0,5893
+Poultry Turkey;Aves de corral Pavo;-0,083;0,5893
+Poultry Duck;Aves de corral Pato;-0,083;0,5893
+Poultry Goose;Aves de corral Oca;-0,083;0,5893
+Other Horse;Otros Caballos;-0,083;0,5893
+Other Sheep;Los demás Ovejas;-0,042;0,3354
+Other Goat;Otros Cabras;-0,042;0,3354
+Other Rabbit;Otros Conejos;-0,18;1,196
+Digestato;Digestato;-0,18;1,196
+Sludge EDAR;Lodos EDAR;-0,083;0,5893
+Poultry slurry;Purines de aves de corral;-0,18;1,196
+Rabbit slurry;Purines de conejo;-0,18;1,196
+Pig slurry;Purines de cerdo;-0,18;1,196
+Cattle slurry;Purines de vacuno;-0,18;1,196

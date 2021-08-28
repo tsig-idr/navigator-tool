@@ -19,19 +19,41 @@ button.addEventListener('click', () => {
 		data.input[div.dataset.field] &&
 			(data.input[div.dataset.field] = Object.values(data.input[div.dataset.field]));
 	});
-	fetch('/E3/epa', {
+	const setTable = (data, round) => {
+		let td;
+		for (const name in data.results) {
+			td = table.querySelector(`td[name="${name}"]`),
+			td && round &&
+				(td.innerHTML = data.results[name].toFixed(2))
+			||
+				td &&
+					(td.innerHTML = data.results[name])
+		}
+		table.classList.remove('d-none');
+	};
+	fetch('/E1/epa', {
 		method: 'POST',
 		body: JSON.stringify(data),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
-	}).then(res => res.json()).then(data => {
-		let td;
-		for (const name in data.results) {
-			(td = table.querySelector(`td[name="${name}"]`)) &&
-				(td.innerHTML = data.results[name].toFixed(2));
+	}).then(res => res.json()).then(data => setTable(data, true)).catch(error => {
+		console.warn('Something went wrong.', error);
+	});
+	fetch('/E2/epa', {
+		method: 'POST',
+		body: JSON.stringify(FormDataJson.formToJson(form)),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8'
 		}
-		table.classList.remove('d-none');
+	}).then(res => res.json()).then(data => {
+		setTable(data);
+		table.querySelectorAll(`td[data-value]`).forEach(td => {
+			let val = table.querySelector(`td[name="${td.dataset.value}"]`).innerHTML,
+				avg = table.querySelector(`td[name="${td.dataset.avg}"]`).innerHTML;
+			val = (val - avg)/avg*100;
+			td.innerHTML = (val > 0 ? '+' : '') + val.toFixed(2) + '%';
+		});
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
@@ -87,3 +109,33 @@ farm &&
 ||
 	(form.querySelector('.alert-info[name=crops] i').innerHTML = timestamp_c) &&
 	form.querySelector('.alert-warning').classList.add('d-none');
+
+var states,
+	regions,
+	tf8_groupings,
+	economic_sizes;
+
+const addOptions2select = (options, select) => {
+	!Array.isArray(options) &&
+		(options = Object.keys(options));
+	options.forEach(value => {
+		const option = document.createElement('option');
+		option.value = option.innerHTML = value;
+		select.appendChild(option);
+	});
+	select.value = null;
+};
+form.addEventListener('change', ev => {
+	if (!ev.target.dataset.next) {
+		return;
+	}
+	let options = window[`${ev.target.dataset.next}s`] = window[`${ev.target.id}s`][ev.target.value];	
+	const select = form[`input[${ev.target.dataset.next}]`];
+	while (select.firstChild) {
+		select.removeChild(select.lastChild);
+	}
+	addOptions2select(options, select);
+});
+fetch('/json/FADN.json').then(res => res.json()).then(data => addOptions2select(states = data, form.querySelector('#state'))).catch(error => {
+	console.warn('Something went wrong.', error);
+});

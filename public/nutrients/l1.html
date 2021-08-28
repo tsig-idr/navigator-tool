@@ -24,12 +24,8 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-3">
-									<label for="soilDensity" class="form-label">Density (g/cm3)</label>
-									<input required type="number" class="form-control" id="soilDensity" name="input[soilDensity]" value="1.4" />
-								</div>
-								<div class="col-sm-3">
 									<label for="soilDepth" class="form-label">Depth (cm)</label>
-									<input required type="number" class="form-control" id="soilDepth" name="input[soilDepth]" value="35" />
+									<input required type="number" class="form-control" id="soilDepth" name="input[depth_s]" value="35" />
 								</div>
 								<div class="col-sm-3">
 									<label for="soilStony" class="form-label">Stony (ratio)</label>
@@ -82,7 +78,7 @@
 										</div>
 										<div class="col-sm-2">
 											<label for="cropYield" class="form-label">Yield (Kg/ha)</label>
-											<input required type="number" class="form-control" id="cropYield" name="input[cropYield]" value="9000" />
+											<input required type="number" class="form-control" id="cropYield" name="input[yield]" value="9000" />
 										</div>
 										<div class="col-sm-2">
 											<label for="cropExtractions" class="form-label">&#916; root extraction</label>
@@ -159,7 +155,7 @@
 								</div>
 								<div class="col-sm-2">
 									<label for="irrigationDose" class="form-label">Irrigation Dose (mm)</label>
-									<input required type="number" class="form-control" id="irrigationDose" name="input[irrigationDose]" value="5" />
+									<input required type="number" class="form-control" id="irrigationDose" name="input[dose_irrigation]" value="5" />
 								</div>
 							</div>
 						</div>
@@ -344,7 +340,7 @@
 									<th scope="col">N fert</th>
 									<th scope="col">Nh</th>
 									<th scope="col">Balance</th>
-									<th scope="col">N recom</th>
+									<th scope="col">N limit</th>
 									<th scope="col">N net</th>
 									<th scope="col">N gross</th>
 									<th scope="col">Fertilizer</th>

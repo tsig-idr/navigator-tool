@@ -1,6 +1,8 @@
 SC = CI = 0
 n = LEN (crops)
 i = 0
+areas = 0
+yields = 0
 while i < n then begin '{'
 	crop = GET (crops, i)
 	area = IF_ERROR (GET (crop, 'area'); 0)
@@ -34,6 +36,8 @@ while i < n then begin '{'
 		SC = SC + area*cost
 		j = j + 1
 	'}' end
+	areas = areas + area
+	yields = yields + yield
 	i = i + 1
 '}' end
 n = LEN (electricity)
@@ -77,3 +81,7 @@ TGV = CI + TWI + LI
 TDC = SC + OCS
 GM = TGV - TDC
 OI = GM - (HWC + MWC)
+UCP = IF (yields <> 0 && areas <> 0; TDC/(yields*areas); 0)
+GMH = IF (areas <> 0; GM/areas; 0)
+UGM = IF (yields <> 0 && areas <> 0; GM/(yields*areas); 0)
+CPH = IF (areas <> 0; TDC/areas; 0)

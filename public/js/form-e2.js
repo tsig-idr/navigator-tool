@@ -1,7 +1,10 @@
-const form = document.querySelector('form'),
-	button = form.querySelector('button');
+const form = document.querySelector('form');
+var states,
+	regions,
+	tf8_groupings,
+	economic_sizes;
 
-button.addEventListener('click', () => {
+form.querySelector('button').addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
 	form.classList.add('was-validated');

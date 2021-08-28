@@ -1,4 +1,9 @@
 CSVAgro = [[]]
+Curve4organic = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Curve4organic.csv'))
+Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Fertilizers_aux.csv'))
+CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CropData.csv'))
+SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
+Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
 FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'FenoT.csv'))
 FenoBBCH = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'BBCH.csv'))
 Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Extracciones.csv'))
@@ -9,8 +14,10 @@ NDVItipoi = LINTER4DATES (NDVItipo, 1)
 
 agroasesor = 'no'
 c_mineral = VLOOKUP (FLOOR (soilOrganicMaterial*100); MO; 2)
-UFN = soilDepth*100*soilDensity*1000*(1 - soilStony)*soilNmin_0/1000000
-extr_ha = cropExtractions*cropYield/1000
+UFN = depth_s*100*100*density_s*1000*(1 - soilStony)*Nc_s_initial/1000000
+
+mineralIni = '9999-12-31'
+mineralEnd = crop_endDate
 
 Fechas = GENNDATES(cropDate, n)
 n = 200 + 1
@@ -46,12 +53,13 @@ Riego_Efec_ = 0
 Riego_Acc_ = 0
 N_extrA_ = 0
 N_extrA_1_ = 0
-row = GET (Fertiliza, 1)
-Nh_ = UFN + IF_ERROR(GET (row, 2)/100*GET (row, 7)*GET (row, 6)*GET (row, 5); 0)
+Nh_ = UFN
 N_NO3_ = 0
 N_mineralizado_A_ = 0
 N_agua_A_ = 0
 Nl_A_ = 0
+N_mineral_soil_ = Nh_
+N_final = 0
 j = 0
 i = 1
 while i < n then begin '{'
@@ -142,13 +150,13 @@ while i < n then begin '{'
 	Sem = IF (ISOWEEKNUMBER (Fecha) < 40; ISOWEEKNUMBER (Fecha); ISOWEEKNUMBER (Fecha) - 53)
 	SET (nitro4day, 'Sem', Sem)
 
-	N_extrA = IF (IT > VLOOKUP (crop; Extracciones; 3) && IT < VLOOKUP (crop; Extracciones; 5); (IT - VLOOKUP (crop; Extracciones; 3))*soilDelta_N_NH4; 0)
+	N_extrA = IF (IT > VLOOKUP (crop_type; Extracciones; 3) && IT < VLOOKUP (crop_type; Extracciones; 5); (IT - VLOOKUP (crop_type; Extracciones; 3))*soilDelta_N_NH4; 0)
 	SET (nitro4day, 'N_extrA', N_extrA)
 
-	N_extr = MAX(N_extrA - N_extrA_; 0)
+	N_extr = MAX (N_extrA - N_extrA_; 0)
 	SET (nitro4day, 'N_extr', N_extr)
 
-	val = FLOAT(GET (row_, 0))
+	val = FLOAT (GET (row_, 0))
 	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
 	row = IF (j < m; GET (FenoT, j); [99999, 0, 0, 0, 0])
 	row_ = row
@@ -156,7 +164,7 @@ while i < n then begin '{'
 	i_days_Eto = IF (Eto_acumulada_elegida >= val; 1; i_days_Eto + 1)
 
 	ExtracR_N = IF (n_days_Eto > 0; GET (row, 2)/n_days_Eto; 0)
-	ExtracR_N_Kg = ExtracR_N*extr_ha
+	ExtracR_N_Kg = ExtracR_N*GET (SWB4day, 'Nuptake')
 	N_extr_1 = IF_ERROR (0 - ExtracR_N_Kg; 0)
 	SET (nitro4day, 'N_extr_1', N_extr_1)
 
@@ -165,12 +173,6 @@ while i < n then begin '{'
 
 	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
-
-	N_fert_neto = IF_ERROR(VLOOKUP (Fecha; Fertiliza; 3)/100*VLOOKUP (Fecha; Fertiliza; 8)*VLOOKUP (Fecha; Fertiliza; 7)*VLOOKUP (Fecha; Fertiliza; 6); 0)
-	SET (nitro4day, 'N_fert_neto', N_fert_neto)
-
-	N_fert_bruto = IF_ERROR (N_fert_neto/VLOOKUP (Fecha; Fertiliza; 6); 0)
-	SET (nitro4day, 'N_fert_bruto', N_fert_bruto)
 
 	BBCH = GET (row, 1)
 	SET (nitro4day, 'BBCH', BBCH)
@@ -181,13 +183,38 @@ while i < n then begin '{'
 	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
-	Nh = Nh_ + SUM(N_mineralizado; N_agua; N_fert_neto) + SUM(Nl; N_extr_1)
-	SET (nitro4day, 'Nh', Nh)
+	fertilizer = IF_ERROR (GET (planning_done, Fecha); [])
+	name = GET (fertilizer, 'name')
+	mineralIni = IF (GET (fertilizer, 'classification') == 'Organic'; Fecha; mineralIni)
+	fertilizer_ = IF_ERROR (GET (planning_todo, Fecha); [])
+	mineralEnd = IF (GET (fertilizer_, 'method') == 'topdressing' && Fecha < mineralEnd; Fecha; mineralEnd)
+
+	N_fert_neto = IF_ERROR (GET (fertilizer, 'Nbf'); 0)/100*IF_ERROR (GET (fertilizer, 'amount'); 0)
+
+	N_final = IF (mineralIni == Fecha; N_fert_neto; N_final)
+	c_a = IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 3)); 0)
+	c_b = IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 4)); 0)
+	t_0 = fgdg
+	t_i = fdgd
+	t_n = vfdg
+	curve = (c_b*(t_n - t_i) + c_a*(0 - t_0*LN (t_n - t_0) + t_0*LN (t_i - t_0) - t_i*LN (t_i - t_0) + t_n*LN (t_n - t_0) + t_i - t_n))*N_final/100
 
 	N_recom = GET (row, 3)
 	SET (nitro4day, 'N_recom', N_recom)
 
-	N_NO3 = Nh*1000000/(soilDepth*100*soilDensity*1000*(1 - soilStony)*(1 + soilDelta_N_NH4))
+	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_1) + curve
+	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
+
+	N_rate = N_recom - N_mineral_soil
+	SET (nitro4day, 'N_rate', N_rate)
+
+	N_fert_neto = IF (GET (fertilizer_, 'Nbf') > 0; N_rate; N_fert_neto)
+	SET (nitro4day, 'N_fert_neto', N_fert_neto)
+
+	Nh = Nh_ + SUM (N_mineralizado; N_agua; N_fert_neto) + SUM (Nl; N_extr_1)
+	SET (nitro4day, 'Nh', Nh)
+
+	N_NO3 = Nh*1000000/(depth_s*100*100*density_s*1000*(1 - soilStony)*(1 + soilDelta_N_NH4))
 	SET (nitro4day, 'N_NO3', N_NO3)
 
 	Nmin_medido = IF_ERROR (HLOOKUP (Fecha; [[soilDate_Nmin_0], [UFN]]; 2); 0 - 100)
@@ -252,97 +279,80 @@ while i < n then begin '{'
 	N_mineralizado_A_ = N_mineralizado_A
 	N_agua_A_ = N_agua_A
 	Nl_A_ = Nl_A
+	N_mineral_soil_ = N_mineral_soil
 '}' end
 
-presowing_day = [0, 0, 0, 0, UFN, GET (GET (FenoT, 0), 3)]
-topdressing1_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 2), 0), nitrificationPostDays))
-topdressing2_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 3), 0), nitrificationPostDays))
-topdressing3_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 4), 0), nitrificationPostDays))
-topdressing4_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 5), 0), nitrificationPostDays))
-topdressing5_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 6), 0), nitrificationPostDays))
-final_day = GET (nitro4days, SP_ADD2DATE(GET (GET (Fertiliza, 7), 0), nitrificationPostDays))
+y = yield
+export_r_ = export_r/100
+HI_est_ = HI_est/100
+CV_ = CV/100
+Nc_h_ = Nc_h/100
+Pc_h_ = Pc_h/100
+Kc_h_ = Kc_h/100
 
-presowing_N_extrA_1 = GET (topdressing1_day, 'N_extrA_1') - GET (presowing_day, 0)
-topdressing1_N_extrA_1 = GET (topdressing2_day, 'N_extrA_1') - GET (topdressing1_day, 'N_extrA_1')
-topdressing2_N_extrA_1 = GET (topdressing3_day, 'N_extrA_1') - GET (topdressing2_day, 'N_extrA_1')
-topdressing3_N_extrA_1 = GET (topdressing4_day, 'N_extrA_1') - GET (topdressing3_day, 'N_extrA_1')
-topdressing4_N_extrA_1 = GET (topdressing5_day, 'N_extrA_1') - GET (topdressing4_day, 'N_extrA_1')
-topdressing5_N_extrA_1 = GET (final_day, 'N_extrA_1') - GET (topdressing5_day, 'N_extrA_1')
+fnr = 0.1
+fmc_r = 0.15
+P_crop_max = 100
+K_crop_max = 275
+t_50 = 0
+t_20 = 0-0.84
+t_80 = 0.84
 
-presowing_N_mineralizado_A = GET (topdressing1_day, 'N_mineralizado_A') - GET (presowing_day, 1)
-topdressing1_N_mineralizado_A = GET (topdressing2_day, 'N_mineralizado_A') - GET (topdressing1_day, 'N_mineralizado_A')
-topdressing2_N_mineralizado_A = GET (topdressing3_day, 'N_mineralizado_A') - GET (topdressing2_day, 'N_mineralizado_A')
-topdressing3_N_mineralizado_A = GET (topdressing4_day, 'N_mineralizado_A') - GET (topdressing3_day, 'N_mineralizado_A')
-topdressing4_N_mineralizado_A = GET (topdressing5_day, 'N_mineralizado_A') - GET (topdressing4_day, 'N_mineralizado_A')
-topdressing5_N_mineralizado_A = GET (final_day, 'N_mineralizado_A') - GET (topdressing5_day, 'N_mineralizado_A')
+dm_h = VLOOKUP (crop_type; CropData; 11)/100
+Nc_r = VLOOKUP (crop_type; CropData; 24)/100
+density_s = VLOOKUP (soil_texture; SoilData; 21)
 
-presowing_N_agua_A = GET (topdressing1_day, 'N_agua_A') - GET (presowing_day, 2)
-topdressing1_N_agua_A = GET (topdressing2_day, 'N_agua_A') - GET (topdressing1_day, 'N_agua_A')
-topdressing2_N_agua_A = GET (topdressing3_day, 'N_agua_A') - GET (topdressing2_day, 'N_agua_A')
-topdressing3_N_agua_A = GET (topdressing4_day, 'N_agua_A') - GET (topdressing3_day, 'N_agua_A')
-topdressing4_N_agua_A = GET (topdressing5_day, 'N_agua_A') - GET (topdressing4_day, 'N_agua_A')
-topdressing5_N_agua_A = GET (final_day, 'N_agua_A') - GET (topdressing5_day, 'N_agua_A')
+Pc_r = VLOOKUP (crop_type; CropData; 25)/100
+Pc_s = Pc_si*VLOOKUP (Pc_method; Pc_method_table; 2)
+Pc_s_thres_min = VLOOKUP (soil_texture; SoilData; 25)
+P_STL_STLtmin = IF (Pc_s < Pc_s_thres_min; 1; 0)
+P_STL_2STLtmin = IF (Pc_s > 2*Pc_s_thres_min; 0.5; 1)
+P_crop_min_ = P_exported*P_STL_2STLtmin + 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin
+P_nyears_min = IF (P_crop_min_ > P_crop_max; CEIL (P_crop_min_/P_crop_max); 1)
+Pc_s_thres_max = VLOOKUP (soil_texture; SoilData; 26)
+P_crop_max_ = P_exported*P_STL_2STLtmax + 10*density_s*depth_s*(Pc_s_thres_max - Pc_s)*P_STL_STLtmax
+P_nyears_max = IF (P_crop_max_ > P_crop_max; CEIL (P_crop_max_/P_crop_max); 1)
+P_STL_STLtmax = IF (Pc_s < Pc_s_thres_max; 1; 0)
+P_STL_2STLtmax = IF (Pc_s > 2*Pc_s_thres_max; 0.5; 1)
+Pc_si = Pc_s_0*1
+P_exported = h_dm_med_50*Pc_h_ + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r_
 
-presowing_Nl_A = GET (topdressing1_day, 'Nl_A') - GET (presowing_day, 3)
-topdressing1_Nl_A = GET (topdressing2_day, 'Nl_A') - GET (topdressing1_day, 'Nl_A')
-topdressing2_Nl_A = GET (topdressing3_day, 'Nl_A') - GET (topdressing2_day, 'Nl_A')
-topdressing3_Nl_A = GET (topdressing4_day, 'Nl_A') - GET (topdressing3_day, 'Nl_A')
-topdressing4_Nl_A = GET (topdressing5_day, 'Nl_A') - GET (topdressing4_day, 'Nl_A')
-topdressing5_Nl_A = GET (final_day, 'Nl_A') - GET (topdressing5_day, 'Nl_A')
+P_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin/P_nyears_min
+P_minBM = (P_exported*P_STL_2STLtmin + 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin)/P_nyears_min
+P_maxBM = (P_exported*P_STL_2STLtmax + 10*density_s*depth_s*(Pc_s_thres_max - Pc_s)*P_STL_STLtmax)/P_nyears_max
+P_maintenance = P_exported
 
-presowing_N_fert = GET (GET (Fertiliza, 1), 2)/100*GET (GET (Fertiliza, 1), 7)*GET (GET (Fertiliza, 1), 6)*GET (GET (Fertiliza, 1), 5)
-topdressing1_N_fert = GET (GET (Fertiliza, 2), 2)/100*GET (GET (Fertiliza, 2), 7)*GET (GET (Fertiliza, 2), 6)*GET (GET (Fertiliza, 2), 5)
-topdressing2_N_fert = GET (GET (Fertiliza, 3), 2)/100*GET (GET (Fertiliza, 3), 7)*GET (GET (Fertiliza, 3), 6)*GET (GET (Fertiliza, 3), 5)
-topdressing3_N_fert = GET (GET (Fertiliza, 4), 2)/100*GET (GET (Fertiliza, 4), 7)*GET (GET (Fertiliza, 4), 6)*GET (GET (Fertiliza, 4), 5)
-topdressing4_N_fert = GET (GET (Fertiliza, 5), 2)/100*GET (GET (Fertiliza, 5), 7)*GET (GET (Fertiliza, 5), 6)*GET (GET (Fertiliza, 5), 5)
-topdressing5_N_fert = GET (GET (Fertiliza, 6), 2)/100*GET (GET (Fertiliza, 6), 7)*GET (GET (Fertiliza, 6), 6)*GET (GET (Fertiliza, 6), 5)
+P2O5_sufficiency = 0
+P2O5_minBM = P_minBM*2.293
+P2O5_maxBM = P_maxBM*2.293
+P2O5_maintenance = P_maintenance*2.293
 
-presowing_Nh = GET (presowing_day, 4)
-topdressing1_Nh = GET (topdressing1_day, 'Nh')
-topdressing2_Nh = GET (topdressing2_day, 'Nh')
-topdressing3_Nh = GET (topdressing3_day, 'Nh')
-topdressing4_Nh = GET (topdressing4_day, 'Nh')
-topdressing5_Nh = GET (topdressing5_day, 'Nh')
+Kc_r = VLOOKUP (crop_type; CropData; 26)/100
+Kc_s = Kc_s_0*1
+Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
+K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)
+K_STL_2STLtmin = IF (Kc_s > 2*Kc_s_thres_min; 0.5; 1)
+K_crop_min_ = K_exported*K_STL_2STLtmin + 10*density_s*depth_s*(Kc_s_thres_min - Kc_s)*fK*K_STL_STLtmin
+K_nyears_min = IF (K_crop_min_ > K_crop_max; CEIL (K_crop_min_/K_crop_max); 1)
+Kc_s_thres_max = VLOOKUP (soil_texture; SoilData; 29)
+K_STL_STLtmax = IF (Kc_s < Kc_s_thres_max; 1; 0)
+K_STL_2STLtmax = IF (Kc_s > 2*Kc_s_thres_max; 0.5; 1)
+K_crop_max_ = K_minBM*K_STL_2STLtmax + 10*density_s*depth_s*(Kc_s_thres_max - Kc_s)*fK*K_STL_STLtmax
+K_nyears_max = IF (K_crop_max_ > K_crop_max; CEIL (K_crop_max_/K_crop_max); 1)
+fK = VLOOKUP (soil_texture; SoilData; 24) 
+K_exported = h_dm_med_50*Kc_h_ + r_dm_med_50*(1 - fmc_r)*Kc_r*export_r_
 
-presowing_Balance = SUM(presowing_N_extrA_1, presowing_N_mineralizado_A, presowing_N_agua_A, presowing_Nl_A, presowing_N_fert, presowing_Nh)
-topdressing1_Balance = SUM(topdressing1_N_extrA_1, topdressing1_N_mineralizado_A, topdressing1_N_agua_A, topdressing1_Nl_A, topdressing1_N_fert, topdressing1_Nh)
-topdressing2_Balance = SUM(topdressing2_N_extrA_1, topdressing2_N_mineralizado_A, topdressing2_N_agua_A, topdressing2_Nl_A, topdressing2_N_fert, topdressing2_Nh)
-topdressing3_Balance = SUM(topdressing3_N_extrA_1, topdressing3_N_mineralizado_A, topdressing3_N_agua_A, topdressing3_Nl_A, topdressing3_N_fert, topdressing3_Nh)
-topdressing4_Balance = SUM(topdressing4_N_extrA_1, topdressing4_N_mineralizado_A, topdressing4_N_agua_A, topdressing4_Nl_A, topdressing4_N_fert, topdressing4_Nh)
-topdressing5_Balance = SUM(topdressing5_N_extrA_1, topdressing5_N_mineralizado_A, topdressing5_N_agua_A, topdressing5_Nl_A, topdressing5_N_fert, topdressing5_Nh)
+K_sufficiency = 10*density_s*depth_s*(Kc_s_thres_min - Kc_s)*fK*K_STL_STLtmin/K_nyears_min
+K_minBM = (K_exported*K_STL_2STLtmin + 10*density_s*depth_s*(Kc_s_thres_min - Kc_s)*fK*K_STL_STLtmin)/K_nyears_min
+K_maxBM = (K_exported*K_STL_2STLtmax + 10*density_s*depth_s*(Kc_s_thres_max - Kc_s)*fK*K_STL_STLtmax)/K_nyears_max
+K_maintenance = K_exported
 
-presowing_N_recom = GET (presowing_day, 5)
-topdressing1_N_recom = GET (topdressing1_day, 'N_recom')
-topdressing2_N_recom = GET (topdressing2_day, 'N_recom')
-topdressing3_N_recom = GET (topdressing3_day, 'N_recom')
-topdressing4_N_recom = GET (topdressing4_day, 'N_recom')
-topdressing5_N_recom = GET (topdressing5_day, 'N_recom')
+K2O_sufficiency = 0
+K2O_minBM = K_minBM*1.205
+K2O_maxBM = K_maxBM*1.205
+K2O_maintenance = K_maintenance*1.205
 
-presowing_N_neto = MAX(0 - presowing_Balance + topdressing1_N_recom; 0)
-topdressing1_N_neto = MAX(0 - topdressing1_Balance + topdressing2_N_recom; 0)
-topdressing2_N_neto = MAX(0 - topdressing2_Balance + topdressing3_N_recom; 0)
-topdressing3_N_neto = MAX(0 - topdressing3_Balance + topdressing4_N_recom; 0)
-topdressing4_N_neto = MAX(0 - topdressing4_Balance + topdressing5_N_recom; 0)
-topdressing5_N_neto = MAX(0 - topdressing5_Balance + GET (final_day, 'N_recom'); 0)
-
-presowing_N_bruto = presowing_N_neto/GET (GET (Fertiliza, 1), 5)
-topdressing1_N_bruto = topdressing1_N_neto/GET (GET (Fertiliza, 2), 5)
-topdressing2_N_bruto = topdressing2_N_neto/GET (GET (Fertiliza, 3), 5)
-topdressing3_N_bruto = topdressing3_N_neto/GET (GET (Fertiliza, 4), 5)
-topdressing4_N_bruto = topdressing4_N_neto/GET (GET (Fertiliza, 5), 5)
-topdressing5_N_bruto = topdressing5_N_neto/GET (GET (Fertiliza, 6), 5)
-
-presowing_Fertilizante = CEIL (presowing_N_bruto*10/GET (GET (Fertiliza, 1), 2); 0)*10
-topdressing1_Fertilizante = CEIL (topdressing1_N_bruto*10/GET (GET (Fertiliza, 2), 2); 0)*10
-topdressing2_Fertilizante = CEIL (topdressing2_N_bruto*10/GET (GET (Fertiliza, 3), 2); 0)*10
-topdressing3_Fertilizante = CEIL (topdressing3_N_bruto*10/GET (GET (Fertiliza, 4), 2); 0)*10
-topdressing4_Fertilizante = CEIL (topdressing4_N_bruto*10/GET (GET (Fertiliza, 5), 2); 0)*10
-topdressing5_Fertilizante = CEIL (topdressing5_N_bruto*10/GET (GET (Fertiliza, 6), 2); 0)*10
-
-presowing_UFN = CEIL (presowing_N_bruto/5; 0)*5
-topdressing1_UFN = CEIL (topdressing1_N_bruto/5; 0)*5
-topdressing2_UFN = CEIL (topdressing2_N_bruto/5; 0)*5
-topdressing3_UFN = CEIL (topdressing3_N_bruto/5; 0)*5
-topdressing4_UFN = CEIL (topdressing4_N_bruto/5; 0)*5
-topdressing5_UFN = CEIL (topdressing5_N_bruto/5; 0)*5
-
+h_dm_med_50 = y*dm_h*(1 + CV_*t_50)
+r_dm_med_50 = (h_dm_med_50*(1 - HI_est_)/HI_est_)
+h_dm_med_20 = y*dm_h*(1 + CV_*t_20)
+h_dm_med_80 = y*dm_h*(1 + CV_*t_80)

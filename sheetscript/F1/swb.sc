@@ -1,3 +1,16 @@
+CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'CropData.csv'))
+SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
+
+kcb_ini = VLOOKUP (crop_type; CropData; 30)
+kcb_mid = VLOOKUP (crop_type; CropData; 31)
+kcb_end = VLOOKUP (crop_type; CropData; 32)
+root_max = IF_ERROR (VLOOKUP (crop_type; CropData; 33); 0.5)
+waterAvail = VLOOKUP (soil_texture; SoilData; 16)*1000
+REW = VLOOKUP (soil_texture; SoilData; 34)
+TEW = VLOOKUP (soil_texture; SoilData; 37)
+De_0 = 8
+fw_0 = 1
+
 NDVI_real = LINTER4DATES (IF_VOID (NDVIreal; [[]]), 1)
 NDVI_tipo = LINTER4DATES (IF_VOID (NDVItipo; [[]]), 1)
 root_min = 0.2
@@ -110,7 +123,7 @@ while i < n - 1 then begin '{'
 	Final_agotamiento = IF (i > 2; Final_agotamiento_corregido_ - P_RO - Riego_neto_necesario_ + ETc; De_0 - P_RO + ETc)
 	SET (SWB4day, 'Final_agotamiento', Final_agotamiento)
 
-	Riego_neto_necesario = IF_ERROR (VLOOKUP (fecha; Riegos; 2); IF (irrigation; IF (J > 120 && NDVI_interpolado < 0.45; 0; IF (Final_agotamiento_corregido_ + ETc >= RAW; MIN (Final_agotamiento_corregido_; irrigationDose); 0)); 0))
+	Riego_neto_necesario = IF_ERROR (VLOOKUP (fecha; Riegos; 2); IF (irrigation; IF (J > 120 && NDVI_interpolado < 0.45; 0; IF (Final_agotamiento_corregido_ + ETc >= RAW; MIN (Final_agotamiento_corregido_; dose_irrigation); 0)); 0))
 	SET (SWB4day, 'Riego_neto_necesario', Riego_neto_necesario)
 
 	DP = MAX (IF (i > 2; P_RO + Riego_neto_necesario_ - ETc - Final_agotamiento_corregido_; ETo - few - De_0); 0)

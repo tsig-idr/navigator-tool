@@ -78,15 +78,15 @@ module.exports.router = function () {
 	return router;
 }
 
-const output4F = (raw_outout, input) => {
+const output4F = (raw_output, input) => {
 	return {
 		fertilization: input.fertilizers,
 		balance: {
 			input: {
-				Nmineralization: raw_outout.Nmineralization,
-				Nfixation: raw_outout.Nfixation,
-				Nwater: raw_outout.Nirrigation,
-				NminInitial: raw_outout.Nc_s_initial,
+				Nmineralization: raw_output.Nmineralization,
+				Nfixation: raw_output.Nfixation,
+				Nwater: raw_output.Nirrigation,
+				NminInitial: raw_output.Nc_s_initial,
 				recommendedFertilizer: {
 					N: input.fertilizers.reduce((acc, fert) => acc + fert.N, 0),
 					P: input.fertilizers.reduce((acc, fert) => acc + fert.P, 0),
@@ -99,15 +99,15 @@ const output4F = (raw_outout, input) => {
 				}
 			},
 			output: {
-				Nleaching: raw_outout.Nleaching,
+				Nleaching: raw_output.Nleaching,
 				Uptake : {
-					N: raw_outout.Nuptake,
-					P: raw_outout.P_maintenance,
-					K: raw_outout.K_maintenance
+					N: raw_output.Nuptake,
+					P: raw_output.P_maintenance,
+					K: raw_output.K_maintenance
 				},
-				Ndenitrification: raw_outout.Ndenitrification,
-				NminPostharvest: raw_outout.Nc_s_end,
-				Nvolatilization: raw_outout.Nvolatilization
+				Ndenitrification: raw_output.Ndenitrification,
+				NminPostharvest: raw_output.Nc_s_end,
+				Nvolatilization: raw_output.Nvolatilization
 			}
 		}
 	};

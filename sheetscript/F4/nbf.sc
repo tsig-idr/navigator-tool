@@ -4,17 +4,15 @@ tilled = 'no'
 pH = 7
 CEC = VLOOKUP (soil_texture; SoilData; 33)
 
-drain_rate = VLOOKUP (soil_texture; SoilData; 5)
-
-SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'SoilData.csv'))
-Drainage = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Drainage.csv'))
-Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Fertilizers.csv'))
-Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Fertilizers_aux.csv'))
-pH4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'pH4vol.csv'))
-CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CEC4vol.csv'))
+SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'SoilData.csv'))
+Drainage = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'Drainage.csv'))
+Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'Fertilizers.csv'))
+Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'Fertilizers_aux.csv'))
+pH4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'pH4vol.csv'))
+CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'CEC4vol.csv'))
 
 vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) + VLOOKUP (CEC/10; CEC4vol; 2; 1) + 0-0.402)
-
+drain_rate = VLOOKUP (soil_texture; SoilData; 5)
 j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
 inorgDrain = GET (GET (Drainage, IF (tilled == 'no'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
 orgDrain = IF (tilled == 'yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)

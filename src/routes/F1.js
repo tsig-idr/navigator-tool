@@ -3,9 +3,54 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const navL1Ctrl = require('../controllers/L1/NavigatorF1Ctrl')();
+const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
 
 const dispatcher = async input => {
+	const liableFertilizers = navBestFertiCtrl.get(input.fertilizers);
+	const applied = input.applied || [];
+	input.prices &&
+		liableFertilizers.forEach(fertilizer => {
+			let row;
+			(row = input.prices.find(row => row[0] == fertilizer.fertilizerID)) &&
+				(fertilizer.price = row[2]/1000);
+		});
+	input.fertilizers = liableFertilizers;
+	input.fertilizers = (await navL1Ctrl.data4fertilizers(input)).updated_fertilizers;
 	return await navL1Ctrl.nitro(input, calendarVars);
+
+	!input.applied &&
+		(input.applied = []);
+	input.fertilizers = [];
+	let output = await navF3Ctrl.requeriments(input),
+		N = Math.max(output.Ncrop_avg - output.Nc_mineralization_amendment, 0), 
+		N_ur = Math.max(0.25*output.Ncrop_avg - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
+		P = applied.reduce((acc, fert) => acc + fert.amount*fert.P, 0)/100,
+		K = applied.reduce((acc, fert) => acc + fert.amount*fert.K, 0)/100;
+	switch (input.PK_strategy) {
+		case 'maximum-yield':
+			P = Math.max(output.P_maxBM - P, 0);
+			K = Math.max(output.K_maxBM - K, 0);
+			break;
+		case 'minimum-fertilizer':
+			P = Math.max(output.P_minBM - P, 0);
+			K = Math.max(output.K_minBM - K, 0);
+			break;
+		case 'sufficiency':
+			P = Math.max(output.P_sufficiency - P, 0);
+			K = Math.max(output.K_sufficiency - K, 0);
+			break;
+		case 'maintenance':
+			P = Math.max(output.P_maintenance - P, 0);
+			K = Math.max(output.K_maintenance - K, 0);
+			break;
+		default:
+			break;
+	}
+	input.applied = applied;
+	input.fertilizers = liableFertilizers;
+	output = await navF3Ctrl.data4fertilizers(input);
+	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_ur);
+	return await navF3Ctrl.requeriments(input);
 };
 
 module.exports.router = function () {

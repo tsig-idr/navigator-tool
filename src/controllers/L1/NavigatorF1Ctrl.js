@@ -105,6 +105,10 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	// Devuelve el logaritmo natural
+	engine.setFunction('user', 'LN', 1, n => Math.log(n));
+	// Devuelve el entero que Excel asocia a una fecha
+	engine.setFunction('user', 'DATE2INT', 1, date => (new Date(date).getTime() - new Date('1900-01-01').getTime())/(1000*24*60*60) + 2);
 	// Genera un listado de N fechas (en formato hispano) a partir de una fecha determinada
 	engine.setFunction('user', 'GENNDATES', 2, (start, n) => {
 		(start = start.split('/')) &&
