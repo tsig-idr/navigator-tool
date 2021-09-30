@@ -2,8 +2,8 @@ var form = document.querySelector('form'),
 	ul = document.querySelector('ul'),
 	resultsDiv = form.querySelector('#results'),
 	resultsIds = ['balance_input', 'balance_output', 'fertilization'],
-	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K', 'S'],
-	fertilizersFields = ['N', 'P', 'K', 'S', 'N_ur'],
+	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K'],
+	fertilizersFields = ['N', 'P', 'K', 'N_ur'],
 	fertilizers = {},
 	crops = {},
 	soils = {},
@@ -67,7 +67,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.input.prices = csv2json(form.file);
-	data.fertilizers = data.applied = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
+	data.fertilizers = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
 	fertilizersFields.forEach(field => {
 		data[field] = undefined;
 	});
@@ -93,12 +93,12 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 				});
 			}
 		});
-		const cols = ['N', 'P', 'K'];
+		const cols = ['N', 'P', 'K', 'P2O5', 'K2O'];
 		let i, j, k, crop, fertilizer, tr, td, value, total,
 			totalFertilization = {}, applied_;
 		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
 			['input', 'output'].forEach(type => {
-				total = [0, 0, 0];
+				total = [0, 0, 0, 0, 0];
 				for (j in crop.balance[type]) {
 					tr = window[`balance_${type}Tbody`].querySelector(`[name=${j}]`);
 					value = crop.balance[type][j];
@@ -139,14 +139,12 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 						continue;
 					}
 					fertilizationTbody.appendChild(tr = document.createElement('tr'));
-					fertilizers == applied_ &&
-						tr.classList.add('table-dark');
 					tr.appendChild(td = document.createElement('td'));
 					td.innerHTML = fertilizer.fertilizer_name;
 					fertilizationFields.forEach(field => {
 						tr.appendChild(td = document.createElement('td'));
 						fertilizer[field] !== undefined &&
-							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed(field == 'cost' ? 2 : 0))
+							(td.innerHTML = (value = parseFloat(fertilizer[field])).toFixed())
 						||
 							(td.innerHTML = ' - ') &&
 							(value = 0);
@@ -159,7 +157,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 			td.innerHTML = 'TOTAL';
 			fertilizationFields.forEach(field => {
 				tr.appendChild(td = document.createElement('td'));
-				td.innerHTML = totalFertilization[field].toFixed(field == 'cost' ? 2 : 0);
+				td.innerHTML = totalFertilization[field].toFixed();
 			});
 		}
 		resultsDiv.classList.remove('d-none');
@@ -313,7 +311,7 @@ fetch('/F3/climate-zones').then(res => res.json()).then(data => data.results.for
 });
 fetch('/csv/F3/Fertilizers.csv').then(res => res.text()).then(data => form.file = data).catch(error => {
 	console.warn('Something went wrong.', error);
-});;
+});
 
 function csv2json (csv) {
 	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));

@@ -1,0 +1,22 @@
+,Average live weight (kg),N excreted (kgN / head),YM,DE%,VS (kg VS/1000 kg BW/d)
+Goats,,,,,
+Mature goats,70,14.0400,0.055,0.50,9.00
+Growing goats,35,7.0200,0.055,0.50,9.00
+Sheep (milk and meat),,,,,
+Mature sheep,65,14.0400,0.067,0.50,8.20
+Growing sheep,35,7.0200,0.067,0.50,8.20
+Dairy cattle,,,MY (g CH4/ kg DMI),,8.20
+Dairy cows 4000 kg milk,610,107.3500,21.400,0.70,7.10
+Dairy cows 6000 kg milk,650,113.0000,21.000,0.70,7.10
+Dairy cows 8000 kg milk,700,124.5825,20.000,0.70,7.10
+Dairy cows 10000 kg milk,750,137.0000,19.000,0.70,7.10
+Dairy calves,50,6.0000,21.400,0.70,7.10
+Dairy growing cattle < 2 years,250,35.0000,21.400,0.70,7.10
+Dairy growing cattle > 2 years,550,61.0000,21.400,0.70,7.10
+Dairy mature cattle,775,103.0000,21.000,0.70,7.10
+Meat cattle,,,,,
+Mature cattle,750,95.7000,13.600,0.80,6.65
+Calves,50,6.0000,21.000,0.80,6.65
+Growing cattle < 2 years,250,18.4000,13.600,0.80,6.65
+Growing cattle > 2 years,600,61.0000,13.600,0.80,6.65
+Horses,500,44.0000,23.300,0.60,5.65

@@ -1,0 +1,17 @@
+full name,Land management factors (IPCC default)
+full tillage temperate boreal dry,1
+full tillage tropical dry,1
+full tillage tropical montane dry,1
+full tillage temperate boreal moist,1
+full tillage tropical moist,1
+full tillage tropical montane moist,1
+reduced tillage temperate boreal dry,1.02
+reduced tillage temperate boreal moist,1.08
+reduced tillage tropical dry,1.09
+reduced tillage tropical moist,1.15
+reduced tillage tropical montane,1.09
+no tillage temperate boreal dry,1.1
+no tillage temperate boreal moist,1.15
+no tillage tropical dry,1.17
+no tillage tropical moist,1.22
+no tillage tropical montane,1.16

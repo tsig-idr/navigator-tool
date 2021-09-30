@@ -31,7 +31,7 @@ button.addEventListener('click', () => {
 		for (const name in data.results) {
 			parts = name.split('from');
 			(td = table.querySelector(`tr[name="${parts[1]}"]>td[name="${parts[0]}"]`)) &&
-				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
+				(td.innerHTML = data.results[name] && data.results[name].toFixed());
 		}
 		table.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4G_crops', (new Date).toLocaleString());
@@ -55,13 +55,15 @@ var farm, field, name;
 				name in crop.balance.output &&
 					(form[`input[crops][${i}][balance][output][${name}]`].value = crop.balance.output[name]);
 			});
-		if ('fertilization' in crop && crop.fertilization.length) {
-			let li;
-			crop.fertilization.forEach((fertilizer, j) => {
-				ul.appendChild(li = document.createElement('li'));
-				li.innerHTML = `${fertilizer.fertilizer_name}: ${fertilizer.amount.toFixed(2)} kg/ha`;
-			});
-		}
+		['fertilization', 'applied'].forEach(name => {
+			if (name in crop && crop[name].length) {
+				let li;
+				crop[name].forEach(fertilizer => {
+					ul.appendChild(li = document.createElement('li'));
+					li.innerHTML = `${fertilizer.fertilizer_name}: ${parseFloat(fertilizer.amount).toFixed()} kg/ha`;
+				});
+			}
+		});
 	});
 (button.disabled = !timestamp) &&
 	(button.classList.add('d-none') || true) &&

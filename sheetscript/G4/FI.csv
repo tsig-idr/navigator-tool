@@ -1,0 +1,22 @@
+full name,Input level factors (IPCC default)
+low temperate boreal dry,0.95
+low temperate boreal moist,0.92
+low tropical dry,0.95
+low tropical moist,0.92
+low tropical montane,0.94
+medium temperate boreal dry,1
+medium tropical dry,1
+medium tropical montane dry,1
+medium temperate boreal moist,1
+medium tropical moist,1
+medium tropical montane moist,1
+high  temperate boreal dry,1.04
+high  tropical dry,1.04
+high  temperate boreal moist,1.11
+high  tropical moist,1.11
+high  tropical montane,1.08
+high man temperate boreal dry,1.37
+high man tropical dry,1.37
+high man temperate boreal moist,1.44
+high man tropical moist,1.44
+high man tropical montane,1.41

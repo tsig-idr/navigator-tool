@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR TOOL G4</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="../css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>NAVIGATOR TOOL G4</h2>
+					<p>This module just implements that part of the G4 line concerning <b>livestock</b></p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<div class="card">
+						<h5 class="card-header">Number of animals</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-8">
+									<div class="card">
+										<h6 class="card-header">Dairy cattle</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-3">
+													<label for="d_c_4000" class="form-label">Cows 4000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_4000" name="input[d_c_4000]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_6000" class="form-label">Cows 6000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_6000" name="input[d_c_6000]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_8000" class="form-label">Cows 8000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_8000" name="input[d_c_8000]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_10000" class="form-label">Cows 10000 kg milk</label>
+													<input required type="number" class="form-control" id="d_c_10000" name="input[d_c_10000]" min="0" value="1" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-3">
+													<label for="d_c_mature" class="form-label">Mature cattle</label>
+													<input required type="number" class="form-control" id="d_c_mature" name="input[d_c_mature]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_calves" class="form-label">Calves</label>
+													<input required type="number" class="form-control" id="d_c_calves" name="input[d_c_calves]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_growing_1" class="form-label">Growing &lt; 2 years</label>
+													<input required type="number" class="form-control" id="d_c_growing_1" name="input[d_c_growing_1]" min="0" value="1" />
+												</div>
+												<div class="col-sm-3">
+													<label for="d_c_growing_2" class="form-label">Growing &gt; 2 years</label>
+													<input required type="number" class="form-control" id="d_c_growing_2" name="input[d_c_growing_2]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Meat cattle</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="m_c_mature" class="form-label">Mature cattle</label>
+													<input required type="number" class="form-control" id="m_c_mature" name="input[m_c_mature]" min="0" value="1" />
+												</div>
+												<div class="col-sm-6">
+													<label for="m_c_calves" class="form-label">Calves</label>
+													<input required type="number" class="form-control" id="m_c_calves" name="input[m_c_calves]" min="0" value="1" />
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="m_c_growing_1" class="form-label">Growing &lt; 2 years</label>
+													<input required type="number" class="form-control" id="m_c_growing_1" name="input[m_c_growing_1]" min="0" value="1" />
+												</div>
+												<div class="col-sm-6">
+													<label for="m_c_growing_2" class="form-label">Growing &gt; 2 years</label>
+													<input required type="number" class="form-control" id="m_c_growing_2" name="input[m_c_growing_2]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Sheep (milk and meat)</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="s_mature" class="form-label">Mature</label>
+													<input required type="number" class="form-control" id="s_mature" name="input[s_mature]" min="0" value="1" />
+												</div>
+												<div class="col-sm-6">
+													<label for="s_growing" class="form-label">Growing</label>
+													<input required type="number" class="form-control" id="s_growing" name="input[s_growing]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Goats (milk and meat)</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="g_mature" class="form-label">Mature</label>
+													<input required type="number" class="form-control" id="g_mature" name="input[g_mature]" min="0" value="1" />
+												</div>
+												<div class="col-sm-6">
+													<label for="g_growing" class="form-label">Growing</label>
+													<input required type="number" class="form-control" id="g_growing" name="input[g_growing]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="card">
+										<h6 class="card-header">Other rumiants</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-12">
+													<label for="r_others" class="form-label">Horses</label>
+													<input required type="number" class="form-control" id="r_others" name="input[r_others]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<div class="row">
+								<div class="col-sm-5">
+									<div class="card">
+										<h6 class="card-header">Pigs</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="p_mature" class="form-label">Mature pigs</label>
+													<input required type="number" class="form-control" id="p_mature" name="input[p_mature]" min="0" value="1" />
+												</div>
+												<div class="col-sm-6">
+													<label for="p_growing" class="form-label">Growing pigs</label>
+													<input required type="number" class="form-control" id="p_growing" name="input[p_growing]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-7">
+									<div class="card">
+										<h6 class="card-header">Poultry</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-4">
+													<label for="po_hen" class="form-label">Hens</label>
+													<input required type="number" class="form-control" id="po_hen" name="input[po_hen]" min="0" value="1" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_broiler" class="form-label">Broiler chicken</label>
+													<input required type="number" class="form-control" id="po_broiler" name="input[po_broiler]" min="0" value="1" />
+												</div>
+												<div class="col-sm-4">
+													<label for="po_other" class="form-label">Other poultry</label>
+													<input required type="number" class="form-control" id="po_other" name="input[po_other]" min="0" value="1" />
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header">Type of diet for animals</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="card">
+										<h6 class="card-header">Dairy cattle</h6>
+										<div class="card-body">
+											<label class="form-label">Calves</label>
+											<select required class="form-select" name="input[d_c_calves_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+											<br/>
+											<label class="form-label">Growing cattle < 2 years</label>
+											<select required class="form-select" name="input[d_c_growing_1_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+											<br/>
+											<label class="form-label">Growing cattle > 2 years</label>
+											<select required class="form-select" name="input[d_c_growing_2_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+											<br/>
+											<label class="form-label">Mature cattle</label>
+											<select required class="form-select" name="input[d_c_mature_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="card">
+										<h6 class="card-header">Meat cattle</h6>
+										<div class="card-body">
+											<label class="form-label">Calves</label>
+											<select required class="form-select" name="input[m_c_calves_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+											<br/>
+											<label class="form-label">Growing cattle < 2 years</label>
+											<select required class="form-select" name="input[m_c_growing_1_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+											<br/>
+											<label class="form-label">Growing cattle > 2 years</label>
+											<select required class="form-select" name="input[m_c_growing_2_diet]">
+												<option value="High grain diet">High grain diet (>90%)</option>
+												<option value="High quality forage">High quality forage (vegetative season legumes, grass)</option>
+												<option value="Moderate quality forage">Moderate quality forage (mid-season legumes, grass)</option>
+												<option value="Low quality forage">Low quality forage (straw, mature grass)</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header ">
+									Feed data&nbsp;&nbsp;
+									<a href="#" data-bs-toggle="modal" data-bs-target="#feeds-modal">
+										<i class="fa fa-info"></i>
+									</a>
+								</h5>
+								<div class="modal fade" tabindex="-1" aria-hidden="true" id="feeds-modal">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content p-5">
+											<span>In the column "Feed" of the CSV, only these values are applicable:</span>
+											<br/>
+											<div class="row">
+												<div class="col-sm-6">
+													<ul>
+														<li>Grazing (grasslands)</li>
+														<li>Grass silage</li>
+														<li>Maize silage</li>
+														<li>Hay from natural or temporary grasslands</li>
+														<li>Lucerne hay</li>
+														<li>Barn dried hay</li>
+														<li>Beet feed</li>
+														<li>Green rape</li>
+														<li>Sorghum feed</li>
+														<li>Fodder kale</li>
+														<li>Dehydrated beet pulp</li>
+														<li>Squeezed beet pulp</li>
+														<li>Sugar beet molasses</li>
+														<li>By-products of beer production (squeezed)</li>
+														<li>Dehydrated alfalfa</li>
+														<li>Fresh beet pulp</li>
+														<li>NH3 treated straw</li>
+														<li>Non-treated straw</li>
+														<li>Pea straw</li>
+														<li>Concentrate cows</li>
+														<li>Concentrate pigs</li>
+														<li>Concentrate poultry</li>
+													</ul>
+												</div>
+												<div class="col-sm-6">
+													<ul>
+														<li>Wheat</li>
+														<li>Barley </li>
+														<li>Maize for grain </li>
+														<li>Triticale</li>
+														<li>Oat</li>
+														<li>Sorghum seed</li>
+														<li>Soya seed</li>
+														<li>Peas seed</li>
+														<li>Rape seed</li>
+														<li>Sunflower seed</li>
+														<li>Soya bean meal</li>
+														<li>Rapeseed cake</li>
+														<li>Sunflower cake</li>
+														<li>Flax seed</li>
+														<li>Milling products</li>
+														<li>Corn gluten feed</li>
+														<li>Dried beet flesh</li>
+														<li>Hard wheat</li>
+														<li>Milk powder</li>
+														<li>Concentrate goats</li>
+														<li>Concentrate sheep</li>
+														<li>Concentrate horses</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<input required name="Feeds" class="form-control" type="file" accept=".csv" />
+									<a href="/csv/G4/Feeds.csv">Download example</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<h5 class="card-header">
+									Manure data&nbsp;&nbsp;
+									<a href="#" data-bs-toggle="modal" data-bs-target="#manure-modal">
+										<i class="fa fa-info"></i>
+									</a>
+								</h5>
+								<div class="modal fade" tabindex="-1" aria-hidden="true" id="manure-modal">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content p-5">
+											<span>In the column "Type Manure management system" of the CSV, only these values are applicable:</span>
+											<br/>
+											<div class="row">
+												<div class="col-sm-12">
+													<ul>
+														<li>Pasture. range. paddock</li>
+														<li>Daily spread</li>
+														<li>Solid storage</li>
+														<li>Solid storage covered / compacted</li>
+														<li>Solid storage bulking agent</li>
+														<li>Solid storage additives</li>
+														<li>Dry lot</li>
+														<li>Liquid / Slurry with natural crust cover 1 month</li>
+														<li>Liquid / Slurry with natural crust cover 3 month</li>
+														<li>Liquid / Slurry with natural crust cover 4 month</li>
+														<li>Liquid / Slurry with natural crust cover 6 month</li>
+														<li>Liquid / Slurry with natural crust cover 12 month</li>
+														<li>Liquid / slurry without natural crust cover 1 month</li>
+														<li>Liquid / slurry without natural crust cover 3 month</li>
+														<li>Liquid / slurry without natural crust cover 4 month</li>
+														<li>Liquid / slurry without natural crust cover 6 month</li>
+														<li>Liquid / slurry without natural crust cover 12 month</li>
+														<li>Uncovered anaerobic lagoon </li>
+														<li>Pit storage below animal confinements. 1 month</li>
+														<li>Pit storage below animal confinements. 3 month</li>
+														<li>Pit storage below animal confinements. 4 month</li>
+														<li>Pit storage below animal confinements. 6 month</li>
+														<li>Pit storage below animal confinements. 12 month</li>
+														<li>Anaerobic digester low leakage. high quality gas tight storage</li>
+														<li>Anaerobic digester low leakage. low quality gas tight storage</li>
+														<li>Anaerobic digester low leakage. open storage</li>
+														<li>Anaerobic digester high leakage. high quality gas tight storage</li>
+														<li>Anaerobic digester high leakage. low quality gas tight storage</li>
+														<li>Anaerobic digester high leakage. open storage</li>
+														<li>Cattle and swine deep bedding-no mixing. <1 month</li>
+														<li>Cattle and swine deep bedding-no mixing. >1 month</li>
+														<li>Cattle and swine deep bedding-active mixing. < 1 month</li>
+														<li>Cattle and swine deep bedding-active mixing. > 1 month</li>
+														<li>Composting In-vessel</li>
+														<li>Composting Static Pile</li>
+														<li>Composting intensive windrow</li>
+														<li>Composting passive windrow</li>
+														<li>Excreted on fields. sun dried dung are burned for fuel</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<input required name="Manure" class="form-control" type="file" accept=".csv" />
+									<a href="/csv/G4/Manure.csv">Download example</a>
+									<div class="mt-3">
+										<label for="temp_av" class="form-label">Average Temperature (°C)</label>
+										<input required type="number" class="form-control" id="temp_av" name="input[temp_av]" min="10" max="28" value="15" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-warning">
+							<i class="fa fa-play"></i> GHG emissions
+						</button>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">CH4 (kg/year)</th>
+									<th scope="col">N2O (kg/year)</th>
+									<th scope="col">CO2 (kg/year)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="Enteric">
+									<td>Enteric fermentation</td>
+									<td name="CH4"></td>
+									<td name="N2O"> - </td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Manure">
+									<td>Manure management</td>
+									<td name="CH4"></td>
+									<td name="N2O"></td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Pastures">
+									<td>Pastures</td>
+									<td name="CH4"> - </td>
+									<td name="N2O"></td>
+									<td name="CO2"></td>
+								</tr>
+								<tr name="Feed">
+									<td>Feed</td>
+									<td name="CH4"> - </td>
+									<td name="N2O"> - </td>
+									<td name="CO2"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+		<script src="/js/form-g4-livestock.js"></script>
+		<script src="/js/global-scripts.js"></script>
+	</body>
+</html>

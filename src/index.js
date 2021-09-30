@@ -5,9 +5,13 @@ const dotenv = require('dotenv');
 
 /* ---- Routers ---- */
 const F1Router = require('./routes/F1').router;
+const F2Router = require('./routes/F2').router;
 const F3Router = require('./routes/F3').router;
 const F4Router = require('./routes/F4').router;
+const G1Router = require('./routes/G1').router;
+const G2Router = require('./routes/G2').router;
 const G3Router = require('./routes/G3').router;
+const G4Router = require('./routes/G4').router;
 const E1Router = require('./routes/E1').router;
 const E2Router = require('./routes/E2').router;
 const FGERouter = require('./routes/FGE').router;
@@ -36,9 +40,13 @@ app.use(express.json({
 	limit: '50mb'
 }));
 app.use('/F1', F1Router());
+app.use('/F2', F2Router());
 app.use('/F3', F3Router());
 app.use('/F4', F4Router());
+app.use('/G1', G1Router());
+app.use('/G2', G2Router());
 app.use('/G3', G3Router());
+app.use('/G4', G4Router());
 app.use('/E1', E1Router());
 app.use('/E2', E2Router());
 app.use('/FGE', FGERouter());
@@ -46,3 +54,4 @@ app.use('/FGE', FGERouter());
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);
 });
+

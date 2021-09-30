@@ -1,0 +1,11 @@
+Energies,Unit,LHV MJ / kg,kg eqCO2/GJ,Density,,EF kg eqCO2/unit
+,,JRC 2019,JRC 2019,JRC 2019,,calculation
+Fuel oil,Litres,40.5,94.2,0.97,kg/Litre,3.700647
+Diesel,Litres,43.1,95.1,0.832,kg/Litre,3.41020992
+Gasoline,Litres,43.2,93.3,0.745,kg/Litre,3.0027672
+Rape seed biodiesel (purchased),Litres,37.2,32,0.89,kg/Litre,1.059456
+Sunflower biodiesel (purchased),Litres,37.2,26.1,0.89,kg/Litre,0.8641188
+Biodiesel mix (purchased),Litres,37.2,26.375,0.89,kg/Litre,0.8732235
+PVO rapeseed (purchased),Litres,37,33.4,0.92,kg/Litre,1.136936
+PVO sunflower (purchased),Litres,37,27.2,0.92,kg/Litre,0.925888
+PVO mix (purchased),Litres,37,27.475,0.92,kg/Litre,0.935249

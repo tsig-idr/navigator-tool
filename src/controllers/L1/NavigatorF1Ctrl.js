@@ -5,9 +5,9 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function nitro (input, outputnames) {
-		input.irrigation = input.irrigationDose > 0;
-		input.cropDate = reformatDate(input.cropDate);
-		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
+		input.Pc_s_0 = input.Pc_s;
+		input.Kc_s_0 = input.Kc_s;
+		input.Nc_s_0 = input.Nc_s_initial;
 		!input.NDVIreal &&
 			(input.NDVIreal = sp_csv2array('tmp/F1/default_NDVI_real.csv'));
 		!input.NDVItipo &&
@@ -18,8 +18,8 @@ module.exports = function () {
 			(input.Meteo = sp_csv2array('tmp/F1/default_Meteo.csv'));
 		!input.Riegos &&
 			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
-		!input.Fertiliza &&
-			(input.Fertiliza = sp_csv2array('tmp/F1/default_Fertiliza.csv'));
+		!input.FenoBBCH &&
+			(input.FenoBBCH = sp_csv2array('tmp/F1/default_BBCH.csv'));
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
@@ -31,9 +31,17 @@ module.exports = function () {
 	}
 
 	async function swb (input, outputnames) {
-		input.irrigation = input.irrigationDose > 0;
-		input.cropDate = reformatDate(input.cropDate);
-		input.soilDate_Nmin_0 = reformatDate(input.soilDate_Nmin_0);
+		input.startDate = input.crop_startDate;
+		!input.NDVIreal &&
+			(input.NDVIreal = sp_csv2array('tmp/F1/default_NDVI_real.csv'));
+		!input.NDVItipo &&
+			(input.NDVItipo = sp_csv2array('tmp/F1/default_NDVI_tipo.csv'));
+		!input.Clima &&
+			(input.Clima = sp_csv2array('tmp/F1/default_Clima.csv'));
+		!input.Meteo &&
+			(input.Meteo = sp_csv2array('tmp/F1/default_Meteo.csv'));
+		!input.Riegos &&
+			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			engine = customEngine(),
@@ -55,7 +63,6 @@ module.exports = function () {
 					N_extr_1: 0,
 					N_extrA_1: -999999,
 					N_recom: 0,
-					Nmin_medido: -100,
 					Eto_acumulada: 0,
 					BBCH_tipo: -9999,
 					BBCH_real_et: -99999,
@@ -67,7 +74,7 @@ module.exports = function () {
 				index = weeks.length - 1;
 			}
 			const sum_vars = ['N_mineralizado', 'N_agua', 'N_fert_neto', 'Nl', 'N_extr_1'];
-			const max_vars = ['N_extrA_1', 'N_recom', 'Nmin_medido', 'Eto_acumulada', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo_i', 'NDVI_int', 'Biomasa', 'Eto_acumulada_real'];
+			const max_vars = ['N_extrA_1', 'N_recom', 'Eto_acumulada', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo_i', 'NDVI_int', 'Biomasa', 'Eto_acumulada_real'];
 			let i;
 			for (i = 0; i < sum_vars.length; i++) {
 				weeks[index][sum_vars[i]]+= day[sum_vars[i]];
@@ -80,17 +87,22 @@ module.exports = function () {
 		}, []);
 	}
 
+	async function data4fertilizers (input) {
+		!input.fertilizers &&
+			(input.fertilizers = []);
+
+		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'nbf.sc'), 'utf8'),
+			engine = customEngine(),
+			output = await sheetscript.run(engine, code, input, ['updated_fertilizers']);
+		return output;
+	}
+
 	return {
 		nitro: nitro,
 		swb: swb,
+		data4fertilizers: data4fertilizers,
 		resume: resume
 	}
-}
-
-function reformatDate (date) {
-	(date = date.replace(/\-/g, '/')) &&
-	(date = date.split('/'));
-	return `${date[2]}/${date[1]}/${date[0]}`;
 }
 
 function sp_csv2array (filename) {
@@ -105,29 +117,20 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	// Equivalente a la EXP de Excel
+	engine.setFunction('user', 'EXP', 1, n => Math.pow(Math.E, n));
 	// Devuelve el logaritmo natural
 	engine.setFunction('user', 'LN', 1, n => Math.log(n));
 	// Devuelve el entero que Excel asocia a una fecha
 	engine.setFunction('user', 'DATE2INT', 1, date => (new Date(date).getTime() - new Date('1900-01-01').getTime())/(1000*24*60*60) + 2);
 	// Genera un listado de N fechas (en formato hispano) a partir de una fecha determinada
 	engine.setFunction('user', 'GENNDATES', 2, (start, n) => {
-		(start = start.split('/')) &&
-		(start = `${start[2]}/${start[1]}/${start[0]}`);
 		const t_0 = new Date(start).getTime(),
 			t_day = 1000*60*60*24,
-			dates = [],
-			formatDate = date => {
-				var day = date.getDate(),
-					month = date.getMonth() + 1;
-				day < 10 &&
-					(day = `0${day}`);
-				month < 10 &&
-					(month = `0${month}`);
-				return `${day}/${month}/${date.getFullYear()}`;
-			};
-		for (let i = 0, t;  i < n; i++) {
+			dates = [];
+		for (let i = 0, t; i < n; i++) {
 			t = t_0 + i*t_day;
-			dates.push(formatDate(new Date(t)));
+			dates.push(new Date(t).toISOString().split('T')[0]);
 		}
 		return dates;
 	});
@@ -139,16 +142,7 @@ function customEngine () {
 			return tuples;
 		}
 		const t_day = 1000*60*60*24,
-			formatTime = t => {
-				var date = new Date(t),
-					day = date.getDate(),
-					month = date.getMonth() + 1;
-				day < 10 &&
-					(day = `0${day}`);
-				month < 10 &&
-					(month = `0${month}`);
-				return `${day}/${month}/${date.getFullYear()}`;
-			};
+			formatTime = t => new Date(t).toISOString().split('T')[0];
 		let i, m, t, t_b, v, v_b,
 			t_a = tuples[0][0],
 			v_a = parseFloat(tuples[0][1]),
@@ -220,17 +214,16 @@ function customEngine () {
 	});
 	// Devuelve el numero de semana ISO para una fecha en formato hispano
 	engine.setFunction('user', 'ISOWEEKNUMBER', 1, date => {
-		date = date.split('/');
-		date = new Date(`${date[2]}/${date[1]}/${date[0]}`);
+		date = new Date(date);
 		date.setUTCDate(date.getUTCDate() + 4 - date.getUTCDay() || 7);
 		return Math.ceil(((date - new Date(Date.UTC(date.getUTCFullYear(), 0, 1))) / 86400000 + 1) / 7);
 	});
 	// Devuelve el dia de la fecha representada por s
-	engine.setFunction('user', 'DAY', 1, s => parseInt(s.split('/')[0]));
+	engine.setFunction('user', 'DAY', 1, s => parseInt(s.split('-')[2]));
 	// Devuelve el mes de la fecha representada por s
-	engine.setFunction('user', 'MONTH', 1, s => parseInt(s.split('/')[1]));
+	engine.setFunction('user', 'MONTH', 1, s => parseInt(s.split('-')[1]));
 	// Devuelve el anyo de la fecha representada por s
-	engine.setFunction('user', 'YEAR', 1, s => parseInt(s.split('/')[2]));
+	engine.setFunction('user', 'YEAR', 1, s => parseInt(s.split('-')[0]));
 	// Devuelve el residuo de n/d
 	engine.setFunction('user', 'MOD', 2, (n, d) => n - d*Math.floor(n/d));
 	// Transforma el string s en un numero real
@@ -243,18 +236,11 @@ function customEngine () {
 	engine.setFunction('user', 'MIN', 1, function () {
 		return Math.min(...arguments);
 	});
-	// Suma n dias a la fecha d y devuelve la nueva fecha (formato hispano)
-	engine.setFunction('user', 'SP_ADD2DATE', 2, (d, n) => {
-		date = d.split('/');
-		date = new Date(`${date[2]}/${date[1]}/${date[0]}`);
+	// Suma n dias a la fecha d y devuelve la nueva fecha
+	engine.setFunction('user', 'ADD2DATE', 2, (d, n) => {
+		const date = new Date(d);
 		date.setDate(date.getDate() + parseInt(n));
-		var day = date.getDate(),
-			month = date.getMonth() + 1;
-		day < 10 &&
-			(day = `0${day}`);
-		month < 10 &&
-			(month = `0${month}`);
-		return `${day}/${month}/${date.getFullYear()}`;
+		return date.toISOString().split('T')[0];
 	});
 	return engine;
 }

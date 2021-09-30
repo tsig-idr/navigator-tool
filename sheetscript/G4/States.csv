@@ -1,0 +1,42 @@
+Pasture. range. paddock,pasture
+Daily spread,liquid
+Solid storage,solid
+Solid storage covered / compacted,solid
+Solid storage bulking agent,solid
+Solid storage additives,solid
+Dry lot,liquid
+Liquid / Slurry with natural crust cover 1 month,liquid
+Liquid / Slurry with natural crust cover 3 month,liquid
+Liquid / Slurry with natural crust cover 4 month,liquid
+Liquid / Slurry with natural crust cover 6 month,liquid
+Liquid / Slurry with natural crust cover 12 month,liquid
+Liquid / slurry without natural crust cover 1 month,liquid
+Liquid / slurry without natural crust cover 3 month,liquid
+Liquid / slurry without natural crust cover 4 month,liquid
+Liquid / slurry without natural crust cover 6 month,liquid
+Liquid / slurry without natural crust cover 12 month,liquid
+Uncovered anaerobic lagoon ,liquid
+Pit storage below animal confinements. 1 month,liquid
+Pit storage below animal confinements. 3 month,liquid
+Pit storage below animal confinements. 4 month,liquid
+Pit storage below animal confinements. 6 month,liquid
+Pit storage below animal confinements. 12 month,liquid
+Anaerobic digester low leakage. high quality gas tight storage,liquid
+Anaerobic digester low leakage. low quality gas tight storage,liquid
+Anaerobic digester low leakage. open storage,liquid
+Anaerobic digester high leakage. high quality gas tight storage,liquid
+Anaerobic digester high leakage. low quality gas tight storage,liquid
+Anaerobic digester high leakage. open storage,liquid
+Cattle and swine deep bedding-no mixing. <1 month,solid
+Cattle and swine deep bedding-no mixing. >1 month,solid
+Cattle and swine deep bedding-active mixing. < 1 month,solid
+Cattle and swine deep bedding-active mixing. > 1 month,solid
+Composting In-vessel,solid
+Composting Static Pile,solid
+Composting intensive windrow,solid
+Composting passive windrow,solid
+Poultry manure with litter,solid
+Poultry without litter,liquid
+Aerobic treatment - natural aeration systems,liquid
+Aerobic treatment -  Forced aeration systems,liquid
+Excreted on fields. sun dried dung are burned for fuel,solid

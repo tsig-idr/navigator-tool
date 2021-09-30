@@ -1,3 +1,4 @@
+E = 2.718281828459045
 y = yield
 CV = 0.2
 export_r = 1
@@ -44,11 +45,6 @@ CEC4vol = SP_CSV2ARRAY (CONCAT ('sheetscript/F4/', 'CEC4vol.csv'))
 
 vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) + VLOOKUP (CEC/10; CEC4vol; 2; 1) + 0-0.402)
 
-drain_rate = VLOOKUP (soil_texture; SoilData; 5)
-j = IF (water_supply == '1'; 1; 0)*5 + IF (drain_rate == 'Very high'; 1; IF (drain_rate == 'High'; 2; IF (drain_rate == 'Medium'; 3; IF (drain_rate == 'Low'; 4; 5))))
-inorgDrain = GET (GET (Drainage, IF (tilled == 'no'; 6; 0) + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j)
-orgDrain = IF (tilled == 'yes'; GET (GET (Drainage, 3 + IF (SOM >= 5; 3; IF (SOM >=2; 2; 1))), j); 0)
-
 Nc_mineralization_amendment = 0
 N_total_losses_vol = N_total_losses_deni = 0
 n = LEN (fertilizers)
@@ -65,7 +61,7 @@ while i < n then begin '{'
 	method = VLOOKUP (id; Fertilizers_aux; 2)
 	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
 	N_bf_vol = Nc_i*(1 - vol_losses)
-	deni_losses = IF (clasification_fm == 'Inorganic'; inorgDrain; orgDrain)
+	deni_losses = 0
 	N_bf_deni = Nc_i*(1 - deni_losses)
 	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
 	frecu_application_amendment = 1.0
@@ -89,7 +85,7 @@ while j < m then begin '{'
 	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
 	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
 	N_bf_vol = Nc_i*(1 - vol_losses)
-	deni_losses = IF (clasification_fm == 'Inorganic'; inorgDrain; orgDrain)
+	deni_losses = 0
 	N_bf_deni = Nc_i*(1 - deni_losses)
 	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
 	frecu_application_amendment = IF (clasification_fm == 'Inorganic'; 1.0; IF (frequency == 'annual'; 1.0; 0.5))
@@ -168,7 +164,7 @@ h_dm_med_50 = y*dm_h*(1 + CV*t_50)
 r_dm_med_50 = (h_dm_med_50*(1 - HI_est)/HI_est)
 Nuptake = (h_dm_med_50*Nc_h + r_dm_med_50*Nc_r)*(1 + fnr)
 
-Ndenitrification = N_total_losses_deni
+Ndenitrification = 0.34*E**(0.012*Ncrop)
 
 Nvolatilization = N_total_losses_vol
 

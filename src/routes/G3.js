@@ -13,27 +13,21 @@ const dispatchers = {
 			'CH4fromEnteric',
 			'CH4fromManure',
 			'N2OfromPastures',
-			'N2OfromManure',
-			'test'
+			'N2OfromManure'
 		]);
 	},
 	crops: async input => {
 		return await navG3Ctrl.crops(input, [
 			'N2OfromGround',
 			'CH4fromGround',
+			'CO2fromGround',
 			'CO2eqfromGround',
 			'CO2fromSustances',
 			'CO2eqfromSustances',
 			'CO2fromMachinery',
 			'CO2eqfromMachinery',
 			'CO2fromSOC',
-			'CO2eqfromSOC',
-			'CO2fromL',
-			'CO2eqfromL',
-			'CO2eqfromAll',
-			'CO2fromAll',
-			'CH4fromAll',
-			'N2OfromAll',
+			'CO2eqfromSOC'
 		]);
 	},
 	luc: async input => {
@@ -41,8 +35,8 @@ const dispatchers = {
 			'CO2fromInfrastructures',
 			'CO2fromLUC',
 			'CO2fromForests',
-			'CO2fromAll',
-			'test',
+			'CO2AfromInfrastructures',
+			'CO2AfromForests'
 		]);
 	},
 	energy: async input => {

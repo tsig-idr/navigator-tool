@@ -1,8 +1,0 @@
-Energies,Unit,MJ /unit (primary energy),MJ/unit (combustion only),LPC MJ / kg,kg CO2/GJ,g CH4/GJ,g N2O/GJ,kg eqCO2/GJ,Density,,EF (Combustion) kg eqCO2/unit,Upstream kgeqCO2/kg,EF (upstream) kg eqCO2/unit,EF Total kgeqCO2/unit
-Electricity,,Source : Diaterre.2012,calculation,OMINEA,OMINEA,OMINEA,OMINEA,calculation,usual values,,calculation,ELCD (Nathan),calculation,calculation
-Fuel (heating),Litres,45.6,35.28,42,75,2.5,1.5,75,0.84,kg/Litre,2.646,0.38718,0.3252312,2.9712312
-Diesel,Litres,45.6,35.28,42,74.7,2.5,2.5,74.7,0.84,kg/Litre,2.635416,0.38134,0.3203256,2.9557416
-Petrol/Gasoline. regular,Litres,48,33.44,44,72.3,2.5,2.5,72.3,0.76,kg/Litre,2.417712,0.68765,0.522614,2.940326
-Propane gas / butane gas (bottle. tank),kg,57.5,46,46,64,2.5,1.75,64,1,,2.944,0.68765,0.68765,3.63165
-Natural gas,m3,48.8,38.69,49.6,57,2.5,1.75,57,0.78,kg/m3,2.205216,0.4201,0.327678,2.532894
-Coal,kg,,26,26,95,5,3,95,1,,2.47,0.30513,0.30513,2.77513

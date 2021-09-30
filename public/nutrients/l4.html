@@ -167,7 +167,7 @@
 									<input type="number" class="form-control" placeholder="Amount" id="amount" name="amount" min="0" />
 									<label for="amount" class="form-label">kg/ha</label>
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<input type="number" class="form-control" placeholder="Price"  id="price" name="price" min="0" step="0.0001" />
 									<label for="price" class="form-label">&euro;/t</label>
 								</div>
@@ -186,10 +186,6 @@
 								<div class="col-sm-1">
 									<input disabled type="number" class="form-control" id="K" name="K" value="0" min="0" max="100" step="0.001" />
 									<label for="K" class="form-label">% K</label>
-								</div>
-								<div class="col-sm-1">
-									<input disabled type="number" class="form-control" id="S" name="S" value="0" min="0" max="100" step="0.001" />
-									<label for="S" class="form-label">% S</label>
 								</div>
 							</div>
 						</div>
@@ -212,17 +208,16 @@
 					<div class="d-none" id="results">
 						<h3 class="text-center">Best fertilization</h3>
 						<div class="table-responsive" id="fertilization">
-							<table class="table table-warning text-center">
+							<table class="table table-warning text-end">
 								<thead>
 									<tr>
 										<th scope="col">Fertilizer</th>
 										<th scope="col">Amount (kg/ha)</th>
 										<th scope="col">Cost (€/ha)</th>
-										<th scope="col">N (UF/ha)</th>
-										<th scope="col">N_ureic (UF/ha)</th>
-										<th scope="col">P (UF/ha)</th>
-										<th scope="col">K (UF/ha)</th>
-										<th scope="col">S (UF/ha)</th>
+										<th scope="col">N (FU/ha)</th>
+										<th scope="col">N_ureic (FU/ha)</th>
+										<th scope="col">P (FU/ha)</th>
+										<th scope="col">K (FU/ha)</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -231,13 +226,15 @@
 						<h3 class="text-center">Balance</h3>
 						<div class="row">
 							<div class="col-sm-6" id="balance_input">
-								<table class="table table-warning text-center">
+								<table class="table table-warning text-end">
 									<thead>
 										<tr>
 											<th></th>
-											<th>N (UF/ha)</th>
-											<th>P (UF/ha)</th>
-											<th>K (UF/ha)</th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -266,13 +263,15 @@
 								</table>
 							</div>
 							<div class="col-sm-6" id="balance_output">
-								<table class="table table-warning text-center">
+								<table class="table table-warning text-end">
 									<thead>
 										<tr>
 											<th></th>
-											<th>N (UF/ha)</th>
-											<th>P (UF/ha)</th>
-											<th>K (UF/ha)</th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
 										</tr>
 									</thead>
 									<tbody>

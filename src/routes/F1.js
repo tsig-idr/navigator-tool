@@ -1,56 +1,98 @@
 'use strict';
 
 const router = require('express').Router();
+const { application } = require('express');
 const asyncHandler = require('express-async-handler');
 const navL1Ctrl = require('../controllers/L1/NavigatorF1Ctrl')();
 const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
 
 const dispatcher = async input => {
-	const liableFertilizers = navBestFertiCtrl.get(input.fertilizers);
-	const applied = input.applied || [];
+	let row;
+	input.fertilizers = navBestFertiCtrl.get(input.fertilizers);
 	input.prices &&
-		liableFertilizers.forEach(fertilizer => {
-			let row;
+		input.fertilizers.forEach(fertilizer => {
 			(row = input.prices.find(row => row[0] == fertilizer.fertilizerID)) &&
 				(fertilizer.price = row[2]/1000);
 		});
-	input.fertilizers = liableFertilizers;
-	input.fertilizers = (await navL1Ctrl.data4fertilizers(input)).updated_fertilizers;
-	return await navL1Ctrl.nitro(input, calendarVars);
-
-	!input.applied &&
-		(input.applied = []);
-	input.fertilizers = [];
-	let output = await navF3Ctrl.requeriments(input),
-		N = Math.max(output.Ncrop_avg - output.Nc_mineralization_amendment, 0), 
-		N_ur = Math.max(0.25*output.Ncrop_avg - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
-		P = applied.reduce((acc, fert) => acc + fert.amount*fert.P, 0)/100,
-		K = applied.reduce((acc, fert) => acc + fert.amount*fert.K, 0)/100;
+	await navL1Ctrl.data4fertilizers(input);
+	!input.applications &&
+		(input.applications = []);
+	input.planning_done = {};
+	input.planning_todo = {};
+	input.startDate = input.crop_startDate;
+	input.applications.sort((a, b) => new Date(a.date) - new Date(b.date));
+	input.applications.forEach(application => {
+		(row = input.fertilizers.find(row => row.fertilizerID == application.type)) &&
+			(application = {...row, ...application});
+		if (application.amount) {
+			application.date < input.startDate &&
+				(input.startDate = application.date);
+			input.planning_done[application.date] = application;
+		}
+		else {
+			input.planning_todo[application.date] = application;
+		}
+	});
+	const output = await navL1Ctrl.nitro(input);
+	let P, K;
 	switch (input.PK_strategy) {
 		case 'maximum-yield':
-			P = Math.max(output.P_maxBM - P, 0);
-			K = Math.max(output.K_maxBM - K, 0);
+			P = Math.max(output.P_maxBM, 0);
+			K = Math.max(output.K_maxBM, 0);
 			break;
 		case 'minimum-fertilizer':
-			P = Math.max(output.P_minBM - P, 0);
-			K = Math.max(output.K_minBM - K, 0);
+			P = Math.max(output.P_minBM, 0);
+			K = Math.max(output.K_minBM, 0);
 			break;
 		case 'sufficiency':
-			P = Math.max(output.P_sufficiency - P, 0);
-			K = Math.max(output.K_sufficiency - K, 0);
+			P = Math.max(output.P_sufficiency, 0);
+			K = Math.max(output.K_sufficiency, 0);
 			break;
 		case 'maintenance':
-			P = Math.max(output.P_maintenance - P, 0);
-			K = Math.max(output.K_maintenance - K, 0);
+			P = Math.max(output.P_maintenance, 0);
+			K = Math.max(output.K_maintenance, 0);
 			break;
 		default:
+			P = 0;
+			K = 0;
 			break;
 	}
-	input.applied = applied;
-	input.fertilizers = liableFertilizers;
-	output = await navF3Ctrl.data4fertilizers(input);
-	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_ur);
-	return await navF3Ctrl.requeriments(input);
+	input.fertilizers.pop();
+	input.applications.forEach((application, i) => {
+		application.date in output.planning_done_ &&
+			(input.applications[i] = output.planning_done_[application.date]);
+		application.date in output.planning_todo_ &&
+			(input.applications[i] = output.planning_todo_[application.date]);
+	});
+	input.applications.forEach((application, i) => {
+		if (application.type == '#') {
+			(row = output.results.find(row => row.Fecha == application.date)) &&
+				(input.applications[i] = navBestFertiCtrl.bestOne(input.fertilizers, Math.max(row.N_rate, 0), P, K));
+			input.applications[i].P &&
+				(P-= input.applications[i].P);
+			input.applications[i].K &&
+				(K-= input.applications[i].K);
+			!input.applications[i].amount &&
+				(input.applications[i].fertilizer_name = 'Not needed') &&
+				(input.applications[i].method = 'Not applicable');
+			input.applications[i].date = application.date;
+		}
+		else {
+			!(application.date in input.planning_done) &&
+				(input.applications[i].cost = application.amount*(application.price || 0));
+			input.applications[i].N = application.amount*(application.Nbf || 0)/100;
+			input.applications[i].P = application.amount*(application.Pcf || application.phosphorus.Pcf || 0)/100;
+			input.applications[i].K = application.amount*(application.Kcf || application.potassium.Kcf || 0)/100;
+			P-= input.applications[i].P;
+			K-= input.applications[i].K;
+		}
+		P = Math.max(P, 0);
+		K = Math.max(K, 0);
+	});
+	return {
+		balance: output.results,
+		fertilization: input.applications
+	};
 };
 
 module.exports.router = function () {
@@ -64,32 +106,22 @@ module.exports.router = function () {
 
 	router.post('/SNB/daily', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
-		res.json(await navL1Ctrl.nitro(input, ['results']));
+		res.json({
+			results: (await dispatcher(input)).balance
+		});
 	}));
 	
 	router.post('/SNB/weekly', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json({
-			results: await navL1Ctrl.resume((await navL1Ctrl.nitro(input, ['results'])).results)
+			results: await navL1Ctrl.resume((await dispatcher(input)).balance)
 		});
 	}));
 
 	router.post('/SNB/calendar', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {};
 		res.json({
-			results: await dispatcher(input)
-		});
-	}));
-
-	router.post('/SNB/full', asyncHandler(async (req, res) => {
-		const input = typeof req.body.input === 'object' && req.body.input || typeof req.params.input === 'object' && req.params.input || {},
-			nitro = await navL1Ctrl.nitro(input, ['results', ...calendarVars]),
-			resume = await navL1Ctrl.resume(nitro.results);
-		nitro.SNB4days = nitro.results;
-		nitro.SNB4weeks = resume;
-		delete nitro.results;
-		res.json({
-			results: nitro
+			results: (await dispatcher(input)).fertilization
 		});
 	}));
 
@@ -97,78 +129,3 @@ module.exports.router = function () {
 };
 
 module.exports.dispatcher = dispatcher;
-
-const calendarVars = [
-	'presowing_N_extrA_1',
-	'topdressing1_N_extrA_1',
-	'topdressing2_N_extrA_1',
-	'topdressing3_N_extrA_1',
-	'topdressing4_N_extrA_1',
-	'topdressing5_N_extrA_1',
-	'presowing_N_mineralizado_A',
-	'topdressing1_N_mineralizado_A',
-	'topdressing2_N_mineralizado_A',
-	'topdressing3_N_mineralizado_A',
-	'topdressing4_N_mineralizado_A',
-	'topdressing5_N_mineralizado_A',
-	'presowing_N_agua_A',
-	'topdressing1_N_agua_A',
-	'topdressing2_N_agua_A',
-	'topdressing3_N_agua_A',
-	'topdressing4_N_agua_A',
-	'topdressing5_N_agua_A',
-	'presowing_Nl_A',
-	'topdressing1_Nl_A',
-	'topdressing2_Nl_A',
-	'topdressing3_Nl_A',
-	'topdressing4_Nl_A',
-	'topdressing5_Nl_A',
-	'presowing_N_fert',
-	'topdressing1_N_fert',
-	'topdressing2_N_fert',
-	'topdressing3_N_fert',
-	'topdressing4_N_fert',
-	'topdressing5_N_fert',
-	'presowing_Nh',
-	'topdressing1_Nh',
-	'topdressing2_Nh',
-	'topdressing3_Nh',
-	'topdressing4_Nh',
-	'topdressing5_Nh',
-	'presowing_Balance',
-	'topdressing1_Balance',
-	'topdressing2_Balance',
-	'topdressing3_Balance',
-	'topdressing4_Balance',
-	'topdressing5_Balance',
-	'presowing_N_recom',
-	'topdressing1_N_recom',
-	'topdressing2_N_recom',
-	'topdressing3_N_recom',
-	'topdressing4_N_recom',
-	'topdressing5_N_recom',
-	'presowing_N_neto',
-	'topdressing1_N_neto',
-	'topdressing2_N_neto',
-	'topdressing3_N_neto',
-	'topdressing4_N_neto',
-	'topdressing5_N_neto',
-	'presowing_N_bruto',
-	'topdressing1_N_bruto',
-	'topdressing2_N_bruto',
-	'topdressing3_N_bruto',
-	'topdressing4_N_bruto',
-	'topdressing5_N_bruto',
-	'presowing_Fertilizante',
-	'topdressing1_Fertilizante',
-	'topdressing2_Fertilizante',
-	'topdressing3_Fertilizante',
-	'topdressing4_Fertilizante',
-	'topdressing5_Fertilizante',
-	'presowing_UFN',
-	'topdressing1_UFN',
-	'topdressing2_UFN',
-	'topdressing3_UFN',
-	'topdressing4_UFN',
-	'topdressing5_UFN'
-];

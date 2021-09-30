@@ -48,18 +48,28 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-5">
-									<label for="crop" class="form-label">Plant common name</label>
+									<label for="crop_type" class="form-label">Plant common name</label>
 									<input required type="hidden" name="input[crop_name]" />
 									<select required class="form-select" id="crop_type" name="input[crop_type]"></select>
 								</div>
 								<div class="col-sm-5">
-									<label for="PK_strategy" class="form-label">PK Strategy</label>
+									<label for="PK_strategy" class="form-label">PK strategy&nbsp;&nbsp;</label>
+									<a href="#" data-bs-toggle="modal" data-bs-target="#pkstrategies-modal">
+										<i class="fa fa-info"></i>
+									</a>
 									<select required class="form-select" id="PK_strategy" name="input[PK_strategy]">
 										<option value="maximum-yield">Buildup & maintenance (maximum yield)</option>
 										<option value="minimum-fertilizer">Buildup & maintenance (reduced fertilizer)</option>
 										<option value="sufficiency">Sufficiency (minimum fertilizer)</option>
 										<option value="maintenance">Maintenance (soil analysis not avalable)</option>
 									</select>
+									<div class="modal fade" tabindex="-1" aria-hidden="true" id="pkstrategies-modal">
+										<div class="modal-dialog">
+											<div class="modal-content p-5">
+												<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="col-sm-2">
 									<label for="yield" class="form-label">Yield (kg/ha)</label>
@@ -171,7 +181,7 @@
 							<div class="row">
 								<div class="col-sm-4">
 									<label for="climatic_zone" class="form-label">Climatic zone&nbsp;&nbsp;</label>
-									<a href="#" data-bs-toggle="modal" data-bs-target=".modal">
+									<a href="#" data-bs-toggle="modal" data-bs-target="#climatic_zone-modal">
 										<i class="fa fa-info"></i>
 									</a>
 									<select required class="form-select" id="climatic_zone" name="input[climatic_zone]">
@@ -181,7 +191,7 @@
 										<option value="northern">Northern </option>
 										<option value="southern">Southern</option>
 									</select>
-									<div class="modal fade" tabindex="-1" aria-hidden="true">
+									<div class="modal fade" tabindex="-1" aria-hidden="true" id="climatic_zone-modal">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<img src="/img/climates.png" />
@@ -298,7 +308,7 @@
 									<input type="number" class="form-control" placeholder="Amount" id="amount" name="amount" min="0" />
 									<label for="amount" class="form-label">kg/ha</label>
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<input type="number" class="form-control" placeholder="Price"  id="price" name="price" min="0" step="0.0001" />
 									<label for="price" class="form-label">&euro;/t</label>
 								</div>
@@ -317,10 +327,6 @@
 								<div class="col-sm-1">
 									<input disabled type="number" class="form-control" id="K" name="K" value="0" min="0" max="100" step="0.001" />
 									<label for="K" class="form-label">% K</label>
-								</div>
-								<div class="col-sm-1">
-									<input disabled type="number" class="form-control" id="S" name="S" value="0" min="0" max="100" step="0.001" />
-									<label for="S" class="form-label">% S</label>
 								</div>
 							</div>
 						</div>
@@ -343,17 +349,16 @@
 					<div class="d-none" id="results">
 						<h3 class="text-center">Best fertilization</h3>
 						<div class="table-responsive" id="fertilization">
-							<table class="table table-warning text-center">
+							<table class="table table-warning text-end">
 								<thead>
 									<tr>
 										<th scope="col">Fertilizer</th>
 										<th scope="col">Amount (kg/ha)</th>
 										<th scope="col">Cost (€/ha)</th>
-										<th scope="col">N (UF/ha)</th>
-										<th scope="col">N_ureic (UF/ha)</th>
-										<th scope="col">P (UF/ha)</th>
-										<th scope="col">K (UF/ha)</th>
-										<th scope="col">S (UF/ha)</th>
+										<th scope="col">N (FU/ha)</th>
+										<th scope="col">N_ureic (FU/ha)</th>
+										<th scope="col">P (FU/ha)</th>
+										<th scope="col">K (FU/ha)</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -362,13 +367,15 @@
 						<h3 class="text-center">Balance</h3>
 						<div class="row">
 							<div class="col-sm-6" id="balance_input">
-								<table class="table table-warning text-center">
+								<table class="table table-warning text-end">
 									<thead>
 										<tr>
 											<th></th>
-											<th>N (UF/ha)</th>
-											<th>P (UF/ha)</th>
-											<th>K (UF/ha)</th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -397,13 +404,15 @@
 								</table>
 							</div>
 							<div class="col-sm-6" id="balance_output">
-								<table class="table table-warning text-center">
+								<table class="table table-warning text-end">
 									<thead>
 										<tr>
 											<th></th>
-											<th>N (UF/ha)</th>
-											<th>P (UF/ha)</th>
-											<th>K (UF/ha)</th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
 										</tr>
 									</thead>
 									<tbody>

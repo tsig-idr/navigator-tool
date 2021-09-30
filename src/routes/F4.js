@@ -17,8 +17,8 @@ const dispatcher = async input => {
 		(input.applied = []);
 	input.fertilizers = [];
 	let output = await navF4Ctrl.requeriments(input),
-		N = Math.max(output.Ncrop - output.Nc_mineralization_amendment, 0), 
-		N_ur = Math.max(0.25*output.Ncrop - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
+		N = Math.max(output.Ncrop + output.Ndenitrification - output.Nc_mineralization_amendment, 0), 
+		N_ur = Math.max(0.25*(output.Ncrop + output.Ndenitrification) - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
 		P = Math.max(output.P_maintenance - applied.reduce((acc, fert) => acc + fert.amount*fert.P, 0)/100, 0),
 		K = Math.max(output.K_maintenance - applied.reduce((acc, fert) => acc + fert.amount*fert.K, 0)/100, 0);
 	input.applied = applied;
@@ -31,10 +31,12 @@ module.exports.router = function () {
 	router.post('/requirements', asyncHandler(async (req, res) => {
 		const input = typeof req.body.input === 'object' && req.body.input || req.params.input && typeof req.params.input === 'object' || {};
 		const output = await dispatcher(input);
-		let N, P, K;
+		let N, P, K, P2O5, K2O;
 		N = output.Ncrop;
 		P = output.P_maintenance;
 		K = output.K_maintenance;
+		P2O5 = output.P2O5_maintenance;
+		K2O = output.K2O_maintenance;
 		const results = [
 			{
 				SOM: 1.5,
@@ -54,12 +56,16 @@ module.exports.router = function () {
 					recommendedFertilizer: {
 						N: input.fertilizers.reduce((acc, fert) => acc + fert.N, 0),
 						P: input.fertilizers.reduce((acc, fert) => acc + fert.P, 0),
-						K: input.fertilizers.reduce((acc, fert) => acc + fert.K, 0)
+						K: input.fertilizers.reduce((acc, fert) => acc + fert.K, 0),
+						P2O5: input.fertilizers.reduce((acc, fert) => acc + fert.P2O5, 0),
+						K2O: input.fertilizers.reduce((acc, fert) => acc + fert.K2O, 0)
 					},
 					appliedFertilizer: {
 						N: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.N || 0)/100, 0),
 						P: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.P || 0)/100, 0),
-						K: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.K || 0)/100, 0)
+						K: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.K || 0)/100, 0),
+						P2O5: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.P || 0)/100, 0)*2.293,
+						K2O: input.applied.reduce((acc, fert) => acc + fert.amount*(fert.K || 0)/100, 0)*1.205
 					}
 				},
 				output: {
@@ -67,7 +73,9 @@ module.exports.router = function () {
 					Uptake : {
 						N: output.Nuptake,
 						P: P,
-						K: K
+						K: K,
+						P2O5: P2O5,
+						K2O: K2O
 					},
 					Ndenitrification: output.Ndenitrification,
 					NminPostharvest: output.Nc_s_end,
@@ -92,8 +100,8 @@ module.exports.router = function () {
 					NminPostharvest: output.Nc_s_end,
 					Nvolatilization: output.Nvolatilization
 				},
-				P2O5cf: P*2.293,
-				K2Ocf: K*1.205,
+				P2O5cf: P2O5,
+				K2Ocf: K2O,
 			});
 		res.json({
 			results: results

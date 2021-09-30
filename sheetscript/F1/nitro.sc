@@ -1,27 +1,31 @@
+E = 2.718281828459045
 CSVAgro = [[]]
 Curve4organic = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Curve4organic.csv'))
 Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Fertilizers_aux.csv'))
-CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'CropData.csv'))
+CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
 Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
 FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'FenoT.csv'))
-FenoBBCH = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'BBCH.csv'))
 Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Extracciones.csv'))
 Mineral = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Mineral.csv'))
 MO = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'MO.csv'))
-NDVIreali = LINTER4DATES (NDVIreal, 1)
-NDVItipoi = LINTER4DATES (NDVItipo, 1)
+NDVIreali = LINTER4DATES (NDVIreal)
+NDVItipoi = LINTER4DATES (NDVItipo)
+
+Nuptake = (h_dm_med_50*Nc_h_ + r_dm_med_50*Nc_r)*(1 + fnr)
+Nuptake_min = (h_dm_med_20*Nc_h_ + (h_dm_med_20*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
+Nuptake_max = (h_dm_med_80*Nc_h_ + (h_dm_med_80*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 
 agroasesor = 'no'
-c_mineral = VLOOKUP (FLOOR (soilOrganicMaterial*100); MO; 2)
-UFN = depth_s*100*100*density_s*1000*(1 - soilStony)*Nc_s_initial/1000000
+c_mineral = VLOOKUP (SOM; MO; 2, 1)
+UFN = depth_s*100*100*density_s*1000*(1 - stony)*Nc_s_initial/1000000
 
 mineralIni = '9999-12-31'
 mineralEnd = crop_endDate
 
-Fechas = GENNDATES(cropDate, n)
+Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 n = 200 + 1
-m = LEN(FenoT)
+m = LEN (FenoT)
 
 ET0_acc_ = 0
 n_days_Eto = 0
@@ -31,12 +35,12 @@ while k < n then begin '{'
 	row = GET (FenoT, l)
 	SET (row, 4, n_days_Eto)
 	SET (FenoT, l, row)
-	val = FLOAT(GET (row, 0))
+	val = FLOAT (GET (row, 0))
 	Fecha = GET (Fechas, k)
-	ET0 = IF_ERROR (VLOOKUP (Fecha; Meteo; 13); IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Clima; 13)); 0))
+	ET0 = IF (Fecha >= crop_startDate; IF_ERROR (VLOOKUP (Fecha; Meteo; 13); IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Clima; 13)); 0)); 0)
 	ET0_acc = ET0 + ET0_acc_
 	ET0_acc_ = ET0_acc
-	n_days_Eto = IF (ET0_acc >= val; 1; n_days_Eto + 1)
+	n_days_Eto = IF (Fecha >= crop_startDate; IF (ET0_acc >= val; 1; n_days_Eto + 1); 0)
 	l = IF (ET0_acc >= val; l + 1; l)
 	k = IF (l < m; k + 1; n)
 '}' end
@@ -60,6 +64,8 @@ N_agua_A_ = 0
 Nl_A_ = 0
 N_mineral_soil_ = Nh_
 N_final = 0
+c_a = 0
+c_b = 0
 j = 0
 i = 1
 while i < n then begin '{'
@@ -117,13 +123,13 @@ while i < n then begin '{'
 	Prec_efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 12); GET (SWB4day, 'P_RO')); 0)
 	SET (nitro4day, 'Prec_efec', Prec_efec)
 
-	Riego_neces = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 35); GET (SWB4day; 'Riego_neto_necesario')); 0)
+	Riego_neces = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 36); GET (SWB4day; 'Riego_neto_necesario')); 0)
 	SET (nitro4day, 'Riego_neces', Riego_neces)
 
-	DP = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 37); GET (SWB4day; 'DP')); 0)
+	DP = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 38); GET (SWB4day; 'DP')); 0)
 	SET (nitro4day, 'DP', DP)
 
-	Riego_Efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 36); GET (SWB4day; 'Riego_neto_necesario')); 0)
+	Riego_Efec = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 37); GET (SWB4day; 'Riego_neto_necesario')); 0)
 	SET (nitro4day, 'Riego_Efec', Riego_Efec)
 
 	t = IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 16); IF_ERROR (VLOOKUP (Fecha; Meteo; 2); VLOOKUP (Fecha; Clima; 2)))
@@ -150,7 +156,7 @@ while i < n then begin '{'
 	Sem = IF (ISOWEEKNUMBER (Fecha) < 40; ISOWEEKNUMBER (Fecha); ISOWEEKNUMBER (Fecha) - 53)
 	SET (nitro4day, 'Sem', Sem)
 
-	N_extrA = IF (IT > VLOOKUP (crop_type; Extracciones; 3) && IT < VLOOKUP (crop_type; Extracciones; 5); (IT - VLOOKUP (crop_type; Extracciones; 3))*soilDelta_N_NH4; 0)
+	N_extrA = IF (IT > VLOOKUP (crop_type; Extracciones; 3) && IT < VLOOKUP (crop_type; Extracciones; 5); (IT - VLOOKUP (crop_type; Extracciones; 3))*N_NH4; 0)
 	SET (nitro4day, 'N_extrA', N_extrA)
 
 	N_extr = MAX (N_extrA - N_extrA_; 0)
@@ -164,11 +170,11 @@ while i < n then begin '{'
 	i_days_Eto = IF (Eto_acumulada_elegida >= val; 1; i_days_Eto + 1)
 
 	ExtracR_N = IF (n_days_Eto > 0; GET (row, 2)/n_days_Eto; 0)
-	ExtracR_N_Kg = ExtracR_N*GET (SWB4day, 'Nuptake')
+	ExtracR_N_Kg = ExtracR_N*Nuptake
 	N_extr_1 = IF_ERROR (0 - ExtracR_N_Kg; 0)
 	SET (nitro4day, 'N_extr_1', N_extr_1)
 
-	N_mineralizado = IF (N_extr_1 == 0; VLOOKUP (Tm; Mineral; 2; 1)*Tm*c_mineral*mineralizationSlowdown; VLOOKUP (Tm; Mineral; 2; 1)*Tm*c_mineral)
+	N_mineralizado = IF (N_extr_1 == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
 
 	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
@@ -183,42 +189,48 @@ while i < n then begin '{'
 	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
-	fertilizer = IF_ERROR (GET (planning_done, Fecha); [])
-	name = GET (fertilizer, 'name')
+	fertilizer = GET (planning_done, Fecha) || []
+	fertilizer_ = GET (planning_todo, Fecha) || []
+
 	mineralIni = IF (GET (fertilizer, 'classification') == 'Organic'; Fecha; mineralIni)
-	fertilizer_ = IF_ERROR (GET (planning_todo, Fecha); [])
 	mineralEnd = IF (GET (fertilizer_, 'method') == 'topdressing' && Fecha < mineralEnd; Fecha; mineralEnd)
 
-	N_fert_neto = IF_ERROR (GET (fertilizer, 'Nbf'); 0)/100*IF_ERROR (GET (fertilizer, 'amount'); 0)
+	N_fert_neto = IF (GET (fertilizer, 'date') == Fecha; GET (fertilizer, 'Nbf')/100*GET (fertilizer, 'amount'); 0)
 
 	N_final = IF (mineralIni == Fecha; N_fert_neto; N_final)
-	c_a = IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 3)); 0)
-	c_b = IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 4)); 0)
-	t_0 = fgdg
-	t_i = fdgd
-	t_n = vfdg
+	name = GET (fertilizer, 'name')
+	c_a = IF (mineralIni == Fecha; IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 3)); 0); c_a)
+	c_b = IF (mineralIni == Fecha; IF_ERROR (FLOAT (VLOOKUP (name; Curve4organic; 4)); 0); c_b)
+	t_i = DATE2INT (Fecha)
+	t_0 = t_i - 1
+	t_n = t_i + 1
 	curve = (c_b*(t_n - t_i) + c_a*(0 - t_0*LN (t_n - t_0) + t_0*LN (t_i - t_0) - t_i*LN (t_i - t_0) + t_n*LN (t_n - t_0) + t_i - t_n))*N_final/100
+
+	N_curve = IF (Fecha >= mineralIni && Fecha < mineralEnd; curve; 0)
+	SET (nitro4day, 'N_curve', N_curve)
 
 	N_recom = GET (row, 3)
 	SET (nitro4day, 'N_recom', N_recom)
 
-	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_1) + curve
+	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_1) + N_curve
 	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
 
 	N_rate = N_recom - N_mineral_soil
 	SET (nitro4day, 'N_rate', N_rate)
 
-	N_fert_neto = IF (GET (fertilizer_, 'Nbf') > 0; N_rate; N_fert_neto)
+	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate > 0; N_rate; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
+
+	N_fert_neto = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
 	SET (nitro4day, 'N_fert_neto', N_fert_neto)
+
+	N_deni = 0.34*E**(0.012*N_rate)
+	SET (nitro4day, 'N_deni', N_deni)
 
 	Nh = Nh_ + SUM (N_mineralizado; N_agua; N_fert_neto) + SUM (Nl; N_extr_1)
 	SET (nitro4day, 'Nh', Nh)
 
-	N_NO3 = Nh*1000000/(depth_s*100*100*density_s*1000*(1 - soilStony)*(1 + soilDelta_N_NH4))
+	N_NO3 = Nh*1000000/(depth_s*100*100*density_s*1000*(1 - stony)*(1 + N_NH4))
 	SET (nitro4day, 'N_NO3', N_NO3)
-
-	Nmin_medido = IF_ERROR (HLOOKUP (Fecha; [[soilDate_Nmin_0], [UFN]]; 2); 0 - 100)
-	SET (nitro4day, 'Nmin_medido', Nmin_medido)
 
 	T_Nf_recomendado = IF (Nh > N_recom; 0; 1)
 	SET (nitro4day, 'T_Nf_recomendado', T_Nf_recomendado)
@@ -259,12 +271,12 @@ while i < n then begin '{'
 	Biomasa = IF_ERROR (GET (SWB4day, 'Biomasa_acumulada'); '')
 	SET (nitro4day, 'Biomasa', Biomasa)
 
-	Nuptake = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
-	SET (nitro4day, 'Nuptake', Nuptake)
+	Nuptakediario = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
+	SET (nitro4day, 'Nuptake', Nuptakediario)
 
 	SET (nitro4days, Fecha, nitro4day)
 
-	PUSH(results, nitro4day)
+	PUSH (results, nitro4day)
 
 	Eto_acumulada_ = Eto_acumulada
 	Eto_acumulada_real_ = Eto_acumulada_real
@@ -282,13 +294,13 @@ while i < n then begin '{'
 	N_mineral_soil_ = N_mineral_soil
 '}' end
 
+planning_done_ = planning_done
+planning_todo_ = planning_todo
+
 y = yield
 export_r_ = export_r/100
 HI_est_ = HI_est/100
 CV_ = CV/100
-Nc_h_ = Nc_h/100
-Pc_h_ = Pc_h/100
-Kc_h_ = Kc_h/100
 
 fnr = 0.1
 fmc_r = 0.15
@@ -298,11 +310,15 @@ t_50 = 0
 t_20 = 0-0.84
 t_80 = 0.84
 
-dm_h = VLOOKUP (crop_type; CropData; 11)/100
-Nc_r = VLOOKUP (crop_type; CropData; 24)/100
+Nc_h_ = Nc_h/100
+Pc_h_ = Pc_h/100
+Kc_h_ = Kc_h/100
+
+dm_h = VLOOKUP (crop_type; CropData; 8)/100
+Nc_r = VLOOKUP (crop_type; CropData; 21)/100
 density_s = VLOOKUP (soil_texture; SoilData; 21)
 
-Pc_r = VLOOKUP (crop_type; CropData; 25)/100
+Pc_r = VLOOKUP (crop_type; CropData; 22)/100
 Pc_s = Pc_si*VLOOKUP (Pc_method; Pc_method_table; 2)
 Pc_s_thres_min = VLOOKUP (soil_texture; SoilData; 25)
 P_STL_STLtmin = IF (Pc_s < Pc_s_thres_min; 1; 0)
@@ -327,7 +343,7 @@ P2O5_minBM = P_minBM*2.293
 P2O5_maxBM = P_maxBM*2.293
 P2O5_maintenance = P_maintenance*2.293
 
-Kc_r = VLOOKUP (crop_type; CropData; 26)/100
+Kc_r = VLOOKUP (crop_type; CropData; 23)/100
 Kc_s = Kc_s_0*1
 Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
 K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)

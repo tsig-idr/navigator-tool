@@ -33,7 +33,7 @@
 						<h5 class="card-header">Plot i</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-2">
 									<label for="crop_name" class="form-label">Crop</label>
 									<input required type="hidden" name="input[crops][0][crop_type]" />
 									<input required readonly class="form-control" id="crop_name" name="input[crops][0][crop_name]" />
@@ -45,6 +45,10 @@
 								<div class="col-sm-2">
 									<label for="yield" class="form-label">Yield (kg/ha)</label>
 									<input required readonly type="number" class="form-control" id="yield" name="input[crops][0][yield]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label for="export_r" class="form-label">Export residues (%)</label>
+									<input required readonly class="form-control" id="export_r" name="input[crops][0][export_r]" />
 								</div>
 								<div class="col-sm-1">
 									<label for="SOM" class="form-label">SOM (%)</label>
@@ -60,12 +64,25 @@
 								</div>
 							</div>
 							<div class="row mt-2">
-								<div class="col-sm-4">
+								<div class="col-sm-2">
+									<label for="rewetted" class="form-label">Rewetted</label>
+									<select required class="form-select" id="rewetted" name="input[crops][0][rewetted]">
+										<option value="yes">Yes</option>
+										<option selected value="no">No</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
 									<label for="combustible" class="form-label">Combustible</label>
 									<select required class="form-select" id="combustible" name="input[crops][0][combustible]">
+										<option value="Fuel oil">Fuel oil</option>
 										<option value="Diesel">Diesel</option>
-										<option value="Fuel (heating)">Fuel (heating)</option>
-										<option value="Petrol/Gasoline, regular">Petrol/Gasoline, regular</option>
+										<option value="Gasoline">Gasoline</option>
+										<option value="Rape seed biodiesel (purchased)">Rape seed biodiesel (purchased)</option>
+										<option value="Sunflower biodiesel (purchased)">Sunflower biodiesel (purchased)</option>
+										<option value="Biodiesel mix (purchased)">Biodiesel mix (purchased)</option>
+										<option value="PVO rapeseed (purchased)">PVO rapeseed (purchased)</option>
+										<option value="PVO sunflower (purchased)">PVO sunflower (purchased)</option>
+										<option value="PVO rapeseed (purchased)">PVO rapeseed (purchased)</option>
 									</select>
 								</div>
 								<div class="col-sm-2">
@@ -253,7 +270,7 @@
 							<tbody>
 								<tr name="Ground">
 									<td>Direct and indirect emissions from managed soils</td>
-									<td name="CO2"> - </td>
+									<td name="CO2"></td>
 									<td name="N2O"></td>
 									<td name="CH4"></td>
 									<td name="CO2eq"></td>
@@ -273,14 +290,7 @@
 									<td name="CO2eq"></td>
 								</tr>
 								<tr name="SOC">
-									<td>Carbon storage</td>
-									<td name="CO2"></td>
-									<td name="N2O"> - </td>
-									<td name="CH4"> - </td>
-									<td name="CO2eq"></td>
-								</tr>
-								<tr name="L">
-									<td>Carbon emission / removal</td>
+									<td>Changes in carbon stocks</td>
 									<td name="CO2"></td>
 									<td name="N2O"> - </td>
 									<td name="CH4"> - </td>

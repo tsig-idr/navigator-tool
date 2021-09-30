@@ -41,7 +41,7 @@ form.querySelector('button').addEventListener('click', () => {
 		for (const name in data.results) {
 			parts = name.split('from');
 			(td = table.querySelector(`tr[name="${parts[1]}"]>td[name="${parts[0]}"]`)) &&
-				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
+				(td.innerHTML = data.results[name] && data.results[name].toFixed());
 		}
 		table.classList.remove('d-none');
 	}).catch(error => {

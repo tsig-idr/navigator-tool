@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR TOOL G4</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="../css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>NAVIGATOR TOOL G4</h2>
+					<p>This module just implements that part of the G4 line concerning <b>land use change</b></p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<div class="card">
+						<h5 class="card-header">Natural infrastructures</h5>
+						<div class="card-body">
+							<div class="row" data-field="trees">
+								<div class="col-sm-5">
+									<select class="form-select" name="type">
+										<option value="Grove < 0.5 ha">Grove < 0.5 ha</option>
+										<option value="Maintained hedgerow 3 stratum">Maintained hedgerow 3 stratum</option>
+										<option value="Damaged hedgerow (L basis <1.5 m)">Damaged hedgerow (L basis <1.5 m)</option>
+										<option value="Tree line">Tree line</option>
+										<option value="Scattered tree (adult)">Scattered tree (adult)</option>
+										<option value="Riverine">Riverine</option>
+										<option value="Wood edges">Wood edges</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="width" placeholder="Width (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="length" placeholder="Length (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-1 text-end">
+									<a type="button" class="btn btn-secondary">
+										<i class="fa fa-plus"></i>
+									</a>
+								</div>
+							</div>
+							<br/>
+							<div class="row" data-field="shrubby">
+								<div class="col-sm-5">
+									<select class="form-select" name="type">
+										<option value="Shrubby hedgerow">Shrubby hedgerow</option>
+										<option value="Bank with shrub">Bank with shrub</option>
+										<option value="Wildland. health">Wildland, health</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="width" placeholder="Width (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="length" placeholder="Length (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-1 text-end">
+									<a type="button" class="btn btn-secondary">
+										<i class="fa fa-plus"></i>
+									</a>
+								</div>
+							</div>
+							<br/>
+							<div class="row" data-field="orchards">
+								<div class="col-sm-5">
+									<select class="form-select" name="type">
+										<option value="Vineyards">Vineyard (vine stock)</option>
+										<option value="Orchards">Orchard (apple tree, pear tree...)</option>
+									</select>
+								</div>
+								<div class="col-sm-6">
+									<input type="number" name="surface" placeholder="Surface (ha)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-1 text-end">
+									<a type="button" class="btn btn-secondary">
+										<i class="fa fa-plus"></i>
+									</a>
+								</div>
+							</div>
+							<br/>
+							<div class="row" data-field="low">
+								<div class="col-sm-5">
+									<select class="form-select" name="type">
+										<option value="Grass strips">Grass strips</option>
+										<option value="Green cover bank">Green cover bank</option>
+										<option value="Dry lawn">Dry lawn</option>
+										<option value="Wet natural meadow">Wet natural meadow</option>
+										<option value="Young hedgerow (0-3 years)">Young hedgerow (0-3 years)</option>
+										<option value="Young hedgerow (4-7 years)">Young hedgerow (4-7 years)</option>
+										<option value="Stone low wall">Stone low wall</option>
+										<option value="Ponds < 1000 m2">Ponds < 1000 m2</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="width" placeholder="Width (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-3">
+									<input type="number" name="length" placeholder="Length (m)" class="form-control" min="0" />
+								</div>
+								<div class="col-sm-1 text-end">
+									<a type="button" class="btn btn-secondary">
+										<i class="fa fa-plus"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header">Land use change</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-2">
+									<label class="form-label">Forest to cropland</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[forest2cropland]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label class="form-label">Forest to grassland</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[forest2grassland]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label class="form-label">Grassland to cropland</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[grassland2cropland]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label class="form-label">Grassland to forest</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[grassland2forest]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label class="form-label">Cropland to grassland</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[cropland2grassland]" min="0" />
+								</div>
+								<div class="col-sm-2">
+									<label class="form-label">Cropland to forest</label>
+									<input type="number" placeholder="Surface (ha)" class="form-control" name="input[cropland2forest]" min="0" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card" data-field="forests">
+						<h5 class="card-header">Forests</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-11">
+									<div class="row">
+										<div class="col-sm-3">
+											<label class="form-label">Ecozone</label>
+											<select class="form-select" name="ecozone">
+												<option value="Temperate continental">Temperate continental</option>
+												<option value="Temperate oceanic">Temperate oceanic</option>
+												<option value="Temperate mountain system">Temperate mountain system</option>
+												<option value="Boreal">Boreal</option>
+												<option value="Boreal tundra">Boreal tundra</option>
+												<option value="Boreal mountain">Boreal mountain</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<label class="form-label">Age</label>
+											<select class="form-select" name="age">
+												<option value=">20y">> 20 years</option>
+												<option value="<20y">< 20 years</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<label class="form-label">Type</label>
+											<select class="form-select" name="type">
+												<option value="coniferous">Coniferous</option>
+												<option value="broadleaf">Broadleaf</option>
+											</select>
+										</div>
+										<div class="col-sm-3">
+											<label class="form-label">Stock temperate (m³/y)</label>
+											<select class="form-select" name="volume_t">
+												<option value="0">0</option>
+												<option value="<20">< 20</option>
+												<option value="21-40">21 - 40</option>
+												<option selected value="41-100">41 - 100</option>
+												<option value="101-200">101 - 200</option>
+												<option value=">200">> 200</option>
+											</select>
+										</div>
+										<div class="col-sm-2">
+											<label class="form-label">Stock boreal (m³/y)</label>
+											<select class="form-select" name="volume_b">
+												<option value="0">0</option>
+												<option selected value="<20">< 20</option>
+												<option value="21-50">21 - 50</option>
+												<option value="51-100">51 - 100</option>
+												<option value=">100">> 100</option>
+											</select>
+										</div>
+									</div>
+									<div class="row mt-1">
+										<div class="col-sm-2">
+											<input type="number" name="surface" placeholder="Surface (ha)" class="form-control" min="0" />
+										</div>
+										<div class="col-sm-3">
+											<input type="number" name="wood" placeholder="Wood harvest over bark (m³/y)" class="form-control" min="0" />
+										</div>
+										<div class="col-sm-2">
+											<input type="number" name="bark" placeholder="Bark in wood (t/t)" class="form-control" min="0" />
+										</div>
+										<div class="col-sm-2">
+											<input type="number" name="lost" placeholder="Biomass lost (%)" class="form-control" min="0" max="100" />
+										</div>
+										<div class="col-sm-3">
+											<input type="number" name="area" placeholder="Area of disturbances (ha/yr)" class="form-control" min="0" />
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-1 text-end">
+									<a type="button" class="btn btn-secondary">
+										<i class="fa fa-plus"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<button type="button" class="btn btn-warning">
+							<i class="fa fa-play"></i> GHG emissions
+						</button>
+					</div>
+					<br/>
+					<div class="table-responsive">
+						<table class="table table-warning d-none">
+							<thead>
+								<tr>
+									<th scope="col"></th>
+									<th scope="col">Carbon stock (tCO2)</th>
+									<th scope="col">Carbon stock changes (tCO2eq/year)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr name="Infrastructures">
+									<td>Natural elements</td>
+									<td name="CO2"></td>
+									<td name="CO2A"></td>
+								</tr>
+								<tr name="LUC">
+									<td>Land use change</td>
+									<td name="CO2"></td>
+									<td name="CO2A"></td>
+								</tr>
+								<tr name="Forests">
+									<td>Forests</td>
+									<td name="CO2"></td>
+									<td name="CO2A"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</main>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+		<script src="https://brainfoolong.github.io/form-data-json/lib/form-data-json.min.js"></script>
+		<script src="/js/form-g4-luc.js"></script>
+		<script src="/js/global-scripts.js"></script>
+	</body>
+</html>

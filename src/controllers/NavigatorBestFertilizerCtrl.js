@@ -85,7 +85,9 @@ module.exports = function () {
 					amount: Q*100,
 					N: Q*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
 					P: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
+					P2O5: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0)*2.293,
 					K: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
+					K2O: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0)*1.205,
 					S: Q*(fertilizer.Scf || fertilizer.sulphur.Scf || 0),
 					N_ur: Q*(fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0),
 					cost: Q*100*(fertilizer.price || 0)
@@ -111,19 +113,20 @@ module.exports = function () {
 			Pcf /= 100;
 			Kcf /= 100;
 			amount = Math.max(N_req ? N_req/Nbf : 0, P_req ? P_req/Pcf : 0, K_req ? K_req/Kcf : 0);
-			cost = price*amount;
+			cost = amount*fertilizer.price;
 			if (cost < bestCost) {
 				bestCost = cost;
 				bestFertilizer = {
 					fertilizerID: fertilizer.fertilizerID,
 					fertilizer_name: fertilizer.fertilizer_name,
+					method: getMethod(fertilizer.fertilizerID),
 					amount: amount,
-					N: amount*Ncf,
+					N: amount*Nbf,
 					P: amount*Pcf,
+					P2O5: amount*Pcf*2.293,
 					K: amount*Kcf,
-					S: amount*Scf,
-					N_ur: amount*Ncf_ur,
-					cost: amount*fertilizer.price
+					K2O: amount*Kcf*1.205,
+					cost: cost
 				};
 			}
 		});
@@ -160,4 +163,14 @@ module.exports = function () {
 		bestOne: bestOne,
 		aggregate: aggregate
 	}
+}
+
+function getMethod (fertilizerID) {
+	let csv = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F3', 'Fertilizers_aux.csv'), 'utf8'),
+		row;
+	csv = csv.split('\n').map(line => line.split(';'));
+	if (row = csv.find(row => row[0] == fertilizerID)) {
+		return row[1].trim();
+	}
+	return null;
 }

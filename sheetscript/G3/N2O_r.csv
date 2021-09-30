@@ -1,0 +1,43 @@
+HORSES,%N volatisation N-NH3 and N-Nox (FRACGas),FRACleach
+Pasture. range. paddock,0.21,0.24
+Daily spread,0.07,0
+Solid storage,0.12,0.02
+Solid storage covered / compacted,0.05,0
+Solid storage bulking agent,0.15,0.02
+Solid storage additives,0.04,0.02
+Dry lot,0.3,0.035
+Liquid / Slurry with natural crust cover 1 month,0.09,0
+Liquid / Slurry with natural crust cover 3 month,0.09,0
+Liquid / Slurry with natural crust cover 4 month,0.09,0
+Liquid / Slurry with natural crust cover 6 month,0.09,0
+Liquid / Slurry with natural crust cover 12 month,0.09,0
+Liquid / slurry without natural crust cover 1 month,0.15,0
+Liquid / slurry without natural crust cover 3 month,0.15,0
+Liquid / slurry without natural crust cover 4 month,0.15,0
+Liquid / slurry without natural crust cover 6 month,0.15,0
+Liquid / slurry without natural crust cover 12 month,0.15,0
+Uncovered anaerobic lagoon ,0.35,0
+Pit storage below animal confinements. 1 month,0.25,0
+Pit storage below animal confinements. 3 month,0.25,0
+Pit storage below animal confinements. 4 month,0.25,0
+Pit storage below animal confinements. 6 month,0.25,0
+Pit storage below animal confinements. 12 month,0.25,0
+Anaerobic digester low leakage. high quality gas tight storage,0.05,0
+Anaerobic digester low leakage. low quality gas tight storage,0.05,0
+Anaerobic digester low leakage. open storage,0.5,0
+Anaerobic digester high leakage. high quality gas tight storage,0.05,0
+Anaerobic digester high leakage. low quality gas tight storage,0.05,0
+Anaerobic digester high leakage. open storage,0.5,0
+Cattle and swine deep bedding-no mixing. <1 month,0.4,0.035
+Cattle and swine deep bedding-no mixing. >1 month,0.4,0.035
+Cattle and swine deep bedding-active mixing. < 1 month,0.4,0.035
+Cattle and swine deep bedding-active mixing. > 1 month,0.4,0.035
+Composting In-vessel,0.18,0
+Composting Static Pile,0.2,0.06
+Composting intensive windrow,0.2,0.06
+Composting passive windrow,0.18,0.04
+Poultry manure with litter,0,0
+Poultry without litter,0,0
+Aerobic treatment - natural aeration systems,0,0
+Aerobic treatment -  Forced aeration systems,0.27,0
+Excreted on fields. sun dried dung are burned for fuel,,

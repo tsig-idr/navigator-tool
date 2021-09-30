@@ -1,0 +1,13 @@
+full name,input level
+burnt yes yes,high man
+burnt yes no,medium
+burnt no yes,medium
+burnt no no,low
+removed yes yes,high man
+removed yes no,medium
+removed no yes,medium
+removed no no,low
+incorporated yes yes,high man
+incorporated yes no,high man
+incorporated no yes,high 
+incorporated no no,medium
