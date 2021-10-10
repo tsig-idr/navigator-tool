@@ -1,0 +1,20 @@
+Forage,%DM / fresh product,kg CO2 /tDM,GJ /tDM,N content / DM,Default Value of DE
+Grazing (grasslands),0.17,87,,,0.6
+Grass silage,0.33,220,1.696969697,,0.7
+Maize silage,0.33,193,0.916,,0.8
+Hay from natural or temporary grasslands,0.85,220,2.329411765,,0.6
+Lucerne hay,0.894,220,1.957494407,,0.6
+Barn dried hay,0.88,,,,0.7
+Beet feed,0.13,40,2.730769231,,0.8
+Green rape,,60,4.8,,0.75
+Sorghum feed,,60,4.8,,0.75
+Fodder kale,,60,4.8,,0.75
+Dehydrated beet pulp,0.889,150,11.86726659,,0.8
+Squeezed beet pulp,0.22,307,3.018,,0.8
+Sugar beet molasses,0.761,120,1,,0.9
+By-products of beer production (squeezed),0.23,150,1.304347826,,0.8
+Dehydrated alfalfa,0.91,150,13.1978022,,0.8
+Fresh beet pulp,,500,7.11,,0.8
+NH3 treated straw,0.88,150,0.3,,0.6
+Non-treated straw,0.88,150,0.340909091,,0.5
+Pea straw,0.88,150,0.3,,0.6

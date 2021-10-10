@@ -11,7 +11,7 @@ while i < n then begin '{'
 	row = GET (electricity, i)
 	type = GET (row, 'type')
 	amount = GET (row, 'amount')
-	CO2EF = IF_ERROR (VLOOKUP (type; CO24electricity; 4); 0)
+	CO2EF = IF_ERROR (VLOOKUP (type; CO24electricity; 4); 0)/1000
 	CO2fromElectricity = CO2fromElectricity + amount*CO2EF
 	i = i + 1
 '}' end
@@ -22,7 +22,7 @@ while i < n then begin '{'
 	row = GET (energy, i)
 	type = GET (row, 'type')
 	amount = GET (row, 'amount')
-	CO2EF = IF_ERROR (VLOOKUP (type; CO24energy; 4); 0)
+	CO2EF = IF_ERROR (VLOOKUP (type; CO24energy; 4); 0)/1000
 	CO2fromEnergy = CO2fromEnergy + amount*CO2EF
 	i = i + 1
 '}' end

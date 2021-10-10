@@ -1,0 +1,20 @@
+Feedstuffs,%DM / fresh product,kg CO2 /t fresh matter,GJ / t fresh matter,N content / DM,Default Value of DE
+Wheat,0.86,353,2.563,,0.85
+Barley ,0.86,321,2.465,,0.85
+Maize for grain ,0.86,296,2.683,,0.85
+Triticale,0.86,353,2.563,,0.85
+Oat,0.86,321,2.465,,0.85
+Sorghum seed,0.86,296,3.8,,0.85
+Soya seed,0.88,59,0.942,,0.85
+Peas seed,0.86,122,2.123,,0.85
+Rape seed,0.89,810,5.599,,0.85
+Sunflower seed,0.93,486,4.953,,0.85
+Soya bean meal,0.87,1579,5.705,,0.85
+Rapeseed cake,0.89,460,3.329,,0.85
+Sunflower cake,0.89,294,3.237,,0.85
+Flax seed,0.88,295,3.32,,0.85
+Milling products,0.9,541,3.922,,0.85
+Corn gluten feed,0.9,493,5.414,,0.85
+Dried beet flesh,0.1,28.69,0.54641,,0.85
+Hard wheat,0.86,580.18,4.68941,,0.85
+Milk powder,0.99,110,43.3,,0.85

@@ -63,7 +63,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true}));
+	const data = FormDataJson.toJson(form, {includeDisabled: true});
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.input.prices = csv2json(form.file);

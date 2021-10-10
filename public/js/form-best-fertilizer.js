@@ -2,7 +2,7 @@ var urlService = '/F3/fertilizers/optimization';
 
 function _sendForm(){
     var form = document.querySelector('#formBestFertilizer');
-    let json = FormDataJson.formToJson(form);
+    let json = FormDataJson.toJson(form);
     
     fetch(urlService, {
       method: 'POST',

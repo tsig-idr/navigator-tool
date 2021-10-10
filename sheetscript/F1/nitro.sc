@@ -24,29 +24,33 @@ mineralIni = '9999-12-31'
 mineralEnd = crop_endDate
 
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
-n = 200 + 1
-m = LEN (FenoT)
 
-ET0_acc_ = 0
-n_days_Eto = 0
-l = 1
-k = 1
-while k < n then begin '{'
-	row = GET (FenoT, l)
-	SET (row, 4, n_days_Eto)
-	SET (FenoT, l, row)
-	val = FLOAT (GET (row, 0))
-	Fecha = GET (Fechas, k)
-	ET0 = IF (Fecha >= crop_startDate; IF_ERROR (VLOOKUP (Fecha; Meteo; 13); IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Clima; 13)); 0)); 0)
-	ET0_acc = ET0 + ET0_acc_
-	ET0_acc_ = ET0_acc
-	n_days_Eto = IF (Fecha >= crop_startDate; IF (ET0_acc >= val; 1; n_days_Eto + 1); 0)
-	l = IF (ET0_acc >= val; l + 1; l)
-	k = IF (l < m; k + 1; n)
+date_ = crop_startDate
+extr = 0
+m = LEN (FenoT)
+feno_n = LEN (FenoBBCH)
+k = 0
+l = 0
+while k < m && l < feno_n then begin '{'
+	row = GET (FenoT, k)
+	val_ = FLOAT (GET (row, 1))
+	extr_ = FLOAT (GET (row, 2))
+	row = GET (FenoBBCH, l)
+	val = FLOAT (GET (row, 1))
+	date = GET (row, 0)
+	n_days = MAX (DATESDIF (date, date_); 1)
+	extr = IF (val >= val_; extr + extr_; extr_)
+	SET (row, 2, extr/n_days)
+	SET (row, 3, extr)
+	SET (row, 4, n_days)
+	SET (FenoBBCH, l, row)
+	k = IF (val < val_; k; k + 1)
+	l = IF (val < val_; l + 1; l)
+	date_ = IF (val < val_; date; date_)
 '}' end
 
+test = FenoBBCH
 row_ = [0]
-i_days_Eto = 0
 nitro4days = NEW()
 results = []
 Eto_acumulada_ = 0
@@ -67,6 +71,7 @@ N_final = 0
 c_a = 0
 c_b = 0
 j = 0
+n = 200 + 1
 i = 1
 while i < n then begin '{'
 	Fecha = GET (Fechas, i)
@@ -166,15 +171,18 @@ while i < n then begin '{'
 	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
 	row = IF (j < m; GET (FenoT, j); [99999, 0, 0, 0, 0])
 	row_ = row
-	n_days_Eto = GET (row, 4)
-	i_days_Eto = IF (Eto_acumulada_elegida >= val; 1; i_days_Eto + 1)
 
-	ExtracR_N = IF (n_days_Eto > 0; GET (row, 2)/n_days_Eto; 0)
+	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH; 3; 1); 0)
 	ExtracR_N_Kg = ExtracR_N*Nuptake
 	N_extr_1 = IF_ERROR (0 - ExtracR_N_Kg; 0)
 	SET (nitro4day, 'N_extr_1', N_extr_1)
 
-	N_mineralizado = IF (N_extr_1 == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
+	N_extrA_1 = N_extrA_1_ + N_extr_1
+	SET (nitro4day, 'N_extrA_1', N_extrA_1)
+
+	N_extr_ = IF (feno_n; N_extr_1; 0 - N_extr)
+
+	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
 
 	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
@@ -185,9 +193,6 @@ while i < n then begin '{'
 
 	Nl = (0 - DP)*N_NO3_/100
 	SET (nitro4day, 'Nl', Nl)
-
-	N_extrA_1 = N_extrA_1_ + N_extr_1
-	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
 	fertilizer = GET (planning_done, Fecha) || []
 	fertilizer_ = GET (planning_todo, Fecha) || []
@@ -212,7 +217,7 @@ while i < n then begin '{'
 	N_recom = GET (row, 3)
 	SET (nitro4day, 'N_recom', N_recom)
 
-	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_1) + N_curve
+	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve
 	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
 
 	N_rate = N_recom - N_mineral_soil
@@ -226,7 +231,7 @@ while i < n then begin '{'
 	N_deni = 0.34*E**(0.012*N_rate)
 	SET (nitro4day, 'N_deni', N_deni)
 
-	Nh = Nh_ + SUM (N_mineralizado; N_agua; N_fert_neto) + SUM (Nl; N_extr_1)
+	Nh = Nh_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve
 	SET (nitro4day, 'Nh', Nh)
 
 	N_NO3 = Nh*1000000/(depth_s*100*100*density_s*1000*(1 - stony)*(1 + N_NH4))
@@ -244,13 +249,14 @@ while i < n then begin '{'
 	Nl_A = Nl + Nl_A_
 	SET (nitro4day, 'Nl_A', Nl_A)
 
-	BBCH_tipo = IF (i_days_Eto == n_days_Eto; GET (row, 1); 0 - 9999)
+	BBCH_tipo = IF (Eto_acumulada_elegida >= val; GET (row, 1); 0 - 9999)
 	SET (nitro4day, 'BBCH_tipo', BBCH_tipo)
 
 	BBCH_graf = IF (BBCH_tipo > 0; 1.4; 0 - 999)
 	SET (nitro4day, 'BBCH_graf', BBCH_graf)
 
 	BBCH_real_et = IF_ERROR (VLOOKUP (Fecha; FenoBBCH; 2); 0 - 99999)
+	BBCH_real_et = IF (BBCH_real_et == 0; 0 - 99999; BBCH_real_et)
 	SET (nitro4day, 'BBCH_real_et', BBCH_real_et)
 
 	BBCH_real = IF (BBCH_real_et > 1; 1.4; 0 - 99999)

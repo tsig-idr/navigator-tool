@@ -7,7 +7,7 @@ form.querySelector('button').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	let data = FormDataJson.formToJson(form),
+	let data = FormDataJson.toJson(form),
 		row, 
 		rows;
 	data = {

@@ -1,11 +1,11 @@
-SOC4forest = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'SOC4forest.csv'))
-BCEF = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'BCEF.csv'))
-SOC4LUC = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'SOC4LUC.csv'))
-SOC4trees = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'SOC4trees.csv'))
-SOC4shrubby = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'SOC4shrubby.csv'))
-SOC4low = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'SOC4low.csv'))
+SOC4LUC = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4LUC.csv'))
+SOC4trees = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4trees.csv'))
+SOC4shrubby = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4shrubby.csv'))
+SOC4low = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4low.csv'))
 
 incC = 0.1
+Cstock = 0.475
+conversion = 0.502
 
 CO2fromInfrastructures = CO2fromForests = 0
 CO2AfromInfrastructures = CO2AfromForests = 0
@@ -21,9 +21,10 @@ while i < n then begin '{'
 	row = GET (trees, i)
 	type = GET (row, 'type')
 	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)/10000
-	soc = IF_ERROR (VLOOKUP (type; SOC4trees; 3); 0)
-	CO2fromInfrastructures = CO2fromInfrastructures + IF (soc; surface*soc*44/12; 0)
-	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*incC*44/12
+	soc = IF_ERROR (GET (row, 'soc'); 0)
+	increase = IF_ERROR (GET (row, 'increase'); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + surface*soc*44/12
+	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*increase*44/12
 	i = i + 1
 '}' end
 n = LEN (shrubby)
@@ -32,9 +33,10 @@ while i < n then begin '{'
 	row = GET (shrubby, i)
 	type = GET (row, 'type')
 	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)/10000
-	soc = IF_ERROR (VLOOKUP (type; SOC4shrubby; 3); 0)
-	CO2fromInfrastructures = CO2fromInfrastructures + IF (soc; surface*soc*44/12; 0)
-	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*incC*44/12
+	soc = IF_ERROR (GET (row, 'soc'); 0)
+	increase = IF_ERROR (GET (row, 'increase'); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + surface*soc*44/12
+	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*increase*44/12
 	i = i + 1
 '}' end
 n = LEN (orchards)
@@ -43,9 +45,10 @@ while i < n then begin '{'
 	row = GET (orchards, i)
 	type = GET (row, 'type')
 	surface = IF_ERROR (GET (row, 'surface'); 0)
-	soc = IF_ERROR (VLOOKUP (type; SOC4shrubby; 3); 0)
-	CO2fromInfrastructures = CO2fromInfrastructures + IF (surface && soc; surface*soc*44/12; 0)
-	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*incC*44/12
+	soc = IF_ERROR (GET (row, 'soc'); 0)
+	increase = IF_ERROR (GET (row, 'increase'); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + surface*soc*44/12
+	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*increase*44/12
 	i = i + 1
 '}' end
 n = LEN (low)
@@ -54,9 +57,10 @@ while i < n then begin '{'
 	row = GET (low, i)
 	type = GET (row, 'type')
 	surface = IF_ERROR (GET (row, 'width'); 0)*IF_ERROR (GET (row, 'length'); 0)/10000
-	soc = IF_ERROR (VLOOKUP (type; SOC4low; 3); 0)
-	CO2fromInfrastructures = CO2fromInfrastructures + IF (soc; surface*soc*44/12; 0)
-	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*incC*44/12
+	soc = IF_ERROR (GET (row, 'soc'); 0)
+	increase = IF_ERROR (GET (row, 'increase'); 0)
+	CO2fromInfrastructures = CO2fromInfrastructures + surface*soc*44/12
+	CO2AfromInfrastructures = CO2AfromInfrastructures + surface*increase*44/12
 	i = i + 1
 '}' end
 
@@ -64,24 +68,11 @@ n = LEN (forests)
 i = 0
 while i < n then begin '{'
 	row = GET (forests, i)
-	ecozone = GET (row, 'ecozone')
-	age = GET (row, 'age')
-	type = GET (row, 'type')
 	surface = IF_ERROR (GET (row, 'surface'); 0)
+	soc = GET (row, 'soc')
 	volume_t = GET (row, 'volume_t')
-	volume_b = GET (row, 'volume_b')
-	wood = IF_ERROR (GET (row, 'wood'); 0)
-	bark = IF_ERROR (GET (row, 'bark'); 0)
-	area = IF_ERROR (GET (row, 'area'); 0)
-	lost = IF_ERROR (GET (row, 'lost'); 0)
-	fullname_g = SUM (ecozone; ' '; age; ' '; type)
-	soc = VLOOKUP (fullname_g; SOC4forest; 2)*surface
-	biomassGain = VLOOKUP (fullname_g; SOC4forest; 3)*(1 + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)*surface
-	fullname_l = IF (LIKE (ecozone, 'Temperate'); SUM ('Temperate '; type; ' '; volume_t); SUM ('Boreal '; type; ' '; volume_b))
-	biomassLoss_wood = wood*VLOOKUP (fullname_l; BCEF; 2)*(1 + bark + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)
-	biomassLoss_fuel = area*VLOOKUP (fullname_g; SOC4forest; 3)*(1 + VLOOKUP (fullname_g; SOC4forest; 4))*VLOOKUP (fullname_g; SOC4forest; 5)*lost
-	CO2fromForests = CO2fromForests + soc
-	CO2AfromForests = CO2AfromForests + (biomassGain - biomassLoss_wood - biomassLoss_fuel)*44/12
+	CO2fromForests = CO2fromForests + soc*surface*44/12
+	CO2AfromForests = CO2AfromForests + volume_t*surface*Cstock*conversion*44/12
 	i = i + 1
 '}' end
 

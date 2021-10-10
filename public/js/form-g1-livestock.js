@@ -8,7 +8,7 @@ form.querySelector('button').addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form);
+	const data = FormDataJson.toJson(form);
 	for (const name in form.files) {
 		data.input[name] = csv2json(form.files[name]);
 	}

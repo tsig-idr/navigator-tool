@@ -10,7 +10,7 @@ button.addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form);
+	const data = FormDataJson.toJson(form);
 	data.amount = data.price = undefined;
 	(data.input.crops = Object.values(data.input.crops)).forEach(crop => {
 		crop.fertilization =  Object.values(crop.fertilization);
@@ -42,7 +42,7 @@ button.addEventListener('click', () => {
 	});
 	fetch('/E2/epa', {
 		method: 'POST',
-		body: JSON.stringify(FormDataJson.formToJson(form)),
+		body: JSON.stringify(FormDataJson.toJson(form)),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}

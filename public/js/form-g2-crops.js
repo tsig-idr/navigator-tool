@@ -10,7 +10,7 @@ button.addEventListener('click', () => {
 	if (!form.checkValidity()) {
 		return false;
 	}
-	const data = FormDataJson.formToJson(form);
+	const data = FormDataJson.toJson(form);
 	data.input.crops = Object.values(data.input.crops);
 	let fcrop, i;
 	for (i = 0; i < data.input.crops.length; i++) {

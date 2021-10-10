@@ -1,11 +1,12 @@
-CZ = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'CZ.csv'))
-Crops = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'Crops.csv'))
-EF_rew = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'EF_rew.csv'))
-EF_soil = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'EF_soil.csv'))
-EF_fert = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'EF_fert.csv'))
-EF_pest = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'EF_pest.csv'))
-EF_fuel = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'EF_fuel.csv'))
-ManagementChange = STD_CSV2ARRAY (CONCAT ('sheetscript/G2/', 'ManagementChange.csv'))
+CZ = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'CZ.csv'))
+Crops = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'Crops.csv'))
+EF_rew = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'EF_rew.csv'))
+EF_soil = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'EF_soil.csv'))
+EF_fert = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'EF_fert.csv'))
+EF_pest = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'EF_pest.csv'))
+EF_fuel = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'EF_fuel.csv'))
+EF_seed = STD_CSV2ARRAY (CONCAT ('sheetscript/G4/', 'EF_seed.csv'))
+ManagementChange = STD_CSV2ARRAY (CONCAT ('sheetscript/G1/', 'ManagementChange.csv'))
 Com_start = 0.0008359550561798
 Man_start = 0.00036
 Res_start = 0.00124
@@ -73,10 +74,10 @@ while i < n then begin '{'
 		fertilizer = GET (fertilization, j)
 		fertilizer_name = GET (fertilizer, 'fertilizer_name')
 		amount = GET (fertilizer, 'N')
-		N2OEF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 2); 0.01)
+		N2OEF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 9); 0.01)
 		N2OfromFertilization = N2OfromFertilization + area*amount*N2OEF*44/28
-		CO2EF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 3); 0)
-		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF/1000
+		CO2EF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 6); 0)
+		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF
 		j = j + 1
 	'}' end
 	applied = GET (crop, 'applied')
@@ -113,7 +114,7 @@ while i < n then begin '{'
 	CO2fromFungicides = area*insect*VLOOKUP ('fungicides'; EF_pest; 5)
 	CO2fromOther = area*otreat*VLOOKUP ('other treatments'; EF_pest; 5)
 	CO2fromPesticides = CO2fromPesticides + SUM (CO2fromHerbicides; CO2fromInsecticides; CO2fromFungicides; CO2fromOther)
-	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (crop_type; Crops; 8)
+	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP (crop_type; EF_seed; 2)
 	CO2fromMachinery = CO2fromMachinery + area*consumption*IF_ERROR (VLOOKUP (combustible; EF_fuel; 7); 0)
 
 	C_em_dnr = IF (drained && organic && rewetted == 'no'; area*IF (MATCH (crop_type; Trees); EF_SOC_grass; EF_SOC_crop); 0)
@@ -142,3 +143,12 @@ CO2eqfromSustances = CO2fromSustances*CO2_GWP
 CO2eqfromMachinery = CO2fromMachinery*CO2_GWP
 CO2fromSOC = CO2_em 
 CO2eqfromSOC = CO2fromSOC*CO2_GWP
+
+CO2eqtonfromGround = CO2eqfromGround/(area*yield)
+CO2eqtonfromSustances = CO2eqfromSustances/(area*yield)
+CO2eqtonfromMachinery = CO2eqfromMachinery/(area*yield)
+CO2eqtonfromSOC = CO2eqfromSOC/(area*yield)
+CO2eqhafromGround = CO2eqfromGround/area
+CO2eqhafromSustances = CO2eqfromSustances/area
+CO2eqhafromMachinery = CO2eqfromMachinery/area
+CO2eqhafromSOC = CO2eqfromSOC/area

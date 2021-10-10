@@ -19,7 +19,7 @@ module.exports = function () {
 		!input.Riegos &&
 			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
 		!input.FenoBBCH &&
-			(input.FenoBBCH = sp_csv2array('tmp/F1/default_BBCH.csv'));
+			(input.FenoBBCH = []);
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
@@ -27,6 +27,7 @@ module.exports = function () {
 		code  = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'nitro.sc'), 'utf8');
 		input = {...input, ...output};
 		output = await sheetscript.run(engine, code, input, outputnames);
+		console.log(output.test)
 		return output;
 	}
 
@@ -184,9 +185,12 @@ function customEngine () {
 	engine.setFunction('user', 'VLOOKUP', 3, (v, table, index, ranged = false) => {
 		if (index && typeof table == 'object' && table.length) {
 			if (ranged) {
-				v = parseFloat(v);
-				for (let i = table.length - 1; i >= 0; i--) {
-					if (typeof table[i] == 'object' && table[i].length && parseFloat(table[i][0]) <= v) {
+				!isNaN(v) &&
+					(v = parseFloat(v));
+				for (let i = table.length - 1, e; i >= 0; i--) {
+					!isNaN(e = table[i][0]) &&
+						(e = parseFloat(e));
+					if (typeof table[i] == 'object' && table[i].length && e <= v) {
 						return table[i][index - 1];
 					}
 				}
@@ -241,6 +245,10 @@ function customEngine () {
 		const date = new Date(d);
 		date.setDate(date.getDate() + parseInt(n));
 		return date.toISOString().split('T')[0];
+	});
+	// Devuelve la diferencia en dias entre dos fechas
+	engine.setFunction('user', 'DATESDIF', 2, (d1, d2) => {
+		return (new Date(d1) - new Date(d2))/(1000*60*60*24);
 	});
 	return engine;
 }

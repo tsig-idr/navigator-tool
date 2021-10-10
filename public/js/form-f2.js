@@ -17,7 +17,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 		if (!form.checkValidity()) {
 			return false;
 		}
-		const data = FormDataJson.formToJson(form, new FormDataJsonOptions({includeDisabled: true})),
+		const data = FormDataJson.toJson(form, {includeDisabled: true}),
 			element = ev.target.querySelector('i');
 		element.classList.remove('fa-play');
 		element.classList.add('fa-spinner');

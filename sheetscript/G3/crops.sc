@@ -5,6 +5,7 @@ EF_soil = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'EF_soil.csv'))
 EF_fert = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'EF_fert.csv'))
 EF_pest = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'EF_pest.csv'))
 EF_fuel = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'EF_fuel.csv'))
+EF_seed = STD_CSV2ARRAY (CONCAT ('sheetscript/G4/', 'EF_seed.csv'))
 Soils = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'Soils.csv'))
 SOC4soil = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'SOC4soil.csv'))
 FIref = STD_CSV2ARRAY (CONCAT ('sheetscript/G3/', 'FI.csv'))
@@ -69,10 +70,10 @@ while i < n then begin '{'
 		fertilizer = GET (fertilization, j)
 		fertilizer_name = GET (fertilizer, 'fertilizer_name')
 		amount = GET (fertilizer, 'N')
-		N2OEF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 2); 0.01)
+		N2OEF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 9); 0.01)
 		N2OfromFertilization = N2OfromFertilization + area*amount*N2OEF*44/28
-		CO2EF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 3); 0)
-		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF/1000
+		CO2EF = IF_ERROR (VLOOKUP (fertilizer_name; EF_fert; 6); 0)
+		CO2fromFertilization = CO2fromFertilization + area*amount*CO2EF
 		j = j + 1
 	'}' end
 	applied = GET (crop, 'applied')
@@ -109,7 +110,7 @@ while i < n then begin '{'
 	CO2fromFungicides = area*insect*VLOOKUP ('fungicides'; EF_pest; 5)
 	CO2fromOther = area*otreat*VLOOKUP ('other treatments'; EF_pest; 5)
 	CO2fromPesticides = CO2fromPesticides + SUM (CO2fromHerbicides; CO2fromInsecticides; CO2fromFungicides; CO2fromOther)
-	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP_NONSTRICT (crop_type; Crops; 8)
+	CO2fromSeeds = CO2fromSeeds + seeds*area*VLOOKUP (crop_type; EF_seed; 2)
 	CO2fromMachinery = CO2fromMachinery + area*consumption*IF_ERROR (VLOOKUP (combustible; EF_fuel; 7); 0)
 	SOC_ST_i = IF (organic; 0; SOC_ST)
 	name_FLU = SUM (IF (crop_name == 'Rice'; 'paddy rice'; 'annual crop'); ' '; temp_reg; ' '; moist_reg)
@@ -143,3 +144,12 @@ CO2eqfromSustances = CO2fromSustances*CO2_GWP
 CO2eqfromMachinery = CO2fromMachinery*CO2_GWP
 CO2fromSOC = A_SOC 
 CO2eqfromSOC = CO2fromSOC*CO2_GWP
+
+CO2eqtonfromGround = CO2eqfromGround/(area*yield)
+CO2eqtonfromSustances = CO2eqfromSustances/(area*yield)
+CO2eqtonfromMachinery = CO2eqfromMachinery/(area*yield)
+CO2eqtonfromSOC = CO2eqfromSOC/(area*yield)
+CO2eqhafromGround = CO2eqfromGround/area
+CO2eqhafromSustances = CO2eqfromSustances/area
+CO2eqhafromMachinery = CO2eqfromMachinery/area
+CO2eqhafromSOC = CO2eqfromSOC/area

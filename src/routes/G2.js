@@ -22,12 +22,20 @@ const dispatchers = {
 			'CH4fromGround',
 			'CO2fromGround',
 			'CO2eqfromGround',
+			'CO2eqtonfromGround',
+			'CO2eqhafromGround',
 			'CO2fromSustances',
 			'CO2eqfromSustances',
+			'CO2eqtonfromSustances',
+			'CO2eqhafromSustances',
 			'CO2fromMachinery',
 			'CO2eqfromMachinery',
+			'CO2eqtonfromMachinery',
+			'CO2eqhafromMachinery',
 			'CO2fromSOC',
-			'CO2eqfromSOC'
+			'CO2eqfromSOC',
+			'CO2eqtonfromSOC',
+			'CO2eqhafromSOC'
 		]);
 	},
 	luc: async input => {
