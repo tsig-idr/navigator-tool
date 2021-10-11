@@ -20,6 +20,12 @@ module.exports = function () {
 			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
 		!input.FenoBBCH &&
 			(input.FenoBBCH = []);
+		!input.Pc_s_unit &&
+			(input.Pc_s_unit = 'ppm');
+		!input.Kc_s_unit &&
+			(input.Kc_s_unit = 'ppm');
+		!input.Nc_s_initial_unit &&
+			(input.Nc_s_initial_unit = 'ppm');
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
@@ -27,7 +33,6 @@ module.exports = function () {
 		code  = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'nitro.sc'), 'utf8');
 		input = {...input, ...output};
 		output = await sheetscript.run(engine, code, input, outputnames);
-		console.log(output.test)
 		return output;
 	}
 
@@ -249,6 +254,10 @@ function customEngine () {
 	// Devuelve la diferencia en dias entre dos fechas
 	engine.setFunction('user', 'DATESDIF', 2, (d1, d2) => {
 		return (new Date(d1) - new Date(d2))/(1000*60*60*24);
+	});
+	// Incorpora un elemento al inicio del array
+	engine.setFunction('user', 'UNSHIFT', 2, (v, e) => {
+		return v.unshift(e);
 	});
 	return engine;
 }

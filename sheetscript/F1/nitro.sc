@@ -25,6 +25,7 @@ mineralEnd = crop_endDate
 
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 
+UNSHIFT (FenoBBCH, [crop_startDate, 0])
 date_ = crop_startDate
 extr = 0
 m = LEN (FenoT)
@@ -41,15 +42,12 @@ while k < m && l < feno_n then begin '{'
 	n_days = MAX (DATESDIF (date, date_); 1)
 	extr = IF (val >= val_; extr + extr_; extr_)
 	SET (row, 2, extr/n_days)
-	SET (row, 3, extr)
-	SET (row, 4, n_days)
 	SET (FenoBBCH, l, row)
 	k = IF (val < val_; k; k + 1)
 	l = IF (val < val_; l + 1; l)
 	date_ = IF (val < val_; date; date_)
 '}' end
 
-test = FenoBBCH
 row_ = [0]
 nitro4days = NEW()
 results = []
@@ -320,11 +318,11 @@ Nc_h_ = Nc_h/100
 Pc_h_ = Pc_h/100
 Kc_h_ = Kc_h/100
 
-dm_h = VLOOKUP (crop_type; CropData; 8)/100
-Nc_r = VLOOKUP (crop_type; CropData; 21)/100
+dm_h = VLOOKUP (crop_type; CropData; 11)/100
+Nc_r = VLOOKUP (crop_type; CropData; 24)/100
 density_s = VLOOKUP (soil_texture; SoilData; 21)
 
-Pc_r = VLOOKUP (crop_type; CropData; 22)/100
+Pc_r = VLOOKUP (crop_type; CropData; 25)/100
 Pc_s = Pc_si*VLOOKUP (Pc_method; Pc_method_table; 2)
 Pc_s_thres_min = VLOOKUP (soil_texture; SoilData; 25)
 P_STL_STLtmin = IF (Pc_s < Pc_s_thres_min; 1; 0)
@@ -349,7 +347,7 @@ P2O5_minBM = P_minBM*2.293
 P2O5_maxBM = P_maxBM*2.293
 P2O5_maintenance = P_maintenance*2.293
 
-Kc_r = VLOOKUP (crop_type; CropData; 23)/100
+Kc_r = VLOOKUP (crop_type; CropData; 26)/100
 Kc_s = Kc_s_0*1
 Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
 K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)
