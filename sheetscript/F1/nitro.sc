@@ -12,13 +12,18 @@ MO = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'MO.csv'))
 NDVIreali = LINTER4DATES (NDVIreal)
 NDVItipoi = LINTER4DATES (NDVItipo)
 
+ppm = density_s*depth_s*10
+Nc_s_initial = Nc_s_0*IF (Nc_s_initial_unit == 'kg_ha'; 1; IF (Nc_s_initial_unit == 'ppm'; ppm; IF (Nc_s_initial_unit == 'pct'; 10000*ppm; IF (Nc_s_initial_unit == 'meq_100'; 620*ppm; IF (Nc_s_initial_unit == 'meq_kg'; 6200*ppm; IF (Nc_s_initial_unit == 'meq_l'; 62*ppm; 1))))))
+Pc_si = Pc_s_0*IF (Pc_s_unit == 'kg_ha'; 1/ppm; IF (Pc_s_unit == 'ppm'; 1; IF (Pc_s_unit == 'pct'; 10000; IF (Pc_s_unit == 'meq_100'; 316.5; IF (Pc_s_unit == 'meq_kg'; 3165; IF (Pc_s_unit == 'meq_l'; 31.65; 1))))))
+Kc_s = Kc_s_0*IF (Kc_s_unit == 'kg_ha'; 1/ppm; IF (Kc_s_unit == 'ppm'; 1; IF (Kc_s_unit == 'pct'; 10000; IF (Kc_s_unit == 'meq_100'; 391; IF (Kc_s_unit == 'meq_kg'; 3910; IF (Kc_s_unit == 'meq_l'; 39.1; 1))))))
+
 Nuptake = (h_dm_med_50*Nc_h_ + r_dm_med_50*Nc_r)*(1 + fnr)
 Nuptake_min = (h_dm_med_20*Nc_h_ + (h_dm_med_20*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 Nuptake_max = (h_dm_med_80*Nc_h_ + (h_dm_med_80*(1 - HI_est_)/HI_est_)*Nc_r)*(1 + fnr)
 
 agroasesor = 'no'
 c_mineral = VLOOKUP (SOM; MO; 2, 1)
-UFN = depth_s*100*100*density_s*1000*(1 - stony)*Nc_s_initial/1000000
+UFN = IF (Nc_s_initial_unit == 'ppm'; depth_s*100*100*density_s*1000*(1 - stony)*Nc_s_0/1000000; Nc_s_initial)
 
 mineralIni = '9999-12-31'
 mineralEnd = crop_endDate
@@ -66,6 +71,7 @@ N_agua_A_ = 0
 Nl_A_ = 0
 N_mineral_soil_ = Nh_
 N_final = 0
+IT = 0
 c_a = 0
 c_b = 0
 j = 0
@@ -150,7 +156,7 @@ while i < n then begin '{'
 	Tm = t
 	SET (nitro4day, 'Tm', Tm)
 
-	IT = Tm
+	IT = IT + Tm
 	SET (nitro4day, 'IT', IT)
 
 	J = Jp
@@ -178,7 +184,8 @@ while i < n then begin '{'
 	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
-	N_extr_ = IF (feno_n; N_extr_1; 0 - N_extr)
+	N_extr_ = IF (feno_n > 1; N_extr_1; 0 - N_extr)
+	SET (nitro4day, 'N_extr_', N_extr_)
 
 	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
@@ -226,13 +233,19 @@ while i < n then begin '{'
 	N_fert_neto = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
 	SET (nitro4day, 'N_fert_neto', N_fert_neto)
 
+	N_fert = N_fert_neto
+	SET (nitro4day, 'N_fert', N_fert)
+
 	N_deni = 0.34*E**(0.012*N_rate)
 	SET (nitro4day, 'N_deni', N_deni)
+
+	N_mineral_soil_fert = N_mineral_soil + N_fert - N_deni
+	SET (nitro4day, 'N_mineral_soil_fert', N_mineral_soil_fert)
 
 	Nh = Nh_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve
 	SET (nitro4day, 'Nh', Nh)
 
-	N_NO3 = Nh*1000000/(depth_s*100*100*density_s*1000*(1 - stony)*(1 + N_NH4))
+	N_NO3 = N_mineral_soil_fert*1000000/(depth_s*100*100*density_s*1000*(1 - stony)*(1 + N_NH4))
 	SET (nitro4day, 'N_NO3', N_NO3)
 
 	T_Nf_recomendado = IF (Nh > N_recom; 0; 1)
@@ -334,7 +347,6 @@ P_crop_max_ = P_exported*P_STL_2STLtmax + 10*density_s*depth_s*(Pc_s_thres_max -
 P_nyears_max = IF (P_crop_max_ > P_crop_max; CEIL (P_crop_max_/P_crop_max); 1)
 P_STL_STLtmax = IF (Pc_s < Pc_s_thres_max; 1; 0)
 P_STL_2STLtmax = IF (Pc_s > 2*Pc_s_thres_max; 0.5; 1)
-Pc_si = Pc_s_0*1
 P_exported = h_dm_med_50*Pc_h_ + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r_
 
 P_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin/P_nyears_min
@@ -348,7 +360,6 @@ P2O5_maxBM = P_maxBM*2.293
 P2O5_maintenance = P_maintenance*2.293
 
 Kc_r = VLOOKUP (crop_type; CropData; 26)/100
-Kc_s = Kc_s_0*1
 Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
 K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)
 K_STL_2STLtmin = IF (Kc_s > 2*Kc_s_thres_min; 0.5; 1)
