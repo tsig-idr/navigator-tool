@@ -1,10 +1,10 @@
 CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
 
-Kcb_ini = VLOOKUP (crop_type; CropData; 27)
-Kcb_mid = VLOOKUP (crop_type; CropData; 28)
-Kcb_end = VLOOKUP (crop_type; CropData; 29)
-root_max = IF_ERROR (VLOOKUP (crop_type; CropData; 30); 0.5)
+Kcb_ini = VLOOKUP (crop_type; CropData; 30)
+Kcb_mid = VLOOKUP (crop_type; CropData; 31)
+Kcb_end = VLOOKUP (crop_type; CropData; 32)
+root_max = IF_ERROR (VLOOKUP (crop_type; CropData; 33); 0.5)
 waterAvail = VLOOKUP (soil_texture; SoilData; 16)*1000
 
 fw_i = IF (type_irrigated == 'trickle'; 0.7; 1.0) 
