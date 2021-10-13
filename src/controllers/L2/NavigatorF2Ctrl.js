@@ -182,9 +182,12 @@ function customEngine () {
 	engine.setFunction('user', 'VLOOKUP', 3, (v, table, index, ranged = false) => {
 		if (index && typeof table == 'object' && table.length) {
 			if (ranged) {
-				v = parseFloat(v);
-				for (let i = table.length - 1; i >= 0; i--) {
-					if (typeof table[i] == 'object' && table[i].length && parseFloat(table[i][0]) <= v) {
+				!isNaN(v) &&
+					(v = parseFloat(v));
+				for (let i = table.length - 1, e; i >= 0; i--) {
+					!isNaN(e = table[i][0]) &&
+						(e = parseFloat(e));
+					if (typeof table[i] == 'object' && table[i].length && e <= v) {
 						return table[i][index - 1];
 					}
 				}
