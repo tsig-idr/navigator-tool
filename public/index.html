@@ -6,9 +6,12 @@
     <meta name="description" content="" />
     <meta name="author" content="David Cifuentes" />
     <meta name="generator" content="" />
-    <title>NAVIGATOR-TOO model testing tool</title>
+    <title>NAVIGATOR-TOOL model testing tool</title>
 
     <!-- Bootstrap core CSS -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- 
     <link
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
@@ -19,8 +22,12 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-
+    -->
     <!-- Custom styles for this template -->
+    <!-- 
+    <link href="https://fonts.googleapis.com/css?family=B612:300,400,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab&amp;display=swap" rel="stylesheet">
+    -->
     <link href="css/product.css" rel="stylesheet" />
   </head>
   <body class="d-flex flex-column h-100">
@@ -29,17 +36,129 @@
 
     <!-- Begin page content -->
     <main class="flex-shrink-0">
-        <section class="py-5 text-center container">
-          <div class="row py-lg-5">
+
+      <div id="myCarousel" class="carousel slide overflow-hidden w-100 position-relative" data-ride="carousel" style="height: 60vh;">
+        
+        <!-- <video src="https://fastplatform.eu//assets/videos/fast-trailer.mp4" type="video/mp4" poster="/assets/images/fast-trailer-frame.jpg" playsinline="" loop="" muted="" autoplay="" class="position-absolute" style="min-height: 100%; min-width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        </video>-->
+
+        <img src="img/QUE-OFRECEMOS-scaled.jpg" class="position-absolute" style="min-height: 100%; min-width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
+        
+        <div class="carousel-inner">
+                <div class="carousel-item border-0 active" style="height: 24rem;">
+                    <div class="row carousel-caption">
+                        <div class="col-md-9 p-4 text-left" style="background-color: rgba(35, 54, 68, 0.7); height: auto !important;">
+                            <h2 class="h1">NAVIGATOR Tool <small>(Beta version)</small> </h2>
+                            <p>Platform to advice of crop nutrient requirements and greenhouse gas emissions and removal assessment at farm level</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+      <!-- 
+        <section class="text-center container">
+          <div class="row py-lg-3">
             <div class="col-lg-8 col-md-12 mx-auto">
-              <h1 class="fw-light">Developer NAVIGATOR Tool</h1>
-              <p class="lead text-muted">User interface to test the models of the NAVIGATOR lines.</p>
+           
             </div>
           </div>
         </section>
+-->
+        <section id="whatisfast-intro" class="bg-dark text-white">
+          <div class="container py-5">
+              <div class="row">
+                  <div class="col-md-5">
+                      <a href="/whatisfast" class="text-white"><h2 class="h2">What is Navigator Tool?</h2></a>
+                      <p class="lead">An open digital tool, accessible via web, capable of calculating the recommendation of nutrients at field scale and assessing the greenhouse gas emissions / removals and economic performance at farm scale</p>
+                  </div>
+                  <div class="col-md-7">
+                      
+                      <img src="img/logo-NAVIGATOR.png" class="rounded" style="float: right; width: 200px; margin-left: 30px; margin-bottom: 30px;">
+                      
+                      <p class="lead">Navigator Tool implements the models developed in the framework of the <i>Study for the development of a common framework for the quantitative advice of crop nutrient requirements and greenhouse gas emissions and removal assessment at farm level (AGRI-2020-0316)</i> </p>
+                  </p></div>
+              </div>
+          </div>
+      </section>
+
+      <section class="bg-light" id="screenshots">
+        <div class="container py-5">
+            <h2 class="h1 mb-4">FaST Navigator Tool <i>(Beta Version)</i></h2>
+            <p class="text-muted" style="opacity: 0.5;">October 21th 2021</p>
+            <p class="">
+              We are happy to announce that FaST Navigator Tool (Beta version) has been released for lines 1 to 4 of all three models.
+            </p>
+            <p>The API documentation can be consulted in the following <a href="https://app.swaggerhub.com/apis-docs/tsig-idr/navigator-tool/0.0.1" target="_blank">link</a></p>
+            
+            
+        </div>
+    </section>
+
+      <section class="bg-accent text-white" id="generalframework">
+        <div class="container py-5">
+            <a href="#generalframework" class="text-white"><h2 class="h1">General Framework</h2></a>
+            <p class="lead mt-4">The FaST Navigator frameworks cover the assessment of crop nutrient requirements at field scale, as well as the assessment of GHG emissions/removals and economic performance at farm scale</p>
+            <p class="">The FaST Navigator framework and the Navigator Tool have been designed to work with five lines of methodological approach depending on the precision or accuracy of the available data. The objectives of the user and the availability of data will define the FaST Navigator lines where the tool will operate, from the most complex L1 (measured data) to the simplest L4 (default parameters) over quantitative (L2) and qualitative (L3) models. It is important to note that line 5 has a transversal dimension and is not a different methodological approach from lines 1 to 4.</p>
+            <div class="w-100 mt-5 d-flex justify-content-center flex-wrap">
+                
+                    <a href="#generalframework-npk" class="text-decoration-none card shadow mr-4 mb-4 border-0 text-accent" style="width: 14rem;">
+                        <div class="card-body text-center">
+                            <div class="d-flex flex-column justify-content-center" style="height: 11rem;">
+                              <img src="/img/npk.png" style="width: 40%;" class="mb-4 d-block mx-auto" alt="GHG">
+
+                                
+                                <h4 class="text-accent d-block">NPK</h4>
+                            </div>
+                            <hr>
+                                <p class="lead text-muted mb-1">
+                                  Crop nutrient requirements and fertilizer recommendation
+                                </p>
+                        </div>
+                    </a>
+                
+                    <a href="#generalframework-ghg" class="text-decoration-none card shadow mr-4 mb-4 border-0 text-accent" style="width: 14rem;">
+                        <div class="card-body text-center">
+                            <div class="d-flex flex-column justify-content-center" style="height: 11rem;">
+                                <img src="/img/ghg2.png" style="width: 40%;" class="mb-4 d-block mx-auto" alt="GHG">
+                                <h4 class="text-accent d-block">GHG</h4>
+                            </div>
+                            <hr>
+                                <p class="lead text-muted mb-1">
+                                  Gases emissions/removal includes crop production, livestock farming, carbon cycle as well as the energy use 
+                                </p>
+                        </div>
+                    </a>
+                
+                    <a href="#generalframework-epa" class="text-decoration-none card shadow mr-4 mb-4 border-0 text-accent" style="width: 14rem;">
+                        <div class="card-body text-center">
+                            <div class="d-flex flex-column justify-content-center" style="height: 11rem;">
+                                <img src="/img/coin.png" style="width: 40%;" class="mb-4 d-block mx-auto" alt="EPA">
+                                <h4 class="text-accent d-block">EPA</h4>
+                            </div>
+                            <hr>
+                                <p class="lead text-muted mb-1">
+                                  Economic performance assessment considers all costs for inputs and management practices implemented and all revenues realized at farm level
+                                </p>
+                        </div>
+                    </a>
+                
+                    
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="whatisfast-details">
+      <div class="container py-5">
+          <div class="text-center mt-5">
+              <img class="w-100" src="img/nitrogen-cycle.jpg" alt="Nitrogen Balance">
+          </div>
+      </div>
+  </section>
+
     </main>
    
-    <footer class="footer mt-auto py-3 bg-light"></footer>
+    <footer class="footer mt-auto py-3 bg-dark text-light"></footer>
 
     <!-- JavaScript Bundle with Popper -->
     <script

@@ -1,143 +1,171 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-	<div class="container-fluid">
-		<a class="navbar-brand d-flex align-items-center" href="#">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto mr-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-			<strong>NAVIGATOR Tool</strong>
-		</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenuDefault" aria-controls="navbarsMenuDefault" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarsMenuDefault">
-			<ul class="navbar-nav me-auto mb-2 mb-md-0">
-				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Nutrients</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown01">
-						<li>
-							<a class="dropdown-item" href="/nutrients/l1.html">F1 <small></small></a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/nutrients/l2.html">F2 <small></small></a>
-						</li>
-						<li class="dropdown-item dropdown-submenu p-0 d-none">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">F3 <small>v1</small> </a>
-							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-								<li class="dropdown-item p-0">
-									<a href="/nutrients/navtool-f3.html" class="dropdown-item w-100">Navigator Tool F3</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/nutrients/navigator-f3.html" class="dropdown-item w-100">Fertilicalc F3</a>
-								</li>
-								<li class="dropdown-item p-0"><hr></li>
-								<li class="dropdown-item p-0">
-									<a href="/nutrients/navigator-n3-mod.html" class="dropdown-item w-100">N3 Nutrient requirements</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/nutrients/losses-nr3-mod.html" class="dropdown-item w-100">NR3 Calculation of losses</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/nutrients/l3.html">F3 <small></small></a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/nutrients/l4.html">F4 <small></small></a>
-						</li>
-						<li>
-							<hr class="dropdown-divider">
-						</li>
-						<li>
-							<a class="dropdown-item" href="/nutrients/best-fertilizer-mod.html">Best Fertilizer</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle active" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">GHG</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown02">
-						<li class="dropdown-item dropdown-submenu p-0">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G1</a>
-							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l1-livestock.html" class="dropdown-item w-100">Livestock</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l1-crops.html" class="dropdown-item w-100">Crops</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l1-luc.html" class="dropdown-item w-100">LUC</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l1-energy.html" class="dropdown-item w-100">Energy</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown-item dropdown-submenu p-0">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G2</a>
-							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l2-livestock.html" class="dropdown-item w-100">Livestock</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l2-crops.html" class="dropdown-item w-100">Crops</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l2-luc.html" class="dropdown-item w-100">LUC</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l2-energy.html" class="dropdown-item w-100">Energy</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown-item dropdown-submenu p-0">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G3</a>
-							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l3-livestock.html" class="dropdown-item w-100">Livestock</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l3-crops.html" class="dropdown-item w-100">Crops</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l3-luc.html" class="dropdown-item w-100">LUC</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l3-energy.html" class="dropdown-item w-100">Energy</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown-item dropdown-submenu p-0">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G4</a>
-							<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l4-livestock.html" class="dropdown-item w-100">Livestock</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l4-crops.html" class="dropdown-item w-100">Crops</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l4-luc.html" class="dropdown-item w-100">LUC</a>
-								</li>
-								<li class="dropdown-item p-0">
-									<a href="/GHG/l4-energy.html" class="dropdown-item w-100">Energy</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle active" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">EPA</a>
-					<ul class="dropdown-menu" aria-labelledby="dropdown03">
-						<li>
-							<a class="dropdown-item" href="/EPA/l1.html">E1</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="/EPA/l2.html">E2</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
+
+
+<header class="fixed-top w-100">
+    <div class="bg-white px-3 text-dark w-100 d-flex align-items-center justify-content-start position-relative" style="height: 60px !important; z-index: 1001 !important; overflow: visible;">
+        <a href="https://ec.europa.eu/info/index_en" style="margin-top: 33px;" class="d-block mr-3">
+            <img src="/img/european_commission.svg" style="height: 64px;" alt="European Commission logo">
+        </a>
+        <a href="/" class="d-block d-flex justify-content-start align-items-center h-100 text-dark text-decoration-none">
+            <img class="d-block mx-3" src="/img/LogoFastNavigator.jpg" style="height: 90%" alt="FaST Navigator logo">
+            <h2 class="me-3 mb-0 d-block">Navigator Tool </h2>
+            <div class="ps-3" style="font-size: 1.5vw; font-weight: 100 !important; border-left: 1px solid silver;">Digital Tool</div>
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark pr-3" style="height: 60px !important;">
+        
+		<div class="container">
+			<div class="collapse navbar-collapse" id="navbarsMenuDefault">
+				<ul class="navbar-nav me-auto bg-dark">
+					<li class="nav-item ml-2">
+						<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
+					</li>
+					<li class="nav-item ml-2 dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Nutrients</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown01">
+							<li>
+								<a class="dropdown-item" href="/nutrients/l1.html">F1 <small></small></a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/nutrients/l2.html">F2 <small></small></a>
+							</li>
+							<li class="dropdown-item dropdown-submenu p-0 d-none">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">F3 <small>v1</small> </a>
+								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+									<li class="dropdown-item p-0">
+										<a href="/nutrients/navtool-f3.html" class="dropdown-item w-100">Navigator Tool F3</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/nutrients/navigator-f3.html" class="dropdown-item w-100">Fertilicalc F3</a>
+									</li>
+									<li class="dropdown-item p-0"><hr></li>
+									<li class="dropdown-item p-0">
+										<a href="/nutrients/navigator-n3-mod.html" class="dropdown-item w-100">N3 Nutrient requirements</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/nutrients/losses-nr3-mod.html" class="dropdown-item w-100">NR3 Calculation of losses</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/nutrients/l3.html">F3 <small></small></a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/nutrients/l4.html">F4 <small></small></a>
+							</li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li>
+								<a class="dropdown-item" href="/nutrients/best-fertilizer-mod.html">Best Fertilizer</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item ml-2 dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">GHG</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown02">
+							<li class="dropdown-item dropdown-submenu p-0">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G1</a>
+								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l1-livestock.html" class="dropdown-item w-100">Livestock</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l1-crops.html" class="dropdown-item w-100">Crops</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l1-luc.html" class="dropdown-item w-100">LUC</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l1-energy.html" class="dropdown-item w-100">Energy</a>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown-item dropdown-submenu p-0">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G2</a>
+								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l2-livestock.html" class="dropdown-item w-100">Livestock</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l2-crops.html" class="dropdown-item w-100">Crops</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l2-luc.html" class="dropdown-item w-100">LUC</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l2-energy.html" class="dropdown-item w-100">Energy</a>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown-item dropdown-submenu p-0">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G3</a>
+								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l3-livestock.html" class="dropdown-item w-100">Livestock</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l3-crops.html" class="dropdown-item w-100">Crops</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l3-luc.html" class="dropdown-item w-100">LUC</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l3-energy.html" class="dropdown-item w-100">Energy</a>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown-item dropdown-submenu p-0">
+								<a href="#" data-toggle="dropdown" class="dropdown-toggle dropdown-item w-100">G4</a>
+								<ul  class="dropdown-menu mr-2 rounded-0  white border-0 z-depth-1 r-100">
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l4-livestock.html" class="dropdown-item w-100">Livestock</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l4-crops.html" class="dropdown-item w-100">Crops</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l4-luc.html" class="dropdown-item w-100">LUC</a>
+									</li>
+									<li class="dropdown-item p-0">
+										<a href="/GHG/l4-energy.html" class="dropdown-item w-100">Energy</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item ml-2 dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">EPA</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown03">
+							<li>
+								<a class="dropdown-item" href="/EPA/l1.html">E1</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="/EPA/l2.html">E2</a>
+							</li>
+						</ul>
+					</li>
+					
+				</ul>
+			</div>
+
+
+			<div class="navbar-brand d-flex align-items-center h-100" style="margin-left: 60px;">
+				<a href="https://www.agrisat.es/" class="d-block ml-3" style="height: 90%"><img src="/img/logo-AgriSatIberia.png" class="img-logo-height" alt="AgriSat Iberia logo"></a>
+				<a href="https://www.itap.es" class="d-block ml-3" style="height: 90%"><img src="/img/logo-ITAP.png" class="img-logo-height" alt="ITAP logo"></a>
+				<a href="https://www.uclm.es" class="d-block ml-3"  style="height: 90%"><img src="/img/logo-UCLM.png" class="img-logo-height" alt="UCLM logo"></a>
+				<a href="https://www.intiasa.es/" class="d-block ml-3" style="height: 90%"><img src="/img/logo-INTIA.png" class="img-logo-height " alt="INTIA logo"></a>
+				<a href="http://crea.uclm.es/crea/" class="d-block ml-3" style="height: 90%"><img src="/img/logo-CREA.png" class="img-logo-height " alt="CREA logo"></a>
+				<a href="https://www.ifeu.de" class="d-block ml-3"  style="height: 90%"><img src="/img/logo-IFEU.png" class="img-logo-height" alt="IFEU logo"></a>
+				<a href="https://www.inrae.fr" class="d-block ml-3" style="height: 90%"><img src="/img/logo-INRAE.png" class="img-logo-height" alt="INRAE logo"></a>
+				<a href="http://en.iung.pl" class="d-block ml-3" style="height: 90%"><img src="/img/logo-IUNG.png" class="img-logo-height " alt="IUNG logo"></a>
+				<a href="https://www.ariespace.com" class="d-block ml-3"  style="height: 90%"><img src="/img/logo-ARIESPACE.png" class="img-logo-height " alt="ARIESPACE logo"></a>
+			</div>
+<!--
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsMenuDefault" aria-controls="navbarsMenuDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+ -->
 		</div>
-	</div>
-</nav>
+
+    </nav>
+</header>
