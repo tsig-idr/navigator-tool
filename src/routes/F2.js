@@ -91,7 +91,7 @@ const dispatcher = async input => {
 	});
 	return {
 		balance: output.results.map(day => {
-			const outvars = ['Fecha', 'N_rate', 'N_deni', 'N_mineral_soil', 'N_curve', 'Nl', 'N_extr_', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real', 'NDVI_tipo', 'NDVI_real'];
+			const outvars = ['Fecha', 'N_rate', 'N_deni', 'N_fert', 'N_recom', 'N_mineral_soil', 'N_mineralizado',  'N_mineral_soil_fert', 'N_NO3', 'N_agua', 'N_curve', 'Nl', 'N_extr_', 'N_extr_1', 'N_extr', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo', 'NDVI_real'];
 			for (const outvar in day) {
 				if (!outvars.includes(outvar)) {
 					delete day[outvar];

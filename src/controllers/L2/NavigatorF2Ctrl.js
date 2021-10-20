@@ -8,6 +8,8 @@ module.exports = function () {
 		input.Pc_s_0 = input.Pc_s;
 		input.Kc_s_0 = input.Kc_s;
 		input.Nc_s_0 = input.Nc_s_initial;
+		input.NO3 && input.NH4 &&
+			(input.N_NH4 = input.NH4/input.NO3);
 		!input.Clima &&
 			(input.Clima = sp_csv2array('tmp/F1/default_Clima.csv'));
 		!input.Meteo &&
@@ -33,7 +35,13 @@ module.exports = function () {
 	}
 
 	async function swb (input, outputnames) {
+		!input.applications &&
+			(input.applications = []);
 		input.startDate = input.crop_startDate;
+		input.applications.forEach(application => {
+			application.amount && application.date < input.startDate &&
+				(input.startDate = application.date);
+		});
 		!input.Clima &&
 			(input.Clima = sp_csv2array('tmp/F1/default_Clima.csv'));
 		!input.Meteo &&

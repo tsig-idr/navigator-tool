@@ -38,6 +38,8 @@ cf_Kr = 0.15
 dose_max = 15
 irr_cut = 236
 
+dose_irrigation_ = dose_irrigation/10
+
 fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 SWB4days = NEW()
 
@@ -132,7 +134,7 @@ while i < n - 1 then begin '{'
 	Final_agotamiento = IF (i > 2; Final_agotamiento_corregido_ - P_RO - Riego_neto_necesario_ + ETc; De_0 - P_RO + ETc)
 	SET (SWB4day, 'Final_agotamiento', Final_agotamiento)
 
-	Riego_neto_necesario = IF_ERROR (VLOOKUP (fecha; Riegos; 2); IF (water_supply == '1'; IF (J > 120 && NDVI_interpolado < 0.45; 0; IF (Final_agotamiento_corregido_ + ETc >= RAW; MIN (Final_agotamiento_corregido_; dose_irrigation); 0)); 0))
+	Riego_neto_necesario = IF_ERROR (VLOOKUP (fecha; Riegos; 2); IF (water_supply == '1'; IF (J > 120 && NDVI_interpolado < 0.45; 0; IF (Final_agotamiento_corregido_ + ETc >= RAW; MIN (Final_agotamiento_corregido_; dose_irrigation_); 0)); 0))
 	SET (SWB4day, 'Riego_neto_necesario', Riego_neto_necesario)
 
 	DP = MAX (IF (i > 2; P_RO + Riego_neto_necesario_ - ETc - Final_agotamiento_corregido_; ETo - few - De_0); 0)

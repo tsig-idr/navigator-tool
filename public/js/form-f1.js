@@ -22,9 +22,9 @@ form.querySelectorAll('button[name]').forEach(button => {
 		element.classList.remove('fa-play');
 		element.classList.add('fa-spinner');
 		element.classList.add('fa-spin');
-		data.fertilizers = data.fertilizerID = data.amount = data.date = data.N = data.P = data.K = undefined;
 		data.input.fertilizers = data.fertilizers;
 		data.input.applications = applications;
+		data.fertilizers = data.fertilizerID = data.amount = data.date = data.N = data.P = data.K = undefined;
 		for (const name in form.files) {
 			data.input[name] = csv2json(form.files[name]);
 		}

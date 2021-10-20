@@ -49,20 +49,28 @@
 								</div>
 							</div>
 							<div class="row mt-2">
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<label for="depth_s" class="form-label">Depth (m)</label>
 									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<label for="stony" class="form-label">Stony (ratio)</label>
 									<input required type="number" class="form-control" id="stony" name="input[stony]" value="0.15" />
 								</div>
-								<div class="col-sm-3">
-									<label for="N_NH4" class="form-label">&#916;(N - NH4)</label>
-									<input required type="number" class="form-control" id="N_NH4" name="input[N_NH4]" value="0.2" />
+								<div class="col-sm-2">
+									<label for="NO3" class="form-label">Nitric N (NO3-)</label>
+									<input type="number" class="form-control" id="NO3" name="input[NO3]" />
 								</div>
-								<div class="col-sm-3">
-									<label for="mineralizationSlowdown" class="form-label">Mineralization slowdown (%)</label>
+								<div class="col-sm-2">
+									<label for="NH4" class="form-label">Ammoniacal N (NH4+)</label>
+									<input type="number" class="form-control" id="NH4" name="input[NH4]" />
+								</div>
+								<div class="col-sm-2">
+									<label for="N_NH4" class="form-label">&#916;(N - NH4)</label>
+									<input required type="number" class="form-control" id="N_NH4" name="input[N_NH4]" value="0.2" step="0.01"/>
+								</div>
+								<div class="col-sm-2">
+									<label for="mineralizationSlowdown" class="form-label">Mineral slowdown (%)</label>
 									<input required="" type="number" class="form-control" id="mineralizationSlowdown" name="input[mineralizationSlowdown]" value="10">
 								</div>
 							</div>
@@ -121,8 +129,8 @@
 								<div class="col-sm-2">
 									<label  class="form-label">&nbsp;</label>
 									<select required class="form-select" name="input[Nc_s_initial_unit]">
-										<option selected value="ppm">ppm</option>
-										<option value="kg_ha">kg N/ha</option>
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
 										<option value="pct">%</option>
 										<option value="meq_100">meq NO3-/100g</option>
 										<option value="meq_kg">meq NO3-/kg</option>

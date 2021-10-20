@@ -151,14 +151,38 @@
 								</div>
 							</div>
 							<div class="row mt-2">
-								<div class="col-sm-2">
-									<label for="Nc_s_initial" class="form-label">Soil N initial (kg/ha)</label>
+								<div class="col-sm-3">
+									<label for="Nc_s_initial" class="form-label">Soil N initial</label>
 									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.1" />
 								</div>
-								<div class="col-sm-2">
-									<label for="Nc_end" class="form-label">Soil N final (kg/ha)</label>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Nc_s_initial_unit]">
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq NO3-/100g</option>
+										<option value="meq_kg">meq NO3-/kg</option>
+										<option value="meq_l">meq NO3-/l</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label for="Nc_end" class="form-label">Soil N final</label>
 									<input required type="number" class="form-control" id="Nc_end" name="input[Nc_end]" min="0" value="20" step="0.1" />
 								</div>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Nc_end_unit]">
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq NO3-/100g</option>
+										<option value="meq_kg">meq NO3-/kg</option>
+										<option value="meq_l">meq NO3-/l</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
 								<div class="col-sm-4">
 									<label for="Pc_method" class="form-label">Pc method</label>
 									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
@@ -177,12 +201,34 @@
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<label for="Pc_s" class="form-label">P (ppm)</label>
-									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.001" />
+									<label for="Pc_s" class="form-label">P</label>
+									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.1" />
 								</div>
 								<div class="col-sm-2">
-									<label for="Kc_s" class="form-label">K (ppm)</label>
-									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.001" />
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Pc_s_unit]">
+										<option selected value="ppm">ppm</option>
+										<option value="kg_ha">kg P/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq PO43-/100g</option>
+										<option value="meq_kg">meq PO43-/kg</option>
+										<option value="meq_l">meq PO43-/l</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="Kc_s" class="form-label">K</label>
+									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.1" />
+								</div>
+								<div class="col-sm-2">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Kc_s_unit]">
+										<option selected value="ppm">ppm</option>
+										<option value="kg_ha">kg K/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq K+/100g</option>
+										<option value="meq_kg">meq K+/kg</option>
+										<option value="meq_l">meq K+/l</option>
+									</select>
 								</div>
 							</div>
 						</div>
