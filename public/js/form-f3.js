@@ -1,5 +1,5 @@
 var form = document.querySelector('form'),
-	ul = document.querySelector('ul'),
+	ul = document.querySelector('ul.list-unstyled'),
 	resultsDiv = form.querySelector('#results'),
 	resultsIds = ['balance_input', 'balance_output', 'fertilization'],
 	fertilizationFields = ['amount', 'cost', 'N', 'N_ur', 'P', 'K'],
