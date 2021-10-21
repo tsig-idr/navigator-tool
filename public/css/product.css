@@ -1,3 +1,7 @@
+body .container-fluid{
+	font-weight: 600;
+}
+
 .bold {
 	font-weight: bold;
 }
