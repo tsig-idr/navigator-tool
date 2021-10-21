@@ -42,8 +42,8 @@ while k < m && l < feno_n then begin '{'
 	val_ = FLOAT (GET (row, 1))
 	extr_ = FLOAT (GET (row, 2))
 	row = GET (FenoBBCH, l)
-	val = FLOAT (GET (row, 1))
 	date = GET (row, 0)
+	val = FLOAT (GET (row, 1))
 	n_days = MAX (DATESDIF (date, date_); 1)
 	extr = IF (val >= val_; extr + extr_; extr_)
 	SET (row, 2, extr/n_days)
@@ -53,7 +53,7 @@ while k < m && l < feno_n then begin '{'
 	date_ = IF (val < val_; date; date_)
 '}' end
 
-row_ = [0]
+row_ = [20]
 nitro4days = NEW()
 results = []
 Eto_acumulada_ = 0
@@ -173,7 +173,7 @@ while i < n then begin '{'
 
 	val = FLOAT (GET (row_, 0))
 	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
-	row = IF (j < m; GET (FenoT, j); [99999, 0, 0, 0, 0])
+	row = IF (j < m && j >= 0; GET (FenoT, j); [999, 0, 0, 0])
 	row_ = row
 
 	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH; 3; 1); 0)

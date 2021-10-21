@@ -27,7 +27,7 @@ module.exports = function () {
 		!input.Kc_s_unit &&
 			(input.Kc_s_unit = 'ppm');
 		!input.Nc_s_initial_unit &&
-			(input.Nc_s_initial_unit = 'ppm');
+			(input.Nc_s_initial_unit = 'kg/ha');
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
