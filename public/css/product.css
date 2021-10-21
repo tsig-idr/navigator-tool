@@ -139,3 +139,45 @@ main {
 
 
 
+
+.bg-dark {
+    background-color: #233644 !important;
+}
+
+a.bg-dark:hover,
+a.bg-dark:focus,
+button.bg-dark:hover,
+button.bg-dark:focus {
+    background-color: #121b22 !important
+}
+
+
+.img-logo-height {
+    height: 30px !important;
+    margin-right: .15rem
+}
+
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: B612;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.flex-shrink-0 .container-fluid{
+	padding-top: 7rem!important;
+}
+/*
+.pt-banner {
+    padding-top: 7rem!important;  
+}
+*/
+
+.bg-accent {
+    background-color: #A5BE00;
+}
+
+#generalframework .card{
+	margin-right: 3rem;
+}
+
