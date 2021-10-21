@@ -53,7 +53,7 @@ var farm, field, name;
 		'balance' in crop && 'output' in crop.balance &&
 			['Nleaching', 'Nvolatilization'].forEach(name => {
 				name in crop.balance.output &&
-					(form[`input[crops][${i}][balance][output][${name}]`].value = crop.balance.output[name]);
+					(form[`input[crops][${i}][balance][output][${name}]`].value = parseFloat(crop.balance.output[name]).toFixed(2));
 			});
 		['fertilization', 'applied'].forEach(name => {
 			if (name in crop && crop[name].length) {

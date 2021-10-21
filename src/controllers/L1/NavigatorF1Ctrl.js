@@ -8,6 +8,8 @@ module.exports = function () {
 		input.Pc_s_0 = input.Pc_s;
 		input.Kc_s_0 = input.Kc_s;
 		input.Nc_s_0 = input.Nc_s_initial;
+		!input.N_NH4 &&
+			(input.N_NH4 = 0.2);
 		input.NO3 && input.NH4 &&
 			(input.N_NH4 = input.NH4/input.NO3);
 		!input.NDVIreal &&
