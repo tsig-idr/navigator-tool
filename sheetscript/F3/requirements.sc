@@ -1,3 +1,9 @@
+ppm = density_s*depth_s*10
+Nc_s_initial = Nc_s_0*IF (Nc_s_initial_unit == 'kg_ha'; 1; IF (Nc_s_initial_unit == 'ppm'; ppm; IF (Nc_s_initial_unit == 'pct'; 10000*ppm; IF (Nc_s_initial_unit == 'meq_100'; 620*ppm; IF (Nc_s_initial_unit == 'meq_kg'; 6200*ppm; IF (Nc_s_initial_unit == 'meq_l'; 62*ppm; 1))))))
+Nc_s_end = Nc_s_n*IF (Nc_end_unit == 'kg_ha'; 1; IF (Nc_end_unit == 'ppm'; ppm; IF (Nc_end_unit == 'pct'; 10000*ppm; IF (Nc_end_unit == 'meq_100'; 620*ppm; IF (Nc_end_unit == 'meq_kg'; 6200*ppm; IF (Nc_end_unit == 'meq_l'; 62*ppm; 1))))))
+Pc_si = Pc_s_0*IF (Pc_s_unit == 'kg_ha'; 1/ppm; IF (Pc_s_unit == 'ppm'; 1; IF (Pc_s_unit == 'pct'; 10000; IF (Pc_s_unit == 'meq_100'; 316.5; IF (Pc_s_unit == 'meq_kg'; 3165; IF (Pc_s_unit == 'meq_l'; 31.65; 1))))))
+Kc_s = Kc_s_0*IF (Kc_s_unit == 'kg_ha'; 1/ppm; IF (Kc_s_unit == 'ppm'; 1; IF (Kc_s_unit == 'pct'; 10000; IF (Kc_s_unit == 'meq_100'; 391; IF (Kc_s_unit == 'meq_kg'; 3910; IF (Kc_s_unit == 'meq_l'; 39.1; 1))))))
+
 E = 2.718281828459045
 y = yield
 export_r_ = export_r/100
@@ -97,7 +103,6 @@ P_crop_max_ = P_exported*P_STL_2STLtmax + 10*density_s*depth_s*(Pc_s_thres_max -
 P_nyears_max = IF (P_crop_max_ > P_crop_max; CEIL (P_crop_max_/P_crop_max); 1)
 P_STL_STLtmax = IF (Pc_s < Pc_s_thres_max; 1; 0)
 P_STL_2STLtmax = IF (Pc_s > 2*Pc_s_thres_max; 0.5; 1)
-Pc_si = Pc_s_0*1
 P_exported = h_dm_med_50*Pc_h_ + r_dm_med_50*(1 - fmc_r)*Pc_r*export_r_
 
 P_sufficiency = 10*density_s*depth_s*(Pc_s_thres_min - Pc_s)*P_STL_STLtmin/P_nyears_min
@@ -111,7 +116,6 @@ P2O5_maxBM = P_maxBM*2.293
 P2O5_maintenance = P_maintenance*2.293
 
 Kc_r = VLOOKUP (crop_type; CropData; 26)/100
-Kc_s = Kc_s_0*1
 Kc_s_thres_min = VLOOKUP (soil_texture; SoilData; 28)
 K_STL_STLtmin = IF (Kc_s < Kc_s_thres_min; 1; 0)
 K_STL_2STLtmin = IF (Kc_s > 2*Kc_s_thres_min; 0.5; 1)
@@ -149,9 +153,6 @@ Nfixation = IF (n_fix_code =='Non_legume'; 10; (1 + fnr)*(N_yield + N_res)*n_fix
 
 factor_irrigation = IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
 Nirrigation = IF (water_supply == '0'; 0; Nc_NO3_water*dose_irrigation*factor_irrigation*22.6/100000)
-
-Nc_s_initial = Nc_s_0*1
-Nc_s_end = Nc_s_n*1
 
 cn = VLOOKUP (soil_texture; SoilData; 32)
 LI = PI*SI

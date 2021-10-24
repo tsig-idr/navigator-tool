@@ -11,6 +11,14 @@ module.exports = function () {
 		input.Kc_s_0 = input.Kc_s;
 		input.Nc_s_0 = input.Nc_s_initial;
 		input.Nc_s_n = input.Nc_end;
+		!input.Pc_s_unit &&
+			(input.Pc_s_unit = 'ppm');
+		!input.Kc_s_unit &&
+			(input.Kc_s_unit = 'ppm');
+		!input.Nc_s_initial_unit &&
+			(input.Nc_s_initial_unit = 'kg_ha');
+		!input.Nc_end_unit &&
+			(input.Nc_end_unit = 'kg_ha');
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F3', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
