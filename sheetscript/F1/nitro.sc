@@ -53,6 +53,7 @@ while k < m && l < feno_n then begin '{'
 	date_ = IF (val < val_; date; date_)
 '}' end
 
+Nuptakediario_ = 0
 row_ = [20]
 nitro4days = NEW()
 results = []
@@ -108,7 +109,7 @@ while i < n then begin '{'
 	Eto_elegida = IF (Eto_real == 0 - 999; Eto_tipo; Eto_real)
 	SET (nitro4day, 'Eto_elegida', Eto_elegida)
 
-	Eto_acumulada_elegida = Eto_elegida + Eto_acumulada_elegida_
+	Eto_acumulada_elegida = IF (Fecha >= crop_startDate; Eto_elegida + Eto_acumulada_elegida_; 0)
 	SET (nitro4day, 'Eto_acumulada_elegida', Eto_acumulada_elegida)
 
 	ET0 = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 8); VLOOKUP (Fecha; Meteo; 13)); 0)
@@ -156,7 +157,7 @@ while i < n then begin '{'
 	Tm = t
 	SET (nitro4day, 'Tm', Tm)
 
-	IT = IT + Tm
+	IT = IF (Fecha > crop_startDate; IT + Tm; 0)
 	SET (nitro4day, 'IT', IT)
 
 	J = Jp
@@ -164,6 +165,11 @@ while i < n then begin '{'
 
 	Sem = IF (ISOWEEKNUMBER (Fecha) < 40; ISOWEEKNUMBER (Fecha); ISOWEEKNUMBER (Fecha) - 53)
 	SET (nitro4day, 'Sem', Sem)
+
+	Nuptakediario = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
+	SET (nitro4day, 'Nuptake', Nuptakediario)
+
+	Nuptakediario_ = Nuptakediario_ + Nuptakediario
 
 	N_extrA = IF (IT > VLOOKUP (crop_type; Extracciones; 3) && IT < VLOOKUP (crop_type; Extracciones; 5); (IT - VLOOKUP (crop_type; Extracciones; 3))*N_NH4; 0)
 	SET (nitro4day, 'N_extrA', N_extrA)
@@ -193,7 +199,7 @@ while i < n then begin '{'
 	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
 
-	BBCH = GET (row, 1)
+	BBCH = IF (Fecha >= crop_startDate; GET (row, 1); '')
 	SET (nitro4day, 'BBCH', BBCH)
 
 	Nl = (0 - DP)*N_NO3_/100
@@ -287,9 +293,6 @@ while i < n then begin '{'
 
 	Biomasa = IF_ERROR (GET (SWB4day, 'Biomasa_acumulada'); '')
 	SET (nitro4day, 'Biomasa', Biomasa)
-
-	Nuptakediario = IF_ERROR (GET (SWB4day, 'Nuptakediario'); '')
-	SET (nitro4day, 'Nuptake', Nuptakediario)
 
 	SET (nitro4days, Fecha, nitro4day)
 

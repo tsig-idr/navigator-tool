@@ -18,12 +18,15 @@ form.querySelector('button').addEventListener('click', () => {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
 	}).then(res => res.json()).then(data => {
-		let td;
+		let td, li;
 		for (const name in data.results) {
 			(td = table.querySelector(`td[name="${name}"]`)) &&
 				(td.innerHTML = data.results[name]);
 		}
 		table.classList.remove('d-none');
+		(li = document.querySelector('li>a.disabled')) &&
+			(li.classList.add('active') || true) &&
+			li.classList.remove('disabled');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});

@@ -95,7 +95,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 		});
 		const cols = ['N', 'P', 'K', 'P2O5', 'K2O'];
 		let i, j, k, crop, fertilizer, tr, td, value, total,
-			totalFertilization = {}, applied_;
+			totalFertilization = {}, applied_, a;
 		for (i = 0; i < data.results.length && (crop = data.results[i]); i++) {
 			['input', 'output'].forEach(type => {
 				total = [0, 0, 0, 0, 0];
@@ -165,6 +165,9 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 		window.localStorage.setItem('farm', JSON.stringify({
 			crops: data.results
 		}));
+		(a = document.querySelector('[data-save]')) &&
+			(a.classList.add('active') || true) &&
+			a.classList.remove('disabled');
 		form.querySelector('a.btn-secondary').classList.remove('disabled');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);

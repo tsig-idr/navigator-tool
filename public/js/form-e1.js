@@ -20,7 +20,7 @@ button.addEventListener('click', () => {
 			(data.input[div.dataset.field] = Object.values(data.input[div.dataset.field]));
 	});
 	const setTable = (data, round) => {
-		let td;
+		let td, li;
 		for (const name in data.results) {
 			td = table.querySelector(`td[name="${name}"]`),
 			td && round &&
@@ -30,6 +30,9 @@ button.addEventListener('click', () => {
 					(td.innerHTML = data.results[name])
 		}
 		table.classList.remove('d-none');
+		(li = document.querySelector('li>a.disabled')) &&
+			(li.classList.add('active') || true) &&
+			li.classList.remove('disabled');
 	};
 	fetch('/E1/epa', {
 		method: 'POST',
@@ -37,22 +40,24 @@ button.addEventListener('click', () => {
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
-	}).then(res => res.json()).then(data => setTable(data, true)).catch(error => {
-		console.warn('Something went wrong.', error);
-	});
-	fetch('/E2/epa', {
-		method: 'POST',
-		body: JSON.stringify(FormDataJson.toJson(form)),
-		headers: {
-			'Content-type': 'application/json; charset=UTF-8'
-		}
 	}).then(res => res.json()).then(data => {
-		setTable(data);
-		table.querySelectorAll(`td[data-value]`).forEach(td => {
-			let val = table.querySelector(`td[name="${td.dataset.value}"]`).innerHTML,
-				avg = table.querySelector(`td[name="${td.dataset.avg}"]`).innerHTML;
-			val = (val - avg)/avg*100;
-			td.innerHTML = (val > 0 ? '+' : '') + val.toFixed(2) + '%';
+		setTable(data, true);
+		fetch('/E2/epa', {
+			method: 'POST',
+			body: JSON.stringify(FormDataJson.toJson(form)),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8'
+			}
+		}).then(res => res.json()).then(data => {
+			setTable(data);
+			table.querySelectorAll(`td[data-value]`).forEach(td => {
+				let val = table.querySelector(`td[name="${td.dataset.value}"]`).innerHTML,
+					avg = table.querySelector(`td[name="${td.dataset.avg}"]`).innerHTML;
+				val = (val - avg)/avg*100;
+				td.innerHTML = (val > 0 ? '+' : '') + val.toFixed(2) + '%';
+			});
+		}).catch(error => {
+			console.warn('Something went wrong.', error);
 		});
 	}).catch(error => {
 		console.warn('Something went wrong.', error);

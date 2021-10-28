@@ -33,7 +33,7 @@ form.querySelector('button').addEventListener('click', () => {
 		}
 	}).then(res => res.json()).then(data => {
 		let parts,
-			td;
+			td, a;
 		for (const name in data.results) {
 			parts = name.split('from');
 			(td = table.querySelector(`tr[name="${parts[1]}"]>td[name="${parts[0]}"]`)) &&
@@ -42,6 +42,9 @@ form.querySelector('button').addEventListener('click', () => {
 		table.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4G_energy', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
+		(a = document.querySelector('[data-save]')) &&
+			(a.classList.add('active') || true) &&
+			a.classList.remove('disabled');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});
