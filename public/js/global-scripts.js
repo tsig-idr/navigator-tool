@@ -19,14 +19,14 @@
 					return;
 				}
 				window.localStorage.setItem('farm', ev.target.result);
-				window.location.href = project.path;
+				window.location.pathname = project.path;
 			};
 			reader.readAsText(ev.target.files[0]);
 		});
 		document.querySelector('[data-load]').addEventListener('click', () => input.click());
 		document.querySelector('[data-save]').addEventListener('click', () => {
 			const farm = JSON.parse(window.localStorage.getItem('farm'));
-			farm.path = window.location.href;
+			farm.path = window.location.pathname;
 			const url = URL.createObjectURL(new Blob([JSON.stringify(farm)], {
 				type: 'application/json'
 			}));
