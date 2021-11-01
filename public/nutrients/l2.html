@@ -24,20 +24,21 @@
 						<h5 class="card-header bg-secondary text-white">Soil</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label for="soil_texture" class="form-label">Texture</label>
 									<select required class="form-select" id="soil_texture" name="input[soil_texture]"></select>										
 								</div>
 								<div class="col-sm-2">
-									<label for="tilled" class="form-label">Tilled</label>
-									<select required class="form-select" id="tilled" name="input[tilled]">
-										<option value="yes">Yes</option>
-										<option value="no">No</option>
-									</select>
+									<label for="depth_s" class="form-label">Depth (m)</label>
+									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-1">
 									<label for="pH" class="form-label">pH</label>
 									<input required type="number" class="form-control" id="pH" name="input[pH]" value="7" step="0.1" />
+								</div>
+								<div class="col-sm-2">
+									<label for="stony" class="form-label">Stony (ratio)</label>
+									<input required type="number" class="form-control" id="stony" name="input[stony]" value="0.15" />
 								</div>
 								<div class="col-sm-2">
 									<label for="CEC" class="form-label">CEC (meq/kg)</label>
@@ -50,29 +51,36 @@
 							</div>
 							<div class="row mt-2">
 								<div class="col-sm-3">
-									<label for="depth_s" class="form-label">Depth (m)</label>
-									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
-								</div>
-								<div class="col-sm-3">
-									<label for="stony" class="form-label">Stony (ratio)</label>
-									<input required type="number" class="form-control" id="stony" name="input[stony]" value="0.15" />
-								</div>
-								<div class="col-sm-2">
-									<label for="NO3" class="form-label">Nitric N (NO3-)</label>
+									<label for="NO3" class="form-label">Nitric N NO3- (ppm)</label>
 									<input type="number" class="form-control" id="NO3" name="input[NO3]" />
 								</div>
-								<div class="col-sm-2">
-									<label for="NH4" class="form-label">Ammoniacal N (NH4+)</label>
+								<div class="col-sm-3">
+									<label for="NH4" class="form-label">Ammoniacal N NH4+ (ppm)</label>
 									<input type="number" class="form-control" id="NH4" name="input[NH4]" />
 								</div>
 								<div class="col-sm-2">
 									<label for="N_NH4" class="form-label">&#916;(N - NH4)</label>
 									<input required type="number" class="form-control" id="N_NH4" name="input[N_NH4]" value="0.2" step="0.01"/>
 								</div>
+								<div class="col-sm-2">
+									<label for="Nc_s_initial" class="form-label">N initial</label>
+									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.1" />
+								</div>
+								<div class="col-sm-2">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Nc_s_initial_unit]">
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq NO3-/100g</option>
+										<option value="meq_kg">meq NO3-/kg</option>
+										<option value="meq_l">meq NO3-/l</option>
+									</select>
+								</div>
 								<input type="hidden" name="input[mineralizationSlowdown]" value="10">
 							</div>
 							<div class="row mt-2">
-								<div class="col-sm-3">
+								<div class="col-sm-4">
 									<label for="Pc_method" class="form-label">Pc method</label>
 									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
 										<option value="olsen">Olsen</option>
@@ -89,7 +97,7 @@
 										<option value="CaCl2">Ca Cl2</option> 
 									</select>
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-2">
 									<label for="Pc_s" class="form-label">P</label>
 									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.1" />
 								</div>
@@ -104,7 +112,7 @@
 										<option value="meq_l">meq PO43-/l</option>
 									</select>
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-2">
 									<label for="Kc_s" class="form-label">K</label>
 									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.1" />
 								</div>
@@ -117,21 +125,6 @@
 										<option value="meq_100">meq K+/100g</option>
 										<option value="meq_kg">meq K+/kg</option>
 										<option value="meq_l">meq K+/l</option>
-									</select>
-								</div>
-								<div class="col-sm-1">
-									<label for="Nc_s_initial" class="form-label">N initial</label>
-									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.1" />
-								</div>
-								<div class="col-sm-2">
-									<label  class="form-label">&nbsp;</label>
-									<select required class="form-select" name="input[Nc_s_initial_unit]">
-										<option value="ppm">ppm</option>
-										<option selected value="kg_ha">kg N/ha</option>
-										<option value="pct">%</option>
-										<option value="meq_100">meq NO3-/100g</option>
-										<option value="meq_kg">meq NO3-/kg</option>
-										<option value="meq_l">meq NO3-/l</option>
 									</select>
 								</div>
 							</div>

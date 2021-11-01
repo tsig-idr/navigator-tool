@@ -147,6 +147,20 @@ form.addEventListener('change', ev => {
 			||
 				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = false);
 			break;
+		case 'NO3':
+		case 'NH4':
+			let NO3 = form['input[NO3]'].value,
+				NH4 = form['input[NH4]'].value;
+			form['input[Nc_s_initial]'].disabled = form['input[N_NH4]'].disabled = form['input[Nc_s_initial_unit]'].disabled = false;
+			NO3 &&
+				(form['input[Nc_s_initial]'].disabled = form['input[Nc_s_initial_unit]'].disabled = true) &&
+				(form['input[Nc_s_initial]'].value = NO3) &&
+				(form['input[Nc_s_initial_unit]'].value = 'ppm');
+			NO3 && NH4 &&
+				(form['input[Nc_s_initial]'].value = parseFloat(NH4) + parseFloat(NO3)) &&
+				(form['input[N_NH4]'].disabled = true) &&
+				(form['input[N_NH4]'].value = NH4/NO3);
+			break;
 		default:
 			break;
 	}
@@ -231,5 +245,5 @@ fetch('/csv/F1/Fertilizers.csv').then(res => res.text()).then(data => form.files
 });
 
 function csv2json (csv) {
-	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').filter(line => line).map(line => line.split(';'));
 }

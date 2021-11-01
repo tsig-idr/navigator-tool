@@ -31,26 +31,33 @@ mineralEnd = crop_endDate
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
-date_ = crop_startDate
-extr = 0
 m = LEN (FenoT)
 feno_n = LEN (FenoBBCH)
+extr = 0
 k = 0
 l = 0
-while k < m && l < feno_n then begin '{'
+c = 0
+while k < m - 1 && l < feno_n - 1 && c < 100 then begin '{'
 	row = GET (FenoT, k)
-	val_ = FLOAT (GET (row, 1))
+	vt_ = FLOAT (GET (row, 1))
 	extr_ = FLOAT (GET (row, 2))
-	row = GET (FenoBBCH, l)
+	row = GET (FenoT, k + 1)
+	vt = FLOAT (GET (row, 1))
+	row = GET (FenoBBCH, l + 1)
 	date = GET (row, 0)
-	val = FLOAT (GET (row, 1))
+	vr = FLOAT (GET (row, 1))
+	row = GET (FenoBBCH, l)
+	date_ = GET (row, 0)
+	vr_ = FLOAT (GET (row, 1))
+	factor = (MIN (vt; vr) - MAX (vt_; vr_))/(vt - vt_)
+	extr = extr + extr_*factor
 	n_days = MAX (DATESDIF (date, date_); 1)
-	extr = IF (val >= val_; extr + extr_; extr_)
 	SET (row, 2, extr/n_days)
 	SET (FenoBBCH, l, row)
-	k = IF (val < val_; k; k + 1)
-	l = IF (val < val_; l + 1; l)
-	date_ = IF (val < val_; date; date_)
+	extr = IF (vr > vt; extr; 0)
+	k = IF (vt <= vr; k + 1; k)
+	l = IF (vr <= vt; l + 1; l)
+	c = c + 1
 '}' end
 
 Nuptakediario_ = 0
