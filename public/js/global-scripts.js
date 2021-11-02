@@ -15,18 +15,23 @@
 			const reader = new FileReader();
 			reader.onload = ev => {
 				const project = JSON.parse(ev.target.result);
-				if (!project || !project.path) {
+				if (!project || typeof project.meta != 'object' || !project.meta.path) {
 					return;
 				}
 				window.localStorage.setItem('farm', ev.target.result);
-				window.location.pathname = project.path;
+				window.location.pathname = project.meta.path;
 			};
 			reader.readAsText(ev.target.files[0]);
 		});
 		document.querySelector('[data-load]').addEventListener('click', () => input.click());
 		document.querySelector('[data-save]').addEventListener('click', () => {
 			const farm = JSON.parse(window.localStorage.getItem('farm'));
-			farm.path = window.location.pathname;
+			farm.meta = {
+				path: window.location.pathname,
+				host: window.location.hostname,
+				time: (new Date).toLocaleString(),
+				version: '1.0'
+			};
 			const url = URL.createObjectURL(new Blob([JSON.stringify(farm)], {
 				type: 'application/json'
 			}));
