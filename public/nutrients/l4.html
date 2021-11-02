@@ -208,7 +208,7 @@
 					<div class="d-none" id="results">
 						<h3 class="text-center">Best fertilization</h3>
 						<div class="table-responsive" id="fertilization">
-							<table class="table table-warning text-end">
+							<table class="table table-warning text-end" id="F4-tabla-1">
 								<thead>
 									<tr>
 										<th scope="col">Fertilizer</th>
@@ -226,7 +226,7 @@
 						<h3 class="text-center">Nutrients balance</h3>
 						<div class="row">
 							<div class="col-sm-6" id="balance_input">
-								<table class="table table-warning text-end">
+								<table class="table table-warning text-end" id="F4-tabla-2">
 									<thead>
 										<tr>
 											<th></th>
@@ -263,7 +263,7 @@
 								</table>
 							</div>
 							<div class="col-sm-6" id="balance_output">
-								<table class="table table-warning text-end">
+								<table class="table table-warning text-end" id="F4-tabla-3">
 									<thead>
 										<tr>
 											<th></th>
@@ -300,8 +300,16 @@
 								</table>
 							</div>
 						</div>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F4', true)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 				</form>
+				
 			</div>
 		</main>
 		<footer class="footer mt-auto py-3 bg-light"></footer>
@@ -310,5 +318,13 @@
 		<script src="/lib/multiselect.min.js"></script>
 		<script src="/js/form-f4.js"></script>
 		<script src="/js/global-scripts.js"></script>
+		<!-- Generación de PDF -->
+		<script src="/lib/pdf/jspdf.umd.js"></script>
+    	<script>if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF</script>
+    	<script src="/lib/pdf/calibri-normal.js"></script>
+    	<script src="/lib/pdf/jspdf.plugin.autotable.js"></script>
+		<script src="/js/templates_pdf/funcionalidad_pdf.js"></script>
+		<script src="/js/templates_pdf/header_footer.js"></script>
+		<script src="/js/templates_pdf/f4_pdf.js"></script>
 	</body>
 </html>
