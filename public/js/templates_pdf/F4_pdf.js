@@ -87,7 +87,7 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         },
         columnStyles: {
             0: {
-                fillColor: [41, 185, 28],
+                fillColor: [176,196,222],
                 textColor: 255,
                 fontStyle: 'bold'
             }
