@@ -1,5 +1,5 @@
 window.informePDF = window.informePDF || {};
-informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
+informePDF.F1 = informePDF.F1 || function (vInput, nInforme) {
     var doc = new jsPDF();
     doc.setFont("calibri");
     var finalY = doc.lastAutoTable.finalY || 10; // se calcula donde empieza la siguiente tabla
@@ -28,6 +28,8 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
         fileMeteo: 'Meteo.csv', // Meteo data // (name="Meteo")
         fileRiegos: 'Riego.csv', // Irrigation data // (name="Riegos")
         fileFenoBBCH: 'BBCH.csv', // Phenological data // (name="FenoBBCH")
+        fileNDVItipo: 'NDVI_tipo.csv', // NDVI typical data // (name="NDVItipo")
+        fileNDVIreal: 'NDVI_real.csv', // NDVI real data // (name="NDVIreal")
         // ====> Soil
         soil_texture: 'Silty clay loam', // Soil texture
         depth_s: 0.3, // Soil depth (m)
@@ -98,11 +100,13 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
             ['Climatic zone', vInput.climatic_zone ],
             ['Type of irrigation', vInput.type_irrigated ],
             ['Irrigation dose (m3/ha)', vInput.dose_irrigation ],
-            ['NO3 contained (ppm)', vInput.waterNitrate],
+            ['NO3 contained (ppm)', vInput.waterNitrate ],
             ['Climatic data', vInput.fileClima ],
             ['Meteo data', vInput.fileMeteo ],
             ['Irrigation data', vInput.fileRiegos ],
-            ['Phenological data', vInput.fileFenoBBCH ]
+            ['Phenological data', vInput.fileFenoBBCH ],
+            ['NDVI typical data', vInput.fileNDVItipo ],
+            ['NDVI real data', vInput.fileNDVIreal ]
         ],
         styles: {
             font: 'calibri',
@@ -168,7 +172,7 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
         doc.autoTable({
             startY: finalY + 20,
             //useCss: true,
-            html: '#F2-tabla-1',
+            html: '#F1-tabla-1',
             margin: { top: 20 },
             styles: {
                 font: 'calibri',
@@ -185,7 +189,7 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
         doc.autoTable({
             startY: finalY + 20,
             //useCss: true,
-            html: '#F2-tabla-2',
+            html: '#F1-tabla-2',
             margin: { top: 20 },
             styles: {
                 font: 'calibri',
@@ -201,7 +205,7 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
         doc.text('Fertilization Calendar', 14, finalY + 15)
         doc.autoTable({
             startY: finalY + 20,
-            html: '#F2-tabla-3',
+            html: '#F1-tabla-3',
             margin: { top: 20 },
             styles: {
                 font: 'calibri',
@@ -214,7 +218,7 @@ informePDF.F2 = informePDF.F2 || function (vInput, nInforme) {
     
     // ================================================
     const texto = ['Water Balance', 'Nitrogen balance', 'Fertilization Calendar'];
-    addHeaders(doc, 'F2 - ' + texto[nInforme-1] );
+    addHeaders(doc, 'F1 - ' + texto[nInforme-1] );
     addFooters(doc);
     return doc
 }

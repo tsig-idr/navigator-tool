@@ -155,6 +155,7 @@ informePDF.F3 = informePDF.F3 || function (vInput) {
         startY: finalY + 20,
         //useCss: true,
         html: '#F3-tabla-1',
+        margin: { top: 20 },
         styles: {
             font: 'calibri',
             lineColor: [255, 255, 255],
@@ -183,6 +184,7 @@ informePDF.F3 = informePDF.F3 || function (vInput) {
         startY: finalY + 20,
         //useCss: true,
         html: '#F3-tabla-2',
+        margin: { top: 20 },
         styles: {
             font: 'calibri',
             lineColor: [255, 255, 255],
@@ -209,6 +211,7 @@ informePDF.F3 = informePDF.F3 || function (vInput) {
     doc.autoTable({
         startY: finalY + 5,
         html: '#F3-tabla-3',
+        margin: { top: 20 },
         styles: {
             font: 'calibri',
             lineColor: [255, 255, 255],

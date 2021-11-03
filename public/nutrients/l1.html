@@ -281,36 +281,36 @@
 							<div class="row mt-3">
 								<div class="col-sm-6">
 									<label class="form-label">Climatic data</label>
-									<input required class="form-control" name="Clima" type="file" accept=".csv" />
+									<input required class="form-control" id="fileClima" name="Clima" type="file" accept=".csv" />
 									<a href="/csv/F1/Clima.csv">Download example</a>
 								</div>
 								<div class="col-sm-6">
 									<label class="form-label">Meteo data</label>
-									<input required class="form-control" name="Meteo" type="file" accept=".csv" />
+									<input required class="form-control" id="fileMeteo" name="Meteo" type="file" accept=".csv" />
 									<a href="/csv/F1/Meteo.csv">Download example</a>
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-sm-6">
 									<label class="form-label">NDVI typical data</label>
-									<input required class="form-control" name="NDVItipo" type="file" accept=".csv" />
+									<input required class="form-control" id="fileNDVItipo" name="NDVItipo" type="file" accept=".csv" />
 									<a href="/csv/F1/NDVI_tipo.csv">Download example</a>
 								</div>
 								<div class="col-sm-6">
 									<label class="form-label">NDVI real data</label>
-									<input required class="form-control" name="NDVIreal" type="file" accept=".csv" />
+									<input required class="form-control" id="fileNDVIreal" name="NDVIreal" type="file" accept=".csv" />
 									<a href="/csv/F1/NDVI_real.csv">Download example</a>
 								</div>
 							</div>
 							<div class="row mt-3">
 								<div class="col-sm-6">
 									<label class="form-label">Irrigation data</label>
-									<input required class="form-control" name="Riegos" type="file" accept=".csv" />
+									<input required class="form-control" id="fileRiegos" name="Riegos" type="file" accept=".csv" />
 									<a href="/csv/F1/Riego.csv">Download example</a>
 								</div>
 								<div class="col-sm-6">
 									<label class="form-label">Phenological data</label>
-									<input class="form-control" name="FenoBBCH" type="file" accept=".csv" />
+									<input class="form-control" id="fileFenoBBCH" name="FenoBBCH" type="file" accept=".csv" />
 									<a href="/csv/F1/BBCH.csv">Download example</a>
 								</div>
 							</div>
@@ -405,8 +405,8 @@
 						</div>
 					</div>
 					<br/>
-					<div class="table-responsive">
-						<table class="table table-info d-none" name="SWB">
+					<div class="table-responsive d-none">
+						<table class="table table-info d-none" name="SWB" id="F1-tabla-1">
 							<thead>
 								<tr>
 									<th scope="col">Date</th>
@@ -448,10 +448,17 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 1)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 					<br/>
-					<div class="table-responsive">
-						<table class="table table-success d-none" name="SNB/daily">
+					<div class="table-responsive d-none">
+						<table class="table table-success d-none" name="SNB/daily" id="F1-tabla-2">
 							<thead>
 								<tr>
 									<th scope="col">Date</th>
@@ -479,10 +486,17 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 2)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 					<br/>
-					<div class="table-responsive">
-						<table class="table table-warning d-none" name="SNB/calendar">
+					<div class="table-responsive d-none">
+						<table class="table table-warning d-none" name="SNB/calendar" id="F1-tabla-3">
 							<thead>
 								<tr>
 									<th scope="col">Date</th>
@@ -508,6 +522,13 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 3)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 				</form>
 			</div>
@@ -518,5 +539,13 @@
 		<script src="/lib/multiselect.min.js"></script>
 		<script src="/js/form-f1.js"></script>
 		<script src="/js/global-scripts.js"></script>
+		<!-- Generación de PDF -->
+		<script src="/lib/pdf/jspdf.umd.js"></script>
+    	<script>if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF</script>
+    	<script src="/lib/pdf/calibri-normal.js"></script>
+    	<script src="/lib/pdf/jspdf.plugin.autotable.js"></script>
+		<script src="/js/templates_pdf/funcionalidad_pdf.js"></script>
+		<script src="/js/templates_pdf/header_footer.js"></script>
+		<script src="/js/templates_pdf/F1_pdf.js"></script>
 	</body>
 </html>
