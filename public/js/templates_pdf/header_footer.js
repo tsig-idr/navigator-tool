@@ -4,7 +4,7 @@ const addFooters = (doc) => {
     doc.setFontSize(8);
     for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
-        doc.text(' -  ' + String(i) + ' / ' + String(pageCount) + '  - ', doc.internal.pageSize.width / 2, 287, {
+        doc.text(' -  ' + String(i) + ' / ' + String(pageCount) + '  - ', doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, {
             align: 'center'
         });
     }

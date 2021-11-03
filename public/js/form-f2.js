@@ -11,6 +11,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 	button.addEventListener('click', ev => {
 		const table = form.querySelector(`table[name="${ev.target.name}"]`);
 		tables.forEach(table => {
+			table.parentNode.classList.add('d-none');
 			table.classList.add('d-none');
 		});
 		form.classList.add('was-validated');
@@ -64,6 +65,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 						break;
 				}
 				table.classList.remove('d-none');
+				table.parentNode.classList.remove('d-none');
 				element.classList.remove('fa-spin');
 				element.classList.remove('fa-spinner');
 				element.classList.add('fa-play');
