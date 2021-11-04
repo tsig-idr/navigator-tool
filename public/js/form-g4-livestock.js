@@ -4,6 +4,7 @@ form.files = {};
 form.querySelector('button').addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
+	table.parentNode.classList.add('d-none');
 	form.classList.add('was-validated');
 	if (!form.checkValidity()) {
 		return false;
@@ -27,6 +28,7 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed(2));
 		}
 		table.classList.remove('d-none');
+		table.parentNode.classList.remove('d-none');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});

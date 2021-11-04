@@ -61,6 +61,7 @@ function getPDF(id, shouldDownload, subF) {
 
 // === DATOS ===========================
 const dataPDF = {
+
     F4: function() {
         const vCombos = ['crop_type', 'water_supply', 'climatic_zone'];
         const vInputs = ['yield'];
@@ -69,6 +70,7 @@ const dataPDF = {
         vInputs.forEach(id => datos[id] = document.getElementById(id).value);
         return datos;
     },
+
     F3: function() {
         const vCombos = [
             'crop_type', 'PK_strategy', // crop
@@ -85,6 +87,7 @@ const dataPDF = {
         vInputs.forEach(id => datos[id] = document.getElementById(id).value);
         return datos;
     },
+
     F2: function() {
         const vCombos = [
             'crop_type', 'PK_strategy', // crop
@@ -109,6 +112,7 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
+
     F1: function() {
         const vCombos = [
             'crop_type', 'PK_strategy', // crop
@@ -133,24 +137,72 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
-    G3Crops: function() {
+
+    G4Livestock: function() {
+        const vCombos = [
+            'd_c_calves_diet', 'd_c_growing_1_diet', 'd_c_growing_2_diet', 'd_c_mature_diet', // Dairy cattle
+            'm_c_calves_diet', 'm_c_growing_1_diet', 'm_c_growing_2_diet' // Meat cattle
+        ];
+        const vInputs = [
+            'd_c_4000','d_c_6000','d_c_8000','d_c_10000','d_c_calves','d_c_growing_1', 'd_c_growing_2', 'd_c_mature', // Dairy cattle
+            'm_c_calves', 'm_c_mature', 'm_c_growing_1', 'm_c_growing_2', // Meat cattle
+            'g_growing', 'g_mature', // Goats
+            'p_growing', 'p_mature', // Pigs
+            'po_broiler', 'po_hen', 'po_other', // Poultry
+            'r_others', // Other rumiants
+            's_growing', 's_mature', // Sheep
+            'temp_av' // Manure data - Average Temperature (°C)
+
+        ];
+        const vDates = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+
+    G4Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
             'climate', 'temp_reg', 'moist_reg', 'soil' // Farm
-
         ];
         const vInputs = [
            'crop_name', 'area', 'yield', 'export_r', 'SOM', 'tilled', 'drain_rate', 'consumption', //Plot i
            'seeds',
            'herb', 'fung', 'insect', 'otreat', // Pesticides
            'leaching', 'volatilization', // Nitrogen
+        ];
+        const vDates = []
+        const vFiles = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+
+    G3Livestock: function() {
+        const vCombos = [
+            'd_c_calves_diet', 'd_c_growing_1_diet', 'd_c_growing_2_diet', 'd_c_mature_diet', // Dairy cattle
+            'm_c_calves_diet', 'm_c_growing_1_diet', 'm_c_growing_2_diet' // Meat cattle
+        ];
+        const vInputs = [
+            'd_c_4000','d_c_6000','d_c_8000','d_c_10000','d_c_calves','d_c_growing_1', 'd_c_growing_2', 'd_c_mature', // Dairy cattle
+            'm_c_calves', 'm_c_mature', 'm_c_growing_1', 'm_c_growing_2', // Meat cattle
+            'g_growing', 'g_mature', // Goats
+            'p_growing', 'p_mature', // Pigs
+            'po_broiler', 'po_hen', 'po_other', // Poultry
+            'r_others', // Other rumiants
+            's_growing', 's_mature', // Sheep
+            'temp_av' // Manure data - Average Temperature (°C)
 
         ];
-        const vDates = [
-            
-        ]
+        const vDates = [];
         const vFiles = [
-            
+            'fileFeeds', 'fileManure'
         ];
         const datos = {};
         vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
@@ -159,6 +211,29 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
+    
+    G3Crops: function() {
+        const vCombos = [
+            'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
+            'climate', 'temp_reg', 'moist_reg', 'soil' // Farm
+        ];
+        const vInputs = [
+           'crop_name', 'area', 'yield', 'export_r', 'SOM', 'tilled', 'drain_rate', 'consumption', //Plot i
+           'seeds',
+           'herb', 'fung', 'insect', 'otreat', // Pesticides
+           'leaching', 'volatilization', // Nitrogen
+
+        ];
+        const vDates = []
+        const vFiles = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+
     G1Livestock: function() {
         const vCombos = [
             'additive'
@@ -198,7 +273,9 @@ const dataPDF = {
         vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
-    },
+    }
+    
+
 
 }
 // =====================================
