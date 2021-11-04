@@ -124,6 +124,33 @@ const dataPDF = {
         vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
+    },
+    G3Crops: function() {
+        const vCombos = [
+            'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
+            'climate', 'temp_reg', 'moist_reg', 'soil' // Farm
+
+        ];
+        const vInputs = [
+           'crop_name', 'area', 'yield', 'export_r', 'SOM', 'tilled', 'drain_rate', 'consumption', //Plot i
+           'seeds',
+           'herb', 'fung', 'insect', 'otreat', // Pesticides
+           'leaching', 'volatilization', // Nitrogen
+
+        ];
+        const vDates = [
+            
+        ]
+        const vFiles = [
+            
+        ];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
     }
+
 }
 // =====================================
