@@ -234,6 +234,45 @@ const dataPDF = {
         return datos;
     },
 
+    G2Livestock: function() {
+        const vCombos = [];
+        const vInputs = [
+            'd_c_4000', 'd_c_4000_milk', 'd_c_4000_lact_d', 'd_c_4000_BW_av', // Cows 4000 kg milk
+            'd_c_6000', 'd_c_6000_milk', 'd_c_6000_lact_d', 'd_c_6000_BW_av', // Cows 6000 kg milk
+            'd_c_8000', 'd_c_8000_milk', 'd_c_8000_lact_d', 'd_c_8000_BW_av', // Cows 8000 kg milk
+            'd_c_10000', 'd_c_10000_milk', 'd_c_10000_lact_d', 'd_c_10000_BW_av', // Cows 4000 kg milk
+            'd_c_mature', 'd_c_mature_BW_av', // Mature cattle
+            'd_c_calves', 'd_c_calves_BW_av', // Calves
+            'd_c_growing_1', 'd_c_growing_1_BW_av', // Growing < 2 years
+            'd_c_growing_2', 'd_c_growing_2_BW_av', // Growing > 2 years
+            'm_c_mature', 'm_c_mature_BW_av', // Mature cattle
+            'm_c_calves', 'm_c_calves_BW_av', // Calves
+            'm_c_growing_1', 'm_c_growing_1_BW_av', // Growing < 2 years
+            'm_c_growing_2', 'm_c_growing_2_BW_av', // Growing > 2 years
+            's_mature', 's_mature_BW_av', // Mature cattle
+            's_growing', 's_growing_BW_av', // Growing cattle
+            'g_mature', 'g_mature_BW_av', // Mature cattle
+            'g_growing', 'g_growing_BW_av', // Growing cattle
+            'r_others', 'r_others_BW_av', // Horses
+            'p_mature', // Mature pigs
+            'p_growing', // Growing pigs
+            'po_hen', // Hens
+            'po_broiler', // Broiler chicken
+            'po_other', // Other poultry
+            'temp_av'
+        ];
+        const vDates = [];
+        const vFiles = [
+            'fileFeeds', 'fileManure'
+        ];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = getValueFromInputName(id));
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+
     G1Livestock: function() {
         const vCombos = [
             'additive'
