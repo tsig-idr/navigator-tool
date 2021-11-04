@@ -27,6 +27,14 @@ function getNameFileFromInputFile(id) {
     return '';
 }
 
+function getValueFromInputName(id) {
+    const iFile = document.querySelector('input[name="input['+id+']"]');
+    if (iFile) {
+        return iFile.value;
+    }
+    return '';
+}
+
 function generarPDF(id, data, shouldDownload, subF) {
     var doc = window.informePDF[id](data, subF);
     doc.setProperties({
@@ -150,7 +158,47 @@ const dataPDF = {
         vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
-    }
+    },
+    G1Livestock: function() {
+        const vCombos = [
+            'additive'
+        ];
+        const vInputs = [
+            'd_c_4000', 'd_c_4000_milk', 'd_c_4000_lact_d', 'd_c_4000_BW_av', 'd_c_4000_N_exc', 'd_c_4000_VS_exc', 'd_c_4000_MY', // Cows 4000 kg milk
+            'd_c_6000', 'd_c_6000_milk', 'd_c_6000_lact_d', 'd_c_6000_BW_av', 'd_c_6000_N_exc', 'd_c_6000_VS_exc', 'd_c_6000_MY', // Cows 6000 kg milk
+            'd_c_8000', 'd_c_8000_milk', 'd_c_8000_lact_d', 'd_c_8000_BW_av', 'd_c_8000_N_exc', 'd_c_8000_VS_exc', 'd_c_8000_MY', // Cows 8000 kg milk
+            'd_c_10000', 'd_c_10000_milk', 'd_c_10000_lact_d', 'd_c_10000_BW_av', 'd_c_10000_N_exc', 'd_c_10000_VS_exc', 'd_c_10000_MY', // Cows 4000 kg milk
+            'd_c_mature', 'd_c_mature_BW_av', 'd_c_mature_MY', 'd_c_mature_N_exc', 'd_c_mature_VS_exc', // Mature cattle
+            'd_c_calves', 'd_c_calves_BW_av', 'd_c_calves_MY', 'd_c_calves_N_exc', 'd_c_calves_VS_exc', // Calves
+            'd_c_growing_1', 'd_c_growing_1_BW_av', 'd_c_growing_1_MY', 'd_c_growing_1_N_exc', 'd_c_growing_1_VS_exc', // Growing < 2 years
+            'd_c_growing_2', 'd_c_growing_2_BW_av', 'd_c_growing_2_MY', 'd_c_growing_2_N_exc', 'd_c_growing_2_VS_exc', // Growing > 2 years
+            'm_c_mature', 'm_c_mature_BW_av', 'm_c_mature_MY', 'm_c_mature_N_exc', 'm_c_mature_VS_exc', // Mature cattle
+            'm_c_calves', 'm_c_calves_BW_av', 'm_c_calves_MY', 'm_c_calves_N_exc', 'm_c_calves_VS_exc', // Calves
+            'm_c_growing_1', 'm_c_growing_1_BW_av', 'm_c_growing_1_MY', 'm_c_growing_1_N_exc', 'm_c_growing_1_VS_exc', // Growing < 2 years
+            'm_c_growing_2', 'm_c_growing_2_BW_av', 'm_c_growing_2_MY', 'm_c_growing_2_N_exc', 'm_c_growing_2_VS_exc', // Growing > 2 years
+            's_mature', 's_mature_BW_av', 's_mature_MY', 's_mature_N_exc', 's_mature_VS_exc', // Mature cattle
+            's_growing', 's_growing_BW_av', 's_growing_MY', 's_growing_N_exc', 's_growing_VS_exc', // Growing cattle
+            'g_mature', 'g_mature_BW_av', 'g_mature_MY', 'g_mature_N_exc', 'g_mature_VS_exc', // Mature cattle
+            'g_growing', 'g_growing_BW_av', 'g_growing_MY', 'g_growing_N_exc', 'g_growing_VS_exc', // Growing cattle
+            'r_others', 'r_others_BW_av', 'r_others_MY', 'r_others_N_exc', 'r_others_VS_exc', // Horses
+            'p_mature', 'p_mature_MY', 'p_mature_N_exc', 'p_mature_VS_exc', // Mature pigs
+            'p_growing', 'p_growing_MY', 'p_growing_N_exc', 'p_growing_VS_exc', // Growing pigs
+            'po_hen', 'po_hen_MY', 'po_hen_N_exc', 'po_hen_VS_exc', // Hens
+            'po_broiler', 'po_broiler_MY', 'po_broiler_N_exc', 'po_broiler_VS_exc', // Broiler chicken
+            'po_other', 'po_other_MY', 'po_other_N_exc', 'po_other_VS_exc', // Other poultry
+            'methane_r', 'temp_av'
+        ];
+        const vDates = [];
+        const vFiles = [
+            'fileFeeds', 'fileManure'
+        ];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = getValueFromInputName(id));
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
 
 }
 // =====================================
