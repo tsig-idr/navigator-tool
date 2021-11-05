@@ -233,6 +233,30 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
+    G2Crops: function() {
+        const vCombos = [
+            'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
+            'climate', 'temp_reg', 'moist_reg', 'soil', // Farm
+            'chang_till', 'chang_cov', 'chang_com', 'chang_man', 'chang_res' // Plot i
+        ];
+        const vInputs = [
+           'crop_name', 'area', 'yield', 'export_r', 'SOM', 'tilled', 'drain_rate', 'consumption', //Plot i
+           'seeds',
+           'per_till','per_cov', 'per_com', 'am_com', 'per_man', 'am_man', 'per_res', 'am_res', // Plot i
+           'herb', 'fung', 'insect', 'otreat', // Pesticides
+           'leaching', 'volatilization', // Nitrogen
+
+        ];
+        const vDates = []
+        const vFiles = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+
 
     G2Livestock: function() {
         const vCombos = [];
@@ -268,6 +292,29 @@ const dataPDF = {
         const datos = {};
         vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
         vInputs.forEach(id => datos[id] = getValueFromInputName(id));
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
+    },
+    G1Crops: function() {
+        const vCombos = [
+            'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
+            'climate', 'temp_reg', 'moist_reg', 'soil', // Farm
+            'chang_till', 'chang_cov', 'chang_com', 'chang_man', 'chang_res' // Plot i
+        ];
+        const vInputs = [
+           'crop_name', 'area', 'yield', 'export_r', 'SOM', 'tilled', 'drain_rate', 'consumption', //Plot i
+           'seeds',
+           'per_till','per_cov', 'per_com', 'am_com', 'per_man', 'am_man', 'per_res', 'am_res', // Plot i
+           'herb', 'fung', 'insect', 'otreat', // Pesticides
+           'leaching', 'volatilization', // Nitrogen
+
+        ];
+        const vDates = []
+        const vFiles = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
         vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;

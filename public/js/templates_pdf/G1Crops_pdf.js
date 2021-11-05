@@ -1,5 +1,5 @@
 window.informePDF = window.informePDF || {};
-informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
+informePDF.G1Crops = informePDF.G1Crops || function (vInput) {
     var doc = new jsPDF();
     doc.setFont("calibri");
     var finalY = doc.lastAutoTable.finalY || 10; // se calcula donde empieza la siguiente tabla
@@ -30,6 +30,22 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
         leaching: 29.04,  // Leaching (kg/ha)
         volatilization: 8.20, // Volatilization (kg/ha)
 
+
+        chang_till: "No change", // Tillage changes
+        chang_cov: "No change", // Cover cropping changes
+        chang_com: "No change", // Compost additions
+        chang_man: "No change",  // Manure additions
+        chang_res: "No change", // Residues incorporation
+
+        per_till: 0, // How long ago was this change made? (years)
+        per_cov: 0, // How long ago was this change made? (years)
+        per_com: 0, // How long ago was it made? (years)
+        am_com: 0, // Amount (kg/ha)
+        per_man: 0, //  How long ago was it made? (years)
+        am_man: 0, // Amount (kg/ha)
+        per_res: 0, // How long ago was it made? (years)
+        am_res: 0, // Amount (kg/ha)
+
         climate: "Warm Temperate Dry", // Climate
         temp_reg: "Temperate Boreal",  // Temperature regime
         moist_reg: "Dry", // Moisture regime
@@ -46,7 +62,7 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
             [{ content: 'Plot i', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-           // [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Crop', vInput.crop_name, '', 'Area (ha)', vInput.area],
             ['Yield (kg/ha)', vInput.yield, '', 'Export residues (%)', vInput.export_r],
             ['SOM (%)', vInput.SOM, '', 'Tilled', vInput.tilled],
@@ -54,6 +70,7 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
             ['Combustible', vInput.combustible, '', 'Consumption (l/ha)', vInput.consumption],
             ['Residues', vInput.residues, '', 'Organic matter spread', vInput.spread],
             ['Cover crops removed', vInput.removed, '', 'Seeds - Amount (kg/ha)', vInput.seeds],
+            ['Tillage changes', vInput.chang_till, '', 'Cover cropping changes', vInput.chang_cov]
         ],
         styles: {
             font: 'calibri',
@@ -68,6 +85,41 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
                 fontStyle: 'bold'
             },
             3: {
+                fillColor: [150, 222, 188],
+                textColor: 55,
+                fontStyle: 'bold'
+            }
+        }
+    });
+
+    finalY = doc.lastAutoTable.finalY; // se calcula donde empieza la siguiente tabla
+    doc.autoTable({
+        startY: finalY + 3,
+        theme: 'grid',
+        head: [
+            [
+                { content: '', styles: { fillColor: [255, 255, 255] } },
+                'Status',
+                'How long ago was it made? (years)',
+                'Amount (kg/ha)'
+            ]
+        ],
+        body: [
+            ['Tillage changes:', vInput.chang_till, vInput.per_till, ''],
+            ['Cover cropping changes:', vInput.chang_cov, vInput.per_cov, ''],
+            ['Compost additions:', vInput.chang_com, vInput.per_com, vInput.am_com ],
+            ['Manure additions:', vInput.chang_man, vInput.per_man, vInput.am_man ],
+            ['Residues incorporation:', vInput.chang_res, vInput.per_res, vInput.am_res]
+        
+        ],
+        styles: {
+            font: 'calibri',
+            lineColor: [255, 255, 255],
+            lineWidth: 0.1,
+            cellPadding: 1
+        },
+        columnStyles: {
+            0: {
                 fillColor: [150, 222, 188],
                 textColor: 55,
                 fontStyle: 'bold'
@@ -138,6 +190,8 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
         }
     })
 
+    
+
     finalY = doc.lastAutoTable.finalY; // se calcula donde empieza la siguiente tabla
     doc.autoTable({
         startY: finalY + 5,
@@ -146,7 +200,7 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
             [{ content: 'Farm', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-           // [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Climate', vInput.climate, '', 'Temperature regime', vInput.temp_reg  ],
             ['Moisture regime', vInput.moist_reg, '', 'Soil', vInput.soil  ]  
         ],
@@ -178,7 +232,7 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
     doc.autoTable({
         startY: finalY + 20,
         //useCss: true,
-        html: '#G4-crops-tabla-1',
+        html: '#G1-crops-tabla-1',
         styles: {
             font: 'calibri',
             lineColor: [255, 255, 255],
@@ -203,7 +257,7 @@ informePDF.G4Crops = informePDF.G4Crops || function (vInput) {
 
 
     // ================================================
-    addHeaders(doc, 'G4 Crops');
+    addHeaders(doc, 'G1 Crops');
     addFooters(doc);
     return doc
 }

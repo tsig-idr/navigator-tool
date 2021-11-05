@@ -46,7 +46,7 @@ informePDF.G3Crops = informePDF.G3Crops || function (vInput) {
             [{ content: 'Plot i', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Crop', vInput.crop_name, '', 'Area (ha)', vInput.area],
             ['Yield (kg/ha)', vInput.yield, '', 'Export residues (%)', vInput.export_r],
             ['SOM (%)', vInput.SOM, '', 'Tilled', vInput.tilled],
@@ -83,7 +83,7 @@ informePDF.G3Crops = informePDF.G3Crops || function (vInput) {
             [{ content: 'Pesticides', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Herbicides (kg/ha)', vInput.herb, '', 'Fungicides (kg/ha)', vInput.fung  ],
             ['Insecticides (kg/ha)', vInput.insect, '', 'Other treatments (kg/ha)', vInput.otreat ]
         ],
@@ -115,7 +115,7 @@ informePDF.G3Crops = informePDF.G3Crops || function (vInput) {
             [{ content: 'Nitrogen', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+          //  [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Leaching (kg/ha)', vInput.leaching, '', 'Volatilization (kg/ha)', vInput.volatilization  ] 
         ],
         styles: {
@@ -146,7 +146,7 @@ informePDF.G3Crops = informePDF.G3Crops || function (vInput) {
             [{ content: 'Farm', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+         //   [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Climate', vInput.climate, '', 'Temperature regime', vInput.temp_reg  ],
             ['Moisture regime', vInput.moist_reg, '', 'Soil', vInput.soil  ]  
         ],

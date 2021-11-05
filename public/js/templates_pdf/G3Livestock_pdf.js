@@ -46,10 +46,10 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
         s_growing: 21, // Growing
         s_mature: 22, // Mature
         // =====> Manure data 
-        temp_av: 15, // Average Temperature (°C)
-        fileManure: 'Manure.csv',
-        // =====> Feed data 
-        fileFeeds: 'Feeds.csv'
+        temp_av: 15,  // Average Temperature (°C)
+        fileFeeds: "Feeds.csv",
+        fileManure: "Manure.csv"
+
     }
 
     // -- Inputs --- <<<<<<
@@ -65,7 +65,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Dairy cattle', colSpan: 5, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 5, styles: { fillColor: [255, 255, 255] } }],
             ['Cows 4000 kg milk', vInput.d_c_4000, '', 'Mature cattle', vInput.d_c_mature ],
             ['Cows 6000 kg milk', vInput.d_c_6000, '', 'Calves', vInput.m_c_calves ],
             ['Cows 8000 kg milk', vInput.d_c_8000, '', 'Growing < 2 years', vInput.d_c_growing_1 ],
@@ -100,7 +100,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Meat cattle', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Mature cattle', vInput.m_c_mature ],
             ['Calves', vInput.m_c_calves ],
             ['Growing < 2 years', vInput.m_c_growing_1 ],
@@ -130,7 +130,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Poultry', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Hens', vInput.po_hen ],
             ['Broiler chicken', vInput.po_broiler ],
             ['Other poultry', vInput.po_other ]
@@ -159,7 +159,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Sheep (milk and meat)', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Mature', vInput.s_mature ],
             ['Growing', vInput.s_growing] 
         ],
@@ -186,7 +186,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Goats (milk and meat)', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Mature', vInput.g_mature  ],
             ['Growing', vInput.g_growing ]
         ],
@@ -220,7 +220,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Pigs', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Mature pigs', vInput.p_mature ],
             ['Growing pigs', vInput.p_growing ]
         ],
@@ -248,7 +248,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Other rumiants', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Horses', vInput.r_others ]
            
         ],
@@ -281,7 +281,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Dairy cattle', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Calves', vInput.d_c_calves_diet ],
             ['Growing cattle < 2 years', vInput.d_c_growing_1_diet ],
             ['Growing cattle > 2 years', vInput.d_c_growing_2_diet ],
@@ -312,7 +312,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Meat cattle', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+           // [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Calves', vInput.m_c_calves_diet ],
             ['Growing cattle < 2 years', vInput.m_c_growing_1_diet ],
             ['Growing cattle > 2 years', vInput.m_c_growing_2_diet ]
@@ -348,7 +348,7 @@ informePDF.G3Livestock = informePDF.G3Livestock || function (vInput) {
             [{ content: 'Other data', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
-            [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
+            //[{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
             ['Feed data', vInput.fileFeeds ],
             ['Manure data', vInput.fileManure ],
             ['Average Temperature (°C)', vInput.temp_av ]
