@@ -12,6 +12,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 		const table = form.querySelector(`table[name="${ev.target.name}"]`);
 		tables.forEach(table => {
 			table.classList.add('d-none');
+			table.parentNode.classList.add('d-none');
 		});
 		form.classList.add('was-validated');
 		if (!form.checkValidity()) {
@@ -64,6 +65,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 						break;
 				}
 				table.classList.remove('d-none');
+				table.parentNode.classList.remove('d-none');
 				element.classList.remove('fa-spin');
 				element.classList.remove('fa-spinner');
 				element.classList.add('fa-play');

@@ -20,7 +20,7 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         startY: finalY + 20,
         theme: 'grid',
         head: [
-            [{ content: 'Crop', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }]
+            [{ content: 'Crop', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
             [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
@@ -35,8 +35,8 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         },
         columnStyles: {
             0: {
-                fillColor: [41, 185, 128],
-                textColor: 255,
+                fillColor: [150, 222, 188],
+                textColor: 55,
                 fontStyle: 'bold'
             }
         },
@@ -47,7 +47,7 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         startY: finalY + 20,
         theme: 'grid',
         head: [
-            [{ content: 'Plot', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold' } }]
+            [{ content: 'Plot', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fillColor: [41, 185, 128] } }]
         ],
         body: [
             [{ content: '', colSpan: 2, styles: { fillColor: [255, 255, 255] } }],
@@ -62,8 +62,8 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         },
         columnStyles: {
             0: {
-                fillColor: [41, 185, 128],
-                textColor: 255,
+                fillColor: [150, 222, 188],
+                textColor: 55,
                 fontStyle: 'bold'
             }
         },
@@ -87,7 +87,7 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
         },
         columnStyles: {
             0: {
-                fillColor: [41, 185, 28],
+                fillColor: [176,196,222],
                 textColor: 255,
                 fontStyle: 'bold'
             }
@@ -158,6 +158,3 @@ informePDF.F4 = informePDF.F4 || function (vInput) {
     addFooters(doc);
     return doc
 }
-
-// ====================================================
-

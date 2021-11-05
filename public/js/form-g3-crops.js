@@ -6,6 +6,7 @@ const form = document.querySelector('form'),
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
+	table.parentNode.classList.add('d-none');
 	form.classList.add('was-validated');
 	if (!form.checkValidity()) {
 		return false;
@@ -34,6 +35,7 @@ button.addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed());
 		}
 		table.classList.remove('d-none');
+		table.parentNode.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4G_crops', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
 		(a = document.querySelector('[data-save]')) &&

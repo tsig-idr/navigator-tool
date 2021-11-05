@@ -528,7 +528,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<input required name="Feeds" class="form-control" type="file" accept=".csv" />
+									<input required name="Feeds" id="fileFeeds" class="form-control" type="file" accept=".csv" />
 									<a href="/csv/G2/Feeds.csv">Download example</a>
 								</div>
 							</div>
@@ -594,7 +594,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<input required name="Manure" class="form-control" type="file" accept=".csv" />
+									<input required name="Manure" id="fileManure" class="form-control" type="file" accept=".csv" />
 									<a href="/csv/G2/Manure.csv">Download example</a>
 									<div class="mt-3">
 										<label for="temp_av" class="form-label">Average Temperature (°C)</label>
@@ -611,8 +611,8 @@
 						</button>
 					</div>
 					<br/>
-					<div class="table-responsive">
-						<table class="table table-warning d-none">
+					<div class="table-responsive d-none">
+						<table class="table table-warning d-none" id="G2Livestock-tabla-1">
 							<thead>
 								<tr>
 									<th scope="col"></th>
@@ -648,6 +648,13 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('G2Livestock', true, 1)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 				</form>
 			</div>
@@ -657,5 +664,13 @@
 		<script src="/lib/form-data-json.min.js"></script>
 		<script src="/js/form-g2-livestock.js"></script>
 		<script src="/js/global-scripts.js"></script>
+		<!-- Generación de PDF -->
+		<script src="/lib/pdf/jspdf.umd.js"></script>
+    	<script>if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF</script>
+    	<script src="/lib/pdf/calibri-normal.js"></script>
+    	<script src="/lib/pdf/jspdf.plugin.autotable.js"></script>
+		<script src="/js/templates_pdf/funcionalidad_pdf.js"></script>
+		<script src="/js/templates_pdf/header_footer.js"></script>
+		<script src="/js/templates_pdf/G2Livestock_pdf.js"></script>
 	</body>
 </html>
