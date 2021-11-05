@@ -298,6 +298,24 @@ const dataPDF = {
         return datos;
     },
 
+    G2LUC: function() {
+        return (getJSONFromFormLUC_G2) ? (getJSONFromFormLUC_G2()).input : {
+			forest2cropland: 0,
+            forest2grassland: 0,
+            grassland2cropland: 0,
+            grassland2forest: 0,
+            cropland2grassland: 0,
+            cropland2forest: 0,
+			infrastructures: {
+                trees: [],
+                shrubby: [],
+                orchards: [],
+                low: []
+            },
+			forests: []
+		};
+    },
+
     G1Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
@@ -380,6 +398,7 @@ const dataPDF = {
 			forests: []
 		};
     },
+
     E2: function() {
         const vCombos = [
             'state','region', 'tf8_grouping', 'economic_size' // Farm
@@ -388,6 +407,7 @@ const dataPDF = {
         vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
         return datos;
     },
+
     E1: function() {
         const vCombos = [
             'state','region', 'tf8_grouping', 'economic_size' // Farm

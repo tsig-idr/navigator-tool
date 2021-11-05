@@ -21,7 +21,6 @@ function getDataInfraestructures(v) {
     v.infrastructures.orchards.forEach(el => pushElem(el) ); 
     data.push(getHead('low'));
     v.infrastructures.low.forEach(el => pushElem(el) );
-    console.log(data);
     return data;
 }
 
@@ -138,7 +137,11 @@ window.informePDF.G1LUC = window.informePDF.G1LUC || function (v) {
     doc.autoTable({
         startY: finalY + 10,
         theme: 'grid',
+        head: [
+            [{ content: 'Land use change', colSpan: 2, styles: { halign: 'center', fontStyle: 'bold', fontSize: 12 } }]
+        ],
         body: [
+            ['Forest to grassland', v.forest2grassland],
             ['Forest to cropland', v.forest2cropland],
             ['Grassland to cropland', v.grassland2cropland],
             ['Grassland to forest', v.grassland2forest],
