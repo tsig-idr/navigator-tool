@@ -233,6 +233,7 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
+
     G2Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
@@ -296,6 +297,7 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
+
     G1Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
@@ -359,6 +361,24 @@ const dataPDF = {
         vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
+    },
+
+    G1LUC: function() {
+        return (getJSONFromFormLUC_G1) ? (getJSONFromFormLUC_G1()).input : {
+			forest2cropland: 0,
+            forest2grassland: 0,
+            grassland2cropland: 0,
+            grassland2forest: 0,
+            cropland2grassland: 0,
+            cropland2forest: 0,
+			infrastructures: {
+                trees: [],
+                shrubby: [],
+                orchards: [],
+                low: []
+            },
+			forests: []
+		};
     }
     
 
