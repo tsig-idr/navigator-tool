@@ -31,6 +31,7 @@ mineralEnd = crop_endDate
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
+PUSH (FenoBBCH, [crop_endDate, 97])
 m = LEN (FenoT)
 feno_n = LEN (FenoBBCH)
 extr = 0
@@ -83,7 +84,7 @@ IT = 0
 c_a = 0
 c_b = 0
 j = 0
-n = 200 + 1
+n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 1
 i = 1
 while i < n then begin '{'
 	Fecha = GET (Fechas, i)
@@ -197,7 +198,7 @@ while i < n then begin '{'
 	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
-	N_extr_ = IF (feno_n > 1; N_extr_1; 0 - N_extr)
+	N_extr_ = IF (feno_n > 2; N_extr_1; 0 - N_extr)
 	SET (nitro4day, 'N_extr_', N_extr_)
 
 	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
