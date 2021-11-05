@@ -6,6 +6,7 @@ const form = document.querySelector('form'),
 button.addEventListener('click', () => {
 	const table = form.querySelector('table');
 	table.classList.add('d-none');
+	table.parentNode.classList.add('d-none');
 	form.classList.add('was-validated');
 	if (!form.checkValidity()) {
 		return false;
@@ -30,6 +31,7 @@ button.addEventListener('click', () => {
 					(td.innerHTML = data.results[name])
 		}
 		table.classList.remove('d-none');
+		table.parentNode.classList.remove('d-none');
 		(li = document.querySelector('li>a.disabled')) &&
 			(li.classList.add('active') || true) &&
 			li.classList.remove('disabled');

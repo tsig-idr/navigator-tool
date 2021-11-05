@@ -57,8 +57,8 @@
 						</div>
 					</div>
 					<br/>
-					<div class="table-responsive">
-						<table class="table table-warning d-none">
+					<div class="table-responsive d-none">
+						<table class="table table-warning d-none" id="E2-tabla-1">
 							<thead></thead>
 							<tbody>
 								<tr>
@@ -189,6 +189,13 @@
 								</tr>
 							</tbody>
 						</table>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('E2', true, 1)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
 					</div>
 				</form>
 			</div>
@@ -198,5 +205,13 @@
 		<script src="/lib/form-data-json.min.js"></script>
 		<script src="/js/form-e2.js"></script>
 		<script src="/js/global-scripts.js"></script>
+		<!-- Generación de PDF -->
+		<script src="/lib/pdf/jspdf.umd.js"></script>
+    	<script>if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF</script>
+    	<script src="/lib/pdf/calibri-normal.js"></script>
+    	<script src="/lib/pdf/jspdf.plugin.autotable.js"></script>
+		<script src="/js/templates_pdf/funcionalidad_pdf.js"></script>
+		<script src="/js/templates_pdf/header_footer.js"></script>
+		<script src="/js/templates_pdf/E2_pdf.js"></script>
 	</body>
 </html>

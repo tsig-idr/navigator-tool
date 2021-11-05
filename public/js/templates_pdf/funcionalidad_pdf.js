@@ -379,6 +379,33 @@ const dataPDF = {
             },
 			forests: []
 		};
+    },
+    E2: function() {
+        const vCombos = [
+            'state','region', 'tf8_grouping', 'economic_size' // Farm
+        ];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        return datos;
+    },
+    E1: function() {
+        const vCombos = [
+            'state','region', 'tf8_grouping', 'economic_size' // Farm
+        ];
+        const vInputs = [
+            'crop_name','area','yield','price','seeds','price_seeds','dose_irrigation','price_water', // Plot i
+            'herb','fung','insect','otreat', 'price_herb','price_fung','price_insect','price_otreat', // Pesticides
+            'MWC','HWC','OCS','LI','TWI', // Energy
+
+        ];
+        const vDates = []
+        const vFiles = [];
+        const datos = {};
+        vCombos.forEach(id => datos[id] = getTextSelectedFromCombo(id));
+        vInputs.forEach(id => datos[id] = document.getElementById(id).value);
+        vDates.forEach(id => datos[id] = getTextDateFromInputDate(id));
+        vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
+        return datos;
     }
     
 
