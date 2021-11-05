@@ -203,10 +203,12 @@ function customEngine () {
 				!isNaN(v) &&
 					(v = parseFloat(v));
 				for (let i = table.length - 1, e; i >= 0; i--) {
-					!isNaN(e = table[i][0]) &&
-						(e = parseFloat(e));
-					if (typeof table[i] == 'object' && table[i].length && e <= v) {
-						return table[i][index - 1];
+					if (typeof table[i] == 'object' && table[i].length) {
+						!isNaN(e = table[i][0]) &&
+							(e = parseFloat(e));
+						if (e <= v) {
+							return table[i][index - 1];
+						}
 					}
 				}
 			}
