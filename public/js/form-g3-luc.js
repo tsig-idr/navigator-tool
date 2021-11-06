@@ -1,12 +1,6 @@
 var form = document.querySelector('form');
 
-form.querySelector('button').addEventListener('click', () => {
-	const table = form.querySelector('table');
-	table.classList.add('d-none');
-	form.classList.add('was-validated');
-	if (!form.checkValidity()) {
-		return false;
-	}
+function getJSONFromFormLUC_G3() {
 	let data = FormDataJson.toJson(form),
 		row, 
 		rows;
@@ -29,9 +23,21 @@ form.querySelector('button').addEventListener('click', () => {
 			data.input[div.dataset.field] = rows;
 		}
 	});
+	return data;
+}
+
+form.querySelector('button').addEventListener('click', () => {
+	const table = form.querySelector('table');
+	table.classList.add('d-none');
+	table.parentNode.classList.add('d-none');
+	form.classList.add('was-validated');
+	if (!form.checkValidity()) {
+		return false;
+	}
+	const jsonLUC = getJSONFromFormLUC_G3();
 	fetch('/G3/luc', {
 		method: 'POST',
-		body: JSON.stringify(data),
+		body: JSON.stringify(jsonLUC),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
@@ -44,6 +50,7 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed());
 		}
 		table.classList.remove('d-none');
+		table.parentNode.classList.remove('d-none');
 	}).catch(error => {
 		console.warn('Something went wrong.', error);
 	});

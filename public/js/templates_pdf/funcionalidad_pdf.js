@@ -234,6 +234,24 @@ const dataPDF = {
         return datos;
     },
 
+    G3LUC: function() {
+        return (getJSONFromFormLUC_G3) ? (getJSONFromFormLUC_G3()).input : {
+			forest2cropland: 0,
+            forest2grassland: 0,
+            grassland2cropland: 0,
+            grassland2forest: 0,
+            cropland2grassland: 0,
+            cropland2forest: 0,
+			infrastructures: {
+                trees: [],
+                shrubby: [],
+                orchards: [],
+                low: []
+            },
+			forests: []
+		};
+    },
+
     G2Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
