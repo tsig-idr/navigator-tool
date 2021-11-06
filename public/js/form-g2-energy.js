@@ -1,17 +1,10 @@
 var form = document.querySelector('form');
 
-form.querySelector('button').addEventListener('click', () => {
-	const table = form.querySelector('table');
-	table.classList.add('d-none');
-	form.classList.add('was-validated');
-	if (!form.checkValidity()) {
-		return false;
-	}
+function getJSONFromFormEnergy_G2() {
 	const data = {
 		input: {}
 	};
-	let rows, row,
-		farm;
+	let rows, row;
 	form.querySelectorAll('[data-field]').forEach(div => {
 		rows = [];
 		div.querySelectorAll('.row').forEach(div => {
@@ -20,6 +13,20 @@ form.querySelector('button').addEventListener('click', () => {
 		});
 		data.input[div.dataset.field] = rows;
 	});
+	return data;
+}
+
+form.querySelector('button').addEventListener('click', () => {
+	const table = form.querySelector('table');
+	table.classList.add('d-none');
+	table.parentNode.classList.add('d-none');
+	form.classList.add('was-validated');
+	if (!form.checkValidity()) {
+		return false;
+	}
+	
+	let farm;
+	const data = getJSONFromFormEnergy_G2();
 	(farm = window.localStorage.getItem('farm')) &&
 		(farm = { ...JSON.parse(farm), ...data.input})
 	||
@@ -40,6 +47,7 @@ form.querySelector('button').addEventListener('click', () => {
 				(td.innerHTML = data.results[name] && data.results[name].toFixed());
 		}
 		table.classList.remove('d-none');
+		table.parentNode.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4G_energy', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify(farm));
 		(a = document.querySelector('[data-save]')) &&

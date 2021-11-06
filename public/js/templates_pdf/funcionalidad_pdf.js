@@ -202,6 +202,10 @@ const dataPDF = {
 		};
     },
 
+    G4Energy: function() {
+        return (getJSONFromFormEnergy_G4) ? (getJSONFromFormEnergy_G4()).input : {};
+    },
+
     G3Livestock: function() {
         const vCombos = [
             'd_c_calves_diet', 'd_c_growing_1_diet', 'd_c_growing_2_diet', 'd_c_mature_diet', // Dairy cattle
@@ -270,6 +274,10 @@ const dataPDF = {
 		};
     },
 
+    G3Energy: function() {
+        return (getJSONFromFormEnergy_G3) ? (getJSONFromFormEnergy_G3()).input : {};
+    },
+
     G2Crops: function() {
         const vCombos = [
             'rewetted', 'combustible', 'residues', 'spread', 'removed', // Plot i
@@ -293,7 +301,6 @@ const dataPDF = {
         vFiles.forEach(id => datos[id] = getNameFileFromInputFile(id));
         return datos;
     },
-
 
     G2Livestock: function() {
         const vCombos = [];
@@ -350,6 +357,10 @@ const dataPDF = {
             },
 			forests: []
 		};
+    },
+
+    G2Energy: function() {
+        return (getJSONFromFormEnergy_G2) ? (getJSONFromFormEnergy_G2()).input : {};
     },
 
     G1Crops: function() {
@@ -433,6 +444,10 @@ const dataPDF = {
             },
 			forests: []
 		};
+    },
+
+    G1Energy: function() {
+        return (getJSONFromFormEnergy_G1) ? (getJSONFromFormEnergy_G1()).input : {};
     },
 
     E2: function() {
