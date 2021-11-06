@@ -50,7 +50,7 @@ function getDataForest(v) {
 }
 
 window.informePDF = window.informePDF || {};
-window.informePDF.G2LUC = window.informePDF.G2LUC || function (v) {
+window.informePDF.G4LUC = window.informePDF.G4LUC || function (v) {
     const doc = new jsPDF();
     doc.setFont('calibri');
     let finalY = doc.lastAutoTable.finalY || 10; // se calcula donde empieza la siguiente tabla
@@ -147,7 +147,7 @@ window.informePDF.G2LUC = window.informePDF.G2LUC || function (v) {
                 'Grassland to forest', v.grassland2forest, 
                 'Cropland to forest', v.cropland2forest, 
                 'Forest to grassland', v.forest2grassland
-            ],
+            ]
         ],
         styles: {
             font: 'calibri',
@@ -199,7 +199,7 @@ window.informePDF.G2LUC = window.informePDF.G2LUC || function (v) {
     doc.autoTable({
         startY: finalY + 20,
         //useCss: true,
-        html: '#G2LUC-tabla-1',
+        html: '#G4LUC-tabla-1',
         styles: {
             font: 'calibri',
             lineColor: [255, 255, 255],
@@ -222,7 +222,7 @@ window.informePDF.G2LUC = window.informePDF.G2LUC || function (v) {
 
     // ================================================
 
-    addHeaders(doc, 'G2 - LUC');
+    addHeaders(doc, 'G4 - LUC');
     addFooters(doc);
     return doc
 }

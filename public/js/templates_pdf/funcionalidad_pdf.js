@@ -184,6 +184,24 @@ const dataPDF = {
         return datos;
     },
 
+    G4LUC: function() {
+        return (getJSONFromFormLUC_G4) ? (getJSONFromFormLUC_G4()).input : {
+			forest2cropland: 0,
+            forest2grassland: 0,
+            grassland2cropland: 0,
+            grassland2forest: 0,
+            cropland2grassland: 0,
+            cropland2forest: 0,
+			infrastructures: {
+                trees: [],
+                shrubby: [],
+                orchards: [],
+                low: []
+            },
+			forests: []
+		};
+    },
+
     G3Livestock: function() {
         const vCombos = [
             'd_c_calves_diet', 'd_c_growing_1_diet', 'd_c_growing_2_diet', 'd_c_mature_diet', // Dairy cattle

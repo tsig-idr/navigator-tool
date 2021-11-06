@@ -23,23 +23,22 @@ function getDataInfraestructures(v) {
     return data;
 }
 
-const f_Age = {
-    '>20y': '> 20 years',
-    '<20y': '< 20 years'
-}
-const f_volume = {
-    '0': '0',
-	'<20': '< 20',
-    '21-40': '21 - 40',
-    '41-100': '41 - 100',
-    '21-50': '21 - 50',
-    '51-100': '51 - 100',
-    '101-200': '101 - 200',
-    '>100': '> 100',
-    '>200': '> 200'
-}
-
 function getDataForest(v) {
+    const f_Age = {
+        '>20y': '> 20 years',
+        '<20y': '< 20 years'
+    }
+    const f_volume = {
+        '0': '0',
+        '<20': '< 20',
+        '21-40': '21 - 40',
+        '41-100': '41 - 100',
+        '21-50': '21 - 50',
+        '51-100': '51 - 100',
+        '101-200': '101 - 200',
+        '>100': '> 100',
+        '>200': '> 200'
+    }
     const pushElem = (l) => {
         // if (elm.surface*1 && elm.soc*1 && elm.volume_t*1 ) {
         data.push([l.ecozone, f_Age[l.age], l.type, f_volume[l.volume_t], f_volume[l.volume_b], l.surface, l.wood, l.bark, l.lost, l.area]);
