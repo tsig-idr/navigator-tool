@@ -4,7 +4,8 @@ var form = document.querySelector('form'),
 	fertilizers = {},
 	crops = {},
 	soils = {},
-	applications = [];
+	applications = [],
+	farm;
 
 form.files = {};
 form.querySelectorAll('button[name]').forEach(button => {
@@ -37,7 +38,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
 			}).then(res => res.json()).then(data => {
-				let tr, td, tbody,
+				let tr, td, tbody, a,
 					i, name;
 				switch (ev.target.name) {
 					case 'SWB':
@@ -69,6 +70,18 @@ form.querySelectorAll('button[name]').forEach(button => {
 				element.classList.remove('fa-spin');
 				element.classList.remove('fa-spinner');
 				element.classList.add('fa-play');
+				farm = {
+					crops: [{}]
+				};
+				for (i = 0; i < form.elements.length; i++) {
+					form.elements[i].name.indexOf('input') === 0 &&
+						(farm.crops[0][form.elements[i].name.match(/input\[([a-zA-Z0-9_]+)\]/)[1]] = form.elements[i].value);
+				}
+				window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
+				window.localStorage.setItem('farm', JSON.stringify(farm));
+				(a = document.querySelector('[data-save]')) &&
+					(a.classList.add('active') || true) &&
+					a.classList.remove('disabled');
 			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
@@ -123,8 +136,8 @@ form.addEventListener('change', ev => {
 		case 'soil_texture':
 			form['input[CEC]'].value = soils[ev.target.value].CEC;
 			break;
-		case 'dose_irrigation':
-			form['input[waterNitrate]'].disabled = !ev.target.value || ev.target.value == '0';
+		case 'water_supply':
+			form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[waterNitrate]'].disabled = ev.target.value == '0';
 			break;
 		case 'fertilizerID':
 			let fertilizer;
@@ -144,10 +157,7 @@ form.addEventListener('change', ev => {
 				});
 			break;
 		case 'PK_strategy':
-			ev.target.value == 'maintenance' &&
-				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = true)
-			||
-				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = false);
+			form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = ev.target.value == 'maintenance';
 			break;
 		case 'NO3':
 		case 'NH4':
@@ -239,6 +249,24 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 	}
 	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
+
+	let field, name;
+	(farm = window.localStorage.getItem('farm')) &&
+		(farm = JSON.parse(farm)).crops &&
+		farm.crops.forEach(crop => {
+			for (field in crop) {
+				(name = `input[${field}]`) in form &&
+					(form[name].value = crop[field]);
+				switch (field) {
+					case 'PK_strategy':
+						form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = form[name].value == 'maintenance';
+						break;
+					case 'water_supply':
+						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[waterNitrate]'].disabled = form[name].value == '0';
+						break;
+				}
+			}
+		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });

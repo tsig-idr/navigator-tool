@@ -210,10 +210,7 @@ form.addEventListener('change', ev => {
 			form.type.disabled = fertilizer !== undefined || !ev.target.value;
 			break;
 		case 'PK_strategy':
-			ev.target.value == 'maintenance' &&
-				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = true)
-			||
-				(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = false);
+			form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = ev.target.value == 'maintenance';
 			break;
 		case 'prices':
 			let file = ev.target.files[0],
@@ -293,17 +290,22 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 	}
 	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
-	
+
 	let field, name;
 	(farm = window.localStorage.getItem('farm')) &&
 		(farm = JSON.parse(farm)).crops &&
 		farm.crops.forEach(crop => {
 			for (field in crop) {
 				(name = `input[${field}]`) in form &&
-					(form[name].value = crop[field]) && crop[field] !== '' &&
-					field == 'PK_strategy' &&
-						form[name].value == 'maintenance' &&
-							(form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = true);
+					(form[name].value = crop[field]);
+				switch (field) {
+					case 'PK_strategy':
+						form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = form[name].value == 'maintenance';
+						break;
+					case 'water_supply':
+						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[Nc_NO3_water]'].disabled = form[name].value == '0';
+						break;
+				}
 			}
 		});
 }).catch(error => {
