@@ -7,7 +7,14 @@ var form = document.querySelector('form'),
 	applications = [],
 	farm;
 
-form.files = {};
+form.files = {
+	'Clima': null,
+	'Meteo': null,
+	'Riegos': null,
+	'NDVItipo': null,
+	'NDVIreal': null,
+	'prices': null
+};
 form.querySelectorAll('button[name]').forEach(button => {
 	button.addEventListener('click', ev => {
 		const table = form.querySelector(`table[name="${ev.target.name}"]`);
@@ -20,7 +27,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 			return false;
 		}
 		const data = FormDataJson.toJson(form, {includeDisabled: true}),
-			element = ev.target.querySelector('i');
+			element = ev.target.querySelector('i'),
+			input = data.input;
 		element.classList.remove('fa-play');
 		element.classList.add('fa-spinner');
 		element.classList.add('fa-spin');
@@ -70,15 +78,10 @@ form.querySelectorAll('button[name]').forEach(button => {
 				element.classList.remove('fa-spin');
 				element.classList.remove('fa-spinner');
 				element.classList.add('fa-play');
-				farm = {
-					crops: [{}]
-				};
-				for (i = 0; i < form.elements.length; i++) {
-					form.elements[i].name.indexOf('input') === 0 &&
-						(farm.crops[0][form.elements[i].name.match(/input\[([a-zA-Z0-9_]+)\]/)[1]] = form.elements[i].value);
-				}
 				window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
-				window.localStorage.setItem('farm', JSON.stringify(farm));
+				window.localStorage.setItem('farm', JSON.stringify({
+					crops: [input]
+				}));
 				(a = document.querySelector('[data-save]')) &&
 					(a.classList.add('active') || true) &&
 					a.classList.remove('disabled');
@@ -255,8 +258,12 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 		(farm = JSON.parse(farm)).crops &&
 		farm.crops.forEach(crop => {
 			for (field in crop) {
-				(name = `input[${field}]`) in form &&
-					(form[name].value = crop[field]);
+				if ((name = `input[${field}]`) in form) {
+					form[name].value = crop[field];
+					field in form.files &&
+						(form.files[field] = json2csv(crop[field])) &&
+						(form[field].required = false);
+				}
 				switch (field) {
 					case 'PK_strategy':
 						form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = form[name].value == 'maintenance';
@@ -276,4 +283,8 @@ fetch('/csv/F1/Fertilizers.csv').then(res => res.text()).then(data => form.files
 
 function csv2json (csv) {
 	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').filter(line => line).map(line => line.split(';'));
+}
+
+function json2csv (json) {
+	return json.map(row => row.join(';').replace(/\./g, ',')).join('\n');
 }
