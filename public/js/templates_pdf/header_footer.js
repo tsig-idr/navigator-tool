@@ -15,7 +15,7 @@ const addFooters = (doc) => {
     doc.setFont('helvetica');
     doc.setFontSize(8);
     doc.setTextColor(150,150,150);
-    const tx = 'Chk:' + makeId(10) + ' - ' + (new Date()).toLocaleString();
+    const tx = 'Chk:' + makeId(10) + ' - ' + (new Date()).toLocaleString() + '    -    ' + window.location.hostname;
     for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
         doc.text(' -  ' + String(i) + ' / ' + String(pageCount) + '  - ', doc.internal.pageSize.width -14, doc.internal.pageSize.height - 10, {
