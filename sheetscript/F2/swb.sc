@@ -57,7 +57,7 @@ Final_agotamiento_corregido_ = 0
 Biomasa_acumulada_ = 0
 Nuptake_ = 0
 
-n = 200 + 2
+n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 2
 i = 1
 while i < n - 1 then begin '{'
 	i = i + 1
