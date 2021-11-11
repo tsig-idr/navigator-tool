@@ -144,13 +144,16 @@
 									<div class="modal fade" tabindex="-1" aria-hidden="true" id="crops-modal">
 										<div class="modal-dialog">
 											<div class="modal-content p-5">
-												<span>Default phenological data is only applicable to these crops:</span>
+												<span>If you don't provide phenological data, you should take into account before selecting a crop that default phenological data is only applicable to these crops:</span>
 												<br/>
 												<ul>
-													<li>Barley</li>
+													<li>Barley 2 row</li>
+													<li>Barley 6 row</li>
 													<li>Corn</li>
-													<li>Wheat (soft)</li>
-													<li>Wheat (hard)</li>
+													<li>Maize</li>
+													<li>Wheat-Bread-Hard type</li>
+													<li>Wheat-Bread-Soft type</li>
+													<li>Garlic</li>
 												</ul>
 											</div>
 										</div>
@@ -300,10 +303,20 @@
 									<a href="/csv/F2/Riego.csv">Download example</a>
 								</div>
 								<div class="col-sm-6">
-									<label class="form-label">Phenological data</label>
+									<label class="form-label">Phenological data&nbsp;&nbsp;</label>
+									<a href="#" data-bs-toggle="modal" data-bs-target="#feno-modal">
+										<i class="fa fa-info"></i>
+									</a>
 									<input name="input[FenoBBCH]" type="hidden" />
 									<input class="form-control" id="fileFenoBBCH" name="FenoBBCH" type="file" accept=".csv" />
 									<a href="/csv/F2/BBCH.csv">Download example</a>
+									<div class="modal fade" tabindex="-1" aria-hidden="true" id="feno-modal">
+										<div class="modal-dialog">
+											<div class="modal-content p-5">
+												<span>As they are the most representative ones, you should include at least these phenological states for BBCH:<br/>09, 22, 39, 55, 89</span>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
