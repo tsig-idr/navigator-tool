@@ -9,6 +9,7 @@ FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'FenoT.csv'))
 Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Extracciones.csv'))
 Mineral = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Mineral.csv'))
 MO = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'MO.csv'))
+Days4BBCH = STD_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Days4BBCH.csv'))
 NDVIreali = LINTER4DATES (NDVIreal)
 NDVItipoi = LINTER4DATES (NDVItipo)
 
@@ -30,10 +31,20 @@ mineralEnd = crop_endDate
 
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 
+FenoBBCH_ = [[crop_startDate, 0]]
+PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 2); 0)), 09])
+PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 3); 0)), 22])
+PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 4); 0)), 39])
+PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 5); 0)), 55])
+PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 6); 0)), 89])
+PUSH (FenoBBCH_, [crop_endDate, 97])
+
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
 PUSH (FenoBBCH, [crop_endDate, 97])
+
 m = LEN (FenoT)
 feno_n = LEN (FenoBBCH)
+
 extr = 0
 k = 0
 l = 0
@@ -61,10 +72,36 @@ while k < m - 1 && l < feno_n - 1 && c < 100 then begin '{'
 	c = c + 1
 '}' end
 
+extr = 0
+k = 0
+l = 0
+c = 0
+while k < m - 1 && l < 6 && c < 100 then begin '{'
+	row = GET (FenoT, k)
+	vt_ = FLOAT (GET (row, 1))
+	extr_ = FLOAT (GET (row, 2))
+	row = GET (FenoT, k + 1)
+	vt = FLOAT (GET (row, 1))
+	row = GET (FenoBBCH_, l + 1)
+	date = GET (row, 0)
+	vr = FLOAT (GET (row, 1))
+	row = GET (FenoBBCH_, l)
+	date_ = GET (row, 0)
+	vr_ = FLOAT (GET (row, 1))
+	factor = (MIN (vt; vr) - MAX (vt_; vr_))/(vt - vt_)
+	extr = extr + extr_*factor
+	n_days = MAX (DATESDIF (date, date_); 1)
+	SET (row, 2, extr/n_days)
+	SET (FenoBBCH_, l, row)
+	extr = IF (vr > vt; extr; 0)
+	k = IF (vt <= vr; k + 1; k)
+	l = IF (vr <= vt; l + 1; l)
+	c = c + 1
+'}' end
+
 Nuptakediario_ = 0
 row_ = [20]
 nitro4days = NEW()
-results = []
 Eto_acumulada_ = 0
 Eto_acumulada_real_ = 0
 Eto_acumulada_elegida_ = 0
@@ -179,11 +216,13 @@ while i < n then begin '{'
 
 	Nuptakediario_ = Nuptakediario_ + Nuptakediario
 
-	N_extrA = IF (IT > VLOOKUP (crop_type; Extracciones; 3) && IT < VLOOKUP (crop_type; Extracciones; 5); (IT - VLOOKUP (crop_type; Extracciones; 3))*N_NH4; 0)
-	SET (nitro4day, 'N_extrA', N_extrA)
-
-	N_extr = MAX (N_extrA - N_extrA_; 0)
+	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH_; 3; 1); 0)
+	ExtracR_N_Kg = ExtracR_N*Nuptake
+	N_extr = IF_ERROR (0 - ExtracR_N_Kg; 0)
 	SET (nitro4day, 'N_extr', N_extr)
+
+	N_extrA = N_extrA_ + N_extr
+	SET (nitro4day, 'N_extrA', N_extrA)
 
 	val = FLOAT (GET (row_, 0))
 	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
@@ -198,7 +237,7 @@ while i < n then begin '{'
 	N_extrA_1 = N_extrA_1_ + N_extr_1
 	SET (nitro4day, 'N_extrA_1', N_extrA_1)
 
-	N_extr_ = IF (feno_n > 2; N_extr_1; 0 - N_extr)
+	N_extr_ = IF (feno_n > 2; N_extr_1; N_extr)
 	SET (nitro4day, 'N_extr_', N_extr_)
 
 	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
@@ -304,8 +343,6 @@ while i < n then begin '{'
 
 	SET (nitro4days, Fecha, nitro4day)
 
-	PUSH (results, nitro4day)
-
 	Eto_acumulada_ = Eto_acumulada
 	Eto_acumulada_real_ = Eto_acumulada_real
 	Eto_acumulada_elegida_ = Eto_acumulada_elegida
@@ -320,6 +357,39 @@ while i < n then begin '{'
 	N_agua_A_ = N_agua_A
 	Nl_A_ = Nl_A
 	N_mineral_soil_ = N_mineral_soil
+'}' end
+
+results = []
+i = 1
+j = 0
+while i < n then begin '{'
+	Fecha = GET (Fechas, i)
+	i = i + 1
+	nitro4day = GET (nitro4days, Fecha)
+
+	fertilizer = GET (planning_done, Fecha) || []
+	fertilizer_ = GET (planning_todo, Fecha) || []
+
+	N_fert_neto = IF (GET (fertilizer, 'date') == Fecha; GET (fertilizer, 'Nbf')/100*GET (fertilizer, 'amount'); 0)
+
+	N_fert_neto = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
+	N_fert_neto = GET (nitro4day, 'N_fert_neto')
+	SET (nitro4day, 'N_fert_neto', N_fert_neto)
+
+	N_fert = N_fert_neto
+	SET (nitro4day, 'N_fert', N_fert)
+
+	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate > 0; N_rate; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
+
+	N_mineral_soil = GET (nitro4day, 'N_mineral_soil')
+	N_mineral_soil = N_mineral_soil + N_fert
+	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
+
+	N_rate = GET (nitro4day, 'N_rate')
+	N_rate = N_rate - N_mineral_soil
+	SET (nitro4day, 'N_rate', N_rate)
+
+	PUSH (results, nitro4day)
 '}' end
 
 planning_done_ = planning_done

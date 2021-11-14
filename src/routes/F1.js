@@ -21,7 +21,7 @@ const dispatcher = async input => {
 	input.planning_todo = {};
 	input.startDate = input.crop_startDate;
 	input.applications.sort((a, b) => new Date(a.date) - new Date(b.date));
-	input.applications.forEach(application => {
+	input.applications.forEach((application, i) => {
 		(row = input.fertilizers.find(row => row.fertilizerID == application.type)) &&
 			(application = {...row, ...application});
 		if (application.amount) {
@@ -30,6 +30,7 @@ const dispatcher = async input => {
 			input.planning_done[application.date] = application;
 		}
 		else {
+			application.nextdate = i < input.applications.length - 1 ? input.applications[i + 1].date : input.crop_endDate;
 			input.planning_todo[application.date] = application;
 		}
 	});
