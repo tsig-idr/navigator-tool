@@ -30,11 +30,12 @@ const dispatcher = async input => {
 			input.planning_done[application.date] = application;
 		}
 		else {
-			application.nextdate = i < input.applications.length - 1 ? input.applications[i + 1].date : input.crop_endDate;
+			application.nextdate = i + 1 < input.applications.length ? input.applications[i + 1].date : input.crop_endDate;
 			input.planning_todo[application.date] = application;
 		}
 	});
 	const output = await navL1Ctrl.nitro(input);
+	console.log(input.planning_todo)
 	let P, K;
 	switch (input.PK_strategy) {
 		case 'maximum-yield':

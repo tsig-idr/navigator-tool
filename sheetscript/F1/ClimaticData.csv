@@ -1,0 +1,6 @@
+climate_zone;factor_humidity;rain_a (mm);rain_w (mm);Nitrification
+alpine;1;1500;900;12
+atlantic;0,9;800;480;9
+continental;1;1000;600;7
+northern;0,8;700;420;15
+southern;0,6;500;300;3

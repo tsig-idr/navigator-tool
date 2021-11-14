@@ -4,12 +4,13 @@ Curve4organic = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Curve4organic.csv'))
 Fertilizers_aux = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Fertilizers_aux.csv'))
 CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
+ClimaticData = SP_CSV2ARRAY( CONCAT ('sheetscript/F1/', 'ClimaticData.csv'))
 Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
-FenoT = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'FenoT.csv'))
-Extracciones = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Extracciones.csv'))
-Mineral = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Mineral.csv'))
-MO = SP_CSV2ARRAY(CONCAT('sheetscript/F1/', 'MO.csv'))
-Days4BBCH = STD_CSV2ARRAY(CONCAT('sheetscript/F1/', 'Days4BBCH.csv'))
+FenoT = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'FenoT.csv'))
+Extracciones = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Extracciones.csv'))
+Mineral = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Mineral.csv'))
+MO = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'MO.csv'))
+Days4BBCH = STD_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Days4BBCH.csv'))
 NDVIreali = LINTER4DATES (NDVIreal)
 NDVItipoi = LINTER4DATES (NDVItipo)
 
@@ -259,6 +260,7 @@ while i < n then begin '{'
 	mineralEnd = IF (GET (fertilizer_, 'method') == 'topdressing' && Fecha < mineralEnd; Fecha; mineralEnd)
 
 	N_fert_neto = IF (GET (fertilizer, 'date') == Fecha; GET (fertilizer, 'Nbf')/100*GET (fertilizer, 'amount'); 0)
+	SET (nitro4day, 'N_fert_neto', N_fert_neto)
 
 	N_final = IF (mineralIni == Fecha; N_fert_neto; N_final)
 	name = GET (fertilizer, 'name')
@@ -283,10 +285,7 @@ while i < n then begin '{'
 
 	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate > 0; N_rate; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
 
-	N_fert_neto = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
-	SET (nitro4day, 'N_fert_neto', N_fert_neto)
-
-	N_fert = N_fert_neto
+	N_fert = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
 	SET (nitro4day, 'N_fert', N_fert)
 
 	N_deni = 0.34*E**(0.012*N_rate)
@@ -359,36 +358,28 @@ while i < n then begin '{'
 	N_mineral_soil_ = N_mineral_soil
 '}' end
 
+nitrification = VLOOKUP (climatic_zone; ClimaticData; 5)
 results = []
+N_fert = 0
 i = 1
-j = 0
 while i < n then begin '{'
 	Fecha = GET (Fechas, i)
 	i = i + 1
 	nitro4day = GET (nitro4days, Fecha)
-
-	fertilizer = GET (planning_done, Fecha) || []
 	fertilizer_ = GET (planning_todo, Fecha) || []
-
-	N_fert_neto = IF (GET (fertilizer, 'date') == Fecha; GET (fertilizer, 'Nbf')/100*GET (fertilizer, 'amount'); 0)
-
-	N_fert_neto = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
+	nextdate = GET (fertilizer_, 'nextdate')
+	nitro4day_ = nextdate && GET (nitro4days, IF (nextdate == crop_endDate; crop_endDate; ADD2DATE (nextdate, nitrification))) || []
+	N_rate_ = GET (nitro4day_, 'N_rate') - N_fert
+	N_rate = GET (nitro4day, 'N_rate')
 	N_fert_neto = GET (nitro4day, 'N_fert_neto')
-	SET (nitro4day, 'N_fert_neto', N_fert_neto)
-
-	N_fert = N_fert_neto
+	N_fert = N_fert + IF (N_rate_ > 0; N_rate_; N_fert_neto)
 	SET (nitro4day, 'N_fert', N_fert)
-
-	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate > 0; N_rate; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
-
+	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate_ > 0; N_rate_; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
 	N_mineral_soil = GET (nitro4day, 'N_mineral_soil')
 	N_mineral_soil = N_mineral_soil + N_fert
 	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
-
-	N_rate = GET (nitro4day, 'N_rate')
-	N_rate = N_rate - N_mineral_soil
+	N_rate = N_rate - N_fert
 	SET (nitro4day, 'N_rate', N_rate)
-
 	PUSH (results, nitro4day)
 '}' end
 
