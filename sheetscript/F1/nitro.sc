@@ -10,7 +10,7 @@ FenoT = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'FenoT.csv'))
 Extracciones = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Extracciones.csv'))
 Mineral = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Mineral.csv'))
 MO = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'MO.csv'))
-Days4BBCH = STD_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'Days4BBCH.csv'))
+IT4BBCH = STD_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'IT4BBCH.csv'))
 NDVIreali = LINTER4DATES (NDVIreal)
 NDVItipoi = LINTER4DATES (NDVItipo)
 
@@ -32,12 +32,36 @@ mineralEnd = crop_endDate
 
 Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 
+Tbasemin = IF_ERROR (FLOAT (VLOOKUP (crop_type; IT4BBCH; 7)); 0 - 100)
+Tbasemax = IF_ERROR (FLOAT (VLOOKUP (crop_type; IT4BBCH; 8)); 100)
+IT_09 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 2); 0)
+IT_22 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 3); 0)
+IT_39 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 4); 0)
+IT_55 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 5); 0)
+IT_89 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 6); 0)
+
+Fecha_ = date_09 = date_22 = date_39 = date_55 = date_89 = ''
+i = 1
+IT = 0
+while i < n then begin '{'
+	Fecha = GET (Fechas, i)
+	i = i + 1
+	Tm = FLOAT (IF_ERROR (VLOOKUP (Fecha; Meteo; 2); VLOOKUP (Fecha; Clima; 2)))
+	IT = IF (Fecha > crop_startDate; IF (Tm < Tbasemin; IT + Tbasemin; IF (Tm > Tbasemax; IT + Tbasemax; IT + Tm)); '')
+	date_09 = IF (date_09 == '' && IT >= IT_09; Fecha_; date_09)
+	date_22 = IF (date_22 == '' && IT >= IT_22; Fecha_; date_22)
+	date_39 = IF (date_39 == '' && IT >= IT_39; Fecha_; date_39)
+	date_55 = IF (date_55 == '' && IT >= IT_55; Fecha_; date_55)
+	date_89 = IF (date_89 == '' && IT >= IT_89; Fecha_; date_89)
+	Fecha_ = Fecha
+'}' end
+
 FenoBBCH_ = [[crop_startDate, 0]]
-PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 2); 0)), 09])
-PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 3); 0)), 22])
-PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 4); 0)), 39])
-PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 5); 0)), 55])
-PUSH (FenoBBCH_, [ADD2DATE (crop_startDate, IF_ERROR (VLOOKUP (crop_type; Days4BBCH; 6); 0)), 89])
+PUSH (FenoBBCH_, [date_09, 09])
+PUSH (FenoBBCH_, [date_22, 22])
+PUSH (FenoBBCH_, [date_39, 39])
+PUSH (FenoBBCH_, [date_55, 55])
+PUSH (FenoBBCH_, [date_89, 89])
 PUSH (FenoBBCH_, [crop_endDate, 97])
 
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
@@ -200,10 +224,13 @@ while i < n then begin '{'
 	Riego_Acc = IF_ERROR (IF (agroasesor == 'yes'; VLOOKUP (Fecha; CSVAgro; 43); Riego_Efec_ + Riego_Acc_); 0)
 	SET (nitro4day, 'Riego_Acc', Riego_Acc)
 
-	Tm = t
+	Tm = FLOAT(t)
 	SET (nitro4day, 'Tm', Tm)
 
-	IT = IF (Fecha > crop_startDate; IT + Tm; 0)
+	Tm = IF (Tm < Tbasemin; Tbasemin; Tm)
+	Tm = IF (Tm > Tbasemax; Tbasemax; Tm)
+	SET (nitro4day, 'Tm', Tm)
+	IT = IF (Fecha > crop_startDate; IT + Tm; '')
 	SET (nitro4day, 'IT', IT)
 
 	J = Jp
