@@ -65,8 +65,7 @@ Develop a set of Web services the computing models of Fertilizer, F, GHG, G, and
 
 ## Actual state
 
-F3 running & tested meanwhile F1, F4, G3 and E3 just running. The modules are independent and without connections between them, a basic user interface is included for testing the models. 
-
+All lines of F, G and E have been completed based on the defined digital models.
 
 # Architecture:
 Navigator Tool works with the Express web application framework that can run Node.js. The system architecture is based on client server through REST web services. Communication with the tool's computational core is based on text files and requests in JSON format. 
@@ -89,7 +88,7 @@ Warning: This is not the final user interface of the Navigator Tool
 
 Currently the interface is a prototype of a web interface developed in "vanilla". It is a simple interface aimed at programmers and technicians to interact with the Services API. . The interface allows the NPK, GHG and EPA models to be tested independently. In the top menu you can navigate to the active modules.
 
-Web live: http://navigator-dev.teledeteccionysig.es
+Web live: http://tool.fastnavigator.eu
 
 # Modules
 
@@ -100,6 +99,8 @@ Nutrient requirements calculation module: Nitrogen, Phosphorus and potassium, ba
 * F1: Daily nutrient balance. Spatial and temporal variability. FATIMA/AgriSAT Sensor monitoring.
 Parcel and crop characteristics.
 
+* F2: Daily nutrient balance.
+
 * F3: Empirical models. ITAP. Crop cycle nutrient balance. parcel and crop characteristics.
 
 * F4: Same as F3 but with simplified user inputs.
@@ -108,11 +109,13 @@ Parcel and crop characteristics.
 
 The greenhouse gas emissions (E) at farm level are calculated based on the following equation: E = AD·EF where AD is the activity data and EF the emission factor.
 
-* G3: The farmer provides additional qualitative information which are coupled with respective default emission factors. In addition, country specific emission factors are used which are derived from the National Inventory Reports (NIR). Qualitative information can be the method of management (e.g. geographic stratifications, no till practice, type of manure management, organic / conventional farming, fertilizer type, animal characterization, housing facilities (e.g. freestall barns with solid floors, barns with slatted floors)
-
 ## EPA 
 
 Economic performance will consider the management of activities and take into account GHG emissions/removals, the use of fertilisers accounting, as well as all potential costs and revenues
 
-* E3: Match with specific information (arising from on farm survey) about the nutrient, water requirements of crops and yield to assess a first proxy of efficiency (environmental and economic performance) of pilot farms. Data will be collected either using FADN (when available) or with a specific survey, which will include a visit of the farm, gathering of data with questionnaires, data analysis with dedicated tool, a report and recommendations followed by a business plan
+
+# Language
+
+The application is developed in English language, in the future multi-language support is foreseen.
+
 
