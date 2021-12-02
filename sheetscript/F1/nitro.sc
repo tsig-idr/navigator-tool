@@ -76,10 +76,10 @@ l = 0
 c = 0
 while k < m - 1 && l < feno_n - 1 && c < 100 then begin '{'
 	row = GET (FenoT, k)
-	vt_ = FLOAT (GET (row, 1))
-	extr_ = FLOAT (GET (row, 2))
+	vt_ = FLOAT (GET (row, 0))
+	extr_ = FLOAT (GET (row, 1))
 	row = GET (FenoT, k + 1)
-	vt = FLOAT (GET (row, 1))
+	vt = FLOAT (GET (row, 0))
 	row = GET (FenoBBCH, l + 1)
 	date = GET (row, 0)
 	vr = FLOAT (GET (row, 1))
@@ -103,10 +103,10 @@ l = 0
 c = 0
 while k < m - 1 && l < 6 && c < 100 then begin '{'
 	row = GET (FenoT, k)
-	vt_ = FLOAT (GET (row, 1))
-	extr_ = FLOAT (GET (row, 2))
+	vt_ = FLOAT (GET (row, 0))
+	extr_ = FLOAT (GET (row, 1))
 	row = GET (FenoT, k + 1)
-	vt = FLOAT (GET (row, 1))
+	vt = FLOAT (GET (row, 0))
 	row = GET (FenoBBCH_, l + 1)
 	date = GET (row, 0)
 	vr = FLOAT (GET (row, 1))
@@ -125,7 +125,6 @@ while k < m - 1 && l < 6 && c < 100 then begin '{'
 '}' end
 
 Nuptakediario_ = 0
-row_ = [20]
 nitro4days = NEW()
 Eto_acumulada_ = 0
 Eto_acumulada_real_ = 0
@@ -145,7 +144,6 @@ N_final = 0
 IT = 0
 c_a = 0
 c_b = 0
-j = 0
 n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 1
 i = 1
 while i < n then begin '{'
@@ -244,6 +242,9 @@ while i < n then begin '{'
 
 	Nuptakediario_ = Nuptakediario_ + Nuptakediario
 
+	BBCH = IF_ERROR (VLOOKUP (Fecha; IF (feno_n > 2; FenoBBCH; FenoBBCH_); 2; 1); '')
+	SET (nitro4day, 'BBCH', BBCH)
+
 	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH_; 3; 1); 0)
 	ExtracR_N_Kg = ExtracR_N*Nuptake
 	N_extr = IF_ERROR (0 - ExtracR_N_Kg; 0)
@@ -251,11 +252,6 @@ while i < n then begin '{'
 
 	N_extrA = N_extrA_ + N_extr
 	SET (nitro4day, 'N_extrA', N_extrA)
-
-	val = FLOAT (GET (row_, 0))
-	j = IF (Eto_acumulada_elegida >= val; j + 1; j)
-	row = IF (j < m && j >= 0; GET (FenoT, j); [999, 0, 0, 0])
-	row_ = row
 
 	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH; 3; 1); 0)
 	ExtracR_N_Kg = ExtracR_N*Nuptake
@@ -273,9 +269,6 @@ while i < n then begin '{'
 
 	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
-
-	BBCH = IF (Fecha >= crop_startDate; GET (row, 1); '')
-	SET (nitro4day, 'BBCH', BBCH)
 
 	Nl = (0 - DP)*N_NO3_/100
 	SET (nitro4day, 'Nl', Nl)
@@ -301,7 +294,7 @@ while i < n then begin '{'
 	N_curve = IF (Fecha >= mineralIni && Fecha < mineralEnd; curve; 0)
 	SET (nitro4day, 'N_curve', N_curve)
 
-	N_recom = GET (row, 3)
+	N_recom = IF_ERROR (VLOOKUP (BBCH; FenoT; 3; 1); 0)
 	SET (nitro4day, 'N_recom', N_recom)
 
 	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve
@@ -339,7 +332,7 @@ while i < n then begin '{'
 	Nl_A = Nl + Nl_A_
 	SET (nitro4day, 'Nl_A', Nl_A)
 
-	BBCH_tipo = IF (Eto_acumulada_elegida >= val; GET (row, 1); 0 - 9999)
+	BBCH_tipo = IF_ERROR (VLOOKUP (Fecha; IF (feno_n > 2; FenoBBCH; FenoBBCH_); 2; 1); 0 - 9999)
 	SET (nitro4day, 'BBCH_tipo', BBCH_tipo)
 
 	BBCH_graf = IF (BBCH_tipo > 0; 1.4; 0 - 999)
