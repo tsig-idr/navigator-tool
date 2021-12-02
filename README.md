@@ -114,4 +114,8 @@ The greenhouse gas emissions (E) at farm level are calculated based on the follo
 Economic performance will consider the management of activities and take into account GHG emissions/removals, the use of fertilisers accounting, as well as all potential costs and revenues
 
 
+# Language
+
+The application is developed in English language, in the future multi-language support is foreseen.
+
 
