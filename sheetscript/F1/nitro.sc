@@ -62,10 +62,10 @@ PUSH (FenoBBCH_, [date_22, 22])
 PUSH (FenoBBCH_, [date_39, 39])
 PUSH (FenoBBCH_, [date_55, 55])
 PUSH (FenoBBCH_, [date_89, 89])
-PUSH (FenoBBCH_, [crop_endDate, 97])
+PUSH (FenoBBCH_, [crop_endDate, 89])
 
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
-PUSH (FenoBBCH, [crop_endDate, 97])
+PUSH (FenoBBCH, [crop_endDate, 89])
 
 m = LEN (FenoT)
 feno_n = LEN (FenoBBCH)
@@ -332,7 +332,7 @@ while i < n then begin '{'
 	Nl_A = Nl + Nl_A_
 	SET (nitro4day, 'Nl_A', Nl_A)
 
-	BBCH_tipo = IF_ERROR (VLOOKUP (Fecha; IF (feno_n > 2; FenoBBCH; FenoBBCH_); 2; 1); 0 - 9999)
+	BBCH_tipo = IF_ERROR (VLOOKUP (Fecha; IF (feno_n > 2; FenoBBCH; FenoBBCH_); 2); 0 - 9999)
 	SET (nitro4day, 'BBCH_tipo', BBCH_tipo)
 
 	BBCH_graf = IF (BBCH_tipo > 0; 1.4; 0 - 999)
@@ -390,6 +390,7 @@ while i < n then begin '{'
 	nextdate = GET (fertilizer_, 'nextdate')
 	nitro4day_ = nextdate && GET (nitro4days, IF (nextdate == crop_endDate; crop_endDate; ADD2DATE (nextdate, nitrification))) || []
 	N_rate_ = GET (nitro4day_, 'N_rate') - N_fert
+	SET (nitro4day, 'N_rate_', N_rate_)
 	N_rate = GET (nitro4day, 'N_rate')
 	N_fert_neto = GET (nitro4day, 'N_fert_neto')
 	N_fert = N_fert + IF (N_rate_ > 0; N_rate_; N_fert_neto)

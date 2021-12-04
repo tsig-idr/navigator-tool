@@ -68,7 +68,7 @@ const dispatcher = async input => {
 	input.applications.forEach((application, i) => {
 		if (application.type == '#') {
 			(row = output.results.find(row => row.Fecha == application.date)) &&
-				(input.applications[i] = navBestFertiCtrl.bestOne(input.fertilizers, Math.max(row.N_rate, 0), P, K));
+				(input.applications[i] = navBestFertiCtrl.bestOne(input.fertilizers, Math.max(row.N_rate_, 0), P, K));
 			input.applications[i].P &&
 				(P-= input.applications[i].P);
 			input.applications[i].K &&

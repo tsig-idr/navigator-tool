@@ -10,9 +10,10 @@ var form = document.querySelector('form'),
 form.files = {
 	'Clima': null,
 	'Meteo': null,
-	'Riegos': null,
 	'NDVItipo': null,
 	'NDVIreal': null,
+	'Riegos': null,
+	'FenoBBCH': null,
 	'prices': null
 };
 form.querySelectorAll('button[name]').forEach(button => {
@@ -36,7 +37,10 @@ form.querySelectorAll('button[name]').forEach(button => {
 		data.input.applications = applications;
 		data.fertilizers = data.fertilizerID = data.amount = data.date = data.N = data.P = data.K = undefined;
 		for (const name in form.files) {
-			data.input[name] = csv2json(form.files[name]);
+			form.files[name] &&
+				(data.input[name] = csv2json(form.files[name]))
+			||
+				(data.input[name] = null);
 		}
 		ev.target.name &&
 			fetch(`/F1/${ev.target.name}`, {
@@ -185,7 +189,7 @@ form.querySelectorAll('[type="file"]').forEach(input => {
 		var file = ev.target.files[0],
 			reader;
 		if (!file) {
-			return false;
+			return form.files.FenoBBCH = null;
 		}
 		reader = new FileReader();
 		reader.onload = ev => form.files[input.name] = ev.target.result;
@@ -261,8 +265,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 				if ((name = `input[${field}]`) in form) {
 					form[name].value = crop[field];
 					field in form.files &&
-						(form.files[field] = json2csv(crop[field])) &&
-						(form[field].required = false);
+						typeof crop[field] !== 'string' &&
+							(form.files[field] = json2csv(crop[field])) &&
+							(form[field].required = false);
 				}
 				switch (field) {
 					case 'PK_strategy':
