@@ -40,7 +40,7 @@ IT_39 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 4); 0)
 IT_55 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 5); 0)
 IT_89 = IF_ERROR (VLOOKUP (crop_type; IT4BBCH; 6); 0)
 
-Fecha_ = date_09 = date_22 = date_39 = date_55 = date_89 = ''
+Fecha_ = date_09 = date_22 = date_39 = date_55 = date_89 = crop_endDate
 i = 1
 IT = 0
 while i < n then begin '{'
@@ -48,11 +48,11 @@ while i < n then begin '{'
 	i = i + 1
 	Tm = FLOAT (IF_ERROR (VLOOKUP (Fecha; Meteo; 2); VLOOKUP (Fecha; Clima; 2)))
 	IT = IF (Fecha > crop_startDate; IF (Tm < Tbasemin; IT + Tbasemin; IF (Tm > Tbasemax; IT + Tbasemax; IT + Tm)); '')
-	date_09 = IF (date_09 == '' && IT >= IT_09; Fecha_; date_09)
-	date_22 = IF (date_22 == '' && IT >= IT_22; Fecha_; date_22)
-	date_39 = IF (date_39 == '' && IT >= IT_39; Fecha_; date_39)
-	date_55 = IF (date_55 == '' && IT >= IT_55; Fecha_; date_55)
-	date_89 = IF (date_89 == '' && IT >= IT_89; Fecha_; date_89)
+	date_09 = IF (date_09 == crop_endDate && IT >= IT_09; Fecha_; date_09)
+	date_22 = IF (date_22 == crop_endDate && IT >= IT_22; Fecha_; date_22)
+	date_39 = IF (date_39 == crop_endDate && IT >= IT_39; Fecha_; date_39)
+	date_55 = IF (date_55 == crop_endDate && IT >= IT_55; Fecha_; date_55)
+	date_89 = IF (date_89 == crop_endDate && IT >= IT_89; Fecha_; date_89)
 	Fecha_ = Fecha
 '}' end
 
@@ -62,7 +62,6 @@ PUSH (FenoBBCH_, [date_22, 22])
 PUSH (FenoBBCH_, [date_39, 39])
 PUSH (FenoBBCH_, [date_55, 55])
 PUSH (FenoBBCH_, [date_89, 89])
-PUSH (FenoBBCH_, [crop_endDate, 89])
 
 UNSHIFT (FenoBBCH, [crop_startDate, 0])
 PUSH (FenoBBCH, [crop_endDate, 89])
@@ -101,7 +100,7 @@ extr = 0
 k = 0
 l = 0
 c = 0
-while k < m - 1 && l < 6 && c < 100 then begin '{'
+while k < m - 1 && l < 5 && c < 100 then begin '{'
 	row = GET (FenoT, k)
 	vt_ = FLOAT (GET (row, 0))
 	extr_ = FLOAT (GET (row, 1))
@@ -380,7 +379,7 @@ while i < n then begin '{'
 
 nitrification = VLOOKUP (climatic_zone; ClimaticData; 5)
 results = []
-N_fert = 0
+N_fertA = 0
 i = 1
 while i < n then begin '{'
 	Fecha = GET (Fechas, i)
@@ -389,18 +388,21 @@ while i < n then begin '{'
 	fertilizer_ = GET (planning_todo, Fecha) || []
 	nextdate = GET (fertilizer_, 'nextdate')
 	nitro4day_ = nextdate && GET (nitro4days, IF (nextdate == crop_endDate; crop_endDate; ADD2DATE (nextdate, nitrification))) || []
-	N_rate_ = GET (nitro4day_, 'N_rate') - N_fert
+	N_rate_ = GET (nitro4day_, 'N_rate') - N_fertA
 	SET (nitro4day, 'N_rate_', N_rate_)
-	N_rate = GET (nitro4day, 'N_rate')
 	N_fert_neto = GET (nitro4day, 'N_fert_neto')
-	N_fert = N_fert + IF (N_rate_ > 0; N_rate_; N_fert_neto)
+	N_fert = IF (N_rate_ > 0; N_rate_; N_fert_neto)
 	SET (nitro4day, 'N_fert', N_fert)
+	N_fertA = N_fertA + N_fert
 	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate_ > 0; N_rate_; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
 	N_mineral_soil = GET (nitro4day, 'N_mineral_soil')
-	N_mineral_soil = N_mineral_soil + N_fert
+	N_mineral_soil = N_mineral_soil + N_fertA
 	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
-	N_rate = N_rate - N_fert
+	N_rate = GET (nitro4day, 'N_rate')
+	N_rate = N_rate - N_fertA
 	SET (nitro4day, 'N_rate', N_rate)
+
+
 	PUSH (results, nitro4day)
 '}' end
 
