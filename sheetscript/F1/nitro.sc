@@ -266,10 +266,10 @@ while i < n then begin '{'
 	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
 
-	N_agua = (Riego_neces + Riego_Efec)*waterNitrate*14/(100*62)
+	N_agua = (Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
 
-	Nl = (0 - DP)*N_NO3_/100
+	Nl = MAX ((0 - DP)*N_NO3_/100; 0)
 	SET (nitro4day, 'Nl', Nl)
 
 	fertilizer = GET (planning_done, Fecha) || []
@@ -293,7 +293,7 @@ while i < n then begin '{'
 	N_curve = IF (Fecha >= mineralIni && Fecha < mineralEnd; curve; 0)
 	SET (nitro4day, 'N_curve', N_curve)
 
-	N_recom = IF_ERROR (VLOOKUP (BBCH; FenoT; 3; 1); 0)
+	N_recom = IF_ERROR (VLOOKUP (BBCH; FenoT; 3; 1); IF (Fecha > ADD2DATE (crop_startDate, 0 - 20); 25; 0))
 	SET (nitro4day, 'N_recom', N_recom)
 
 	N_mineral_soil = N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve

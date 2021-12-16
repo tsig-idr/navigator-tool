@@ -1,10 +1,10 @@
 CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/F1/', 'SoilData.csv'))
 
-Kcb_ini = VLOOKUP (crop_type; CropData; 27)
-Kcb_mid = VLOOKUP (crop_type; CropData; 28)
-Kcb_end = VLOOKUP (crop_type; CropData; 29)
-root_max = IF_ERROR (VLOOKUP (crop_type; CropData; 30); 0.5)
+Kcb_ini = VLOOKUP (crop_type; CropData; 30)
+Kcb_mid = VLOOKUP (crop_type; CropData; 31)
+Kcb_end = VLOOKUP (crop_type; CropData; 32)
+root_max = IF_ERROR (VLOOKUP (crop_type; CropData; 33); 0.5)
 waterAvail = VLOOKUP (soil_texture; SoilData; 16)*1000
 
 fw_i = IF (type_irrigated == 'trickle'; 0.7; 1.0) 
@@ -120,6 +120,11 @@ while i < n - 1 then begin '{'
 
 	Profundidad_radicular = MIN (root_max; MAX(root_min; MAX ((Kcb - Kcb_ini)/(Kcb_mid - Kcb_ini)*(root_max - root_min) + root_min; Profundidad_radicular_)))
 	SET (SWB4day, 'Profundidad_radicular', Profundidad_radicular)
+	SET (SWB4day, 'root_max', root_max)
+	SET (SWB4day, 'root_min', root_min)
+	SET (SWB4day, 'Kcb', Kcb)
+	SET (SWB4day, 'Kcb_ini', Kcb_ini)
+	SET (SWB4day, 'Kcb_mid', Kcb_mid)
 
 	RAW = MAX (IF (J < JDev; 65; 65)/100*Profundidad_radicular*waterAvail; RAW_)
 	SET (SWB4day, 'RAW', RAW)
