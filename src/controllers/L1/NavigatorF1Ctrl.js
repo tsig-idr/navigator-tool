@@ -9,7 +9,7 @@ module.exports = function () {
 		input.Kc_s_0 = input.Kc_s;
 		input.Nc_s_0 = input.Nc_s_initial;
 		!input.mineralizationSlowdown &&
-			(input.mineralizationSlowdown = 50);
+			(input.mineralizationSlowdown = 10);
 		!input.N_NH4 &&
 			(input.N_NH4 = 0.2);
 		input.NO3 && input.NH4 &&

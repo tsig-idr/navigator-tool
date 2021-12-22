@@ -263,13 +263,13 @@ while i < n then begin '{'
 	N_extr_ = IF (feno_n > 2; N_extr_1; N_extr)
 	SET (nitro4day, 'N_extr_', N_extr_)
 
-	N_mineralizado = IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral)
+	N_mineralizado = 0.5*(IF (N_extr_ == 0; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral*mineralizationSlowdown/100; FLOAT (VLOOKUP (Tm; Mineral; 2; 1))*Tm*c_mineral))
 	SET (nitro4day, 'N_mineralizado', N_mineralizado)
 
 	N_agua = (Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
 
-	Nl = MAX ((0 - DP)*N_NO3_/100; 0)
+	Nl = IF (N_NO3_ < 0; 0; (0 - DP)*N_NO3_/100)
 	SET (nitro4day, 'Nl', Nl)
 
 	fertilizer = GET (planning_done, Fecha) || []
@@ -307,7 +307,7 @@ while i < n then begin '{'
 	N_fert = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
 	SET (nitro4day, 'N_fert', N_fert)
 
-	N_deni = 0.34*E**(0.012*N_rate)
+	N_deni = 0
 	SET (nitro4day, 'N_deni', N_deni)
 
 	N_mineral_soil_fert = N_mineral_soil + N_fert - N_deni
@@ -393,7 +393,9 @@ while i < n then begin '{'
 	N_fert_neto = GET (nitro4day, 'N_fert_neto')
 	N_fert = IF (N_rate_ > 0; N_rate_; N_fert_neto)
 	SET (nitro4day, 'N_fert', N_fert)
-	N_fertA = N_fertA + N_fert
+	N_deni = IF (N_fert; 0.34*E**(0.012*N_fert); 0)
+	SET (nitro4day, 'N_deni', N_deni)
+	N_fertA = N_fertA + N_fert - N_deni
 	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate_ > 0; N_rate_; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
 	N_mineral_soil = GET (nitro4day, 'N_mineral_soil')
 	N_mineral_soil = N_mineral_soil + N_fertA
@@ -401,7 +403,6 @@ while i < n then begin '{'
 	N_rate = GET (nitro4day, 'N_rate')
 	N_rate = N_rate - N_fertA
 	SET (nitro4day, 'N_rate', N_rate)
-
 
 	PUSH (results, nitro4day)
 '}' end
