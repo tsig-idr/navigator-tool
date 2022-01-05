@@ -111,90 +111,99 @@
 									</select>
 								</div>
 							</div>
-							<div class="row mt-2">
-								<div class="col-sm-6">
-									<label for="chang_till" class="form-label">Tillage changes</label>
-									<select required class="form-select" id="chang_till" name="input[crops][0][chang_till]">
-										<option value="no change">No change</option>
-										<option value="conventional to reduced">Conventional to reduced</option>
-										<option value="conventional to no-till">Conventional to no till</option>
-										<option value="reduced to conventional">Reduced to conventional</option>
-										<option value="reduced to no till">Reduced to no till</option>
-										<option value="no till to reduced">No till to reduced</option>
-										<option value="no till to conventional">No till to conventional</option>
-									</select>
-								</div>
-								<div class="col-sm-6">
-									<label for="per_till" class="form-label">How long ago was this change made? (years)</label>
-									<input required type="number" class="form-control" id="per_till" name="input[crops][0][per_till]" min="0" value="0" />
-								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col-sm-6">
-									<label for="chang_cov" class="form-label">Cover cropping changes</label>
-									<select required class="form-select" id="chang_cov" name="input[crops][0][chang_cov]">
-										<option value="no change">No change</option>
-										<option value="started adding">Started adding</option>
-										<option value="stopped adding">Stopped adding</option>
-									</select>
-								</div>
-								<div class="col-sm-6">
-									<label for="per_cov" class="form-label">How long ago was this change made? (years)</label>
-									<input required type="number" class="form-control" id="per_cov" name="input[crops][0][per_cov]" min="0" value="0" />
-								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col-sm-6">
-									<label for="chang_com" class="form-label">Compost additions</label>
-									<select required class="form-select" id="chang_com" name="input[crops][0][chang_com]">
-										<option value="no change">No change</option>
-										<option value="started incorporating">Started incorporating</option>
-										<option value="stopped incorporating">Stopped incorporating</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<label for="per_com" class="form-label">How long ago was it made? (years)</label>
-									<input required type="number" class="form-control" id="per_com" name="input[crops][0][per_com]" min="0" value="0" />
-								</div>
-								<div class="col-sm-3">
-									<label for="am_com" class="form-label">Amount (kg/ha)</label>
-									<input required type="number" class="form-control" id="am_com" name="input[crops][0][am_com]" min="0" step="0.1" value="0" />
-								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col-sm-6">
-									<label for="chang_man" class="form-label">Manure additions</label>
-									<select required class="form-select" id="chang_man" name="input[crops][0][chang_man]">
-										<option value="no change">No change</option>
-										<option value="started incorporating">Started incorporating</option>
-										<option value="stopped incorporating">Stopped incorporating</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<label for="per_man" class="form-label">How long ago was it made? (years)</label>
-									<input required type="number" class="form-control" id="per_man" name="input[crops][0][per_man]" min="0" value="0" />
-								</div>
-								<div class="col-sm-3">
-									<label for="am_man" class="form-label">Amount (kg/ha)</label>
-									<input required type="number" class="form-control" id="am_man" name="input[crops][0][am_man]" min="0" step="0.1" value="0" />
-								</div>
-							</div>
-							<div class="row mt-2">
-								<div class="col-sm-6">
-									<label for="chang_res" class="form-label">Residues incorporation</label>
-									<select required class="form-select" id="chang_res" name="input[crops][0][chang_res]">
-										<option value="no change">No change</option>
-										<option value="started incorporating">Started incorporating</option>
-										<option value="stopped incorporating">Stopped incorporating</option>
-									</select>
-								</div>
-								<div class="col-sm-3">
-									<label for="per_res" class="form-label">How long ago was it made? (years)</label>
-									<input required type="number" class="form-control" id="per_res" name="input[crops][0][per_res]" min="0" value="0" />
-								</div>
-								<div class="col-sm-3">
-									<label for="am_res" class="form-label">Amount (kg/ha)</label>
-									<input required type="number" class="form-control" id="am_res" name="input[crops][0][am_res]" min="0" step="0.1" value="0" />
+							<div class="row mt-3">
+								<div class="col-sm-12">
+									<div class="card">
+										<h6 class="card-header">Land management changes</h6>
+										<div class="card-body">
+											<div class="row">
+												<div class="col-sm-6">
+													<label for="chang_till" class="form-label">Tillage changes</label>
+													<select required class="form-select" id="chang_till" name="input[crops][0][chang_till]">
+														<option value="no change">No change</option>
+														<option value="conventional to reduced">Conventional to reduced</option>
+														<option value="conventional to no-till">Conventional to no till</option>
+														<option value="reduced to conventional">Reduced to conventional</option>
+														<option value="reduced to no till">Reduced to no till</option>
+														<option value="no till to reduced">No till to reduced</option>
+														<option value="no till to conventional">No till to conventional</option>
+													</select>
+												</div>
+												<div class="col-sm-6">
+													<label for="per_till" class="form-label">How long ago was this change made? (years)</label>
+													<input required type="number" class="form-control" id="per_till" name="input[crops][0][per_till]" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col-sm-6">
+													<label for="chang_cov" class="form-label">Cover cropping changes</label>
+													<select required class="form-select" id="chang_cov" name="input[crops][0][chang_cov]">
+														<option value="no change">No change</option>
+														<option value="started adding">Started adding</option>
+														<option value="stopped adding">Stopped adding</option>
+													</select>
+												</div>
+												<div class="col-sm-6">
+													<label for="per_cov" class="form-label">How long ago was this change made? (years)</label>
+													<input required type="number" class="form-control" id="per_cov" name="input[crops][0][per_cov]" min="0" value="0" />
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col-sm-6">
+													<label for="chang_com" class="form-label">Compost additions</label>
+													<select required class="form-select" id="chang_com" name="input[crops][0][chang_com]">
+														<option value="no change">No change</option>
+														<option value="started incorporating">Started incorporating</option>
+														<option value="stopped incorporating">Stopped incorporating</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label for="per_com" class="form-label">How long ago was it made? (years)</label>
+													<input required type="number" class="form-control" id="per_com" name="input[crops][0][per_com]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="am_com" class="form-label">Amount (kg/ha)</label>
+													<input required type="number" class="form-control" id="am_com" name="input[crops][0][am_com]" min="0" step="0.1" value="0" />
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col-sm-6">
+													<label for="chang_man" class="form-label">Manure additions</label>
+													<select required class="form-select" id="chang_man" name="input[crops][0][chang_man]">
+														<option value="no change">No change</option>
+														<option value="started incorporating">Started incorporating</option>
+														<option value="stopped incorporating">Stopped incorporating</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label for="per_man" class="form-label">How long ago was it made? (years)</label>
+													<input required type="number" class="form-control" id="per_man" name="input[crops][0][per_man]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="am_man" class="form-label">Amount (kg/ha)</label>
+													<input required type="number" class="form-control" id="am_man" name="input[crops][0][am_man]" min="0" step="0.1" value="0" />
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col-sm-6">
+													<label for="chang_res" class="form-label">Residues incorporation</label>
+													<select required class="form-select" id="chang_res" name="input[crops][0][chang_res]">
+														<option value="no change">No change</option>
+														<option value="started incorporating">Started incorporating</option>
+														<option value="stopped incorporating">Stopped incorporating</option>
+													</select>
+												</div>
+												<div class="col-sm-3">
+													<label for="per_res" class="form-label">How long ago was it made? (years)</label>
+													<input required type="number" class="form-control" id="per_res" name="input[crops][0][per_res]" min="0" value="0" />
+												</div>
+												<div class="col-sm-3">
+													<label for="am_res" class="form-label">Amount (kg/ha)</label>
+													<input required type="number" class="form-control" id="am_res" name="input[crops][0][am_res]" min="0" step="0.1" value="0" />
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="row mt-3">
