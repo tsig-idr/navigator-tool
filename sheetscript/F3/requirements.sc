@@ -1,6 +1,6 @@
 ppm = density_s*depth_s*10
-Nc_s_initial = Nc_s_0*IF (Nc_s_initial_unit == 'kg_ha'; 1; IF (Nc_s_initial_unit == 'ppm'; ppm; IF (Nc_s_initial_unit == 'pct'; 10000*ppm; IF (Nc_s_initial_unit == 'meq_100'; 620*ppm; IF (Nc_s_initial_unit == 'meq_kg'; 6200*ppm; IF (Nc_s_initial_unit == 'meq_l'; 62*ppm; 1))))))
-Nc_s_end = Nc_s_n*IF (Nc_end_unit == 'kg_ha'; 1; IF (Nc_end_unit == 'ppm'; ppm; IF (Nc_end_unit == 'pct'; 10000*ppm; IF (Nc_end_unit == 'meq_100'; 620*ppm; IF (Nc_end_unit == 'meq_kg'; 6200*ppm; IF (Nc_end_unit == 'meq_l'; 62*ppm; 1))))))
+Nc_s_initial = Nc_s_0*IF (Nc_s_initial_unit == 'kg_ha'; 1; IF (Nc_s_initial_unit == 'ppm'; ppm; IF (Nc_s_initial_unit == 'pct'; 10000*ppm/100; IF (Nc_s_initial_unit == 'meq_100'; 620*ppm; IF (Nc_s_initial_unit == 'meq_kg'; 6200*ppm; IF (Nc_s_initial_unit == 'meq_l'; 62*ppm; 1))))))
+Nc_s_end = Nc_s_n*IF (Nc_end_unit == 'kg_ha'; 1; IF (Nc_end_unit == 'ppm'; ppm; IF (Nc_end_unit == 'pct'; 10000*ppm/100; IF (Nc_end_unit == 'meq_100'; 620*ppm; IF (Nc_end_unit == 'meq_kg'; 6200*ppm; IF (Nc_end_unit == 'meq_l'; 62*ppm; 1))))))
 Pc_si = Pc_s_0*IF (Pc_s_unit == 'kg_ha'; 1/ppm; IF (Pc_s_unit == 'ppm'; 1; IF (Pc_s_unit == 'pct'; 10000; IF (Pc_s_unit == 'meq_100'; 316.5; IF (Pc_s_unit == 'meq_kg'; 3165; IF (Pc_s_unit == 'meq_l'; 31.65; 1))))))
 Kc_s = Kc_s_0*IF (Kc_s_unit == 'kg_ha'; 1/ppm; IF (Kc_s_unit == 'ppm'; 1; IF (Kc_s_unit == 'pct'; 10000; IF (Kc_s_unit == 'meq_100'; 391; IF (Kc_s_unit == 'meq_kg'; 3910; IF (Kc_s_unit == 'meq_l'; 39.1; 1))))))
 
