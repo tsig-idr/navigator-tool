@@ -9,11 +9,12 @@ var form = document.querySelector('form'),
 	soils = {},
 	zones = {},
 	applied = [],
-	farm;
+	farm,
+	addButton;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
-form.querySelector('button.btn-dark').addEventListener('click', () => {
+(addButton = form.querySelector('button.btn-dark')).addEventListener('click', () => {
 	[form.fertilizerID, form.amount].forEach(element => {
 		!element.value &&
 			(element.classList.add('border-danger') || true)
@@ -27,16 +28,17 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		b = document.createElement('b'),
 		button = document.createElement('button'),
 		index = applied.length,
-		name = form.fertilizerID.querySelector(':checked').innerHTML,
+		name = form.fertilizer_name !== undefined && form.fertilizer_name || form.fertilizerID.querySelector(':checked').innerHTML,
 		fertilizer = {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
 			type: form.type.value,
 			amount: form.amount.value,
-			cost: form.price.value*form.amount.value,
+			cost: form.cost !== undefined && form.cost || form.price.value*form.amount.value,
 			method: form.method.value,
 			frequency: form.frequency.value
 		};
+	form.fertilizer_name = form.cost = undefined;
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
@@ -67,7 +69,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 	data.input.fertilizers = data.fertilizers;
 	data.input.applied = applied;
 	data.input.prices = csv2json(form.file);
-	data.fertilizers = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
+	data.fertilizers = data.applied = data.fertilizerID = data.method = data.frequency = data.amount = data.price = data.type = undefined;
 	fertilizersFields.forEach(field => {
 		data[field] = undefined;
 	});
@@ -305,8 +307,22 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 					case 'water_supply':
 						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[Nc_NO3_water]'].disabled = form[name].value == '0';
 						break;
+					default:
+						break;
 				}
 			}
+			crop.applied.length &&
+				crop.applied.forEach(fert => {
+					for (field in fert) {
+						if (field in form && typeof form[field] == 'object') {
+							form[field].value = fert[field];
+						}
+						else {
+							form[field] = fert[field];
+						}
+					}
+					addButton.click();
+				});
 		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);

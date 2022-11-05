@@ -5,7 +5,8 @@ var form = document.querySelector('form'),
 	crops = {},
 	soils = {},
 	applications = [],
-	farm;
+	farm,
+	addButton;
 
 form.files = {
 	'Clima': null,
@@ -94,7 +95,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			});
 	});
 });
-form.querySelector('button.btn-dark').addEventListener('click', () => {
+(addButton = form.querySelector('button.btn-dark')).addEventListener('click', () => {
 	[form.fertilizerID, form.date].forEach(element => {
 		!element.value &&
 			(element.classList.add('border-danger') || true)
@@ -108,13 +109,14 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		b = document.createElement('b'),
 		button = document.createElement('button'),
 		index = applications.length,
-		name = form.fertilizerID.querySelector(':checked').innerHTML,
+		name = form.name || form.fertilizerID.querySelector(':checked').innerHTML,
 		fertilizer = {
-			type: form.fertilizerID.value,
+			type: form.type || form.fertilizerID.value,
 			date: form.date.value,
 			amount: form.amount.value,
 			name: name,
 		};
+	form.name = form.type = '';
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
@@ -265,7 +267,7 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 				if ((name = `input[${field}]`) in form) {
 					form[name].value = crop[field];
 					field in form.files &&
-						typeof crop[field] !== 'string' &&
+						typeof crop[field] === 'object' && crop[field] &&
 							(form.files[field] = json2csv(crop[field])) &&
 							(form[field].required = false);
 				}
@@ -276,8 +278,22 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 					case 'water_supply':
 						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[waterNitrate]'].disabled = form[name].value == '0';
 						break;
+					default:
+						break;
 				}
 			}
+			crop.applications.length &&
+				crop.applications.forEach(fert => {
+					for (field in fert) {
+						if (field in form && typeof form[field] == 'object') {
+							form[field].value = fert[field];
+						}
+						else {
+							form[field] = fert[field];
+						}
+					}
+					addButton.click();
+				});
 		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);

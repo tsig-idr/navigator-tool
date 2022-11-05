@@ -7,7 +7,7 @@ var form = document.querySelector('form'),
 	fertilizers = {},
 	crops = {},
 	applied = [],
-	farm,
+	farmn,
 	addButton;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
