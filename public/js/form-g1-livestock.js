@@ -47,5 +47,9 @@ document.querySelectorAll('[type="file"]').forEach(input => {
 });
 
 function csv2json (csv) {
-	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+	const matches = (csv = csv.replace(/\r/g, '')).match(/"[a-zA-Z0-9_,\.;\s]*"/g);
+	if (matches) {
+		matches.forEach(match => csv = csv.replace(match, match.replaceAll(',', '.').replaceAll('"', '')));
+	}
+	return csv.split('\n').map(line => line.split(','));
 }

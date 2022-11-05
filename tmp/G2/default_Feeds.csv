@@ -1,73 +1,73 @@
-Animal;Feed;Self produced (t dm);Purchased (t dm)
-DAIRY CATTLE;Grazing (grasslands);;1
-DAIRY CATTLE;Wheat;;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Grazing (grasslands);;1
-MEAT CATTLE;Wheat;;1
-MEAT CATTLE;Wheat;;1
-MEAT CATTLE;Wheat;;1
-MEAT CATTLE;Wheat;;1
-MEAT CATTLE;Wheat;;1
-MEAT CATTLE;Concentrate cows;;1
-MEAT CATTLE;Milk powder;;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Grazing (grasslands);;1
-SHEEP;Wheat;;1
-SHEEP;Wheat;;1
-SHEEP;Wheat;;1
-SHEEP;Wheat;;1
-SHEEP;Wheat;;1
-SHEEP;Concentrate sheep;;1
-SHEEP;Milk powder;;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Grazing (grasslands);;1
-GOATS;Wheat;;1
-GOATS;Wheat;;1
-GOATS;Wheat;;1
-GOATS;Wheat;;1
-GOATS;Wheat;;1
-GOATS;Concentrate goats;;1
-GOATS;Milk powder;;1
-HORSES;Grazing (grasslands);1;1
-HORSES;Wheat;1;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Grazing (grasslands);;1
-PIGS;Wheat;;1
-PIGS;Wheat;;1
-PIGS;Wheat;;1
-PIGS;Wheat;;1
-PIGS;Wheat;;1
-PIGS;Concentrate pigs;;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Grazing (grasslands);;1
-POULTRY;Wheat;;1
-POULTRY;Wheat;;1
-POULTRY;Wheat;;1
-POULTRY;Wheat;;1
-POULTRY;Wheat;;1
-POULTRY;Concentrate poultry;;1
+Animal,Feed,Self produced (t dm),Purchased (t dm)
+DAIRY CATTLE,Grazing (grasslands),,1
+DAIRY CATTLE,Wheat,,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Grazing (grasslands),,1
+MEAT CATTLE,Wheat,,1
+MEAT CATTLE,Wheat,,1
+MEAT CATTLE,Wheat,,1
+MEAT CATTLE,Wheat,,1
+MEAT CATTLE,Wheat,,1
+MEAT CATTLE,Concentrate cows,,1
+MEAT CATTLE,Milk powder,,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Grazing (grasslands),,1
+SHEEP,Wheat,,1
+SHEEP,Wheat,,1
+SHEEP,Wheat,,1
+SHEEP,Wheat,,1
+SHEEP,Wheat,,1
+SHEEP,Concentrate sheep,,1
+SHEEP,Milk powder,,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Grazing (grasslands),,1
+GOATS,Wheat,,1
+GOATS,Wheat,,1
+GOATS,Wheat,,1
+GOATS,Wheat,,1
+GOATS,Wheat,,1
+GOATS,Concentrate goats,,1
+GOATS,Milk powder,,1
+HORSES,Grazing (grasslands),1,1
+HORSES,Wheat,1,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Grazing (grasslands),,1
+PIGS,Wheat,,1
+PIGS,Wheat,,1
+PIGS,Wheat,,1
+PIGS,Wheat,,1
+PIGS,Wheat,,1
+PIGS,Concentrate pigs,,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Grazing (grasslands),,1
+POULTRY,Wheat,,1
+POULTRY,Wheat,,1
+POULTRY,Wheat,,1
+POULTRY,Wheat,,1
+POULTRY,Wheat,,1
+POULTRY,Concentrate poultry,,1

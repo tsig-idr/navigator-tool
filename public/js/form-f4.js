@@ -7,11 +7,12 @@ var form = document.querySelector('form'),
 	fertilizers = {},
 	crops = {},
 	applied = [],
-	farm;
+	farm,
+	addButton;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
-form.querySelector('button.btn-dark').addEventListener('click', () => {
+(addButton = form.querySelector('button.btn-dark')).addEventListener('click', () => {
 	[form.fertilizerID, form.amount].forEach(element => {
 		!element.value &&
 			(element.classList.add('border-danger') || true)
@@ -25,16 +26,17 @@ form.querySelector('button.btn-dark').addEventListener('click', () => {
 		b = document.createElement('b'),
 		button = document.createElement('button'),
 		index = applied.length,
-		name = form.fertilizerID.querySelector(':checked').innerHTML,
+		name = form.fertilizer_name !== undefined && form.fertilizer_name || form.fertilizerID.querySelector(':checked').innerHTML,
 		fertilizer = {
 			fertilizerID: form.fertilizerID.value,
 			fertilizer_name: name,
 			type: form.type.value,
 			amount: form.amount.value,
-			cost: form.price.value*form.amount.value,
+			cost: form.cost !== undefined && form.cost || form.price.value*form.amount.value,
 			method: form.method.value,
 			frequency: form.frequency.value
 		};
+	form.fertilizer_name = form.cost = undefined;
 	ul.appendChild(li);
 	li.appendChild(b);
 	li.appendChild(button);
@@ -263,6 +265,18 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 				(name = `input[${field}]`) in form && crop[field] !== '' &&
 					(form[name].value = crop[field]);
 			}
+			crop.applied.length &&
+				crop.applied.forEach(fert => {
+					for (field in fert) {
+						if (field in form && typeof form[field] == 'object') {
+							form[field].value = fert[field];
+						}
+						else {
+							form[field] = fert[field];
+						}
+					}
+					addButton.click();
+				});
 		});
 }).catch(error => {
 	console.warn('Something went wrong.', error);
