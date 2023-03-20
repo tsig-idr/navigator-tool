@@ -10,7 +10,8 @@ var form = document.querySelector('form'),
 	zones = {},
 	applied = [],
 	farm,
-	addButton;
+	addButton,
+	langNotReady = 3;
 
 resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody`));
 
@@ -142,7 +143,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 					}
 					fertilizationTbody.appendChild(tr = document.createElement('tr'));
 					tr.appendChild(td = document.createElement('td'));
-					td.innerHTML = fertilizer.fertilizer_name;
+					td.innerHTML = dict && fertilizer.fertilizer_name in dict && dict[fertilizer.fertilizer_name] || fertilizer.fertilizer_name;
 					fertilizationFields.forEach(field => {
 						tr.appendChild(td = document.createElement('td'));
 						fertilizer[field] !== undefined &&
@@ -268,6 +269,9 @@ form.addEventListener('change', ev => {
 		data.results.forEach(s => soils[s.soil_texture] = s);
 		form[obj.names[0]].value = null;
 	}
+	langNotReady--;
+	!langNotReady &&
+		translate('F3');
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 }));
@@ -324,6 +328,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 					addButton.click();
 				});
 		});
+	langNotReady--;
+	!langNotReady &&
+		translate('F3');
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });

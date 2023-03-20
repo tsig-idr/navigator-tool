@@ -1,3 +1,4 @@
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
 	'use strict'
@@ -55,4 +56,27 @@
 	}).then(data => {
 		document.querySelector('footer').innerHTML = data;
 	});
-})()
+})();
+
+var dict = null;
+
+function translate (page) {
+	const lang = (navigator.language ? navigator.language : navigator.userLanguage).split('-')[0];
+	lang != 'en' &&
+		fetch('/locales/'+page+'/'+lang+'.json').then(response => {
+			return response.json()
+		}).then(data => {
+			let key;
+			dict = data;
+			document.querySelectorAll('*').forEach(el => {
+				el.innerHTML.indexOf('<') == -1 && (key = el.innerHTML.trim()) in dict &&
+					(el.innerHTML = dict[key]);
+				el.placeholder && el.placeholder in dict &&
+					(el.placeholder = dict[el.placeholder]);
+			});
+			document.querySelectorAll('[data-i18n]').forEach(el => {
+				(key = el.innerHTML.trim()) in dict &&
+					(el.innerHTML = dict[key]);
+			});
+		});
+}
