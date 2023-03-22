@@ -284,7 +284,7 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 						break;
 				}
 			}
-			crop.applications.length &&
+			crop.applications && crop.applications.length &&
 				crop.applications.forEach(fert => {
 					for (field in fert) {
 						if (field in form && typeof form[field] == 'object') {
