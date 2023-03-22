@@ -6,7 +6,8 @@ var form = document.querySelector('form'),
 	soils = {},
 	applications = [],
 	farm,
-	addButton;
+	addButton,
+	langNotReady = 3;
 
 form.files = {
 	'Clima': null,
@@ -232,6 +233,9 @@ form.querySelectorAll('[type="file"]').forEach(input => {
 		data.results.forEach(s => soils[s.soil_texture] = s);
 		form[obj.names[0]].value = null;
 	}
+	langNotReady--;
+	!langNotReady &&
+		translate('F2');
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 }));
@@ -293,6 +297,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 					addButton.click();
 				});
 		});
+	langNotReady--;
+	!langNotReady &&
+		translate('F2');
 }).catch(error => {
 	console.warn('Something went wrong.', error);
 });
