@@ -60,8 +60,8 @@
     }
   },
   {
-    "uri": "navigatortool:crops:<_Crops:BUCKWEAHT_>",
-    "cropID": "BUCKWEAHT",
+    "uri": "navigatortool:crops:<_Crops:BUCKWHEAT_>",
+    "cropID": "BUCKWHEAT",
     "crop_name": "Buckwheat",
     "crop_latin_name": "Fagopyrum esculentum L.",
     "group": "CEREALS_PSEUDOCEREALS",
