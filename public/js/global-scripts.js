@@ -3,6 +3,8 @@
 (function () {
 	'use strict'
 
+	document.querySelector('html').setAttribute('translate', 'no');
+
 	fetch('/navbar.html').then(response => {
 		return response.text()
 	}).then(data => {
@@ -63,7 +65,7 @@ var dict = null;
 function translate (page) {
 	const lang = (navigator.language ? navigator.language : navigator.userLanguage).split('-')[0];
 	lang != 'en' &&
-		fetch('/locales/'+page+'/'+lang+'.json').then(response => {
+		fetch('/locales/'+page+'/'+lang+'.json?t='+(new Date).getTime()).then(response => {
 			return response.json()
 		}).then(data => {
 			let key;
