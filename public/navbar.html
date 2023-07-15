@@ -17,11 +17,19 @@
 					<li class="nav-item ml-2">
 						<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
 					</li>
-					<li class="nav-item ml-2">
-						<input class="d-none" type="file" accept=".json" />
-						<a class="btn btn-outline-info " aria-current="page" href="#" data-load>Load&nbsp;Calculation</a>
-					</li>
-					
+					<li class="nav-item ml-2 dropdown">
+						<a class="nav-link dropdown-toggle active" href="#" id="dropdown00" data-bs-toggle="dropdown" aria-expanded="false">Load</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown00">
+							<li>
+								<input class="d-none" type="file" accept=".json" name="fast"/>
+								<a class="dropdown-item" aria-current="page" href="#" data-load>FaST</a>
+							</li>
+							<li>
+								<input class="d-none" type="file" accept=".json" name="siar" />
+								<a class="dropdown-item" aria-current="page" href="#" data-load>SIAR</a>
+							</li>
+						</ul>
+					</li>			
 					<li class="nav-item ml-2 dropdown">
 						<a class="nav-link dropdown-toggle active" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Nutrients</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown01">

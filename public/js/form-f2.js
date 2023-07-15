@@ -18,7 +18,7 @@ form.files = {
 };
 form.querySelectorAll('button[name]').forEach(button => {
 	button.addEventListener('click', ev => {
-		const table = form.querySelector(`table[name="${ev.target.name}"]`);
+		const table = form.querySelector(`table[name="${button.name}"]`);
 		tables.forEach(table => {
 			table.parentNode.classList.add('d-none');
 			table.classList.add('d-none');
@@ -28,7 +28,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			return false;
 		}
 		const data = FormDataJson.toJson(form, {includeDisabled: true}),
-			element = ev.target.querySelector('i'),
+			element = button.querySelector('i'),
 			input = data.input;
 		element.classList.remove('fa-play');
 		element.classList.add('fa-spinner');
@@ -42,8 +42,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 			||
 				(data.input[name] = null);
 		}
-		ev.target.name &&
-			fetch(`/F2/${ev.target.name}`, {
+		button.name &&
+			fetch(`/F2/${button.name}`, {
 				method: 'POST',
 				body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 				headers: {
@@ -52,7 +52,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			}).then(res => res.json()).then(data => {
 				let tr, td, tbody, a,
 					i, name;
-				switch (ev.target.name) {
+				switch (button.name) {
 					case 'SWB':
 					case 'SNB/daily':
 					case 'SNB/calendar':
@@ -69,7 +69,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 											data.results[i][name]
 										||
 											data.results[i][name] && 
-											parseFloat(data.results[i][name]).toFixed(ev.target.name == 'SNB/calendar' ? 0 : 2));
+											parseFloat(data.results[i][name]).toFixed(button.name == 'SNB/calendar' ? 0 : 2));
 							}
 							tbody.appendChild(tr);
 						}
@@ -84,7 +84,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 				element.classList.add('fa-play');
 				window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
 				window.localStorage.setItem('farm', JSON.stringify({
-					crops: [input]
+					crops: farm && merge(farm.crops, [input]) || [input]
 				}));
 				(a = document.querySelector('[data-save]')) &&
 					(a.classList.add('active') || true) &&
@@ -260,10 +260,37 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 	}
 	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
-
-	let field, name;
 	(farm = window.localStorage.getItem('farm')) &&
-		(farm = JSON.parse(farm)).crops &&
+		(farm = JSON.parse(farm)) &&
+		setFarm(farm);
+	langNotReady--;
+	!langNotReady &&
+		translate('F2');
+}).catch(error => {
+	console.warn('Something went wrong.', error);
+});
+fetch('/csv/F2/Fertilizers.csv').then(res => res.text()).then(data => form.files.prices = data).catch(error => {
+	console.warn('Something went wrong.', error);
+});
+
+function csv2json (csv) {
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').filter(line => line).map(line => line.split(';'));
+}
+
+function json2csv (json) {
+	return json.map(row => row.join(';').replace(/\./g, ',')).join('\n');
+}
+
+function merge (a1, a2) {
+	for (let i = 0; i < a2.length && i < a1.length; i++) {
+		a2[i] = {...a1[i], ...a2[i]};
+	}
+	return a2;
+}
+
+function setFarm (farm) {
+	let field, name;
+	farm.crops &&
 		farm.crops.forEach(crop => {
 			for (field in crop) {
 				if ((name = `input[${field}]`) in form) {
@@ -297,20 +324,4 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 					addButton.click();
 				});
 		});
-	langNotReady--;
-	!langNotReady &&
-		translate('F2');
-}).catch(error => {
-	console.warn('Something went wrong.', error);
-});
-fetch('/csv/F2/Fertilizers.csv').then(res => res.text()).then(data => form.files.prices = data).catch(error => {
-	console.warn('Something went wrong.', error);
-});
-
-function csv2json (csv) {
-	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').filter(line => line).map(line => line.split(';'));
-}
-
-function json2csv (json) {
-	return json.map(row => row.join(';').replace(/\./g, ',')).join('\n');
 }

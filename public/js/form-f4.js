@@ -164,7 +164,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 		resultsDiv.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify({
-			crops: data.results
+			crops: farm && merge(farm.crops, data.results) || data.results
 		}));
 		(a = document.querySelector('[data-save]')) &&
 			(a.classList.add('active') || true) &&
@@ -260,28 +260,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 	}
 	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
-
-	let field, name;
 	(farm = window.localStorage.getItem('farm')) &&
-		(farm = JSON.parse(farm)).crops &&
-		farm.crops.forEach(crop => {
-			for (field in crop) {
-				(name = `input[${field}]`) in form && crop[field] !== '' &&
-					(form[name].value = crop[field]);
-			}
-			crop.applied.length &&
-				crop.applied.forEach(fert => {
-					for (field in fert) {
-						if (field in form && typeof form[field] == 'object') {
-							form[field].value = fert[field];
-						}
-						else {
-							form[field] = fert[field];
-						}
-					}
-					addButton.click();
-				});
-		});
+		(farm = JSON.parse(farm)) &&
+		setFarm(farm);
 	langNotReady--;
 	!langNotReady &&
 		translate('F4');
@@ -294,4 +275,34 @@ fetch('/csv/F4/Fertilizers.csv').then(res => res.text()).then(data => form.file 
 
 function csv2json (csv) {
 	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}
+
+function merge (a1, a2) {
+	for (let i = 0; i < a2.length && i < a1.length; i++) {
+		a2[i] = {...a1[i], ...a2[i]};
+	}
+	return a2;
+}
+
+function setFarm (farm) {
+	let field, name;
+	farm.crops &&
+		farm.crops.forEach(crop => {
+			for (field in crop) {
+				(name = `input[${field}]`) in form && crop[field] !== '' &&
+					(form[name].value = crop[field]);
+			}
+			crop.applied && crop.applied.length &&
+				crop.applied.forEach(fert => {
+					for (field in fert) {
+						if (field in form && typeof form[field] == 'object') {
+							form[field].value = fert[field];
+						}
+						else {
+							form[field] = fert[field];
+						}
+					}
+					addButton.click();
+				});
+		});
 }

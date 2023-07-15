@@ -166,7 +166,7 @@ form.querySelector('button.btn-warning').addEventListener('click', () => {
 		resultsDiv.classList.remove('d-none');
 		window.localStorage.setItem('timestamp4F', (new Date).toLocaleString());
 		window.localStorage.setItem('farm', JSON.stringify({
-			crops: data.results
+			crops: farm && merge(farm.crops, data.results) || data.results
 		}));
 		(a = document.querySelector('[data-save]')) &&
 			(a.classList.add('active') || true) &&
@@ -296,38 +296,9 @@ fetch('/F3/crops').then(res => res.json()).then(data => {
 	}
 	form['input[crop_type]'].value = null;
 	data.results.forEach(c => crops[c.cropID] = c);
-
-	let field, name;
 	(farm = window.localStorage.getItem('farm')) &&
-		(farm = JSON.parse(farm)).crops &&
-		farm.crops.forEach(crop => {
-			for (field in crop) {
-				(name = `input[${field}]`) in form &&
-					(form[name].value = crop[field]);
-				switch (field) {
-					case 'PK_strategy':
-						form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = form[name].value == 'maintenance';
-						break;
-					case 'water_supply':
-						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[Nc_NO3_water]'].disabled = form[name].value == '0';
-						break;
-					default:
-						break;
-				}
-			}
-			crop.applied.length &&
-				crop.applied.forEach(fert => {
-					for (field in fert) {
-						if (field in form && typeof form[field] == 'object') {
-							form[field].value = fert[field];
-						}
-						else {
-							form[field] = fert[field];
-						}
-					}
-					addButton.click();
-				});
-		});
+		(farm = JSON.parse(farm)) &&
+		setFarm(farm);
 	langNotReady--;
 	!langNotReady &&
 		translate('F3');
@@ -343,4 +314,44 @@ fetch('/csv/F3/Fertilizers.csv').then(res => res.text()).then(data => form.file 
 
 function csv2json (csv) {
 	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+}
+
+function merge (a1, a2) {
+	for (let i = 0; i < a2.length && i < a1.length; i++) {
+		a2[i] = {...a1[i], ...a2[i]};
+	}
+	return a2;
+}
+
+function setFarm (farm) {
+	let field, name;
+	farm.crops &&
+		farm.crops.forEach(crop => {
+			for (field in crop) {
+				(name = `input[${field}]`) in form &&
+					(form[name].value = crop[field]);
+				switch (field) {
+					case 'PK_strategy':
+						form['input[Pc_s]'].disabled = form['input[Kc_s]'].disabled = form[name].value == 'maintenance';
+						break;
+					case 'water_supply':
+						form['input[type_irrigated]'].disabled = form['input[dose_irrigation]'].disabled = form['input[Nc_NO3_water]'].disabled = form[name].value == '0';
+						break;
+					default:
+						break;
+				}
+			}
+			crop.applied && crop.applied.length &&
+				crop.applied.forEach(fert => {
+					for (field in fert) {
+						if (field in form && typeof form[field] == 'object') {
+							form[field].value = fert[field];
+						}
+						else {
+							form[field] = fert[field];
+						}
+					}
+					addButton.click();
+				});
+		});
 }
