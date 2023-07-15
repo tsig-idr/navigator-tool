@@ -9,44 +9,51 @@
 		return response.text()
 	}).then(data => {
 		document.querySelector('navbar').innerHTML = data;
-		const input = document.querySelector('[type=file].d-none'),
-			saveA = document.querySelector('[data-save]');
-		input.addEventListener('change', ev => {
-			if (!ev.target.files[0]) {
-				return false;
-			}
-			const reader = new FileReader();
-			reader.onload = ev => {
-				const project = JSON.parse(ev.target.result);
-				if (!project) {
-					return;
+		const saveA = document.querySelector('[data-save]');
+		document.querySelectorAll('[type=file].d-none').forEach(input => {
+			input.addEventListener('change', ev => {
+				if (!ev.target.files[0]) {
+					return false;
 				}
-				if (input.name == 'fast') {
-					if (typeof project.meta != 'object' || !project.meta.path) {
+				const reader = new FileReader();
+				reader.onload = ev => {
+					let project = JSON.parse(ev.target.result);
+					if (!project) {
 						return;
 					}
-					window.localStorage.setItem('farm', ev.target.result);
-					window.location.pathname = project.meta.path;
-				}
-				if (input.name == 'siar') {
-					if (typeof project.localizacion != 'object') {
-						return;
+					if (input.name == 'fast') {
+						if (typeof project.meta != 'object' || !project.meta.path) {
+							return;
+						}
+						window.localStorage.setItem('farm', ev.target.result);
+						window.location.pathname = project.meta.path;
+						typeof setFarm == 'function' &&
+							setFarm(project);
 					}
-					let farm;
-					project = harmonize4SIAR(project);
-					(farm = window.localStorage.getItem('farm')) &&
-						(farm = JSON.parse(farm)) &&
-						(farm = {...farm.crops[0], ...project.crops[0]})
-					||
-						(farm = project);
-					window.localStorage.setItem('farm', farm);
-					typeof setFarm == 'function' &&
-						setFarm(farm);
-				}
-			};
-			reader.readAsText(ev.target.files[0]);
+					if (input.name == 'siar') {
+						if (typeof project.localizacion != 'object') {
+							return;
+						}
+						let farm;
+						project = harmonize4SIAR(project);
+						(farm = window.localStorage.getItem('farm')) &&
+							(farm = JSON.parse(farm)) &&
+							(farm = {
+								crops: [
+									{...farm.crops[0], ...project.crops[0]}
+								]
+							})
+						||
+							(farm = project);
+						window.localStorage.setItem('farm', JSON.stringify(farm));
+						typeof setFarm == 'function' &&
+							setFarm(farm);
+					}
+				};
+				reader.readAsText(ev.target.files[0]);
+			});
 		});
-		document.querySelector('[data-load]').addEventListener('click', () => input.click());
+		document.querySelectorAll('[data-load]').forEach(a => a.addEventListener('click', ev => ev.target.parentNode.querySelector('input').click()));
 		document.querySelector('[data-save]').addEventListener('click', () => {
 			const farm = JSON.parse(window.localStorage.getItem('farm'));
 			farm.meta = {
@@ -135,13 +142,43 @@ function crop4FaST (siar_crop) {
 		default:
 			return 'HORTICULTURAL_CROPS';
 	}
-};
+}
+
+function texture4FaST (siar_texture) {
+	switch (siar_texture) {
+		case 'Arcillo Arenoso':
+			return 'sandyClay';
+		case 'Arcillo Limoso':
+			return 'siltyClay';
+		case 'Arcilloso':
+			return 'clay';
+		case 'Arenoso':
+			return 'sand';
+		case 'Arenoso Franco':
+			return 'loamySand';
+		case 'Franco':
+		case 'Marga':
+			return 'loam';
+		case 'Franco Arcilloso':
+			return 'clayLoam';
+		case 'Franco Arcillo Arenoso':
+			return 'sandyClayLoam';
+		case 'Franco Arcillo Limoso':
+			return 'siltyClayLoam';
+		case 'Franco Arenoso':
+			return 'sandyLoam';
+		case 'Franco Limoso':
+			return 'siltyLoam';
+		default:
+			return 'silt';
+	}
+}
 
 function harmonize4SIAR (project) {
-	crops = [{}];
+	const crops = [{}];
 	if (typeof project.suelo == 'object') {
 		project.suelo.textura &&
-			(crops[0].soil_texture = project.suelo.textura);
+			(crops[0].soil_texture = texture4FaST(project.suelo.textura));
 		project.suelo.profundidad &&
 			(crops[0].depth_s = project.suelo.profundidad);
 		project.suelo.pedregosidad &&
@@ -159,7 +196,7 @@ function harmonize4SIAR (project) {
 		project.necesidades_riego.riego_neto_acumulado &&
 			(crops[0].dose_irrigation = project.necesidades_riego.riego_neto_acumulado);
 		typeof project.necesidades_riego.riego_neto_diario == 'object' && project.necesidades_riego.riego_neto_diario.length &&
-			(crops[0].Riegos = project.necesidades_riego.riego_neto_diario.map(row => row.fecha + ';' + row.riego_neto.replace(/\./g, ',')).join('\n'));
+			(crops[0].Riegos = project.necesidades_riego.riego_neto_diario.map(row => [row.fecha, row.riego_neto]));
 	}
 	if (typeof project.datos_climaticos == 'object') {
 		project.datos_climaticos.precipitacion_acumulada &&
