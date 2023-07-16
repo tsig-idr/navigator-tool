@@ -1,0 +1,229 @@
+{
+	"crops": {
+		"BARLEY_6_ROW": {
+			"crop_name": "Barley 6 row",
+			"harvest": {
+				"harvested_part": "grain",
+				"HI_est": 40,
+				"DM_h": 88.5,
+				"Nc_h_min": 1.5,
+				"Nc_h_max": 1.8,
+				"Nc_h_typn": 1.6,
+				"Pc_h": 0.42,
+				"Kc_h": 0.54,
+				"Ca_h": 0.033,
+				"Mgc_h": 0.133,
+				"Sc_h": 0
+			}
+		},
+		"CORN_GRAIN": {
+			"crop_name": "Corn",
+			"harvest": {
+				"harvested_part": "grain",
+				"HI_est": 45,
+				"DM_h": 86,
+				"Nc_h_min": 1.35,
+				"Nc_h_max": 1.75,
+				"Nc_h_typn": 1.6,
+				"Pc_h": 0.32,
+				"Kc_h": 0.34,
+				"Ca_h": 0.007,
+				"Mgc_h": 0.127,
+				"Sc_h": 0
+			}
+		},
+		"OAT": {
+			"crop_name": "Oat",
+			"harvest": {
+				"harvested_part": "grain",
+				"HI_est": 40,
+				"DM_h": 91,
+				"Nc_h_min": 1.5,
+				"Nc_h_max": 1.8,
+				"Nc_h_typn": 1.6,
+				"Pc_h": 0.36,
+				"Kc_h": 0.44,
+				"Ca_h": 0.054,
+				"Mgc_h": 0.177,
+				"Sc_h": 0
+			}
+		},
+		"WHEAT_BREAD_SOFT": {
+			"crop_name": "Wheat-Bread-Soft type",
+			"harvest": {
+				"harvested_part": "grain",
+				"HI_est": 40,
+				"DM_h": 87.5,
+				"Nc_h_min": 1.85,
+				"Nc_h_max": 2.3,
+				"Nc_h_typn": 2.2,
+				"Pc_h": 0.37,
+				"Kc_h": 0.46,
+				"Ca_h": 0.025,
+				"Mgc_h": 0.124,
+				"Sc_h": 0
+			}
+		},
+		"ALFALFA_GREEN_FLOWERING": {
+			"crop_name": "Alfalfa (green, flowering) ",
+			"harvest": {
+				"harvested_part": "biomass",
+				"HI_est": 90,
+				"DM_h": 25,
+				"Nc_h_min": 2.1,
+				"Nc_h_max": 3.1,
+				"Nc_h_typn": 2.6
+			}
+		},
+		"HORTICULTURAL_CROPS": {
+			"crop_name": "Horticultural crops",
+			"harvest": {}
+		},
+		"GARLIC": {
+			"crop_name": "Garlic",
+			"harvest": {
+				"harvested_part": "heads",
+				"HI_est": 60,
+				"DM_h": 39,
+				"Nc_h_min": 2.5,
+				"Nc_h_max": 2.8,
+				"Nc_h_typn": 2.6,
+				"Pc_h": 0.44,
+				"Kc_h": 1.38,
+				"Ca_h": 0.181,
+				"Mgc_h": 0.025,
+				"Sc_h": 0
+			}
+		},
+		"ONION": {
+			"crop_name": "Onion",
+			"harvest": {
+				"harvested_part": "bulb",
+				"HI_est": 70,
+				"DM_h": 10,
+				"Nc_h_min": 1.9,
+				"Nc_h_max": 2.5,
+				"Nc_h_typn": 2.2,
+				"Pc_h": 0.35,
+				"Kc_h": 1.2,
+				"Ca_h": 0.023,
+				"Mgc_h": 0.01,
+				"Sc_h": 0
+			}
+		},
+		"SWEET_CORN_DRY": {
+			"crop_name": "Sweet corn dry",
+			"harvest": {
+				"harvested_part": "grain",
+				"HI_est": 50,
+				"DM_h": 90.5,
+				"Nc_h_min": 1.9,
+				"Nc_h_max": 2.1,
+				"Nc_h_typn": 2,
+				"Pc_h": 0.092,
+				"Kc_h": 0.252,
+				"Ca_h": 0.002,
+				"Mgc_h": 0.031,
+				"Sc_h": 0
+			}
+		},
+		"ALMOND": {
+			"crop_name": "Almond",
+			"harvest": {
+				"harvested_part": "fruit",
+				"HI_est": 60,
+				"DM_h": 85,
+				"Nc_h_min": 3,
+				"Nc_h_max": 3.6,
+				"Nc_h_typn": 3.3,
+				"Pc_h": 0.37,
+				"Kc_h": 0.75,
+				"Ca_h": 0.268,
+				"Mgc_h": 0.279,
+				"Sc_h": 0
+			}
+		},
+		"GRAPE_WINE": {
+			"crop_name": "Grape (wine)",
+			"harvest": {
+				"harvested_part": "fruit",
+				"HI_est": 60,
+				"Pc_h": 0.07,
+				"Kc_h": 0.95,
+				"Ca_h": 0.037,
+				"Mgc_h": 0.014,
+				"Sc_h": 0
+			}
+		},
+		"OLIVE": {
+			"crop_name": "Olive",
+			"harvest": {
+				"harvested_part": "fruit",
+				"HI_est": 60,
+				"DM_h": 50,
+				"Nc_h_min": 0.2,
+				"Nc_h_max": 0.4,
+				"Nc_h_typn": 0.3,
+				"Pc_h": 0.14,
+				"Kc_h": 1.25,
+				"Ca_h": 0.052,
+				"Mgc_h": 0.011,
+				"Sc_h": 0
+			}
+		},
+		"POTATO": {
+			"crop_name": "Potato",
+			"harvest": {
+				"harvested_part": "tuber",
+				"HI_est": 70,
+				"DM_h": 23.5,
+				"Nc_h_min": 1.2,
+				"Nc_h_max": 1.9,
+				"Nc_h_typn": 1.6,
+				"Pc_h": 0.25,
+				"Kc_h": 2,
+				"Ca_h": 0.012,
+				"Mgc_h": 0.023,
+				"Sc_h": 0
+			}
+		}
+	},
+	"textures": {
+		"sand": {
+			"CEC": 30
+		},
+		"loamySand": {
+			"CEC": 30
+		},
+		"sandyLoam": {
+			"CEC": 75
+		},
+		"loam": {
+			"CEC": 100
+		},
+		"siltyLoam": {
+			"CEC": 80
+		},
+		"silt": {
+			"CEC": 80
+		},
+		"clayLoam": {
+			"CEC": 80
+		},
+		"sandyClayLoam": {
+			"CEC": 220
+		},
+		"siltyClayLoam": {
+			"CEC": 220
+		},
+		"sandyClay": {
+			"CEC": 220
+		},
+		"siltyClay": {
+			"CEC": 220
+		},
+		"clay": {
+			"CEC": 300
+		}
+	}
+}
