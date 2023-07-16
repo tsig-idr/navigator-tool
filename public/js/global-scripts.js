@@ -10,6 +10,7 @@
 	}).then(data => {
 		document.querySelector('navbar').innerHTML = data;
 		const saveA = document.querySelector('[data-save]');
+		var modal = null;
 		document.querySelectorAll('[type=file].d-none').forEach(input => {
 			input.addEventListener('change', ev => {
 				if (!ev.target.files[0]) {
@@ -34,20 +35,28 @@
 						if (typeof project.localizacion != 'object') {
 							return;
 						}
-						let farm;
-						project = harmonize4SIAR(project);
-						(farm = window.localStorage.getItem('farm')) &&
-							(farm = JSON.parse(farm)) &&
-							(farm = {
-								crops: [
-									{...farm.crops[0], ...project.crops[0]}
-								]
-							})
-						||
-							(farm = project);
-						window.localStorage.setItem('farm', JSON.stringify(farm));
-						typeof setFarm == 'function' &&
-							setFarm(farm);
+						fetch('/json/SIAR.json').then(res => res.json()).then(data => {
+							let farm;
+							project = harmonize4SIAR(project, data);
+							(farm = window.localStorage.getItem('farm')) &&
+								(farm = JSON.parse(farm)) &&
+								(farm = {
+									crops: [
+										{...farm.crops[0], ...project.crops[0]}
+									]
+								})
+							||
+								(farm = project);
+							window.localStorage.setItem('farm', JSON.stringify(farm));
+							typeof setFarm == 'function' &&
+								setFarm(farm);
+							modal &&
+								modal.dispose();
+							modal = new bootstrap.Modal(document.getElementById('siar-modal'));
+							modal.show();
+						}).catch(error => {
+							console.warn('Something went wrong.', error);
+						});
 					}
 				};
 				reader.readAsText(ev.target.files[0]);
@@ -98,7 +107,8 @@ function translate (page) {
 			let key;
 			dict = data;
 			document.querySelectorAll('*').forEach(el => {
-				el.innerHTML.indexOf('<') == -1 && (key = el.innerHTML.trim()) in dict &&
+				let html = el.innerHTML.trim();
+				html.charAt(0) != '<' && (key = html) in dict &&
 					(el.innerHTML = dict[key]);
 				el.placeholder && el.placeholder in dict &&
 					(el.placeholder = dict[el.placeholder]);
@@ -174,19 +184,30 @@ function texture4FaST (siar_texture) {
 	}
 }
 
-function harmonize4SIAR (project) {
+function harmonize4SIAR (project, data) {
 	const crops = [{}];
 	if (typeof project.suelo == 'object') {
-		project.suelo.textura &&
-			(crops[0].soil_texture = texture4FaST(project.suelo.textura));
+		if (project.suelo.textura) {
+			crops[0].soil_texture = texture4FaST(project.suelo.textura);
+			crops[0].soil_texture in data.textures &&
+				(crops[0].CEC = data.textures[crops[0].soil_texture].CEC);
+		}
 		project.suelo.profundidad &&
 			(crops[0].depth_s = project.suelo.profundidad);
 		project.suelo.pedregosidad &&
 			(crops[0].stony = project.suelo.pedregosidad);
 	}
 	if (typeof project.cultivo == 'object') {
-		project.cultivo.nombre &&
-			(crops[0].crop_type = crop4FaST(project.cultivo.nombre));
+		if (project.cultivo.nombre) {
+			crops[0].crop_type = crop4FaST(project.cultivo.nombre);
+			if (crops[0].crop_type in data.crops) {
+				crops[0].crop_name = data.crops[crops[0].crop_type].crop_name;
+				crops[0].HI_est = data.crops[crops[0].crop_type].harvest.HI_est;
+				crops[0].Nc_h = data.crops[crops[0].crop_type].harvest.Nc_h_typn;
+				crops[0].Pc_h = data.crops[crops[0].crop_type].harvest.Pc_h;
+				crops[0].Kc_h = data.crops[crops[0].crop_type].harvest.Kc_h;
+			}
+		}
 		project.cultivo.fecha_inicio_ciclo &&
 			(crops[0].crop_startDate = project.cultivo.fecha_inicio_ciclo);
 		typeof project.cultivo.etapas == 'object' && project.cultivo.etapas.length == 4 && typeof project.cultivo.etapas[3] == 'object' &&
