@@ -4,7 +4,28 @@
 	'use strict'
 
 	document.querySelector('html').setAttribute('translate', 'no');
-
+	document.querySelectorAll('[data-toshow]').forEach(button => {
+		const targets = document.querySelectorAll(button.dataset.toshow),
+			complement = button.parentElement.querySelector('[data-tohide]');
+		button.addEventListener('click', () => {
+			button.classList.add('d-none');
+			targets.forEach(target => {
+				target.classList.remove('d-none');
+			});
+			complement.classList.remove('d-none');
+		});
+	});
+	document.querySelectorAll('[data-tohide]').forEach(button => {
+		const targets = document.querySelectorAll(button.dataset.tohide),
+			complement = button.parentElement.querySelector('[data-toshow]');
+		button.addEventListener('click', () => {
+			button.classList.add('d-none');
+			targets.forEach(target => {
+				target.classList.add('d-none');
+			});
+			complement.classList.remove('d-none');
+		});
+	});
 	fetch('/navbar.html').then(response => {
 		return response.text()
 	}).then(data => {

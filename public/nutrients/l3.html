@@ -89,7 +89,7 @@
 									<input required type="number" class="form-control" id="yield" name="input[yield]" min="0" />
 								</div>
 							</div>
-							<div class="row mt-2">
+							<div class="d-none row mt-2 crop-extra">
 								<div class="col-sm-2">
 									<label for="export_r" class="form-label">Export residues (%)</label>
 									<input required type="number" class="form-control" id="export_r" name="input[export_r]" value="100" min="0" max="100" />
@@ -115,14 +115,22 @@
 									<input required type="number" class="form-control" id="Kc_h" name="input[Kc_h]" min="0"  max="100" step="0.001" />
 								</div>
 							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-secondary" data-toshow=".crop-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-secondary d-none" data-tohide=".crop-extra">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 					<br/>
 					<div class="card">
-						<h5 class="card-header bg-secondary text-white">Soil</h5>
+						<h5 class="card-header bg-warning">Soil</h5>
 						<div class="card-body">
 							<div class="row">
-								<div class="col-sm-2">
+								<div class="col-sm-4">
 									<label for="soil_texture" class="form-label">Soil texture</label>
 									<select required class="form-select" id="soil_texture" name="input[soil_texture]"></select>										
 								</div>
@@ -134,23 +142,28 @@
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<label for="pH" class="form-label">pH</label>
-									<input required type="number" class="form-control" id="pH" name="input[pH]" value="7" step="0.1" />
-								</div>
-								<div class="col-sm-2">
 									<label for="CEC" class="form-label">CEC (meq/kg)</label>
 									<input required type="number" class="form-control" id="CEC" name="input[CEC]" min="0" step="0.01" />
 								</div>
-								<div class="col-sm-2">
-									<label for="SOM" class="form-label">SOM (%)</label>
-									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.1" value="1.5" />
-								</div>
-								<div class="col-sm-2">
-									<label for="depth_s" class="form-label">Soil depth (m)</label>
-									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
+								<div class="col-sm-4">
+									<label for="Pc_method" class="form-label">Pc method</label>
+									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
+										<option value="olsen">Olsen</option>
+										<option value="ammoniumLactate">Ammonium lactate</option>
+										<option value="mehlichIII">Mehlich III</option>
+										<option value="bray">Bray</option>
+										<option value="amoniumAcetate+EDTA">Ammonium acetate + EDTA</option>
+										<option value="calciumLactate">Calcium lactate</option>
+										<option value="calciumLactateAcetate">Calcium lactate acetate</option>
+										<option value="paperStrip">Paper strip</option>
+										<option value="acidAmmoniumAcetate">Acid ammonium acetate</option>
+										<option value="H2O">H2O</option>
+										<option value="saturatedWater">saturated water</option>
+										<option value="CaCl2">Ca Cl2</option> 
+									</select>
 								</div>
 							</div>
-							<div class="row mt-2">
+							<div class="row mt-2 soil-extra d-none">
 								<div class="col-sm-3">
 									<label for="Nc_s_initial" class="form-label">Soil N initial</label>
 									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.1" />
@@ -182,29 +195,12 @@
 									</select>
 								</div>
 							</div>
-							<div class="row mt-2">
-								<div class="col-sm-4">
-									<label for="Pc_method" class="form-label">Pc method</label>
-									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
-										<option value="olsen">Olsen</option>
-										<option value="ammoniumLactate">Ammonium lactate</option>
-										<option value="mehlichIII">Mehlich III</option>
-										<option value="bray">Bray</option>
-										<option value="amoniumAcetate+EDTA">Ammonium acetate + EDTA</option>
-										<option value="calciumLactate">Calcium lactate</option>
-										<option value="calciumLactateAcetate">Calcium lactate acetate</option>
-										<option value="paperStrip">Paper strip</option>
-										<option value="acidAmmoniumAcetate">Acid ammonium acetate</option>
-										<option value="H2O">H2O</option>
-										<option value="saturatedWater">saturated water</option>
-										<option value="CaCl2">Ca Cl2</option> 
-									</select>
-								</div>
-								<div class="col-sm-2">
+							<div class="row mt-2 soil-extra d-none">
+								<div class="col-sm-3">
 									<label for="Pc_s" class="form-label">P</label>
 									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.1" />
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<label  class="form-label">&nbsp;</label>
 									<select required class="form-select" name="input[Pc_s_unit]">
 										<option selected value="ppm">ppm</option>
@@ -215,11 +211,11 @@
 										<option value="meq_l">meq PO43-/l</option>
 									</select>
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<label for="Kc_s" class="form-label">K</label>
 									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.1" />
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<label  class="form-label">&nbsp;</label>
 									<select required class="form-select" name="input[Kc_s_unit]">
 										<option selected value="ppm">ppm</option>
@@ -231,11 +227,33 @@
 									</select>
 								</div>
 							</div>
+							<div class="row mt-2 soil-extra d-none">
+								<div class="col-sm-4">
+									<label for="pH" class="form-label">pH</label>
+									<input required type="number" class="form-control" id="pH" name="input[pH]" value="7" step="0.1" />
+								</div>
+								<div class="col-sm-4">
+									<label for="SOM" class="form-label">SOM (%)</label>
+									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.1" value="1.5" />
+								</div>
+								<div class="col-sm-4">
+									<label for="depth_s" class="form-label">Soil depth (m)</label>
+									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
+								</div>
+							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-secondary" data-toshow=".soil-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-secondary d-none" data-tohide=".soil-extra">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 					<br/>
 					<div class="card">
-						<h5 class="card-header bg-info text-white">Plot</h5>
+						<h5 class="card-header bg-info">Plot</h5>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-4">
@@ -274,7 +292,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="row mt-2">
+							<div class="row mt-2 plot-extra d-none">
 								<div class="col-sm-3">
 									<label for="dose_irrigation" class="form-label">Irrigation dose (m3/ha)</label>
 									<input required type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" value="2500" />
@@ -291,6 +309,14 @@
 									<label for="rain_w" class="form-label">Autumn-winter rainfall (mm)</label>
 									<input required type="number" class="form-control" id="rain_w" name="input[rain_w]" min="0" value="480" />
 								</div>
+							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-secondary" data-toshow=".plot-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-secondary d-none" data-tohide=".plot-extra">
+									<i class="fa fa-minus"></i>
+								</button>
 							</div>
 						</div>
 					</div>
