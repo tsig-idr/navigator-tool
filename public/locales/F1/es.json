@@ -168,7 +168,7 @@
     "If you don't provide phenological data, you should take into account before selecting a crop that default phenological data is only applicable to these crops:": "Si no proporciona datos fenológicos, debe tener en cuenta antes de seleccionar un cultivo que los datos fenológicos por defecto sólo son aplicables a estos cultivos:",
     "Irrigated": "Regado",
     "Irrigation data": "Datos de riego",
-    "Irrigation dose (m3/ha)": "Dosis de riego (m3/ha)",
+    "Irrigation dose (mm)": "Dosis de riego (mm)",
     "Isobutylidene diurea (IBDU)": "Isobutilidendiurea (IBDU)",
     "Kc": "Kc",
     "Kc_adj": "Kc_adj",
