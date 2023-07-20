@@ -60,7 +60,7 @@ resultsIds.forEach(id => window[`${id}Tbody`] = form.querySelector(`#${id} tbody
 	applied.push(fertilizer);
 	ul.querySelector('.default').classList.add('d-none');
 });
-form.querySelector('button.btn-warning').addEventListener('click', () => {
+form.querySelector('button.btn-warning.btn-lg').addEventListener('click', () => {
 	resultsDiv.classList.add('d-none');
 	form.classList.add('was-validated');
 	if (!form.checkValidity()) {
