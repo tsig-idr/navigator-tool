@@ -214,9 +214,9 @@ function harmonize4SIAR (project, data) {
 				(crops[0].CEC = data.textures[crops[0].soil_texture].CEC);
 		}
 		project.suelo.profundidad &&
-			(crops[0].depth_s = project.suelo.profundidad);
+			(crops[0].depth_s = parseFloat(project.suelo.profundidad).toFixed(2));
 		project.suelo.pedregosidad &&
-			(crops[0].stony = project.suelo.pedregosidad);
+			(crops[0].stony = parseFloat(project.suelo.pedregosidad).toFixed(2));
 	}
 	if (typeof project.cultivo == 'object') {
 		if (project.cultivo.nombre) {
@@ -236,22 +236,22 @@ function harmonize4SIAR (project, data) {
 	}
 	if (typeof project.necesidades_riego == 'object') {
 		project.necesidades_riego.riego_neto_acumulado &&
-			(crops[0].dose_irrigation = project.necesidades_riego.riego_neto_acumulado);
+			(crops[0].dose_irrigation = Math.round(project.necesidades_riego.riego_neto_acumulado));
 		typeof project.necesidades_riego.riego_neto_diario == 'object' && project.necesidades_riego.riego_neto_diario.length &&
 			(crops[0].Riegos = project.necesidades_riego.riego_neto_diario.map(row => [row.fecha, row.riego_neto]));
 	}
 	if (typeof project.datos_climaticos == 'object') {
 		project.datos_climaticos.precipitacion_acumulada &&
-			(crops[0].rain_a = project.datos_climaticos.precipitacion_acumulada);
+			(crops[0].rain_a = Math.round(project.datos_climaticos.precipitacion_acumulada));
 		typeof project.datos_climaticos.precipitacion_diaria == 'object' && project.datos_climaticos.precipitacion_diaria.length &&
-			(crops[0].rain_w = project.datos_climaticos.precipitacion_diaria.filter(row => {
+			(crops[0].rain_w = Math.round(project.datos_climaticos.precipitacion_diaria.filter(row => {
 				let parts;
 				if (typeof row != 'object' || !row.fecha || (parts = row.fecha.split('-')).length != 3) {
 					return false;
 				}
 				return (parts[1] < '03' || parts[1] == '03' && parts[2] <= '21')
 					|| (parts[1] > '09' || parts[1] == '09' && parts[1] >= '22'); 
-			}).reduce((acc, row) => acc + parseFloat(row.precipitacion), 0));
+			}).reduce((acc, row) => acc + parseFloat(row.precipitacion), 0)));
 	}
 	return { crops };
 }
