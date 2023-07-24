@@ -151,7 +151,7 @@ r_dm = y_dm*(1 - HI_est_)/HI_est_
 y_dm = yield*dm_h
 Nfixation = IF (n_fix_code =='Non_legume'; 10; (1 + fnr)*(N_yield + N_res)*n_fix_per)
 
-factor_irrigation = IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
+factor_irrigation = efficiency/100*IF (type_irrigated == 'trickle'; 0.9; IF (type_irrigated == 'sprinkler'; 0.85; IF (type_irrigated == 'surface'; 0.7; 0)))
 Nirrigation = IF (water_supply == '0'; 0; Nc_NO3_water*dose_irrigation*10*factor_irrigation*22.6/100000)
 
 cn = VLOOKUP (soil_texture; SoilData; 32)

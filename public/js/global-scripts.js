@@ -231,8 +231,18 @@ function harmonize4SIAR (project, data) {
 		}
 		project.cultivo.fecha_inicio_ciclo &&
 			(crops[0].crop_startDate = project.cultivo.fecha_inicio_ciclo);
-		typeof project.cultivo.etapas == 'object' && project.cultivo.etapas.length == 4 && typeof project.cultivo.etapas[3] == 'object' &&
-			(crops[0].crop_endDate = project.cultivo.etapas[3].fecha_fin);
+		if (typeof project.cultivo.etapas == 'object' && project.cultivo.etapas.length) {
+			crops[0].FenoBBCH = [];
+			for (let n = project.cultivo.etapas.length, i = n - 1, bbch = [9, 22, 39, 55, 89]; i >= 0; i--) {
+				typeof project.cultivo.etapas[i] == 'object' && project.cultivo.etapas[i].fecha_fin &&
+					crops[0].FenoBBCH.unshift([project.cultivo.etapas[i].fecha_fin, bbch[5 - (n - i)]]);
+			}
+			crops[0].crop_endDate = project.cultivo.etapas[3].fecha_fin;
+		}
+	}
+	if (typeof project.riego == 'object') {
+		project.riego.eficiencia &&
+			(crops[0].efficiency = project.riego.eficiencia);
 	}
 	if (typeof project.necesidades_riego == 'object') {
 		project.necesidades_riego.riego_neto_acumulado &&

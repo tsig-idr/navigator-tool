@@ -1,7 +1,6 @@
 'use strict';
 
 const router = require('express').Router();
-const { application } = require('express');
 const asyncHandler = require('express-async-handler');
 const navL1Ctrl = require('../controllers/L1/NavigatorF1Ctrl')();
 const navBestFertiCtrl = require('../controllers/NavigatorBestFertilizerCtrl')();
