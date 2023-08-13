@@ -1,0 +1,6 @@
+Concatenation; n_fix_per;n_fix_code;SOM (%);cycle_crop
+;0;Non legume;;
+Legume<=3Annual;0,8;Legume;<=3;Annual
+Legume>3Annual;0,5;Legume;>3;Annual
+Legume<=3Pluriannual;0,9;Legume;<=3;Pluriannual
+Legume>3Pluriannual;0,6;Legume;>3;Pluriannual

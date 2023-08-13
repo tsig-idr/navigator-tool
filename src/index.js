@@ -15,6 +15,7 @@ const G4Router = require('./routes/G4').router;
 const E1Router = require('./routes/E1').router;
 const E2Router = require('./routes/E2').router;
 const FGERouter = require('./routes/FGE').router;
+const TUdiRouter = require('./routes/TUdi').router;
 /* ----------------- */
 
 dotenv.config();
@@ -50,6 +51,7 @@ app.use('/G4', G4Router());
 app.use('/E1', E1Router());
 app.use('/E2', E2Router());
 app.use('/FGE', FGERouter());
+app.use('/TUdi', TUdiRouter());
 
 app.listen(SERVER_PORT, () => {
 	console.log(`App listening on port ${SERVER_PORT}`);

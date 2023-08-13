@@ -1,0 +1,149 @@
+;;;;;;;;;;Nc_h;;;;Pc_h (%);Kc_h (%);Cac_h (%);Mgc_h (%);Sc_h (%);;Nc_r;;;;Pc_r;Kc_r;Cac_r;Mgc_r;Sc_r;Kcb ini;Kcb mid;Kcb end;Zr max
+;;;;;;;;;;dm_h;Nc_h_min(%);Nc_max_h (%);Nc_typn_h (%);;;;;;;dm_r;Nc_min_r (%);Nc_max_r (%);Nc_typn_r (%);;;;;;;;;
+crop_type;group;English name;Latin name;Spanish name;Part harvested;n_fix_code;cycle_crop;HI_est;Residues left in field (%);%;min;max;typical;;;;;;Residues;%;min;max;typical;;;;;;;;;
+ALFALFA_GREEN_FLOWERING;Forages;Alfalfa (green, flowering) ;Medicago sativa L.;Alfalfa (verde, floración) Medicago;Biomass;Legume;Perennial;90;100;25;2,1;3,1;2,6;0;0;;;;;0;;;0;0;0;;;;0,3;1,15;1,1;2
+ALFALFA_GREEN_VEGETATIVE;Forages;Alfalfa (green, vegetative) ;Medicago sativa L.;Alfalfa (verde, vegetativa) Medicago;Biomass;Legume;Perennial;90;100;25;3,05;4,05;3,55;0,26;2,1;0,032;0,027;0;;0;;;0;0;0;;;;0,3;1,15;1,1;2
+ALFALFA_HAY_FLOWERING;Forages;Alfalfa (hay, flowering) ;Medicago sativa L.;Alfalfa (heno, floración) Medicago;Biomass;Legume;Perennial;90;100;85;2;3;2,5;0;0;;;;;0;;;0;0;0;;;;0,3;0,45;0,45;2
+ALFALFA_HAY_VEGETATIVE;Forages;Alfalfa (hay, vegetative) ;Medicago sativa L.;Alfalfa (heno, vegetativo) Medicago;Biomass;Legume;Perennial;90;100;85;2,8;3,8;3,3;0;0;;;;;0;;;0;0;0;;;;0,3;0,45;0,45;3
+ALMOND;Fruit trees, vines and shrubs;Almond;Prunus amygdalus;Almendra;Fruit;Non_legume;Perennial;60;100;85;3;3,6;3,3;0,37;0,75;0,268;0,279;0;;0;;;0;0;0;;;;0,2;0,85;0,6;
+APPLE;Fruit trees, vines and shrubs;Apple;Malus sylvestris;Manzana;Fruit;Non_legume;Perennial;60;100;18;0,25;0,45;0,35;0,05;0,75;0,006;0,005;0;;0;;;0;0;0;;;;0,51;1,03;0,76;
+APRICOT;Fruit trees, vines and shrubs;Apricot;Prunus armeniaca;Albaricoque;Fruit;Non_legume;Perennial;60;100;14;1,5;1,7;1,65;0,14;2,17;0,013;0,01;0;;0;;;0;0;0;;;;0,50;0,98;0,71;
+ARTICHOKE;Horticultural crops;Artichoke;Cynara scolymus L.;Alcachofa;Fruit;Non_legume;Perennial;30;100;17;2,4;2,6;2,5;0,51;2;0,014;0,017;0;;0;;;0;0;0;;;;0,15;0,95;0,9;0,9
+ASPARAGUS_GREEN;Horticultural crops;Asparagus (green);Asparagus officinalis L.;Espárragos (verdes);Stems;Non_legume;Perennial;35;100;8;5,4;5,6;5,5;0,69;3,4;0,024;0,014;0;;0;;;0;0;0;;;;0,15;0,91;0,2;1,80
+ASPARAGUS_WHITE;Horticultural crops;Asparagus (white);Asparagus officinalis L.;Espárragos (blancos);Stems;Non_legume;Perennial;35;100;7;4,2;4,4;4,3;0,74;4;0,024;0,014;0;;0;;;0;0;0;;;;0,15;0,91;0,2;1,80
+AVOCADO;Fruit trees, vines and shrubs;Avocado;Persea americana;Aguacate;Fruit;Non_legume;Perennial;60;100;27;1,1;1,3;1,2;0,15;2,31;0,012;0,029;0;;0;;;0;0;0;;;;0,50;0,8;0,7;
+BANANA;Fruit trees, vines and shrubs;Banana;Musa paradisiaca;Plátano;Fruit;Non_legume;Perennial;60;100;26;0,6;0,7;0,65;0,08;1,54;0,003;0,037;0;;0;;;0;0;0;;;;0,38;1,08;0,98;
+BARLEY_2_ROW;Cereals & pseudocereals;Barley 2 row;Hordeum vulgare L.;Cebada 2 carreras;Grain;Non_legume;Annual;40;10;86,5;2,2;2,4;2,3;0,35;0,49;0,03;0,13;0;Straw;90,5;0,58;0,88;0,7;0,08;2,1;;;;0,15;1,1;0,15;1,5
+BARLEY_6_ROW;Cereals & pseudocereals;Barley 6 row;Hordeum vulgare L.;Cebada 6 carreras;Grain;Non_legume;Annual;40;10;88,5;1,5;1,8;1,6;0,42;0,54;0,03;0,13;0;Straw;90;0,58;0,88;0,7;0,1;1,8;;;;0,15;1,1;0,15;1,5
+BEAN_DRY;Legumes;Bean (dry);Phaseolus vulgaris L.;Frijol (seco), judía, alubia;Seed;Legume;Annual;35;100;89;3,5;4,5;4;0,54;2,7;0,013;0,021;0;Straw;89;1,1;1,4;1,2;0,14;1,3;;;;0,15;1,1;0,25;0,9
+BEAN_GREEN;Horticultural crops;Bean (green);Phaseolus vulgaris L.;Frijol (verde);Pods;Legume;Annual;50;100;30;3;3,7;3,3;0,54;2,7;0,027;0,019;0;Straw;89;1,1;1,4;1,2;0,14;1,3;;;;0,15;1,0;0,8;0,7
+BEET;Horticultural crops;Beet;Beta vulgaris L.;Remolacha;Root;Non_legume;Annual;60;0;12;2,1;2,2;2,15;0,32;2,46;0,016;0,023;0;Residues;12;3,6;3,8;3,7;0,44;6,26;;;;0,15;0,99;0,61;1
+BLACK_EYED_PEA;Legumes;Black eyed pea;Vigna sinensis Endl;Guisante de ojos negros;Seed;Legume;Annual;35;100;90;4;4,2;4,1;0,52;1,5;0,036;0,056;0;Straw;90;;;1,25;0,28;1,55;;;;0,15;1,1;0,63;1
+BLUEGRASS_HAY;Forages;Bluegrass-Kentucky (hay) ;Poa pratensis L.;Bluegrass-Kentucky (heno) (espiguilla, pasto azul de Kentucky, poa de los prados, grama de prado, poa común o zacate poa);Biomass;Legume;Annual;90;100;89,1;;;1,6;0,28;1,92;;;;;0;;;0;0;0;;;;0,85;1,0;0,95;
+BROCCOLI;Horticultural crops;Broccoli;Brassica oleracea var. italica;Brócoli;Stems;Non_legume;Annual;50;100;45;3,3;3,4;3,35;0,07;0,32;0,047;0,021;0;;0;;;0;0;0;;;;0,15;0,95;0,85;0,6
+BROMEGRASS_HAY;Forages;Bromegrass (hay) ;Bromus sp;Bromegrass (heno);Biomass;Legume;Annual;90;100;91,1;;;1,53;0,16;1,64;;;;;0;;;0;0;0;;;;0,85;1,0;0,95;
+BRUSSELS SPROUTS;Horticultural crops;Brussels sprouts;Brassica oleracea var. gemmifera;Coles de Bruselas;Curd;Non_legume;Annual;60;100;13;4,9;5,1;5;0,51;3,25;0,042;0,023;0;;0;;;0;0;0;;;;0,15;0,95;0,85;0,6
+BUCKWHEAT;Cereals & pseudocereals;Buckwheat;Fagopyrum esculentum L.;Alforfón;Seed;Non_legume;Annual;35;10;94,85;;;2,96;0,35;0,46;0,02;0,22;0;;0;;;0;0;0;;;;0,15;1,1;0,15;
+CABBAGE;Horticultural crops;Cabbage;Brassica oleracea var. capitata;Repollo, col;Cabagge;Non_legume;Annual;80;100;9;3;3,5;3,3;0,35;2,73;0,04;0,012;0;Residues;14;2,6;2,8;2,7;0;0;;;;0,15;0,95;0,85;0,8
+CANARYGRASS_REED_HAY;Forages;Canarygrass-Reed (hay) ;Phalaris arundinacea;Canarygrass-Reed (heno);Biomass;Legume;Annual;90;100;89;;;1,7;0,28;2,99;;;;;0;;;0;0;0;;;;0,5;0,95;0,8;
+CARROT;Horticultural crops;Carrot;Daucutus carota;Zanahoria;Root;Non_legume;Annual;80;100;12;1,4;1,6;1,5;0,33;2,43;0,033;0,012;0;Leaves;16;2,3;2,4;2,35;0,19;1,88;;;;0,15;0,95;0,85;1
+CASSAVA;Roots, tubers & bulbs;Cassava;Manihot esculenta;Mandioca;Root;Non_legume;Perennial;65;100;68,8;;;0,42;0,12;0,77;0,016;0,021;0;;0;;;0;0;0;;;;0,15;0,85;0,33;0,8
+CASTORBEAN;Sugar, oil & fiber crops;Castor bean;Ricinus communis L.;Ricino;Seed;Non_legume;Annual;35;100;95;;;2,7;0;0;;;;;0;;;0;0;0;;;;0,15;1,1;0,45;2
+CAULIFLOWER;Horticultural crops;Cauliflower;Brassica oleracea var. botrytis;Coliflor;Curd;Non_legume;Annual;80;100;9;4,3;4,5;4,4;0,66;3,21;0,022;0,015;0;;0;;;0;0;0;;;;0,15;0,95;0,85;0,7
+CELERY;Horticultural crops;Celery;Apium graveolens;Apio;Leaves;Non_legume;Annual;90;100;5;2,3;2,5;2,4;0,66;4,8;0,04;0,011;0;;0;;;0;0,66;4,8;;;;0,15;0,95;0,9;0,5
+CHERIMOYA;Fruit trees, vines and shrubs;Cherimoya;Annona cherimola;Chirimoya;Fruit;Non_legume;Perennial;60;100;26;0,7;0,9;0,78;0,15;1,17;0,01;0,017;0;;0;;;0;0;0;;;;0,15;0,95;0,85;
+CHERRY;Fruit trees, vines and shrubs;Cherry;Prunus avium;Cereza;Fruit;Non_legume;Perennial;60;100;19;1;1,2;1,07;0,01;1,16;0,038;0,022;0;;0;;;0;0;0;;;;0,15;1,1;0,25;
+CHICKPEA_DESI;Legumes;Chickpea (desi);Cicer arietinum L.;Garbanzo (desi);Seeds;Legume;Annual;35;100;89,5;;;3,5;0,4;1,2;0,057;0,079;0;Straw;89,5;;;0,85;0,16;2,3;;;;0,15;0,95;0,25;1
+CHICKPEA_KABULI;Legumes;Chickpea (kabuli);Cicer arietinum L.;Garbanzo (kabuli);Seeds;Legume;Annual;35;100;89,5;;;3,6;0,4;1,2;0,057;0,079;0;Straw;89,5;;;0,85;0,16;2,3;;;;0,15;1,05;0,25;1
+CHICORY;Horticultural crops;Chicory;Cichorium intybus;Achicoria;Leaves;Non_legume;Annual;80;100;6;3,1;3,3;3,2;0,23;4;0,019;0,01;0;;0;;;0;0;0;;;;0,15;0,9;0,9;
+CHINESE_YAM;Roots, tubers & bulbs;Chinese yam;Dioscorea opposita;Ñame chino;Tuber;Non_legume;Perennial;70;100;59,3;;;1,39;0,15;0,15;0,012;0,012;0;;0;;;0;0;0;;;;0,15;1,1;0,55;
+CLOVER_ALSIKE_HAY;Forages;Clover-Alsike (hay) ;Trifolium hybridum L.;Trébol similar (heno);Biomass;Legume;Perennial;90;100;87,4;;;2,27;0,25;2,48;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+CLOVER_CRIMSON_HAY;Forages;Clover-Crimson (hay) ;Trifolium incarnatum L.;Trébol carmesí (heno);Biomass;Legume;Perennial;90;100;88,3;;;2,65;0,22;2,76;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+CLOVER_RED_HAY;Forages;Clover-Red (hay) ;Trifolium pratense L.;Trébol rojo (heno);Biomass;Legume;Perennial;90;100;86,1;;;2,51;0,26;1,89;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+CLOVER_WHITE_HAY;Forages;Clover-White (hay) ;Trifolium repens L.;Clover-White (heno);Biomass;Legume;Perennial;90;100;90,3;;;3,09;0,35;2,3;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+CLOVER_WHITE_LADINO_HAY;Forages;Clover-White-Ladino (hay) ;Trifolium repens L.;Trébol-Blanco-Ladino (heno);Biomass;Legume;Perennial;90;100;89,2;;;3,32;0,32;2,43;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+CORN_GRAIN;Cereals & pseudocereals;Corn;Zea mays L.;Maíz;Grain;Non_legume;Annual;45;100;86;1,35;1,75;1,6;0,32;0,34;0,007;0,127;0;Stover;87;0,9;1,1;0,97;0,1;1,5;;;;0,15;1,15;0,33;1,7
+COTTON;Sugar, oil & fiber crops;Cotton;Gossypium L.;Algodón;Seed;Non_legume;Annual;35;100;91;2,32;2,75;2,53;0,41;0,49;0,1;0,44;0;Residues;92,5;0,9;1;0,98;0,1;1,6;;;;0,15;1,15;0,5;1,7
+CUCUMBER;Horticultural crops;Cucumber;Cucumis sativus;Pepino;Fruit;Non_legume;Annual;60;100;4;2,4;2,6;2,5;0,53;4,25;0,016;0,013;0;Residues;0;;;0;0;0;;;;0,15;0,95;0,75;1,2
+DATEPALM;Fruit trees, vines and shrubs;Date palm;Phoenix dactylifera;Palmera datilera;Fruit;Non_legume;Perennial;60;100;77;0,35;0,45;0,4;0,05;0,84;0,039;0,043;0;;0;;;0;0;0;;;;0,8;0,85;0,85;
+EGGPLANT;Horticultural crops;Eggplant;Solanum melongena;Berenjena;Fruits;Non_legume;Annual;60;100;7;2,4;2,6;2,5;0,31;3;0,009;0,014;0;;0;;;0;0;0;;;;0,15;1;0,8;1,2
+ENDIVE;Horticultural crops;Endive;Cichorium endivia;Endibia;Leaves;Non_legume;Annual;80;100;5;4,1;4,2;4,15;0,45;5,6;0,019;0,01;0;;0;;;0;0;0;;;;0,15;0,9;0,9;
+FABA_BEAN_DRY;Legumes;Faba bean dry;Vicia faba L;Haba seca;Grain;Legume;Annual;35;100;90;3;4,9;3,7;0,47;1,2;0,103;0,192;0;Straw;85;0,8;2,5;1,6;0,28;1,55;;;;0,15;1,1;0,2;0,7
+FABA_BEAN_GREEN;Horticultural crops;Faba bean green;Vicia faba L.;Haba verde;Fruits;Legume;Annual;40;100;19;4,6;4,8;4,7;0,5;1,32;0,036;0,043;0;Residues;25;;;2,2;0;0;;;;0,15;1,1;1,05;0,7
+FESCUE_HAY;Forages;Fescue (hay) ;Festuca o Lolium sp.;Festuca (heno);Biomass;Legume;Annual;90;100;90;;;1,51;0;0;;;;;0;;;0;0;0;;;;0,85;1,0;0,95;
+FESCUE_MEADOW_HAY;Forages;Fescue-Meadow (hay) ;Lolium pratense;Festuca-Pradera (heno);Biomass;Legume;Annual;90;100;88,4;;;1,19;0;0;;;;;0;;;0;0;0;;;;0,85;1,0;0,95;
+FESCUE_TALL_HAY;Forages;Fescue-Tall (hay) ;Lolium arundinaceum;Festuca-Alto (heno);Biomass;Legume;Annual;90;100;91,6;;;2,31;0;0;;;;;0;;;0;0;0;;;;0,85;1,0;0,95;
+FIG;Fruit trees, vines and shrubs;Fig;Ficus carica;Higo;Fruit;Non_legume;Perennial;60;100;21;0,5;0,6;0,57;0,07;1,11;0,035;0,017;0;;0;;;0;0;0;;;;0,5;0,9;0,7;
+FLAX;Sugar, oil & fiber crops;Flax;Linum usitatissimum L.;Linaza;Seed;Non_legume;Annual;35;100;93,5;3,3;4,3;3,8;0,57;0,84;0,009;0,015;0;Residues;93;1;1,2;1,06;0,08;1,74;;;;0,15;1,05;0,2;
+GARLIC;Horticultural crops;Garlic;Allium sativum L.;Ajo;Heads;Non_legume;Annual;60;10;39;2,5;2,8;2,6;0,44;1,38;0,181;0,025;0;Residues;0;;;1,5;0,2;1,3;;;;0,15;0,9;0,6;0,5
+GRAPE_TABLE;Fruit trees, vines and shrubs;Grape (table);Vitis vinifera;Uva de mesa;Fruit;Non_legume;Perennial;60;100;19;0,5;0,6;0,57;0,05;1,02;0,037;0,014;0;;0;;;0;0;0;;;;0,15;0,8;0,4;
+GRAPE_WINE;Fruit trees, vines and shrubs;Grape (wine);Vitis vinifera;Uva (vino);Fruit;Non_legume;Perennial;60;100;19;0,6;0,7;0,57;0,07;0,95;0,037;0,014;0;;0;;;0;0;0;;;;0,15;0,65;0,4;
+GRAPEFRUIT;Fruit trees, vines and shrubs;Grapefruit;Citrus paradisi;Pomelo;Fruit;Non_legume;Perennial;60;100;11;0,7;0,8;0,75;0,11;1,38;0,012;0,008;0;;0;;;0;0;0;;;;0,67;0,63;0,68;
+GRASS_HAY;Forages;Grass (hay);Poaceae;Hierba (heno);Biomass;Legume;Annual;90;100;89,1;;;1,52;0,22;1,45;;;;;0;;;0;0;0;;;;0,85;0,9;0,9;
+GRASS_SILAGE;Forages;Grass (silage);Poaceae;Hierba (ensilaje);Biomass;Non_legume;Annual;90;100;24,9;;;1,84;0,32;1,88;;;;;0;;;0;0;0;;;;0,85;0,9;0,9;
+HAZELNUT;Fruit trees, vines and shrubs;Hazel nut;Corylus avellana;Avellana;Fruit;Non_legume;Perennial;60;100;94,5;2,1;2,3;2,2;0,33;0,47;0,114;0,163;0;;0;;;0;0;0;;;;0,2;0,85;0,6;
+KIWI;Fruit trees, vines and shrubs;Kiwi;Actinidia spp;Kiwi;Fruit;Non_legume;Perennial;60;100;17;;;0,8;0,18;1,43;0,034;0,017;0;;0;;;0;0;0;;;;0,2;1;1;
+LEEK;Horticultural crops;Leek;Allium porrum L.;Puerro;Bulb;Non_legume;Annual;60;5;17;1,3;1,5;1,4;0,21;1,06;0,03;0,014;0;Leaves;20;;;0,9;0;0;;;;0,15;0,9;0,6;
+LEMON;Fruit trees, vines and shrubs;Lemon;Citrus limon;Limón;Fruit;Non_legume;Perennial;60;100;13;1,3;1,7;1,5;0,12;1,15;0,026;0,008;0;;0;;;0;0;0;;;;0,67;0,63;0,68;
+LENTIL;Legumes;Lentil;Lens esculenta Moench;Lenteja;Grain;Legume;Annual;35;100;89;4,2;4,4;4,3;0,43;0,86;0,035;0,047;0;Straw;91;;;1,1;0,14;1,15;;;;0,15;1,05;0,2;0,8
+LETTUCE_ICEBERG;Horticultural crops;Lettuce Iceberg;Lactuca sativa L.;Lechuga iceberg;Leaves;Non_legume;Annual;90;100;5;2,4;2,7;2,55;0,5;2;0,018;0,007;0;;0;;;0;0;0;;;;0,15;0,9;0,9;0,5
+LETTUCE_ROMAN;Horticultural crops;Lettuce Roman;Lactuca sativa L.;Lechuga romana;Leaves;Non_legume;Annual;90;100;6;4;4,4;4,27;0,75;6,67;0,033;0,014;0;;0;;;0;0;0;;;;0,15;0,9;0,9;0,5
+MAIZE_SILAGE;Cereals & pseudocereals;Maize;Zea mays L.;Maíz;Silage;Non_legume;Annual;90;100;30;1,1;1,45;1,25;0;0;0,005;0,133;0;;0;;;0;0;0;;;;0,15;1,1;1;1,7
+MANGO;Fruit trees, vines and shrubs;Mango;Mangifera indica;Mango;Fruit;Non_legume;Perennial;60;100;18;;;0,5;0,11;0,95;0,011;0,01;0;;0;;;0;0;0;;;;0,5;0,9;0,7;
+MELON;Horticultural crops;Melon;Cucumis melo L.;Melón;Fruit;Non_legume;Annual;60;100;12;0,8;1;0,9;0,16;2,58;0,009;0,012;0;;0;;;0;0;0;;;;0,15;0,92;0,68;1,5
+MILLET_FINGER;Cereals & pseudocereals;Millet (finger);Setaria italica L.;Mijo (dedo);Grain;Non_legume;Annual;40;10;90;;;2,2;0,34;0,35;0,008;0,114;0;Stover;92;;;0,67;0;1,6;;;;0,15;0,95;0,2;2
+MILLET_FOXTAIL_SILAGE;Forages;Millet-Foxtail (silage);Setaria italica;Mijo-cola de zorra (ensilaje);Biomass;Non_legume;Annual;90;100;27,6;;;1,59;0,18;1,94;;;;;0;;;0;0;0;;;;0,15;0,95;0,2;2
+MILLET_PEARL;Cereals & pseudocereals;Millet (pearl);Pennisetum glaucum L.;Mijo (perla);Grain;Non_legume;Annual;40;10;89,5;;;2;0,38;0,39;0,008;0,114;0;Stover;91,5;;;0,8;0,04;1,6;;;;0,15;0,95;0,2;2
+MILLET_PROSO;Cereals & pseudocereals;Millet (proso);Panicum miliaceum L.;Mijo (proso);Grain;Non_legume;Annual;40;10;90,5;;;2,3;0,34;0,48;0,008;0,114;0;Stover;92;;;0,8;0;1,6;;;;0,15;0,95;0,2;2
+MLLET_PEARL_SILAGE;Forages;Millet-Pearl (silage);Pennisetum glaucum;Mijo-Perla (ensilaje);Biomass;Non_legume;Annual;90;100;21,6;;;1,54;0,26;1,63;;;;;0;;;0;0;0;;;;0,15;0,95;0,2;2
+MUSCK_MELON;Horticultural crops;Musk melon;Cucumis melo L.;Melón almizclero;Fruit;Non_legume;Annual;60;100;10;1,4;1,6;1,5;0,36;3,16;0,009;0,012;0;;0;;;0;0;0;;;;0,15;0,92;0,68;1,5
+OAT;Cereals & pseudocereals;Oat;Avena sativa L.;Avena;Grain;Non_legume;Annual;40;10;91;1,5;1,8;1,6;0,36;0,44;0,05;0,18;0;Straw;89,5;0,6;0,8;0,7;0,1;2,3;;;;0,15;1,1;0,15;1,5
+OAT_HAY;Forages;Oat (hay);Avena sativa L.;Avena (heno);Biomass;Legume;Annual;90;100;89,8;;;1,37;0,24;1,26;;;;;0;;;0;0;0;;;;0,15;1,1;0,15;1,5
+OILPALM;Fruit trees, vines and shrubs;Oil palm;Elaeis guineensis;Aceite de palma;Fruit bunch;Non_legume;Perennial;60;100;79;;;1,25;0,09;0,75;0;0;0;;0;;;0;0;0;;;;0,85;0,9;0,9;
+OLIVE;Fruit trees, vines and shrubs;Olive;Olea europaea;Aceituna;Fruit;Non_legume;Perennial;60;100;50;0,2;0,4;0,3;0,14;1,25;0,052;0,011;0;;70;1;2;1,5;0;0;;;;0,55;0,65;0,65;
+ONION;Horticultural crops;Onion;Allium cepa L.;Cebolla;Bulb;Non_legume;Annual;70;0;10;1,9;2,5;2,2;0,35;1,2;0,023;0,01;0;Shoot;8;3,8;4,1;4;0,38;2,75;;;;0,15;1;0,75;0,6
+OPIUM_POPPY;Sugar, oil & fiber crops;Opium poppy;Papaver somniferum L.;Adormidera;Capsule;Non_legume;Annual;35;100;87,5;2,3;3,1;2,6;0,6;2,4;;;;Leaves þstems;90;0,8;1,2;1;0,3;3,1;;;;0,15;0,95;0,9;
+ORANGE;Fruit trees, vines and shrubs;Orange;Citrus sinensis;Naranja;Fruit;Non_legume;Perennial;60;100;18;1;1,4;1,2;0,14;1,35;0,04;0,01;0;;0;;;0;0;0;;;;0,67;0,63;0,68;
+ORCHARDGRASS_GREEN_CHOP;Forages;Orchardgrass (green chop) ;Dactylis glomerata L.;Hierba huerta (chuleta verde);Biomass;Non_legume;Annual;90;100;25,9;;;2,37;0,18;2,64;;;;;0;;;0;0;0;;;;0,3;1,15;1,1;
+ORCHARDGRASS_HAY;Forages;Orchardgrass (hay);Dactylis glomerata L.;Orchardgrass (heno);Biomass;Legume;Annual;90;100;89,2;;;1,71;0,25;2,64;;;;;0;;;0;0;0;;;;0,3;1,15;1,1;
+PARSLEY;Horticultural crops;Parsley;Petroselinum crispum (Mill.) Fuss;Perejil;Leaves;Non_legume;Annual;80;100;10;3,3;3,6;3,5;0,4;2,7;0,138;0,05;0;;0;;;0;0;0;;;;0,15;1,1;1,05;
+PEA;Legumes;Pea;Pisum sativum L.;Guisante;Seed;Legume;Annual;35;100;90;4;4,3;4,2;0,48;1,3;0,036;0,056;0;Straw;88,5;1,2;1,4;1,3;0,3;1,2;;;;0,15;1,1;0,2;
+PEA_GREEN_FRUITS;Horticultural crops;Pea (green);Pisum sativum L.;Guisante (verde);Fruits;Legume;Annual;35;100;12,5;2,2;3,7;3;0,321;0,823;0,037;0,049;0;Straw;25;1,9;2,1;2;0;0;;;;0,15;1,1;1,05;
+PEA_GREEN_SEEDS;Horticultural crops;Pea (green);Pisum sativum L.;Guisante (verde);Seeds;Legume;Annual;35;100;21;4,3;4,5;4,4;0,165;0,381;0,036;0,056;0;Straw;25;1,9;2,1;2;0;0;;;;0,15;1,1;1,05;
+PEACH;Fruit trees, vines and shrubs;Peach;Prunus persica;Melocotón;Fruit;Non_legume;Perennial;60;100;12;0,8;1,2;1;0,12;1,55;0,006;0,009;0;;0;;;0;0;0;;;;0,50;0,98;0,71;
+PEANUT_PODS;Legumes;Peanut (pods);Arachis hypogaea L.;Maní, cacahuete ;Fruits;Legume;Perennial;35;100;93;4,1;4,3;4,25;0,35;0,56;0,058;0,178;0;Straw;90,5;1,5;1,7;1,65;0,14;1,38;;;;0,15;1,1;0,5;
+PEANUT_SEEDS;Legumes;Peanut (seeds);Arachis hypogaea L.;Maní, cacahuete;Seeds;Legume;Perennial;35;100;92;4,7;4,9;4,85;0,388;0,744;0,106;0,188;0;Residues;90,5;1,5;1,7;1,65;0;0;;;;0,15;1,1;0,5;
+PEAR;Fruit trees, vines and shrubs;Pear;Pyrus communis;Pera;Fruit;Non_legume;Perennial;60;100;18;0,3;0,5;0,4;0,07;0,77;0,009;0,006;0;;0;;;0;0;0;;;;0,51;1,03;0,76;
+PEPPER_GREEN;Horticultural crops;Pepper green;Capsicum annuum L.;Pimienta verde;Fruit;Non_legume;Annual;60;100;10,5;2,1;2,4;2,3;0,35;2;0,014;0,017;0;Residues;0;;;0;0;0;;;;0,15;1;0,8;1
+PEPPER_RED;Horticultural crops;Pepper red;Capsicum annuum L.;Pimienta roja;Fruit;Non_legume;Annual;60;100;12,5;1,4;2;1,9;0,3;2,4;0,014;0,017;0;Residues;0;;;0;0;0;;;;0,15;1;0,8;1
+PERSIMMON;Fruit trees, vines and shrubs;Persimmon;Dyospiros kaki;Caqui;Fruit;Non_legume;Perennial;60;100;20;;;0,55;0,07;1,01;0,027;0;0;;0;;;0;0;0;;;;0,2;1;1;
+PLUM;Fruit trees, vines and shrubs;Plum;Prunus domestica;Ciruela;Fruit;Non_legume;Perennial;60;100;15;0,8;0,9;0,85;0,07;1,16;0,007;0,005;0;;0;;;0;0;0;;;;0,35;0,85;0,6;
+POMEGRANATE;Fruit trees, vines and shrubs;Pomegranate;Punica granatum;Granada;Fruit;Non_legume;Perennial;60;100;25;;;0,6;0,1;1,04;0,01;0,012;0;;0;;;0;0;0;;;;0,45;0,85;0,6;
+POTATO;Roots, tubers & bulbs;Potato;Solanum tuberosum;Patata;Tuber;Non_legume;Annual;70;100;23,5;1,2;1,9;1,6;0,25;2;0,012;0,023;0;Shoot;51;2;2,4;2,2;0,2;3,95;;;;0,15;1,1;0,65;0,6
+PUMPKIN;Horticultural crops;Pumpkin;Cucurbita spp.;Calabaza;Fruit;Non_legume;Annual;60;100;9;2,5;2,7;2,6;0,39;2,78;0,021;0,012;0;Residues;0;;;0;0;0;;;;0,15;0,95;0,7;1,5
+QUINCE;Fruit trees, vines and shrubs;Quince;Cydonia oblonga;Membrillo;Fruit;Non_legume;Perennial;60;100;16;;;0,54;0,1;0,95;0,011;0,008;0;;0;;;0;0;0;;;;0,35;0,85;0,6;
+QUINOA;Cereals & pseudocereals;Quinoa;Chenopodium quinoa L.;Quinua;Seed;Non_legume;Annual;40;10;94,5;;;2,43;0,41;1,12;0,047;0,197;0;;0;;;0;0;0;;;;1;1,15;0,45;
+RADISH;Horticultural crops;Radish;Raphanus sativus L.;Rábano;Root;Non_legume;Annual;60;100;6;1,5;1,7;1,6;0,4;3,17;0,025;0,01;0;Residues;0;;;0;0;0;;;;0,15;0,85;0,75;0,5
+RAPESEED;Sugar, oil & fiber crops;Rapeseed;Brassica napus L.;Colza;Grain;Non_legume;Annual;35;100;91;3,4;4,3;3,9;0,62;0,98;;;;Residues;82,5;0,55;0,9;0,8;0,1;0,8;;;;0,15;1,1;0,25;1,5
+RICE;Cereals & pseudocereals;Rice;Oryza sativa L.;Arroz;Grain;Non_legume;Annual;40;10;94;;;1,33;0,29;0,28;0,028;0,025;0;Straw;90;;;0;0,09;1,5;;;;1;1,15;0,45;1
+RICE_MILLED;Cereals & pseudocereals;Rice (milled);Oryza sativa L.;Arroz (molido);Grain;Non_legume;Annual;40;10;87,5;1,05;1,65;1,4;0,3;0,45;0,057;0,781;0;Straw;90;0,5;0,8;0,7;0,09;1,5;;;;1;1,15;0,45;1
+RYE;Cereals & pseudocereals;Rye;Secale cereale L.;Centeno;Grain;Non_legume;Annual;40;10;87;2;2,4;2,2;0,38;0,52;0,024;0,11;0;Straw;90,5;0,35;0,65;0,5;0,09;0,97;;;;0,15;1,1;0,25;
+RYE_HAY;Forages;Rye (hay);Secale cereale L.;Centeno (heno);Biomass;Legume;Annual;90;100;92,6;;;1,21;0,22;1,24;;;;;0;;;0;0;0;;;;0,15;0,85;0,6;
+RYEGRASS_HAY;Forages;Ryegrass-Perennial (hay) ;Lolium perenne ssp. perenne;Césped-Perenne (heno);Biomass;Legume;Annual;90;100;87,3;;;1,49;0,2;1,42;;;;;0;;;0;0;0;;;;0,85;0,9;0,9;
+SAFFLOWER;Sugar, oil & fiber crops;Safflower;Carthamus tinctorius L.;Cártamo;Seed;Non_legume;Annual;35;100;92;2,6;2,8;2,7;0,25;0,687;0,078;0,353;0;Residues;90;;;0,6;0;0;;;;0,15;1,1;0,2;2
+SORGHUM_GRAIN;Cereals & pseudocereals;Sorghum Grain;Sorghum bicolor L.;Sorgo;Grain;Non_legume;Annual;40;100;87,5;1,45;2;1,9;0,33;0,39;0,013;0,165;0;Stover;92;0,6;0,8;0,7;0,13;0,73;;;;0,15;1,15;1;2
+SORGHUM_GREEN;Cereals & pseudocereals;Sorghum Green;Sorghum bicolor L.;Sorgo;Green;Non_legume;Annual;40;100;20;1,3;1,4;1,37;0;0;;;;;0;;;0;0;0;;;;0,15;1,15;1;2
+SORGHUM_SILAGE;Cereals & pseudocereals;Sorghum Silage;Sorghum bicolor L.;Sorgo;Silage;Non_legume;Annual;90;100;26;0,7;1,3;1;0,28;0,32;0,012;0,123;0;;0;;;0;0;0;;;;0,15;1,15;1;2
+SOYBEAN;Legumes;Soybean;Glycine soja L.;Soja;Grain;Legume;Annual;40;100;87,5;6,1;6,9;6,5;0,66;1,5;0,067;0,072;0;Residues;89;1;1;0,85;0,06;0,57;;;;0,15;1,1;0,3;1,3
+SPINACH;Horticultural crops;Spinach;Spinacia oleracea;Espinacas;Leaves;Non_legume;Annual;90;100;9;5,1;5,3;5,2;0,56;5,66;0,099;0,079;0;;0;;;0;0;0;;;;0,15;0,9;0,85;0,5
+SQUASH_INMATURE;Horticultural crops;Squash (immature);Cucurbita pepo L.;Calabaza (inmadura);Fruit;Non_legume;Annual;60;100;5,5;2,7;3,84;3,2;0,4;3,5;0,021;0,012;0;Residues;89;;;0;0;0;;;;0,15;0,95;0,7;1,5
+SQUASH_MATURE;Horticultural crops;Squash (mature);Cucurbita pepo L.;Calabaza (madura);Fruit;Non_legume;Annual;60;100;14;0,9;1;0,91;0,4;3,5;0,021;0,012;0;;0;;;0;0;0;;;;0,15;0,95;0,7;1,5
+STRAWBERRY;Horticultural crops;Strawberry;Fragaria L.;Fresa;Fruit;Non_legume;Annual;40;100;9;1,1;1,6;1,35;0,024;0,153;0,016;0,013;0;;0;;;0;0;0;;;;0,3;0,8;0,7;0,3
+SUFLOWER_SEED;Sugar, oil & fiber crops;Sunflower (seed);Helianthus annuus L.;Girasol (semilla);Seed;Non_legume;Annual;35;100;91,5;2,8;3,6;3,2;0,63;0,72;0,078;0,325;;Residues;87;0,4;1,1;0,8;0,14;2,52;;;;0,15;1,1;0,25;1,5
+SUGARBEET_ROOT;Sugar, oil & fiber crops;Sugar beet root w/o crown;Beta vulgaris var. saccharífera L.;Remolacha azucarera;Root w/o crown;Non_legume;Annual;70;100;21;0,9;1,1;1,05;0,25;1,54;0,016;0,023;0;Residues;18;1,8;2,8;2,3;0,22;5,8;;;;0,15;0,95;0,85;1,2
+SUGARBEET_ROOT_CROWN;Sugar, oil & fiber crops;Sugar beet root with crown;Beta vulgaris var. saccharífera L;Remolacha azucarera;Root with crown;Non_legume;Annual;70;100;20;1,2;1,4;1,3;0,32;2,46;0,016;0,023;0;Residues;18;1,8;2,8;2,3;0,44;6,26;;;;0,15;0,95;0,85;1,2
+SUGARCANE;Sugar, oil & fiber crops;Sugarcane;Saccharum officinarum L.;Caña de azúcar;Tops;Non_legume;Perennial;70;100;25;;;0,13;0,01;0,2;0,001;0;0;Residues;26;;;0,41;0,07;0,12;;;;0,15;1,2;0,7;
+SUNFLOWER_OIL;Sugar, oil & fiber crops;Sunflower (oil);Helianthus annuus L.;Girasol (aceite);Seed;Non_legume;Annual;35;100;91,5;2,2;3,2;2,95;0;0;0;0;0;Residues;87;0,4;1,1;0,8;0;0;;;;0,15;1,1;0,25;1,5
+SWEET_CORN_DRY;Horticultural crops;Sweet corn dry;Zea mays L.;Maíz dulce seco;Grain;Non_legume;Annual;50;100;90,5;1,9;2,1;2;0,092;0,252;0,002;0,031;0;Stover;91;0,9;1,1;1,05;0;0;;;;0,15;1,1;1;1,2
+SWEET_CORN_FRESH;Horticultural crops;Sweet corn fresh;Zea mays L.;Maíz dulce fresco;Grain;Non_legume;Annual;50;100;35;1,5;1,7;1,6;0,089;0,27;0,002;0,037;0;Stover;23;1,1;1,3;1,2;0;0;;;;0,15;1,1;1;1,2
+SWEET_POTATO;Roots, tubers & bulbs;Sweet potato;Ipomoea batatas;Batata;Tuber;Non_legume;Annual;70;100;65;;;0,88;0,15;1,22;0,017;0,021;0;;0;;;0;0;0;;;;0,15;1,1;0,55;1,5
+SWEETCLOVER_HAY;Forages;Sweetclover (hay);Melilotus sp.;Trébol dulce (heno);Biomass;Legume;Perennial;90;100;89,6;;;2,65;0,24;1,65;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+TIMOTHY_HAY;Forages;Timothy (hay);Phleum pratense;Timothy (heno);Biomass;Legume;Annual;90;100;90,5;;;1,2;0,17;1,63;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+TOBACCO_BURLEY;Sugar, oil & fiber crops;Tobacco Burley;Nicotiana Tabacum Brasiliensis L.;Tabaco Burley;Leaf + stem;Non_legume;Perennial;80;100;75;3,8;4,2;4;0,31;3,86;;;;Stalk;9;;;0;0,31;3,86;;;;0,15;1,1;0,65;0,6
+TOBACCO_FLUE;Sugar, oil & fiber crops;Tobacco Flue;Nicotiana Tabacum Brasiliensis L.;Tabaco Flue;Leaves;Non_legume;Perennial;80;100;8;2;2,3;2,1;0,27;2;;;;Stalk;9;0,75;1;0,8;0,27;2;;;;0,15;1,1;0,65;0,6
+TOMATO;Horticultural crops;Tomato;Lycopersicon esculentum;Tomate;Fruit;Non_legume;Annual;60;100;6;2,3;3,1;2,6;0,47;4,28;0,013;0,01;0;Residues;20;;;1,8;0,1;1,9;;;;0,15;1,1;0,8;1,5
+TREFOIL_HAY;Forages;Trefoil-Birdsfoot (hay);Lotus corniculatus;Trébol-Pie de pájaro (heno);Biomass;Legume;Perennial;90;100;90;;;2,52;0,23;1,89;;;;;0;;;0;0;0;;;;0,3;1,1;1,05;
+TRITICALE;Cereals & pseudocereals;Triticale;x Triticosecale Wittmack;Triticale;Grain;Non_legume;Annual;35;10;89;2,2;2,5;2,45;0,34;0,57;0,03;0,12;0;Straw;90;0,6;0,9;0,7;0,03;1,2;;;;0,15;1,1;0,15;
+TURNIP_GREEN_CROP;Forages;Turnip (green chop) ;Brassica rapa var. rapa;Nabo (chuleta verde);Root;Non_legume;Annual;90;100;13,5;;;3,3;0,42;3,02;;;;;0;;;0;0;0;;;;0,15;1;0,85;1
+VETCH_GREEN_FLOWERING;Forages;Vetch (green) flowering;Vicia sativa L.;Arveja (verde) floración;Biomass;Non_legume;Annual;90;100;25;2,6;3,4;3;0;0;;;;;0;;;0;0;0;;;;0,15;1,1;1,05;
+VETCH_HAIRY_HAY;Forages;Vetch-Hairy (hay);Vicia villosa L.;Arveja peluda (heno);Biomass;Non_legume;Annual;90;100;87,9;;;3,68;0,36;2,23;;;;;0;;;0;0;0;;;;0,15;1,1;1,05;
+VETCH_HAY;Forages;Vetch (hay) vegetative;Vicia sativa L.;Vicia (heno);Biomass;Non_legume;Annual;90;100;87,8;;;2,6;0,36;2,24;;;;;0;;;0;0;0;;;;0,15;1,1;1,05;
+VETCH_HAY_FLOWERING;Forages;Vetch (hay) flowering;Vicia sativa L.;Floración de veza (heno);Biomass;Non_legume;Annual;90;100;85;2,5;3,3;2,9;0;0;;;;;0;;;0;0;0;;;;0,15;1,05;0,2;
+WALNUT;Fruit trees, vines and shrubs;Walnut;Juglans regia;Nuez;Fruit;Non_legume;Perennial;60;100;93;;;0,2;0,22;0,41;0,061;0,201;0;;0;;;0;0;0;;;;0,4;1,05;0,6;
+WATERMELON;Fruit trees, vines and shrubs;Watermelon;Citrullus lanatus;Sandía;Fruit;Non_legume;Annual;60;100;9;1;1,5;1,25;0,11;1,33;0,007;0,01;0;Residues;0;;;0;0;0;;;;0,15;0,95;0,7;1,5
+WHEAT_BREAD_HARD;Cereals & pseudocereals;Wheat-Bread-Hard type;Triticum aestivum L.;Trigo blando;Grain;Non_legume;Annual;40;10;87,5;1,85;2,2;2,1;0,43;0,45;0,03;0,13;0;Straw;90,4;0,3;0,84;0,64;0,06;1,2;;;;0,15;1,1;0,15;1,5
+WHEAT_BREAD_SOFT;Cereals & pseudocereals;Wheat-Bread-Soft type;Triticum aestivum L.;Trigo panificable;Grain;Non_legume;Annual;40;10;87,5;1,85;2,3;2,2;0,37;0,46;0,03;0,12;0;Straw;90,5;0,4;0,85;0,65;0,06;1,2;;;;0,15;1,1;0,15;1,5
+WHEAT_DURUM;Cereals & pseudocereals;Wheat (durum);Triticum durum L.;Trigo duro;Grain;Non_legume;Annual;40;10;87,5;2,05;2,7;2,4;0,42;0,5;0,03;0,14;0;Straw;90,5;0,4;0,85;0,65;0,06;1,2;;;;0,15;1,1;0,15;1,5
+WHEATGRASS_HAY;Forages;Wheatgrass (hay);T. usneoides L.;Wheatgrass (heno);Biomass;Non_legume;Annual;90;100;91,6;;;1,34;0,07;2,7;;;;;0;;;0;0;0;;;;0,5;0,9515;0,8;
+WHITE_YAM;Roots, tubers & bulbs;White yam;Dioscorea rotundata;Ñame blanco;Tuber;Non_legume;Perennial;70;100;63,1;;;0,94;0,25;2,3;0,012;0,012;0;;0;;;0;0;0;;;;0,15;1;0,85;
+YELLOW_YAM;Roots, tubers & bulbs;Yellow yam;Dioscorea cayenensis;Ñame amarillo;Tuber;Non_legume;Perennial;70;100;58,3;;;0,99;0;0;;;;;0;;;0;0;0;;;;0,15;1;0,85;

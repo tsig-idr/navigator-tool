@@ -1,0 +1,16 @@
+application technique;abatment of EF;p index
+solid, broadcast;0;0,8
+solid, immediate incorporation;0,9;0,2
+solid, incorporation <4h;0,65;0,4
+solid, incorporation <12h;0,5;0,4
+solid, incorporation <24h;0,3;0,6
+liquid, broadcast;0;0,8
+liquid, immediate incorporation by ploughing;0,9;0,2
+liquid, immediate incorporation by non-inversion tillage;0,7;0,4
+liquid, incorporation <4h;0,65;0,4
+liquid, incorporation <24h;0,3;0,6
+fertigation;0,3;0,4
+liquid, band spreading with trailing shoe;0,35;0,4
+liquid, band spreading with trailing hose;0,6;0,2
+liquid, injection with open slot;0,7;0,2
+liquid, injection with closed slot;0,9;0,2
