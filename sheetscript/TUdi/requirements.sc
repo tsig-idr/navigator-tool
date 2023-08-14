@@ -27,6 +27,7 @@ while i < n then begin '{'
 	grazing_C = dung_C*weight*grazing_days_yr*(grazing_hours_day/24)*grazing_number_ha*1.21
 	NH3_volatilization = grazing_N*EF*TAN
 	N_graz_supply_netvolat = grazing_N - NH3_volatilization
+
 	N_graz_supply_total = N_graz_supply_total + grazing_N
 	NH3_volatilization_total = NH3_volatilization_total + NH3_volatilization
 	N_graz_supply_netvolat_total = N_graz_supply_netvolat_total + N_graz_supply_netvolat
@@ -66,6 +67,7 @@ while j < m then begin '{'
 	C_manure_total = C_manure_total + manure_C
 	j = j + 1
 '}' end
+
 prev_manure_supply_total = prev_manure_legacyN_total = 0
 l = LEN (prev_manures)
 k = 0
