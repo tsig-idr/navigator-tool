@@ -10,10 +10,10 @@ n = LEN (grazings)
 i = 0
 while i < n then begin '{'
 	row = GET (grazings, i)
-	grazing_type = GET (row, 'grazing_type')
-	grazing_number_ha = GET (row, 'grazing_number_ha')
-	grazing_days_yr = GET (row, 'grazing_days_yr')
-	grazing_hours_day = GET (row, 'grazing_hours_day')
+	grazing_type = GET (row, 'type')
+	grazing_number_ha = GET (row, 'number_ha')
+	grazing_days_yr = GET (row, 'days_yr')
+	grazing_hours_day = GET (row, 'hours_day')
 	weight =  VLOOKUP (grazing_type; Grazings; 1)
 	dung_N = VLOOKUP (grazing_type; Grazings; 3)
 	dung_P = VLOOKUP (grazing_type; Grazings; 4)
@@ -38,13 +38,13 @@ while i < n then begin '{'
 '}' end
 
 N_man_supply_total = NH3volat_total = N_man_supply_netvolat_total = P2O5_man_supply_total = K2O_man_supply_total = C_manure_total
-m = LEN (manures)
-j = 0
-while j < m then begin '{'
-	row = GET (manures, j)
-	manure_type = GET (row, 'manure_type')
-	manure_dose = GET (row, 'manure_dose')
-	manure_applic = GET (row, 'manure_applic')
+n_ = LEN (manures)
+i_ = 0
+while i_ < n_ then begin '{'
+	row = GET (manures, i_)
+	manure_type = GET (row, 'type')
+	manure_dose = GET (row, 'dose')
+	manure_applic = GET (row, 'applic')
 	c_N = VLOOKUP (manure_type; Manures; 3)
 	c_P = VLOOKUP (manure_type; Manures; 4)
 	c_K = VLOOKUP (manure_type; Manures; 5)
@@ -65,16 +65,16 @@ while j < m then begin '{'
 	P2O5_man_supply_total = P2O5_man_supply_total + manure_P
 	K2O_man_supply_total = K2O_man_supply_total + manure_K
 	C_manure_total = C_manure_total + manure_C
-	j = j + 1
+	i_ = i_ + 1
 '}' end
 
 prev_manure_supply_total = prev_manure_legacyN_total = 0
-l = LEN (prev_manures)
-k = 0
-while k < l then begin '{'
-	row = GET (prev_manures, k)
-	prev_manure_type = GET (row, 'prev_manure_type')
-	prev_manure_dose = GET (row, 'prev_manure_dose')
+n__ = LEN (prev_manures)
+i__ = 0
+while i__ < n__ then begin '{'
+	row = GET (prev_manures, i__)
+	prev_manure_type = GET (row, 'type')
+	prev_manure_dose = GET (row, 'dose')
 	prev_c_N = VLOOKUP (prev_manure_type; Manures; 3)
 	legacyN = VLOOKUP (prev_manure_type; Manures; 7)
 	prev_manure_supply = prev_manure_dose*1000*prev_c_N
@@ -82,13 +82,60 @@ while k < l then begin '{'
 
 	prev_manure_supply_total = prev_manure_supply_total + prev_manure_supply
 	prev_manure_legacyN_total = prev_manure_legacyN_total + prev_manure_legacyN
-	k = k + 1
+	i__ = i__ + 1
 '}' end
+
+n___ = LEN (fertilizers)
+i___ = 0
+
+
+
+
+while i___ < n___ then begin '{'
+	row = GET (fertilizers, i___)
+	fert_type = GET (row, 'type')
+	fert_dose = GET (row, 'dose')
+	fert_applic = GET (row, 'applic')
+	avg_T = VLOOKUP (climatic_zone; Clima; 5)
+	index = IF (avg_T < 15 && pH <= 7; 2; IF (avg_T < 15 && pH > 7; 3; IF (avg_T > 15 && avg_T < 25 && pH <= 7; 4; IF (avg_T > 15 && avg_T < 25 && pH > 7; 5; IF (avg_T > 25 && pH <= 7; 6; IF (avg_T > 25 && pH > 7; 7; 0))))))
+	vol_group = VLOOKUP (climatic_zone; Fertilizers; 5)
+	vol_c = IF (index > 0; VLOOKUP (vol_group; EFs; index); 0)
+
+
+
+
+
+
+
+
+	clasification_fm = VLOOKUP (id; Fertilizers; 4)
+	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); 0)
+	Ncf = IF_ERROR (VLOOKUP (id; Fertilizers; 13); 0)
+	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
+	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
+	method = VLOOKUP (id; Fertilizers_aux; 2)
+	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
+	N_bf_vol = Nc_i*(1 - vol_losses)
+	deni_losses = 0
+	N_bf_deni = Nc_i*(1 - deni_losses)
+	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
+	frecu_application_amendment = 1.0
+	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
+	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
+	N_losses_vol = N_raw*vol_losses
+	N_total_losses_vol = N_total_losses_vol + N_losses_vol
+	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
+	i___ = i___ + 1
+'}' end
+
 
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
 Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
 Grazings = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Grazings.csv'))
 Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'))
+Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
+Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
+EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
 
 
 
