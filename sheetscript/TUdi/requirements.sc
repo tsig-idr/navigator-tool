@@ -37,7 +37,7 @@ while i < n then begin '{'
 	i = i + 1
 '}' end
 
-N_man_supply_total = NH3volat_total = N_man_supply_netvolat_total = P2O5_man_supply_total = K2O_man_supply_total = C_manure_total
+N_man_supply_total = NH3volat_man_total = N_man_supply_netvolat_total = P2O5_man_supply_total = K2O_man_supply_total = C_manure_total = 0
 n_ = LEN (manures)
 i_ = 0
 while i_ < n_ then begin '{'
@@ -55,12 +55,12 @@ while i_ < n_ then begin '{'
 	manure_P = manure_dose*1000*c_P
 	manure_K = manure_dose*1000*c_K
 	manure_C = manure_dose*1000*c_C
-	EF_BAT = VLOOKUP (manure_applic; Volatilisation; 2)
-	NH3volat = manure_N*TAN*(EF_application*(1 - EF_BAT))
-	N_man_supply_netvolat = manure_N - NH3volat
+	EF_BAT_man = VLOOKUP (manure_applic; Volatilisation; 2)
+	NH3volat_man = manure_N*TAN*(EF_application*(1 - EF_BAT_man))
+	N_man_supply_netvolat = manure_N - NH3volat_man
 
 	N_man_supply_total = N_man_supply_total + manure_N
-	NH3volat_total = NH3volat_total + NH3volat
+	NH3volat_man_total = NH3volat_man_total + NH3volat_man
 	N_man_supply_netvolat_total = N_man_supply_netvolat_total + N_man_supply_netvolat
 	P2O5_man_supply_total = P2O5_man_supply_total + manure_P
 	K2O_man_supply_total = K2O_man_supply_total + manure_K
@@ -85,12 +85,9 @@ while i__ < n__ then begin '{'
 	i__ = i__ + 1
 '}' end
 
+N_min_supply_total = NH3volat_min_total = N_min_supply_netvolat_total = P2O5_min_supply_total = K2O_min_supply_total = C_min_total = 0
 n___ = LEN (fertilizers)
 i___ = 0
-
-
-
-
 while i___ < n___ then begin '{'
 	row = GET (fertilizers, i___)
 	fert_type = GET (row, 'type')
@@ -100,31 +97,24 @@ while i___ < n___ then begin '{'
 	index = IF (avg_T < 15 && pH <= 7; 2; IF (avg_T < 15 && pH > 7; 3; IF (avg_T > 15 && avg_T < 25 && pH <= 7; 4; IF (avg_T > 15 && avg_T < 25 && pH > 7; 5; IF (avg_T > 25 && pH <= 7; 6; IF (avg_T > 25 && pH > 7; 7; 0))))))
 	vol_group = VLOOKUP (climatic_zone; Fertilizers; 5)
 	vol_c = IF (index > 0; VLOOKUP (vol_group; EFs; index); 0)
+	Ncf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 11); 0)
+	P2O5cf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 13); 0)
+	K2Ocf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 15); 0)
+	Ccf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 25); 0)
+	N_min = Ncf*fert_dose
+	EF_BAT_min = IF_ERROR (VLOOKUP (fert_applic; BATs; 2); 0)
+	NH3volat_min = N_min*(vol_c/1000)*(1 - EF_BAT_min/100)
+	N_min_supply_netvolat = N_min - NH3volat_min
+	P2O5_min = P2O5cf*fert_dose
+	K2O_min = K2Ocf*fert_dose
+	C_min = Ccf*fert_dose
 
-
-
-
-
-
-
-
-	clasification_fm = VLOOKUP (id; Fertilizers; 4)
-	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); 0)
-	Ncf = IF_ERROR (VLOOKUP (id; Fertilizers; 13); 0)
-	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
-	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
-	method = VLOOKUP (id; Fertilizers_aux; 2)
-	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
-	N_bf_vol = Nc_i*(1 - vol_losses)
-	deni_losses = 0
-	N_bf_deni = Nc_i*(1 - deni_losses)
-	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
-	frecu_application_amendment = 1.0
-	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
-	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
-	N_losses_vol = N_raw*vol_losses
-	N_total_losses_vol = N_total_losses_vol + N_losses_vol
-	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
+	N_min_supply_total = N_min_supply_total + N_min
+	NH3volat_min_total = NH3volat_min_total + NH3volat_min
+	N_min_supply_netvolat_total = N_min_supply_netvolat_total + N_min_supply_netvolat
+	P2O5_min_supply_total = P2O5_min_supply_total + P2O5_min
+	K2O_min_supply_total = K2O_min_supply_total + K2O_min
+	C_min_total = C_min_total + C_min
 	i___ = i___ + 1
 '}' end
 
@@ -136,6 +126,7 @@ Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'
 Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
 Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
 EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
+BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
 
 
 
