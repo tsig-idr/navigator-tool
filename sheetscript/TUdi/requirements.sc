@@ -5,7 +5,7 @@ PI = (rain_a - 10160/cn + 101.6)**2/(rain_a + 15240/cn - 152.4)
 SI = ((2*rain_w)/rain_a)**(1/3)
 Nleaching = Ncrop*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
 
-NH3_volatilization_total = N_graz_supply_total = N_graz_supply_netvolat_total = P2O5_graz_supply_total = K2O_graz_supply_total = C_graz_supply_total = 0
+N_graz_supply_total = NH3_volatilization_graz_total = N_graz_supply_netvolat_total = P2O5_graz_supply_total = K2O_graz_supply_total = C_graz_supply_total = 0
 n = LEN (grazings)
 i = 0
 while i < n then begin '{'
@@ -25,11 +25,11 @@ while i < n then begin '{'
 	grazing_P = dung_P*weight*grazing_days_yr*(grazing_hours_day/24)*grazing_number_ha*2.29
 	grazing_K = dung_K*weight*grazing_days_yr*(grazing_hours_day/24)*grazing_number_ha*1.21
 	grazing_C = dung_C*weight*grazing_days_yr*(grazing_hours_day/24)*grazing_number_ha*1.21
-	NH3_volatilization = grazing_N*EF*TAN
-	N_graz_supply_netvolat = grazing_N - NH3_volatilization
+	NH3_volatilization_graz = grazing_N*EF*TAN
+	N_graz_supply_netvolat = grazing_N - NH3_volatilization_graz
 
 	N_graz_supply_total = N_graz_supply_total + grazing_N
-	NH3_volatilization_total = NH3_volatilization_total + NH3_volatilization
+	NH3_volatilization_graz_total = NH3_volatilization_graz_total + NH3_volatilization_graz
 	N_graz_supply_netvolat_total = N_graz_supply_netvolat_total + N_graz_supply_netvolat
 	P2O5_graz_supply_total = P2O5_graz_supply_total + grazing_P
 	K2O_graz_supply_total = K2O_graz_supply_total + grazing_K
@@ -179,55 +179,8 @@ vol_c = EXP (IF (water_supply == '0'; 0-0.045; 0) + VLOOKUP (pH; pH4vol; 2; 1) +
 
 Nc_mineralization_amendment = 0
 N_total_losses_vol = N_total_losses_deni = 0
-n = LEN (fertilizers)
-i = 0
-while i < n then begin '{'
-	row = GET (fertilizers, i)
-	id = GET (row, 'fertilizerID')
-	amount = GET (row, 'amount')
-	clasification_fm = VLOOKUP (id; Fertilizers; 4)
-	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); 0)
-	Ncf = IF_ERROR (VLOOKUP (id; Fertilizers; 13); 0)
-	Nc_dm_amendment = IF_ERROR (VLOOKUP (id; Fertilizers; 14); 0)
-	Nc_i = IF (clasification_fm == 'Inorganic'; Ncf; Nc_dm_amendment)
-	method = VLOOKUP (id; Fertilizers_aux; 2)
-	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
-	N_bf_vol = Nc_i*(1 - vol_losses)
-	deni_losses = 0
-	N_bf_deni = Nc_i*(1 - deni_losses)
-	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
-	frecu_application_amendment = 1.0
-	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
-	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
-	N_losses_vol = N_raw*vol_losses
-	N_total_losses_vol = N_total_losses_vol + N_losses_vol
-	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
-	i = i + 1
-'}' end
-m = LEN (applied)
-j = 0
-while j < m then begin '{'
-	row = GET (applied, j)
-	id = GET (row, 'fertilizerID')
-	amount = GET (row, 'amount')
-	clasification_fm = GET (row, 'type')
-	method = GET (row, 'method')
-	frequency = GET (row, 'frequency')
-	Nc_i = GET (row, 'N')/100
-	vol_c_i = IF_ERROR (VLOOKUP (id; Fertilizers; 6); IF (clasification_fm == 'Organic'; 0.995; 0))
-	vol_losses = EXP (IF (method == 'incorporated'; 0-1.895; IF (method == 'topdressing'; 0-1.305; 0)) + vol_c_i)*vol_c
-	N_bf_vol = Nc_i*(1 - vol_losses)
-	deni_losses = 0
-	N_bf_deni = Nc_i*(1 - deni_losses)
-	N_bf = IF_ERROR (N_bf_vol*N_bf_deni/Nc_i; 0)
-	frecu_application_amendment = IF (clasification_fm == 'Inorganic'; 1.0; IF (frequency == 'annual'; 1.0; 0.5))
-	Nc_mineralization_amendment = Nc_mineralization_amendment + N_bf*amount*frecu_application_amendment
-	N_raw = N_bf*amount/(1 - vol_losses - deni_losses)
-	N_losses_vol = N_raw*vol_losses
-	N_total_losses_vol = N_total_losses_vol + N_losses_vol
-	N_total_losses_deni = N_total_losses_deni + (N_raw - N_losses_vol)*deni_losses
-	j = j + 1
-'}' end
+
+
 
 dm_h = VLOOKUP (crop_type; CropData; 11)/100
 Nc_r = VLOOKUP (crop_type; CropData; 24)/100
