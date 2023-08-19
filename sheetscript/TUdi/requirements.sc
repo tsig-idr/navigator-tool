@@ -118,6 +118,29 @@ while i___ < n___ then begin '{'
 	i___ = i___ + 1
 '}' end
 
+y = yield*1000
+dm_h = VLOOKUP (crop_type; CropData; 11)/100
+HI_est = VLOOKUP (crop_type; CropData; 9)/100
+Nc_h = VLOOKUP (crop_type; CropData; 14)/100
+Nc_r = VLOOKUP (crop_type; CropData; 25)/100
+Pc_h = VLOOKUP (crop_type; CropData; 15)/100
+Pc_r = VLOOKUP (crop_type; CropData; 26)/100
+Kc_h = VLOOKUP (crop_type; CropData; 16)/100
+Kc_r = VLOOKUP (crop_type; CropData; 27)/100
+Cc_h = VLOOKUP (crop_type; CropData; 17)/100
+Cc_r = VLOOKUP (crop_type; CropData; 28)/100
+h_dm = y*dm_h
+r_dm = h_dm*(1 - HI_est)/HI_est
+Nc_up_h = h_dm*Nc_h + r_dm*Nc_r
+Pc_up_h = h_dm*Pc_h + r_dm*Pc_r
+Kc_up_h = h_dm*Kc_h + r_dm*Kc_r
+Cc_up_h = h_dm*Cc_h + r_dm*Cc_r
+Nc_ex_h = h_dm*Nc_h
+Pc_ex_h = h_dm*Pc_h
+Kc_ex_h = h_dm*Kc_h
+Cc_ex_h = h_dm*Cc_h
+
+
 
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
 Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
