@@ -150,6 +150,7 @@ Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
 Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
 EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
 BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
+Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
 
 
 
