@@ -1,0 +1,14 @@
+;Olsen P (mg/kg);;;;;K/CEC;;;Olsen P (mg/kg)
+texture;soil P status;P lower limit >;P upper limit <=;P fert coeffficient;soil K status;K lower limit >;K upper limit <=;P fert coeffficient;Pc_status
+Sand;very low;;10;1;very low;;1,5;1;
+Loamy sand;very low;;10;1;very low;;1,5;1;
+Sandy loam;very low;;10;1;very low;;1,5;1;
+Sandy clay loam;very low;;8;1;very low;;1,5;1;
+Sandy clay;very low;;5;1;very low;;1,5;1;
+Clay loam;very low;;8;1;very low;;1,5;1;
+Clay;very low;;5;1;very low;;1,5;1;
+Silty clay;very low;;5;1;very low;;1,5;1;
+Silty clay loam;very low;;5;1;very low;;1,5;1;
+Silt;very low;;5;1;very low;;1,5;1;
+Silty loam;very low;;8;1;very low;;1,5;1;
+Loam;very low;;8;1;very low;;1,5;1;

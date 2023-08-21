@@ -139,7 +139,40 @@ Nc_ex_h = h_dm*Nc_h
 Pc_ex_h = h_dm*Pc_h
 Kc_ex_h = h_dm*Kc_h
 Cc_ex_h = h_dm*Cc_h
-
+Pc_s = Pc_s_0*VLOOKUP (Pc_method; Pc_method_table; 2)
+Kc_s = Kc_s_0/CEC
+P1l = VLOOKUP (soil_texture; PK_status_1; 3)
+P2l = VLOOKUP (soil_texture; PK_status_2; 3)
+P3l = VLOOKUP (soil_texture; PK_status_3; 3)
+P4l = VLOOKUP (soil_texture; PK_status_4; 3)
+P5l = VLOOKUP (soil_texture; PK_status_5; 3)
+P1u = VLOOKUP (soil_texture; PK_status_1; 4)
+P2u = VLOOKUP (soil_texture; PK_status_2; 4)
+P3u = VLOOKUP (soil_texture; PK_status_3; 4)
+P4u = VLOOKUP (soil_texture; PK_status_4; 4)
+P5u = VLOOKUP (soil_texture; PK_status_5; 4)
+P1e = VLOOKUP (soil_texture; PK_status_1; 2)
+P2e = VLOOKUP (soil_texture; PK_status_2; 2)
+P3e = VLOOKUP (soil_texture; PK_status_3; 2)
+P4e = VLOOKUP (soil_texture; PK_status_4; 2)
+P5e = VLOOKUP (soil_texture; PK_status_5; 2)
+Pc_status = IF (Pc_s > P1l && Pc_s <= P1u; P1e; IF (Pc_s > P2l && Pc_s <= P2u; P2e; IF (Pc_s > P3l && Pc_s <= P3u; P3e; IF (Pc_s > P4l && Pc_s <= P4u; P4e; IF (Pc_s > P5l && Pc_s <= P5u; P5e; '')))))
+K1l = VLOOKUP (soil_texture; PK_status_1; 7)
+K2l = VLOOKUP (soil_texture; PK_status_2; 7)
+K3l = VLOOKUP (soil_texture; PK_status_3; 7)
+K4l = VLOOKUP (soil_texture; PK_status_4; 7)
+K5l = VLOOKUP (soil_texture; PK_status_5; 7)
+K1u = VLOOKUP (soil_texture; PK_status_1; 8)
+K2u = VLOOKUP (soil_texture; PK_status_2; 8)
+K3u = VLOOKUP (soil_texture; PK_status_3; 8)
+K4u = VLOOKUP (soil_texture; PK_status_4; 8)
+K5u = VLOOKUP (soil_texture; PK_status_5; 8)
+K1e = VLOOKUP (soil_texture; PK_status_1; 6)
+K2e = VLOOKUP (soil_texture; PK_status_2; 6)
+K3e = VLOOKUP (soil_texture; PK_status_3; 6)
+K4e = VLOOKUP (soil_texture; PK_status_4; 6)
+K5e = VLOOKUP (soil_texture; PK_status_5; 6)
+Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K2e; IF (Kc_s > K3l && Kc_s <= K3u; K3e; IF (Kc_s > K4l && Kc_s <= K4u; K4e; IF (Kc_s > K5l && Kc_s <= K5u; K5e; '')))))
 
 
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
