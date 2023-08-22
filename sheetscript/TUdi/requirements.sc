@@ -119,6 +119,7 @@ while i___ < n___ then begin '{'
 '}' end
 
 y = yield*1000
+
 dm_h = VLOOKUP (crop_type; CropData; 11)/100
 HI_est = VLOOKUP (crop_type; CropData; 9)/100
 Nc_h = VLOOKUP (crop_type; CropData; 14)/100
@@ -157,6 +158,7 @@ P3e = VLOOKUP (soil_texture; PK_status_3; 2)
 P4e = VLOOKUP (soil_texture; PK_status_4; 2)
 P5e = VLOOKUP (soil_texture; PK_status_5; 2)
 Pc_status = IF (Pc_s > P1l && Pc_s <= P1u; P1e; IF (Pc_s > P2l && Pc_s <= P2u; P2e; IF (Pc_s > P3l && Pc_s <= P3u; P3e; IF (Pc_s > P4l && Pc_s <= P4u; P4e; IF (Pc_s > P5l && Pc_s <= P5u; P5e; '')))))
+P_fert_c = IF (Pc_status == 'very low' || Pc_status == 'low'; 1; IF (Pc_status == 'medium'; 0.75; IF (Pc_status == 'high'; 0.5; 0)))
 K1l = VLOOKUP (soil_texture; PK_status_1; 7)
 K2l = VLOOKUP (soil_texture; PK_status_2; 7)
 K3l = VLOOKUP (soil_texture; PK_status_3; 7)
@@ -173,9 +175,27 @@ K3e = VLOOKUP (soil_texture; PK_status_3; 6)
 K4e = VLOOKUP (soil_texture; PK_status_4; 6)
 K5e = VLOOKUP (soil_texture; PK_status_5; 6)
 Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K2e; IF (Kc_s > K3l && Kc_s <= K3u; K3e; IF (Kc_s > K4l && Kc_s <= K4u; K4e; IF (Kc_s > K5l && Kc_s <= K5u; K5e; '')))))
+K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
 
+factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
+Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity
+Nmineralization = Nc_mineralization_SOM
 
+n_fix_code = VLOOKUP (crop_type; CropData; 7)
+cycle_crop = IF (n_fix_code == 'Non_legume'; 0; VLOOKUP (crop_type; CropData; 8))
+concatenation = CONCAT (CONCAT (n_fix_code; IF (SoilN <= 0.2; '<=0.2'; '>0.2')); cycle_crop)
+n_fix_per = IF_ERROR (VLOOKUP (concatenation; N_fix_per; 2); 0)
+N_yield = y_dm*Nc_h
+N_res = r_dm*Nc_r
+dm_r = VLOOKUP (crop_type; CropData; 22)/100
+y_dm = h_dm
+fnr = 0.25
+HI_est_ = HI_est/100
+Nfixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
+
+CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
+Nmineralization_SOM = SP_CSV2ARRAY (CONCAT ('sheetscript/Tudi/', 'Nmineralization_SOM.csv'))
 Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
 Grazings = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Grazings.csv'))
 Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'))
@@ -184,6 +204,15 @@ Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
 EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
 BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
 Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
+N_fix_per = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
+
+
+
+
+
+
+
+
 
 
 
