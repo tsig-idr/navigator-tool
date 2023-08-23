@@ -1,9 +1,16 @@
-depth_c = 1
-cn = VLOOKUP (soil_texture; SoilData; 32)
-LI = PI*SI
-PI = (rain_a - 10160/cn + 101.6)**2/(rain_a + 15240/cn - 152.4)
-SI = ((2*rain_w)/rain_a)**(1/3)
-Nleaching = Ncrop*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
+CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'CropData.csv'))
+SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
+Nmineralization_SOM = SP_CSV2ARRAY (CONCAT ('sheetscript/Tudi/', 'Nmineralization_SOM.csv'))
+Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
+Grazings = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Grazings.csv'))
+Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'))
+Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
+Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
+EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
+BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
+Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
+N_fix_per = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
+irrigation_factors = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'irrigation_factors.csv'))
 
 N_graz_supply_total = NH3_volatilization_graz_total = N_graz_supply_netvolat_total = P2O5_graz_supply_total = K2O_graz_supply_total = C_graz_supply_total = 0
 n = LEN (grazings)
@@ -176,10 +183,41 @@ K4e = VLOOKUP (soil_texture; PK_status_4; 6)
 K5e = VLOOKUP (soil_texture; PK_status_5; 6)
 Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K2e; IF (Kc_s > K3l && Kc_s <= K3u; K3e; IF (Kc_s > K4l && Kc_s <= K4u; K4e; IF (Kc_s > K5l && Kc_s <= K5u; K5e; '')))))
 K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
+prev_y = prev_yield*1000
+prev_green = IF (prev_export_biomass == 'yes'; 1; 0)
+prev_dm_h = VLOOKUP (prev_crop_type; CropData; 11)/100
+prev_HI_est = VLOOKUP (prev_crop_type; CropData; 9)/100*prev_export_r
+prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
+prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 25)/100
+prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
+prev_Pc_r = VLOOKUP (prev_crop_type; CropData; 26)/100
+prev_Kc_h = VLOOKUP (prev_crop_type; CropData; 16)/100
+prev_Kc_r = VLOOKUP (prev_crop_type; CropData; 27)/100
+prev_Cc_h = VLOOKUP (prev_crop_type; CropData; 17)/100
+prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 28)/100
+prevPc_up_r = prev_r_dm_med*prev_Pc_r
+prevKc_up_r = prev_r_dm_med*prev_Kc_r
+prevCc_up_r = prev_r_dm_med*prev_Cc_r
+prev_h_dm_med = prev_y*prev_dm_h
+prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est)/prev_HI_est
+prevsov_h_dm_med = IF (prev_export_biomass == 'yes'; prev_green*prev_h_dm_med; 0)
+prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
+prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
+prev_concatenation = CONCAT (CONCAT (prev_n_fix_code; IF (SoilN <= 0.2; '<=0.2'; '>0.2')); prev_cycle_crop)
+prev_n_fix_per = IF_ERROR (VLOOKUP (prev_concatenation; N_fix_per; 2); 0)
+prevNc_up_r = IF (prev_export_biomass == 'yes'; (prevsov_h_dm_med*prev_Nc_h + prev_r_dm_med*prev_Nc_r)*prev_n_fix_per; prev_r_dm_med*prev_Nc_r)
+
+depth_c = 1
+cn = VLOOKUP (soil_texture; SoilData; 32)
+LI = PI*SI
+PI = (rain_a - 10160/cn + 101.6)**2/(rain_a + 15240/cn - 152.4)
+SI = ((2*rain_w)/rain_a)**(1/3)
+Nc_leaching = Ncrop*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
 
 factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
-Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity
-Nmineralization = Nc_mineralization_SOM
+N_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))
+Nc_mineralization_SOM = N_SOM*factor_humidity
+Nc_mineralization = Nc_mineralization_SOM
 
 n_fix_code = VLOOKUP (crop_type; CropData; 7)
 cycle_crop = IF (n_fix_code == 'Non_legume'; 0; VLOOKUP (crop_type; CropData; 8))
@@ -190,21 +228,41 @@ N_res = r_dm*Nc_r
 dm_r = VLOOKUP (crop_type; CropData; 22)/100
 y_dm = h_dm
 fnr = 0.25
-HI_est_ = HI_est/100
-Nfixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
+Nc_fixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
 
-CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'CropData.csv'))
-SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
-Nmineralization_SOM = SP_CSV2ARRAY (CONCAT ('sheetscript/Tudi/', 'Nmineralization_SOM.csv'))
-Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
-Grazings = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Grazings.csv'))
-Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'))
-Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
-Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
-EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
-BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
-Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
-N_fix_per = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
+factor_irrigation = VLOOKUP (type_irrigated; irrigation_factors; 2)
+Nc_irrigation = Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/100000
+
+amountN_fer = N_min_supply_total
+amountN_man = N_man_supply_netvolat_total
+amountN_gra = N_graz_supply_netvolat_total
+amountN_npk = prevNc_up_r
+amountN_min = N_SOM
+amountN_flo = amountN_fer
+EF_fer = IF (clima_type == 'wet'; 0.016; 0.005)
+EF_man = IF (clima_type == 'wet'; 0.006; 0.005)
+EF_gra = IF (clima_type == 'wet'; 0.006; 0.002)
+EF_npk = IF (clima_type == 'wet'; 0.006; 0.002)
+EF_min = IF (clima_type == 'wet'; 0.006; 0.002)
+EF_flo = IF (crop_type = 'RICE'; 0.05; 0)
+clima_type = VLOOKUP (climatic_zone; Clima; 7)
+Nc_denitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra + EF_npk*amountN_npk + EF_min*amountN_min + EF_flo*amountN_flo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
