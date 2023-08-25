@@ -1,6 +1,6 @@
 CropData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'CropData.csv'))
 SoilData = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'SoilData.csv'))
-Nmineralization_SOM = SP_CSV2ARRAY (CONCAT ('sheetscript/Tudi/', 'Nmineralization_SOM.csv'))
+Nmineralization_SOM = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Nmineralization_SOM.csv'))
 Manures = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Manures.csv'))
 Grazings = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Grazings.csv'))
 Volatilisation = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Volatilisation.csv'))
@@ -9,8 +9,13 @@ Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
 EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
 BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
 Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
-N_fix_per = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
+N_fix_per = STD_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
 irrigation_factors = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'irrigation_factors.csv'))
+PK_status_1 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_1.csv'))
+PK_status_2 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_2.csv'))
+PK_status_3 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_3.csv'))
+PK_status_4 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_4.csv'))
+PK_status_5 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_5.csv'))
 
 N_graz_supply_total = NH3_volatilization_graz_total = N_graz_supply_netvolat_total = P2O5_graz_supply_total = K2O_graz_supply_total = C_graz_supply_total = 0
 n = LEN (grazings)
@@ -21,7 +26,7 @@ while i < n then begin '{'
 	grazing_number_ha = GET (row, 'number_ha')
 	grazing_days_yr = GET (row, 'days_yr')
 	grazing_hours_day = GET (row, 'hours_day')
-	weight =  VLOOKUP (grazing_type; Grazings; 1)
+	weight =  VLOOKUP (grazing_type; Grazings; 2)
 	dung_N = VLOOKUP (grazing_type; Grazings; 3)
 	dung_P = VLOOKUP (grazing_type; Grazings; 4)
 	dung_K = VLOOKUP (grazing_type; Grazings; 5)
@@ -186,7 +191,7 @@ K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status =
 prev_y = prev_yield*1000
 prev_green = IF (prev_export_biomass == 'yes'; 1; 0)
 prev_dm_h = VLOOKUP (prev_crop_type; CropData; 11)/100
-prev_HI_est = VLOOKUP (prev_crop_type; CropData; 9)/100*prev_export_r
+prev_HI_est = VLOOKUP (prev_crop_type; CropData; 9)/100*prev_export_r/100
 prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
 prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 25)/100
 prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
@@ -203,7 +208,7 @@ prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est)/prev_HI_est
 prevsov_h_dm_med = IF (prev_export_biomass == 'yes'; prev_green*prev_h_dm_med; 0)
 prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
 prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
-prev_concatenation = CONCAT (CONCAT (prev_n_fix_code; IF (SoilN <= 0.2; '<=0.2'; '>0.2')); prev_cycle_crop)
+prev_concatenation = CONCAT (CONCAT (prev_n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2')); prev_cycle_crop)
 prev_n_fix_per = IF_ERROR (VLOOKUP (prev_concatenation; N_fix_per; 2); 0)
 prevNc_up_r = IF (prev_export_biomass == 'yes'; (prevsov_h_dm_med*prev_Nc_h + prev_r_dm_med*prev_Nc_r)*prev_n_fix_per; prev_r_dm_med*prev_Nc_r)
 
@@ -212,16 +217,16 @@ cn = VLOOKUP (soil_texture; SoilData; 32)
 LI = PI*SI
 PI = (rain_a - 10160/cn + 101.6)**2/(rain_a + 15240/cn - 152.4)
 SI = ((2*rain_w)/rain_a)**(1/3)
-Nc_leaching = Ncrop*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
+Nc_leaching = N_bal*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
 
 factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
 N_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))
 Nc_mineralization_SOM = N_SOM*factor_humidity
-Nc_mineralization = Nc_mineralization_SOM
+Nmineralization = Nc_mineralization_SOM
 
 n_fix_code = VLOOKUP (crop_type; CropData; 7)
 cycle_crop = IF (n_fix_code == 'Non_legume'; 0; VLOOKUP (crop_type; CropData; 8))
-concatenation = CONCAT (CONCAT (n_fix_code; IF (SoilN <= 0.2; '<=0.2'; '>0.2')); cycle_crop)
+concatenation = CONCAT (CONCAT (n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2')); cycle_crop)
 n_fix_per = IF_ERROR (VLOOKUP (concatenation; N_fix_per; 2); 0)
 N_yield = y_dm*Nc_h
 N_res = r_dm*Nc_r
@@ -244,12 +249,12 @@ EF_man = IF (clima_type == 'wet'; 0.006; 0.005)
 EF_gra = IF (clima_type == 'wet'; 0.006; 0.002)
 EF_npk = IF (clima_type == 'wet'; 0.006; 0.002)
 EF_min = IF (clima_type == 'wet'; 0.006; 0.002)
-EF_flo = IF (crop_type = 'RICE'; 0.05; 0)
+EF_flo = IF (crop_type == 'RICE'; 0.05; 0)
 clima_type = VLOOKUP (climatic_zone; Clima; 7)
-Nc_denitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra + EF_npk*amountN_npk + EF_min*amountN_min + EF_flo*amountN_flo
+Ndenitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra + EF_npk*amountN_npk + EF_min*amountN_min + EF_flo*amountN_flo
 
-INPUT_N = SUM (N_atm; Nc_mineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)
-OUTPUT_N = SUM (Nc_up_h; Nc_ex_h; Nc_denitrification; NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total)
+INPUT_N = SUM (N_atm; Nmineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)
+OUTPUT_N = SUM (Nc_up_h; Nc_ex_h; Ndenitrification; NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total)
 INPUT_P2O5 = SUM (prevPc_up_r; P2O5_man_supply_total + P2O5_graz_supply_total; P2O5_min_supply_total; P_fert_c)
 OUTPUT_P2O5 = SUM (Pc_up_h; Pc_ex_h)
 INPUT_K2O = SUM (prevKc_up_r; K2O_man_supply_total + K2O_graz_supply_total; K2O_min_supply_total; K_fert_c)
@@ -264,7 +269,7 @@ K_bal = INPUT_K2O - OUTPUT_K2O
 N_eff = Nc_ex_h/(N_man_supply_total + N_graz_supply_total + N_min_supply_total)
 P_eff = Pc_ex_h/(P2O5_man_supply_total + P2O5_graz_supply_total + P2O5_min_supply_total)
 K_eff = Kc_ex_h/(K2O_man_supply_total + K2O_graz_supply_total + K2O_min_supply_total)
-C applied = C_manure_total + C_graz_supply_total + (Cc_up_h - Cc_ex_h) + prevCc_up_r + C_min_total
-N2O_emission = Nc_denitrification
+C_applied = C_manure_total + C_graz_supply_total + (Cc_up_h - Cc_ex_h) + prevCc_up_r + C_min_total
+N2O_emission = Ndenitrification
 NH3_volatilisation = NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total
 NO3_leaching = Nc_leaching

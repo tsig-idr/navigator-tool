@@ -7,18 +7,12 @@ module.exports = function () {
 	async function requeriments (input, outputnames) {
 		!input.fertilizers &&
 			(input.fertilizers = []);
-		input.Pc_s_0 = input.Pc_s;
-		input.Kc_s_0 = input.Kc_s;
-		input.Nc_s_0 = input.Nc_s_initial;
-		input.Nc_s_n = input.Nc_end;
-		!input.Pc_s_unit &&
-			(input.Pc_s_unit = 'ppm');
-		!input.Kc_s_unit &&
-			(input.Kc_s_unit = 'ppm');
-		!input.Nc_s_initial_unit &&
-			(input.Nc_s_initial_unit = 'kg_ha');
-		!input.Nc_end_unit &&
-			(input.Nc_end_unit = 'kg_ha');
+		!input.manures &&
+			(input.manures = []);
+		!input.prev_manures &&
+			(input.prev_manures = []);
+		!input.grazings &&
+			(input.grazings = []);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
@@ -35,6 +29,13 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	engine.setFunction('user', 'STD_CSV2ARRAY', 1, filename => {
+		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
+			return null;
+		}
+		const csv = fs.readFileSync(filename, 'utf8');
+		return csv.replace(/\r/g, '').split('\n').map(line => line.split(','));
+	});
 	// Transforma un archivo CSV hispano a un array de arrays
 	engine.setFunction('user', 'SP_CSV2ARRAY', 1, filename => {
 		if (!fs.existsSync(filename = path.join(path.resolve(), filename))) {
