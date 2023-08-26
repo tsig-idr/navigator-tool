@@ -38,13 +38,13 @@ module.exports.router = function () {
 	router.post('/nutrients', asyncHandler(async (req, res) => {
 		const input = typeof req.body === 'object' && req.body || req.params && typeof req.params === 'object' || {};
 		const output = await dispatcher(input);
-		const result = {};
+		/*const result = {};
 		for (let key in output) {
 			if (typeof output[key] != 'object'){
 				result[key] = output[key];
 			}
 		}
-		return res.json(result);
+		return res.json(result);*/
 		res.json({
 			requirements: {
 				fertilizer: {
