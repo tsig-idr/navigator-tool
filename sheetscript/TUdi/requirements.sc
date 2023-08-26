@@ -8,7 +8,7 @@ Clima = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Clima.csv'))
 Fertilizers = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Fertilizers.csv'))
 EFs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'EFs.csv'))
 BATs = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'BATs.csv'))
-Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/F3/', 'Pc_method_table.csv'))
+Pc_method_table = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'Pc_method_table.csv'))
 N_fix_per = STD_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'n_fix_per.csv'))
 irrigation_factors = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'irrigation_factors.csv'))
 PK_status_1 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_1.csv'))
@@ -16,6 +16,8 @@ PK_status_2 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_2.csv'))
 PK_status_3 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_3.csv'))
 PK_status_4 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_4.csv'))
 PK_status_5 = SP_CSV2ARRAY (CONCAT ('sheetscript/TUdi/', 'PK_status_5.csv'))
+
+avg_T = VLOOKUP (climatic_zone; Clima; 5)
 
 N_graz_supply_total = NH3_volatilization_graz_total = N_graz_supply_netvolat_total = P2O5_graz_supply_total = K2O_graz_supply_total = C_graz_supply_total = 0
 n = LEN (grazings)
@@ -105,14 +107,13 @@ while i___ < n___ then begin '{'
 	fert_type = GET (row, 'type')
 	fert_dose = GET (row, 'dose')
 	fert_applic = GET (row, 'applic')
-	avg_T = VLOOKUP (climatic_zone; Clima; 5)
 	index = IF (avg_T < 15 && pH <= 7; 2; IF (avg_T < 15 && pH > 7; 3; IF (avg_T > 15 && avg_T < 25 && pH <= 7; 4; IF (avg_T > 15 && avg_T < 25 && pH > 7; 5; IF (avg_T > 25 && pH <= 7; 6; IF (avg_T > 25 && pH > 7; 7; 0))))))
-	vol_group = VLOOKUP (climatic_zone; Fertilizers; 5)
+	vol_group = VLOOKUP (fert_type; Fertilizers; 4)
 	vol_c = IF (index > 0; VLOOKUP (vol_group; EFs; index); 0)
-	Ncf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 11); 0)
-	P2O5cf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 13); 0)
-	K2Ocf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 15); 0)
-	Ccf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 25); 0)
+	Ncf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 10); 0)
+	P2O5cf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 12); 0)
+	K2Ocf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 14); 0)
+	Ccf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 24); 0)
 	N_min = Ncf*fert_dose
 	EF_BAT_min = IF_ERROR (VLOOKUP (fert_applic; BATs; 2); 0)
 	NH3volat_min = N_min*(vol_c/1000)*(1 - EF_BAT_min/100)
@@ -213,11 +214,13 @@ prev_n_fix_per = IF_ERROR (VLOOKUP (prev_concatenation; N_fix_per; 2); 0)
 prevNc_up_r = IF (prev_export_biomass == 'yes'; (prevsov_h_dm_med*prev_Nc_h + prev_r_dm_med*prev_Nc_r)*prev_n_fix_per; prev_r_dm_med*prev_Nc_r)
 
 depth_c = 1
+rain_a = VLOOKUP (climatic_zone; Clima; 3)
+rain_w = VLOOKUP (climatic_zone; Clima; 4)
 cn = VLOOKUP (soil_texture; SoilData; 32)
 LI = PI*SI
 PI = (rain_a - 10160/cn + 101.6)**2/(rain_a + 15240/cn - 152.4)
 SI = ((2*rain_w)/rain_a)**(1/3)
-Nc_leaching = N_bal*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
+Nleaching = MAX (N_bal; 0)*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
 
 factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
 N_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))
@@ -255,9 +258,9 @@ Ndenitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra 
 
 INPUT_N = SUM (N_atm; Nmineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)
 OUTPUT_N = SUM (Nc_up_h; Nc_ex_h; Ndenitrification; NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total)
-INPUT_P2O5 = SUM (prevPc_up_r; P2O5_man_supply_total + P2O5_graz_supply_total; P2O5_min_supply_total; P_fert_c)
+INPUT_P2O5 = SUM (prevPc_up_r; P2O5_man_supply_total + P2O5_graz_supply_total; P2O5_min_supply_total)
 OUTPUT_P2O5 = SUM (Pc_up_h; Pc_ex_h)
-INPUT_K2O = SUM (prevKc_up_r; K2O_man_supply_total + K2O_graz_supply_total; K2O_min_supply_total; K_fert_c)
+INPUT_K2O = SUM (prevKc_up_r; K2O_man_supply_total + K2O_graz_supply_total; K2O_min_supply_total)
 OUTPUT_K2O = SUM (Kc_up_h; Kc_ex_h)
 
 N_req = MAX (OUTPUT_N - INPUT_N; 0)
@@ -272,4 +275,4 @@ K_eff = Kc_ex_h/(K2O_man_supply_total + K2O_graz_supply_total + K2O_min_supply_t
 C_applied = C_manure_total + C_graz_supply_total + (Cc_up_h - Cc_ex_h) + prevCc_up_r + C_min_total
 N2O_emission = Ndenitrification
 NH3_volatilisation = NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total
-NO3_leaching = Nc_leaching
+NO3_leaching = Nleaching
