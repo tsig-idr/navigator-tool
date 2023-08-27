@@ -238,7 +238,7 @@ y_dm = h_dm
 fnr = 0.25
 Nc_fixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
 
-factor_irrigation = VLOOKUP (type_irrigated; irrigation_factors; 2)
+factor_irrigation = VLOOKUP (type_irrigation; irrigation_factors; 2)
 Nc_irrigation = IF_ERROR (Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/100000; 0)
 
 amountN_fer = N_min_supply_total
