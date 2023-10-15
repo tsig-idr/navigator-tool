@@ -32,6 +32,8 @@ module.exports = function () {
 			(input.Kc_s_unit = 'ppm');
 		!input.Nc_s_initial_unit &&
 			(input.Nc_s_initial_unit = 'kg_ha');
+		!input.chart &&
+			(input.chart = {});
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
@@ -135,6 +137,8 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	// isNaN
+	engine.setFunction('user', 'ISNAN', 1, n => isNaN(n));
 	// Equivalente a la EXP de Excel
 	engine.setFunction('user', 'EXP', 1, n => Math.pow(Math.E, n));
 	// Devuelve el logaritmo natural
