@@ -62,6 +62,8 @@ module.exports = function () {
 			(input.Meteo = sp_csv2array('tmp/F1/default_Meteo.csv'));
 		!input.Riegos &&
 			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
+		!input.chart &&
+			(input.chart = {});
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F1', 'swb.sc'), 'utf8'),
 			engine = customEngine(),

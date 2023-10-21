@@ -37,6 +37,7 @@ fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
 SWB4days = NEW()
 
 fecha = GET (fechas, 1)
+date = GET (chart, 'date')
 NDVI_interpolado_ = IF_ERROR (VLOOKUP (GET (fechas, 0); NDVI_real; 2); VLOOKUP (GET (fechas, 0); NDVI_tipo; 2))
 NDVI_interpolado = IF_ERROR (VLOOKUP (fecha; NDVI_real; 2); VLOOKUP (fecha; NDVI_tipo; 2))
 fc_ = 0
@@ -64,6 +65,9 @@ while i < n - 1 then begin '{'
 
 	SET (SWB4day, 'Fecha', fecha)
 
+	_NDVI = GET (chart, 'NDVI_interpolado')
+	NDVI_interpolado = IF (ISNAN (_NDVI) || fecha <> date; NDVI_interpolado; _NDVI)
+
 	J = FLOOR (275*month/9 - 30 + day) + IF (month > 2; 0 - 2; 0) + IF (MOD (year; 4) == 0; IF (month > 2; 1; 0); 0)
 	SET (SWB4day, 'J', J)
 
@@ -76,7 +80,8 @@ while i < n - 1 then begin '{'
 	_NDVI_interpolado = IF_ERROR (VLOOKUP (_fecha; NDVI_real; 2); VLOOKUP (_fecha; NDVI_tipo; 2))
 	SET (SWB4day, 'NDVI_interpolado', NDVI_interpolado)
 
-	ETo = IF_ERROR (VLOOKUP (fecha; Meteo; 13); VLOOKUP (fecha; Clima; 13))
+	_ETo = GET (chart, 'ETo')
+	ETo = IF (ISNAN (_ETo) || fecha <> date; IF_ERROR (VLOOKUP (fecha; Meteo; 13); VLOOKUP (fecha; Clima; 13)); _ETo)
 	SET (SWB4day, 'ETo', ETo)
 
 	Req_neto_riego = IF (Riego_neto_necesario_ > 0; Riego_neto_necesario_/fw_0; 0)
@@ -112,10 +117,12 @@ while i < n - 1 then begin '{'
 	De_final = IF (i > 2; De_final_; De_0) - P_RO - Req_neto_riego + E/few + DPe
 	SET (SWB4day, 'De_final', E/few)
 
-	Kc = Kcb + Ke
+	_Kc = GET (chart, 'Kc')
+	Kc = IF (ISNAN (_Kc) || fecha <> date; Kcb + Ke; _Kc)
 	SET (SWB4day, 'Kc', Kc)
 
-	ETc = Kc*ETo
+	_ETc = GET (chart, 'ETc')
+	ETc = IF (ISNAN (_ETc) || fecha <> date; Kc*ETo; _ETc)
 	SET (SWB4day, 'ETc', ETc)
 
 	Profundidad_radicular = MIN (root_max; MAX(root_min; MAX ((Kcb - Kcb_ini)/(Kcb_mid - Kcb_ini)*(root_max - root_min) + root_min; Profundidad_radicular_)))
@@ -162,7 +169,8 @@ while i < n - 1 then begin '{'
 	Biomasa_acumulada = IF_ERROR (Biomasa_potencial + Biomasa_acumulada_; '')
 	SET (SWB4day, 'Biomasa_acumulada', Biomasa_acumulada)
 
-	Nuptake = (IF (Biomasa_acumulada < 13; (IF (Biomasa_acumulada < 1; 5.3; IF_ERROR (5.35*Biomasa_acumulada**(0 - 0.442); 0)))/100; 1.7/100))*Biomasa_acumulada*1000
+	_Nuptake = GET (chart, 'Nuptake')
+	Nuptake = IF (ISNAN (_Nuptake) || fecha <> date; (IF (Biomasa_acumulada < 13; (IF (Biomasa_acumulada < 1; 5.3; IF_ERROR (5.35*Biomasa_acumulada**(0 - 0.442); 0)))/100; 1.7/100))*Biomasa_acumulada*1000; _Nuptake)
 	SET (SWB4day, 'Nuptake', Nuptake)
 
 	Nuptakediario = Nuptake - Nuptake_
