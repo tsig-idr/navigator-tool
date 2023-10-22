@@ -1,6 +1,6 @@
 var form = document.querySelector('form'),
 	ul = document.querySelector('ul.list-unstyled'),
-	tables = form.querySelectorAll('table'),
+	tables = document.querySelectorAll('table[name]'),
 	fertilizers = {},
 	crops = {},
 	soils = {},
@@ -19,8 +19,8 @@ form.files = {
 	'prices': null
 };
 form.querySelectorAll('button[name]').forEach(button => {
-	button.addEventListener('click', ev => {
-		const table = form.querySelector(`table[name="${button.name}"]`);
+	button.addEventListener('click', () => {
+		const table = document.querySelector(`table[name="${button.name}"]`);
 		tables.forEach(table => {
 			table.classList.add('d-none');
 			table.parentNode.classList.add('d-none');
@@ -327,3 +327,275 @@ function setFarm (farm) {
 				});
 		});
 }
+
+
+
+document.querySelectorAll('li').forEach(function(li) {
+	li.addEventListener('click', function() {
+		this.classList.add('d-none');
+	});
+});
+const userData = {
+	input: {
+		soil_texture:"sandyLoam",
+		CEC:"75",
+		depth_s:"0.45",
+		pH:"7",
+		stony:"0.00",
+		SOM:"1.5",
+		N_NH4:"0.2",
+		Nc_s_initial:"29.995",
+		Nc_s_initial_unit:"kg_ha",
+		Pc_method:"olsen",
+		Pc_s:"0.603",
+		Pc_s_unit:"ppm",
+		Kc_s:"0.004",
+		Kc_s_unit:"ppm",
+		crop_type:"BARLEY_6_ROW",
+		PK_strategy:"maximum-yield",
+		crop_startDate:"2015-01-01",
+		crop_endDate:"2015-06-07",
+		yield:"20000",
+		Nc_h:"1.6",
+		Pc_h:"0.42",
+		Kc_h:"0.54",
+		export_r:"100",
+		HI_est:"40",
+		CV:"20",
+		climatic_zone:"atlantic",
+		dose_irrigation:"346",
+		efficiency:"82",
+		water_supply:"1",
+		type_irrigated:"sprinkler",
+		waterNitrate:"15"
+	}
+};
+var chart,
+	datasetIndex,
+	index,
+	rows,
+	dates;
+
+fetch('http://127.0.0.1:1345/F1/SNB/daily', { //http://127.0.0.1:1345/F1/SWB
+	method: 'POST',
+	body: JSON.stringify(userData),
+	headers: {
+		'Content-type': 'application/json; charset=UTF-8'
+	}
+}).then(res => res.json()).then(data => setChart(data, series4snb, scales4snb));
+
+const series4snb = [
+	{
+		label: 'N_rate',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_mineral_soil',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_extr',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'Nl',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_recom',
+		yAxisID: 'y1'
+	},				{
+		label: 'BBCH',
+		yAxisID: 'y2'
+	}
+];
+const series4swb = [
+	{
+		label: 'Kc',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'NDVI_interpolado',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'ETc',
+		yAxisID: 'y2'
+	},
+	{
+		label: 'ETo',
+		yAxisID: 'y2'
+	},
+	{
+		label: 'Biomasa_acumulada',
+		yAxisID: 'y3'
+	},
+	{
+		label: 'Nuptake',
+		yAxisID: 'y4'
+	}
+];
+const scales4snb = {
+	y1: {
+		type: 'linear',
+		display: true,
+		position: 'left',
+		ticks: {
+			//callback: (val, idx, ticks) => idx == (ticks.length - 1) ? 'Kg/ha ' + val : val
+			callback: val => val + ' Kg/ha'
+		}
+	},
+	y2: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		}
+	}
+};
+const scales4swb = {
+	y1: {
+		type: 'linear',
+		display: true,
+		position: 'left'
+	},
+	y2: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		}
+	},
+	y3: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		}
+	},
+	y5: {
+		type: 'linear',
+		display: true,
+		position: 'left'
+	}
+};
+
+function setChart(data, series, scales) {
+	rows = data.results.filter(row => row.Fecha >= crop_startDate && row.Fecha <= crop_endDate);
+	dates = rows.map(row => row.Fecha);
+	series.forEach(serie => {
+		serie.data = rows.map(row => row[serie.label]);
+	});
+	if (!chart) {
+		chart = new Chart(canvas,
+			{
+				type: 'line',
+				data: {
+					labels: dates,
+					datasets: series
+				},
+				options: {
+					onClick: (ev, els) => {
+						if (els && els.length) {
+							index = els[0].index;
+							datasetIndex = els[0].datasetIndex;
+							variableForm.classList.remove('d-none');
+							canvas.classList.add('faded');
+							timeSpan.innerHTML = dates[index];
+							variableLabel.innerHTML = chart.data.datasets[datasetIndex].label;
+							rangeInput.min = chart.scales[chart.data.datasets[datasetIndex].yAxisID].min;
+							rangeInput.max = chart.scales[chart.data.datasets[datasetIndex].yAxisID].max;
+							rangeInput.style.accentColor = chart.data.datasets[datasetIndex].borderColor;
+							variableInput.value = rangeInput.value = els[0].element.$context.parsed.y;
+						}
+					},
+					scales: scales,
+					plugins: {
+						zoom: {
+							pan: {
+								enabled: true,
+								mode: 'x',
+								scaleMode: 'y'
+							},
+							zoom: {
+								wheel: {
+									enabled: true,
+								},
+								pinch: {
+									enabled: true,
+								},
+								mode: 'x',
+								scaleMode: 'y'
+							}
+						}
+					}
+				}
+			}
+		);
+		series.forEach((serie, index) => {
+			let input;
+			controlForm.appendChild(input = document.createElement('input'));
+			input.type = 'range';
+			input.name = serie.label;
+			input.min = chart.scales[serie.yAxisID].min;
+			input.max = chart.scales[serie.yAxisID].max;
+			input.step = 'any';
+			input.value = serie.data[0];
+			input.style.accentColor = chart.data.datasets[index].borderColor;
+		});
+	}
+	else {
+		chart.data.datasets = series;
+		chart.update();
+	}
+};
+
+function updateChart(ev) {
+	canvas.classList.remove('faded');
+	variableForm.classList.add('d-none');
+	userData.input.chart = {};
+	if (ev.target.parentNode == controlForm) {
+		userData.input.chart.date = controlForm.date.value;
+		chart.data.datasets.forEach(serie => {
+			userData.input.chart[serie.label] = parseFloat(controlForm[serie.label].value);
+		});
+	}
+	else {
+		chart.data.datasets[datasetIndex].data[index] = variableInput.value;
+		chart.update();
+		userData.input.chart.date = dates[index];
+		userData.input.chart[chart.data.datasets[datasetIndex].label] = parseFloat(variableInput.value);
+	}
+	fetch('http://127.0.0.1:1345/F1/SNB/daily', { //http://127.0.0.1:1345/F1/SWB
+		method: 'POST',
+		body: JSON.stringify(userData),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8'
+		}
+	}).then(res => res.json()).then(data => setChart(data, series4snb, scales4snb));
+}
+const crop_startDate = '2015-01-22';
+const crop_endDate = '2015-06-22';
+
+const canvas = document.querySelector('canvas');
+const variableForm = document.querySelector('.chart>form:not(.control)');
+const controlForm = document.querySelector('.chart>form.control');
+const timeSpan = document.getElementById('time');
+const variableLabel = variableForm.querySelector('label[for=variable]');
+const variableInput = document.getElementById('variable');
+const rangeInput = variableForm.querySelector('input[type=range]');
+variableInput.addEventListener('keypress', ev => {
+	if (ev.key === 'Enter') {				
+		ev.preventDefault();
+		updateChart(ev);
+	}
+});
+rangeInput.addEventListener('input', ev => {
+	variable.value = ev.target.value;
+});
+variableForm.querySelector('button').addEventListener('click', updateChart);
+controlForm.querySelector('button').addEventListener('click', updateChart);
+controlForm.date.value = crop_startDate;

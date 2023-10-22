@@ -144,6 +144,12 @@ IT = 0
 c_a = 0
 c_b = 0
 date = GET (chart, 'date')
+_BBCH = GET (chart, 'BBCH')
+_N_extr = GET (chart, 'N_extr')
+_N_recom = GET (chart, 'N_recom')
+_N_mineral_soil = GET (chart, 'N_mineral_soil')
+_N_rate = GET (chart, 'N_rate')
+_Nl = GET (chart, 'Nl')
 n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 1
 i = 1
 while i < n then begin '{'
@@ -242,13 +248,11 @@ while i < n then begin '{'
 
 	Nuptakediario_ = Nuptakediario_ + Nuptakediario
 
-	_BBCH = GET (chart, 'BBCH')
 	BBCH = IF (ISNAN (_BBCH) || Fecha <> date; IF_ERROR (VLOOKUP (Fecha; IF (feno_n > 2; FenoBBCH; FenoBBCH_); 2; 1); ''); _BBCH)
 	SET (nitro4day, 'BBCH', BBCH)
 
 	ExtracR_N = IF_ERROR (VLOOKUP (Fecha; FenoBBCH_; 3; 1); 0)
 	ExtracR_N_Kg = ExtracR_N*Nuptake
-	_N_extr = GET (chart, 'N_extr')
 	N_extr = IF (ISNAN (_N_extr) || Fecha <> date; IF_ERROR (0 - ExtracR_N_Kg; 0); _N_extr)
 	SET (nitro4day, 'N_extr', N_extr)
 
@@ -272,7 +276,7 @@ while i < n then begin '{'
 	N_agua = (Riego_Efec)*waterNitrate*14/(100*62)
 	SET (nitro4day, 'N_agua', N_agua)
 
-	Nl = IF (N_NO3_ < 0; 0; (0 - DP)*N_NO3_/100)
+	Nl = IF (ISNAN (_Nl) || Fecha <> date; IF (N_NO3_ < 0; 0; (0 - DP)*N_NO3_/100); _Nl)
 	SET (nitro4day, 'Nl', Nl)
 
 	fertilizer = GET (planning_done, Fecha) || []
@@ -296,15 +300,12 @@ while i < n then begin '{'
 	N_curve = IF (Fecha >= mineralIni && Fecha < mineralEnd; curve; 0)
 	SET (nitro4day, 'N_curve', N_curve)
 
-	_N_recom = GET (chart, 'N_recom')
 	N_recom = IF (ISNAN (_N_recom) || Fecha <> date; IF_ERROR (VLOOKUP (BBCH; FenoT; 3; 1); IF (Fecha > ADD2DATE (crop_startDate, 0 - 20); 25; 0)); _N_recom)
 	SET (nitro4day, 'N_recom', N_recom)
 
-	_N_mineral_soil = GET (chart, 'N_mineral_soil')
 	N_mineral_soil = IF (ISNAN (_N_mineral_soil) || Fecha <> date; N_mineral_soil_ + SUM (N_mineralizado; N_agua) + SUM (Nl; N_extr_) + N_curve; _N_mineral_soil)
 	SET (nitro4day, 'N_mineral_soil', N_mineral_soil)
 
-	_N_rate = GET (chart, 'N_rate')
 	N_rate = IF (ISNAN (_N_rate) || Fecha <> date; N_recom - N_mineral_soil; _N_rate)
 	SET (nitro4day, 'N_rate', N_rate)
 
