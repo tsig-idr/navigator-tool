@@ -330,7 +330,7 @@ function setFarm (farm) {
 
 
 
-document.querySelectorAll('li').forEach(function(li) {
+document.querySelectorAll('.chart li').forEach(function(li) {
 	li.addEventListener('click', function() {
 		this.classList.add('d-none');
 	});
@@ -581,11 +581,11 @@ const crop_startDate = '2015-01-22';
 const crop_endDate = '2015-06-22';
 
 const canvas = document.querySelector('canvas');
-const variableForm = document.querySelector('.chart>form:not(.control)');
-const controlForm = document.querySelector('.chart>form.control');
 const timeSpan = document.getElementById('time');
-const variableLabel = variableForm.querySelector('label[for=variable]');
+const controlForm = document.querySelector('.chart>form.control');
+const variableForm = document.querySelector('.chart>form:not(.control)');
 const variableInput = document.getElementById('variable');
+const variableLabel = variableForm.querySelector('label[for=variable]');
 const rangeInput = variableForm.querySelector('input[type=range]');
 variableInput.addEventListener('keypress', ev => {
 	if (ev.key === 'Enter') {				
