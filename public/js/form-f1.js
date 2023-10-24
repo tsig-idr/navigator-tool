@@ -25,6 +25,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			table.classList.add('d-none');
 			table.parentNode.classList.add('d-none');
 		});
+		resultDiv.classList.add('d-none');
 		form.classList.add('was-validated');
 		if (!form.checkValidity()) {
 			return false;
@@ -52,6 +53,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
 			}).then(res => res.json()).then(data => {
+				resultDiv.classList.remove('d-none');
+				document.location.href = '#chart';
 				let tr, td, tbody, a,
 					i, name;
 				switch (button.name) {
@@ -582,10 +585,11 @@ const crop_endDate = '2015-06-22';
 
 const canvas = document.querySelector('canvas');
 const timeSpan = document.getElementById('time');
+const resultDiv = document.getElementById('result');
 const controlForm = document.querySelector('.chart>form.control');
 const variableForm = document.querySelector('.chart>form:not(.control)');
-const variableInput = document.getElementById('variable');
 const variableLabel = variableForm.querySelector('label[for=variable]');
+const variableInput = document.getElementById('variable');
 const rangeInput = variableForm.querySelector('input[type=range]');
 variableInput.addEventListener('keypress', ev => {
 	if (ev.key === 'Enter') {				
