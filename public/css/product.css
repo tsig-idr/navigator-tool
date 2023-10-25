@@ -236,9 +236,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .chart ul li {
 	margin:1em;
 }
-.chart table {
-	text-align: right;
-}
 .chart form {
 	width: 40%;
 	height: 40%;
@@ -267,10 +264,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	display: inline-block;
 	transform: rotate(-90deg);
 	margin-top: 80px;
-	margin-left: -40px;
-}
-.chart form:not(.control) input[type=range] {
-	margin-top: 0px;
+	margin-left: -60px;
 }
 canvas {
 	user-select: none;

@@ -608,31 +608,35 @@
 								</li>
 							</ul>
 							<form class="d-none">
-								<table>
-									<tr>
-										<td>
-											<span id="time"></span>
-											<br/>
-											<br/>
-											<label for="variable"></label>
-											<br/>
-											<input id="variable" />
-											<br/>
-											<br/>
-											<button type="button">OK</button>
-										</td>
-										<td>
-											<input type="range" step="any"/>
-										</td>
-									</tr>
-								</table>
+								<div class="row">
+									<div class="col-sm-3 offset-sm-3 text-right">
+										<span id="time"></span>
+										<br/>
+										<br/>
+										<label for="variable"></label>
+										<br/>
+										<input class="form-control" id="variable" />
+										<br/>
+										<button class="btn btn-secondary" type="button">OK</button>
+									</div>
+									<div class="col-sm-3">
+										<input type="range" step="any"/>
+									</div>
+								</div>
 							</form>
 							<canvas></canvas>
-							<form class="control">
-								<button type="button">Recalculate</button>
-								<span>chart with below values from the day</span>
-								<input type="date" name="date"/>
-								<br/>
+							<form class="control form-inline mt-4 mb-4">
+								<div class="row">
+									<div class="col-sm-1 offset-sm-3">
+										<button class="btn btn-secondary" type="button" name="all">Recalculate</button>
+									</div>
+									<div class="col-sm-3">
+										<label>chart with below values from the day</label>
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control" type="date" name="date"/>
+									</div>
+								</div>
 							</form>
 						</div>
 					</div>

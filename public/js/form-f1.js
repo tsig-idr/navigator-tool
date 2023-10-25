@@ -560,7 +560,7 @@ function updateChart(ev) {
 	canvas.classList.remove('faded');
 	variableForm.classList.add('d-none');
 	userData.input.chart = {};
-	if (ev.target.parentNode == controlForm) {
+	if (ev.target.name == 'all') {
 		userData.input.chart.date = controlForm.date.value;
 		chart.data.datasets.forEach(serie => {
 			userData.input.chart[serie.label] = parseFloat(controlForm[serie.label].value);
@@ -586,8 +586,8 @@ const crop_endDate = '2015-06-22';
 const canvas = document.querySelector('canvas');
 const timeSpan = document.getElementById('time');
 const resultDiv = document.getElementById('result');
-const controlForm = document.querySelector('.chart>form.control');
-const variableForm = document.querySelector('.chart>form:not(.control)');
+const controlForm = document.querySelector('.chart form.control');
+const variableForm = document.querySelector('.chart form:not(.control)');
 const variableLabel = variableForm.querySelector('label[for=variable]');
 const variableInput = document.getElementById('variable');
 const rangeInput = variableForm.querySelector('input[type=range]');
