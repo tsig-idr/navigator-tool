@@ -68,7 +68,6 @@ form.querySelectorAll('button[name]').forEach(button => {
 					case 'SWB':
 					case 'SNB/daily':
 					case 'SNB/calendar':
-						setChart(data, series, scales);
 						const tr_tmpl = table.querySelector('tr[name="template"]');
 						table.removeChild(table.querySelector('tbody'));
 						table.appendChild(tbody = document.createElement('tbody'));
@@ -86,6 +85,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 							}
 							tbody.appendChild(tr);
 						}
+						button.name != 'SNB/calendar' &&
+							setChart(data, series, scales);
 						break;
 					default:
 						break;
