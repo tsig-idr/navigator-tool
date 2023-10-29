@@ -586,24 +586,17 @@
 							<ul>
 								<li>
 									<a>
+										<p>Si ves la grafica muy sobrecargada, puedes ocultar variables pinchando en su leyenda</p>
+									</a>
+								</li>
+								<li>
+									<a>
 										<p>Pinchando en algun punto de una serie, puedes editar la variable para recalcular todo el balance posterior</p>
 									</a>
 								</li>
 								<li>
 									<a>
 										<p>Mediante el cuadro de mandos de abajo puedes tambien recalcular el balance desde la fecha que indiques</p>
-									</a>
-								</li>
-							</ul>
-							<ul>
-								<li>
-									<a>
-										<p>Puedes hacer zoom en la grafica usando la rueda del raton</p>
-									</a>
-								</li>
-								<li>
-									<a>
-										<p>Si ves la grafica muy sobrecargada, puedes ocultar variables pinchando en su leyenda</p>
 									</a>
 								</li>
 							</ul>
@@ -627,11 +620,14 @@
 							<canvas></canvas>
 							<form class="control form-inline mt-4 mb-4">
 								<div class="row">
-									<div class="col-sm-1 offset-sm-3">
-										<button class="btn btn-secondary" type="button" name="all">Recalculate</button>
+									<div class="col-sm-2 offset-sm-3">
+										<button class="btn btn-secondary" type="button" name="all">
+											<i class="fa fa-play"></i>
+											<span>Recalculate</span>
+										</button>
 									</div>
-									<div class="col-sm-3">
-										<label>chart with below values from the day</label>
+									<div class="col-sm-2">
+										<label>chart with below values from</label>
 									</div>
 									<div class="col-sm-2">
 										<input class="form-control" type="date" name="date"/>

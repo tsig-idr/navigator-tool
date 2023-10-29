@@ -199,12 +199,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	flex-wrap: wrap;
 	justify-content: center;
 	position: absolute;
-	left: calc(45% - 240px);
+	left: calc(45% - 260px);
+	width: 640px;
 }
-.chart ul:nth-child(1n) {
-	top: 0;
+.chart ul:nth-child(1) {
+	top: 0px;
 }
-.chart ul:nth-child(2n) {
+.chart ul:nth-child(2) {
 	top: 300px;
 }
 .chart ul li a {
@@ -221,11 +222,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .chart ul li:nth-child(1) a {
 	top:5px;
 	transform:rotate(15deg);
-	/*background:#cfc;*/
 }
 .chart ul li:nth-child(2) a {
+	margin-left:5px;
 	transform: rotate(-15deg);
-	/*background:#ccf;*/
+}
+.chart ul li:nth-child(3) a {
+	margin-left:5px;
+	transform: rotate(5deg);
 }
 .chart ul li a:hover {
 	box-shadow:10px 10px 7px rgba(0,0,0,.7);
