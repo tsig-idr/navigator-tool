@@ -362,6 +362,10 @@ const series4snb = [
 		yAxisID: 'y1'
 	},
 	{
+		label: 'N_fert',
+		yAxisID: 'y1'
+	},
+	{
 		label: 'N_mineral_soil',
 		yAxisID: 'y1'
 	},

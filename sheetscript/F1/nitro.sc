@@ -149,6 +149,7 @@ _N_extr = GET (chart, 'N_extr')
 _N_recom = GET (chart, 'N_recom')
 _N_mineral_soil = GET (chart, 'N_mineral_soil')
 _N_rate = GET (chart, 'N_rate')
+_N_fert = GET (chart, 'N_fert')
 _Nl = GET (chart, 'Nl')
 n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 1
 i = 1
@@ -311,7 +312,7 @@ while i < n then begin '{'
 
 	SET (fertilizer_, 'amount', IF_ERROR (IF (N_rate > 0; N_rate; 0)*100/IF_ERROR (GET (fertilizer_, 'Nbf'); 0); 0))
 
-	N_fert = IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto)
+	N_fert = IF (ISNAN (_N_fert) || Fecha <> date; IF (N_rate > 0 && GET (fertilizer_, 'date') == Fecha; N_rate; N_fert_neto); _N_fert)
 	SET (nitro4day, 'N_fert', N_fert)
 
 	N_deni = 0
@@ -398,7 +399,7 @@ while i < n then begin '{'
 	N_rate_ = GET (nitro4day_, 'N_rate') - N_fertA
 	SET (nitro4day, 'N_rate_', N_rate_)
 	N_fert_neto = GET (nitro4day, 'N_fert_neto')
-	N_fert = IF (N_rate_ > 0; N_rate_; N_fert_neto)
+	N_fert = IF (ISNAN (_N_fert) || Fecha <> date; IF (N_rate_ > 0; N_rate_; N_fert_neto); _N_fert)
 	SET (nitro4day, 'N_fert', N_fert)
 	N_deni = IF (N_fert; 0.34*E**(0.012*N_fert); 0)
 	SET (nitro4day, 'N_deni', N_deni)
