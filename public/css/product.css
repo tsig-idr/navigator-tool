@@ -220,16 +220,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	transition: transform .15s linear;
 }
 .chart ul li:nth-child(1) a {
-	top:5px;
 	transform:rotate(15deg);
 }
 .chart ul li:nth-child(2) a {
-	margin-left:5px;
 	transform: rotate(-15deg);
 }
 .chart ul li:nth-child(3) a {
-	margin-left:5px;
-	transform: rotate(5deg);
+	transform: rotate(20deg);
 }
 .chart ul li a:hover {
 	box-shadow:10px 10px 7px rgba(0,0,0,.7);
@@ -238,7 +235,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	z-index: 2;
 }
 .chart ul li {
-	margin:1em;
+	margin-left:5px;
+	margin-top:-15px;
+	cursor: pointer;
 }
 .chart form {
 	width: 40%;

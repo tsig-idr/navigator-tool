@@ -25,7 +25,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			table.classList.add('d-none');
 			table.parentNode.classList.add('d-none');
 		});
-		resultDiv.classList.add('d-none');
+		chartedResultDiv.classList.add('d-none');
 		form.classList.add('was-validated');
 		if (!form.checkValidity()) {
 			return false;
@@ -60,7 +60,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 					(series = series4swb) &&
 					(scales = scales4swb);	
 				controlForm.date.value = userData.input.crop_startDate;
-				resultDiv.classList.remove('d-none');
+				chartType != 'SNB/calendar' &&
+					chartedResultDiv.classList.remove('d-none');
 				document.location.href = '#chart';
 				let tr, td, tbody, a,
 					i, name;
@@ -106,6 +107,7 @@ form.querySelectorAll('button[name]').forEach(button => {
 			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
+			
 	});
 });
 (addButton = form.querySelector('button.btn-dark')).addEventListener('click', () => {
@@ -388,27 +390,27 @@ const series4snb = [
 const series4swb = [
 	{
 		label: 'Kc',
-		yAxisID: 'y1'
-	},
-	{
-		label: 'NDVI_interpolado',
-		yAxisID: 'y1'
-	},
-	{
-		label: 'ETc',
-		yAxisID: 'y2'
-	},
-	{
-		label: 'ETo',
-		yAxisID: 'y2'
-	},
-	{
-		label: 'Biomasa_acumulada',
 		yAxisID: 'y3'
 	},
 	{
-		label: 'Nuptake',
+		label: 'NDVI_interpolado',
+		yAxisID: 'y3'
+	},
+	{
+		label: 'ETc',
 		yAxisID: 'y4'
+	},
+	{
+		label: 'ETo',
+		yAxisID: 'y4'
+	},
+	{
+		label: 'Biomasa_acumulada',
+		yAxisID: 'y5'
+	},
+	{
+		label: 'Nuptake',
+		yAxisID: 'y6'
 	}
 ];
 const scales4snb = {
@@ -431,31 +433,40 @@ const scales4snb = {
 	}
 };
 const scales4swb = {
-	y1: {
+	y3: {
 		type: 'linear',
 		display: true,
 		position: 'left'
 	},
-	y2: {
+	y4: {
 		type: 'linear',
 		display: true,
 		position: 'right',
 		grid: {
 			drawOnChartArea: false
-		}
-	},
-	y3: {
-		type: 'linear',
-		display: true,
-		position: 'right',
-		grid: {
-			drawOnChartArea: false
+		},
+		ticks: {
+			callback: val => val + ' mm'
 		}
 	},
 	y5: {
 		type: 'linear',
 		display: true,
-		position: 'left'
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		},
+		ticks: {
+			callback: val => val + ' t/ha'
+		}
+	},
+	y6: {
+		type: 'linear',
+		display: true,
+		position: 'left',
+		ticks: {
+			callback: val => val + ' kg/ha'
+		}
 	}
 };
 
@@ -514,9 +525,11 @@ function setChart(data, series, scales) {
 	}
 	else {
 		chart.data.datasets = series;
+		chart.options.scales = scales;
 		chart.update();
 	}
 	controlForm.querySelectorAll('input[type=range]').forEach(input => controlForm.removeChild(input));
+	const dateIndex = chart.data.labels.findIndex(label => label == controlForm.date.value);
 	series.forEach((serie, index) => {
 		let input;
 		controlForm.appendChild(input = document.createElement('input'));
@@ -525,7 +538,7 @@ function setChart(data, series, scales) {
 		input.min = chart.scales[serie.yAxisID].min;
 		input.max = chart.scales[serie.yAxisID].max;
 		input.step = 'any';
-		input.value = serie.data[0];
+		input.value = serie.data[dateIndex];
 		input.style.accentColor = chart.data.datasets[index].borderColor;
 	});
 };
@@ -540,8 +553,8 @@ function updateChart(ev) {
 	userData.input.chart = {};
 	if (ev.target == controlForm.all || ev.target.parentNode == controlForm.all) {
 		userData.input.chart.date = controlForm.date.value;
-		chart.data.datasets.forEach(serie => {
-			userData.input.chart[serie.label] = parseFloat(controlForm[serie.label].value);
+		chart.data.datasets.forEach(dataset => {
+			userData.input.chart[dataset.label] = parseFloat(controlForm[dataset.label].value);
 		});
 	}
 	else {
@@ -552,7 +565,7 @@ function updateChart(ev) {
 	}
 	fetch(`/F1/${chartType}`, {
 		method: 'POST',
-		body: JSON.stringify(userData),
+		body: JSON.stringify(userData, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8'
 		}
@@ -565,7 +578,7 @@ function updateChart(ev) {
 }
 const canvas = document.querySelector('canvas');
 const timeSpan = document.getElementById('time');
-const resultDiv = document.getElementById('result');
+const chartedResultDiv = document.getElementById('chartedResult');
 const controlForm = document.querySelector('.chart form.control');
 const variableForm = document.querySelector('.chart form:not(.control)');
 const variableLabel = variableForm.querySelector('label[for=variable]');
@@ -582,3 +595,10 @@ rangeInput.addEventListener('input', ev => {
 });
 variableForm.querySelector('button').addEventListener('click', updateChart);
 controlForm.querySelector('button').addEventListener('click', updateChart);
+controlForm.date.addEventListener('change', ev => {
+	const index = chart.data.labels.findIndex(label => label == ev.target.value);
+	chart.data.datasets.forEach(dataset => {
+		controlForm[dataset.label] &&
+			(controlForm[dataset.label].value = dataset.data[index]);
+	});
+});

@@ -426,7 +426,7 @@
 						</div>
 					</div>
 					<br/>
-					<div class="row">
+					<div class="row mb-4">
 						<div class="col-sm-4 d-flex align-items-center justify-content-center">
 							<button type="button" class="btn btn-info" name="SWB">
 								<i class="fa fa-play"></i>
@@ -447,7 +447,42 @@
 						</div>
 					</div>
 				</form>
-				<div id="result" class="d-none">
+				<div class="table-responsive d-none">
+					<table class="table table-warning d-none" name="SNB/calendar" id="F1-tabla-3">
+						<thead>
+							<tr>
+								<th scope="col">Date</th>
+								<th scope="col">Fertilizer</th>
+								<th scope="col">Method</th>
+								<th scope="col">Amount (kg/ha)</th>
+								<th scope="col">N (kg/ha)</th>
+								<th scope="col">P (kg/ha)</th>
+								<th scope="col">K (kg/ha)</th>
+								<th scope="col">Cost (&euro;/ha)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="template">
+								<td name="date"></td>
+								<td name="fertilizer_name"></td>
+								<td name="method"></td>
+								<td name="amount"></td>
+								<td name="N"></td>
+								<td name="P"></td>
+								<td name="K"></td>
+								<td name="cost"></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- Botón de generación de pdf -->
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 3)">
+							Generate PDF output
+						</button>
+					</div>
+					<!-- Botón de generación de pdf -->
+				</div>
+				<div id="chartedResult" class="d-none">
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
 							<a class="nav-link active" data-bs-toggle="tab" href="#chart">Chart</a>
@@ -541,41 +576,6 @@
 								<!-- Botón de generación de pdf -->
 								<div style="text-align: center;">
 									<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 2)">
-										Generate PDF output
-									</button>
-								</div>
-								<!-- Botón de generación de pdf -->
-							</div>
-							<div class="table-responsive d-none">
-								<table class="table table-warning d-none" name="SNB/calendar" id="F1-tabla-3">
-									<thead>
-										<tr>
-											<th scope="col">Date</th>
-											<th scope="col">Fertilizer</th>
-											<th scope="col">Method</th>
-											<th scope="col">Amount (kg/ha)</th>
-											<th scope="col">N (kg/ha)</th>
-											<th scope="col">P (kg/ha)</th>
-											<th scope="col">K (kg/ha)</th>
-											<th scope="col">Cost (&euro;/ha)</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr name="template">
-											<td name="date"></td>
-											<td name="fertilizer_name"></td>
-											<td name="method"></td>
-											<td name="amount"></td>
-											<td name="N"></td>
-											<td name="P"></td>
-											<td name="K"></td>
-											<td name="cost"></td>
-										</tr>
-									</tbody>
-								</table>
-								<!-- Botón de generación de pdf -->
-								<div style="text-align: center;">
-									<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F1', true, 3)">
 										Generate PDF output
 									</button>
 								</div>
