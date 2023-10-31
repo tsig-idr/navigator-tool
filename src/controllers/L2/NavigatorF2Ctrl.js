@@ -28,6 +28,8 @@ module.exports = function () {
 			(input.Kc_s_unit = 'ppm');
 		!input.Nc_s_initial_unit &&
 			(input.Nc_s_initial_unit = 'kg_ha');
+		!input.chart &&
+			(input.chart = {});
 
 		const engine = customEngine();
 		let code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F2', 'swb.sc'), 'utf8'),
@@ -52,6 +54,8 @@ module.exports = function () {
 			(input.Meteo = sp_csv2array('tmp/F1/default_Meteo.csv'));
 		!input.Riegos &&
 			(input.Riegos = sp_csv2array('tmp/F1/default_Riego.csv'));
+		!input.chart &&
+			(input.chart = {});
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F2', 'swb.sc'), 'utf8'),
 			engine = customEngine(),
@@ -127,6 +131,8 @@ function customEngine () {
 
 	const engine = sheetscript.newStdEngine();
 
+	// isNaN
+	engine.setFunction('user', 'ISNAN', 1, n => isNaN(n));
 	// Equivalente a la EXP de Excel
 	engine.setFunction('user', 'EXP', 1, n => Math.pow(Math.E, n));
 	// Devuelve el logaritmo natural
