@@ -10,6 +10,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
 		<link href="../css/multiselect.css" rel="stylesheet"/>
 		<link href="../css/product.css" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
 	</head>
 	<body class="d-flex flex-column h-100">
 		<navbar></navbar>
@@ -411,7 +412,7 @@
 						</div>
 					</div>
 					<br/>
-					<div class="row">
+					<div class="row mb-4">
 						<div class="col-sm-4 d-flex align-items-center justify-content-center">
 							<button type="button" class="btn btn-info" name="SWB">
 								<i class="fa fa-play"></i>
@@ -431,134 +432,199 @@
 							</button>
 						</div>
 					</div>
-					<br/>
-					<div class="table-responsive d-none">
-						<table class="table table-info d-none" name="SWB" id="F2-tabla-1">
-							<thead>
-								<tr>
-									<th scope="col">Date</th>
-									<th scope="col">DP</th>
-									<th scope="col">DPe</th>
-									<th scope="col">E</th>
-									<th scope="col">ETc</th>
-									<th scope="col">ETc_adj</th>
-									<th scope="col">J</th>
-									<th scope="col">Kc</th>
-									<th scope="col">Kc_adj</th>
-									<th scope="col">Kc_max</th>
-									<th scope="col">Ke</th>
-									<th scope="col">Kr</th>
-									<th scope="col">RAW</th>
-									<th scope="col">fc</th>
-									<th scope="col">few</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr name="template">
-									<td name="Fecha"></td>
-									<td name="DP"></td>
-									<td name="DPe"></td>
-									<td name="E"></td>
-									<td name="ETc"></td>
-									<td name="ETc_adj"></td>
-									<td name="J"></td>
-									<td name="Kc"></td>
-									<td name="Kc_adj"></td>
-									<td name="Kc_max"></td>
-									<td name="Ke"></td>
-									<td name="Kr"></td>
-									<td name="RAW"></td>
-									<td name="fc"></td>
-									<td name="few"></td>
-								</tr>
-							</tbody>
-						</table>
-						<!-- Botón de generación de pdf -->
-						<div style="text-align: center;">
-							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 1)">
-								Generate PDF output
-							</button>
-						</div>
-						<!-- Botón de generación de pdf -->
-					</div>
-					<br/>
-					<div class="table-responsive d-none">
-						<table class="table table-success d-none" name="SNB/daily" id="F2-tabla-2">
-							<thead>
-								<tr>
-									<th scope="col">Date</th>
-									<th scope="col">N_rate</th>
-									<th scope="col">N_deni</th>
-									<th scope="col">N_mineral_soil</th>
-									<th scope="col">N_curve</th>
-									<th scope="col">Nl</th>
-									<th scope="col">N extr (choosen)</th>
-									<th scope="col">Tm</th>
-									<th scope="col">BBCH</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr name="template">
-									<td name="Fecha"></td>
-									<td name="N_rate"></td>
-									<td name="N_deni"></td>
-									<td name="N_mineral_soil"></td>
-									<td name="N_curve"></td>
-									<td name="Nl"></td>
-									<td name="N_extr_"></td>
-									<td name="Tm"></td>
-									<td name="BBCH"></td>
-								</tr>
-							</tbody>
-						</table>
-						<!-- Botón de generación de pdf -->
-						<div style="text-align: center;">
-							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 2)">
-								Generate PDF output
-							</button>
-						</div>
-						<!-- Botón de generación de pdf -->
-					</div>
-					<br/>
-					<div class="table-responsive d-none">
-						<table class="table table-warning d-none" name="SNB/calendar" id="F2-tabla-3">
-							<thead>
-								<tr>
-									<th scope="col">Date</th>
-									<th scope="col">Fertilizer</th>
-									<th scope="col">Method</th>
-									<th scope="col">Amount (kg/ha)</th>
-									<th scope="col">N (kg/ha)</th>
-									<th scope="col">P (kg/ha)</th>
-									<th scope="col">K (kg/ha)</th>
-									<th scope="col">Cost (&euro;/ha)</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr name="template">
-									<td name="date"></td>
-									<td name="fertilizer_name"></td>
-									<td name="method"></td>
-									<td name="amount"></td>
-									<td name="N"></td>
-									<td name="P"></td>
-									<td name="K"></td>
-									<td name="cost"></td>
-								</tr>
-							</tbody>
-						</table>
-						<!-- Botón de generación de pdf -->
-						<div style="text-align: center;">
-							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 3)">
-								Generate PDF output
-							</button>
-						</div>
-						<!-- Botón de generación de pdf -->
-					</div>
 				</form>
+				<div class="table-responsive d-none">
+					<table class="table table-warning d-none" name="SNB/calendar" id="F2-tabla-3">
+						<thead>
+							<tr>
+								<th scope="col">Date</th>
+								<th scope="col">Fertilizer</th>
+								<th scope="col">Method</th>
+								<th scope="col">Amount (kg/ha)</th>
+								<th scope="col">N (kg/ha)</th>
+								<th scope="col">P (kg/ha)</th>
+								<th scope="col">K (kg/ha)</th>
+								<th scope="col">Cost (&euro;/ha)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr name="template">
+								<td name="date"></td>
+								<td name="fertilizer_name"></td>
+								<td name="method"></td>
+								<td name="amount"></td>
+								<td name="N"></td>
+								<td name="P"></td>
+								<td name="K"></td>
+								<td name="cost"></td>
+							</tr>
+						</tbody>
+					</table>
+					<!-- Botón de generación de pdf -->
+					<div style="text-align: center;">
+						<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 3)">
+							Generate PDF output
+						</button>
+					</div>
+					<!-- Botón de generación de pdf -->
+				</div>
+				<div id="chartedResult" class="d-none">
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" data-bs-toggle="tab" href="#chart">Chart</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-bs-toggle="tab" href="#tables">Table</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane fade" id="tables">
+							<div class="table-responsive d-none">
+								<table class="table table-info d-none" name="SWB" id="F2-tabla-1">
+									<thead>
+										<tr>
+											<th scope="col">Date</th>
+											<th scope="col">DP</th>
+											<th scope="col">DPe</th>
+											<th scope="col">E</th>
+											<th scope="col">ETc</th>
+											<th scope="col">ETc_adj</th>
+											<th scope="col">J</th>
+											<th scope="col">Kc</th>
+											<th scope="col">Kc_adj</th>
+											<th scope="col">Kc_max</th>
+											<th scope="col">Ke</th>
+											<th scope="col">Kr</th>
+											<th scope="col">RAW</th>
+											<th scope="col">fc</th>
+											<th scope="col">few</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr name="template">
+											<td name="Fecha"></td>
+											<td name="DP"></td>
+											<td name="DPe"></td>
+											<td name="E"></td>
+											<td name="ETc"></td>
+											<td name="ETc_adj"></td>
+											<td name="J"></td>
+											<td name="Kc"></td>
+											<td name="Kc_adj"></td>
+											<td name="Kc_max"></td>
+											<td name="Ke"></td>
+											<td name="Kr"></td>
+											<td name="RAW"></td>
+											<td name="fc"></td>
+											<td name="few"></td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- Botón de generación de pdf -->
+								<div style="text-align: center;">
+									<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 1)">
+										Generate PDF output
+									</button>
+								</div>
+								<!-- Botón de generación de pdf -->
+							</div>
+							<div class="table-responsive d-none">
+								<table class="table table-success d-none" name="SNB/daily" id="F2-tabla-2">
+									<thead>
+										<tr>
+											<th scope="col">Date</th>
+											<th scope="col">N_rate</th>
+											<th scope="col">N_deni</th>
+											<th scope="col">N_mineral_soil</th>
+											<th scope="col">N_curve</th>
+											<th scope="col">Nl</th>
+											<th scope="col">N extr (choosen)</th>
+											<th scope="col">Tm</th>
+											<th scope="col">BBCH</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr name="template">
+											<td name="Fecha"></td>
+											<td name="N_rate"></td>
+											<td name="N_deni"></td>
+											<td name="N_mineral_soil"></td>
+											<td name="N_curve"></td>
+											<td name="Nl"></td>
+											<td name="N_extr_"></td>
+											<td name="Tm"></td>
+											<td name="BBCH"></td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- Botón de generación de pdf -->
+								<div style="text-align: center;">
+									<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F2', true, 2)">
+										Generate PDF output
+									</button>
+								</div>
+								<!-- Botón de generación de pdf -->
+							</div>
+						</div>
+						<div id="chart" class="chart tab-pane active">
+							<ul>
+								<li>
+									<a>
+										<p>Si ves la grafica muy sobrecargada, puedes ocultar variables pinchando en su leyenda</p>
+									</a>
+								</li>
+								<li>
+									<a>
+										<p>Pinchando en algun punto de una serie, puedes editar la variable para recalcular todo el balance posterior</p>
+									</a>
+								</li>
+								<li>
+									<a>
+										<p>Mediante el cuadro de mandos de abajo puedes tambien recalcular el balance desde la fecha que indiques</p>
+									</a>
+								</li>
+							</ul>
+							<form class="d-none dark">
+								<div class="row">
+									<div class="col-sm-5 offset-sm-3 text-right">
+										<span id="time"></span>
+										<br/>
+										<br/>
+										<label for="variable"></label>
+										<br/>
+										<input class="form-control" id="variable" />
+										<br/>
+										<button class="btn btn-dark" type="button">OK</button>
+									</div>
+									<div class="col-sm-1">
+										<input type="range" step="any"/>
+									</div>
+								</div>
+							</form>
+							<canvas></canvas>
+							<form class="control form-inline mt-4 mb-4">
+								<div class="row">
+									<div class="col-sm-2 offset-sm-3">
+										<button class="btn btn-secondary" type="button" name="all">
+											<i class="fa fa-play"></i>
+											<span>Recalculate</span>
+										</button>
+									</div>
+									<div class="col-sm-2">
+										<label>chart with below values from</label>
+									</div>
+									<div class="col-sm-2">
+										<input class="form-control" type="date" name="date"/>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</main>
 		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js" integrity="sha512-SIMGYRUjwY8+gKg7nn9EItdD8LCADSDfJNutF9TPrvEo86sQmFMh6MyralfIyhADlajSxqc7G0gs7+MwWF/ogQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="/lib/bootstrap.bundle.min.js"></script>
 		<script src="/lib/form-data-json.min.js"></script>
 		<script src="/lib/multiselect.min.js"></script>

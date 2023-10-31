@@ -1,6 +1,6 @@
-var form = document.querySelector('form'),
+var form = document.querySelector('form.needs-validation'),
 	ul = document.querySelector('ul.list-unstyled'),
-	tables = form.querySelectorAll('table'),
+	tables = document.querySelectorAll('table[name]'),
 	fertilizers = {},
 	crops = {},
 	soils = {},
@@ -17,12 +17,13 @@ form.files = {
 	'prices': null
 };
 form.querySelectorAll('button[name]').forEach(button => {
-	button.addEventListener('click', ev => {
-		const table = form.querySelector(`table[name="${button.name}"]`);
+	button.addEventListener('click', () => {
+		const table = document.querySelector(`table[name="${button.name}"]`);
 		tables.forEach(table => {
-			table.parentNode.classList.add('d-none');
 			table.classList.add('d-none');
+			table.parentNode.classList.add('d-none');
 		});
+		chartedResultDiv.classList.add('d-none');
 		form.classList.add('was-validated');
 		if (!form.checkValidity()) {
 			return false;
@@ -42,7 +43,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 			||
 				(data.input[name] = null);
 		}
-		button.name &&
+		(chartType = button.name) &&
+		(userData = data) &&
 			fetch(`/F2/${button.name}`, {
 				method: 'POST',
 				body: JSON.stringify(data, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
@@ -50,6 +52,15 @@ form.querySelectorAll('button[name]').forEach(button => {
 					'Content-type': 'application/json; charset=UTF-8'
 				}
 			}).then(res => res.json()).then(data => {
+				series = series4snb;
+				scales = scales4snb;
+				button.name == 'SWB' &&
+					(series = series4swb) &&
+					(scales = scales4swb);	
+				controlForm.date.value = userData.input.crop_startDate;
+				chartType != 'SNB/calendar' &&
+					chartedResultDiv.classList.remove('d-none');
+				document.location.href = '#chart';
 				let tr, td, tbody, a,
 					i, name;
 				switch (button.name) {
@@ -73,6 +84,8 @@ form.querySelectorAll('button[name]').forEach(button => {
 							}
 							tbody.appendChild(tr);
 						}
+						button.name != 'SNB/calendar' &&
+							setChart(data, series, scales);
 						break;
 					default:
 						break;
@@ -325,3 +338,239 @@ function setFarm (farm) {
 				});
 		});
 }
+
+document.querySelectorAll('.chart li').forEach(function(li) {
+	li.addEventListener('click', function() {
+		this.classList.add('d-none');
+	});
+});
+var chart,
+	datasetIndex,
+	index,
+	rows,
+	dates,
+	userData,
+	chartType,
+	series,
+	scales;
+const series4snb = [
+	{
+		label: 'N_rate',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_fert',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_mineral_soil',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_extr',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'Nl',
+		yAxisID: 'y1'
+	},
+	{
+		label: 'N_recom',
+		yAxisID: 'y1'
+	},				{
+		label: 'BBCH',
+		yAxisID: 'y2'
+	}
+];
+const series4swb = [
+	{
+		label: 'Kc',
+		yAxisID: 'y3'
+	},
+	{
+		label: 'ETc',
+		yAxisID: 'y4'
+	},
+	{
+		label: 'ETo',
+		yAxisID: 'y4'
+	},
+	{
+		label: 'Biomasa_acumulada',
+		yAxisID: 'y5'
+	},
+	{
+		label: 'Nuptake',
+		yAxisID: 'y6'
+	}
+];
+const scales4snb = {
+	y1: {
+		type: 'linear',
+		display: true,
+		position: 'left',
+		ticks: {
+			//callback: (val, idx, ticks) => idx == (ticks.length - 1) ? 'Kg/ha ' + val : val
+			callback: val => val + ' Kg/ha'
+		}
+	},
+	y2: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		}
+	}
+};
+const scales4swb = {
+	y3: {
+		type: 'linear',
+		display: true,
+		position: 'left'
+	},
+	y4: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		},
+		ticks: {
+			callback: val => val + ' mm'
+		}
+	},
+	y5: {
+		type: 'linear',
+		display: true,
+		position: 'right',
+		grid: {
+			drawOnChartArea: false
+		},
+		ticks: {
+			callback: val => val + ' t/ha'
+		}
+	},
+	y6: {
+		type: 'linear',
+		display: true,
+		position: 'left',
+		ticks: {
+			callback: val => val + ' kg/ha'
+		}
+	}
+};
+
+function setChart(data, series, scales) {
+	rows = data.results.filter(row => row.Fecha >= userData.input.crop_startDate && row.Fecha <= userData.input.crop_endDate);
+	dates = rows.map(row => row.Fecha);
+	series.forEach(serie => {
+		serie.data = rows.map(row => row[serie.label]);
+	});
+	if (!chart) {
+		chart = new Chart(canvas,
+			{
+				type: 'line',
+				data: {
+					labels: dates,
+					datasets: series
+				},
+				options: {
+					onClick: (ev, els) => {
+						if (els && els.length) {
+							index = els[0].index;
+							datasetIndex = els[0].datasetIndex;
+							variableForm.classList.remove('d-none');
+							canvas.classList.add('faded');
+							timeSpan.innerHTML = dates[index];
+							variableLabel.innerHTML = chart.data.datasets[datasetIndex].label;
+							rangeInput.min = chart.scales[chart.data.datasets[datasetIndex].yAxisID].min;
+							rangeInput.max = chart.scales[chart.data.datasets[datasetIndex].yAxisID].max;
+							rangeInput.style.accentColor = chart.data.datasets[datasetIndex].borderColor;
+							variableInput.value = rangeInput.value = els[0].element.$context.parsed.y;
+						}
+					},
+					scales: scales
+				}
+			}
+		);
+	}
+	else {
+		chart.data.datasets = series;
+		chart.options.scales = scales;
+		chart.update();
+	}
+	controlForm.querySelectorAll('input[type=range]').forEach(input => controlForm.removeChild(input));
+	const dateIndex = chart.data.labels.findIndex(label => label == controlForm.date.value);
+	series.forEach((serie, index) => {
+		let input;
+		controlForm.appendChild(input = document.createElement('input'));
+		input.type = 'range';
+		input.name = serie.label;
+		input.min = chart.scales[serie.yAxisID].min;
+		input.max = chart.scales[serie.yAxisID].max;
+		input.step = 'any';
+		input.value = serie.data[dateIndex];
+		input.style.accentColor = chart.data.datasets[index].borderColor;
+	});
+};
+
+function updateChart(ev) {
+	canvas.classList.remove('faded');
+	variableForm.classList.add('d-none');
+	const element = controlForm.all.querySelector('i');
+	element.classList.remove('fa-play');
+	element.classList.add('fa-spinner');
+	element.classList.add('fa-spin');
+	userData.input.chart = {};
+	if (ev.target == controlForm.all || ev.target.parentNode == controlForm.all) {
+		userData.input.chart.date = controlForm.date.value;
+		chart.data.datasets.forEach(dataset => {
+			userData.input.chart[dataset.label] = parseFloat(controlForm[dataset.label].value);
+		});
+	}
+	else {
+		chart.data.datasets[datasetIndex].data[index] = variableInput.value;
+		chart.update();
+		userData.input.chart.date = dates[index];
+		userData.input.chart[chart.data.datasets[datasetIndex].label] = parseFloat(variableInput.value);
+	}
+	fetch(`/F1/${chartType}`, {
+		method: 'POST',
+		body: JSON.stringify(userData, (k, v) => Array.isArray(v) && v.filter(e => e !== null) || v),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8'
+		}
+	}).then(res => res.json()).then(data => {
+		setChart(data, series, scales);
+		element.classList.remove('fa-spinner');
+		element.classList.remove('fa-spin');
+		element.classList.add('fa-play');
+	});
+}
+const canvas = document.querySelector('canvas');
+const timeSpan = document.getElementById('time');
+const chartedResultDiv = document.getElementById('chartedResult');
+const controlForm = document.querySelector('.chart form.control');
+const variableForm = document.querySelector('.chart form:not(.control)');
+const variableLabel = variableForm.querySelector('label[for=variable]');
+const variableInput = document.getElementById('variable');
+const rangeInput = variableForm.querySelector('input[type=range]');
+variableInput.addEventListener('keypress', ev => {
+	if (ev.key === 'Enter') {				
+		ev.preventDefault();
+		updateChart(ev);
+	}
+});
+rangeInput.addEventListener('input', ev => {
+	variable.value = ev.target.value;
+});
+variableForm.querySelector('button').addEventListener('click', updateChart);
+controlForm.querySelector('button').addEventListener('click', updateChart);
+controlForm.date.addEventListener('change', ev => {
+	const index = chart.data.labels.findIndex(label => label == ev.target.value);
+	chart.data.datasets.forEach(dataset => {
+		controlForm[dataset.label] &&
+			(controlForm[dataset.label].value = dataset.data[index]);
+	});
+});

@@ -1,4 +1,4 @@
-var form = document.querySelector('form'),
+var form = document.querySelector('form.needs-validation'),
 	ul = document.querySelector('ul.list-unstyled'),
 	tables = document.querySelectorAll('table[name]'),
 	fertilizers = {},
@@ -107,7 +107,6 @@ form.querySelectorAll('button[name]').forEach(button => {
 			}).catch(error => {
 				console.warn('Something went wrong.', error);
 			});
-			
 	});
 });
 (addButton = form.querySelector('button.btn-dark')).addEventListener('click', () => {
@@ -342,8 +341,6 @@ function setFarm (farm) {
 		});
 }
 
-
-
 document.querySelectorAll('.chart li').forEach(function(li) {
 	li.addEventListener('click', function() {
 		this.classList.add('d-none');
@@ -499,26 +496,7 @@ function setChart(data, series, scales) {
 							variableInput.value = rangeInput.value = els[0].element.$context.parsed.y;
 						}
 					},
-					scales: scales,
-					plugins: {
-						zoom: {
-							pan: {
-								enabled: true,
-								mode: 'x',
-								scaleMode: 'y'
-							},
-							zoom: {
-								wheel: {
-									enabled: true,
-								},
-								pinch: {
-									enabled: true,
-								},
-								mode: 'x',
-								scaleMode: 'y'
-							}
-						}
-					}
+					scales: scales
 				}
 			}
 		);
