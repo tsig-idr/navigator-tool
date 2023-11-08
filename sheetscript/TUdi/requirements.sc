@@ -133,25 +133,26 @@ while i___ < n___ then begin '{'
 
 y = yield*1000
 
-dm_h = VLOOKUP (crop_type; CropData; 11)/100
-HI_est = VLOOKUP (crop_type; CropData; 9)/100
-Nc_h = VLOOKUP (crop_type; CropData; 14)/100
+dm_h_ = IF_ERROR (dm_h; VLOOKUP (crop_type; CropData; 11)/100)
+export_r_ = IF_ERROR (export_r; 100)
+HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9)/100*export_r_/100)
+Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 14)/100)
 Nc_r = VLOOKUP (crop_type; CropData; 25)/100
-Pc_h = VLOOKUP (crop_type; CropData; 15)/100
+Pc_h_ = IF_ERROR (Pc_h; VLOOKUP (crop_type; CropData; 15)/100)
 Pc_r = VLOOKUP (crop_type; CropData; 26)/100
-Kc_h = VLOOKUP (crop_type; CropData; 16)/100
+Kc_h_ = IF_ERROR (Kc_h; VLOOKUP (crop_type; CropData; 16)/100)
 Kc_r = VLOOKUP (crop_type; CropData; 27)/100
 Cc_h = VLOOKUP (crop_type; CropData; 17)/100
 Cc_r = VLOOKUP (crop_type; CropData; 28)/100
-h_dm = y*dm_h
-r_dm = h_dm*(1 - HI_est)/HI_est
-Nc_up_h = h_dm*Nc_h + r_dm*Nc_r
-Pc_up_h = h_dm*Pc_h + r_dm*Pc_r
-Kc_up_h = h_dm*Kc_h + r_dm*Kc_r
+h_dm = y*dm_h_
+r_dm = h_dm*(1 - HI_est_)/HI_est_
+Nc_up_h = h_dm*Nc_h_ + r_dm*Nc_r
+Pc_up_h = h_dm*Pc_h_ + r_dm*Pc_r
+Kc_up_h = h_dm*Kc_h_ + r_dm*Kc_r
 Cc_up_h = h_dm*Cc_h + r_dm*Cc_r
-Nc_ex_h = h_dm*Nc_h
-Pc_ex_h = h_dm*Pc_h
-Kc_ex_h = h_dm*Kc_h
+Nc_ex_h = h_dm*Nc_h_
+Pc_ex_h = h_dm*Pc_h_
+Kc_ex_h = h_dm*Kc_h_
 Cc_ex_h = h_dm*Cc_h
 Pc_s = Pc_s_0*VLOOKUP (Pc_method; Pc_method_table; 2)
 Kc_s = Kc_s_0/CEC
@@ -191,8 +192,9 @@ Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K
 K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
 prev_y = prev_yield*1000
 prev_green = IF (prev_export_biomass == 'yes'; 1; 0)
-prev_dm_h = VLOOKUP (prev_crop_type; CropData; 11)/100
-prev_HI_est = VLOOKUP (prev_crop_type; CropData; 9)/100*prev_export_r/100
+prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11)/100)
+prev_export_r_ = IF_ERROR (prev_export_r; 100)
+prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9)/100*prev_export_r_/100)
 prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
 prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 25)/100
 prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
@@ -204,8 +206,8 @@ prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 28)/100
 prevPc_up_r = prev_r_dm_med*prev_Pc_r
 prevKc_up_r = prev_r_dm_med*prev_Kc_r
 prevCc_up_r = prev_r_dm_med*prev_Cc_r
-prev_h_dm_med = prev_y*prev_dm_h
-prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est)/prev_HI_est
+prev_h_dm_med = prev_y*prev_dm_h_
+prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_
 prevsov_h_dm_med = IF (prev_export_biomass == 'yes'; prev_green*prev_h_dm_med; 0)
 prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
 prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
@@ -231,7 +233,7 @@ n_fix_code = VLOOKUP (crop_type; CropData; 7)
 cycle_crop = IF (n_fix_code == 'Non_legume'; 0; VLOOKUP (crop_type; CropData; 8))
 concatenation = CONCAT (CONCAT (n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2')); cycle_crop)
 n_fix_per = IF_ERROR (VLOOKUP (concatenation; N_fix_per; 2); 0)
-N_yield = y_dm*Nc_h
+N_yield = y_dm*Nc_h_
 N_res = r_dm*Nc_r
 dm_r = VLOOKUP (crop_type; CropData; 22)/100
 y_dm = h_dm

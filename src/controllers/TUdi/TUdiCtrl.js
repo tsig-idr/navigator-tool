@@ -13,6 +13,24 @@ module.exports = function () {
 			(input.prev_manures = []);
 		!input.grazings &&
 			(input.grazings = []);
+		!input.export_r &&
+			(input.export_r = null);
+		!input.prev_export_r &&
+			(input.prev_export_r = null);
+		!input.dm_h &&
+			(input.dm_h = null);
+		!input.Nc_h &&
+			(input.Nc_h = null);
+		!input.Pc_h &&
+			(input.Pc_h = null);
+		!input.Kc_h &&
+			(input.Kc_h = null);
+		!input.prev_dm_h &&
+			(input.prev_dm_h = null);
+		!input.HI_est &&
+			(input.HI_est = null);
+		!input.prev_HI_est &&
+			(input.prev_HI_est = null);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),

@@ -38,13 +38,6 @@ module.exports.router = function () {
 	router.post('/nutrients', asyncHandler(async (req, res) => {
 		const input = typeof req.body === 'object' && req.body || req.params && typeof req.params === 'object' || {};
 		const output = await dispatcher(input);
-		/*const result = {};
-		for (let key in output) {
-			if (typeof output[key] != 'object'){
-				result[key] = output[key];
-			}
-		}
-		return res.json(result);*/
 		res.json({
 			requirements: {
 				fertilizer: {
@@ -75,6 +68,55 @@ module.exports.router = function () {
 				},
 				NO3_leaching: {
 					N: output.NO3_leaching
+				}
+			},
+			balance_components: {
+				N: {
+					input: {
+						N_atm :output.N_atm,
+						Nmineralization :output.Nmineralization,
+						prevNc_up_r :output.prevNc_up_r,
+						N_graz_supply_total: output.N_graz_supply_total,
+						N_man_supply_total: output.N_man_supply_total,
+						N_min_supply_total: output.N_min_supply_total,
+						prev_manure_legacyN_total: output.prev_manure_legacyN_total,
+						Nc_fixation: output.Nc_fixation,
+						Nc_irrigation: output.Nc_irrigation
+					},
+					output: {
+						Nc_up_h: output.Nc_up_h,
+						Nc_ex_h: output.Nc_ex_h,
+						Ndenitrification: output.Ndenitrification,
+						NH3volat_man_total: output.NH3volat_man_total,
+						NH3_volatilization_graz_total: output.NH3_volatilization_graz_total,
+						NH3volat_min_total: output.NH3volat_min_total
+					}
+				},
+				P: {
+					input: {
+						prevPc_up_r :output.prevPc_up_r,
+						P2O5_man_supply_total :output.P2O5_man_supply_total,
+						P2O5_graz_supply_total :output.P2O5_graz_supply_total,
+						P2O5_min_supply_total: output.P2O5_min_supply_total,
+						Pc_status: output.Pc_status
+					},
+					output: {
+						Pc_up_h: output.Pc_up_h,
+						Pc_ex_h: output.Pc_ex_h
+					}
+				},
+				K: {
+					input: {
+						prevKc_up_r :output.prevKc_up_r,
+						K2O_man_supply_total :output.K2O_man_supply_total,
+						K2O_graz_supply_total :output.K2O_graz_supply_total,
+						K2O_min_supply_total: output.K2O_min_supply_total,
+						Kc_status: output.Kc_status
+					},
+					output: {
+						Kc_up_h: output.Kc_up_h,
+						Kc_ex_h: output.Kc_ex_h
+					}
 				}
 			}
 		});
