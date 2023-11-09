@@ -25,6 +25,16 @@ module.exports = function () {
 			(input.Pc_h = null);
 		!input.Kc_h &&
 			(input.Kc_h = null);
+		!input.Nc_r &&
+			(input.Nc_r = null);
+		!input.Pc_r &&
+			(input.Pc_r = null);
+		!input.Kc_r &&
+			(input.Kc_r = null);
+		!input.Cc_h &&
+			(input.Cc_h = null);
+		!input.Cc_r &&
+			(input.Cc_r = null);
 		!input.prev_dm_h &&
 			(input.prev_dm_h = null);
 		!input.HI_est &&
