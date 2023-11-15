@@ -191,7 +191,7 @@ K5e = VLOOKUP (soil_texture; PK_status_5; 6)
 Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K2e; IF (Kc_s > K3l && Kc_s <= K3u; K3e; IF (Kc_s > K4l && Kc_s <= K4u; K4e; IF (Kc_s > K5l && Kc_s <= K5u; K5e; '')))))
 K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
 prev_y = prev_yield*1000
-prev_green = IF (prev_export_biomass == 'yes'; 1; 0)
+prev_green = IF (prev_greenmanure == 'yes'; 1; 0)
 prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11)/100)
 prev_export_r_ = IF_ERROR (prev_export_r; 100)
 prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9)/100)
@@ -203,17 +203,17 @@ prev_Kc_h = VLOOKUP (prev_crop_type; CropData; 16)/100
 prev_Kc_r = VLOOKUP (prev_crop_type; CropData; 27)/100
 prev_Cc_h = VLOOKUP (prev_crop_type; CropData; 17)/100
 prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 28)/100
-prevPc_up_r = IF (prev_export_biomass == 'yes'; 0; prev_r_dm_med*prev_Pc_r)
-prevKc_up_r = IF (prev_export_biomass == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
+prevPc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Pc_r)
+prevKc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
 prevCc_up_r = prev_r_dm_med*prev_Cc_r
 prev_h_dm_med = prev_y*prev_dm_h_
 prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_*(1 - prev_export_r_)
-prevsov_h_dm_med = IF (prev_export_biomass == 'yes'; prev_green*prev_h_dm_med; 0)
+prevsov_h_dm_med = IF (prev_greenmanure == 'yes'; prev_green*prev_h_dm_med; 0)
 prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
 prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
 prev_concatenation = CONCAT (CONCAT (prev_n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2')); prev_cycle_crop)
 prev_n_fix_per = IF_ERROR (VLOOKUP (prev_concatenation; N_fix_per; 2); 0)
-prevNc_up_r = IF (prev_export_biomass == 'yes'; (prev_h_dm_med*prev_Nc_h + prev_r_dm_med*prev_Nc_r)*prev_n_fix_per; prev_r_dm_med*prev_Nc_r)
+prevNc_up_r = IF (prev_greenmanure == 'yes'; (prev_h_dm_med*prev_Nc_h + prev_r_dm_med*prev_Nc_r)*prev_n_fix_per; prev_r_dm_med*prev_Nc_r)
 
 depth_c = 1
 rain_a = VLOOKUP (climatic_zone; Clima; 3)
