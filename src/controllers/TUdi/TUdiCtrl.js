@@ -5,41 +5,41 @@ const sheetscript = require('sheetscript');
 module.exports = function () {
 
 	async function requeriments (input, outputnames) {
-		!input.fertilizers &&
+		undefined  === input.fertilizers &&
 			(input.fertilizers = []);
-		!input.manures &&
+		undefined  === input.manures &&
 			(input.manures = []);
-		!input.prev_manures &&
+		undefined  === input.prev_manures &&
 			(input.prev_manures = []);
-		!input.grazings &&
+		undefined  === input.grazings &&
 			(input.grazings = []);
-		!input.export_r &&
+		undefined  === input.export_r &&
 			(input.export_r = null);
-		!input.prev_export_r &&
+		undefined  === input.prev_export_r &&
 			(input.prev_export_r = null);
-		!input.dm_h &&
+		undefined  === input.dm_h &&
 			(input.dm_h = null);
-		!input.Nc_h &&
+		undefined  === input.Nc_h &&
 			(input.Nc_h = null);
-		!input.Pc_h &&
+		undefined  === input.Pc_h &&
 			(input.Pc_h = null);
-		!input.Kc_h &&
+		undefined  === input.Kc_h &&
 			(input.Kc_h = null);
-		!input.Nc_r &&
+		undefined  === input.Nc_r &&
 			(input.Nc_r = null);
-		!input.Pc_r &&
+		undefined  === input.Pc_r &&
 			(input.Pc_r = null);
-		!input.Kc_r &&
+		undefined  === input.Kc_r &&
 			(input.Kc_r = null);
-		!input.Cc_h &&
+		undefined  === input.Cc_h &&
 			(input.Cc_h = null);
-		!input.Cc_r &&
+		undefined  === input.Cc_r &&
 			(input.Cc_r = null);
-		!input.prev_dm_h &&
+		undefined  === input.prev_dm_h &&
 			(input.prev_dm_h = null);
-		!input.HI_est &&
+		undefined  === input.HI_est &&
 			(input.HI_est = null);
-		!input.prev_HI_est &&
+		undefined  === input.prev_HI_est &&
 			(input.prev_HI_est = null);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),

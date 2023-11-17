@@ -207,7 +207,7 @@ prevPc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Pc_r)
 prevKc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
 prevCc_up_r = prev_r_dm_med*prev_Cc_r
 prev_h_dm_med = prev_y*prev_dm_h_
-prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_*(1 - prev_export_r_)
+prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_*(1 - prev_export_r_/100)
 prevsov_h_dm_med = IF (prev_greenmanure == 'yes'; prev_green*prev_h_dm_med; 0)
 prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
 prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
