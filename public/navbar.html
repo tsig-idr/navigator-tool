@@ -20,8 +20,12 @@
 						<a class="nav-link dropdown-toggle active" href="#" id="dropdown00" data-bs-toggle="dropdown" aria-expanded="false">Load</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown00">
 							<li>
-								<input class="d-none" type="file" accept=".json" name="fast"/>
-								<a class="dropdown-item" aria-current="page" href="#" data-load>FaST</a>
+								<input class="d-none" type="file" accept=".json" name="json"/>
+								<a class="dropdown-item" aria-current="page" href="#" data-load>FaST JSON</a>
+							</li>
+							<li>
+								<input class="d-none" type="file" accept=".csv" name="csv" />
+								<a class="dropdown-item" aria-current="page" href="#" data-load>FaST CSV</a>
 							</li>
 							<li>
 								<input class="d-none" type="file" accept=".json" name="siar" />
@@ -155,7 +159,15 @@
 						</ul>
 					</li>
 					<li class="nav-item ml-2">
-						<a class="btn btn-outline-success disabled" aria-current="page" href="#" data-save> Save</a>
+						<a class="disabled nav-link dropdown-toggle active" data-save href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Save</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdown04">
+							<li>
+								<a class="dropdown-item" aria-current="page" href="#" data-type="json">JSON</a>
+							</li>
+							<li>
+								<a class="dropdown-item" aria-current="page" href="#" data-type="csv">CSV</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>

@@ -1,4 +1,3 @@
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
 	'use strict'
@@ -39,11 +38,11 @@
 				}
 				const reader = new FileReader();
 				reader.onload = ev => {
-					let project = JSON.parse(ev.target.result);
-					if (!project) {
-						return;
-					}
-					if (input.name == 'fast') {
+					let project;
+					if (input.name == 'json') {
+						if (!(project = JSON.parse(ev.target.result))) {
+							return;
+						}
 						if (typeof project.meta != 'object' || !project.meta.path) {
 							return;
 						}
@@ -52,7 +51,20 @@
 						typeof setFarm == 'function' &&
 							setFarm(project);
 					}
+					if (input.name == 'csv') {
+						project = csv2json_(ev.target.result);
+						if (!project.meta.path) {
+							return;
+						}
+						window.localStorage.setItem('farm', JSON.stringify(project));
+						window.location.pathname = project.meta.path;
+						typeof setFarm == 'function' &&
+							setFarm(project);
+					}
 					if (input.name == 'siar') {
+						if (!(project = JSON.parse(ev.target.result))) {
+							return;
+						}
 						if (typeof project.localizacion != 'object') {
 							return;
 						}
@@ -84,25 +96,37 @@
 			});
 		});
 		document.querySelectorAll('[data-load]').forEach(a => a.addEventListener('click', ev => ev.target.parentNode.querySelector('input').click()));
-		document.querySelector('[data-save]').addEventListener('click', () => {
+		document.querySelectorAll('[data-type]').forEach(a => a.addEventListener('click', ev => {
+			const type = ev.target.dataset.type;
 			const farm = JSON.parse(window.localStorage.getItem('farm'));
-			farm.meta = {
-				path: window.location.pathname,
-				host: window.location.hostname,
-				time: (new Date).toLocaleString(),
-				version: '1.0'
-			};
-			const url = URL.createObjectURL(new Blob([JSON.stringify(farm)], {
-				type: 'application/json'
-			}));
+			let url;
+			if (type == 'json') {
+				farm.meta = {
+					path: window.location.pathname,
+					host: window.location.hostname,
+					time: (new Date).toLocaleString(),
+					version: '1.0'
+				};
+				url = URL.createObjectURL(new Blob([JSON.stringify(farm)], {
+					type: 'application/json'
+				}));
+			}
+			if (type == 'csv') {
+				farm.path = window.location.pathname;
+				farm.host = window.location.hostname;
+				farm.time = (new Date).toLocaleString().split(',')[0];
+				url = URL.createObjectURL(new Blob(['FIELD,VALUE\n'+json2csv_(farm)], {
+					type: 'text/csv'
+				}));
+			}
 			let a;
 			document.body.appendChild(a = document.createElement('a'));
 			a.href = url;
-			a.download = 'myFarm.json';
+			a.download = 'myFarm.'+type;
 			a.click();
 			document.body.removeChild(a);
 			URL.revokeObjectURL(url);
-		});
+		}));
 		document.querySelectorAll('input,select').forEach(input => {
 			input.addEventListener('change', () => {
 				saveA.classList.add('disabled');
@@ -264,4 +288,51 @@ function harmonize4SIAR (project, data) {
 			}).reduce((acc, row) => acc + parseFloat(row.precipitacion), 0)));
 	}
 	return { crops };
+}
+
+function json2csv_(json) {
+	csv = '';
+	for (let key in json) {
+		if (key == 'crops' && typeof json[key] == 'object') {
+			let i;
+			for (i = 0; i < json[key].length; i++) {
+				csv += json2csv_(json[key][i])+'\n';
+			}
+		}
+		if (typeof json[key] == 'string') {
+			csv += key+','+json[key]+'\n';
+		}
+		if (typeof json[key] == 'number') {
+			csv += key+','+json[key]+'\n';
+		}
+	}
+	return csv;
+}
+
+function csv2json_(csv) {
+	const lines = csv.split('\n'),
+		json = {
+			crops: [{}],
+			meta: {
+				path: null,
+				host: null,
+				time: null
+			}
+		};
+	let i,
+		key,
+		val;
+	for (i = 0; i < lines.length; i++) {
+		[key, val] = lines[i].split(',');
+		if (!key) {
+			continue;
+		}
+		if (key in json.meta) {
+			json.meta[key] = val;
+		}
+		else {
+			json.crops[0][key] = val;
+		}
+	}
+	return json;
 }
