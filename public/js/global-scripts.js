@@ -327,11 +327,17 @@ function csv2json_(csv) {
 		if (!key) {
 			continue;
 		}
+		if (val === undefined) {
+			[key, val] = lines[i].split(';');
+		}
+		if (!key) {
+			continue;
+		}
 		if (key in json.meta) {
-			json.meta[key] = val;
+			json.meta[key] = val.replace('\r', '');
 		}
 		else {
-			json.crops[0][key] = val;
+			json.crops[0][key] = val.replace('\r', '');;
 		}
 	}
 	return json;
