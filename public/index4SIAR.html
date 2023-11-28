@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" translate="no">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<meta name="generator" content="" />
+		<title>NAVIGATOR-TOOL model testing tool</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link href="css/product.css" rel="stylesheet" />
+	</head>
+	<body class="d-flex flex-column h-100">
+		<navbar></navbar>
+		<main class="flex-shrink-0">
+			<div id="myCarousel" class="carousel slide overflow-hidden w-100 position-relative" data-ride="carousel" style="height: 60vh;">
+				<img src="img/background-img-scaled.jpg" class="position-absolute" style="min-height: 100%; min-width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
+				<div class="carousel-inner">
+					<div class="carousel-item border-0 active" style="height: 24rem;">
+							<div class="row carousel-caption">
+									<div class="col-md-9 p-4 text-left" style="background-color: rgba(35, 54, 68, 0.7); height: auto !important;">
+											<h2 class="h1">NAVIGATOR Tool <small>(Beta version)</small> </h2>
+											<p>An open digital tool, accessible via web, capable of calculating the recommendation of nutrients at field scale and assessing the greenhouse gas emissions / removals and economic performance at farm scale
+												<br/>For details about methodology, see the <a href="https://op.europa.eu/en/publication-detail/-/publication/1887586c-dbd6-11ec-a534-01aa75ed71a1/language-en" target="blank">study report.</a>
+											</p>
+									</div>
+							</div>
+					</div>
+				</div>
+			</div>
+			<section class="text-center container">
+				<div class="row py-lg-3">
+					<div class="col-lg-8 col-md-12 mx-auto">
+					<img src="img/fastnavigator_all_960.png" class="img img-fluid">
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer mt-auto py-3 bg-dark text-light"></footer>
+		<script src="/lib/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		<script src="/lib/form-data-json.min.js"></script>
+		<script src="js/global-scripts.js"></script>
+		<script>
+			setTimeout(function() {
+				'use strict'
+
+				var project = {id:123};
+				if (typeof project != 'object' || typeof project.localizacion != 'object') {
+					return;
+				}
+				fetch('/json/SIAR.json').then(res => res.json()).then(data => {
+					let farm;
+					project = harmonize4SIAR(project, data);
+					(farm = window.localStorage.getItem('farm')) &&
+						(farm = JSON.parse(farm)) &&
+						(farm = {
+							crops: [
+								{...farm.crops[0], ...project.crops[0]}
+							]
+						})
+					||
+						(farm = project);
+					window.localStorage.setItem('farm', JSON.stringify(farm));
+					typeof setFarm == 'function' &&
+						setFarm(farm);
+					let modal = new bootstrap.Modal(document.getElementById('siar-modal'));
+					modal.show();
+				}).catch(error => {
+					console.warn('Something went wrong.', error);
+				});	
+			}, 2000);
+		</script>
+	</body>
+</html>
