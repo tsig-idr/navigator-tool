@@ -40,6 +40,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "javascript-lp-solver": "^0.4.24",
+    "multer": "^1.4.5-lts.1",
     "nanoid": "^3.1.23",
     "path": "^0.12.7",
     "sheetscript": "^1.1.6"
