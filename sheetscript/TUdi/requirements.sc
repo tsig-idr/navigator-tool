@@ -133,8 +133,8 @@ while i___ < n___ then begin '{'
 
 y = yield*1000
 
-dm_h_ = IF_ERROR (dm_h; VLOOKUP (crop_type; CropData; 11)/100)
-export_r_ = IF_ERROR (export_r; 100)
+yield_wc_ = IF_ERROR (yield_wc; 1 - VLOOKUP (crop_type; CropData; 11)/100)
+dm_h_ = 1 - yield_wc_
 HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9)/100)
 Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 14)/100)
 Nc_r_ = IF_ERROR (Nc_r; VLOOKUP (crop_type; CropData; 25)/100)
@@ -208,7 +208,6 @@ prevKc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
 prevCc_up_r = prev_r_dm_med*prev_Cc_r
 prev_h_dm_med = prev_y*prev_dm_h_
 prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_*(1 - prev_export_r_/100)
-prevsov_h_dm_med = IF (prev_greenmanure == 'yes'; prev_green*prev_h_dm_med; 0)
 prev_n_fix_code = VLOOKUP (prev_crop_type; CropData; 7)
 prev_cycle_crop = IF (prev_n_fix_code == 'Non_legume'; 0; VLOOKUP (prev_crop_type; CropData; 8))
 prev_concatenation = CONCAT (CONCAT (prev_n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2')); prev_cycle_crop)
