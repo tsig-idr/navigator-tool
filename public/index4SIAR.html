@@ -1,44 +1,561 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100" translate="no">
+<html class="h-100">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="" />
 		<meta name="generator" content="" />
-		<title>NAVIGATOR-TOOL model testing tool</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link href="css/product.css" rel="stylesheet" />
+		<title>NAVIGATOR TOOL F3</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+		<link href="/css/multiselect.css" rel="stylesheet"/>
+		<link href="/css/product.css" rel="stylesheet" />
 	</head>
 	<body class="d-flex flex-column h-100">
 		<navbar></navbar>
 		<main class="flex-shrink-0">
-			<div id="myCarousel" class="carousel slide overflow-hidden w-100 position-relative" data-ride="carousel" style="height: 60vh;">
-				<img src="img/background-img-scaled.jpg" class="position-absolute" style="min-height: 100%; min-width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%);"/>
-				<div class="carousel-inner">
-					<div class="carousel-item border-0 active" style="height: 24rem;">
-							<div class="row carousel-caption">
-									<div class="col-md-9 p-4 text-left" style="background-color: rgba(35, 54, 68, 0.7); height: auto !important;">
-											<h2 class="h1">NAVIGATOR Tool <small>(Beta version)</small> </h2>
-											<p>An open digital tool, accessible via web, capable of calculating the recommendation of nutrients at field scale and assessing the greenhouse gas emissions / removals and economic performance at farm scale
-												<br/>For details about methodology, see the <a href="https://op.europa.eu/en/publication-detail/-/publication/1887586c-dbd6-11ec-a534-01aa75ed71a1/language-en" target="blank">study report.</a>
-											</p>
+			<div class="container-fluid pt-5">
+				<div class="pt-3 text-center">
+					<h2>F3 (nutrients)</h2>
+					<p>This module allows to get both the nutrients requirements and the best fertilizer for them</p>
+				</div>
+				<form class="needs-validation" novalidate>
+					<input required type="hidden" name="input[area]" />
+					<input required type="hidden" name="input[comnbustible]" />
+					<input required type="hidden" name="input[drain_rate]" />
+					<input required type="hidden" name="input[consumption]" />
+					<input required type="hidden" name="input[residues]" />
+					<input required type="hidden" name="input[spread]" />
+					<input required type="hidden" name="input[removed]" />
+					<input required type="hidden" name="input[seeds]" />
+					<input required type="hidden" name="input[herb]" />
+					<input required type="hidden" name="input[fung]" />
+					<input required type="hidden" name="input[insect]" />
+					<input required type="hidden" name="input[otreat]" />
+					<input required type="hidden" name="input[temp_reg]" />
+					<input required type="hidden" name="input[moist_reg]" />
+					<input required type="hidden" name="input[soil]" />
+					<input required type="hidden" name="input[price]" />
+					<input required type="hidden" name="input[price_water]" />
+					<input required type="hidden" name="input[price_seeds]" />
+					<input required type="hidden" name="input[price_herb]" />
+					<input required type="hidden" name="input[price_fung]" />
+					<input required type="hidden" name="input[price_insect]" />
+					<input required type="hidden" name="input[price_otreat]" />
+					<div class="card">
+						<h5 class="card-header bg-success text-white">Crop</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-5">
+									<label for="crop_type" class="form-label">Plant common name</label>
+									<input required type="hidden" name="input[crop_name]" />
+									<select required class="form-select" id="crop_type" name="input[crop_type]"></select>
+								</div>
+								<div class="col-sm-5">
+									<label for="PK_strategy" class="form-label">PK strategy&nbsp;&nbsp;</label>
+									<a href="#" data-bs-toggle="modal" data-bs-target="#pkstrategies-modal">
+										<i class="fa fa-info"></i>
+									</a>
+									<select required class="form-select" id="PK_strategy" name="input[PK_strategy]">
+										<option value="maximum-yield">Buildup & maintenance (maximum yield)</option>
+										<option value="minimum-fertilizer">Buildup & maintenance (reduced fertilizer)</option>
+										<option value="sufficiency">Sufficiency (minimum fertilizer)</option>
+										<option value="maintenance">Maintenance (soil analysis not avalable)</option>
+									</select>
+									<div class="modal fade" tabindex="-1" aria-hidden="true" id="pkstrategies-modal">
+										<div class="modal-dialog modal-lg">
+											<div class="modal-content p-5">
+												<ul>
+													<li>
+														<b>Sufficiency strategy:</b> apply P or K only when the soil test level is below the defined threshold value for fertilizer response for the specific test used to assess the nutrient availability in soil.
+													</li>
+													<li>
+														<b>Buildup and maintenance (minimum fertilizer) strategy:</b> add fertilizer to compensate for P and K exported from the farm and also to progressively rise the level to the threshold values, if the current level is below the threshold.
+													</li>
+													<li>
+														<b>Buildup and maintenance (maximum yield) strategy:</b> similar to the previous strategy but now using the parameters leading to maximum yield.
+													</li>
+													<li>
+														<b>Maintenance strategy:</b> if no soil tests are available, this alternative consisting of adding fertilizers to compensate for the P and K exported by harvested parts of crops. Here we assume that the user considers that P and K levels in the soil are not limiting for crop yields, the approach being a “zero balance”.
+													</li>
+												</ul>
+											</div>
+										</div>
 									</div>
+								</div>
+								<div class="col-sm-2">
+									<label for="yield" class="form-label">Yield (kg/ha)</label>
+									<input required type="number" class="form-control" id="yield" name="input[yield]" min="0" />
+								</div>
 							</div>
+							<div class="d-none row mt-2 crop-extra">
+								<div class="col-sm-2">
+									<label for="export_r" class="form-label">Export residues (%)</label>
+									<input required type="number" class="form-control" id="export_r" name="input[export_r]" value="100" min="0" max="100" />
+								</div>
+								<div class="col-sm-2">
+									<label for="HI_est" class="form-label">HI (%)</label>
+									<input required type="number" class="form-control" id="HI_est" name="input[HI_est]" min="0" max="100" step="0.1" />
+								</div>
+								<div class="col-sm-2">
+									<label for="CV" class="form-label">CV (%)</label>
+									<input required type="number" class="form-control" id="CV" name="input[CV]" value="20" min="0" max="100"  />
+								</div>
+								<div class="col-sm-2">
+									<label for="Nc_h" class="form-label">N (%)</label>
+									<input required type="number" class="form-control" id="Nc_h" name="input[Nc_h]" min="0"  max="100" step="0.001" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Pc_h" class="form-label">P (%)</label>
+									<input required type="number" class="form-control" id="Pc_h" name="input[Pc_h]" min="0"  max="100" step="0.001" />
+								</div>
+								<div class="col-sm-2">
+									<label for="Kc_h" class="form-label">K (%)</label>
+									<input required type="number" class="form-control" id="Kc_h" name="input[Kc_h]" min="0"  max="100" step="0.001" />
+								</div>
+							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-success" data-toshow=".crop-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-success d-none" data-tohide=".crop-extra">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
 					</div>
-				</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header bg-warning">Soil</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="soil_texture" class="form-label">Soil texture</label>
+									<select required class="form-select" id="soil_texture" name="input[soil_texture]"></select>										
+								</div>
+								<div class="col-sm-2">
+									<label for="tilled" class="form-label">Tilled</label>
+									<select required class="form-select" id="tilled" name="input[tilled]">
+										<option value="yes">Yes</option>
+										<option value="no">No</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<label for="CEC" class="form-label">CEC (meq/kg)</label>
+									<input required type="number" class="form-control" id="CEC" name="input[CEC]" min="0" step="0.01" />
+								</div>
+								<div class="col-sm-4">
+									<label for="Pc_method" class="form-label">Pc method</label>
+									<select required class="form-select" id="Pc_method" name="input[Pc_method]">
+										<option value="olsen">Olsen</option>
+										<option value="ammoniumLactate">Ammonium lactate</option>
+										<option value="mehlichIII">Mehlich III</option>
+										<option value="bray">Bray</option>
+										<option value="amoniumAcetate+EDTA">Ammonium acetate + EDTA</option>
+										<option value="calciumLactate">Calcium lactate</option>
+										<option value="calciumLactateAcetate">Calcium lactate acetate</option>
+										<option value="paperStrip">Paper strip</option>
+										<option value="acidAmmoniumAcetate">Acid ammonium acetate</option>
+										<option value="H2O">H2O</option>
+										<option value="saturatedWater">saturated water</option>
+										<option value="CaCl2">Ca Cl2</option> 
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2 soil-extra d-none">
+								<div class="col-sm-3">
+									<label for="Nc_s_initial" class="form-label">Soil N initial</label>
+									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.001" />
+								</div>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Nc_s_initial_unit]">
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq NO3-/100g</option>
+										<option value="meq_kg">meq NO3-/kg</option>
+										<option value="meq_l">meq NO3-/l</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label for="Nc_end" class="form-label">Soil N final</label>
+									<input required type="number" class="form-control" id="Nc_end" name="input[Nc_end]" min="0" value="20" step="0.001" />
+								</div>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Nc_end_unit]">
+										<option value="ppm">ppm</option>
+										<option selected value="kg_ha">kg N/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq NO3-/100g</option>
+										<option value="meq_kg">meq NO3-/kg</option>
+										<option value="meq_l">meq NO3-/l</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2 soil-extra d-none">
+								<div class="col-sm-3">
+									<label for="Pc_s" class="form-label">P</label>
+									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.001" />
+								</div>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Pc_s_unit]">
+										<option selected value="ppm">ppm</option>
+										<option value="kg_ha">kg P/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq PO43-/100g</option>
+										<option value="meq_kg">meq PO43-/kg</option>
+										<option value="meq_l">meq PO43-/l</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label for="Kc_s" class="form-label">K</label>
+									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.001" />
+								</div>
+								<div class="col-sm-3">
+									<label  class="form-label">&nbsp;</label>
+									<select required class="form-select" name="input[Kc_s_unit]">
+										<option selected value="ppm">ppm</option>
+										<option value="kg_ha">kg K/ha</option>
+										<option value="pct">%</option>
+										<option value="meq_100">meq K+/100g</option>
+										<option value="meq_kg">meq K+/kg</option>
+										<option value="meq_l">meq K+/l</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2 soil-extra d-none">
+								<div class="col-sm-4">
+									<label for="pH" class="form-label">pH</label>
+									<input required type="number" class="form-control" id="pH" name="input[pH]" value="7" step="0.1" />
+								</div>
+								<div class="col-sm-4">
+									<label for="SOM" class="form-label">SOM (%)</label>
+									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.1" value="1.5" />
+								</div>
+								<div class="col-sm-4">
+									<label for="depth_s" class="form-label">Soil depth (m)</label>
+									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
+								</div>
+							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-warning" data-toshow=".soil-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-warning d-none" data-tohide=".soil-extra">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header bg-info">Plot</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-4">
+									<label for="climatic_zone" class="form-label">Climatic zone&nbsp;&nbsp;</label>
+									<a href="#" data-bs-toggle="modal" data-bs-target="#climatic_zone-modal">
+										<i class="fa fa-info"></i>
+									</a>
+									<select required class="form-select" id="climatic_zone" name="input[climatic_zone]">
+										<option value="alpine">Alpine</option>
+										<option selected value="atlantic">Atlantic</option>
+										<option value="continental">Continental</option>
+										<option value="northern">Northern </option>
+										<option value="southern">Southern</option>
+									</select>
+									<div class="modal fade" tabindex="-1" aria-hidden="true" id="climatic_zone-modal">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<img src="/img/climates.png" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label for="water_supply" class="form-label">Water supply</label>
+									<select required class="form-select" id="water_supply" name="input[water_supply]">
+										<option value="0">Rainfed</option>
+										<option selected value="1">Irrigated</option>
+									</select>								
+								</div>
+								<div class="col-sm-4">
+									<label for="type_irrigated" class="form-label">Type of irrigation</label>
+									<select required class="form-select" id="type_irrigated" name="input[type_irrigated]">
+										<option value="trickle">Trickle</option>
+										<option selected value="sprinkler">Sprinkler</option>
+										<option value="surface">Surface</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2 plot-extra d-none">
+								<div class="col-sm-3">
+									<label for="dose_irrigation" class="form-label">Water volume (mm)</label>
+									<input required type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" value="2500" />
+								</div>
+								<div class="col-sm-2">
+									<label for="efficiency" class="form-label">Efficiency (%)</label>
+									<input required type="number" class="form-control" id="efficiency" name="input[efficiency]" value="100" />
+								</div>
+								<div class="col-sm-3">
+									<label for="Nc_NO3_water" class="form-label">Nitrate concentration in water (ppm)</label>
+									<input required type="number" class="form-control" id="Nc_NO3_water" name="input[Nc_NO3_water]" min="0" value="24" />
+								</div>
+								<div class="col-sm-2">
+									<label for="rain_a" class="form-label">Annual rainfall (mm)</label>
+									<input required type="number" class="form-control" id="rain_a" name="input[rain_a]" min="0" value="800" />
+								</div>
+								<div class="col-sm-2">
+									<label for="rain_w" class="form-label">Autumn-winter rainfall (mm)</label>
+									<input required type="number" class="form-control" id="rain_w" name="input[rain_w]" min="0" value="480" />
+								</div>
+							</div>
+							<div class="row mt-4">
+								<button type="button" class="btn btn-info" data-toshow=".plot-extra">
+									<i class="fa fa-plus"></i>
+								</button>
+								<button type="button" class="btn btn-info d-none" data-tohide=".plot-extra">
+									<i class="fa fa-minus"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="card">
+						<h5 class="card-header bg-danger text-white">Fertilizers</h5>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-sm-3">
+									<label for="prices" class="form-label mt-2 pull-right">List of current prices:</label>
+								</div>
+								<div class="col-sm-5">
+									<input class="form-control" id="prices" type="file" accept=".csv" />
+								</div>
+								<div class="col-sm-4">
+									<a href="/csv/F3/Fertilizers.csv">Download default prices</a>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
+									<label for="fertilizers" class="form-label mt-2 pull-right">Select to include in list of best fertilizer:</label>
+								</div>
+								<div class="col-sm-9">
+									<select class="form-select" id="fertilizers" name="fertilizers" multiple></select>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-sm-3">
+									<label class="form-label mt-1 pull-right" title="Fertilizer that needs to be included in calculation (because the farmer has either applied it already or wants to apply it)">Fertilizer that needs to be included in calculation:</label>
+								</div>
+								<div class="col-sm-9">
+									<ul class="list-unstyled">
+										<li class="default">
+											<span>None</span>
+											<button class="btn fa fa-trash text-white"></button>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-1 text-end">
+									<button type="button" class="btn btn-dark">
+										<i class="fa fa-plus"></i>
+									</button>
+								</div>
+								<div class="col-sm-5">
+									<select class="form-select" id="fertilizerID" name="fertilizerID">
+										<option></option>
+										<option value="custom">CUSTOM</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<select disabled class="form-select" name="type">
+										<option value="Organic">Organic</option>
+										<option value="Inorganic">Inorganic</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<select class="form-select" name="method">
+										<option value="incorporated">Incorporated</option>
+										<option value="topdressing">Top-dressing</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<select class="form-select" name="frequency">
+										<option value="annual">Annual</option>
+										<option value="biennial">Biennial</option>
+									</select>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="offset-sm-1 col-sm-3">
+									<input type="number" class="form-control" placeholder="Amount" id="amount" name="amount" min="0" />
+									<label for="amount" class="form-label">kg/ha</label>
+								</div>
+								<div class="col-sm-4">
+									<input type="number" class="form-control" placeholder="Price"  id="price" name="price" min="0" step="0.0001" />
+									<label for="price" class="form-label">&euro;/t</label>
+								</div>
+								<div class="col-sm-1">
+									<input disabled type="number" class="form-control" id="N" name="N" value="0" min="0" max="100" step="0.001" />
+									<label for="N" class="form-label">% N</label>
+								</div>
+								<div class="col-sm-1">
+									<input disabled type="number" class="form-control" id="N_ur" name="N_ur" value="0" min="0" max="100" step="0.001" />
+									<label for="N_ur" class="form-label">% Ur</label>
+								</div>
+								<div class="col-sm-1">
+									<input disabled type="number" class="form-control" id="P" name="P" value="0" min="0" max="100" step="0.001" />
+									<label for="P" class="form-label">% P</label>
+								</div>
+								<div class="col-sm-1">
+									<input disabled type="number" class="form-control" id="K" name="K" value="0" min="0" max="100" step="0.001" />
+									<label for="K" class="form-label">% K</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-lg btn-warning">
+								<i class="fa fa-play"></i>
+								<span>Nutrients</span>
+							</button>
+							<a href="/GHG/l3-crops.html" class="btn btn-lg btn-secondary disabled">
+								<i class="fa fa-chevron-right"></i>
+								<span>GHG</span>
+							</a>
+							<a href="/EPA/l1.html" class="btn btn-lg btn-secondary disabled">
+								<i class="fa fa-chevron-right"></i>
+								<span>EPA</span>
+							</a>
+						</div>
+					</div>
+					<br/>
+					<div class="d-none" id="results">
+						<h3 class="text-center">Best fertilization</h3>
+						<div class="table-responsive" id="fertilization">
+							<table class="table table-warning text-end" id="F3-tabla-1">
+								<thead>
+									<tr>
+										<th scope="col">Fertilizer</th>
+										<th scope="col">Amount (kg/ha)</th>
+										<th scope="col">Cost (€/ha)</th>
+										<th scope="col">N (FU/ha)</th>
+										<th scope="col">N_ureic (FU/ha)</th>
+										<th scope="col">P (FU/ha)</th>
+										<th scope="col">K (FU/ha)</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+						</div>
+						<h3 class="text-center">Nutrients balance</h3>
+						<div class="row">
+							<div class="col-sm-6" id="balance_input">
+								<table class="table table-warning text-end" id="F3-tabla-2">
+									<thead>
+										<tr>
+											<th></th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr name="Nmineralization">
+											<td>Mineralization</td>
+										</tr>
+										<tr name="Nfixation">
+											<td>Fixation</td>
+										</tr>
+										<tr name="Nwater">
+											<td>Irrigation</td>
+										</tr>
+										<tr name="NminInitial">
+											<td>Initial of soil</td>
+										</tr>
+										<tr name="appliedFertilizer">
+											<td>Fertilizer applied</td>
+										</tr>
+										<tr name="recommendedFertilizer">
+											<td>Fertilizer recommended</td>
+										</tr>
+										<tr name="total" class="fs-5">
+											<td>TOTAL INPUT</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-sm-6" id="balance_output">
+								<table class="table table-warning text-end" id="F3-tabla-3">
+									<thead>
+										<tr>
+											<th></th>
+											<th>N (FU/ha)</th>
+											<th>P (FU/ha)</th>
+											<th>K (FU/ha)</th>
+											<th>P2O5 (FU/ha)</th>
+											<th>K2O (FU/ha)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr name="Nleaching">
+											<td>Leaching</td>
+										</tr>
+										<tr name="Uptake">
+											<td>Uptake</td>
+										</tr>
+										<tr name="NminPostharvest">
+											<td>End of soil</td>
+										</tr>
+										<tr name="Ndenitrification">
+											<td>Denitrification</td>
+										</tr>
+										<tr name="Nvolatilization">
+											<td>Volatilization</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+										</tr>
+										<tr name="total" class="fs-5">
+											<td>TOTAL OUTPUT</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- Botón de generación de pdf -->
+						<div style="text-align: center;">
+							<button type="button" class="btn btn-lg btn-warning" onclick="getPDF('F3', true)">
+								Generate PDF output
+							</button>
+						</div>
+						<!-- Botón de generación de pdf -->
+					</div>
+				</form>
 			</div>
-			<section class="text-center container">
-				<div class="row py-lg-3">
-					<div class="col-lg-8 col-md-12 mx-auto">
-					<img src="img/fastnavigator_all_960.png" class="img img-fluid">
-					</div>
-				</div>
-			</section>
 		</main>
-		<footer class="footer mt-auto py-3 bg-dark text-light"></footer>
-		<script src="/lib/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		<footer class="footer mt-auto py-3 bg-light"></footer>
+		<script src="/lib/bootstrap.bundle.min.js"></script>
 		<script src="/lib/form-data-json.min.js"></script>
-		<script src="js/global-scripts.js"></script>
+		<script src="/lib/multiselect.min.js"></script>
+		<script src="/js/global-scripts.js"></script>
+		<script src="/js/form-f3.js"></script>
+		<!-- Generación de PDF -->
+		<script src="/lib/pdf/jspdf.umd.js"></script>
+		<script>if (!window.jsPDF) window.jsPDF = window.jspdf.jsPDF</script>
+		<script src="/lib/pdf/calibri-normal.js"></script>
+		<script src="/lib/pdf/jspdf.plugin.autotable.js"></script>
+		<script src="/js/templates_pdf/funcionalidad_pdf.js"></script>
+		<script src="/js/templates_pdf/header_footer.js"></script>
+		<script src="/js/templates_pdf/F3_pdf.js"></script>
 		<script>
 			setTimeout(function() {
 				'use strict'
