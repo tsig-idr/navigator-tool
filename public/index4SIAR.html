@@ -561,6 +561,9 @@
 				'use strict'
 
 				var project = {id:123};
+				if (typeof project == 'string') {
+					project = JSON.parse(project);
+				}
 				if (typeof project != 'object' || typeof project.localizacion != 'object') {
 					return;
 				}
