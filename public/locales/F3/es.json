@@ -163,7 +163,7 @@
 	"HI (%)": "Porcentaje de cosecha (%)",
 	"Home": "Inicio",
 	"Horticultural crops": "Cultivos hortícolas",
-	"if no soil tests are available, this alternative consisting of adding fertilizers to compensate for the P and K exported by harvested parts of crops. Here we assume that the user considers that P and K levels in the soil are not limiting for crop yields, the approach being a 'zero balance'.": "en caso de que no se tenga análisis de suelo, esta estrategia consiste en añadir los fertilizantes para compensar el P y el K exportado por la parte cosechable del cultivo. Se asume que el usuario considera que los niveles de P y K en el suelo no son limitantes para el rendimiento del cultivo, siendo esta aproximación de 'balance cero'.",
+	"if no soil tests are available, this alternative consisting of adding fertilizers to compensate for the P and K exported by harvested parts of crops. Here we assume that the user considers that P and K levels in the soil are not limiting for crop yields, the approach being a 'zero balance'.": "en caso de que no se tenga análisis de suelo, esta estrategia consiste en añadir los fertilizantes para compensar el P y el K exportado por la parte cosechable del cultivo. Se asume que el usuario considera que los niveles de P y K en el suelo no son limitantes para el rendimiento del cultivo, siendo esta aproximación de \"balance cero\".",
 	"Incorporated": "Incorporado",
 	"Initial of soil": "Inicial del suelo",
 	"Inorganic": "Inorgánico",
