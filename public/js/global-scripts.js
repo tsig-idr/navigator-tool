@@ -29,6 +29,7 @@
 		return response.text()
 	}).then(data => {
 		document.querySelector('navbar').innerHTML = data;
+		document.querySelectorAll('.siar .nav-item:not(.visible)').forEach(element => element.classList.add('d-none'));
 		const saveA = document.querySelector('[data-save]');
 		var modal = null;
 		document.querySelectorAll('[type=file].d-none').forEach(input => {

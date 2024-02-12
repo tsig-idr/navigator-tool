@@ -16,7 +16,7 @@
 					<li class="nav-item ml-2">
 						<a class="nav-link active" aria-current="page" href="/index.html">Home</a>
 					</li>
-					<li class="nav-item ml-2 dropdown">
+					<li class="nav-item ml-2 dropdown visible">
 						<a class="nav-link dropdown-toggle active" href="#" id="dropdown00" data-bs-toggle="dropdown" aria-expanded="false">Load</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown00">
 							<li>
@@ -158,7 +158,7 @@
 							</li>
 						</ul>
 					</li>
-					<li class="nav-item ml-2">
+					<li class="nav-item ml-2 visible">
 						<a class="disabled nav-link dropdown-toggle active" data-save href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Save</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown04">
 							<li>
@@ -185,35 +185,40 @@
 		</div>
 	</nav>
 </header>
-<div class="modal fade" tabindex="-1" aria-hidden="true" id="siar-modal">
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="siar-modal">
 	<div class="modal-dialog">
 		<div class="modal-content p-5">
-			<span>En diferentes lineas se han cargado los datos de las siguientes variables:</span>
-			<br/>
-			<h3>F1 & F2 & F3 & F4</h3>
-			<ul>
-				<li>Textura de suelo</li>
-				<li>Tipo de cultivo</li>
-				<li>Dosis de riego acumulada</li>
-			</ul>
-			<h3>F1 & F2 & F3</h3>
-			<ul>
-				<li>Eficiencia</li>
-			</ul>
-			<h3>F1 & F2</h3>
-			<ul>
-				<li>Profundidad de suelo</li>
-				<li>Pedregosidad</li>
-				<li>Datos fenologicos</li>
-				<li>Fecha de inicio de cultivo</li>
-				<li>Fecha de fin de cultivo</li>
-				<li>Dosis de riego diaria</li>
-			</ul>
-			<h3>F3 & F4</h3>
-			<ul>
-				<li>Precipitaciones anuales </li>
-				<li>Precipitaciones otoño-invierno </li>
-			</ul>
+			<div class="modal-body">
+				<span>En diferentes lineas se han cargado los datos de las siguientes variables:</span>
+				<br/>
+				<h3>F1 & F2 & F3 & F4</h3>
+				<ul>
+					<li>Textura de suelo</li>
+					<li>Tipo de cultivo</li>
+					<li>Dosis de riego acumulada</li>
+				</ul>
+				<h3>F1 & F2 & F3</h3>
+				<ul>
+					<li>Eficiencia</li>
+				</ul>
+				<h3>F1 & F2</h3>
+				<ul>
+					<li>Profundidad de suelo</li>
+					<li>Pedregosidad</li>
+					<li>Datos fenologicos</li>
+					<li>Fecha de inicio de cultivo</li>
+					<li>Fecha de fin de cultivo</li>
+					<li>Dosis de riego diaria</li>
+				</ul>
+				<h3>F3 & F4</h3>
+				<ul>
+					<li>Precipitaciones anuales </li>
+					<li>Precipitaciones otoño-invierno </li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Aceptar</button>
+			</div>
 		</div>
 	</div>
 </div>

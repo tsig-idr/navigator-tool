@@ -12,7 +12,7 @@
 		<link href="/css/product.css" rel="stylesheet" />
 	</head>
 	<body class="d-flex flex-column h-100">
-		<navbar></navbar>
+		<navbar class="siar"></navbar>
 		<main class="flex-shrink-0">
 			<div class="container-fluid pt-5">
 				<div class="pt-3 text-center">
@@ -584,6 +584,7 @@
 						setFarm(farm);
 					let modal = new bootstrap.Modal(document.getElementById('siar-modal'));
 					modal.show();
+					document.querySelector('#siar-modal [data-dismiss]').addEventListener('click', () => modal.hide());
 				}).catch(error => {
 					console.warn('Something went wrong.', error);
 				});	
