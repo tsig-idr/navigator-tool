@@ -1179,6 +1179,27 @@
     }
   },
   {
+    "uri": "navigatortool:crops:<_Crops:PISTACHIO_>",
+    "cropID": "PISTACHIO",
+    "crop_name": "Pistachio",
+    "group": "LEGUMES",
+    "CV": "20",
+    "harvest": {
+      "harvested_part": "seed",
+      "HI_est": 85,
+      "DM_h": 85,
+      "Nc_h_min": 3,
+      "Nc_h_max": 3.6,
+      "Nc_h_typn": 3.3,
+      "Pc_h": 0.37,
+      "Kc_h": 0.75,
+      "Ca_h": 0.268,
+      "Mgc_h": 0.279,
+      "Sc_h": 0
+    },
+    "residues": { "residue_part": 100 }
+  },
+  {
     "uri": "navigatortool:crops:<_Crops:FORAGES_>",
     "cropID": "FORAGES",
     "crop_name": "Forages",

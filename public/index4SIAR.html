@@ -84,33 +84,33 @@
 									</div>
 								</div>
 								<div class="col-sm-2">
-									<label for="yield" class="form-label">Yield (kg/ha)</label>
+									<label for="yield" title="Producción esperada" class="form-label">Yield (kg/ha)</label>
 									<input required type="number" class="form-control" id="yield" name="input[yield]" min="0" />
 								</div>
 							</div>
 							<div class="d-none row mt-2 crop-extra">
 								<div class="col-sm-2">
-									<label for="export_r" class="form-label">Export residues (%)</label>
+									<label for="export_r" title="Residuos de la cosecha que salen de la parcela" class="form-label">Export residues (%)</label>
 									<input required type="number" class="form-control" id="export_r" name="input[export_r]" value="100" min="0" max="100" />
 								</div>
 								<div class="col-sm-2">
-									<label for="HI_est" class="form-label">HI (%)</label>
+									<label for="HI_est" title="Porcentaje de material vegetal que se queda el productor respecto del total que es cosechado" class="form-label">HI (%)</label>
 									<input required type="number" class="form-control" id="HI_est" name="input[HI_est]" min="0" max="100" step="0.1" />
 								</div>
 								<div class="col-sm-2">
-									<label for="CV" class="form-label">CV (%)</label>
+									<label for="CV" title="Parámetro estadístico que representa la posible variación de la producción esperable. Nota: si el valor no es conocido, se recomienda mantener el valor por defecto (en general, 20%)" class="form-label">CV (%)</label>
 									<input required type="number" class="form-control" id="CV" name="input[CV]" value="20" min="0" max="100"  />
 								</div>
 								<div class="col-sm-2">
-									<label for="Nc_h" class="form-label">N (%)</label>
+									<label for="Nc_h" title="Unidades de nitrógeno que extrae el cultivo por cada 100 kg producidos (se incluye la parte cosechable y de los residuos). Nota: si el valor no es conocido, se recomienda mantener el valor por defecto" class="form-label">N (%)</label>
 									<input required type="number" class="form-control" id="Nc_h" name="input[Nc_h]" min="0"  max="100" step="0.001" />
 								</div>
 								<div class="col-sm-2">
-									<label for="Pc_h" class="form-label">P (%)</label>
+									<label for="Pc_h" title="Unidades de fósforo que extrae el cultivo por cada 100 kg producidos (se incluye la parte cosechable y de los residuos). Nota: si el valor no es conocido, se recomienda mantener el valor por defecto." class="form-label">P (%)</label>
 									<input required type="number" class="form-control" id="Pc_h" name="input[Pc_h]" min="0"  max="100" step="0.001" />
 								</div>
 								<div class="col-sm-2">
-									<label for="Kc_h" class="form-label">K (%)</label>
+									<label for="Kc_h" title="Unidades de potasio que extrae el cultivo por cada 100 kg producidos (se incluye la parte cosechable y de los residuos). Nota: si el valor no es conocido, se recomienda mantener el valor por defecto" class="form-label">K (%)</label>
 									<input required type="number" class="form-control" id="Kc_h" name="input[Kc_h]" min="0"  max="100" step="0.001" />
 								</div>
 							</div>
@@ -126,7 +126,19 @@
 					</div>
 					<br/>
 					<div class="card">
-						<h5 class="card-header bg-warning">Soil</h5>
+						<div class="card-header bg-warning">
+							<h5 class="d-inline">Soil</h5>
+							<a href="#" data-bs-toggle="modal" data-bs-target="#soil-modal">
+								<i class="fa fa-info"></i>
+							</a>
+						</div>
+						<div class="modal fade" tabindex="-1" aria-hidden="true" id="soil-modal">
+							<div class="modal-dialog">
+								<div class="modal-content p-5">
+									Información que debe ser completada a partir de una analítica de suelo. En caso contrario, mantenga los valores por defecto de acuerdo a la textura del suelo elegida
+								</div>
+							</div>
+						</div>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-4">
@@ -141,7 +153,7 @@
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<label for="CEC" class="form-label">CEC (meq/kg)</label>
+									<label for="CEC" title="Capacidad de intercambio catiónico. Dato procedente del análisis del suelo. Nota: en caso de no tener dato, deje el valor por defecto, el cual está relacionado con la textura del suelo" class="form-label">CEC (meq/kg)</label>
 									<input required type="number" class="form-control" id="CEC" name="input[CEC]" min="0" step="0.01" />
 								</div>
 								<div class="col-sm-4">
@@ -164,7 +176,7 @@
 							</div>
 							<div class="row mt-2 soil-extra d-none">
 								<div class="col-sm-3">
-									<label for="Nc_s_initial" class="form-label">Soil N initial</label>
+									<label for="Nc_s_initial" title="Nitrógeno inicial del suelo en forma nítrica y/o amoniacal. Dato procedente del análisis del suelo. Nota: fíjese en las unidades en las que está expresado el resultado del análisis" class="form-label">Soil N initial</label>
 									<input required type="number" class="form-control" id="Nc_s_initial" name="input[Nc_s_initial]" min="0" value="30" step="0.001" />
 								</div>
 								<div class="col-sm-3">
@@ -179,7 +191,7 @@
 									</select>
 								</div>
 								<div class="col-sm-3">
-									<label for="Nc_end" class="form-label">Soil N final</label>
+									<label for="Nc_end" title="Contenido de nitrógeno, en su forma nítrica y/o amoniacal, que se desea dejar en el suelo una vez terminado el ciclo anual del cultivo. Nota: en caso de no conocerlo, se recomienda mantener en el suelo una reserva de unos 20 Kg N/ha al finalizar el ciclo del cultivo" class="form-label">Soil N final</label>
 									<input required type="number" class="form-control" id="Nc_end" name="input[Nc_end]" min="0" value="20" step="0.001" />
 								</div>
 								<div class="col-sm-3">
@@ -196,7 +208,7 @@
 							</div>
 							<div class="row mt-2 soil-extra d-none">
 								<div class="col-sm-3">
-									<label for="Pc_s" class="form-label">P</label>
+									<label for="Pc_s" title="Contenido de fósforo en el suelo. Dato procedente del análisis del suelo. Nota: fíjese en las unidades en las que está expresado el resultado del análisis" class="form-label">P</label>
 									<input required type="number" class="form-control" id="Pc_s" name="input[Pc_s]" min="0" step="0.001" />
 								</div>
 								<div class="col-sm-3">
@@ -211,7 +223,7 @@
 									</select>
 								</div>
 								<div class="col-sm-3">
-									<label for="Kc_s" class="form-label">K</label>
+									<label for="Kc_s" title="Contenido de potasio en el suelo. Dato procedente del análisis del suelo. Nota: fíjese en las unidades en las que está expresado el resultado del análisis" class="form-label">K</label>
 									<input required type="number" class="form-control" id="Kc_s" name="input[Kc_s]" min="0" step="0.001" />
 								</div>
 								<div class="col-sm-3">
@@ -232,11 +244,11 @@
 									<input required type="number" class="form-control" id="pH" name="input[pH]" value="7" step="0.1" />
 								</div>
 								<div class="col-sm-4">
-									<label for="SOM" class="form-label">SOM (%)</label>
+									<label for="SOM" title="Materia Orgánica del suelo. Dato procedente del análisis del suelo" class="form-label">SOM (%)</label>
 									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.1" value="1.5" />
 								</div>
 								<div class="col-sm-4">
-									<label for="depth_s" class="form-label">Soil depth (m)</label>
+									<label for="depth_s" title="Profundidad a la que se tomó la muestra de suelo para su análisis. Nota: En caso de no tener análisis de suelo, deje una profundidad por defecto de 0,40 m" class="form-label">Soil depth (m)</label>
 									<input required type="number" class="form-control" id="depth_s" name="input[depth_s]" min="0" step="0.01" value="0.3" />
 								</div>
 							</div>
@@ -293,11 +305,11 @@
 							</div>
 							<div class="row mt-2 plot-extra d-none">
 								<div class="col-sm-3">
-									<label for="dose_irrigation" class="form-label">Water volume (mm)</label>
+									<label for="dose_irrigation" title="Volumen total de agua de riego aplicada al cultivo durante su ciclo de crecimiento y desarrollo. En el caso de parcelas de secano, este campo debe estar deshabilitado" class="form-label">Water volume (mm)</label>
 									<input required type="number" class="form-control" id="dose_irrigation" name="input[dose_irrigation]" min="0" value="2500" />
 								</div>
 								<div class="col-sm-2">
-									<label for="efficiency" class="form-label">Efficiency (%)</label>
+									<label for="efficiency" title="Eficiencia de aplicación del sistema de riego" class="form-label">Efficiency (%)</label>
 									<input required type="number" class="form-control" id="efficiency" name="input[efficiency]" value="100" />
 								</div>
 								<div class="col-sm-3">
@@ -325,11 +337,23 @@
 					</div>
 					<br/>
 					<div class="card">
-						<h5 class="card-header bg-danger text-white">Fertilizers</h5>
+						<div class="card-header bg-danger text-white">
+							<h5 class="d-inline">Fertilizers</h5>
+							<a href="#" data-bs-toggle="modal" data-bs-target="#fertilizers-modal">
+								<i class="fa fa-info"></i>
+							</a>
+						</div>
+						<div class="modal fade" tabindex="-1" aria-hidden="true" id="fertilizers-modal">
+							<div class="modal-dialog">
+								<div class="modal-content p-5">
+									Sub-módulo de cálculo que permite la optimización técnico-económica de la fertilización en parcela
+								</div>
+							</div>
+						</div>
 						<div class="card-body">
 							<div class="row">
 								<div class="col-sm-3">
-									<label for="prices" class="form-label mt-2 pull-right">List of current prices:</label>
+									<label for="prices" title="Archivo con información orientativa sobre los precios de los fertilizantes listados. Si el agricultor/ganadero tiene precios vigentes, se recomienda modificar el precio en el archivo y cargarlo de nuevo. Nota: no modificar el identificador (ID) ni el nombre del fertilizante" class="form-label mt-2 pull-right">List of current prices:</label>
 								</div>
 								<div class="col-sm-5">
 									<input class="form-control" id="prices" type="file" accept=".csv" />
@@ -340,7 +364,7 @@
 							</div>
 							<div class="row mt-3">
 								<div class="col-sm-3">
-									<label for="fertilizers" class="form-label mt-2 pull-right">Select to include in list of best fertilizer:</label>
+									<label for="fertilizers" title="Permite seleccionar sólo aquéllos fertilizantes con los que el agricultor/ganadero trabaja habitualmente" class="form-label mt-2 pull-right">Select to include in list of best fertilizer:</label>
 								</div>
 								<div class="col-sm-9">
 									<select class="form-select" id="fertilizers" name="fertilizers" multiple></select>
@@ -348,7 +372,7 @@
 							</div>
 							<div class="row mt-3">
 								<div class="col-sm-3">
-									<label class="form-label mt-1 pull-right" title="Fertilizer that needs to be included in calculation (because the farmer has either applied it already or wants to apply it)">Fertilizer that needs to be included in calculation:</label>
+									<label class="form-label mt-1 pull-right" title="En caso de haber realizado alguna aplicación de fertilizante mineral u orgánico, bien sea de fondo (incorporado) o de cobertera, por favor incluirlo para que sea considerado en el balance de nutrientes y en la fertilización optimizada">Fertilizer that needs to be included in calculation:</label>
 								</div>
 								<div class="col-sm-9">
 									<ul class="list-unstyled">
@@ -585,6 +609,31 @@
 					let modal = new bootstrap.Modal(document.getElementById('siar-modal'));
 					modal.show();
 					document.querySelector('#siar-modal [data-dismiss]').addEventListener('click', () => modal.hide());
+					document.querySelector('[href="/csv/F3/Fertilizers.csv"]').addEventListener('click', ev => {
+						fetch(ev.target.href).then(res => res.text()).then(data => {
+							data = data.split('\n');
+							data[0] = 'ID;Fertilizante;Precio (euro/t)';
+							data = data.map(line => {
+								if (line) {
+									line = line.split(';');
+									line[1] in dict &&
+										(line[1] = dict[line[1]]);
+									line = line.join(';');
+								}
+								return line;
+							}).join('\n');
+									const url = URL.createObjectURL(new Blob([data], {
+										type: 'text/csv'
+									})), a = document.createElement('a');
+									document.body.appendChild(a);
+									a.href = url;
+									a.download = 'Precios_Fertilizantes.csv';
+									a.click();
+									document.body.removeChild(a);
+									URL.revokeObjectURL(url);
+						});
+						ev.preventDefault();
+					});
 				}).catch(error => {
 					console.warn('Something went wrong.', error);
 				});	

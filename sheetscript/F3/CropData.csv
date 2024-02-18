@@ -97,6 +97,7 @@ PEAR;Fruit trees, vines and shrubs;Pear;Pyrus communis;Pera;Fruit;Non_legume;Per
 PEPPER_GREEN;Horticultural crops;Pepper green;Capsicum annuum L.;Pimienta verde;Fruit;Non_legume;Annual;60;100;10,5;2,1;2,4;2,3;0,35;2;0,014;0,017;0;Residues;0;;;0;0;0;;;;0,15;1;0,8;1
 PEPPER_RED;Horticultural crops;Pepper red;Capsicum annuum L.;Pimienta roja;Fruit;Non_legume;Annual;60;100;12,5;1,4;2;1,9;0,3;2,4;0,014;0,017;0;Residues;0;;;0;0;0;;;;0,15;1;0,8;1
 PERSIMMON;Fruit trees, vines and shrubs;Persimmon;Dyospiros kaki;Caqui;Fruit;Non_legume;Perennial;60;100;20;;;0,55;0,07;1,01;0,027;0;0;;0;;;0;0;0;;;;0,2;1;1;
+PISTACHIO;Fruit trees, vines and shrubs;Pistachio;Prunus amygdalus;Almendra;Fruit;Non_legume;Perennial;60;100;85;3;3,6;3,3;0,37;0,75;0,268;0,279;0;;0;;;0;0;0;;;;0,2;0,85;0,6;
 PLUM;Fruit trees, vines and shrubs;Plum;Prunus domestica;Ciruela;Fruit;Non_legume;Perennial;60;100;15;0,8;0,9;0,85;0,07;1,16;0,007;0,005;0;;0;;;0;0;0;;;;0,35;0,85;0,6;
 POMEGRANATE;Fruit trees, vines and shrubs;Pomegranate;Punica granatum;Granada;Fruit;Non_legume;Perennial;60;100;25;;;0,6;0,1;1,04;0,01;0,012;0;;0;;;0;0;0;;;;0,45;0,85;0,6;
 POTATO;Roots, tubers & bulbs;Potato;Solanum tuberosum;Patata;Tuber;Non_legume;Annual;70;100;23,5;1,2;1,9;1,6;0,25;2;0,012;0,023;0;Shoot;51;2;2,4;2,2;0,2;3,95;;;;0,15;1,1;0,65;0,6
