@@ -287,8 +287,7 @@ label {
 	content: attr(data-title);
 	background-color: #333;
 	color: #fff;
-	font-size: 14px;
-	font-family: Raleway;
+	font-size: 16px;
 	position: absolute;
 	padding: 3px 20px;
 	bottom: -1.6em;
@@ -300,7 +299,6 @@ label {
 	z-index: 99999;
 	visibility: hidden;
 	border-radius: 6px;
-	
 }
 [data-title] {
 	position: relative;
