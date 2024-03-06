@@ -186,6 +186,22 @@
 				"Mgc_h": 0.023,
 				"Sc_h": 0
 			}
+		},
+		"PISTACHIO": {
+			"crop_name": "Pistachio",
+			"harvest": {
+				"harvested_part": "seed",
+				"HI_est": 85,
+				"DM_h": 85,
+				"Nc_h_min": 3,
+				"Nc_h_max": 3.6,
+				"Nc_h_typn": 2.69,
+				"Pc_h": 0.76,
+				"Kc_h": 3.13,
+				"Ca_h": 0.268,
+				"Mgc_h": 0.279,
+				"Sc_h": 0
+			}
 		}
 	},
 	"textures": {

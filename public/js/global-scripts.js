@@ -190,7 +190,7 @@ function crop4FaST (siar_crop) {
 		case 'Patata':
 			return 'POTATO';
 		case 'Pistacho':
-			return 'HORTICULTURAL_CROPS';
+			return 'PISTACHIO';
 		case 'Trigo':
 			return 'WHEAT_BREAD_SOFT';
 		case 'Vid':
