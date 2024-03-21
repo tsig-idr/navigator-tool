@@ -233,7 +233,7 @@
 								</div>
 								<div class="col-sm-4">
 									<label for="SOM" class="form-label">SOM (%)</label>
-									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.1" value="1.5" />
+									<input required type="number" class="form-control" id="SOM" name="input[SOM]" min="0" max="100" step="0.01" value="1.5" />
 								</div>
 								<div class="col-sm-4">
 									<label for="depth_s" class="form-label">Soil depth (m)</label>
@@ -275,14 +275,25 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-2">
+									<label class="form-label">Is a vulnerable zone?</label>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" value="yes" name="vulnerable" id="isVulnerable">
+										<label class="form-check-label" for="isVulnerable">Yes</label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="radio" value="no" name="vulnerable" id="isNotVulenerable" checked>
+										<label class="form-check-label" for="isNotVulenerable">No</label>
+									</div>
+								</div>
+								<div class="col-sm-3">
 									<label for="water_supply" class="form-label">Water supply</label>
 									<select required class="form-select" id="water_supply" name="input[water_supply]">
 										<option value="0">Rainfed</option>
 										<option selected value="1">Irrigated</option>
 									</select>								
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label for="type_irrigated" class="form-label">Type of irrigation</label>
 									<select required class="form-select" id="type_irrigated" name="input[type_irrigated]">
 										<option value="trickle">Trickle</option>
