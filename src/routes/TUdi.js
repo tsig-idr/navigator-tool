@@ -27,8 +27,8 @@ module.exports.router = function () {
 			P = req.body.P && parseFloat(req.body.P) || req.params.P && parseFloat(req.params.P) || 0.0,
 			K = req.body.K && parseFloat(req.body.K) || req.params.K && parseFloat(req.params.K) || 0.0,
 			S = req.body.S && parseFloat(req.body.S) || req.params.S && parseFloat(req.params.S) || 0.0,
-			N_ur = (req.body.N_ur && parseFloat(req.body.N_ur) || req.params.N_ur && parseFloat(req.params.N_ur))*N || 0.0,
-			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_ur);
+			N_max = (req.body.vulnerable == 'yes' || req.params.vulnerable == 'yes') && 170 || Number.MAX_VALUE,
+			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_max);
 		res.json({
 			results: fertilizers,
 			total: navBestFertiCtrl.aggregate(fertilizers)

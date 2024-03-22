@@ -18,13 +18,13 @@ const dispatcher = async input => {
 	input.fertilizers = [];
 	let output = await navF4Ctrl.requeriments(input),
 		N = Math.max(output.Ncrop + output.Ndenitrification - output.Nc_mineralization_amendment, 0), 
-		N_ur = Math.max(0.25*(output.Ncrop + output.Ndenitrification) - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
+		N_max = input.vulnerable == 'yes' && 170 || Number.MAX_VALUE, 
 		P = Math.max(output.P_maintenance - applied.reduce((acc, fert) => acc + fert.amount*fert.P, 0)/100, 0),
 		K = Math.max(output.K_maintenance - applied.reduce((acc, fert) => acc + fert.amount*fert.K, 0)/100, 0);
 	input.applied = applied;
 	input.fertilizers = liableFertilizers;
 	output = await navF4Ctrl.data4fertilizers(input);
-	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_ur);
+	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_max);
 	return await navF4Ctrl.requeriments(input);
 };
 module.exports.router = function () {

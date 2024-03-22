@@ -39,13 +39,14 @@ module.exports = function () {
 		return fertilizers.find(fertilizer => fertilizer.fertilizerID === fertilizerID);
 	}
 
-	function bestCombination (fertilizers, N_req, P_req, K_req, S_req, lim_N_ur) {
+	function bestCombination (fertilizers, N_req, P_req, K_req, S_req, N_max) {
 		const model = {
 			optimize: 'price',
 			opType: 'min',
 			constraints: {
 				N: {
-					min: (N_req || 0)
+					min: (Math.min(N_req, N_max) || 0),
+					max: (N_max || 0)
 				},
 				P: {
 					min: (P_req || 0)
@@ -55,9 +56,6 @@ module.exports = function () {
 				},
 				S: {
 					min: (S_req || 0)
-				},
-				N_ur: {
-					max: (lim_N_ur || 0)
 				}
 			},
 			variables: {}
@@ -83,13 +81,13 @@ module.exports = function () {
 					nbf: fertilizer.Nbf,
 					fertilizer_name: fertilizer.fertilizer_name,
 					amount: Q*100,
-					N: Q*(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 0),
+					N: Q*(fertilizer.Nbf || 0),
 					P: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0),
 					P2O5: Q*(fertilizer.Pcf || fertilizer.phosphorus.Pcf || 0)*2.293,
 					K: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0),
 					K2O: Q*(fertilizer.Kcf || fertilizer.potassium.Kcf || 0)*1.205,
 					S: Q*(fertilizer.Scf || fertilizer.sulphur.Scf || 0),
-					N_ur: Q*(fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0),
+					N_ur: Q*(fertilizer.Ncf_ure || fertilizer.nitrogen.Ncf_ure || 0)/(fertilizer.Ncf || fertilizer.nitrogen.Ncf || 1)*fertilizer.Nbf,
 					cost: Q*100*(fertilizer.price || 0)
 				});
 			}

@@ -21,7 +21,7 @@ const dispatcher = async input => {
 	input.fertilizers = [];
 	let output = await navF3Ctrl.requeriments(input),
 		N = Math.max(output.Ncrop_avg + output.Ndenitrification - output.Nc_mineralization_amendment, 0), 
-		N_ur = Math.max(0.25*(output.Ncrop_avg + output.Ndenitrification) - applied.reduce((acc, fert) => acc + fert.amount*fert.N_ur, 0)/100, 0), 
+		N_max = input.vulnerable == 'yes' && 170 || Number.MAX_VALUE, 
 		P = applied.reduce((acc, fert) => acc + fert.amount*fert.P, 0)/100,
 		K = applied.reduce((acc, fert) => acc + fert.amount*fert.K, 0)/100;
 	switch (input.PK_strategy) {
@@ -47,7 +47,7 @@ const dispatcher = async input => {
 	input.applied = applied;
 	input.fertilizers = liableFertilizers;
 	output = await navF3Ctrl.data4fertilizers(input);
-	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_ur);
+	input.fertilizers = navBestFertiCtrl.bestCombination(output.updated_fertilizers, N, P, K, 0.0, N_max);
 	return await navF3Ctrl.requeriments(input);
 };
 
@@ -134,8 +134,8 @@ module.exports.router = function () {
 			P = typeof req.query.P === 'string' && parseFloat(req.query.P) || 0.0,
 			K = typeof req.query.K === 'string' && parseFloat(req.query.K) || 0.0,
 			S = typeof req.query.S === 'string' && parseFloat(req.query.S) || 0.0,
-			N_ur = typeof req.query.N_ur === 'string' && parseFloat(req.query.N_ur)*N || 0.0,
-			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_ur);
+			N_max = req.query.vulnerable == 'yes' && 170 || Number.MAX_VALUE,
+			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_max);
 		res.json({
 			results: fertilizers,
 			total: navBestFertiCtrl.aggregate(fertilizers)
@@ -151,8 +151,8 @@ module.exports.router = function () {
 			P = req.body.P && parseFloat(req.body.P) || req.params.P && parseFloat(req.params.P) || 0.0,
 			K = req.body.K && parseFloat(req.body.K) || req.params.K && parseFloat(req.params.K) || 0.0,
 			S = req.body.S && parseFloat(req.body.S) || req.params.S && parseFloat(req.params.S) || 0.0,
-			N_ur = (req.body.N_ur && parseFloat(req.body.N_ur) || req.params.N_ur && parseFloat(req.params.N_ur))*N || 0.0,
-			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_ur);
+			N_max = (req.body.vulnerable == 'yes' || req.params.vulnerable == 'yes') && 170 || Number.MAX_VALUE,
+			fertilizers = navBestFertiCtrl.bestCombination(navBestFertiCtrl.get(include, exclude), N, P, K, S, N_max);
 		res.json({
 			results: fertilizers,
 			total: navBestFertiCtrl.aggregate(fertilizers)
