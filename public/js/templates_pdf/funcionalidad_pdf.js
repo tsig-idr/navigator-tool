@@ -21,7 +21,7 @@ function getTextDateFromInputDate(id) {
 
 function getNameFileFromInputFile(id) {
     const iFile = document.getElementById(id);
-    if (iFile) {
+    if (iFile && iFile.files.item(0)) {
         return iFile.files.item(0).name;
     }
     return '';
