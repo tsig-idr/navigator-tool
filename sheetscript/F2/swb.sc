@@ -40,7 +40,7 @@ irr_cut = 236
 
 dose_irrigation_ = dose_irrigation/10
 
-fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
+fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n + 1)
 SWB4days = NEW()
 
 fecha = GET (fechas, 1)
@@ -64,9 +64,9 @@ Final_agotamiento_corregido_ = 0
 Biomasa_acumulada_ = 0
 Nuptake_ = 0
 
-n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 2
+n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; MAX (365; DATESDIF (crop_endDate, crop_startDate)); MAX (1825; DATESDIF (crop_endDate, crop_startDate))) + 2
 i = 1
-while i < n - 1 then begin '{'
+while i < n then begin '{'
 	i = i + 1
 	_fecha = GET (fechas, i)
 

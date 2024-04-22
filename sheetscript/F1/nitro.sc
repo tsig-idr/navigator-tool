@@ -30,7 +30,7 @@ UFN = IF (Nc_s_initial_unit == 'ppm'; depth_s*100*100*density_s*1000*(1 - stony)
 mineralIni = '9999-12-31'
 mineralEnd = crop_endDate
 
-Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n)
+Fechas = GENNDATES (ADD2DATE (startDate, 0 - 1), n + 1)
 
 Tbasemin = IF_ERROR (FLOAT (VLOOKUP (crop_type; IT4BBCH; 7)); 0 - 100)
 Tbasemax = IF_ERROR (FLOAT (VLOOKUP (crop_type; IT4BBCH; 8)); 100)
@@ -151,7 +151,7 @@ _N_mineral_soil = GET (chart, 'N_mineral_soil')
 _N_rate = GET (chart, 'N_rate')
 _N_fert = GET (chart, 'N_fert')
 _Nl = GET (chart, 'Nl')
-n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; 365; 1825) + 1
+n = IF (VLOOKUP (crop_type; CropData; 8) == 'Annual'; MAX (365; DATESDIF (crop_endDate, crop_startDate)); MAX (1825; DATESDIF (crop_endDate, crop_startDate))) + 2
 i = 1
 while i < n then begin '{'
 	Fecha = GET (Fechas, i)
