@@ -28,6 +28,9 @@
 	fetch('/navbar.html').then(response => {
 		return response.text()
 	}).then(data => {
+		(window.location.pathname == '/nutrients/_s3cr3t_l1.html' || window.location.pathname == '/nutrients/_s3cr3t_l2.html') &&
+			(data = data.replaceAll('/l1.html', '/_s3cr3t_l1.html')) &&
+			(data = data.replaceAll('/l2.html', '/_s3cr3t_l2.html'));
 		document.querySelector('navbar').innerHTML = data;
 		document.querySelectorAll('.siar .nav-item:not(.visible)').forEach(element => element.classList.add('d-none'));
 		const saveA = document.querySelector('[data-save]');
