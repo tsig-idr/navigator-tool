@@ -33,7 +33,7 @@ const dispatcher = async input => {
 			input.planning_todo[application.date] = application;
 		}
 	});
-	const output = await navL2Ctrl.nitro(input);
+	let output = await navL2Ctrl.nitro(input);
 	let P, K;
 	switch (input.PK_strategy) {
 		case 'maximum-yield':
@@ -64,6 +64,8 @@ const dispatcher = async input => {
 		application.date in output.planning_todo_ &&
 			(input.applications[i] = output.planning_todo_[application.date]);
 	});
+	input.planning_done = {};
+	input.planning_todo = {};
 	input.applications.forEach((application, i) => {
 		if (application.type == '#') {
 			(row = output.results.find(row => row.Fecha == application.date)) &&
@@ -88,10 +90,14 @@ const dispatcher = async input => {
 		}
 		P = Math.max(P, 0);
 		K = Math.max(K, 0);
+		(row = input.fertilizers.find(row => row.fertilizerID == input.applications[i].fertilizerID)) &&
+			(application = {...row, ...input.applications[i]});
+		input.planning_done[application.date] = application;
 	});
+	output = await navL2Ctrl.nitro(input);
 	return {
 		balance: output.results.map(day => {
-			const outvars = ['Fecha', 'N_rate', 'N_deni', 'N_fert', 'N_recom', 'N_mineral_soil', 'N_mineralizado', 'N_NO3', 'N_agua', 'N_curve', 'Nl', 'N_extr_', 'N_extr_1', 'N_extr', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo', 'NDVI_real'];
+			const outvars = ['Fecha', 'N_rate_', 'N_rate', 'N_deni', 'N_fert', 'N_recom', 'N_mineral_soil', 'N_mineralizado', 'N_NO3', 'N_agua', 'N_curve', 'Nl', 'N_extr_', 'N_extr_1', 'N_extr', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo', 'NDVI_real'];
 			for (const outvar in day) {
 				if (!outvars.includes(outvar)) {
 					delete day[outvar];
