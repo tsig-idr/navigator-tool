@@ -97,7 +97,7 @@ const dispatcher = async input => {
 	output = await navL2Ctrl.nitro(input);
 	return {
 		balance: output.results.map(day => {
-			const outvars = ['Fecha', 'N_rate_', 'N_rate', 'N_deni', 'N_fert', 'N_recom', 'N_mineral_soil', 'N_mineralizado', 'N_NO3', 'N_agua', 'N_curve', 'Nl', 'N_extr_', 'N_extr_1', 'N_extr', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo', 'NDVI_real'];
+			const outvars = ['Fecha', 'N_rate', 'N_deni', 'N_fert', 'N_recom', 'N_mineral_soil', 'N_mineralizado', 'N_NO3', 'N_agua', 'N_curve', 'Nl', 'N_extr_', 'N_extr_1', 'N_extr', 'Eto_tipo', 'Eto_real', 'Prec_efec', 'Riego_efec', 'Tm', 'BBCH', 'BBCH_tipo', 'BBCH_real_et', 'NDVI_tipo', 'NDVI_real'];
 			for (const outvar in day) {
 				if (!outvars.includes(outvar)) {
 					delete day[outvar];
