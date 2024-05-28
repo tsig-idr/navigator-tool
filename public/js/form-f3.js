@@ -313,7 +313,7 @@ fetch('/csv/F3/Fertilizers.csv').then(res => res.text()).then(data => form.file 
 });
 
 function csv2json (csv) {
-	return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
+	return csv.replace(/\r|\./g, '').replace(/,/g, '.').replace(/\t/g, ';').split('\n').filter(line => line).map(line => line.split(';'));
 }
 
 function merge (a1, a2) {
