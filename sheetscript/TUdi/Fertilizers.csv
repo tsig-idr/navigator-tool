@@ -1,82 +1,74 @@
-type_f;type_f;clasification_fm;vol_group;vola_coeff;Ncf_ure;Ncf_NO3;Ncf_NH4;Ncf_CN2;Ncf;Pcf;P2O5cf;Kcf;K2Ocf;Scf;SO4cf;SO3cf;Cacf;CAOcf;Mgcf;MgOcf;Nacf;Clcf;Ccf
-;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;Nitrogen;;;;;Phosphorus;;Potassium;;Sulphur;;;Calcium;;Magnesium;;Sodium;Chlorine;Carbon
-;;Inorganic/organic;Vol_group;Vol_coef;Ureic;Nitric;Ammoniacal;Cianamidic;Total;P total;P2O5 total;K total;K2O total;S;SO4;SO3;Ca;CaO;Mg;MgO;Na;Cl;C
-Sodium nitrate;type_fm;Inorganic;Other straight N;;;0,15;;;0,15;0;;0;;;;;;;;;0,26;;
-Calcium nitrate;type_fm;Inorganic;Other straight N;;;0,15;;;0,15;0;;0;;;;;0,2;0,28;;;;;
-Magnesium nitrate;type_fm;Inorganic;Other straight N;;;0,11;;;0,11;0;;0;;;;;;;0,096;0,16;;;
-Ammonium sulphate;type_fm;Inorganic;AS;;;;0,21;;0,21;0;;0;;0,24;;;;;;;;;
-Urea;type_fm;Inorganic;Urea;;0,46;;;;0,46;0;;0;;;;;;;;;;;
-Ammonium nitrate;type_fm;Inorganic;AN;;;0,168;0,167;;0,335;0;;0;;;;;;;;;;;
-Calcium ammonium nitrate;type_fm;Inorganic;CAN;;;0,13;0,13;;0,26;0;;0;;;;;0,06;0,08;0,021;0,035;;;
-Ammonium nitrosulphate;type_fm;Inorganic;AS;;;0,065;0,195;;0,26;0;;0;;0,148;;0,37;;;;;;;
-Nitrogen solutions (32%);type_fm;Inorganic;N solutions;;0,16;0,08;0,08;;0,32;0;;0;;;;;;;;;;;
-Urea formaldehyde (UF);type_fm;Inorganic;Urea;;0,38;;;;0,38;0;;0;;;;;;;;;;;
-Isobutylidene diurea (IBDU);type_fm;Inorganic;Urea;;0,322;;;;0,322;0;;0;;;;;;;;;;;
-Crotonylidene diurea (CDU);type_fm;Inorganic;Urea;;0,293;0,033;;;0,325;0;;0;;;;;;;;;;;
-Superphosphate simple;type_fm;Inorganic;noN;;;;;;;0,09;0,2;0;;0,039;0,12;;0,2;;;;;;
-Superphosphate concentrate;type_fm;Inorganic;noN;;;;;;;0,18;0,42;0;;;;;;;;;;;
-Triple superphosphate (TSP);type_fm;Inorganic;noN;;;;;;;0,2;0,46;0;;;;;;;;;;;
-Phosphoric acid;type_fm;Inorganic;noN;;;;;;;0,23;0,52;0;;;;;;;;;;;
-Superphosphoric acid;type_fm;Inorganic;noN;;;;;;;0,3;0,68;0;;;;;;;;;;;
-Dycalcium phosphate;type_fm;Inorganic;noN;;;;;;;0,08;0,18;0;;;;;0,21;;;;;;
-Calcium metaphosphate;type_fm;Inorganic;noN;;;;;;;0,26;0,6;0;;;;;;;;;;;
-Calcined phosphate;type_fm;Inorganic;noN;;;;;;;0;;0;;;;;;;;;;;
-Basic slags;type_fm;Inorganic;noN;;;;;;;0,04;0,09;0;;;;;;;;;;;
-Ground phosphate rock;type_fm;Inorganic;noN;;;;;;;0,01;0,03;0;;;;;;;;;;;
-Potassium chloride;type_fm;Inorganic;noN;;;;;;;0;;0,5;0,6;;;;;;;;;0,46;
-Potassium sulphate;type_fm;Inorganic;noN;;;;;;;0;;0,44;0,53;0,16;;0,4;;;;;;;
-Mono-ammonium phosphate (MAP);type_fm;Inorganic;AP;;;0,12;;;0,12;0,27;0,52;0;;0,15;;0,04;;;;;;;
-Di-ammonium phosphate (DAP);type_fm;Inorganic;AP;;;;0,18;;0,18;0,2;0,46;0;0;;;;;;;;;;
-Ammonium polyphosphates (APP);type_fm;Inorganic;AP;;;;0,11;;0,11;0,16;0,37;0;;;;;;;;;;;
-Nitrophosphates;type_fm;Inorganic;NP mixtures;;;0,08;;;0,08;0,07;0,16;0;;;;;;;;;;;
-Potassium phosphates;type_fm;Inorganic;noN;;;;;;;0,23;0,52;0,28;0,34;;;;;;;;;;
-Potassium nitrate;type_fm;Inorganic;NK mixtures;;;0,13;;;0,13;0;;0,38;0,46;;;;;;;;;;
-Complex 8-15-15;type_fm;Inorganic;NPK mixtures;;;0,02;0,06;;0,08;0,07;0,15;0,12;0,15;;;;;;;;;;
-Complex 12-12-24;type_fm;Inorganic;NPK mixtures;;;0,05;0,07;;0,12;0,05;0,12;0,2;0,24;;;;;;;;;;
-Complex 15-15-15;type_fm;Inorganic;NPK mixtures;;0,02;;0,13;;0,15;0,07;0,15;0,12;0,15;;;;;;;;;;
-Complex 9-18-27;type_fm;Inorganic;NPK mixtures;;;;0,09;;0,09;0,08;0,18;0,22;0,27;;;;;;;;;;
-Complex 8-24-8;type_fm;Inorganic;NPK mixtures;;;0,015;0,065;;0,08;0,1;0,24;0,07;0,08;;;;;;;;;;
-Complex 8-24-16;type_fm;Inorganic;NPK mixtures;;;0,015;0,065;;0,08;0,1;0,24;0,13;0,16;;;;;;;;;;
-Complex 12-24-8;type_fm;Inorganic;NPK mixtures;;0,053;;0,07;;0,12;0,1;0,24;0,07;0,08;;;;;;;;;;
-Complex 12-24-12;type_fm;Inorganic;NPK mixtures;;;;0,12;;0,12;0,1;0,24;0,1;0,12;;;;;;;;;;
-Complex 9-12-24;type_fm;Inorganic;NPK mixtures;;;;0,09;;0,09;0,05;0,12;0,2;0,24;;;;;;;;;;
-Complex 10-20-10;type_fm;Inorganic;NPK mixtures;;;;0,1;;0,1;0,09;0,2;0,08;0,1;;;;;;;;;;
-Complex 8-16-8;type_fm;Inorganic;NPK mixtures;;;;0,08;;0,08;0,07;0,16;0,07;0,08;;;;;;;;;;
-Complex 18-46-0;type_fm;Inorganic;NPK mixtures;;;;0,18;;0,18;0,2;0,46;0;;;;;;;;;;;
-Complex 10-10-17;type_fm;Inorganic;NPK mixtures;;0,06;;0,04;;0,1;0,04;0,1;0,14;0,17;;;;;;;;;;
-Complex 12-36-12;type_fm;Inorganic;NPK mixtures;;0,016;0,034;0,07;;0,12;0,16;0,36;0,1;0,12;;;;;;;;;;
-Suspension 4-16-10;type_fm;Inorganic;NPK mixtures;;;;;;0,04;0,07;0,16;0,08;0,1;;;;;;;;;;
-Suspension 5-10-10;type_fm;Inorganic;NPK mixtures;;0,05;;;;0,05;0,04;0,1;0,08;0,1;;;;;;;;;;
-Suspension 5-20-5;type_fm;Inorganic;NPK mixtures;;;;;;0,05;0,09;0,2;0,04;0,05;;;;;;;;;;
-Suspension 6-12-16;type_fm;Inorganic;NPK mixtures;;;;;;0,06;0,05;0,12;0,08;0,1;;;;;;;;;;
-Suspension 6-16-10;type_fm;Inorganic;NPK mixtures;;;;;;0,06;0,07;0,16;0,08;0,1;;;;;;;;;;
-Suspension 10-20-0;type_fm;Inorganic;NPK mixtures;;;;;;0,1;0,09;0,2;0;0;;;;;;;;;;
-Fosfoplus 7-15-6 + 5%S + 9% PHC;type_fm;Inorganic;NPK mixtures;;;;;;0,07;0,07;0,15;0,05;0,06;0,05;;;;;;;;;
-Fosfoplus 8-8-10 + 5%S + 9% PHC;type_fm;Inorganic;NPK mixtures;;;;;;0,08;0,03;0,08;0,08;0,1;0,05;;;;;;;;;
-Superphosphate 18%;type_fm;Inorganic;noN;;;;;;0;0,08;0,18;0;0;;;;;;;;;;
-Superphosphate 45%;type_fm;Inorganic;noN;;;;;;0;0,2;0,45;0;0;;;;;;;;;;
-Acid phosphoric;type_fm;Inorganic;noN;;;;;;;0,24;0,54;0;;;;;;;;;;;
-Urea 46%;type_fm;Inorganic;Urea;;0,46;;;;0,46;0;;0;;;;;;;;;;;
-Urea 46%+ Inhibitor;type_fm;Inorganic;Urea;;0,46;;;;0,46;0;;0;;;;;;;;;;;
-Urea 40%+ Sulphur (YARA Sulfamid);type_fm;Inorganic;Urea;;0,4;;;;0,4;0;;0;;0,05;0,14;;;;;;;;
-Ammonium nitrophosphate 26%;type_fm;Inorganic;AP;;;0,065;0,195;;0,26;0;;0;;0,12;0,37;;;;;;;;
-Ammonium nitrophosphate 21%;type_fm;Inorganic;AP;;;;0,21;;0,21;0;;0;;;;;;;;;;;
-Solution N-32;type_fm;Inorganic;N solutions;;0,16;0,08;0,08;;0,32;0;;0;;;;;;;;;;;
-Solution N-20;type_fm;Inorganic;N solutions;;;0,1;0,1;;0,2;0;;0;;;;;;;;;;;
-Solution N-26;type_fm;Inorganic;N solutions;;0,14;0,05;0,07;;0,26;0;;0;;0,02;;0,06;;;;;;;
-Calcium nitrate solution;type_fm;Inorganic;N solutions;;;0,09;;;0,09;0;;0;;;;;0,11;0,16;;;;;
-Magnesium nitrate solution;type_fm;Inorganic;N solutions;;;0,07;;;0,07;0;;0;;;;;;;0,057;0,095;;;
-Nitro33;type_fm;Inorganic;Other straight N;;0,23;;0,1;;0,33;0;;0;;0,12;;0,3;;;;;;;
-Nitroplus;type_fm;Inorganic;Other straight N;;0,15;;0,03;;0,18;0;;0;;0,02;;0,05;;;;;;;
-Nitric acid;type_fm;Inorganic;Other straight N;;;0,13;;;0,13;0;;0;;;;;;;;;;;
-Ammonium nitrate 33%;type_fm;Inorganic;AN;;;0;0,5;;0,333;0;;0;;;;;;;;;;;
-Ammonium nitrate 27% (NAC);type_fm;Inorganic;AN;;;0,166;0,166;;0,27;0;;0;;;;;;;;;;;
-Ammonium nitrate 20%;type_fm;Inorganic;AN;;;0,1;0,1;;0,2;0;;0;;;;;;;;;;;
-Magnesium sulfate;type_fm;Inorganic;noN;;;;;;;0;;0;;0,13;;0,32;;;0,096;0,16;;;
-Ammonium sulfate 21%;type_fm;Inorganic;AS;;;;0,21;;0,21;0;;0;;0,24;;0,6;;;;;;;
-Solfocal-humus;type_fo;organic;NPK mixtures;;;;;;0,03;;0,02;;0,015;;;;;;;;;;0,25
-Azocor 105;type_fo;organic;NPK mixtures;;;;;;0,11;;0,015;;0,005;;;;;;;;;;0,35
-Organfast 14 medium;type_fo;organic;NPK mixtures;;;;;;0,14;;0;;0;;;;;;;;;;0,4
-Italpollina;type_fo;organic;NPK mixtures;;;;;;0,04;;0,04;;0,04;;;;;;;;;;0,41
-cornunghia;type_fo;organic;NPK mixtures;;;;;;0,152;;0,0029;;0,0015;;;;;;;;;;0,474
+type_f;type_f;clasification_fm;vol_group;vola_coeff;Ncf;Pcf;Kcf;Ccf
+;;;;;;;;
+;;;;;Nitrogen;Phosphorus;Potassium;Carbon
+;;Inorganic/organic;Vol_group;Vol_coef;Total;P2O5 total;K2O total;C
+Sodium nitrate;type_fm;Inorganic;Other straight N;10;0,15;0;0;
+Calcium nitrate;type_fm;Inorganic;Other straight N;10;0,15;0;0;
+Magnesium nitrate;type_fm;Inorganic;Other straight N;10;0,11;0;0;
+Ammonium sulphate;type_fm;Inorganic;AS;90;0,21;0;0;
+Urea;type_fm;Inorganic;Urea;155;0,46;0;0;
+Ammonium nitrate 26;type_fm;Inorganic;AN;15;0,26;0;0;
+Ammonium nitrate 33%;type_fm;Inorganic;AN;15;0,33;0;0;
+Calcium ammonium nitrate;type_fm;Inorganic;CAN;8;0,26;0;0;
+Ammonium nitrosulphate;type_fm;Inorganic;AS;90;0,26;0;0;
+Calcium cyanamide;type_fm;Inorganic;Other straight N;90;0,2;0;0;
+Nitrogen solutions (32%);type_fm;Inorganic;N solutions;98;0,32;0;0;
+Urea formaldehyde (UF);type_fm;Inorganic;Urea;155;0,38;0;0;
+Isobutylidene diurea (IBDU);type_fm;Inorganic;Urea;155;0,322;0;0;
+Crotonylidene diurea (CDU);type_fm;Inorganic;Urea;155;0,325;0;0;
+Superphosphate simple;type_fm;Inorganic;noN;0;;0,2;0;
+Superphosphate concentrate;type_fm;Inorganic;noN;0;;0,25;0;
+Triple superphosphate (TSP);type_fm;Inorganic;noN;0;;0,46;0;
+Phosphoric acid;type_fm;Inorganic;noN;0;;0,28;0;
+Potassium chloride;type_fm;Inorganic;noN;0;;0;0,6;
+Potassium sulphate;type_fm;Inorganic;noN;0;;0;0,44;
+Mono-ammonium phosphate (MAP);type_fm;Inorganic;AP;50;0,12;0,61;0;
+Di-ammonium phosphate (DAP);type_fm;Inorganic;AP;50;0,18;0,46;0;
+Potassium Nitrophosphate;type_fm;Inorganic;NP mixtures;50;0,15;0,3;0,25;
+Potassium phosphates;type_fm;Inorganic;noN;0;;0,52;0,34;
+Potassium nitrate;type_fm;Inorganic;NK mixtures;15;0,13;0;0,46;
+Complex 8-15-15;type_fm;Inorganic;NPK mixtures;50;0,08;0,15;0,15;
+Complex 12-12-24;type_fm;Inorganic;NPK mixtures;50;0,12;0,12;0,24;
+Complex 15-15-15;type_fm;Inorganic;NPK mixtures;50;0,15;0,15;0,15;
+Complex 9-18-27;type_fm;Inorganic;NPK mixtures;50;0,09;0,18;0,27;
+Complex 8-24-8;type_fm;Inorganic;NPK mixtures;50;0,08;0,24;0,08;
+Complex 8-24-16;type_fm;Inorganic;NPK mixtures;50;0,08;0,24;0,16;
+Complex 12-24-8;type_fm;Inorganic;NPK mixtures;50;0,12;0,24;0,08;
+Complex 12-24-12;type_fm;Inorganic;NPK mixtures;50;0,12;0,24;0,12;
+Complex 9-12-24;type_fm;Inorganic;NPK mixtures;50;0,09;0,12;0,24;
+Complex 10-20-10;type_fm;Inorganic;NPK mixtures;50;0,1;0,2;0,1;
+Complex 8-16-8;type_fm;Inorganic;NPK mixtures;50;0,08;0,16;0,08;
+Complex 18-46-0;type_fm;Inorganic;NPK mixtures;50;0,18;0,46;0;
+Complex 10-10-17;type_fm;Inorganic;NPK mixtures;50;0,1;0,1;0,17;
+Complex 12-36-12;type_fm;Inorganic;NPK mixtures;50;0,12;0,36;0,12;
+Complex 12-8-16;type_fm;Inorganic;NPK mixtures;50;0,12;0,08;0,16;
+Suspension 4-16-10;type_fm;Inorganic;NPK mixtures;50;0,04;0,16;0,1;
+Suspension 5-10-10;type_fm;Inorganic;NPK mixtures;50;0,05;0,1;0,1;
+Suspension 5-20-5;type_fm;Inorganic;NPK mixtures;50;0,05;0,2;0,05;
+Suspension 6-12-16;type_fm;Inorganic;NPK mixtures;50;0,06;0,12;0,16;
+Suspension 6-16-10;type_fm;Inorganic;NPK mixtures;50;0,06;0,16;0,1;
+Suspension 10-20-0;type_fm;Inorganic;NPK mixtures;50;0,1;0,2;0;
+Superphosphate 18%;type_fm;Inorganic;noN;0;0;0,18;0;
+Superphosphate 45%;type_fm;Inorganic;noN;0;0;0,45;0;
+Urea 46%;type_fm;Inorganic;Urea;155;0,46;0;0;
+Urea 46%+ Inhibitor;type_fm;Inorganic;Urea;155;0,46;0;0;
+Urea 40%+ Sulphur (YARA Sulfamid);type_fm;Inorganic;Urea;155;0,4;0;0;
+Ammonium nitrophosphate 26%;type_fm;Inorganic;AP;50;0,26;0;0;
+Ammonium nitrophosphate 21%;type_fm;Inorganic;AP;50;0,21;0;0;
+Solution N-32;type_fm;Inorganic;N solutions;98;0,32;0;0;
+Solution N-20;type_fm;Inorganic;N solutions;98;0,2;0;0;
+Solution N-26;type_fm;Inorganic;N solutions;98;0,26;0;0;
+Calcium nitrate solution;type_fm;Inorganic;N solutions;98;0,09;0;0;
+Magnesium nitrate solution;type_fm;Inorganic;N solutions;98;0,07;0;0;
+Nitro33;type_fm;Inorganic;Other straight N;10;0,33;0;0;
+Nitroplus;type_fm;Inorganic;Other straight N;10;0,18;0;0;
+Ammonium nitrate 33%;type_fm;Inorganic;AN;15;0,333;0;0;
+Ammonium nitrate 27% (NAC);type_fm;Inorganic;AN;15;0,27;0;0;
+Ammonium nitrate 20%;type_fm;Inorganic;AN;15;0,2;0;0;
+Magnesium sulfate;type_fm;Inorganic;noN;0;;0;0;
+Ammonium sulfate 21%;type_fm;Inorganic;AS;90;0,21;0;0;
+Solfocal-humus;type_fo;organic;NPK mixtures;50;0,03;0,02;0,015;0,25
+Azocor 105;type_fo;organic;NPK mixtures;50;0,11;0,015;0,005;0,35
+Organfast 14 medium;type_fo;organic;NPK mixtures;50;0,14;0;0;0,4
+Italpollina;type_fo;organic;NPK mixtures;50;0,04;0,04;0,04;0,41
+horn meal;type_fo;organic;NPK mixtures;50;0,152;0,0029;0,0015;0,474

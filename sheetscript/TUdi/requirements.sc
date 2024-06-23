@@ -110,10 +110,10 @@ while i___ < n___ then begin '{'
 	index = IF (avg_T < 15 && pH <= 7; 2; IF (avg_T < 15 && pH > 7; 3; IF (avg_T > 15 && avg_T < 25 && pH <= 7; 4; IF (avg_T > 15 && avg_T < 25 && pH > 7; 5; IF (avg_T > 25 && pH <= 7; 6; IF (avg_T > 25 && pH > 7; 7; 0))))))
 	vol_group = VLOOKUP (fert_type; Fertilizers; 4)
 	vol_c = IF (index > 0; VLOOKUP (vol_group; EFs; index); 0)
-	Ncf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 10); 0)
-	P2O5cf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 12); 0)
-	K2Ocf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 14); 0)
-	Ccf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 24); 0)
+	Ncf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 6); 0)
+	P2O5cf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 7); 0)
+	K2Ocf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 8); 0)
+	Ccf = IF_ERROR (VLOOKUP (fert_type; Fertilizers; 9); 0)
 	N_min = Ncf*fert_dose
 	EF_BAT_min = IF_ERROR (VLOOKUP (fert_applic; BATs; 2); 0)
 	NH3volat_min = N_min*(vol_c/1000)*(1 - EF_BAT_min/100)
@@ -136,14 +136,14 @@ y = yield*1000
 yield_wc_ = IF_ERROR (yield_wc; 1 - VLOOKUP (crop_type; CropData; 11)/100)
 dm_h_ = 1 - yield_wc_
 HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9)/100)
-Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 14)/100)
-Nc_r_ = IF_ERROR (Nc_r; VLOOKUP (crop_type; CropData; 25)/100)
-Pc_h_ = IF_ERROR (Pc_h; VLOOKUP (crop_type; CropData; 15)/100)
-Pc_r_ = IF_ERROR (Pc_r; VLOOKUP (crop_type; CropData; 26)/100)
-Kc_h_ = IF_ERROR (Kc_h; VLOOKUP (crop_type; CropData; 16)/100)
-Kc_r_ = IF_ERROR (Kc_r; VLOOKUP (crop_type; CropData; 27)/100)
-Cc_h_ = IF_ERROR (Cc_h; VLOOKUP (crop_type; CropData; 17)/100)
-Cc_r_ = IF_ERROR (Cc_r; VLOOKUP (crop_type; CropData; 28)/100)
+Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 12)/100)
+Nc_r_ = IF_ERROR (Nc_r; VLOOKUP (crop_type; CropData; 21)/100)
+Pc_h_ = IF_ERROR (Pc_h; VLOOKUP (crop_type; CropData; 13)/100)
+Pc_r_ = IF_ERROR (Pc_r; VLOOKUP (crop_type; CropData; 22)/100)
+Kc_h_ = IF_ERROR (Kc_h; VLOOKUP (crop_type; CropData; 14)/100)
+Kc_r_ = IF_ERROR (Kc_r; VLOOKUP (crop_type; CropData; 23)/100)
+Cc_h_ = IF_ERROR (Cc_h; VLOOKUP (crop_type; CropData; 15)/100)
+Cc_r_ = IF_ERROR (Cc_r; VLOOKUP (crop_type; CropData; 24)/100)
 h_dm = y*dm_h_
 r_dm = h_dm*(1 - HI_est_)/HI_est_
 Nc_up_h = h_dm*Nc_h_ + r_dm*Nc_r_
@@ -195,14 +195,14 @@ prev_green = IF (prev_greenmanure == 'yes'; 1; 0)
 prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11)/100)
 prev_export_r_ = IF_ERROR (prev_export_r; 100)
 prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9)/100)
-prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
-prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 25)/100
-prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
-prev_Pc_r = VLOOKUP (prev_crop_type; CropData; 26)/100
-prev_Kc_h = VLOOKUP (prev_crop_type; CropData; 16)/100
-prev_Kc_r = VLOOKUP (prev_crop_type; CropData; 27)/100
-prev_Cc_h = VLOOKUP (prev_crop_type; CropData; 17)/100
-prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 28)/100
+prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 12)/100
+prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 21)/100
+prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 13)/100
+prev_Pc_r = VLOOKUP (prev_crop_type; CropData; 22)/100
+prev_Kc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
+prev_Kc_r = VLOOKUP (prev_crop_type; CropData; 23)/100
+prev_Cc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
+prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 24)/100
 prevPc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Pc_r)
 prevKc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
 prevCc_up_r = prev_r_dm_med*prev_Cc_r
@@ -234,13 +234,13 @@ concatenation = CONCAT (CONCAT (n_fix_code; IF (soilN <= 0.2; '<=0.2'; '>0.2'));
 n_fix_per = IF_ERROR (VLOOKUP (concatenation; N_fix_per; 2); 0)
 N_yield = y_dm*Nc_h_
 N_res = r_dm*Nc_r_
-dm_r = VLOOKUP (crop_type; CropData; 22)/100
+dm_r = VLOOKUP (crop_type; CropData; 20)/100
 y_dm = h_dm
 fnr = 0.25
 Nc_fixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
 
 factor_irrigation = VLOOKUP (type_irrigation; irrigation_factors; 2)
-Nc_irrigation = IF_ERROR (Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/100000; 0)
+Nc_irrigation = IF_ERROR (Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/1000; 0)
 
 amountN_fer = N_min_supply_total
 amountN_man = N_man_supply_netvolat_total

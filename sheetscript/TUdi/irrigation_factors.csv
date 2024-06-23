@@ -1,16 +1,11 @@
-type_irrigation;factor_irrigation
-basin;65
-border;65
-furrow;40
-hose reel irrigation with water jet;60
-hose reel irrigation with sprayer bar;65
-pivot;75
-rainger;75
-fixed irrigation system with spriklers;70
-driplines;90
-sub irrigation;95
-pivot;75
-rainger;75
-fixed irrigation system with spriklers;70
-driplines;90
-sub irrigation;95
+type_irrigation;factor_irrigation;irrigation_efficiency
+basin;100;65
+border;100;65
+furrow;100;40
+hose reel irrigation with water jet;90;60
+hose reel irrigation with sprayer bar;100;65
+pivot;100;75
+rainger;100;75
+fixed irrigation system with spriklers;90;70
+driplines;100;90
+sub irrigation;100;95
