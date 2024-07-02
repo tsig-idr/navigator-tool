@@ -135,15 +135,15 @@ y = yield*1000
 
 yield_wc_ = IF_ERROR (yield_wc; 1 - VLOOKUP (crop_type; CropData; 11)/100)
 dm_h_ = 1 - yield_wc_
-HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9)/100)
-Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 12)/100)
-Nc_r_ = IF_ERROR (Nc_r; VLOOKUP (crop_type; CropData; 21)/100)
-Pc_h_ = IF_ERROR (Pc_h; VLOOKUP (crop_type; CropData; 13)/100)
-Pc_r_ = IF_ERROR (Pc_r; VLOOKUP (crop_type; CropData; 22)/100)
-Kc_h_ = IF_ERROR (Kc_h; VLOOKUP (crop_type; CropData; 14)/100)
-Kc_r_ = IF_ERROR (Kc_r; VLOOKUP (crop_type; CropData; 23)/100)
-Cc_h_ = IF_ERROR (Cc_h; VLOOKUP (crop_type; CropData; 15)/100)
-Cc_r_ = IF_ERROR (Cc_r; VLOOKUP (crop_type; CropData; 24)/100)
+HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9))/100
+Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 12))/100
+Nc_r_ = IF_ERROR (Nc_r; VLOOKUP (crop_type; CropData; 21))/100
+Pc_h_ = IF_ERROR (Pc_h; VLOOKUP (crop_type; CropData; 13))/100
+Pc_r_ = IF_ERROR (Pc_r; VLOOKUP (crop_type; CropData; 22))/100
+Kc_h_ = IF_ERROR (Kc_h; VLOOKUP (crop_type; CropData; 14))/100
+Kc_r_ = IF_ERROR (Kc_r; VLOOKUP (crop_type; CropData; 23))/100
+Cc_h_ = IF_ERROR (Cc_h; VLOOKUP (crop_type; CropData; 15))/100
+Cc_r_ = IF_ERROR (Cc_r; VLOOKUP (crop_type; CropData; 24))/100
 h_dm = y*dm_h_
 r_dm = h_dm*(1 - HI_est_)/HI_est_
 Nc_up_h = h_dm*Nc_h_ + r_dm*Nc_r_
@@ -192,9 +192,9 @@ Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K
 K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
 prev_y = prev_yield*1000
 prev_green = IF (prev_greenmanure == 'yes'; 1; 0)
-prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11)/100)
+prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11))/100
 prev_export_r_ = IF_ERROR (prev_export_r; 100)
-prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9)/100)
+prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9))/100
 prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 12)/100
 prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 21)/100
 prev_Pc_h = VLOOKUP (prev_crop_type; CropData; 13)/100
@@ -239,7 +239,7 @@ y_dm = h_dm
 fnr = 0.25
 Nc_fixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
 
-factor_irrigation = VLOOKUP (type_irrigation; irrigation_factors; 2)
+factor_irrigation = VLOOKUP (type_irrigation; irrigation_factors; 2)/100
 Nc_irrigation = IF_ERROR (Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/1000; 0)
 
 amountN_fer = N_min_supply_total
