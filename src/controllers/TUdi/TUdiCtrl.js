@@ -72,18 +72,8 @@ function customEngine () {
 			return null;
 		}
 		const csv = fs.readFileSync(filename, 'utf8');
-		return csv.split('\n').map(line => {
-			line = line.replace(/\r|\./g, '');
-			let cols = line.split(';'),
-				i;
-			for (i = 1; i < cols.length; i++) {
-				cols[i] = cols[i].replace(/,/g, '.');
-			}
-			return cols;
-		});
+		return csv.replace(/\r|\./g, '').replace(/,/g, '.').split('\n').map(line => line.split(';'));
 	});
-	// Equivalente a la replace 
-	engine.setFunction('user', 'REPLACE', 3, (subject, search, replament) => subject.replace(search, replament));
 	// Devuelve el maximo de los argumentos
 	engine.setFunction('user', 'MAX', 1, function () {
 		return Math.max(...arguments);
