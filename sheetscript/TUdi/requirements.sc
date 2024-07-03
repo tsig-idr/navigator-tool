@@ -58,7 +58,7 @@ while i_ < n_ then begin '{'
 	row = GET (manures, i_)
 	manure_type = GET (row, 'type')
 	manure_dose = GET (row, 'dose')
-	manure_applic = GET (row, 'applic')
+	manure_applic = REPLACE (GET (row, 'applic'), '.', ',')
 	c_N = VLOOKUP (manure_type; Manures; 3)
 	c_P = VLOOKUP (manure_type; Manures; 4)
 	c_K = VLOOKUP (manure_type; Manures; 5)
