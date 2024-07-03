@@ -83,7 +83,7 @@ function customEngine () {
 		});
 	});
 	// Equivalente a la replace 
-	engine.setFunction('user', 'REPLACE', 3, (subject, search, replament) => subject.replaceAll(search, replament));
+	engine.setFunction('user', 'REPLACE', 3, (subject, search, replament) => subject.replace(search, replament));
 	// Devuelve el maximo de los argumentos
 	engine.setFunction('user', 'MAX', 1, function () {
 		return Math.max(...arguments);
