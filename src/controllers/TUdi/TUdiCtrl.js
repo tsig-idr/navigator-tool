@@ -17,6 +17,8 @@ module.exports = function () {
 			(input.export_r = null);
 		undefined  === input.prev_export_r &&
 			(input.prev_export_r = null);
+		undefined  === input.prev_yield &&
+			(input.prev_yield = null);
 		undefined  === input.dm_h &&
 			(input.dm_h = null);
 		undefined  === input.Nc_h &&
@@ -43,6 +45,11 @@ module.exports = function () {
 			(input.prev_HI_est = null);
 		undefined  === input.yield_wc &&
 			(input.yield_wc = null);
+		undefined  === input.type_irrigation &&
+			(input.type_irrigation = null);
+		undefined  === input.dose_irrigation &&
+			(input.dose_irrigation = null);
+
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
