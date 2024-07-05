@@ -173,7 +173,7 @@ P4e = VLOOKUP (soil_texture; PK_status_4; 2)
 P5e = VLOOKUP (soil_texture; PK_status_5; 2)
 Pc_status = IF (Pc_s > P1l && Pc_s <= P1u; P1e; IF (Pc_s > P2l && Pc_s <= P2u; P2e; IF (Pc_s > P3l && Pc_s <= P3u; P3e; IF (Pc_s > P4l && Pc_s <= P4u; P4e; IF (Pc_s > P5l && Pc_s <= P5u; P5e; '')))))
 P_fert_c = IF (Pc_status == 'very low' || Pc_status == 'low'; 1; IF (Pc_status == 'medium'; 0.75; IF (Pc_status == 'high'; 0.5; 0)))
-K1l = VLOOKUP (soil_texture; PK_status_1; 7)rrigation
+K1l = VLOOKUP (soil_texture; PK_status_1; 7)
 K2l = VLOOKUP (soil_texture; PK_status_2; 7)
 K3l = VLOOKUP (soil_texture; PK_status_3; 7)
 K4l = VLOOKUP (soil_texture; PK_status_4; 7)
