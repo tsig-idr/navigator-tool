@@ -203,8 +203,8 @@ prev_Kc_h = VLOOKUP (prev_crop_type; CropData; 14)/100
 prev_Kc_r = VLOOKUP (prev_crop_type; CropData; 23)/100
 prev_Cc_h = VLOOKUP (prev_crop_type; CropData; 15)/100
 prev_Cc_r = VLOOKUP (prev_crop_type; CropData; 24)/100
-prevPc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Pc_r)
-prevKc_up_r = IF (prev_greenmanure == 'yes'; 0; prev_r_dm_med*prev_Kc_r)
+prevPc_up_r = IF (prev_greenmanure == 'yes' || prev_crop_type == ''; 0; prev_r_dm_med*prev_Pc_r)
+prevKc_up_r = IF (prev_greenmanure == 'yes' || prev_crop_type == ''; 0; prev_r_dm_med*prev_Kc_r)
 prevCc_up_r = IF (prev_crop_type == ''; 0; prev_r_dm_med*prev_Cc_r)
 prev_h_dm_med = prev_y*prev_dm_h_
 prev_r_dm_med = prev_h_dm_med*(1 - prev_HI_est_)/prev_HI_est_*(1 - prev_export_r_/100)
