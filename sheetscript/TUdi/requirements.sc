@@ -255,6 +255,12 @@ EF_npk = IF (clima_type == 'wet'; 0.006; 0.002)
 EF_min = IF (clima_type == 'wet'; 0.006; 0.002)
 EF_flo = IF (crop_type == 'RICE'; 0.05; 0)
 clima_type = VLOOKUP (climatic_zone; Clima; 7)
+N2ON_denit_mineralferti = EF_fer*amountN_fer
+N2ON_denit_manure = EF_man*amountN_man
+N2ON_denit_grazing = EF_gra*amountN_gra
+N2ON_denit_prevresidues = EF_npk*amountN_npk
+N2ON_denit_som = EF_min*amountN_min
+N2ON_denit_flooding = EF_flo*amountN_flo
 Ndenitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra + EF_npk*amountN_npk + EF_min*amountN_min + EF_flo*amountN_flo
 
 INPUT_N = SUM (Nmineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)

@@ -190,6 +190,12 @@ module.exports.router = function () {
 								Nc_up_h: output.Nc_up_h,
 								Nc_ex_h: output.Nc_ex_h,
 								Ndenitrification: output.Ndenitrification,
+								N2ON_denit_mineralferti: output.N2ON_denit_mineralferti,
+								N2ON_denit_manure: output.N2ON_denit_manure,
+								N2ON_denit_grazing: output.N2ON_denit_grazing,
+								N2ON_denit_prevresidues: output.N2ON_denit_prevresidues,
+								N2ON_denit_som: output.N2ON_denit_som,
+								N2ON_denit_flooding: output.N2ON_denit_flooding,
 								NH3volat_man_total: output.NH3volat_man_total,
 								NH3_volatilization_graz_total: output.NH3_volatilization_graz_total,
 								NH3volat_min_total: output.NH3volat_min_total
