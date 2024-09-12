@@ -59,10 +59,10 @@ while i_ < n_ then begin '{'
 	manure_type = GET (row, 'type')
 	manure_dose = GET (row, 'dose')
 	manure_applic = REPLACE (GET (row, 'applic'), '.', ',')
-	c_N = IF_ERROR (GET (row, 'N'); VLOOKUP (manure_type; Manures; 3))
-	c_P = IF_ERROR (GET (row, 'P'); VLOOKUP (manure_type; Manures; 4))
-	c_K = IF_ERROR (GET (row, 'K'); VLOOKUP (manure_type; Manures; 5))
-	c_C = IF_ERROR (GET (row, 'C'); VLOOKUP (manure_type; Manures; 6))
+	c_N = IF_ERROR (GET (row, 'N'); VLOOKUP (manure_type; Manures; 3)*100)/100
+	c_P = IF_ERROR (GET (row, 'P'); VLOOKUP (manure_type; Manures; 4)*100)/100
+	c_K = IF_ERROR (GET (row, 'K'); VLOOKUP (manure_type; Manures; 5)*100)/100
+	c_C = IF_ERROR (GET (row, 'C'); VLOOKUP (manure_type; Manures; 6)*100)/100
 	aval = IF_ERROR (VLOOKUP (manure_type; Manures; 7); 1)
 	TAN = VLOOKUP (manure_type; Manures; 9)
 	EF_application = VLOOKUP (manure_type; Manures; 10)
@@ -90,7 +90,7 @@ while i__ < n__ then begin '{'
 	row = GET (prev_manures, i__)
 	prev_manure_type = GET (row, 'type')
 	prev_manure_dose = GET (row, 'dose')
-	prev_c_N = IF_ERROR (GET (row, 'N'); VLOOKUP (prev_manure_type; Manures; 3))
+	prev_c_N = IF_ERROR (GET (row, 'N'); VLOOKUP (prev_manure_type; Manures; 3)*100)/100
 	legacyN = IF_ERROR (VLOOKUP (prev_manure_type; Manures; 8); 0)
 	prev_manure_supply = prev_manure_dose*1000*prev_c_N/100
 	prev_manure_legacyN = prev_manure_supply*legacyN
@@ -111,10 +111,10 @@ while i___ < n___ then begin '{'
 	index = IF (avg_T < 15 && pH <= 7; 2; IF (avg_T < 15 && pH > 7; 3; IF (avg_T > 15 && avg_T < 25 && pH <= 7; 4; IF (avg_T > 15 && avg_T < 25 && pH > 7; 5; IF (avg_T > 25 && pH <= 7; 6; IF (avg_T > 25 && pH > 7; 7; 0))))))
 	vol_group = VLOOKUP (fert_type; Fertilizers; 4)
 	vol_c = IF (index > 0; VLOOKUP (vol_group; EFs; index); 0)
-	Ncf = IF_ERROR (GET (row, 'N'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 6); 0))
-	P2O5cf = IF_ERROR (GET (row, 'P'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 7); 0))
-	K2Ocf = IF_ERROR (GET (row, 'K'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 8); 0))
-	Ccf = IF_ERROR (GET (row, 'C'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 9); 0))
+	Ncf = IF_ERROR (GET (row, 'N'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 6); 0)*100)/100
+	P2O5cf = IF_ERROR (GET (row, 'P'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 7); 0)*100)/100
+	K2Ocf = IF_ERROR (GET (row, 'K'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 8); 0)*100)/100
+	Ccf = IF_ERROR (GET (row, 'C'); IF_ERROR (VLOOKUP (fert_type; Fertilizers; 9); 0)*100)/100
 	N_min = Ncf*fert_dose
 	EF_BAT_min = IF_ERROR (VLOOKUP (fert_applic; BATs; 2); 0)
 	NH3volat_min = N_min*(vol_c/1000)*(1 - EF_BAT_min/100)
