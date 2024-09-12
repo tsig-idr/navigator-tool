@@ -1,14 +1,14 @@
 ;Olsen P (mg/kg);;;;;K/CEC;;;Olsen P (mg/kg)
 texture;soil P status;P lower limit >;P upper limit <=;P fert coeffficient;soil K status;K lower limit >;K upper limit <=;P fert coeffficient;Pc_status
-Sand;low;10;13;1;low;1,5;3;0,75;
-Loamy sand;low;10;13;1;low;1,5;3;0,75;
-Sandy loam;low;10;13;1;low;1,5;3;0,75;
-Sandy clay loam;low;8;11;1;low;1,5;3;0,75;
-Sandy clay;low;5;9;1;low;1,5;3;0,75;
-Clay loam;low;8;11;1;low;1,5;3;0,75;
-Clay;low;5;9;1;low;1,5;3;0,75;
-Silty clay;low;5;9;1;low;1,5;3;0,75;
-Silty clay loam;low;5;9;1;low;1,5;3;0,75;
-Silt;low;5;9;1;low;1,5;3;0,75;
-Silty loam;low;8;11;1;low;1,5;3;0,75;
-Loam;low;8;11;1;low;1,5;3;0,75;
+Sand;low;10;13;1;low;1,5;3;1;
+Loamy sand;low;10;13;1;low;1,5;3;1;
+Sandy loam;low;10;13;1;low;1,5;3;1;
+Sandy clay loam;low;8;11;1;low;1,5;3;1;
+Sandy clay;low;5;9;1;low;1,5;3;1;
+Clay loam;low;8;11;1;low;1,5;3;1;
+Clay;low;5;9;1;low;1,5;3;1;
+Silty clay;low;5;9;1;low;1,5;3;1;
+Silty clay loam;low;5;9;1;low;1,5;3;1;
+Silt;low;5;9;1;low;1,5;3;1;
+Silty loam;low;8;11;1;low;1,5;3;1;
+Loam;low;8;11;1;low;1,5;3;1;

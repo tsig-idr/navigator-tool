@@ -1,14 +1,14 @@
 ;Olsen P (mg/kg);;;;;K/CEC;;;Olsen P (mg/kg)
 texture;soil P status;P lower limit >;P upper limit <=;P fert coeffficient;soil K status;K lower limit >;K upper limit <=;P fert coeffficient;Pc_status
-Sand;very high;30;999;0;very high;6;999;0;
-Loamy sand;very high;30;999;0;very high;6;999;0;
-Sandy loam;very high;30;999;0;very high;6;999;0;
-Sandy clay loam;very high;12;999;0;very high;6;999;0;
-Sandy clay;very high;10;999;0;very high;6;999;0;
-Clay loam;very high;12;999;0;very high;6;999;0;
-Clay;very high;10;999;0;very high;6;999;0;
-Silty clay;very high;10;999;0;very high;6;999;0;
-Silty clay loam;very high;10;999;0;very high;6;999;0;15
-Silt;very high;10;999;0;very high;6;999;0;
-Silty loam;very high;12;999;0;very high;6;999;0;
-Loam;very high;12;999;0;very high;6;999;0;
+Sand;very high;27;999;0;very high;6;999;0
+Loamy sand;very high;27;999;0;very high;6;999;0
+Sandy loam;very high;27;999;0;very high;6;999;0
+Sandy clay loam;very high;23;999;0;very high;6;999;0
+Sandy clay;very high;18;999;0;very high;6;999;0
+Clay loam;very high;23;999;0;very high;6;999;0
+Clay;very high;18;999;0;very high;6;999;0
+Silty clay;very high;18;999;0;very high;6;999;0
+Silty clay loam;very high;18;999;0;very high;6;999;0
+Silt;very high;18;999;0;very high;6;999;0
+Silty loam;very high;23;999;0;very high;6;999;0
+Loam;very high;23;999;0;very high;6;999;0

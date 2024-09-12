@@ -63,9 +63,10 @@ while i_ < n_ then begin '{'
 	c_P = IF_ERROR (GET (row, 'P'); VLOOKUP (manure_type; Manures; 4))
 	c_K = IF_ERROR (GET (row, 'K'); VLOOKUP (manure_type; Manures; 5))
 	c_C = IF_ERROR (GET (row, 'C'); VLOOKUP (manure_type; Manures; 6))
-	TAN = VLOOKUP (manure_type; Manures; 8)
-	EF_application = VLOOKUP (manure_type; Manures; 9)
-	manure_N = manure_dose*1000*c_N
+	aval = IF_ERROR (VLOOKUP (manure_type; Manures; 7); 1)
+	TAN = VLOOKUP (manure_type; Manures; 9)
+	EF_application = VLOOKUP (manure_type; Manures; 10)
+	manure_N = manure_dose*1000*c_N*aval
 	manure_P = manure_dose*1000*c_P
 	manure_K = manure_dose*1000*c_K
 	manure_C = manure_dose*1000*c_C
@@ -90,7 +91,7 @@ while i__ < n__ then begin '{'
 	prev_manure_type = GET (row, 'type')
 	prev_manure_dose = GET (row, 'dose')
 	prev_c_N = IF_ERROR (GET (row, 'N'); VLOOKUP (prev_manure_type; Manures; 3))
-	legacyN = IF_ERROR (VLOOKUP (prev_manure_type; Manures; 7); 0)
+	legacyN = IF_ERROR (VLOOKUP (prev_manure_type; Manures; 8); 0)
 	prev_manure_supply = prev_manure_dose*1000*prev_c_N/100
 	prev_manure_legacyN = prev_manure_supply*legacyN
 
@@ -155,7 +156,7 @@ Pc_ex_h = h_dm*Pc_h_
 Kc_ex_h = h_dm*Kc_h_
 Cc_ex_h = h_dm*Cc_h_
 Pc_s = Pc_s_0*VLOOKUP (Pc_method; Pc_method_table; 2)
-Kc_s = Kc_s_0/CEC
+Kc_s = Kc_s_0/CEC*100
 P1l = VLOOKUP (soil_texture; PK_status_1; 3)
 P2l = VLOOKUP (soil_texture; PK_status_2; 3)
 P3l = VLOOKUP (soil_texture; PK_status_3; 3)
@@ -193,7 +194,7 @@ K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status =
 prev_y = IF_ERROR (prev_yield; 0)*1000
 prev_green = IF (prev_greenmanure == 'yes'; 1; 0)
 prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11))/100
-prev_export_r_ = IF_ERROR (prev_export_r; 100)
+prev_export_r_ = IF (prev_export_r == 'no'; 0; 100)
 prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9))/100
 prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 12)/100
 prev_Nc_r = VLOOKUP (prev_crop_type; CropData; 21)/100
@@ -237,12 +238,12 @@ N_res = r_dm*Nc_r_
 dm_r = VLOOKUP (crop_type; CropData; 20)/100
 y_dm = h_dm
 fnr = 0.25
-Nc_fixation = (1 + fnr)*(N_yield + N_res)*n_fix_per
+Nc_fixation = (N_yield + N_res)*n_fix_per
 
 factor_irrigation = VLOOKUP (type_irrigation; irrigation_factors; 2)/100
 Nc_irrigation = IF_ERROR (Nc_NO3_water*dose_irrigation*factor_irrigation*0.226/1000; 0)
 
-amountN_fer = N_min_supply_total
+amountN_fer = N_min_supply_netvolat_total
 amountN_man = N_man_supply_netvolat_total
 amountN_gra = N_graz_supply_netvolat_total
 amountN_npk = prevNc_up_r
@@ -263,7 +264,9 @@ N2ON_denit_som = EF_min*amountN_min
 N2ON_denit_flooding = EF_flo*amountN_flo
 Ndenitrification = EF_fer*amountN_fer + EF_man*amountN_man + EF_gra*amountN_gra + EF_npk*amountN_npk + EF_min*amountN_min + EF_flo*amountN_flo
 
-INPUT_N = SUM (Nmineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)
+Ndeposition = IF_ERROR (N_atm; 0)
+
+INPUT_N = SUM (Ndeposition; Nmineralization; prevNc_up_r; N_man_supply_total + N_graz_supply_total; N_min_supply_total; prev_manure_legacyN_total; Nc_fixation; Nc_irrigation)
 OUTPUT_N = SUM (Nc_up_h; Ndenitrification; NH3volat_man_total + NH3_volatilization_graz_total + NH3volat_min_total)
 INPUT_P2O5 = SUM (prevPc_up_r; P2O5_man_supply_total + P2O5_graz_supply_total; P2O5_min_supply_total)
 OUTPUT_P2O5 = SUM (Pc_up_h; 0)
@@ -271,8 +274,8 @@ INPUT_K2O = SUM (prevKc_up_r; K2O_man_supply_total + K2O_graz_supply_total; K2O_
 OUTPUT_K2O = SUM (Kc_up_h; 0)
 
 N_req = MAX (OUTPUT_N - INPUT_N; 0)
-P_req = MAX (OUTPUT_P2O5 - INPUT_P2O5; 0)
-K_req = MAX (OUTPUT_K2O - INPUT_K2O; 0)
+P_req = MAX (OUTPUT_P2O5 - INPUT_P2O5; 0)*P_fert_c
+K_req = MAX (OUTPUT_K2O - INPUT_K2O; 0)*K_fert_c
 N_bal = INPUT_N - OUTPUT_N
 P_bal = INPUT_P2O5 - OUTPUT_P2O5
 K_bal = INPUT_K2O - OUTPUT_K2O

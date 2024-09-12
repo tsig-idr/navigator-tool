@@ -13,8 +13,8 @@ module.exports = function () {
 			(input.prev_manures = []);
 		undefined  === input.grazings &&
 			(input.grazings = []);
-		undefined  === input.export_r &&
-			(input.export_r = null);
+		undefined  === input.N_atm &&
+			(input.N_atm = null);
 		undefined  === input.prev_export_r &&
 			(input.prev_export_r = null);
 		undefined  === input.prev_yield &&
