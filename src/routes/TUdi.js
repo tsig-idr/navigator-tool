@@ -59,9 +59,12 @@ module.exports.router = function () {
 							P :output.P_eff,
 							K :output.K_eff
 						},
-						C_applied: {
-							N: output.C_applied
-						}, 
+						C_applied_man: {
+							N: output.C_applied_man
+						},
+						C_applied_res: {
+							N: output.C_applied_res
+						},
 						N2O_emission: {
 							N: output.N2O_emission
 						},
@@ -160,9 +163,12 @@ module.exports.router = function () {
 							P :output.P_eff,
 							K :output.K_eff
 						},
-						C_applied: {
-							N: output.C_applied
-						}, 
+						C_applied_man: {
+							N: output.C_applied_man
+						},
+						C_applied_res: {
+							N: output.C_applied_res
+						},
 						N2O_emission: {
 							N: output.N2O_emission
 						},

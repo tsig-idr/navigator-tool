@@ -51,6 +51,14 @@ module.exports = function () {
 			(input.dose_irrigation = null);
 		undefined  === input.Nc_NO3_water &&
 			(input.Nc_NO3_water = null);
+		undefined  === input.avg_T &&
+			(input.avg_T = null);
+		undefined  === input.rain_a &&
+			(input.rain_a = null);
+		undefined  === input.rain_w &&
+			(input.rain_w = null);
+		undefined  === input.ET0 &&
+			(input.ET0 = null);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
