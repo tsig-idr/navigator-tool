@@ -137,7 +137,7 @@ while i___ < n___ then begin '{'
 
 y = yield*1000
 
-yield_wc_ = IF_ERROR (yield_wc; 1 - VLOOKUP (crop_type; CropData; 11)/100)
+yield_wc_ = IF_ERROR (yield_wc/100; 1 - VLOOKUP (crop_type; CropData; 11)/100)
 dm_h_ = 1 - yield_wc_
 HI_est_ = IF_ERROR (HI_est; VLOOKUP (crop_type; CropData; 9))/100
 Nc_h_ = IF_ERROR (Nc_h; VLOOKUP (crop_type; CropData; 12))/100
@@ -196,7 +196,8 @@ Kc_status = IF (Kc_s > K1l && Kc_s <= K1u; K1e; IF (Kc_s > K2l && Kc_s <= K2u; K
 K_fert_c = IF (Kc_status == 'very low' || Kc_status == 'low'; 1; IF (Kc_status == 'medium'; 0.75; IF (Kc_status == 'high'; 0.5; 0)))
 prev_y = IF_ERROR (prev_yield; 0)*1000
 prev_green = IF (prev_greenmanure == 'yes'; 1; 0)
-prev_dm_h_ = IF_ERROR (prev_dm_h; VLOOKUP (prev_crop_type; CropData; 11))/100
+prev_yield_wc_ = IF_ERROR (prev_yield_wc/100; 1 - VLOOKUP (prev_crop_type; CropData; 11)/100)
+prev_dm_h_ = 1 - prev_yield_wc_
 prev_export_r_ = IF (prev_export_r == 'no'; 0; 100)
 prev_HI_est_ = IF_ERROR (prev_HI_est; VLOOKUP (prev_crop_type; CropData; 9))/100
 prev_Nc_h = VLOOKUP (prev_crop_type; CropData; 12)/100
