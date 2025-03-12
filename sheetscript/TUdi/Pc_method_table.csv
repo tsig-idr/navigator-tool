@@ -1,13 +1,13 @@
 Method;k
-Olsen;1
-Ammonium  lactate;0,25
-Mehlich III;0,36
-Bray;0,47
-Ammonium ac etate+ EDTA;0,48
-Calcium  lactate;0,49
-Calcium lactate acetate;0,52
-Paper strip;1,5
-Acid  ammonium  acetate;1,6
-H2O;3,8
-Saturated  water;15
-CaCl2;25
+olsen;1
+ammoniumLactate;0,25
+mehlichIII;0,36
+bray;0,47
+aaplusEDTA;0,48
+calciumlactate;0,49
+calciumlactateacetate;0,52
+paperstrip;1,5
+acidammoiumacetate;1,6
+h2o;3,8
+saturatedwater;15
+caci2;25
