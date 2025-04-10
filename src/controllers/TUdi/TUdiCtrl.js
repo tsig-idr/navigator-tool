@@ -61,6 +61,8 @@ module.exports = function () {
 			(input.ET0 = null);
 		undefined  === input.prev_yield_wc &&
 			(input.prev_yield_wc = null);
+		undefined  === input.GDD0 &&
+			(input.GDD0 = null);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'TUdi', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),

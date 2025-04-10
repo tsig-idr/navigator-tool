@@ -226,7 +226,8 @@ PI = (rain_a_ - 10160/cn + 101.6)**2/(rain_a_ + 15240/cn - 152.4)
 SI = ((2*rain_w_)/rain_a_)**(1/3)
 Nleaching = MAX (N_bal; 0)*(1 - EXP ((0-LI)/(depth_c*1000*VLOOKUP (soil_texture; SoilData; 16))))
 
-factor_humidity = IF_ERROR (rain_a_/(avg_T_*12*30.4) + 0.6; 0.1)
+GDD0_ = IF_ERROR (GDD0; avg_T_*12*30.4)
+factor_humidity = IF_ERROR (rain_a_/GDD0_ + 0.6; 0.1)
 N_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))
 Nc_mineralization_SOM = N_SOM*factor_humidity
 Nmineralization = Nc_mineralization_SOM
