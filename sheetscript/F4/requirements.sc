@@ -139,8 +139,8 @@ K_minBM = (K_exported*K_STL_2STLtmin + 10*density_s*depth_s*(Kc_s_thres_min - Kc
 K_maintenance = K_exported
 K2O_maintenance = K_maintenance*1.205
 
-factor_humidity = IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0)
-Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity
+factor_humidity_= IF_ERROR (factor_humidity; IF_ERROR (VLOOKUP (climatic_zone; Clima; 2); 1.0))
+Nc_mineralization_SOM = GET (GET (Nmineralization_SOM, MATCH (SOM; [0, 0.5, 1, 1.5, 2, 2.5]; 1)), MATCH (VLOOKUP (soil_texture; SoilData; 2); [1, 2, 3]))*factor_humidity_
 Nmineralization = Nc_mineralization_SOM
 
 n_fix_code = VLOOKUP (crop_type; CropData; 7)
