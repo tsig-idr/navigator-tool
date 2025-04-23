@@ -7,6 +7,8 @@ module.exports = function () {
 	async function requeriments (input, outputnames) {
 		!input.fertilizers &&
 			(input.fertilizers = []);
+		undefined  === input.factor_humidity &&
+			(input.factor_humidity = null);
 
 		const code = fs.readFileSync(path.join(path.resolve(), 'sheetscript', 'F4', 'requirements.sc'), 'utf8'),
 			engine = customEngine(),
